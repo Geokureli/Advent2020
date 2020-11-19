@@ -26,6 +26,14 @@ class Rig implements IFlxDestroyable
     public var finishCallback:String->Void;
     public var pixelPerfectSnapInterval = 1;
     public var scale = 1.0;
+    public var color(default, set) = 0xFFFFFF;
+    function set_color(value:Int)
+    {
+        for (limb in limbs)
+            limb.color = value;
+        
+        return this.color = value;
+    }
     
     public var paused = false;
     public var finished(default, null) = true;

@@ -1,15 +1,17 @@
 package props;
 
+import flixel.math.FlxPoint;
+
 import io.colyseus.serializer.schema.Schema;
 
 class GhostPlayer extends Player
 {
     var key:String;
     
-    public function new(key:String, x = 0.0, y = 0.0, color = 0xFFFFFF)
+    public function new(key:String, x = 0.0, y = 0.0, settings)
     {
         this.key = key;
-        super(x, y, color);
+        super(x, y, settings);
         
         targetPos = FlxPoint.get(this.x, this.y);
     }
@@ -28,7 +30,7 @@ class GhostPlayer extends Player
         );
         
         var oldState = state;
-        var newPos = FlxPoint.get(x + frameWidth / 2, y + frameHeight / 2);
+        var newPos = FlxPoint.get(x + width / 2, y + height / 2);
         var isMoving = false;
         
         for (change in changes)
@@ -42,7 +44,7 @@ class GhostPlayer extends Player
                     newPos.y = Std.int(change.value);
                     isMoving = true;
                 case "color":
-                    testColor = color = change.value;
+                    testColor = rig.color = change.value;
                 case "state":
                     state = change.value;
             }

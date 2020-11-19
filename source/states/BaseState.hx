@@ -1,6 +1,5 @@
 package states;
 
-import vfx.Inline;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -12,9 +11,18 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 
-import states.OgmoState;
+import data.Net;
+import data.PlayerSettings;
+import props.GhostPlayer;
 import props.InfoBox;
 import props.InputPlayer;
+import props.Player;
+import states.OgmoState;
+import vfx.Inline;
+
+import Types;
+import io.colyseus.Room;
+import schema.GameState;
 
 /**
  * ...
@@ -28,6 +36,8 @@ class BaseState extends OgmoState
     var camFollow = new FlxObject();
     
     var player:InputPlayer;
+    var avatars = new FlxTypedGroup<Player>();
+    var ghosts:Map<String, GhostPlayer> = [];
     
     var colliders = new FlxGroup();
     var characters = new FlxGroup();
@@ -48,7 +58,7 @@ class BaseState extends OgmoState
         FlxG.mouse.visible = !FlxG.onMobile;
         // #if debug FlxG.debugger.drawDebug = true; #end
         
-        entityTypes["Player"] = InputPlayer.new.bind(0, 0, 0xFFFFFF);
+        entityTypes["Player"] = InputPlayer.new.bind(0, 0);
         entityTypes["TvBubble"] = FlxSprite.new.bind(0, 0, "assets/images/props/cabin/tv_bubble.png");
         entityTypes["Teleport"] = FlxObject.new.bind(0, 0, 0, 0);
         loadLevel();
@@ -167,6 +177,62 @@ class BaseState extends OgmoState
         FlxG.camera.fade(FlxG.stage.color, 2.5, true);
     }
     
+    function initClient() {
+        
+        Net.joinRoom(Cabin, onRoomJoin);
+    }
+    
+    function onRoomJoin(error:String, room:Room<GameState>)
+    {
+        if (error != null)
+        {
+            trace("JOIN ERROR: " + error);
+            return;
+        }
+        
+        room.state.avatars.onAdd = (avatarData, key) ->
+        {
+            // trace("avatar added at " + key + " => " + avatar);
+            trace(room.sessionId + ' added: $key=>${avatarData.color} @(${avatarData.x}, ${avatarData.y}');
+            
+            if (key == room.sessionId)
+                trace(room.sessionId + " this is you!");
+            else
+            {
+                trace(room.sessionId + ' this AINT you');
+                if (!ghosts.exists(key))
+                {
+                    var settings = new PlayerSettings(avatarData.color);
+                    var ghost = new GhostPlayer(key, avatarData.x, avatarData.y, settings);
+                    ghosts[key] = ghost;
+                    avatars.add(ghost);
+                    foreground.add(ghost);
+                    avatarData.onChange = ghost.onChange;
+                }
+            }
+        }
+        
+        room.state.avatars.onRemove = (avatarData, key) ->
+        {
+            if (ghosts.exists(key))
+            {
+                var ghost = ghosts[key];
+                ghosts.remove(key);
+                avatars.remove(ghost);
+                avatarData.onChange = null;
+            }
+        }
+        
+        // room.state.entities.onChange = function onEntityChange(entity, key)
+        // {
+        //     trace("entity changed at " + key + " => " + entity);
+        // }
+        
+        // room.onStateChange += process_state_change;
+        
+        Net.send("avatar", { x:Std.int(player.x), y:Std.int(player.y), color:player.testColor, state:Idle });
+    }
+    
     override public function update(elapsed:Float):Void 
     {
         FlxG.watch.addMouse();
@@ -226,6 +292,19 @@ class BaseState extends OgmoState
         foreground.sort(FlxSort.byY);
         
         super.update(elapsed);
+        
+        final moved = Std.int(player.x) != player.lastSend.x || Std.int(player.y) != player.lastSend.y;
+        if (!moved)
+        {
+            player.timer = 0;
+        }
+        else if (moved && player.timer > player.sendDelay)
+        {
+            final data = { x:Std.int(player.x), y:Std.int(player.y) };
+            trace('sending: (${data.x}, ${data.y})');
+            Net.send("avatar", data);
+            player.networkUpdate();
+        }
         
         #if debug
         if (FlxG.keys.justPressed.B)

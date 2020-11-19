@@ -1,14 +1,17 @@
 package props;
 
-import flixel.FlxG;
+import Types;
+import data.PlayerSettings;
 import states.BaseState;
-import flixel.FlxObject;
 import rig.Rig;
+
+import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxDestroyUtil;
 
-class Player extends flixel.FlxObject
+class Player extends flixel.FlxSprite
 {
     inline static public var ACCEL_TIME = 0.2;
     inline static public var MAX_SPEED = 50;
@@ -17,22 +20,24 @@ class Player extends flixel.FlxObject
     static var pathTile = new FlxSprite();
     
     public var rig(default, null):Rig;
-    public var offset(default, null):FlxPoint;
-    public var flipX(get, set):Bool;
     public var hitbox(default, null):FlxObject;
     
     public var testColor = 0x0;
-    // public var state:PlayerState = Joining;
+    public var state:PlayerState = Joining;
     public var usePaths = false;
     public var drawPath = false;
     
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
+    var settings:PlayerSettings;
     
-    public function new(x = 0.0, y = 0.0, color = 0xFFFFFF)
+    public function new(x = 0.0, y = 0.0, settings:PlayerSettings)
     {
-        testColor = color;
-        super(x, y, 8, 8);
+        this.settings = settings;
+        super(x, y);
+        makeGraphic(1, 1, 0);
+        
+        settings.applyTo(this);
     }
     
     override function initVars():Void
@@ -40,9 +45,11 @@ class Player extends flixel.FlxObject
         super.initVars();
         
         // color = testColor;
+        width = 8;
+        height = 8;
         hitbox = new FlxObject(0, 0, width + 6, height + 16);
         rig = new Rig();
-        offset = FlxPoint.get(-3, 11);
+        offset.set(-3, 11);
         
         maxVelocity.set(MAX_SPEED, MAX_SPEED);
         drag.set(MAX_SPEED / ACCEL_TIME, MAX_SPEED / ACCEL_TIME);
@@ -191,6 +198,8 @@ class Player extends flixel.FlxObject
         solid = true;
     }
     
-    inline function set_flipX(value:Bool) return rig.flipX = value;
-    inline function get_flipX() return rig.flipX;
+    override function set_flipX(value:Bool):Bool
+    {
+        return super.flipX = rig.flipX = value;
+    }
 }

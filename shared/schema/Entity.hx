@@ -8,7 +8,8 @@
 package schema;
 import io.colyseus.serializer.schema.Schema;
 
-class Entity extends Schema {
+class Entity extends Schema
+{
 	@:type("string")
 	public var id: String = "";
 
