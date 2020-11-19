@@ -1,0 +1,184 @@
+{
+  "name": "Advent Calendar",
+  "ogmoVersion": "3.2.1",
+  "levelPaths": ["."],
+  "backgroundColor": "#282c34ff",
+  "gridColor": "#3c4049cc",
+  "anglesRadians": false,
+  "directoryDepth": 5,
+  "layerGridDefaultSize": {"x": 8, "y": 8},
+  "levelDefaultSize": {"x": 320, "y": 240},
+  "levelMinSize": {"x": 128, "y": 128},
+  "levelMaxSize": {"x": 4096, "y": 4096},
+  "levelValues": [],
+  "defaultExportMode": ".json",
+  "compactExport": false,
+  "entityTags": [],
+  "layers": [
+    {
+      "definition": "tile",
+      "name": "Geom",
+      "gridSize": {"x": 4, "y": 4},
+      "exportID": "24161023",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "Walls"
+    },
+    {
+      "definition": "entity",
+      "name": "Props",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "24050871",
+      "requiredTags": [],
+      "excludedTags": []
+    },
+    {
+      "definition": "decal",
+      "name": "Foreground",
+      "gridSize": {"x": 1, "y": 1},
+      "exportID": "23953795",
+      "folder": "../../images",
+      "includeImageSequence": true,
+      "scaleable": false,
+      "rotatable": false,
+      "values": []
+    },
+    {
+      "definition": "decal",
+      "name": "Background",
+      "gridSize": {"x": 1, "y": 1},
+      "exportID": "23955745",
+      "folder": "../../images",
+      "includeImageSequence": true,
+      "scaleable": false,
+      "rotatable": false,
+      "values": []
+    }
+  ],
+  "entities": [
+    {
+      "exportID": "24178282",
+      "name": "TvBubble",
+      "limit": 1,
+      "size": {"x": 123, "y": 39},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 123, "y": 39},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {
+          "name": "sorting",
+          "definition": "Enum",
+          "choices": ["Top", "Y", "Bottom", "None"],
+          "defaults": 0
+        }
+      ],
+      "texture": "../../images/props/cabin/tv_bubble.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAnCAYAAAAilUe0AAAAAXNSR0IArs4c6QAAAMtJREFUeJzt28sKgzAUANGb4P//8u1KyKJtaLQmYeaA4EJBGPNwYcnMiIgMUZQaBqfJOvsJ9DyjAxkdyOhARgcyOpDRgYwOZHQgowMZHcjoQEYHMjqQ0YGMDmR0IKMDGR3I6EBGBzI6kNGBjA5kdKAaEWX2Q+hR5ThPfrip9xuUL9Hi7p7eDb4B13SgkejfRrN/wG5gdKQbfmNXpvde+PPQYq6u6aU5PjH8Yu7cyLlz34S7d6B/fKe/m+6d4hdy9C8Z1oZvN3UuA5O9AFN1EFRrwCelAAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "31201496",
+      "name": "Player",
+      "limit": 1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": true,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../../images/tankMan_ogmo.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAHlJREFUOI21kbsOgCAMRYsx1BH//yN1FBecNKX0FY13o0lPbw4JWDKWxmd3zronPusG1rIGeR4ZS6vHpi7isoqQybsohTYNA7R2rxrQdA6iS9TB8C0URmtrEkWA1Ur9Rg3gtfgs0QXQq1LmyBULYjoAGEVyif878HIB5sktV3bTqjEAAAAASUVORK5CYII="
+    },
+    {
+      "exportID": "48541537",
+      "name": "Teleport",
+      "limit": -1,
+      "size": {"x": 4, "y": 4},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#00ff00ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 4, "y": 4},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "id", "definition": "String", "defaults": "teleport", "maxLength": 0, "trimWhitespace": true}
+      ]
+    }
+  ],
+  "tilesets": [
+    {"label": "Walls", "path": "../../images/props/cabin/wall_ogmo.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAAAXNSR0IArs4c6QAAABlJREFUCJljZEADa4yM/iPzmdAVoAPKFQAA674CF3jsQBoAAAAASUVORK5CYII=", "tileWidth": 4, "tileHeight": 4, "tileSeparationX": 0, "tileSeparationY": 0}
+  ]
+}

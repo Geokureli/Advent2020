@@ -1,0 +1,184 @@
+[
+    {
+        "day" :1,
+        "art" :{ "artist":"Cymbourine" },
+        "song":{ "artist":"CzySzy", "id":895653, "key":"cMaj" },
+        "char":"Tankman",
+        "tv"  :"UP NEXT: THE GRUNCH\nWHO SPENT CHRISTMAS\nON CRUNCH"
+    },
+    {
+        "day" :2,
+        "art" :{ "artist":"MintyEggs" },
+        "song":{ "artist":"CzySzy", "id":895653, "key":"cMaj" },
+        "char":"Pico",
+        "tv"  :"COMING UP: DOCTOR\nWHO KILLED SANTA\nCLAUS: XMAS SPECIAL"
+    },
+    {
+        "day" :3,
+        "art" :{ "artist":"GallowJolt" },
+        "song":{ "artist":"CzySzy", "id":895653, "key":"cMaj" },
+        "char":"Orange Knight",
+        "tv"  :"TONIGHT: THE\nPOLARIZING EXPRESS\nFRIGHTENS CHILDREN"
+    },
+    {
+        "day" :4,
+        "art" :{ "artist":"MalikJack", "credit":"MalikJack(PieSaus)" },
+        "song":{ "artist":"CzySzy", "id":895653, "key":"cMaj" },
+        "char":"Chutney",
+        "tv"  :"NEWS BULLETIN:\nMONSTER SHOWS UP AT\nTHE LAKE OF RAGE"
+    },
+    {
+        "day" :5,
+        "art" :{ "artist":"MrShmoods" },
+        "song":{ "artist":"CzySzy", "id":895653, "key":"cMaj" },
+        "char":"Meat Boy",
+        "tv"  :"THIS JUST IN:\nTHE WEATHER OUTSIDE\nIS FRIGHTFUL"
+    },
+    {
+        "day" :6,
+        "art" :{ "artist":"DanFromBavaria" },
+        "song":{ "artist":"ColeBob", "id":896599, "key":"eMaj" },
+        "char":"Strawberry Clock",
+        "tv"  :"BREAKING NEWS:\nREPORTS OF COAL FOR\nNAUGHTY CHILDREN"
+    },
+    {
+        "day" :7,
+        "art" :{ "artist":"MKMaffo" },
+        "song":{ "artist":"ColeBob", "id":896599, "key":"eMaj" },
+        "char":"Alien Hominid",
+        "tv"    :"PEOPLE EVERYWHERE\nENJOY PARTING GIFT\nFROM CYZSZY, OUTSIDE"
+    },
+    {
+        "day" :8,
+        "art" :{ "artist":"Snackers", "id":"1105665", "link":"duncan-jones-in-a-very-merry-christmas.png" },
+        "song":{ "artist":"ColeBob", "id":896599, "key":"eMaj" },
+        "char":"P-Bot",
+        "tv"  :"EMERGENCY: RECALLING\nMANURE TAINTED WITH\nRADIOACTIVE WASTE"
+    },
+    {
+        "day" :9,
+        "art" :{ "artist":"Figburn" },
+        "song":{ "artist":"ColeBob", "id":896599, "key":"eMaj" },
+        "char":"Dad",
+        "tv"  :"SPECIAL UPDATE: NICK\nOUR LOCAL HORSE\nCELEBRATES BIRTHDAY!"
+    },
+    {
+        "day" :10,
+        "art"  :{ "artist":"Chdonga", "fileExt":"png" },
+        "song" :{ "artist":"ColeBob", "id":896599, "key":"eMaj" },
+        "char":"Salad Fingers",
+        "tv"   :"WEATHER UPDATE: LOOK\nOUTSIDE AND TAKE A\nWILD GUESS, WOULD YOU?"
+    },
+    {
+        "day" :11,
+        "art" :{ "artist":"HenryEYES" },
+        "song":{ "artist":"Carmet", "key":"gMaj", "volume":1 },
+        "char":"Blockhead",
+        "tv"  :"SOURCES CONFIRM: TIM\nALLEN WILL REPRISE ROLE\nIN THE SANTA MAN 4"
+    },
+    {
+        "day" :12,
+        "art" :{ "artist":"Krinkels" },
+        "song":{ "artist":"Carmet", "key":"gMaj", "volume":1 },
+        "char":"Madness Victim",
+        "tv"  :"EXTRA EXTRA: MUTANT\nTREE AT RAGE LAKE,\nBOOMERS BLAME PHONES"
+    },
+    {
+        "day" :13,
+        "art" :{ "artist":"BrandyBuizel" },
+        "song":{ "artist":"Carmet", "key":"gMaj", "volume":1 },
+        "char":"Stan",
+        "tv"  :"RIGHT NOW:\nA WHO-DONE-IT\nSO WHO DID IT...?"
+    },
+    {
+        "day" :14,
+        "art" :{ "artist":"MixMuffin" },
+        "song":{ "artist":"Carmet", "key":"gMaj", "volume":1 },
+        "char":"Nene",
+        "tv"  :"ARE YOU AT RISK?\nKNIFING THE TV CAN\nSHORTEN LIFESPAN!"
+    },
+    {
+        "day" :15,
+        "art" :{ "artist":"ShiroGaia" },
+        "song":{ "artist":"Carmet", "key":"gMaj", "volume":1 },
+        "char":"Hellbenders",
+        "tv"  :"NEXT ON ADULT SWIM:\nZACH AND CHRIS GO DOOR\nTO DOOR CAROLING"
+    },
+    {
+        "day" :16,
+        "art" :{ "artist":"Boomnm" },
+        "song":{ "artist":"AlbeGian", "key":"eMaj" },
+        "char":"Hatty",
+		"tv"  :"MY WIFE LEFT ME\nCOME BACK LATER\nFOR FUNNY MESSAGES"
+    },
+    {
+        "day" :17,
+        "art" :{ "artist":"IVOanimations" },
+        "song":{ "artist":"AlbeGian", "key":"eMaj" },
+        "char":"Dashkin",
+        "tv"  :"SCIENTISTS DISCOVER\nFUNDAMENTAL PARTICLES\nCALLED PIXELS"
+    },
+    {
+        "day" :18,
+        "art" :{ "artist":"dogl" },
+        "song":{ "artist":"AlbeGian", "key":"eMaj" },
+        "char":"Tangy Mustard",
+        "tv"  :"JUST SO YOU KNOW\nTHERE'S GONNA BE A\nQUIZ ON THESE MESSAGES"
+    },
+    {
+        "day" :19,
+        "art" :{ "artist":"Mimny" },
+        "song":{ "artist":"AlbeGian", "key":"eMaj" },
+        "char":"Spoople",
+        "tv"  :"WET BANDITS! ARE\nTHEY IN YOUR AREA?\nFIND OUT AT 11"
+    },
+    {
+        "day" :20,
+        "art" :{ "artist":"RGPAnims", "fileExt":"png", "statue":"RGPAnims20" },
+        "song":{ "artist":"AlbeGian", "key":"eMaj" },
+        "char":"Hogstrong",
+        "tv"  :"Starbarians: wanted\non 120 systems for\ncoercion,\nextortion,\nextinctions,\ndistortions,\ndesertions,\nperversions,\nillegal insertions,\ninvasions of nations,\nspace tax evasion,\ncommotions,\nexplosions,\nand loitering"
+    },
+    {
+        "day" :21,
+        "art" :{ "artist":"Camuri" },
+        "song":{ "artist":"SplatterDash", "key":"aSMaj" },
+        "char":"Cpt. Tardigrade",
+        "tv"  :"Next Time: Captain\ntardigrade fights the\nevil amoebalings!"
+    },
+    {
+        "day" :22,
+        "art" :{ "artist":"Oddlem" },
+        "song":{ "artist":"SplatterDash", "key":"aSMaj" },
+        "char":"Blue Knight",
+        "tv"  :"Incomplete clickbait\nnews headlines are\nkilling millions of"
+    },
+    {
+        "day" :23,
+        "art" :{ "artist":"OniShaggy" },
+        "song":{ "artist":"SplatterDash", "key":"aSMaj" },
+        "char":"Glenda",
+        "tv"  :"nakatomi tower\nattacked by\nGerman eco terrorist"
+    },
+    {
+        "day" :24,
+        "art" :{ "artist":"Chobiluck" },
+        "song":{ "artist":"SplatterDash", "key":"aSMaj" },
+		"char":"Pump 'n' Skid",
+        "tv"  :"IT'S THE SPOOK\nBEFORE CHRISTMAS!"
+    },
+    {
+        "day" :25,
+        "art" :{ "artist":"Sevi" },
+        "song":{ "artist":"SplatterDash", "key":"aSMaj" },
+        "char":"Tom",
+        "tv"  :"A very merry\nchristmas to all those\nwho joined us :)",
+        "extras":
+        [
+            { "artist":"WDY25", "fileExt":"png" },
+            { "artist":"SnailPirate" },
+            { "artist":"ZetoSoul", "fileExt":"png" },
+            { "artist":"LoganPhresh", "fileExt":"png" }
+        ]
+    }
+]

@@ -1,0 +1,56 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Flash",
+			"type": "fdb",
+			"request": "launch",
+			"program": "${workspaceRoot}/export/flash/bin/Advent2020.swf",
+			"preLaunchTask": "debug: flash"
+		},
+		{
+			"name": "Chrome",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://127.0.0.1:3001",
+			"sourceMaps": true,
+			"webRoot": "${workspaceFolder}",
+			"runtimeArgs": ["--disable-web-security"],
+			"preLaunchTask": "debug: html"
+		},
+		{
+			"name": "FireFox",
+			"type": "firefox",
+			"request": "launch",
+			// "reAttach": true,
+			"url": "http://127.0.0.1:3001",
+			"webRoot": "${workspaceFolder}",
+			"preLaunchTask": "debug: html"
+		},
+		{
+			"name": "FireFox attach",
+			"type": "firefox",
+			"request": "attach",
+			"url": "http://127.0.0.1:3001",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"name": "Windows",
+			"type": "hxcpp",
+			"request": "launch",
+			"program": "${workspaceRoot}/export/windows/bin/AdventCalender.exe"
+		},
+		{
+			"name": "Linux",
+			"type": "hxcpp",
+			"request": "launch",
+			"program": "${workspaceRoot}/export/linux64/bin/AdventCalender"
+		},
+		{
+			"name": "Mac",
+			"type": "hxcpp",
+			"request": "launch",
+			"program": "${workspaceRoot}/export/mac64/bin/AdventCalender.app/Contents/MacOS/AdventCalender"
+		}
+	]
+}

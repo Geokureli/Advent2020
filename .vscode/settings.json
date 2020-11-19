@@ -1,0 +1,9 @@
+{ "lime.defaultBuildConfiguration": "Debug"
+, "lime.defaultTarget": "HTML5"
+, "as3mxml.sdk.framework": "/Applications/Adobe Flash Builder 4.7/sdks/4.6.0"
+, "search.exclude": 
+	{ "test/bin/**/*.hx": true
+	}
+, "haxecheckstyle.sourceFolders":["source", "flixel"]
+, "haxecheckstyle.externalSourceRoots": ["/Users/booboo/Documents/projects/haxe/lib/flixel"]
+}
