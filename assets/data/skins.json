@@ -8,6 +8,11 @@
     , "description": "DEBUG TEXT"
     , "unlockDay": 1
     }
+	{ "id": "nene"
+    , "proper": "Nene"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 10
+    }
 ,   { "id": "orange_knight"
     , "proper": "Orange Knight"
     , "description": "DEBUG TEXT"
@@ -16,17 +21,17 @@
 ,   { "id": "red_knight"
     , "proper": "Red Knight"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 5
     }
 ,   { "id": "blue_knight"
     , "proper": "Blue Knight"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "green_knight"
     , "proper": "Green Knight"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 15
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
@@ -36,32 +41,32 @@
 ,   { "id": "dad"
     , "proper": "Dad"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "chutney_glaze"
     , "proper": "Chutney Glaze"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "strawberry_clock"
     , "proper": "Strawberry Clock"
     , "description": "B!"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "hellbenders"
     , "proper": "The Hellbenders"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "Two friends: Chris and Zach. They live in a world surrounded by... not-so-normal things."
+    , "unlockDay": 10
     }
 ,   { "id": "captain_tardigrade"
     , "proper": "Captain Tardigrade"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "A tardigrade is a microscopic extremophile, an extremophile can endure and survive extreme conditions which makes them virtually indestructible."
+    , "unlockDay": 10
     }
 ,   { "id": "meatboy"
     , "proper": "Meatboy"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "alien_hominid"
     , "proper": "Alien Hominid"
@@ -71,91 +76,91 @@
 ,   { "id": "hatty"
     , "proper": "Hatty Hattington"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "salad_fingers"
     , "proper": "Salad Fingers"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "blockhead"
     , "proper": "Blockhead"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "bitey"
     , "proper": "Bitey"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "The tricky Dashkin from Brackenwood."
+    , "unlockDay": 10
     }
 ,   { "id": "pbot"
     , "proper": "P-Bot"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "Curating the very best there is on Newgrounds, Daily! And sometimes Maxine."
+    , "unlockDay": 10
     }
 ,   { "id": "stan"
     , "proper": "Stan"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "That one Nightmare Cops guy with the fanart you’ve seen. His name’s actually Stan, do you believe it?"
+    , "unlockDay": 10
     }
 ,   { "id": "knight"
     , "proper": "Knight"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "Realm Raiders"
+    , "unlockDay": 10
     }
 ,   { "id": "tangy_mustard"
     , "proper": "Tangy Mustard"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "glenda"
     , "proper": "Glenda"
-    , "description": "The classiest galaxy tourist"
-    , "unlockDay": 1
+    , "description": "The classiest galaxy tourist."
+    , "unlockDay": 10
     }
 ,   { "id": "hogstrong"
     , "proper": "Hogstrong"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "spoople"
     , "proper": "Spoople"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 10
     }
 ,   { "id": "tom"
     , "proper": "Tom Fulp"
     , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "unlockDay": 25
     }
 ,   { "id": "pump_and_skid"
     , "proper": "Pump'n'Skid"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "The spooky boys will be dancing all month, and the next month, and does Halloween ever truly end?"
+    , "unlockDay": 10
     }
 ,   { "id": "brandybuizel"
     , "proper": "BrandyBuizel"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "They say that God made us in his own image, so why not play as him? -b"
+    , "unlockDay": 13
     }
 ,   { "id": "velour"
     , "proper": "Velour"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "I'm not super into madness, but I know that those people are into her as well. A cute hologram OC by Cymbourine."
+    , "unlockDay": 10
     }
 ,   { "id": "horse"
     , "proper": "Horse"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "It's that guy from NEAR DEADline, you should play that game instead, trust me."
+    , "unlockDay": 10
     }
 ,   { "id": "elk"
     , "proper": "Elk"
-    , "description": "DEBUG TEXT"
-    , "unlockDay": 1
+    , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer."
+    , "unlockDay": 10
     }
 ,   { "id": "custom"
     , "proper": "Custom"
-    , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
-    , "unlockDay":-1
+    , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the same."
+    , "unlockDay":-10
     }
 ]

@@ -1,3 +1,5 @@
 server/node_modules/
 export/
 brandyArt/
+.vscode/
+APIStuff.hx
