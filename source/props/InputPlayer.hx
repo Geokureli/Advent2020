@@ -51,6 +51,15 @@ class InputPlayer extends Player
         
         if (FlxG.keys.justPressed.TWO)
             setFullSkin("solid");
+        
+        if (FlxG.keys.justPressed.THREE)
+            setFullSkin("pico");
+        
+        if (FlxG.keys.justPressed.FOUR)
+            setFullSkin("vector");
+        
+        if (FlxG.keys.justPressed.ZERO)
+            rig.color = rig.color == 0xffffff ? settings.color : 0xffffff;
     }
     
     public function networkUpdate()
@@ -63,6 +72,8 @@ class InputPlayer extends Player
     
     function setFullSkin(skinName:String)
     {
+        rig.color = skinName == "default" ? settings.color : 0xffffff;//debug
+        
         for (limb in Limb.getAll())
             rig.setSkin(limb, skinName);
     }

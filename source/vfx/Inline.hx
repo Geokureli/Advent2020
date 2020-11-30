@@ -14,11 +14,16 @@ class Inline extends FlxShader
         void main()
         {
             vec4 sample = flixel_texture2D(bitmap, openfl_TextureCoordv);
-            if (sample.a != 0.0) {
+            if (sample.a != 0.0)
+            {
                 float w = size.x / openfl_TextureSize.x;
                 float h = size.y / openfl_TextureSize.y;
                 
-                if (flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x + w, openfl_TextureCoordv.y    )).a == 0.0
+                if (openfl_TextureCoordv.x + w > 1.0
+                 || openfl_TextureCoordv.x - w < 0.0
+                 || openfl_TextureCoordv.y + h > 1.0
+                 || openfl_TextureCoordv.y - h < 0.0
+                 || flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x + w, openfl_TextureCoordv.y    )).a == 0.0
                  || flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x - w, openfl_TextureCoordv.y    )).a == 0.0
                  || flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x    , openfl_TextureCoordv.y + h)).a == 0.0
                  || flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x    , openfl_TextureCoordv.y - h)).a == 0.0)
@@ -26,11 +31,11 @@ class Inline extends FlxShader
             }
             gl_FragColor = sample;
         }')
-
-	public function new(color:FlxColor = 0xFFFFFFFF, width:Float = 1, height:Float = 1)
-	{
-		super();
-		this.color.value = [color.red, color.blue, color.green, color.alpha];
-		this.size.value = [width, height];
-	}
+    
+    public function new(color:FlxColor = 0xFFFFFFFF, width:Float = 1, height:Float = 1)
+    {
+        super();
+        this.color.value = [color.red, color.blue, color.green, color.alpha];
+        this.size.value = [width, height];
+    }
 }

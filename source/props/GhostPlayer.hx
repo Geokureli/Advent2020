@@ -44,7 +44,7 @@ class GhostPlayer extends Player
                     newPos.y = Std.int(change.value);
                     isMoving = true;
                 case "color":
-                    testColor = rig.color = change.value;
+                    settings.color = rig.color = change.value;
                 case "state":
                     state = change.value;
             }

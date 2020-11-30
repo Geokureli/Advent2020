@@ -27,7 +27,13 @@
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
-	<set name="BUILD_DIR" value="export" />
+	<!-- <define name="PRELOAD_ALL" if="debug" /> -->
+	<define name="USE_LOCAL_SERVER" if="debug"/>
+	<!-- <define name="USE_DEBUG_SERVER"/> -->
+	
+	
+	<set name="BUILD_DIR" value="export/debug" if="debug" />
+	<set name="BUILD_DIR" value="export/release" unless="debug" />
 	<classpath name="source" />
 	<classpath name="shared" />
 	
@@ -35,9 +41,10 @@
 	<assets path="assets/images" exclude="*/*.aseprite"/>
 	<assets path="assets/sounds" include="*.mp3"/>
 	
-	<library name="noPreload" preload="false" />
-	<assets path="assets/music" library="noPreload"  include="*.mp3"/>
-	<!-- <assets path="assets/artwork" library="noPreload" /> -->
+	<library name="noPreload" preload="true" if="PRELOAD_ALL" />
+	<library name="noPreload" preload="false" unless="PRELOAD_ALL" />
+	<assets path="assets/music" library="noPreload"  include="*.mp3" />
+	<assets path="assets/artwork" library="noPreload" />
 	
 	<library path="assets/swfs/Animations.swf" id="Animations" preload="true" />
 
@@ -48,7 +55,7 @@
 	<!-- <haxelib name="swf" /> -->
 
 	<!--In case you want to use the addons package-->
-	<!--<haxelib name="flixel-addons" />-->
+	<haxelib name="flixel-addons" />
 
 	<!--In case you want to use the ui package-->
 	<!--<haxelib name="flixel-ui" />-->

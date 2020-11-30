@@ -9,8 +9,6 @@ import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
 import flixel.util.FlxDestroyUtil;
 
-import props.Player;
-
 import openfl.utils.Assets;
 
 class Rig implements IFlxDestroyable
@@ -27,6 +25,8 @@ class Rig implements IFlxDestroyable
     public var pixelPerfectSnapInterval = 1;
     public var scale = 1.0;
     public var color(default, set) = 0xFFFFFF;
+    public var visible = true;
+    
     function set_color(value:Int)
     {
         for (limb in limbs)
@@ -119,27 +119,30 @@ class Rig implements IFlxDestroyable
         {
             limbSprite.x = frame[limb].x * (flipX ? -1 : 1) * scale;
             limbSprite.y = frame[limb].y * scale;
-            limbSprite.scale.x = frame[limb].xScale * scale;
-            limbSprite.scale.y = frame[limb].yScale * scale;
+            limbSprite.scale.x = frame[limb].xScale * skins[limb].scaleX * scale;
+            limbSprite.scale.y = frame[limb].yScale * skins[limb].scaleY * scale;
             limbSprite.angle = (frame[limb].rotation + skins[limb].rotation) * (flipX ? -1 : 1);
             limbSprite.flipX = flipX;
-            limbSprite.offset.x = flipX ? limbSprite.width + skins[limb].x : -skins[limb].x;
+            final scaledWidth = limbSprite.width * skins[limb].scaleX;
+            limbSprite.offset.x = limbSprite.flipX
+                ? (scaledWidth + skins[limb].x) / skins[limb].scaleX
+                : -skins[limb].x / skins[limb].scaleX;
         }
     }
     
-    public function drawTo(player:Player)
+    public function drawTo(sprite:FlxSprite)
     {
         var oldPos = FlxPoint.get();
         for (limb in limbsGroup.members)
         {
             limb.getPosition(oldPos);
-            limb.x += player.x - player.offset.x + (flipX ? FLIPX_OFFSET : 0);
-            limb.y += player.y - player.offset.y;
-            if (pixelPerfectSnapInterval > 0)
-            {
-                limb.x = Math.round(limb.x * pixelPerfectSnapInterval) / pixelPerfectSnapInterval;
-                limb.y = Math.round(limb.y * pixelPerfectSnapInterval) / pixelPerfectSnapInterval;
-            }
+            limb.x += sprite.x - sprite.offset.x + (flipX ? FLIPX_OFFSET : 0);
+            limb.y += sprite.y - sprite.offset.y;
+            // if (pixelPerfectSnapInterval > 0)
+            // {
+            //     limb.x = Math.round(limb.x * pixelPerfectSnapInterval) / pixelPerfectSnapInterval;
+            //     limb.y = Math.round(limb.y * pixelPerfectSnapInterval) / pixelPerfectSnapInterval;
+            // }
             limb.draw();
             limb.x = oldPos.x;
             limb.y = oldPos.y;
@@ -202,10 +205,14 @@ abstract LimbSprite(FlxSprite) to FlxSprite
         if (graphic == null)
             graphic = FlxG.bitmap.add(Assets.getBitmapData(skin.symbol), false, skin.symbol);
         this.loadGraphic(skin.symbol);
-        this.offset.x = -skin.x;
-        this.offset.y = -skin.y;
-        this.origin.copyFrom(this.offset);
         this.angle = skin.rotation;
+        this.scale.x = skin.scaleX;
+        this.scale.y = skin.scaleY;
+        this.origin.x = -skin.x;
+        this.origin.y = -skin.y;
+        this.offset.x = -skin.x / skin.scaleX;
+        this.offset.y = -skin.y / skin.scaleX;
+        this.origin.copyFrom(this.offset);
         #if debug
         this.ignoreDrawDebug = !DRAW_DEBUG;
         #end
