@@ -1,6 +1,8 @@
 package utils;
 
-abstract BitArray(Int) from Int to Int
+import haxe.Int64;
+
+abstract BitArray(Int64) from Int64 to Int64
 {
     static var LOG_2:Float = Math.log(2);
     
@@ -11,7 +13,14 @@ abstract BitArray(Int) from Int to Int
     
     public function getLength():Int
     {
-        return Math.floor(Math.log(this) / LOG_2) + 1;
+        if (this.high < 0)
+            return 64;
+        if (this.high > 0)
+            return Math.floor(Math.log(this.high) / LOG_2) + 33;
+        else if (this.low < 0)
+            return 32;
+        else
+            return Math.floor(Math.log(this.low) / LOG_2) + 1;
     }
     
     inline public function reset():Void
@@ -22,19 +31,28 @@ abstract BitArray(Int) from Int to Int
     @:arrayAccess
     inline public function get(key:Int):Bool
     {
-        return toBool((this >> key) & 1);
+        var part = this.low;
+        if (key >= 32)
+        {
+            key -= 32;
+            part = this.high;
+        }
+        return toBool((part >> key) & 1);
     }
     
     @:arrayAccess
     inline public function arrayWrite(key:Int, value:Bool):Bool
     {
-        this = (this & ~(1 << key)) | (toInt(value) << key);
+        if (key >= 63)
+            throw "Cannot have 63 or more bits";
+        
+        this = (this & ~((1:Int64) << key)) | ((toInt(value):Int64) << key);
         return value;
     }
     public function toString():String
     {
         var str = "";
-        var copy:Int = this;
+        var copy:Int64 = this.copy();
         while (copy != 0)
         {
             str = Std.string(copy & 1) + str;
@@ -51,10 +69,10 @@ abstract BitArray(Int) from Int to Int
     /** for debugging */
     inline static public function fromString(value:String):BitArray
     {
-        inline function intFromChar(char:String):Int
+        inline function intFromChar(char:String):Int64
             return (char == "0" ? 0 : 1);
         
-        var int = intFromChar(value.charAt(0));
+        var int:Int64 = intFromChar(value.charAt(0));
         
         for (i in 1...value.length)
         {

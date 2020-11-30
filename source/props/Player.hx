@@ -1,7 +1,10 @@
 package props;
 
+import flixel.math.FlxVector;
+import flixel.math.FlxMath;
 import Types;
 import data.PlayerSettings;
+import data.Skins;
 import states.rooms.RoomState;
 import rig.Rig;
 
@@ -14,13 +17,14 @@ import flixel.util.FlxDestroyUtil;
 class Player extends flixel.FlxSprite
 {
     inline static public var ACCEL_TIME = 0.2;
-    inline static public var MAX_SPEED = 50;
+    inline static public var MAX_SPEED = 125;
+    inline static public var BOB = 3;
+    inline static public var BOB_PERIOD = 0.25;
     inline static public var ACCEL_SPEED = MAX_SPEED / ACCEL_TIME;
     
     static var pathTile = new FlxSprite();
     
     public var settings(default, null):PlayerSettings;
-    public var rig(default, null):Rig;
     public var hitbox(default, null):FlxObject;
     
     public var state:PlayerState = Joining;
@@ -29,6 +33,7 @@ class Player extends flixel.FlxSprite
     
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
+    var bobTimer = 0.0;
     
     public function new(x = 0.0, y = 0.0, settings:PlayerSettings)
     {
@@ -41,13 +46,6 @@ class Player extends flixel.FlxSprite
     override function initVars():Void
     {
         super.initVars();
-        
-        makeGraphic(1, 1, 0);
-        width = 8;
-        height = 8;
-        hitbox = new FlxObject(0, 0, width + 6, height + 16);
-        rig = new Rig();
-        offset.set(-3, 11);
         
         maxVelocity.set(MAX_SPEED, MAX_SPEED);
         drag.set(MAX_SPEED / ACCEL_TIME, MAX_SPEED / ACCEL_TIME);
@@ -68,15 +66,42 @@ class Player extends flixel.FlxSprite
     
     override function update(elapsed:Float)
     {
-        // must be before update, anfter collision
-        if (x != last.x || y != last.y)
-            rig.play("walk");
+        // BOB SHIT
+        var oldV = velocity.copyTo();
+        if (velocity.x != 0 || velocity.y != 0)
+        {
+            bobTimer += elapsed;
+            var bobTime = Math.max(0, FlxMath.fastSin(bobTimer / BOB_PERIOD * Math.PI));
+            offset.y = frameHeight - height + bobTime * BOB;
+            velocity.scale(0.25 + 1 * bobTime);
+        }
         else
-            rig.play("idle");
+        {
+            bobTimer = bobTimer % BOB_PERIOD;
+            if (bobTimer > BOB_PERIOD / 2)
+                bobTimer = 0;
+            if (bobTimer > BOB_PERIOD / 4)
+                bobTimer = BOB_PERIOD / 4 - bobTimer;
+            bobTimer = Math.max(0, bobTimer - elapsed);
+            var bobTime = Math.max(0, FlxMath.fastSin(bobTimer / BOB_PERIOD * Math.PI));
+            offset.y = frameHeight - height + bobTime * BOB;
+        }
         
         super.update(elapsed);
+        velocity.copyFrom(oldV);
+        oldV.put();
+        var last = FlxPoint.get(x, y);
+        oldV.set(x, y);
+        updateMotion(elapsed);
+        x = oldV.x;
+        y = oldV.y;
+        last.put();
+        // BOB SHIT END
         
-        rig.update(elapsed);
+        var v:FlxVector = velocity;
+        if (v.lengthSquared > MAX_SPEED * MAX_SPEED)
+            v.length = MAX_SPEED;
+        
         hitbox.update(elapsed);
         hitbox.setPosition(x + (width - hitbox.width) / 2, y + height - hitbox.height);
         
@@ -139,8 +164,10 @@ class Player extends flixel.FlxSprite
     {
         super.draw();
         
+        #if USE_RIG
         if (rig.visible)
             rig.drawTo(this);
+        #end
         
         hitbox.draw();
     }
@@ -149,7 +176,7 @@ class Player extends flixel.FlxSprite
     {
         super.destroy();
         
-        rig = FlxDestroyUtil.destroy(rig);
+        #if USE_RIG rig = FlxDestroyUtil.destroy(rig); #end
         offset = FlxDestroyUtil.put(offset);
         // scale = FlxDestroyUtil.put(scale);
     }
@@ -197,8 +224,23 @@ class Player extends flixel.FlxSprite
         solid = true;
     }
     
+    #if USE_RIG
     override function set_flipX(value:Bool):Bool
     {
         return super.flipX = rig.flipX = value;
     }
+    #else
+    public function setSkin(skin:Int)
+    {
+        var data = Skins.getData(skin);
+        loadGraphic('assets/images/player/${data.id}.png');
+        scale.set(2, 2);
+        width = 16;
+        height = 16;
+        origin.y = 16;
+        offset.x = (frameWidth - width) / 2;
+        offset.y = frameHeight - height;
+        hitbox = new FlxObject(0, 0, width + 12, height + 12);
+    }
+    #end
 }

@@ -29,6 +29,7 @@
         , "key"      : "f#Maj"
         , "bpm"      : 135
         , "ngId"     : 0
+        , "day"      : 1
         }
     ,   { "id"     : "splatterdash"
         , "name"   : null
@@ -54,6 +55,7 @@
         { "id"     : "cymbourine"
         , "name"   :  null
         , "authors": ["cymbourine"]
+        , "day"    : 1
         }
     ]
 ,   "days":

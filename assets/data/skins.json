@@ -1,9 +1,4 @@
-[   { "id": "custom"
-    , "proper": "Custom"
-    , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
-    , "unlockDay":-1
-    }
-,   { "id": "tankman"
+[   { "id": "tankman"
     , "proper": "Tankman"
     , "description": "DEBUG TEXT"
     , "unlockDay": 1
@@ -157,5 +152,10 @@
     , "proper": "Elk"
     , "description": "DEBUG TEXT"
     , "unlockDay": 1
+    }
+,   { "id": "custom"
+    , "proper": "Custom"
+    , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
+    , "unlockDay":-1
     }
 ]

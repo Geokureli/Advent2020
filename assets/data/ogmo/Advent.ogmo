@@ -6,7 +6,7 @@
   "gridColor": "#3c4049cc",
   "anglesRadians": false,
   "directoryDepth": 5,
-  "layerGridDefaultSize": {"x": 8, "y": 8},
+  "layerGridDefaultSize": {"x": 16, "y": 16},
   "levelDefaultSize": {"x": 320, "y": 240},
   "levelMinSize": {"x": 240, "y": 135},
   "levelMaxSize": {"x": 4096, "y": 4096},
@@ -20,7 +20,7 @@
     {
       "definition": "tile",
       "name": "Geom",
-      "gridSize": {"x": 8, "y": 8},
+      "gridSize": {"x": 16, "y": 16},
       "exportID": "58635190",
       "exportMode": 0,
       "arrayMode": 0,
@@ -29,7 +29,7 @@
     {
       "definition": "entity",
       "name": "Props",
-      "gridSize": {"x": 8, "y": 8},
+      "gridSize": {"x": 16, "y": 16},
       "exportID": "58647788",
       "requiredTags": [],
       "excludedTags": []
@@ -37,7 +37,7 @@
     {
       "definition": "decal",
       "name": "Foreground",
-      "gridSize": {"x": 8, "y": 8},
+      "gridSize": {"x": 16, "y": 16},
       "exportID": "58641295",
       "folder": "../../images/props",
       "includeImageSequence": true,
@@ -48,7 +48,7 @@
     {
       "definition": "decal",
       "name": "Background",
-      "gridSize": {"x": 8, "y": 8},
+      "gridSize": {"x": 16, "y": 16},
       "exportID": "58641246",
       "folder": "../../images/props",
       "includeImageSequence": true,
@@ -62,7 +62,7 @@
       "exportID": "58765051",
       "name": "Teleport",
       "limit": -1,
-      "size": {"x": 8, "y": 8},
+      "size": {"x": 16, "y": 16},
       "origin": {"x": 0, "y": 0},
       "originAnchored": true,
       "shape": {
@@ -79,7 +79,7 @@
       "color": "#ff00ffff",
       "tileX": false,
       "tileY": false,
-      "tileSize": {"x": 8, "y": 8},
+      "tileSize": {"x": 16, "y": 16},
       "resizeableX": true,
       "resizeableY": true,
       "rotatable": false,
@@ -96,9 +96,49 @@
         {"name": "id", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100},
         {"name": "target", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
+    },
+    {
+      "exportID": "75464384",
+      "name": "Present",
+      "limit": -1,
+      "size": {"x": 32, "y": 32},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 32, "y": 32},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "id", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ],
+      "texture": "present.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAiCAYAAAA+stv/AAAAAXNSR0IArs4c6QAAA8BJREFUWIW1lz9vGlkUxX+TYGOxCONME0hBLKFUq63RCrnwB2C1BRVuLIpUtGl33FraJtTIDalcbESznQuL7AdYpRzJoSEUGXuYjJDHyMwW8PCbN38YR94juZi5951z3n3v3jFarVbDMAwABoMBneHQJwztOJcLvP/j61cK2SwAjudxUiqF1pzNZpFc3Xp9/ZAB0HUdgM5w6JeLxdCKsW37AAcHBwA0m03y7TYid2zbdLtdzs/PAbi8vORsNovl6gyHmtvrPRgAyLfbkQsAysUif04mbDebkXGB5ir+28ePlF++jOUa27afb7c1t9fjWSLjg2te7Oxw12ptzL1rtXixs8PYttNQLw10Op2os2Js2wGiTSaEeNx6Gce5nN/pdB6OAODzZBJIksnkd9etFigxVTwtbwbwDcPA1XVotbhyXQD0ra1EI9e3t1wrxFE5sOwSaz4HYD+fx+31MCwLwzD8QBdsf/jA/qrEV66LNZ9HGnE8j9e7u4Eu+DKdruNxwkJD1tRqtZp/NpvFuhdm9K0tCtksjudRyGb5WbnlnyeTdUwIC9G4Kh7ncmh/Vyr+r5VKYinlMxQiUVBjqkkV/4xGaJ/evPHjLo+ML9PpxhwZr3d3N+Zc396ScTyP7+/fRyZU3r1bn/NqgASMyKNYFpYH2ti2GZ2eRvL7b9+SOSmVMHi4FEkQxN16nc5wGBzFyjsZUdyWZXFSKiVPwtHp6XqYiL9uvU6j0QjlNhoNuvV6KD9u9wKZpKCu6yGCRsyOdF2n0WgwUsxtqmwGoN/vc3R0FEucFmlzLcui3+8DPBxBv9/Hsiwsy0ot+FgIfiEOyhEMBgOAyDN+TCWEmArBLyPyDlxcXITeHR4eBp6/TaeBkaspglEcUcgAmmmafrVaTUxUCX+Zz/l+fw/A3WLBvykFBUzTJJvNauIOaKZp4jjOo0h+BI7jrMU9z1teQnn3juPgrj7JTwnXdQMb9DyParUavAM3NzcAFAqFkIm89GVLK6hC8MsIGNjb2wNgNBqFEisbvpiqYBSH4Jc7JLILhJhcMpWwcn9P0V/+K2kvFqG4EINlRVW+WAMiOZ/PP6rssiBAuVwOPLuuS6FQCJlI/BYkEb56/pztZ8sm+knTsJR4WqT6XfB/QjYQmAVP2YqCS54BIQPqLHgqE7K4gJgBAQMCpmmGTPyIEXmd4BLcMtRLqK0SfQhWJY2gDHnHQliM31gDQtA0zYCRNGbU9pJ3K4Tl0gtotVotkVhC4Afs71dXFFdtaC8W/LW/H0iO2m0U/gOrPwxy1MSJZwAAAABJRU5ErkJggg=="
     }
   ],
   "tilesets": [
-    {"label": "walls", "path": "walls.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAAAXNSR0IArs4c6QAAABxJREFUKJFjZCAA1hgZ/ccnz0TIAEJg1IDBYAAA+WsCHyGMidYAAAAASUVORK5CYII=", "tileWidth": 8, "tileHeight": 8, "tileSeparationX": 0, "tileSeparationY": 0}
+    {"label": "walls", "path": "walls.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAQCAYAAAB3AH1ZAAAAAXNSR0IArs4c6QAAAC5JREFUSIljZCATrDEygjH/k2sGAwMDAxMlmqkBRh0w6oBRB4w6YNQBow4YdQAAog4CL71gOIwAAAAASUVORK5CYII=", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0}
   ]
 }
