@@ -31,6 +31,7 @@
 	<define name="USE_LOCAL_SERVER" if="debug"/>
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
+	<!-- <define name="USE_RIG" /> -->
 	
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
@@ -52,6 +53,7 @@
 
 	<haxelib name="flixel" />
 	<haxelib name="colyseus" />
+	<haxelib name="newgrounds" />
 	<!-- <haxelib name="swf" /> -->
 
 	<!--In case you want to use the addons package-->

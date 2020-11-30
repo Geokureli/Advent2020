@@ -1,5 +1,6 @@
 package states.rooms;
 
+import data.NGio;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -18,6 +19,7 @@ import props.GhostPlayer;
 import props.InfoBox;
 import props.InputPlayer;
 import props.Player;
+import props.Present;
 import props.Teleport;
 import states.OgmoState;
 import vfx.Inline;
@@ -78,12 +80,13 @@ class RoomState extends OgmoState
         // #if debug FlxG.debugger.drawDebug = true; #end
         
         // No @:arrayAccess function for Map<String, (OgmoEntityData<Dynamic>)->FlxObject> accepts arguments of String and (OgmoEntityData<Dynamic>)->Void
-        entityTypes["Teleport"] = function(data)
+        entityTypes["Teleport"] = cast function(data)
         {
             var teleport = Teleport.fromEntity(data);
             teleports.add(teleport);
             return teleport;
         }
+        entityTypes["Present"] = cast Present.fromEntity;
         loadLevel();
         initEntities();
         initCamera();
@@ -238,15 +241,15 @@ class RoomState extends OgmoState
         room.state.avatars.onAdd = (avatarData, key) ->
         {
             // trace("avatar added at " + key + " => " + avatar);
-            trace(room.sessionId + ' added: $key=>${avatarData.color} @(${avatarData.x}, ${avatarData.y}');
+            trace(room.sessionId + ' added: $key=>${avatarData.name} ${avatarData.skin}@(${avatarData.x}, ${avatarData.y})');
             
             if (key != room.sessionId)
             {
                 // trace(room.sessionId + ' this AINT you');
                 if (!ghosts.exists(key))
                 {
-                    var settings = new PlayerSettings(avatarData.color);
-                    var ghost = new GhostPlayer(key, avatarData.x, avatarData.y, settings);
+                    var settings = new PlayerSettings(avatarData.skin);
+                    var ghost = new GhostPlayer(key, avatarData.name, avatarData.x, avatarData.y, settings);
                     ghosts[key] = ghost;
                     avatars.add(ghost);
                     foreground.add(ghost);
@@ -274,8 +277,14 @@ class RoomState extends OgmoState
         // }
         
         // room.onStateChange += process_state_change;
-        
-        Net.send("avatar", { x:Std.int(player.x), y:Std.int(player.y), color:player.settings.color, state:Idle });
+        Net.send("avatar", 
+            { x:Std.int(player.x)
+            , y:Std.int(player.y)
+            , skin:player.settings.skin
+            , name:NGio.userName
+            , state:Idle
+            }
+        );
     }
     
     override public function update(elapsed:Float):Void 

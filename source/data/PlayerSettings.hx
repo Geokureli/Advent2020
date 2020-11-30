@@ -6,15 +6,18 @@ class PlayerSettings
 {
     public static var user:PlayerSettings;
     
-    public var color:Int;
+    public var skin:Int;
     
-    public function new(color = 0xFFFFFF)
+    public function new(skin = 0)
     {
-        this.color = color;
+        this.skin = skin;
     }
     
     public function applyTo(player:Player)
     {
-        player.rig.color = color;
+        #if USE_RIG
+        #else
+        player.setSkin(skin);
+        #end
     }
 }

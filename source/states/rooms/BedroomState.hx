@@ -1,10 +1,9 @@
 package states.rooms;
 
-import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
 import data.Manifest;
 import props.InputPlayer;
 import props.InfoBox;
+import props.Notif;
 import states.OgmoState;
 import states.debug.AudioToolSubstate;
 import utils.GameSize;
@@ -15,12 +14,15 @@ import vfx.PixelPerfectShader;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 
 import openfl.filters.ShaderFilter;
 
 class BedroomState extends RoomState
 {
     var dresser:OgmoDecal;
+    var dresserNotif:Notif;
     
     override function create()
     {
@@ -43,12 +45,18 @@ class BedroomState extends RoomState
         door.animation.play("closed");
         
         dresser = foreground.getByName("dresser");
-        dresser.setBottomHeight(8);
+        dresser.setBottomHeight(16);
         addHoverTextTo(dresser, "DRESS UP", onOpenDresser);
+        dresserNotif = new Notif();
+        dresserNotif.x = dresser.x + (dresser.width - dresserNotif.width) / 2;
+        dresserNotif.y = dresser.y + dresser.height - dresser.frameHeight;
+        dresserNotif.animate();
+        add(dresserNotif);
     }
     
     function onOpenDresser()
     {
+        dresserNotif.visible = false;
         trace("dresser opened");
     }
 }

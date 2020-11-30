@@ -16,11 +16,11 @@ class Teleport extends FlxObject
         super(x, y, width, height);
     }
     
-    static public function fromEntity(data:OgmoEntityData<Dynamic>)
+    static public function fromEntity(data:OgmoEntityData<TeleportValues>)
     {
         var teleport = new Teleport();
         data.applyToObject(teleport);
-        final values:TeleportValues = data.values;
+        final values = data.values;
         teleport.id = values.id;
         teleport.target = values.target;
         return teleport;

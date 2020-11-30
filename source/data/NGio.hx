@@ -14,27 +14,13 @@ import openfl.display.Stage;
 import flixel.FlxG;
 import flixel.util.FlxSignal;
 
-import states.OutsideState;
-
 class NGio
 {
-	inline static public var MEDAL_0 = 58519;
-	
-	static var naughty = 
-	[ //"raritynyasha"
-	// , "brandybuizel"
-	// , "geokureli"
-	// , "malcolmsith"
-	// , "NeonSpider"
-	];
-	
 	public static var isLoggedIn(default, null):Bool = false;
 	public static var userName(default, null):String;
 	public static var scoreboardsLoaded(default, null):Bool = false;
 	public static var ngDate(default, null):Date;
-	public static var isNaughty(default, null) = false;
 	public static var isWhitelisted(default, null) = false;
-	public static var wouldBeNaughty(default, null) = false;
 	
 	public static var scoreboardArray:Array<Score> = [];
 	
@@ -101,9 +87,7 @@ class NGio
 	{
 		isLoggedIn = true;
 		userName = NG.core.user.name;
-		wouldBeNaughty = isNaughty
-			= naughty.indexOf(NG.core.user.name.toLowerCase()) != -1;
-		trace ('logged in! user:${NG.core.user.name}, naughty:$isNaughty');
+		trace ('logged in! user:${NG.core.user.name}');
 		NG.core.requestMedals(onMedalsRequested);
 		
 		ngDataLoaded.dispatch();
@@ -117,9 +101,6 @@ class NGio
 			{
 				if (response.success && response.result.success) 
 					ngDate = Date.fromString(response.result.data.dateTime.substring(0, 10));
-				
-				if (isNaughty && Calendar.isChristmas)
-					isNaughty = false;// no one is naughty on christmas
 			}
 		).addSuccessHandler(onComplete)
 		.addErrorHandler((_)->onComplete())
@@ -129,23 +110,18 @@ class NGio
 	static public function checkWhitelist():Void
 	{
 		if (isLoggedIn)
-			isWhitelisted = Calendar.checkWhitelisted(NG.core.user.name);
+			isWhitelisted = false;//Calendar.checkWhitelisted(NG.core.user.name);
 	}
 	
 	// --- MEDALS
 	static function onMedalsRequested():Void
 	{
-		if (FlxG.save.data.solvedMurder == true)
-			NGio.unlockMedal(OutsideState.KILLER_MEDAL, false);
-		if (FlxG.save.data.instrument != null)
-			NGio.unlockMedal(OutsideState.MUSIC_MEDAL, false);
-		
-		Calendar.onMedalsRequested();
+		// Calendar.onMedalsRequested();
 	}
 	
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
-		if(!isNaughty && isLoggedIn && !Calendar.isDebugDay)
+		if(isLoggedIn)
 		{
 			trace("unlocking " + id);
 			var medal = NG.core.medals.get(id);
@@ -157,13 +133,14 @@ class NGio
 				#end
 		}
 		else
-			trace('no medal unlocked, naughty:$isNaughty loggedIn:$isLoggedIn debugDay:${Calendar.isDebugDay}');
+			trace('no medal unlocked, loggedIn:$isLoggedIn');
 	}
 	
-	static public function hasDayMedal(date:Int):Bool
-	{
-		return hasMedal(MEDAL_0 + date);
-	}
+	// static public function hasDayMedal(date:Int):Bool
+	// {
+	// 	return hasMedal(MEDAL_0 + date);
+	// }
+	
 	static public function hasMedal(id:Int):Bool
 	{
 		return isLoggedIn && NG.core.medals.get(id).unlocked;

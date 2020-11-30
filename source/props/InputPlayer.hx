@@ -19,7 +19,7 @@ class InputPlayer extends Player
     public function new(x = 0.0, y = 0.0)
     {
         if (PlayerSettings.user == null)
-            PlayerSettings.user = new PlayerSettings(FlxColor.fromHSB(FlxG.random.float(0, 36) * 10, 1, 1));
+            PlayerSettings.user = new PlayerSettings(0);
         
         super(x, y, PlayerSettings.user);
     }
@@ -45,7 +45,12 @@ class InputPlayer extends Player
         var down = FlxG.keys.anyPressed([DOWN, S]);
         
         updateMovement(up, down, left, right, FlxG.mouse.pressed);
-        
+        #if USE_RIG updateRigDebug(); #end
+    }
+    
+    #if USE_RIG
+    function updateRigDebug(elapsed:Float)
+    {
         if (FlxG.keys.justPressed.ONE)
             setFullSkin("default");
         
@@ -62,19 +67,20 @@ class InputPlayer extends Player
             rig.color = rig.color == 0xffffff ? settings.color : 0xffffff;
     }
     
-    public function networkUpdate()
-    {
-        timer = 0;
-        lastSend.set(Std.int(x), Std.int(y));
-        color = FlxColor.WHITE;
-        setGraphicSize(frameWidth + 4, frameWidth + 4);
-    }
-    
     function setFullSkin(skinName:String)
     {
         rig.color = skinName == "default" ? settings.color : 0xffffff;//debug
         
         for (limb in Limb.getAll())
             rig.setSkin(limb, skinName);
+    }
+    #end
+    
+    public function networkUpdate()
+    {
+        timer = 0;
+        lastSend.set(Std.int(x), Std.int(y));
+        color = FlxColor.WHITE;
+        // setGraphicSize(frameWidth + 4, frameWidth + 4);
     }
 }
