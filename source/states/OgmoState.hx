@@ -11,7 +11,7 @@ import flixel.FlxSprite;
 import flixel.tile.FlxTilemap;
 import flixel.group.FlxGroup;
 
-typedef EntityTypeMap = Map<String, Void->FlxObject>;
+typedef EntityTypeMap = Map<String, (OgmoEntityData<Dynamic>)->FlxObject>;
 
 class OgmoState extends FlxState
 {
@@ -212,39 +212,6 @@ class OgmoEntityLayer extends OgmoObjectLayer<FlxObject>
                 byName[entityData.name] = entity;
             }
         }
-        
-        for (i in 0...data.entities.length)
-        {
-            if (Std.is(members[i], IOgmoEntity))
-                (cast members[i]:IOgmoEntity<Dynamic>).ogmoInit(data.entities[i], this);
-            else
-            {
-                final entity:FlxObject = cast members[i];
-                final entityData = data.entities[i];
-                entity.x = entityData.x;
-                entity.y = entityData.y;
-                
-                if (entityData.rotation != null)
-                    entity.angle = entityData.rotation;
-                
-                if (entityData.width != null)
-                    entity.width = entityData.width;
-                
-                if (entityData.height != null)
-                    entity.height = entityData.height;
-                
-                if (Std.is(entity, FlxSprite))
-                {
-                    final entity:FlxSprite = cast entity;
-                    if (entityData.originX != 0)
-                        entity.offset.x = entityData.originX;
-                    if (entityData.originY != 0)
-                        entity.offset.y = entityData.originY;
-                    if (entityData.flippedX == true)
-                        entity.facing = (entity.facing == FlxObject.LEFT) ? FlxObject.RIGHT : FlxObject.LEFT;
-                }
-            }
-        }
     }
 
     function create(data:OgmoEntityData<Dynamic>, types:EntityTypeMap):FlxObject
@@ -252,7 +219,7 @@ class OgmoEntityLayer extends OgmoObjectLayer<FlxObject>
         if (!types.exists(data.name))
             throw 'unhandled entity name: $name';
         
-        return types[data.name]();
+        return types[data.name](data);
     }
 }
 
@@ -295,7 +262,7 @@ typedef OgmoEntityLayerData
 
 typedef OgmoObjectData = { x:Int, y:Int }
 
-typedef OgmoEntityData<T>
+typedef RawOgmoEntityData<T>
 = OgmoObjectData & {
     name     :String,
     id       :Int,
@@ -310,11 +277,56 @@ typedef OgmoEntityData<T>
 }
 
 @:forward
+abstract OgmoEntityData<T>(RawOgmoEntityData<T>) from RawOgmoEntityData<T> to RawOgmoEntityData<T>
+{
+    static public function createFlxObject(entityData:OgmoEntityData<Dynamic>):FlxObject
+    {
+        var object = new FlxObject();
+        entityData.applyToObject(object);
+        return object;
+    }
+    
+    static public function createFlxSprite(entityData:OgmoEntityData<Dynamic>):FlxSprite
+    {
+        var sprite = new FlxSprite();
+        entityData.applyToSprite(sprite);
+        return sprite;
+    }
+    
+    public function applyToObject(object:FlxObject)
+    {
+        object.x = this.x;
+        object.y = this.y;
+        
+        if (this.rotation != null)
+            object.angle = this.rotation;
+        
+        if (this.width != null)
+            object.width = this.width;
+        
+        if (this.height != null)
+            object.height = this.height;
+    }
+    
+    public function applyToSprite(sprite:FlxSprite)
+    {
+        applyToObject(sprite);
+        
+        if (this.originX != 0)
+            sprite.offset.x = this.originX;
+        if (this.originY != 0)
+            sprite.offset.y = this.originY;
+        if (this.flippedX == true)
+            sprite.facing = (sprite.facing == FlxObject.LEFT) ? FlxObject.RIGHT : FlxObject.LEFT;
+    }
+}
+
+@:forward
 abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
 {
-    inline public function new(data:OgmoDecalData):Void
+    public function new(data:OgmoDecalData):Void
     {
-        var path = "assets/images/" + data.texture;
+        var path = "assets/images/props/" + data.texture;
         this = switch(data.texture)
         {
             // case "props/cabin/tree.png": new Tree();

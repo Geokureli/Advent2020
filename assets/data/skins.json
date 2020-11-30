@@ -1,0 +1,161 @@
+[   { "id": "custom"
+    , "proper": "Custom"
+    , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
+    , "unlockDay":-1
+    }
+,   { "id": "tankman"
+    , "proper": "Tankman"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "pico"
+    , "proper": "Pico"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "orange_knight"
+    , "proper": "Orange Knight"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "red_knight"
+    , "proper": "Red Knight"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "blue_knight"
+    , "proper": "Blue Knight"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "green_knight"
+    , "proper": "Green Knight"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "madness_grunt"
+    , "proper": "Madness Grunt"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "dad"
+    , "proper": "Dad"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "chutney_glaze"
+    , "proper": "Chutney Glaze"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "strawberry_clock"
+    , "proper": "Strawberry Clock"
+    , "description": "B!"
+    , "unlockDay": 1
+    }
+,   { "id": "hellbenders"
+    , "proper": "The Hellbenders"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "captain_tardigrade"
+    , "proper": "Captain Tardigrade"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "meatboy"
+    , "proper": "Meatboy"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "alien_hominid"
+    , "proper": "Alien Hominid"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "hatty"
+    , "proper": "Hatty Hattington"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "salad_fingers"
+    , "proper": "Salad Fingers"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "blockhead"
+    , "proper": "Blockhead"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "bitey"
+    , "proper": "Bitey"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "pbot"
+    , "proper": "P-Bot"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "stan"
+    , "proper": "Stan"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "knight"
+    , "proper": "Knight"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "tangy_mustard"
+    , "proper": "Tangy Mustard"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "glenda"
+    , "proper": "Glenda"
+    , "description": "The classiest galaxy tourist"
+    , "unlockDay": 1
+    }
+,   { "id": "hogstrong"
+    , "proper": "Hogstrong"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "spoople"
+    , "proper": "Spoople"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "tom"
+    , "proper": "Tom Fulp"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "pump_and_skid"
+    , "proper": "Pump'n'Skid"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "brandybuizel"
+    , "proper": "BrandyBuizel"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "velour"
+    , "proper": "Velour"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "horse"
+    , "proper": "Horse"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+,   { "id": "elk"
+    , "proper": "Elk"
+    , "description": "DEBUG TEXT"
+    , "unlockDay": 1
+    }
+]

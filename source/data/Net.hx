@@ -1,25 +1,37 @@
 package data;
 
 import schema.GameState;
+import states.rooms.RoomState;
 
 import io.colyseus.Room;
 import io.colyseus.Client;
 
 class Net
 {
+    static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside];
+    
     static public var client(default, null):Client;
     static public var room(default, null):Room<GameState>;
     static public var roomName(default, null):RoomName;
     static public var connecting(default, null) = false;
     
+    static public function isNetRoom(name:RoomName):Bool
+    {
+        return netRooms.contains(name);
+    }
+    
     static public function joinRoom(roomName:RoomName, callback)
     {
         if (client == null)
         {
-            #if debug
+            #if USE_LOCAL_SERVER
             client = new Client('ws://localhost:2567');
             #else
-            client = new Client('wss://advent-colyseus-test.herokuapp.com');
+                #if USE_DEBUG_SERVER
+                client = new Client('wss://advent-colyseus-test.herokuapp.com');
+                #else
+                client = new Client('wss://advent2020server.herokuapp.com/');
+                #end
             #end
         }
         else if (room != null)
@@ -53,10 +65,4 @@ class Net
     {
         room.send({ type:type, data:data });
     }
-}
-
-enum abstract RoomName(String) to String
-{
-    var Cabin = "cabin";
-    var Outside = "outside";
 }

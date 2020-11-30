@@ -55,7 +55,7 @@ class RigData
                 
                 final graphic = mc.getChildAt(0);
                 if (!skinList.exists(name))
-                    skinList[name] = { x:graphic.x, y:graphic.y, rotation:graphic.rotation, symbol:symbol };
+                    skinList[name] = { x:graphic.x, y:graphic.y, rotation:graphic.rotation, scaleX:graphic.scaleX, scaleY:graphic.scaleY, symbol:symbol };
                 mc.nextFrame();
             }
             skinLists[limb] = skinList;
@@ -117,5 +117,7 @@ typedef Skin =
     x:Float,
     y:Float,
     rotation:Float,
+    scaleX:Float,
+    scaleY:Float,
     symbol:String
 }

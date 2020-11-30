@@ -2,7 +2,7 @@ package props;
 
 import Types;
 import data.PlayerSettings;
-import states.BaseState;
+import states.rooms.RoomState;
 import rig.Rig;
 
 import flixel.FlxG;
@@ -19,23 +19,21 @@ class Player extends flixel.FlxSprite
     
     static var pathTile = new FlxSprite();
     
+    public var settings(default, null):PlayerSettings;
     public var rig(default, null):Rig;
     public var hitbox(default, null):FlxObject;
     
-    public var testColor = 0x0;
     public var state:PlayerState = Joining;
     public var usePaths = false;
     public var drawPath = false;
     
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
-    var settings:PlayerSettings;
     
     public function new(x = 0.0, y = 0.0, settings:PlayerSettings)
     {
         this.settings = settings;
         super(x, y);
-        makeGraphic(1, 1, 0);
         
         settings.applyTo(this);
     }
@@ -44,7 +42,7 @@ class Player extends flixel.FlxSprite
     {
         super.initVars();
         
-        // color = testColor;
+        makeGraphic(1, 1, 0);
         width = 8;
         height = 8;
         hitbox = new FlxObject(0, 0, width + 6, height + 16);
@@ -105,7 +103,7 @@ class Player extends flixel.FlxSprite
             var nextPos = targetPos;
             if (movePath != null)
             {
-                final map = (cast FlxG.state:BaseState).geom;
+                final map = (cast FlxG.state:RoomState).geom;
                 final index = map.getTileIndexByCoords(FlxPoint.weak(x + width / 2, y + height / 2));
                 // final index = map.getTileIndexByCoords(FlxPoint.weak(x, y));
                 
@@ -141,7 +139,8 @@ class Player extends flixel.FlxSprite
     {
         super.draw();
         
-        rig.drawTo(this);
+        if (rig.visible)
+            rig.drawTo(this);
         
         hitbox.draw();
     }
@@ -176,7 +175,7 @@ class Player extends flixel.FlxSprite
     
     function calcNewPath(newPos:FlxPoint)
     {
-        final map = (cast FlxG.state:BaseState).geom;
+        final map = (cast FlxG.state:RoomState).geom;
         final start = FlxPoint.get(x, y);
         final end = FlxPoint.get(newPos.x, newPos.y);
         if (targetPos == null || map.getTileIndexByCoords(end) != map.getTileIndexByCoords(targetPos))
