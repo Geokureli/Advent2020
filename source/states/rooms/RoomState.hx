@@ -111,6 +111,8 @@ class RoomState extends OgmoState
         initClient();
         
         add(infoBoxGroup);
+        
+        NGio.logEventOnce(enter);
     }
     
     function onOpenPresent(present)
@@ -131,6 +133,7 @@ class RoomState extends OgmoState
         
         geom = getByName("Geom");
         colliders.add(geom);
+        add(geom);
         
         for (teleport in teleports.members)
         {

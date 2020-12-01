@@ -37,14 +37,21 @@ class Net
         else if (room != null)
             leaveCurrentRoom();
         
+        NGio.logEvent(attempt_connect);
         Net.roomName = roomName;
         connecting = true;
         client.joinOrCreate(roomName, [], GameState, 
-            (err, room)->
+            (error, room)->
             {
+                if (error == null)
+                {
+                    NGio.logEventOnce(first_connect);
+                    NGio.logEvent(connect);
+                }
+                
                 Net.room = room;
                 connecting = false;
-                callback(err, room);
+                callback(error, room);
             }
         );
     }

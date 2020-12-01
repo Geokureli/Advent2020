@@ -27,6 +27,8 @@ class NGio
 	public static var ngDataLoaded(default, null):FlxSignal = new FlxSignal();
 	public static var ngScoresLoaded(default, null):FlxSignal = new FlxSignal();
 	
+	static var loggedEvents = new Array<NgEvent>();
+	
 	static public function attemptAutoLogin(callback:Void->Void) {
 		
 		#if NG_BYPASS_LOGIN
@@ -56,6 +58,7 @@ class NGio
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end
+		logEventOnce(view);
 		
 		if (!NG.core.attemptingLogin)
 			callback();
@@ -148,6 +151,21 @@ class NGio
 		return isLoggedIn && NG.core.medals.get(id).unlocked;
 	}
 	
+	static public function logEvent(event:NgEvent, once = false)
+	{
+		if (loggedEvents.contains(event))
+			if (once) return;
+		else
+			loggedEvents.push(event);
+		
+		NG.core.calls.event.logEvent(event + (FlxG.onMobile ? "_mobile" : "_desktop"));
+	}
+	
+	static public function logEventOnce(event:NgEvent)
+	{
+		logEvent(event, true);
+	}
+	
 	inline static function logDebug(msg:String)
 	{
 		#if debug trace(msg); #end
@@ -165,3 +183,14 @@ enum ConnectResult
 	Failed(error:Error);
 	Cancelled;
 }
+
+enum abstract NgEvent(String) from String to String
+{
+	var view;
+	var enter;
+	var attempt_connect;
+	var first_connect;
+	var connect;
+	var daily_present;
+}
+
