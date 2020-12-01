@@ -32,10 +32,11 @@ class Skins
     {
         for (data in byIndex)
         {
+            #if UNLOCK_ALL_SKINS
+            data.unlocked = true;
+            #else
             if (!data.unlocked)
             {
-                data.unlocked = true;
-                continue;
                 if (data.users != null && NGio.isLoggedIn && data.users.contains(NGio.userName))
                 {
                     data.unlocked = true;
@@ -54,6 +55,7 @@ class Skins
                     }
                 }
             }
+            #end
         }
         
         sorted.sort(function (a, b)

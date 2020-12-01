@@ -36,8 +36,7 @@
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
 	<!-- <define name="USE_RIG" /> -->
-	
-	<define name="UNLOCK_ALL_SKINS" if="debug"/>
+	<!-- <define name="UNLOCK_ALL_SKINS" if="debug"/> -->
 	
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
 	<set name="BUILD_DIR" value="export/release" unless="debug" />

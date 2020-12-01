@@ -53,7 +53,7 @@ class BootState extends flixel.FlxState
     function onAutoConnectResult():Void
     {
         timeout.cancel();
-        #if BYPASS_LOGIN
+        #if NG_BYPASS_LOGIN
         showMsgAndBegin("Login bypassed\nNot eligible for medals");
         #else
         if (NGio.isLoggedIn)
