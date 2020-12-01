@@ -1,17 +1,22 @@
 package data;
 
-import openfl.utils.Assets;
 import flixel.system.FlxSound;
+
+import openfl.utils.Assets;
+
 import haxe.Json;
 
 class Content
 {
-    static public var credits:Map<User, CreditContent>;
-    static public var artwork:Map<String, ArtCreation>;
-    static public var songs:Map<String, SongCreation>;
-    static public var days:Array<DayContent>;
+    public static var credits:Map<User, CreditContent>;
+    public static var artwork:Map<String, ArtCreation>;
+    public static var songs:Map<String, SongCreation>;
+    public static var events:Map<Int, SongCreation>;
     
-    static public function init(data:String)
+    static var presentsById:Map<String, Int>;
+    static var presentsByIndex:Map<Int, String>;
+    
+    public static function init(data:String)
     {
         var data:Dynamic = Json.parse(data);
         
@@ -24,11 +29,43 @@ class Content
             songs[songData.id] = songData;
         
         artwork = [];
-        for (artData in (data.artwork:Array<ArtCreation>))
+        presentsById = [];
+        presentsByIndex = [];
+        for (i=>artData in (data.artwork:Array<ArtCreation>))
+        {
             artwork[artData.id] = artData;
+            presentsById[artData.id] = i;
+            presentsByIndex[i] = artData.id;
+        }
         
-        days = data.days;
+        events = [];
+        for (eventKey in Reflect.fields(data.events))
+        {
+            var day = Std.parseInt(eventKey);
+            if (Std.string(day) != eventKey)
+                throw "Invalid event day:" + eventKey;
+            
+            var event = Reflect.field(data.events, eventKey);
+            event.day = day;
+            events[day] = event;
+        }
     }
+    
+    public static function isArtUnlocked(id:String)
+    {
+        return artwork.exists(id) && artwork[id].day <= Calendar.day;
+    }
+    
+    @:allow(data.Save)
+    static function getPresentIndex(id:String)
+    {
+        if (id != null && presentsById.exists(id))
+            return presentsById[id];
+        return -1;
+    }
+    
+    @:allow(data.Save)
+    static function getPresentId(index:Int) return presentsByIndex[index];
 }
 
 typedef CreditContent =
@@ -45,6 +82,7 @@ typedef Creation =
     var name:Null<String>;
     var authors:Array<User>;
     var path:String;
+    var day:Int;
 }
 
 typedef ArtCreation
@@ -62,10 +100,11 @@ typedef SongCreation
     var ngId:Int;
 }
 
-typedef DayContent = 
+typedef EventContent = 
 {
-    var song:Int;
-    var art:Int;
+    var id:String;
+    var day:Int;
+    var saveState:Bool;
 }
 
 enum abstract User(String) from String to String

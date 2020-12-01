@@ -51,17 +51,12 @@
         }
     ]
 ,   "artwork":
-    [
-        { "id"     : "cymbourine"
+    [   { "id"     : "cymbourine"
         , "name"   :  null
         , "authors": ["cymbourine"]
         , "day"    : 1
         }
     ]
-,   "days":
-    [   {   "day" :1,
-            "art" :0,
-            "song":0
-        }
-    ]
+,   "events":
+    { "1": { "id":"day1intro", "saveState":false } }
 }

@@ -1,13 +1,7 @@
 package states;
 
 
-import openfl.Assets;
-
-import flixel.FlxG;
-import flixel.ui.FlxButton;
-import flixel.util.FlxTimer;
-import flixel.text.FlxBitmapText;
-
+import data.Calendar;
 import data.Content;
 import data.Game;
 import data.APIStuff;
@@ -15,6 +9,14 @@ import data.Manifest;
 import data.NGio;
 import ui.Button;
 import ui.Font;
+import utils.MultiCallback;
+
+import flixel.FlxG;
+import flixel.ui.FlxButton;
+import flixel.util.FlxTimer;
+import flixel.text.FlxBitmapText;
+
+import openfl.Assets;
 
 class BootState extends flixel.FlxState
 {
@@ -22,7 +24,10 @@ class BootState extends flixel.FlxState
     var msg:FlxBitmapText;
     var timeout:FlxTimer;
     var state = LoggingIn;
-    var waitTime = MSG_TIME;
+    var waitTime = 
+        #if ALLOW_SKIP MSG_TIME // allow time to press space
+        #else 0.0
+        #end;
     
     var debugFutureEnabled = false;
     
@@ -99,8 +104,12 @@ class BootState extends flixel.FlxState
     function beginGame():Void
     {
         state = Initing;
-        // Calendar.init(()->state = Waiting);
-        state = Waiting;
+        
+        var callbacks = new MultiCallback(()->state = Waiting);
+        var wait = callbacks.add("wait");
+        Manifest.init(callbacks.add("manifest"));
+        Calendar.init(callbacks.add("calendar"));
+        wait();
     }
     
     inline function showErrorAndBegin(_ = null)
@@ -116,33 +125,15 @@ class BootState extends flixel.FlxState
         beginGame();
     }
     
-    function startLoading()
-    {
-        state = Loading;
-        
-        // final canSkip
-        //     = (Calendar.isAdvent || Calendar.isDebugDay)
-        //     && Calendar.day != 24
-        //     #if !(debug) && NGio.isWhitelisted #end;
-        // 
-        // if (canSkip && debugFutureEnabled)
-        // {
-        //     Calendar.showDebugNextDay();
-        //     msg.text += "\nTime travel activated";
-        //     if (waitTime < 0.5)
-        //         waitTime = 0.5;
-        // }
-        
-        Manifest.init(()->state = Checking);
-    }
-    
     override function update(elapsed:Float):Void
     {
         super.update(elapsed);
         waitTime -= elapsed;
         
+        #if ALLOW_SKIP
         if (state.match(Initing|Waiting) && FlxG.keys.pressed.SPACE)
             debugFutureEnabled = true;
+        #end
         
         if (waitTime < 0)
         {
@@ -151,8 +142,22 @@ class BootState extends flixel.FlxState
                 case LoggingIn:
                 case Initing:
                 case Waiting:
-                    startLoading();
-                case Loading:
+                    #if ALLOW_SKIP
+                    final canSkip
+                        = (Calendar.isAdvent || Calendar.isDebugDay)
+                        && Calendar.day != 24
+                        // #if !(debug) && NGio.isWhitelisted #end
+                        ;
+                    
+                    if (canSkip && debugFutureEnabled)
+                    {
+                        Calendar.showDebugNextDay();
+                        msg.text += "\nTime travel activated";
+                        if (waitTime < 0.5)
+                            waitTime = 0.5;
+                    }
+                    #end
+                    state = Checking;
                 case Checking:
                     // Todo check assets
                     state = Success;
@@ -169,7 +174,6 @@ private enum State
     LoggingIn;
     Initing;
     Waiting;
-    Loading;
     Checking;
     Success;
     Error;

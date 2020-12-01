@@ -35,6 +35,8 @@
 	<define name="USE_LOCAL_SERVER" if="debug"/>
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
+	<!-- <define name="ALLOW_SKIP"/> -->
+	
 	<!-- <define name="USE_RIG" /> -->
 	<!-- <define name="UNLOCK_ALL_SKINS" if="debug"/> -->
 	

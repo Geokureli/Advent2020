@@ -19,7 +19,7 @@ class Game
         roomTypes[Bedroom] = BedroomState.new;
         roomTypes[Hallway] = HallwayState.new;
         
-        trace(flixel.util.FlxColor.fromRGBFloat(0.1, 0.1, 0.1, 1.0).toHexString());
+        Save.init();
     }
     
     static public function goToRoom(target:String):Void

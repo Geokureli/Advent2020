@@ -126,7 +126,7 @@ class DressUpSubstate extends flixel.FlxSubState
         }
         
         bg.y = top;
-        bg.makeGraphic(FlxG.width, Std.int(bottom - top), 0xFF1A1A1A);
+        bg.makeGraphic(FlxG.width, Std.int(bottom - top), 0xFF555555);
         bg.scrollFactor.set(0, 0);
         
         add(arrowLeft  = new Button(0, 0, toPrev, "assets/images/ui/leftArrow.png"));

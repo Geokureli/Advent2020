@@ -1,18 +1,9 @@
 package states.rooms;
 
-import data.NGio;
-import flixel.FlxBasic;
-import flixel.FlxCamera;
-import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.group.FlxGroup;
-import flixel.tile.FlxTilemap;
-import flixel.ui.FlxButton;
-import flixel.util.FlxColor;
-import flixel.util.FlxSort;
 
+import data.Content;
 import data.Game;
+import data.NGio;
 import data.Net;
 import data.PlayerSettings;
 import props.GhostPlayer;
@@ -23,6 +14,17 @@ import props.Present;
 import props.Teleport;
 import states.OgmoState;
 import vfx.Inline;
+
+import flixel.FlxBasic;
+import flixel.FlxCamera;
+import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.FlxSprite;
+import flixel.group.FlxGroup;
+import flixel.tile.FlxTilemap;
+import flixel.ui.FlxButton;
+import flixel.util.FlxColor;
+import flixel.util.FlxSort;
 
 import Types;
 import io.colyseus.Room;
@@ -41,6 +43,7 @@ class RoomState extends OgmoState
     var avatars = new FlxTypedGroup<Player>();
     var ghosts:Map<String, GhostPlayer> = [];
     var teleports = new FlxTypedGroup<Teleport>();
+    var presents = new FlxTypedGroup<Present>();
     var spawnTeleport:Teleport;
     
     var colliders = new FlxGroup();
@@ -86,7 +89,19 @@ class RoomState extends OgmoState
             teleports.add(teleport);
             return teleport;
         }
-        entityTypes["Present"] = cast Present.fromEntity;
+        entityTypes["Present"] = cast function(data)
+        {
+            var present = Present.fromEntity(data);
+            if (Content.isArtUnlocked(present.id))
+            {
+                presents.add(present);
+                colliders.add(present);
+            }
+            else
+                present.kill();
+            
+            return present;
+        }
         loadLevel();
         initEntities();
         initCamera();
