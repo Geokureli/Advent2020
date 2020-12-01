@@ -53,7 +53,6 @@ class RoomState extends OgmoState
     var touchable = new FlxTypedGroup<FlxObject>();
     var infoBoxes = new Map<FlxObject, InfoBox>();
     var infoBoxGroup = new FlxTypedGroup<InfoBox>();
-    var lastTouched:FlxObject = null;
     
     public var name(default, null):RoomName;
     public var spawnId(default, null) = -1;
@@ -394,27 +393,26 @@ class RoomState extends OgmoState
             }
         );
         
-        
-        if (lastTouched != firstTouched)
+        if (player.touched != firstTouched)
         {
-            if (lastTouched != null)
+            if (player.touched != null)
             {
-                infoBoxes[lastTouched].alive = false;
-                if (Std.is(lastTouched, FlxSprite))
+                infoBoxes[player.touched].alive = false;
+                if (Std.is(player.touched, FlxSprite))
                 {
-                    final sprite = Std.downcast(lastTouched, FlxSprite);
+                    final sprite = Std.downcast(player.touched, FlxSprite);
                     sprite.shader = null;
                 }
             }
             
-            lastTouched = firstTouched;
+            player.touched = firstTouched;
             
-            if (lastTouched != null)
+            if (player.touched != null)
             {
-                infoBoxes[lastTouched].alive = true;
-                if (Std.is(lastTouched, FlxSprite))
+                infoBoxes[player.touched].alive = true;
+                if (Std.is(player.touched, FlxSprite))
                 {
-                    final sprite = Std.downcast(lastTouched, FlxSprite);
+                    final sprite = Std.downcast(player.touched, FlxSprite);
                     sprite.shader = outlineShader;
                 }
             }

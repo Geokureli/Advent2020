@@ -10,8 +10,6 @@ import props.Notif;
 import states.OgmoState;
 import states.debug.AudioToolSubstate;
 import utils.GameSize;
-import vfx.DitherShader;
-import vfx.DitherSprite;
 import vfx.PixelPerfectShader;
 
 import flixel.FlxCamera;

@@ -49,6 +49,7 @@ class Player extends flixel.FlxSprite
         
         maxVelocity.set(MAX_SPEED, MAX_SPEED);
         drag.set(MAX_SPEED / ACCEL_TIME, MAX_SPEED / ACCEL_TIME);
+        hitbox = new FlxObject();
         
         if (pathTile.graphic == null || pathTile.graphic.width == 0)
         {
@@ -103,7 +104,7 @@ class Player extends flixel.FlxSprite
             v.length = MAX_SPEED;
         
         hitbox.update(elapsed);
-        hitbox.setPosition(x + (width - hitbox.width) / 2, y + (height - hitbox.height) / 2);
+        hitbox.setPosition(x + (width - hitbox.width) / 2, y + height - (frameHeight + 1) * scale.y);
         
         #if debug
         if (FlxG.keys.justPressed.L && overlapsPoint(FlxG.mouse.getWorldPosition(FlxPoint.weak())))
@@ -240,7 +241,8 @@ class Player extends flixel.FlxSprite
         origin.y = 16;
         offset.x = (frameWidth - width) / 2;
         offset.y = frameHeight - height;
-        hitbox = new FlxObject(0, 0, width + 12, height + 12);
+        hitbox.width = (frameWidth - 2) * scale.x;
+        hitbox.height = (frameHeight + 2) * scale.y;
     }
     #end
 }

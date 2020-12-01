@@ -4,6 +4,8 @@ import rig.Limb;
 import data.PlayerSettings;
 
 import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 
@@ -11,6 +13,7 @@ class InputPlayer extends Player
 {
     public var interacting = false;
     public var wasInteracting = false;
+    public var touched:FlxObject = null;
     
     public var timer = 0.0;
     public var lastSend = FlxPoint.get();
@@ -26,9 +29,18 @@ class InputPlayer extends Player
     
     override function update(elapsed:Float)
     {
-        interacting = FlxG.keys.justPressed.SPACE
-            || (FlxG.mouse.justPressed && overlapsPoint(FlxG.mouse.getWorldPosition()));
-        
+        interacting = FlxG.keys.justPressed.SPACE;
+        if (!interacting && FlxG.mouse.justPressed)
+        {
+            var mouse = FlxG.mouse.getWorldPosition();
+            interacting = hitbox.overlapsPoint(mouse);
+            if (!interacting && touched != null)
+            {
+                interacting = Std.is(touched, FlxSprite)
+                    ? (cast touched:FlxSprite).pixelsOverlapPoint(mouse)
+                    : hitbox.overlapsPoint(mouse);
+            }
+        }
         // prevents a bug on gamepads
         if (wasInteracting && interacting)
             interacting = false;

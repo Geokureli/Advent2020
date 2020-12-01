@@ -1,16 +1,20 @@
 package states.rooms;
 
+import data.Game;
+import data.Manifest;
+
 class HallwayState extends RoomState
 {
-    override function initEntities()
+    override function create()
     {
-        super.initEntities();
+        super.create();
         
-        for (door in background.getAllWithName("door"))
-        {
-            door.animation.add("open", [0]);
-            door.animation.add("closed", [1]);
-            door.animation.play("closed");
-        }
+        
+    }
+    
+    override function initClient()
+    {
+        if(Game.state == NoEvent)
+            super.initClient();
     }
 }

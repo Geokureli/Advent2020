@@ -43,6 +43,7 @@ class Net
         client.joinOrCreate(roomName, [], GameState, 
             (error, room)->
             {
+                trace("joined:" + room.id);
                 if (error == null)
                 {
                     NGio.logEventOnce(first_connect);
