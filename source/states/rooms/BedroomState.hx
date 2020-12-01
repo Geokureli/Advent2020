@@ -57,6 +57,8 @@ class BedroomState extends RoomState
     function onOpenDresser()
     {
         dresserNotif.visible = false;
-        trace("dresser opened");
+        var dressUp = new DressUpSubstate();
+        dressUp.closeCallback = ()->player.settings.applyTo(player);
+        openSubState(dressUp);
     }
 }

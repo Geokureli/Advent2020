@@ -136,10 +136,10 @@ class NGio
 			trace('no medal unlocked, loggedIn:$isLoggedIn');
 	}
 	
-	// static public function hasDayMedal(date:Int):Bool
-	// {
-	// 	return hasMedal(MEDAL_0 + date);
-	// }
+	static public function hasDayMedal(date:Int):Bool
+	{
+		return false;//hasMedal(MEDAL_0 + date);
+	}
 	
 	static public function hasMedal(id:Int):Bool
 	{

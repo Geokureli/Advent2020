@@ -295,7 +295,7 @@ class RoomState extends OgmoState
             {
                 if (teleport == spawnTeleport)
                     touchingSpawn = true;
-                else if (teleport.target != null)
+                else if (teleport.target != "")
                     activateTeleport(teleport.target);
             }
         );
