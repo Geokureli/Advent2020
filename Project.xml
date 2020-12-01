@@ -6,7 +6,7 @@
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
-	<app preloader="flixel.system.FlxPreloader" />
+	<app preloader="Preloader" />
 
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
 	<set name="SWF_VERSION" value="11.8" />
@@ -35,6 +35,7 @@
 	<define name="USE_LOCAL_SERVER" if="debug"/>
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
+	<define name="CLEAR_SAVE" if="debug"/>
 	<!-- <define name="ALLOW_SKIP"/> -->
 	
 	<!-- <define name="USE_RIG" /> -->

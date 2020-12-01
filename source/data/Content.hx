@@ -22,11 +22,18 @@ class Content
         
         credits = [];
         for (user in Reflect.fields(data.credits))
-            credits.set(user, Reflect.field(data.credits, user));
+        {
+            var data:CreditContent = Reflect.field(data.credits, user);
+            credits.set(user, data);
+            data.newgrounds = 'http://$user.newgrounds.com';
+        }
         
         songs = [];
         for (songData in (data.songs:Array<SongCreation>))
+        {
+            songData.path = 'assets/music/${songData.id}.mp3';
             songs[songData.id] = songData;
+        }
         
         artwork = [];
         presentsById = [];
@@ -34,6 +41,8 @@ class Content
         for (i=>artData in (data.artwork:Array<ArtCreation>))
         {
             artwork[artData.id] = artData;
+            artData.path = 'assets/artwork/${artData.id}.png';
+            artData.thumbPath = 'assets/images/thumbs/${artData.id}.png';
             presentsById[artData.id] = i;
             presentsByIndex[i] = artData.id;
         }
@@ -74,6 +83,7 @@ typedef CreditContent =
     var roles:Array<String>;
     var soundcloud:String;
     var bandcamp:String;
+    var newgrounds:String;
 }
 
 typedef Creation = 
@@ -88,6 +98,9 @@ typedef Creation =
 typedef ArtCreation
  = Creation & 
 {
+    var animation:Null<{frames:Int, fps:Int}>;
+    var thumbPath:String;
+    var antiAlias:Null<Bool>;
 }
 
 typedef SongCreation

@@ -1,5 +1,8 @@
 package states.rooms;
 
+import data.EventState;
+import data.Game;
+import data.Save;
 import data.Manifest;
 import props.InputPlayer;
 import props.InfoBox;
@@ -29,9 +32,9 @@ class BedroomState extends RoomState
         // GameSize.setPixelSize(4);
         super.create();
         
-        // FlxG.camera.pixelPerfectRender = true;
+        if(Game.state == NoEvent)
+            Manifest.playMusic("albegian");
         
-        // Manifest.playMusic("albegian");
         // #if debug FlxG.debugger.drawDebug = true; #end
     }
     
@@ -60,5 +63,16 @@ class BedroomState extends RoomState
         var dressUp = new DressUpSubstate();
         dressUp.closeCallback = ()->player.settings.applyTo(player);
         openSubState(dressUp);
+        
+        if(Game.state.match(Day1Intro(Started)))
+            Game.state = Day1Intro(Dressed);
+    }
+    
+    override function activateTeleport(target:String)
+    {
+        if(Game.state.match(Day1Intro(Started)))
+            return;
+        
+        super.activateTeleport(target);
     }
 }

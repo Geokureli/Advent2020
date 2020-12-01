@@ -103,7 +103,7 @@ class Player extends flixel.FlxSprite
             v.length = MAX_SPEED;
         
         hitbox.update(elapsed);
-        hitbox.setPosition(x + (width - hitbox.width) / 2, y + height - hitbox.height);
+        hitbox.setPosition(x + (width - hitbox.width) / 2, y + (height - hitbox.height) / 2);
         
         #if debug
         if (FlxG.keys.justPressed.L && overlapsPoint(FlxG.mouse.getWorldPosition(FlxPoint.weak())))

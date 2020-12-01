@@ -1,6 +1,7 @@
 package states;
 
 
+import data.Save;
 import data.Calendar;
 import data.Content;
 import data.Game;
@@ -35,7 +36,7 @@ class BootState extends flixel.FlxState
     {
         super.create();
         
-        Game.init();
+        Save.init();
         Content.init(Assets.getText("assets/data/content.json"));
         FlxG.autoPause = false;
         
@@ -161,11 +162,16 @@ class BootState extends flixel.FlxState
                 case Checking:
                     // Todo check assets
                     state = Success;
-                    Game.goToRoom(Main.initialRoom);
+                    onComplete();
                 case Success:
                 case Error:
             }
         }
+    }
+    function onComplete()
+    {
+        Game.init();
+        Game.goToRoom(Main.initialRoom);
     }
 }
 

@@ -1,5 +1,6 @@
 package data;
 
+import data.Calendar;
 import states.rooms.RoomState;
 import states.rooms.*;
 
@@ -10,6 +11,8 @@ class Game
     static public var room(get, never):RoomState;
     static function get_room() return Std.downcast(FlxG.state, RoomState);
     
+    static public var state:EventState = NoEvent;
+    
     static var roomTypes:Map<RoomName, RoomConstructor>;
     
     @:allow(states.BootState)
@@ -19,7 +22,14 @@ class Game
         roomTypes[Bedroom] = BedroomState.new;
         roomTypes[Hallway] = HallwayState.new;
         
-        Save.init();
+        switch(Calendar.day)
+        {
+            case 1:
+            {
+                if (Save.noPresentsOpened())
+                    state = Day1Intro(Started);
+            }
+        }
     }
     
     static public function goToRoom(target:String):Void

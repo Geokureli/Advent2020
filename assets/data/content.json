@@ -23,7 +23,6 @@
 ,   "songs":
     [   { "id"       : "albegian"
         , "name"     : null
-        , "path"     : "assets/music/albegian.mp3"
         , "authors"  : ["albegian"]
         , "loopStart": 7111
         , "key"      : "f#Maj"
@@ -33,7 +32,6 @@
         }
     ,   { "id"     : "splatterdash"
         , "name"   : null
-        , "path"   : "assets/music/splatterdash.mp3"
         , "authors": ["splatterdash"]
         , "key"    : "cMaj"
         , "bpm"    : 70
@@ -41,7 +39,6 @@
         }
     ,   { "id"       : "danfrombavaria"
         , "name"     : null
-        , "path"     : "assets/music/danfrombavaria.mp3"
         , "authors"  : ["danfrombavaria"]
         , "key"      : "cMaj"
         , "loopStart": 7111
@@ -52,7 +49,7 @@
     ]
 ,   "artwork":
     [   { "id"     : "cymbourine"
-        , "name"   :  null
+        , "name"   : "Sinful Dinner"
         , "authors": ["cymbourine"]
         , "day"    : 1
         }

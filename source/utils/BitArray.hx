@@ -19,8 +19,18 @@ abstract BitArray(Int64) from Int64 to Int64
             return Math.floor(Math.log(this.high) / LOG_2) + 33;
         else if (this.low < 0)
             return 32;
+        else if (this.low == 0)
+            return 0;
         else
             return Math.floor(Math.log(this.low) / LOG_2) + 1;
+    }
+    
+    public function countTrue():Int
+    {
+        var i = getLength();
+        var count = 0;
+        while (i-- > 0) if (get(i)) count++;
+        return count;
     }
     
     inline public function reset():Void

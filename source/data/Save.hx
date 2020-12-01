@@ -22,12 +22,24 @@ class Save
         else
             data = emptyData;
         
-        // default values
-        if (data.presents == null)
-            data.presents = new BitArray();
+        var clearSave = #if CLEAR_SAVE true #else false #end;
         
-        if (data.days == null)
+        // set default values
+        var newData = false;
+        if (clearSave || data.presents == null)
+        {
+            data.presents = new BitArray();
+            newData = true;
+        }
+        
+        if (clearSave || data.days == null)
+        {
             data.days = new BitArray();
+            newData = true;
+        }
+        
+        if (newData)
+            flush();
     }
     
     static function flush()
@@ -42,7 +54,7 @@ class Save
         flush();
     }
     
-    static public function presentOpen(id:String)
+    static public function presentOpened(id:String)
     {
         var i = Content.getPresentIndex(id);
         
@@ -56,7 +68,7 @@ class Save
         }
     }
     
-    static public function hasOpenPresent(id:String)
+    static public function hasOpenedPresent(id:String)
     {
         var i = Content.getPresentIndex(id);
         
@@ -64,6 +76,21 @@ class Save
             throw "invalid present id:" + id;
         
         return data.presents[i];
+    }
+    
+    static public function countPresentsOpened(id:String)
+    {
+        return data.presents.countTrue();
+    }
+    
+    static public function anyPresentsOpened()
+    {
+        return !noPresentsOpened();
+    }
+    
+    static public function noPresentsOpened()
+    {
+        return data.presents.getLength() == 0;
     }
     
     static public function daySeen(id:Int)

@@ -7,7 +7,7 @@ import haxe.Json;
 import haxe.ds.ReadOnlyArray;
 import openfl.utils.Assets;
 
-class Calendar
+class OldCalendar
 {
     inline static var DEBUG_DAY:Int = 0;// 0 to disable debug feature
     static public var isDebugDay = DEBUG_DAY > 0;

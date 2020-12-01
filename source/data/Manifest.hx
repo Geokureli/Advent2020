@@ -1,6 +1,7 @@
 package data;
 
 import flixel.FlxG;
+import flixel.graphics.FlxGraphic;
 import flixel.system.FlxSound;
 
 import openfl.display.BitmapData;
@@ -16,8 +17,8 @@ class Manifest
     static public var songs = new Map<String, FlxSound>();
     static var loadingSongs = new Map<String, (FlxSound)->Void>();
     
-    static public var art = new Map<String, BitmapData>();
-    static var loadingArt = new Map<String, (BitmapData)->Void>();
+    static public var art = new Map<String, FlxGraphic>();
+    static var loadingArt = new Map<String, (FlxGraphic)->Void>();
     
     static public function init(onComplete:()->Void):Void
     {
@@ -48,42 +49,55 @@ class Manifest
         return false;
     }
     
-    static public function loadArt(id:String, onLoad:(BitmapData)->Void):Void
+    static public function loadArt(id:String, ?onLoad:(FlxGraphic)->Void):Void
     {
         if (art.exists(id))
-            onLoad(art[id]);
+        {
+            if (onLoad != null)
+                onLoad(art[id]);
+            
+            return;
+        }
         #if !(PRELOAD_ALL)
         else if (loadingArt.exists(id))
         {
             if (onLoad != null)
             {
                 var oldOnLoad = loadingArt[id];
-                loadingArt[id] = function(bitmap)
+                if (oldOnLoad == null)
+                    loadingArt[id] = onLoad;
+                else
                 {
-                    onLoad(bitmap);
-                    oldOnLoad(bitmap);
+                    loadingArt[id] = function(graphic)
+                    {
+                        onLoad(graphic);
+                        oldOnLoad(graphic);
+                    }
                 }
             }
+            return;
         }
         #end
         
         if (Content.artwork.exists(id) == false)
-            throw 'Invalid song id: $id';
-        var data = Content.songs[id];
+            throw 'Invalid artwork id: $id';
+        var data = Content.artwork[id];
         
         #if PRELOAD_ALL
         return Assets.getBitmapData("noPreload:" + data.path);
         #else
         var loader = BitmapData.loadFromFile(data.path);
         loadingArt[id] = onLoad;
-        onLoad = function(bmd)
-        {
-            art[id] = bmd;
-            var graphic = FlxG.bitmap.add(bmd, true, id);
-            graphic.destroyOnNoUse = false;
-            loadingArt[id](bmd);
-        }
-        loader.onComplete(onLoad);
+        loader.onComplete(
+            function (bmd:BitmapData)
+            {
+                var graphic = FlxG.bitmap.add(bmd, true, id);
+                art[id] = graphic;
+                graphic.destroyOnNoUse = false;
+                if (loadingArt[id] != null)
+                    loadingArt[id](graphic);
+            }
+        );
         #end
     }
     
@@ -219,7 +233,7 @@ class PeristentSound extends FlxSound
     
     override function destroy()
     {
-        throw "Can not destroy a PersistentSound";
+        // throw "Can not destroy a PersistentSound";
     }
 }
 

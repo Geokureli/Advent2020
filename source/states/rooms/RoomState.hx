@@ -1,6 +1,8 @@
 package states.rooms;
 
 
+import data.Manifest;
+import data.Save;
 import data.Content;
 import data.Game;
 import data.NGio;
@@ -96,6 +98,7 @@ class RoomState extends OgmoState
             {
                 presents.add(present);
                 colliders.add(present);
+                initArtPresent(present, onOpenPresent);
             }
             else
                 present.kill();
@@ -108,6 +111,11 @@ class RoomState extends OgmoState
         initClient();
         
         add(infoBoxGroup);
+    }
+    
+    function onOpenPresent(present)
+    {
+        
     }
     
     function loadLevel()
@@ -160,6 +168,26 @@ class RoomState extends OgmoState
         characters.add(player);
     }
     
+    
+	function openArtPresent(present:Present, ?callback:(Present)->Void):Void
+	{
+        // Start loading now, hopefully it finishes during the animation
+        Manifest.loadArt(present.id);
+        // FlxG.sound.play("assets/sounds/presentOpen.mp3", 1);
+        present.animateOpen(function ()
+            {
+                function onOpenComplete()
+                {
+                    infoBoxes[present].sprite.visible = true;
+                    if (callback != null)
+                        callback(present);
+                }
+                openSubState(new GallerySubstate(present.id, onOpenComplete));
+                Save.presentOpened(present.id);
+            }
+        );
+	}
+    
     function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
     {
         var decal:FlxObject = foreground.getByName(target);
@@ -183,6 +211,13 @@ class RoomState extends OgmoState
     function addHoverTextTo(target:FlxObject, ?text:String, ?callback:Void->Void, hoverDis = 20)
     {
         addHoverTo(target, cast new InfoTextBox(text, callback), hoverDis);
+    }
+    
+    inline function initArtPresent(present:Present, ?callback:(Present)->Void)
+    {
+        var data = Content.artwork[present.id];
+        var box = addThumbnailTo(present, data.thumbPath, openArtPresent.bind(present, callback));
+        box.sprite.visible = present.isOpen;
     }
     
     inline function addThumbnailTo(target:FlxObject, ?asset, ?callback:Void->Void)
