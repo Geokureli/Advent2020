@@ -1,6 +1,7 @@
 package states;
 
 
+import data.Save;
 import data.PlayerSettings;
 import data.Skins;
 import ui.Button;
@@ -23,7 +24,7 @@ class DressUpSubstate extends flixel.FlxSubState
     inline static var SPACING = 28;
     
     var sprites = new FlxTypedGroup<SkinDisplay>();
-    var current = PlayerSettings.user.skin;
+    var current = -1;
     var nameText = new FlxBitmapText();
     var descText = new FlxBitmapText();
     var arrowLeft:Button;
@@ -78,12 +79,14 @@ class DressUpSubstate extends flixel.FlxSubState
             sprite.x = SPACING * i;
             if (data.offsetX != null)
                 sprite.offset.x = data.offsetX;
-            if (i == current)
+            
+            if (data.index == PlayerSettings.user.skin)
             {
+                current = i;
                 sprite.x += SIDE_GAP;
                 camera.follow(sprite);
             }
-            else if (i > current)
+            else if (i > current && current > -1)
                 sprite.x += SIDE_GAP * 2;
             
             sprite.y = (FlxG.height - sprite.height) / 2;
@@ -189,11 +192,15 @@ class DressUpSubstate extends flixel.FlxSubState
         {
             nameText.text = currentSkin.proper;
             descText.text = currentSkin.description;
+            ok.active = true;
+            ok.alpha = 1;
         }
         else
         {
             nameText.text = "???";
             descText.text = "Keep playing every day to unlock";
+            ok.active = false;
+            ok.alpha = 0.5;
         }
         nameText.screenCenter(X);
         descText.screenCenter(X);
@@ -201,8 +208,11 @@ class DressUpSubstate extends flixel.FlxSubState
     
     function select():Void
     {
-        PlayerSettings.user.skin = currentSkin.index;
-        close();
+        if (currentSkin.unlocked)
+        {
+            Save.setSkin(currentSkin.index);
+            close();
+        }
     }
     
     override function close()

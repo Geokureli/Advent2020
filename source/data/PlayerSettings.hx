@@ -20,4 +20,9 @@ class PlayerSettings
         player.setSkin(skin);
         #end
     }
+    
+    static public function fromSave()
+    {
+        return new PlayerSettings(Save.getSkin());
+    }
 }

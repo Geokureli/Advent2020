@@ -23,7 +23,10 @@ class Skins
         byIndex.pop();//custom
         sorted = byIndex.copy();
         for (i in 0...byIndex.length)
+        {
             byIndex[i].index = i;
+            byIndex[i].unlocked = #if UNLOCK_ALL_SKINS true #else false #end;
+        }
         
         checkUnlocks();
     }
@@ -32,12 +35,9 @@ class Skins
     {
         for (data in byIndex)
         {
-            #if UNLOCK_ALL_SKINS
-            data.unlocked = true;
-            #else
             if (!data.unlocked)
             {
-                if (data.users != null && NGio.isLoggedIn && data.users.contains(NGio.userName))
+                if (data.users != null && NGio.isLoggedIn && data.users.contains(NGio.userName.toLowerCase()))
                 {
                     data.unlocked = true;
                 }
@@ -55,14 +55,13 @@ class Skins
                     }
                 }
             }
-            #end
         }
         
         sorted.sort(function (a, b)
             {
-                if (b.unlocked == a.unlocked)
-                    return b.index - a.index;
-                return (b.unlocked ? 1 : 0) - (a.unlocked ? 1 : 0);
+                if (a.unlocked == b.unlocked)
+                    return a.index - b.index;
+                return (a.unlocked ? 0 : 1) - (b.unlocked ? 0 : 1);
             }
         );
     }
@@ -80,13 +79,13 @@ class Skins
     
     static public function getDataSorted(id:Int)
     {
-        if (byIndex == null)
+        if (sorted == null)
             init();
         
-        if (id < 0 || byIndex.length <= id)
+        if (id < 0 || sorted.length <= id)
             throw "Invalid id:" + id;
         
-        return byIndex[id];
+        return sorted[id];
     }
     
     static public function getLength()

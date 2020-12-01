@@ -31,12 +31,21 @@ class Save
             data.presents = new BitArray();
             newData = true;
         }
+        #if LOG_SAVE trace("presents: " + data.presents); #end
         
         if (clearSave || data.days == null)
         {
             data.days = new BitArray();
             newData = true;
         }
+        #if LOG_SAVE trace("seen days: " + data.days); #end
+        
+        if (clearSave || data.skin == null)
+        {
+            data.skin = 0;
+            newData = true;
+        }
+        #if LOG_SAVE trace("skin: " + data.skin); #end
         
         if (newData)
             flush();
@@ -108,6 +117,22 @@ class Save
         //saves start at 0
         return data.days[id - 1];
     }
+    
+    static public function setSkin(id:Int)
+    {
+        PlayerSettings.user.skin = data.skin = id;
+        flush();
+    }
+    
+    static public function getSkin()
+    {
+        return data.skin;
+    }
 }
 
-typedef SaveData = { presents:BitArray, days:BitArray }
+typedef SaveData =
+{
+    var presents:BitArray;
+    var days:BitArray;
+    var skin:Int;
+}

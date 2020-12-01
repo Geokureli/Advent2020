@@ -182,6 +182,7 @@
     , "proper": "Elk"
     , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer."
     , "unlocksBy": null
+    , "users": ["geokureli"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"

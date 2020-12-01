@@ -22,7 +22,7 @@ class InputPlayer extends Player
     public function new(x = 0.0, y = 0.0)
     {
         if (PlayerSettings.user == null)
-            PlayerSettings.user = new PlayerSettings(0);
+            PlayerSettings.user = PlayerSettings.fromSave();
         
         super(x, y, PlayerSettings.user);
     }

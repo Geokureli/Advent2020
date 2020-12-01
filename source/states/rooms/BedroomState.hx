@@ -17,12 +17,14 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import flixel.util.FlxColor;
 
 import openfl.filters.ShaderFilter;
 
 class BedroomState extends RoomState
 {
     var dresser:OgmoDecal;
+    var note:OgmoDecal;
     var dresserNotif:Notif;
     
     override function create()
@@ -30,9 +32,13 @@ class BedroomState extends RoomState
         // GameSize.setPixelSize(4);
         super.create();
         
-        if(Game.state == NoEvent)
-            Manifest.playMusic("albegian");
-        
+        FlxG.camera.fade(FlxColor.BLACK, 1, true);
+        switch (Game.state)
+        {
+            case NoEvent: Manifest.playMusic("albegian");
+            // case Day1Intro(Started):
+            default:
+        }
         // #if debug FlxG.debugger.drawDebug = true; #end
     }
     
@@ -40,14 +46,11 @@ class BedroomState extends RoomState
     {
         super.initEntities();
         
-        var door = background.getByName("door");
-        door.animation.add("open", [0]);
-        door.animation.add("closed", [1]);
-        door.animation.play("closed");
+        note = foreground.getByName("note");
         
         dresser = foreground.getByName("dresser");
         dresser.setBottomHeight(16);
-        addHoverTextTo(dresser, "DRESS UP", onOpenDresser);
+        addHoverTextTo(dresser, "CHANGE CLOTHES", onOpenDresser);
         dresserNotif = new Notif();
         dresserNotif.x = dresser.x + (dresser.width - dresserNotif.width) / 2;
         dresserNotif.y = dresser.y + dresser.height - dresser.frameHeight;
