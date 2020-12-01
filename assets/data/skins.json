@@ -1,111 +1,130 @@
 [   { "id": "tankman"
     , "proper": "Tankman"
-    , "description": "DEBUG TEXT"
+    , "description": "This tankman is the mascot of Newgrounds! His name is Jerry, say hi."
     , "unlocksBy": "day:1"
     }
 ,   { "id": "pico"
     , "proper": "Pico"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["tomfulp"]
     }
 ,   { "id": "orange_knight"
     , "proper": "Orange Knight"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "red_knight"
     , "proper": "Red Knight"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "blue_knight"
     , "proper": "Blue Knight"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "green_knight"
     , "proper": "Green Knight"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["krinkels"]
     }
 ,   { "id": "alien_hominid"
     , "proper": "Alien Hominid"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "hatty"
     , "proper": "Hatty Hattington"
     , "description": "DEBUG TEXT"
     , "unlocksBy": "day:1"
+    , "users": ["tomfulp", "danpaladin", "stamper"]
     }
 ,   { "id": "chutney"
     , "proper": "Chutney Glaze"
     , "description": "DEBUG TEXT"
     , "unlocksBy": null
+    , "users": ["chutneyglaze"]
     }
 ,   { "id": "strawberry_clock"
     , "proper": "Strawberry Clock"
     , "description": "B!"
     , "unlocksBy": null
+    , "users": ["strawberryclock"]
     }
 ,   { "id": "hellbenders"
     , "proper": "The Hellbenders"
-    , "description": "DEBUG TEXT"
+    , "description": "Two friends: Chris and Zach. They live in a world surrounded\nby... not-so-normal things."
     , "unlocksBy": null
+    , "users": ["oney", "ricepirate", "psychicpebbles"]
     }
 ,   { "id": "tardigrade"
     , "proper": "Captain Tardigrade"
-    , "description": "DEBUG TEXT"
+    , "description": "A tardigrade is a microscopic extremophile, an extremophile can endure and \nsurvive extreme conditions which makes them virtually indestructible."
     , "unlocksBy": null
+    , "users": ["ianmichaelmiller"]
     }
 ,   { "id": "meatboy"
     , "proper": "Meatboy"
     , "description": "DEBUG TEXT"
     , "unlocksBy": null
+    , "users": ["bluebaby"]
     }
 ,   { "id": "salad_fingers"
     , "proper": "Salad Fingers"
     , "description": "DEBUG TEXT"
     , "unlocksBy": null
+    , "users": ["doki"]
     }
 ,   { "id": "blockhead"
     , "proper": "Blockhead"
     , "description": "DEBUG TEXT"
     , "unlocksBy": null
+    , "users": ["the-swain"]
     }
 ,   { "id": "bitey"
     , "proper": "Bitey"
-    , "description": "DEBUG TEXT"
+    , "description": "The tricky Dashkin from Brackenwood."
     , "unlocksBy": null
+    , "users": ["chluaid"]
     }
 ,   { "id": "pbot"
     , "proper": "P-Bot"
-    , "description": "DEBUG TEXT"
+    , "description": "Curating the very best there is on Newgrounds, Daily! And sometimes Maxine."
     , "unlocksBy": null
     }
 ,   { "id": "stan"
     , "proper": "Stan"
-    , "description": "DEBUG TEXT"
+    , "description": "That one Nightmare Cops guy with the fanart you’ve seen. His name’s actually Stan, do you believe it?"
     , "unlocksBy": null
+    , "users": ["tomfulp", "johnnyutah", "spazkid", "oney"]
     }
 ,   { "id": "knight"
     , "proper": "Knight"
-    , "description": "DEBUG TEXT"
+    , "description": "Realm Raiders"
     , "unlocksBy": null
+    , "users": ["tyler"]
     }
 ,   { "id": "tangy_mustard"
     , "proper": "Tangy Mustard"
     , "description": "DEBUG TEXT"
     , "unlocksBy": null
+    , "users": ["aaron-long"]
     }
 ,   { "id": "glenda"
     , "proper": "Glenda"
-    , "description": "The classiest galaxy tourist"
+    , "description": "The classiest galaxy tourist."
     , "unlocksBy": null
     , "users": ["someonesex"]
     }
@@ -119,47 +138,49 @@
     , "proper": "Spoople"
     , "description": "DEBUG TEXT"
     , "unlocksBy": null
-    , "user":["frasermcniven"]
+    , "users": ["frasermcniven"]
     }
 ,   { "id": "tom"
     , "proper": "Tom Fulp"
     , "description": "Are we talking about Tom Fulp? I love talking about Tom Fulp what is your \nfavorite Tom Fulp related fact? Mine is that Tom Fulp is the founder of \nNewgrounds.com. I wish they made Tom Fulp action figures. I am going to \nname my child Tom Fulp. They should change the capital of Pennsylvania to \nTom Fulp City because I really think well of Tom Fulp. If Tom fulp was bitten \nby a poisonous snake I would suck the venom out of him, even if it was his \ndick, and i'm not even gay I just really like Tom Fulp. The only thing I love \nmore than Tom Fulp is talking about Tom Fulp. I tried to make a Tom Fulp \nfan club at my school but no one joined so it was just me. If I could meet \nTom Fulp I would tell him all the things I know about Tom Fulp. I want to go \nto college to major in Tom Fulp and then build my own business so I can \ncreate Tom Fulp related merchandise. Tom Fulp's face should be \nimmortalized in stone for his incredible contributions to the world and my life. \nIf Tom Fulp was a Yugioh card he was have infinite attack and defense \npoints because he's Tom Fulp, the singular point with which my life revolves. \nI love Tom Fulp, I want to be married to Tom Fulp. I would marry Wade Fulp \njust to be closer to Tom Fulp. I am changing my name to Tom Fulp Fulp \nbecause I admire the strength and respect the name commands. I would \nvote for Tom for president and mister universe because he is just that \ncharismatic and handsome. The Fulp name should be listed among nobility. \nI am crying right now because I feel like no one else wants to talk about Tom \nFulp as much as I do. I must be the only person with a Tom Fulp diary that \nkeeps a record of everything Tom Fulp has ever said to me and things I \nhope he will say to me in the future. I framed a PM Tom Fulp sent to me and \nmy mom wanted me to take it down for my diploma but fuck her she doesn't \nknow what Tom Fulp means to me. I wish Tom Fulp was my dad, my dad \nsucks, Tom Fulp wouldn't suck if he was my dad. My life would be misery \nwithout Tom Fulp. Everyday that I log onto Newgrounds and find a new \nthread to discuss some inane aspect of Tom Fulp's life fills me with joy and \nmeaning so please let me talk about Tom Fulp or i'm going to explode."
     , "unlocksBy": null
-    , "users":["tomfulp"]
+    , "users": ["tomfulp"]
     }
 ,   { "id": "dad"
     , "proper": "Dad"
     , "description": "DEBUG TEXT"
     , "unlocksBy": null
     , "offsetX": 2
+    , "users": ["danpaladin"]
     }
 ,   { "id": "pump_and_skid"
     , "proper": "Pump'n'Skid"
-    , "description": "DEBUG TEXT"
+    , "description": "The spooky boys will be dancing all month, and\nthe next month, and does Halloween ever truly end?"
     , "unlocksBy": null
     , "frames": 4
+    , "users": ["srpelo"]
     }
 ,   { "id": "brandybuizel"
     , "proper": "BrandyBuizel"
-    , "description": "DEBUG TEXT"
+    , "description": "They say that God made us in his own image, so why not play as him? -b"
     , "unlocksBy": null
-    , "users":["brandybuizel"]
+    , "users": ["brandybuizel"]
     }
 ,   { "id": "velour"
     , "proper": "Velour"
-    , "description": "DEBUG TEXT"
+    , "description": "I'm not super into madness, but I know that those \npeople are into her as well. A cute hologram OC by Cymbourine."
     , "unlocksBy": "medal:1"
-    , "users":["cymbourine"]
+    , "users": ["cymbourine"]
     }
 ,   { "id": "horse"
     , "proper": "Horse"
-    , "description": "DEBUG TEXT"
+    , "description": "It's that guy from NEAR DEADline, you should play that game instead, trust me."
     , "unlocksBy": null
-    , "users":["nickconter"]
+    , "users": ["nickconter"]
     }
 ,   { "id": "elk"
     , "proper": "Elk"
-    , "description": "DEBUG TEXT"
+    , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer."
     , "unlocksBy": null
     }
 ,   { "id": "custom"
