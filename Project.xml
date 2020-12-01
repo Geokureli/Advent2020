@@ -26,12 +26,18 @@
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
-
+	
+	<!-- <define name="NG_BYPASS_LOGIN" if="debug"/> -->
+	<!-- <define name="NG_VERBOSE" if="debug"/> -->
+	<define name="NG_NO_LOG"/>
+	
 	<!-- <define name="PRELOAD_ALL" if="debug" /> -->
 	<define name="USE_LOCAL_SERVER" if="debug"/>
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
 	<!-- <define name="USE_RIG" /> -->
+	
+	<define name="UNLOCK_ALL_SKINS" if="debug"/>
 	
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
 	<set name="BUILD_DIR" value="export/release" unless="debug" />

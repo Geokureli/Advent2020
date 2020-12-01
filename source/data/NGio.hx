@@ -29,7 +29,7 @@ class NGio
 	
 	static public function attemptAutoLogin(callback:Void->Void) {
 		
-		#if BYPASS_LOGIN
+		#if NG_BYPASS_LOGIN
 		NG.create(APIStuff.APIID);
 		callback();
 		return;
@@ -37,23 +37,25 @@ class NGio
 		
 		if (isLoggedIn)
 		{
-			trace("already logged in");
+			log("already logged in");
 			return;
 		}
 		
 		ngDataLoaded.addOnce(callback);
 		
-		function onSessionFail(e)
+		function onSessionFail(e:Error)
 		{
+			log("session failed:" + e.toString());
 			ngDataLoaded.remove(callback);
 			callback();
 		}
 		
-		trace("connecting to newgrounds");
+		
+		logDebug("connecting to newgrounds");
 		NG.createAndCheckSession(APIStuff.APIID, APIStuff.DebugSession, onSessionFail);
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
-		#if debug NG.core.verbose = true; #end
+		#if NG_VERBOSE NG.core.verbose = true; #end
 		
 		if (!NG.core.attemptingLogin)
 			callback();
@@ -87,7 +89,7 @@ class NGio
 	{
 		isLoggedIn = true;
 		userName = NG.core.user.name;
-		trace ('logged in! user:${NG.core.user.name}');
+		logDebug('logged in! user:${NG.core.user.name}');
 		NG.core.requestMedals(onMedalsRequested);
 		
 		ngDataLoaded.dispatch();
@@ -123,17 +125,17 @@ class NGio
 	{
 		if(isLoggedIn)
 		{
-			trace("unlocking " + id);
+			log("unlocking " + id);
 			var medal = NG.core.medals.get(id);
 			if (!medal.unlocked)
 				medal.sendUnlock();
 			else if (showDebugUnlock)
 				#if debug medal.onUnlock.dispatch();
-				#else trace("already unlocked");
+				#else log("already unlocked");
 				#end
 		}
 		else
-			trace('no medal unlocked, loggedIn:$isLoggedIn');
+			log('no medal unlocked, loggedIn:$isLoggedIn');
 	}
 	
 	static public function hasDayMedal(date:Int):Bool
@@ -144,6 +146,16 @@ class NGio
 	static public function hasMedal(id:Int):Bool
 	{
 		return isLoggedIn && NG.core.medals.get(id).unlocked;
+	}
+	
+	inline static function logDebug(msg:String)
+	{
+		#if debug trace(msg); #end
+	}
+	
+	inline static function log(msg:String)
+	{
+		#if NG_NO_LOG trace(msg); #end
 	}
 }
 
