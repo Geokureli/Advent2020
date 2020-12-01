@@ -154,11 +154,15 @@ class NGio
 	static public function logEvent(event:NgEvent, once = false)
 	{
 		if (loggedEvents.contains(event))
+		{
 			if (once) return;
+		}
 		else
 			loggedEvents.push(event);
 		
-		NG.core.calls.event.logEvent(event + (FlxG.onMobile ? "_mobile" : "_desktop"));
+		event += FlxG.onMobile ? "_mobile" : "_desktop";
+		logDebug("logging event: " + event);
+		NG.core.calls.event.logEvent(event).send();
 	}
 	
 	static public function logEventOnce(event:NgEvent)
