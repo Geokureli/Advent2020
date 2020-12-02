@@ -202,5 +202,6 @@ enum abstract NgEvent(String) from String to String
 	var first_connect;
 	var connect;
 	var daily_present;
+	var intro_complete;
 }
 

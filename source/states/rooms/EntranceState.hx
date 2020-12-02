@@ -96,6 +96,7 @@ class EntranceState extends RoomState
                             cam.follow(player, 0.1);
                             remove(shade);
                             Game.state = NoEvent;
+                            NGio.logEvent(intro_complete);
                         }
                     });
             }
