@@ -11,6 +11,7 @@ class Calendar
     static public var isAdvent(default, null) = false;
     static public var isDecember(default, null) = false;
     static public var isChristmas(default, null) = false;
+    static public var isUnseenDay(default, null) = false;
     static public function init(callback:()->Void = null):Void
     {
         if (DEBUG_DAY == 0)
@@ -37,6 +38,7 @@ class Calendar
             {
                 isAdvent = true;
                 day = date.getDate();
+                isUnseenDay = !Save.hasSeenDay(day);
                 Save.daySeen(day);
             }
         }
