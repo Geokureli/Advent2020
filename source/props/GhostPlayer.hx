@@ -37,7 +37,7 @@ class GhostPlayer extends Player
         {
             nameText.alpha = alpha;
             nameText.x = x + (width - nameText.width) / 2;
-            nameText.y = y + height - frameHeight - nameText.height - 8;
+            nameText.y = y + height - frameHeight - nameText.height - 16;
             nameText.draw();
         }
     }
