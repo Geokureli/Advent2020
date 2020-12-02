@@ -31,6 +31,7 @@ import flixel.util.FlxSort;
 
 import Types;
 import io.colyseus.Room;
+import schema.Avatar;
 import schema.GameState;
 
 typedef RoomConstructor = (String)->RoomState;
@@ -43,9 +44,9 @@ class RoomState extends OgmoState
     var camFollow = new FlxObject();
     
     var player:InputPlayer;
+    var ghostsById:Map<String, GhostPlayer> = [];
     var avatars = new FlxTypedGroup<Player>();
-    var ghosts:Map<String, GhostPlayer> = [];
-    var ghostsGrp:FlxTypedGroup<GhostPlayer> = new FlxTypedGroup();
+    var ghosts:FlxTypedGroup<GhostPlayer> = new FlxTypedGroup();
     var teleports = new FlxTypedGroup<Teleport>();
     var presents = new FlxTypedGroup<Present>();
     var spawnTeleport:Teleport;
@@ -131,7 +132,6 @@ class RoomState extends OgmoState
         props = getByName("Props");
         foreground = getByName("Foreground");
         background = getByName("Background");
-        add(ghostsGrp);
         
         geom = getByName("Geom");
         colliders.add(geom);
@@ -297,39 +297,8 @@ class RoomState extends OgmoState
             return;
         }
         
-        room.state.avatars.onAdd = (avatarData, key) ->
-        {
-            // trace("avatar added at " + key + " => " + avatar);
-            trace(room.sessionId + ' added: $key=>${avatarData.name} ${avatarData.skin}@(${avatarData.x}, ${avatarData.y})');
-            
-            if (key != room.sessionId)
-            {
-                // trace(room.sessionId + ' this AINT you');
-                if (!ghosts.exists(key))
-                {
-                    var settings = new PlayerSettings(avatarData.skin);
-                    var ghost = new GhostPlayer(key, avatarData.name, avatarData.x, avatarData.y, settings);
-                    ghosts[key] = ghost;
-                    ghostsGrp.add(ghost);
-                    avatars.add(ghost);
-                    avatarData.onChange = ghost.onChange;
-                }
-            }
-            // else
-            //     trace(room.sessionId + " this is you!");
-        }
-        
-        room.state.avatars.onRemove = (avatarData, key) ->
-        {
-            if (ghosts.exists(key))
-            {
-                var ghost = ghosts[key];
-                ghosts.remove(key);
-                ghostsGrp.remove(ghost);
-                avatars.remove(ghost);
-                avatarData.onChange = null;
-            }
-        }
+        room.state.avatars.onAdd = onAvatarAdd;
+        room.state.avatars.onRemove = onAvatarRemove;
         
         // room.state.entities.onChange = function onEntityChange(entity, key)
         // {
@@ -345,6 +314,42 @@ class RoomState extends OgmoState
             , state:Idle
             }
         );
+    }
+    
+    function onAvatarAdd(data:Avatar, key:String)
+    {
+        // trace("avatar added at " + key + " => " + avatar);
+        // trace(Net.room.sessionId + ' added: $key=>${data.name} ${data.skin}@(${data.x}, ${data.y})');
+        
+        if (key != Net.room.sessionId)
+        {
+            // trace(room.sessionId + ' this AINT you');
+            if (!ghostsById.exists(key))
+            {
+                var settings = new PlayerSettings(data.skin);
+                var ghost = new GhostPlayer(key, data.name, data.x, data.y, settings);
+                ghostsById[key] = ghost;
+                ghosts.add(ghost);
+                foreground.add(ghost);
+                avatars.add(ghost);
+                data.onChange = ghost.onChange;
+            }
+        }
+        // else
+        //     trace(room.sessionId + " this is you!");
+    }
+    
+    function onAvatarRemove(data:Avatar, key:String)
+    {
+        if (ghostsById.exists(key))
+        {
+            var ghost = ghostsById[key];
+            ghostsById.remove(key);
+            ghosts.remove(ghost);
+            foreground.remove(ghost);
+            avatars.remove(ghost);
+            data.onChange = null;
+        }
     }
     
     override public function update(elapsed:Float):Void 
@@ -426,7 +431,7 @@ class RoomState extends OgmoState
             }
         }
         
-        foreground.sort(FlxSort.byY);
+        foreground.sort(byYNullSafe);
         
         super.update(elapsed);
         
@@ -465,6 +470,14 @@ class RoomState extends OgmoState
         
         infoBoxes.clear();
     }
+    
+    
+	public static inline function byYNullSafe(order:Int, a:Null<FlxObject>, b:Null<FlxObject>):Int
+	{
+        if (a == null || b == null)
+            return 0;
+		return FlxSort.byValues(order, a.y, b.y);
+	}
 }
 
 enum abstract RoomName(String) to String

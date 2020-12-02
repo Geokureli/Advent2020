@@ -74,6 +74,9 @@ class BedroomState extends RoomState
         dresserNotif.y = dresser.y + dresser.height - dresser.frameHeight;
         dresserNotif.animate();
         add(dresserNotif);
+        
+        if(!Game.state.match(Day1Intro(Started)))
+            dresserNotif.kill();
     }
     
     function onOpenDresser()

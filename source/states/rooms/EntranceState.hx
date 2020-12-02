@@ -1,14 +1,19 @@
 package states.rooms;
 
-import flixel.FlxObject;
-import flixel.tweens.FlxEase;
-import flixel.FlxG;
-import openfl.filters.ShaderFilter;
-import vfx.ShadowShader;
-import flixel.tweens.FlxTween;
-import vfx.ShadowSprite;
 import data.Game;
 import data.Manifest;
+import data.NGio;
+import vfx.ShadowShader;
+import vfx.ShadowSprite;
+
+import schema.Avatar;
+
+import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+
+import openfl.filters.ShaderFilter;
 
 class EntranceState extends RoomState
 {
@@ -36,7 +41,8 @@ class EntranceState extends RoomState
                 add(shade);
                 
                 player.active = false;
-                ghostsGrp.visible = false;
+                for (ghost in ghosts.members)
+                    ghost.visible = false;
                 
                 var present = null;
                 for (p in presents)
@@ -106,16 +112,22 @@ class EntranceState extends RoomState
     
     function showGhosts(delay = 0.0, duration = 1.0)
     {
-        ghostsGrp.visible = true;
+        for(ghost in ghosts)
+        {
+            ghost.visible = true;
+            ghost.alpha = 0;
+        }
+        
         FlxTween.num(0, 1, 1.0, { startDelay: delay}, (num)->{ for(ghost in ghosts) ghost.alpha = num; });
     }
     
-    // override function initEntities()
-    // {
-    //     super.initEntities();
+    override function onAvatarAdd(data:Avatar, key:String)
+    {
+        super.onAvatarAdd(data, key);
         
-        
-    // }
+        if (ghostsById.exists(key) && Game.state.match(Day1Intro(_)))
+            ghostsById[key].visible = false;
+    }
     
     function tweenLightRadius(light:Int, from:Float, to:Float, duration:Float, options:TweenOptions)
     {

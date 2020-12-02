@@ -23,14 +23,8 @@ class Game
         roomTypes[Hallway ] = HallwayState.new;
         roomTypes[Entrance] = EntranceState.new;
         
-        switch(Calendar.day)
-        {
-            case 1:
-            {
-                if (Save.noPresentsOpened())
-                    state = Day1Intro(Started);
-            }
-        }
+        if (Save.noPresentsOpened())
+            state = Day1Intro(Started);
     }
     
     static public function goToRoom(target:String):Void
