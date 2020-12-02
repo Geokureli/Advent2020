@@ -1,12 +1,11 @@
 package states.rooms;
 
-import data.NGio;
-import flixel.text.FlxBitmapText;
-import openfl.utils.Assets;
+import data.Content;
 import data.EventState;
 import data.Game;
-import data.Save;
 import data.Manifest;
+import data.NGio;
+import data.Save;
 import props.InputPlayer;
 import props.InfoBox;
 import props.Notif;
@@ -18,16 +17,19 @@ import vfx.PixelPerfectShader;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.text.FlxBitmapText;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
 
 import openfl.filters.ShaderFilter;
+import openfl.utils.Assets;
 
 class BedroomState extends RoomState
 {
     var dresser:OgmoDecal;
     var dresserNotif:Notif;
+    var door:OgmoDecal;
     
     override function create()
     {
@@ -37,7 +39,7 @@ class BedroomState extends RoomState
         FlxG.camera.fade(FlxColor.BLACK, 1, true);
         switch (Game.state)
         {
-            case NoEvent: Manifest.playMusic("albegian");
+            case NoEvent: Content.playTodaysSong();
             // case Day1Intro(Started):
             default:
         }
@@ -48,7 +50,7 @@ class BedroomState extends RoomState
     {
         super.initEntities();
         
-        var door = background.getByName("door");
+        door = background.getByName("door");
         door.animation.add("close", [1]);
         door.animation.play("close");
         
@@ -75,7 +77,9 @@ class BedroomState extends RoomState
         dresserNotif.animate();
         add(dresserNotif);
         
-        if(!Game.state.match(Day1Intro(Started)))
+        if(Game.state.match(Day1Intro(Started)))
+            addHoverTextTo(door, "Get dressed first");
+        else
             dresserNotif.kill();
     }
     
@@ -87,7 +91,10 @@ class BedroomState extends RoomState
         openSubState(dressUp);
         
         if(Game.state.match(Day1Intro(Started)))
+        {
+            removeHoverFrom(door);
             Game.state = Day1Intro(Dressed);
+        }
     }
     
     override function activateTeleport(target:String)

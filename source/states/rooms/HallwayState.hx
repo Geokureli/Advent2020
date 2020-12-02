@@ -41,7 +41,7 @@ class HallwayState extends RoomState
                 var floor = background.getByName("hallway");
                 floor.setBottomHeight(floor.frameHeight);
                 shade = new ShadowSprite(floor.x, floor.y);
-                shade.loadGraphic("assets/images/props/hallway/hallway_dark.png");
+                shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
                 for (i=>candle in background.getAllWithName("candle").members)
                     shade.shadow.setLightPos(i + 2, candle.x + candle.width / 2, candle.y);
                 add(shade);
@@ -55,7 +55,7 @@ class HallwayState extends RoomState
                 var floor = background.getByName("hallway");
                 floor.setBottomHeight(floor.frameHeight);
                 shade = new ShadowSprite(floor.x, floor.y);
-                shade.loadGraphic("assets/images/props/hallway/hallway_dark.png");
+                shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
                 
                 shade.shadow.setLightRadius(1, 60);
                 for (i=>candle in background.getAllWithName("candle").members)

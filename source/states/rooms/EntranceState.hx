@@ -37,10 +37,11 @@ class EntranceState extends RoomState
                 var floor = background.getByName("foyer");
                 floor.setBottomHeight(floor.frameHeight);
                 shade = new ShadowSprite(floor.x, floor.y);
-                shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xEE000000);
+                shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
                 add(shade);
                 
                 player.active = false;
+                player.flipX = true;
                 for (ghost in ghosts.members)
                     ghost.visible = false;
                 

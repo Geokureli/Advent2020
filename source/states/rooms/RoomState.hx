@@ -249,7 +249,7 @@ class RoomState extends OgmoState
     
     inline function addHoverTo(target:FlxObject, box:InfoBox, hoverDis = 20)
     {
-        inline removeHoverFrom(target);
+        removeHoverFrom(target);
         
         touchable.add(target);
         box.updateFollow(target);
@@ -386,10 +386,8 @@ class RoomState extends OgmoState
         
         for (child in touchable.members)
         {
-            if (infoBoxes.exists(child))
-            {
+            if (child != null && infoBoxes.exists(child))
                 infoBoxes[child].updateFollow(child);
-            }
         }
         
         var firstTouched:FlxObject = null;

@@ -65,6 +65,36 @@ class Content
         return artwork.exists(id) && artwork[id].day <= Calendar.day;
     }
     
+    inline public static function playTodaysSong()
+    {
+        Manifest.playMusic(getTodaysSong().id);
+    }
+    
+    inline public static function playSongByDay(day:Int)
+    {
+        Manifest.playMusic(getSongByDay(day).id);
+    }
+    
+    inline public static function getTodaysSong()
+    {
+        return getSongByDay(Calendar.day);
+    }
+    
+    public static function getSongByDay(day:Int)
+    {
+        var latestSong:SongCreation = null;
+        for (song in songs)
+        {
+            if (song.day < day && (latestSong == null || song.day > latestSong.day))
+                latestSong = song;
+        }
+        
+        if (latestSong == null)
+            throw "No song for day:" + day;
+        
+        return latestSong;
+    }
+    
     @:allow(data.Save)
     static function getPresentIndex(id:String)
     {
@@ -128,4 +158,9 @@ enum abstract User(String) from String to String
     var nickconter;
     var albegian;
     var cymbourine;
+    var mintyeggs;
+    var danfrombavaria;
+    var mixmuffin;
+    var einmeister;
+    var splatterdash;
 }
