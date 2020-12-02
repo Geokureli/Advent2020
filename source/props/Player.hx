@@ -234,7 +234,7 @@ class Player extends flixel.FlxSprite
     public function setSkin(skin:Int)
     {
         var data = Skins.getData(skin);
-        loadGraphic(data.path);
+        data.loadTo(this);
         scale.set(2, 2);
         width = 16;
         height = 16;
