@@ -101,6 +101,7 @@ typedef ArtCreation
     var animation:Null<{frames:Int, fps:Int}>;
     var thumbPath:String;
     var antiAlias:Null<Bool>;
+    var medal:Null<Bool>;
 }
 
 typedef SongCreation

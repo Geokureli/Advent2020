@@ -1,6 +1,7 @@
 package states.rooms;
 
 
+import data.Calendar;
 import data.Manifest;
 import data.Save;
 import data.Content;
@@ -177,6 +178,10 @@ class RoomState extends OgmoState
 	{
         // Start loading now, hopefully it finishes during the animation
         Manifest.loadArt(present.id);
+        var data = Content.artwork[present.id];
+        var medal = data.medal;
+        if ((data.day == 1 || Calendar.day == data.day) && medal != null && medal != false)
+            NGio.unlockDayMedal(data.day);
         // FlxG.sound.play("assets/sounds/presentOpen.mp3", 1);
         present.animateOpen(function ()
             {

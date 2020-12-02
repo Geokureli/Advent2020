@@ -55,11 +55,13 @@
         , "name"   : "SiNful Dinner"
         , "authors": ["cymbourine"]
         , "day"    : 1
+        , "medal"  : true
         }
     ,   { "id"     : "mintyeggs"
         , "name"   : "Christmas Campfire"
         , "authors": ["mintyeggs"]
         , "day"    : 2
+        , "medal"  : true
         }
     ]
 ,   "events":

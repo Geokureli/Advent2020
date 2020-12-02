@@ -16,6 +16,8 @@ import flixel.util.FlxSignal;
 
 class NGio
 {
+	inline static var DAY_MEDAL_0 = 61304;
+	
 	public static var isLoggedIn(default, null):Bool = false;
 	public static var userName(default, null):String;
 	public static var scoreboardsLoaded(default, null):Bool = false;
@@ -124,6 +126,10 @@ class NGio
 		// Calendar.onMedalsRequested();
 	}
 	
+	static public function unlockDayMedal(day:Int, showDebugUnlock = true):Void
+	{
+		unlockMedal(DAY_MEDAL_0 + day - 1, showDebugUnlock);
+	}
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
 		if(isLoggedIn)
