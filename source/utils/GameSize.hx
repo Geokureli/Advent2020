@@ -9,28 +9,28 @@ class GameSize
     static function get_pixelSize():Int
     {
         if (pixelSize == 0)
-            pixelSize = Std.int(FlxG.stage.stageWidth / FlxG.game.width);
+            pixelSize = Std.int(FlxG.stage.stageWidth / FlxG.width);
         
-        return GameSize.pixelSize;
+        return pixelSize;
     }
     
-    public static function setPixelSize(pixelSize:Int)
+    public static function setPixelSize(size:Int)
     {
-        if (pixelSize < 1)
-            throw ("Cannot set pixel size to " + pixelSize);
+        if (size < 1)
+            throw ("Cannot set pixel size to " + size);
         
-        if (pixelSize == GameSize.pixelSize)
+        if (size == pixelSize)
             return;
         
-        GameSize.pixelSize = pixelSize;
+        pixelSize = size;
         final stageWidth = FlxG.stage.stageWidth;
         final stageHeight = FlxG.stage.stageHeight;
         
-        if (stageWidth % pixelSize != 0 || stageHeight % pixelSize != 0)
+        if (stageWidth % size != 0 || stageHeight % size != 0)
             throw "window width/height must be a multiple of pixelSize";
         
-        final width = Std.int(FlxG.stage.stageWidth / pixelSize);
-        final height = Std.int(FlxG.stage.stageHeight / pixelSize);
+        final width = Std.int(FlxG.stage.stageWidth / size);
+        final height = Std.int(FlxG.stage.stageHeight / size);
         // trace('resizing: $width, $height');
         
         @:privateAccess
@@ -40,7 +40,7 @@ class GameSize
         
         FlxG.resizeGame(width, height);
         @:privateAccess
-        FlxG.game.scaleX = FlxG.game.scaleY = pixelSize;
+        FlxG.game.scaleX = FlxG.game.scaleY = size;
         @:privateAccess
         var focusLostScreen = FlxG.game._focusLostScreen;
         focusLostScreen.width = width;

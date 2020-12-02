@@ -44,6 +44,7 @@ class RoomState extends OgmoState
     var player:InputPlayer;
     var avatars = new FlxTypedGroup<Player>();
     var ghosts:Map<String, GhostPlayer> = [];
+    var ghostsGrp:FlxTypedGroup<GhostPlayer> = new FlxTypedGroup();
     var teleports = new FlxTypedGroup<Teleport>();
     var presents = new FlxTypedGroup<Present>();
     var spawnTeleport:Teleport;
@@ -129,6 +130,7 @@ class RoomState extends OgmoState
         props = getByName("Props");
         foreground = getByName("Foreground");
         background = getByName("Background");
+        add(ghostsGrp);
         
         geom = getByName("Geom");
         colliders.add(geom);
@@ -303,8 +305,8 @@ class RoomState extends OgmoState
                     var settings = new PlayerSettings(avatarData.skin);
                     var ghost = new GhostPlayer(key, avatarData.name, avatarData.x, avatarData.y, settings);
                     ghosts[key] = ghost;
+                    ghostsGrp.add(ghost);
                     avatars.add(ghost);
-                    foreground.add(ghost);
                     avatarData.onChange = ghost.onChange;
                 }
             }
@@ -318,6 +320,7 @@ class RoomState extends OgmoState
             {
                 var ghost = ghosts[key];
                 ghosts.remove(key);
+                ghostsGrp.remove(ghost);
                 avatars.remove(ghost);
                 avatarData.onChange = null;
             }

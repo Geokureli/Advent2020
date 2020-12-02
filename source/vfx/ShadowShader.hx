@@ -1,8 +1,9 @@
 package vfx;
 
+import utils.GameSize;
 import flixel.util.FlxColor;
 
-class DitherShader extends flixel.system.FlxAssets.FlxShader
+class ShadowShader extends flixel.system.FlxAssets.FlxShader
 {
     inline static var NUM_LIGHTS = 1;
     @:glFragmentSource('
@@ -30,6 +31,10 @@ class DitherShader extends flixel.system.FlxAssets.FlxShader
         // LIGHT 4
         uniform vec2 light4;
         uniform float rad4;
+        
+        // LIGHT 5
+        uniform vec2 light5;
+        uniform float rad5;
         
         vec4 pixelColor(vec2 coord)
         {
@@ -89,15 +94,17 @@ class DitherShader extends flixel.system.FlxAssets.FlxShader
             amount = min(amount, getLight(topLeft, light2, rad2));
             amount = min(amount, getLight(topLeft, light3, rad3));
             amount = min(amount, getLight(topLeft, light4, rad4));
+            amount = min(amount, getLight(topLeft, light5, rad5));
             
             gl_FragColor = dither(bigPixelCenterColor(topLeft), amount, topLeft);
         }
     ')
     
-    public function new(pixelSize:Float, shadow:FlxColor, inverse = true)
+    public function new(shadow:FlxColor, pixelSize = -1.0, inverse = true)
     {
         super();
-        this.pixelSize.value = [pixelSize];
+        this.pixelSize.value = [pixelSize <= 0 ? GameSize.pixelSize : pixelSize];
+        this.inverse.value = [inverse];
         this.shadow.value = [shadow.redFloat, shadow.greenFloat, shadow.blueFloat, shadow.alphaFloat];
         
         // this.indices.value =
@@ -109,7 +116,7 @@ class DitherShader extends flixel.system.FlxAssets.FlxShader
         
         for (i in 0...NUM_LIGHTS)
         {
-            setLight(i, 0, 0, 0);
+            setLight(i + 1, 0, 0, 0);
         }
     }
     
@@ -128,7 +135,11 @@ class DitherShader extends flixel.system.FlxAssets.FlxShader
                 this.rad3.value = [radius];
             case 4:
                 this.light4.value = [x, y];
-                this.rad3.value = [radius];
+                this.rad4.value = [radius];
+            case 5:
+                this.light5.value = [x, y];
+                this.rad5.value = [radius];
+            case _: throw "invalid light:" + num;
         }
     }
     
@@ -140,6 +151,60 @@ class DitherShader extends flixel.system.FlxAssets.FlxShader
             case 2: this.light2.value = [x, y];
             case 3: this.light3.value = [x, y];
             case 4: this.light4.value = [x, y];
+            case 5: this.light5.value = [x, y];
+            case _: throw "invalid light:" + num;
+        }
+    }
+    
+    public function setLightX(num:Int, x:Float)
+    {
+        switch (num)
+        {
+            case 1: this.light1.value[0] = x;
+            case 2: this.light2.value[0] = x;
+            case 3: this.light3.value[0] = x;
+            case 4: this.light4.value[0] = x;
+            case 5: this.light5.value[0] = x;
+            case _: throw "invalid light:" + num;
+        }
+    }
+    
+    public function getLightX(num:Int)
+    {
+        return switch (num)
+        {
+            case 1: this.light1.value[0];
+            case 2: this.light2.value[0];
+            case 3: this.light3.value[0];
+            case 4: this.light4.value[0];
+            case 5: this.light5.value[0];
+            case _: throw "invalid light:" + num;
+        }
+    }
+    
+    public function setLightY(num:Int, y:Float)
+    {
+        switch (num)
+        {
+            case 1: this.light1.value[1] = y;
+            case 2: this.light2.value[1] = y;
+            case 3: this.light3.value[1] = y;
+            case 4: this.light4.value[1] = y;
+            case 5: this.light5.value[1] = y;
+            case _: throw "invalid light:" + num;
+        }
+    }
+    
+    public function getLightY(num:Int)
+    {
+        return return switch (num)
+        {
+            case 1: this.light1.value[1];
+            case 2: this.light2.value[1];
+            case 3: this.light3.value[1];
+            case 4: this.light4.value[1];
+            case 5: this.light5.value[1];
+            case _: throw "invalid light:" + num;
         }
     }
     
@@ -151,6 +216,21 @@ class DitherShader extends flixel.system.FlxAssets.FlxShader
             case 2: this.rad2.value = [radius];
             case 3: this.rad3.value = [radius];
             case 4: this.rad4.value = [radius];
+            case 5: this.rad5.value = [radius];
+            case _: throw "invalid light:" + num;
+        }
+    }
+    
+    public function getLightRadius(num:Int)
+    {
+        return switch (num)
+        {
+            case 1: this.rad1.value[0];
+            case 2: this.rad2.value[0];
+            case 3: this.rad3.value[0];
+            case 4: this.rad4.value[0];
+            case 5: this.rad5.value[0];
+            case _: throw "invalid light:" + num;
         }
     }
 }

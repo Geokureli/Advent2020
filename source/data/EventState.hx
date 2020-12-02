@@ -10,5 +10,5 @@ enum Day1IntroState
 {
     Started;
     Dressed;
-    Finished;
+    Hallway;
 }

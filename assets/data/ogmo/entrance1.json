@@ -33,8 +33,8 @@
           "name": "Present",
           "id": 1,
           "_eid": "75464384",
-          "x": 256,
-          "y": 352,
+          "x": 368,
+          "y": 384,
           "originX": 0,
           "originY": 0,
           "values": {"id": "cymbourine"}
@@ -50,6 +50,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": 0, "target": "hallway.1"}
+        },
+        {
+          "name": "Present",
+          "id": 3,
+          "_eid": "75464384",
+          "x": 176,
+          "y": 464,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "mintyeggs"}
         }
       ]
     },

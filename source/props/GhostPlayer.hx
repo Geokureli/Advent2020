@@ -35,8 +35,9 @@ class GhostPlayer extends Player
         super.draw();
         if (nameText.visible)
         {
+            nameText.alpha = alpha;
             nameText.x = x + (width - nameText.width) / 2;
-            nameText.y = y + height - frameHeight - nameText.height;
+            nameText.y = y + height - frameHeight - nameText.height - 8;
             nameText.draw();
         }
     }

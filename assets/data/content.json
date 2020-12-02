@@ -19,6 +19,9 @@
     , "cymbourine":
         { "proper": "Cymbourine"
         }
+    , "mintyeggs":
+        { "proper": "MintyEggs"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -52,6 +55,11 @@
         , "name"   : "SiNful Dinner"
         , "authors": ["cymbourine"]
         , "day"    : 1
+        }
+    ,   { "id"     : "mintyeggs"
+        , "name"   : "Christmas Campfire"
+        , "authors": ["mintyeggs"]
+        , "day"    : 2
         }
     ]
 ,   "events":

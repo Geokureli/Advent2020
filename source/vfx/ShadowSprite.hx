@@ -1,12 +1,12 @@
 package vfx;
 
-class DitherSprite extends flixel.FlxSprite
+class ShadowSprite extends flixel.FlxSprite
 {
-    public var dither(default, null):DitherShader;
+    public var shadow(default, null):ShadowShader;
     
     public function new (x = 0.0, y = 0.0, ?graphic, pixelSize = 1)
     {
-        dither = new DitherShader(pixelSize, 0x0, true);
+        shadow = new ShadowShader(0x0, pixelSize, false);
         super(x, y, graphic);
     }
     
@@ -14,6 +14,6 @@ class DitherSprite extends flixel.FlxSprite
     {
         super.graphicLoaded();
         if (shader == null)
-            shader = dither;
+            shader = shadow;
     }
 }

@@ -19,8 +19,9 @@ class Game
     static function init():Void
     {
         roomTypes = [];
-        roomTypes[Bedroom] = BedroomState.new;
-        roomTypes[Hallway] = HallwayState.new;
+        roomTypes[Bedroom ] = BedroomState.new;
+        roomTypes[Hallway ] = HallwayState.new;
+        roomTypes[Entrance] = EntranceState.new;
         
         switch(Calendar.day)
         {
