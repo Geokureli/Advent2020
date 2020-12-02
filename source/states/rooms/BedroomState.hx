@@ -1,5 +1,8 @@
 package states.rooms;
 
+import data.NGio;
+import flixel.text.FlxBitmapText;
+import openfl.utils.Assets;
 import data.EventState;
 import data.Game;
 import data.Save;
@@ -47,6 +50,18 @@ class BedroomState extends RoomState
         super.initEntities();
         
         note = foreground.getByName("note");
+        note.setBottomHeight(note.frameHeight);
+        var noteText = Assets.getText("assets/data/letter_december_01.txt");
+        var name = NGio.userName;
+        // if (name == null || name == "")
+            name = "UNREGISTERED NG LURKER";
+        noteText = noteText.split("[NAME]").join(name);
+        var text = new FlxBitmapText();
+        text.x = note.x + 16;
+        text.y = note.y + 20;
+        text.text = noteText;
+        text.color = 0xFF000000;
+        add(text);
         
         dresser = foreground.getByName("dresser");
         dresser.setBottomHeight(16);
