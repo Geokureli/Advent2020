@@ -43,6 +43,8 @@ class Content
             artwork[artData.id] = artData;
             artData.path = 'assets/artwork/${artData.id}.png';
             artData.thumbPath = 'assets/images/thumbs/${artData.id}.png';
+            artData.presentPath = 'assets/images/props/presents/${artData.id}.png';
+            // artData.medalPath = 'assets/images/medals/${artData.id}.png';
             presentsById[artData.id] = i;
             presentsByIndex[i] = artData.id;
         }
@@ -58,6 +60,55 @@ class Content
             event.day = day;
             events[day] = event;
         }
+    }
+    
+    /**
+     * finds missing files or data and lets
+     * @return String
+     */
+    public static function verifyTodaysContent():Array<ContentError>
+    {
+        var errors = new Array<ContentError>();
+        
+        for (art in artwork)
+        {
+            if (art.day != null && art.day <= Calendar.day)
+            {
+                if (!Manifest.exists(art.path, IMAGE))
+                    errors.push('Missing ${art.path}');
+                if (!Manifest.exists(art.thumbPath, IMAGE))
+                    errors.push('Missing ${art.thumbPath}');
+                if (!Manifest.exists(art.presentPath, IMAGE))
+                    errors.push('Missing ${art.presentPath}');
+                // if (Manifest.exists(art.medalPath))
+                //     errors.push('Missing thumbnail or invalid path id:${art.id} expected: ${art.medalPath}');
+                if (art.authors == null)
+                    errors.push('Missing artwork authors id:${art.id}');
+                for (author in art.authors)
+                {
+                    if (!credits.exists(author) || credits[author].proper == null)
+                        errors.push('Missing credits author:$author');
+                }
+            }
+        }
+        
+        for (song in songs)
+        {
+            if (song.day != null && song.day <= Calendar.day)
+            {
+                if (!Manifest.exists(song.path, MUSIC))
+                    errors.push('Missing ${song.path}');
+                if (song.authors == null)
+                    errors.push('Missing song authors id:${song.id}');
+                for (author in song.authors)
+                {
+                    if (!credits.exists(author) || credits[author].proper == null)
+                        errors.push('Missing credits author:$author');
+                }
+            }
+        }
+        
+        return errors.length == 0 ? null : errors;
     }
     
     public static function isArtUnlocked(id:String)
@@ -95,6 +146,11 @@ class Content
         return latestSong;
     }
     
+    static public function isContributor(name:String)
+    {
+        credits.exists(name.toLowerCase());
+    }
+    
     @:allow(data.Save)
     static function getPresentIndex(id:String)
     {
@@ -106,6 +162,8 @@ class Content
     @:allow(data.Save)
     static function getPresentId(index:Int) return presentsByIndex[index];
 }
+
+typedef ContentError = String;
 
 typedef CreditContent =
 {
@@ -130,6 +188,8 @@ typedef ArtCreation
 {
     var animation:Null<{frames:Int, fps:Int}>;
     var thumbPath:String;
+    var presentPath:String;
+    var medalPath:String;
     var antiAlias:Null<Bool>;
     var medal:Null<Bool>;
 }

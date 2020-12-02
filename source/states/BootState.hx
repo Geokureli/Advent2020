@@ -25,10 +25,7 @@ class BootState extends flixel.FlxState
     var msg:FlxBitmapText;
     var timeout:FlxTimer;
     var state = LoggingIn;
-    var waitTime = 
-        #if ALLOW_SKIP MSG_TIME // allow time to press space
-        #else 0.0
-        #end;
+    var waitTime = 0.0;
     
     var debugFutureEnabled = false;
     
@@ -106,7 +103,21 @@ class BootState extends flixel.FlxState
     {
         state = Initing;
         
-        var callbacks = new MultiCallback(()->state = Waiting);
+        var callbacks = new MultiCallback(
+            function ()
+            {
+                state = Waiting;
+                #if ALLOW_DAY_SKIP
+                if ((Calendar.isAdvent || Calendar.isDebugDay)
+                    && Calendar.day != 24
+                    && NGio.isContributor)
+                {
+                    waitTime = MSG_TIME;
+                    msg.text = "(debug)\n Press SPACE to time travel";
+                }
+                #end
+            }
+        );
         var wait = callbacks.add("wait");
         Manifest.init(callbacks.add("manifest"));
         Calendar.init(callbacks.add("calendar"));
@@ -131,7 +142,7 @@ class BootState extends flixel.FlxState
         super.update(elapsed);
         waitTime -= elapsed;
         
-        #if ALLOW_SKIP
+        #if ALLOW_DAY_SKIP
         if (state.match(Initing|Waiting) && FlxG.keys.pressed.SPACE)
             debugFutureEnabled = true;
         #end
@@ -143,11 +154,11 @@ class BootState extends flixel.FlxState
                 case LoggingIn:
                 case Initing:
                 case Waiting:
-                    #if ALLOW_SKIP
+                    #if ALLOW_DAY_SKIP
                     final canSkip
                         = (Calendar.isAdvent || Calendar.isDebugDay)
                         && Calendar.day != 24
-                        // #if !(debug) && NGio.isWhitelisted #end
+                        && NGio.isContributor
                         ;
                     
                     if (canSkip && debugFutureEnabled)
@@ -160,7 +171,25 @@ class BootState extends flixel.FlxState
                     #end
                     state = Checking;
                 case Checking:
-                    // Todo check assets
+                    
+                    var errors = Content.verifyTodaysContent();
+                    if (errors != null)
+                    {
+                        state = Error;
+                        if (NGio.isContributor)
+                        {
+                            msg.font = new NokiaFont();
+                            msg.text = "ERROR (debug):\n" + errors.join("\n");
+                        }
+                        else
+                        {
+                            msg.font = new NokiaFont();
+                            msg.text = "Today's content is almost done,\nplease try again soon.\n Sorry";
+                        }
+                        msg.screenCenter(XY);
+                        return;
+                    }
+                    
                     state = Success;
                     onComplete();
                 case Success:

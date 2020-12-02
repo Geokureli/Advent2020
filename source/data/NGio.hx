@@ -22,7 +22,7 @@ class NGio
 	public static var userName(default, null):String;
 	public static var scoreboardsLoaded(default, null):Bool = false;
 	public static var ngDate(default, null):Date;
-	public static var isWhitelisted(default, null) = false;
+	public static var isContributor(default, null) = false;
 	
 	public static var scoreboardArray:Array<Score> = [];
 	
@@ -97,6 +97,13 @@ class NGio
 		logDebug('logged in! user:${NG.core.user.name}');
 		NG.core.requestMedals(onMedalsRequested);
 		
+		
+		#if debug
+		isContributor = true;
+		#else
+		isContributor = Contents.isContributor(userName.toLowerCase);
+		#end
+		
 		ngDataLoaded.dispatch();
 	}
 	
@@ -114,12 +121,6 @@ class NGio
 		.send();
 	}
 	
-	static public function checkWhitelist():Void
-	{
-		if (isLoggedIn)
-			isWhitelisted = false;//Calendar.checkWhitelisted(NG.core.user.name);
-	}
-	
 	// --- MEDALS
 	static function onMedalsRequested():Void
 	{
@@ -132,7 +133,7 @@ class NGio
 	}
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
-		if(isLoggedIn)
+		if(isLoggedIn && !Calendar.isDebugDay)
 		{
 			log("unlocking " + id);
 			var medal = NG.core.medals.get(id);
@@ -144,7 +145,7 @@ class NGio
 				#end
 		}
 		else
-			log('no medal unlocked, loggedIn:$isLoggedIn');
+			log('no medal unlocked, loggedIn:$isLoggedIn debugDay${!Calendar.isDebugDay}');
 	}
 	
 	static public function hasDayMedal(date:Int):Bool

@@ -180,8 +180,11 @@ class RoomState extends OgmoState
         Manifest.loadArt(present.id);
         var data = Content.artwork[present.id];
         var medal = data.medal;
-        if ((data.day == 1 || Calendar.day == data.day) && medal != null && medal != false)
+        if (!Calendar.isDebugDay
+        &&  (data.day == 1 || Calendar.day == data.day)
+        &&  medal != null && medal != false)
             NGio.unlockDayMedal(data.day);
+        
         // FlxG.sound.play("assets/sounds/presentOpen.mp3", 1);
         present.animateOpen(function ()
             {
@@ -192,7 +195,8 @@ class RoomState extends OgmoState
                         callback(present);
                 }
                 openSubState(new GallerySubstate(present.id, onOpenComplete));
-                Save.presentOpened(present.id);
+                if (!Calendar.isDebugDay)
+                    Save.presentOpened(present.id);
             }
         );
 	}

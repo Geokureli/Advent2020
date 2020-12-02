@@ -45,4 +45,10 @@ class Calendar
         
         callback();
     }
+    
+    static public function showDebugNextDay():Void
+    {
+        day++;
+        isDebugDay = true;
+    }
 }
