@@ -1,6 +1,7 @@
 package states;
 
 
+import data.Calendar;
 import data.Save;
 import data.PlayerSettings;
 import data.Skins;
@@ -198,7 +199,19 @@ class DressUpSubstate extends flixel.FlxSubState
         else
         {
             nameText.text = "???";
-            descText.text = "Keep playing every day to unlock";
+            final KEEP_PLAYING = "Keep playing every day to unlock";
+            final LOGIN = "Log in to Newgrounds to unlock this";
+            descText.text = KEEP_PLAYING;
+            if (currentSkin.unlocksBy != null)
+            {
+                descText.text = switch (currentSkin.unlocksBy.split(":"))
+                {
+                    case ["login"    ]: LOGIN;
+                    case ["medal", day]: Std.parseInt(day) > Calendar.day ? LOGIN : KEEP_PLAYING;
+                    case ["supporter"]: "Become a newgrounds supporter to unlock this";
+                    default: KEEP_PLAYING;
+                }
+            }
             ok.active = false;
             ok.alpha = 0.5;
         }

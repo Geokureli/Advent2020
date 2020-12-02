@@ -1,6 +1,7 @@
 package data;
 
 
+import io.newgrounds.NG;
 import data.Calendar;
 import flixel.FlxSprite;
 
@@ -36,25 +37,7 @@ class Skins
         for (data in byIndex)
         {
             if (!data.unlocked)
-            {
-                if (data.users != null && NGio.isLoggedIn && data.users.contains(NGio.userName.toLowerCase()))
-                {
-                    data.unlocked = true;
-                }
-                else if (data.unlocksBy != null)
-                {
-                    final split = data.unlocksBy.split(":");
-                    switch(split.shift())
-                    {
-                        case "day":
-                            var day = Std.parseInt(split.shift());
-                            data.unlocked = Calendar.day >= day;
-                        case "medal":
-                            var medal = Std.parseInt(split.shift());
-                            data.unlocked = NGio.hasDayMedal(medal);
-                    }
-                }
-            }
+                data.unlocked = checkUser(data.users) || checkUnlockCondition(data.unlocksBy);
         }
         
         sorted.sort(function (a, b)
@@ -64,6 +47,41 @@ class Skins
                 return (a.unlocked ? 0 : 1) - (b.unlocked ? 0 : 1);
             }
         );
+    }
+    
+    static function checkUser(users:Array<String>)
+    {
+        return users != null && NGio.isLoggedIn && users.contains(NGio.userName.toLowerCase());
+    }
+    
+    static function checkUnlockCondition(data:String)
+    {
+        if (data == null)
+            return false;
+        
+        if (data.indexOf(",") != -1)
+        {
+            // check many
+            var conditions = data.split(",");
+            while (conditions.length > 0)
+            {
+                if (checkUnlockCondition(conditions.shift()))
+                    return true;
+            }
+            return false;
+        }
+        
+        // check lone
+        return switch(data.split(":"))
+        {
+            case ["login"    ]: NGio.isLoggedIn;
+            case ["free"     ]: true;
+            case ["supporter"]: NGio.isLoggedIn && NG.core.user.supporter;
+            case [_]: throw "Unhandled unlockBy:" + data;
+            case ["day"  , day  ]: Save.countDaysSeen() >= Std.parseInt(day);
+            case ["medal", medal]: NGio.hasDayMedal(Std.parseInt(medal));
+            default: throw "Unhandled unlockBy:" + data;
+        }
     }
     
     static public function getData(id:Int)

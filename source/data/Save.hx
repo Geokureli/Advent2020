@@ -118,6 +118,11 @@ class Save
         return data.days[id - 1];
     }
     
+    static public function countDaysSeen()
+    {
+        return data.days.getLength();
+    }
+    
     static public function setSkin(id:Int)
     {
         PlayerSettings.user.skin = data.skin = id;

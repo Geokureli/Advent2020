@@ -1,17 +1,17 @@
 {   "credits":
-    {   "geokureli":
+    { "geokureli":
         { "proper": "GeoKureli"
         , "roles" : ["Organizer", "Programmer"]
         }
-    ,   "brandybuizel":
+    , "brandybuizel":
         { "proper": "BrandyBuizel"
         , "roles" : ["Organizer"]
         }
-    ,   "nickconter":
+    , "nickconter":
         { "proper": "NickConter"
         , "roles" : ["Organizer"]
         }
-    ,   "albegian":
+    , "albegian":
         { "proper"    : "AlbeGian"
         , "soundcloud": "albe_gian"
         , "bandcamp"  : "albegian"
@@ -22,15 +22,24 @@
     , "mintyeggs":
         { "proper": "MintyEggs"
         }
+    , "splatterdash":
+        { "proper": "SplatterDash"
+        }
+    , "mixmuffin":
+        { "proper": "Liquid head"
+        }
+    , "einmeister":
+        { "proper": "EinMeister"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
-        , "name"     : null
+        , "name"     : "The Gift of Smiling"
         , "authors"  : ["albegian"]
         , "loopStart": 7111
         , "key"      : "f#Maj"
         , "bpm"      : 135
-        , "ngId"     : 0
+        , "ngId"     : 984774
         , "day"      : 1
         }
     ,   { "id"     : "splatterdash"
@@ -61,6 +70,18 @@
         , "name"   : "Christmas Campfire"
         , "authors": ["mintyeggs"]
         , "day"    : 2
+        , "medal"  : true
+        }
+    ,   { "id"     : "mixmuffin"
+        , "name"   : null
+        , "authors": ["mixmuffin"]
+        , "day"    : 3
+        , "medal"  : true
+        }
+    ,   { "id"     : "einmeister"
+        , "name"   : null
+        , "authors": ["einmeister"]
+        , "day"    : 4
         , "medal"  : true
         }
     ]

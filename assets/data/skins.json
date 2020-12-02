@@ -1,66 +1,72 @@
 [   { "id": "tankman"
     , "proper": "Tankman"
     , "description": "This tankman is the mascot of Newgrounds! His name is Jerry, say hi."
-    , "unlocksBy": "day:1"
+    , "unlocksBy": "free"
     }
 ,   { "id": "pico"
     , "proper": "Pico"
     , "description": "The CNN debacle that started it all. Well, him and Tom’s “Club a seal” game."
-    , "unlocksBy": "day:1"
+    , "unlocksBy": "free"
     , "users": ["tomfulp"]
     }
 ,   { "id": "orange_knight"
     , "proper": "Orange Knight"
-    , "description": "DEBUG TEXT"
-    , "unlocksBy": "day:1"
+    , "description": "This fun-loving flamethrowing Castle Crasher will brighten up your day."
+    , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "red_knight"
     , "proper": "Red Knight"
-    , "description": "DEBUG TEXT"
-    , "unlocksBy": "day:1"
+    , "description": "This panicky zapping Castle Crasher is OP AF with his stunlock."
+    , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "blue_knight"
     , "proper": "Blue Knight"
-    , "description": "DEBUG TEXT"
-    , "unlocksBy": "day:1"
+    , "description": "This bored ice-powered Castle Crasher can clear a crowd no problem."
+    , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "green_knight"
     , "proper": "Green Knight"
-    , "description": "DEBUG TEXT"
-    , "unlocksBy": "day:1"
+    , "description": "This angry poisoning Castle Crasher got mad dps."
+    , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
     , "description": "This isn’t Hank, this isn’t Desmos or anyone canonically cool or special.\nThis is the guy who dies, repeatedly."
-    , "unlocksBy": "day:1"
+    , "unlocksBy": "login"
     , "users": ["krinkels"]
     }
 ,   { "id": "alien_hominid"
     , "proper": "Alien Hominid"
-    , "description": "DEBUG TEXT"
-    , "unlocksBy": "day:1"
+    , "description": "This cute alien has been escaping the clutches of the\ngovernment for a long time. Sound familiar?"
+    , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "hatty"
     , "proper": "Hatty Hattington"
-    , "description": "DEBUG TEXT"
-    , "unlocksBy": "day:1"
+    , "description": "The most noteworthy friend of all, he’s like King Friend, best friend to\none and all and the very definition of handsome gentleman!"
+    , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin", "stamper"]
     }
 ,   { "id": "chutney"
     , "proper": "Chutney Glaze"
-    , "description": "DEBUG TEXT"
+    , "description": "He's a cute lil fellow\nall covered in yellow!"
     , "unlocksBy": null
     , "users": ["chutneyglaze"]
+    }
+,   { "id": "nene"
+    , "proper": "Nene"
+    , "description": "Literally the only woman on Newgrounds, maybe even the entire internet."
+    , "unlocksBy": null
+    , "users": ["tomfulp"]
     }
 ,   { "id": "strawberry_clock"
     , "proper": "Strawberry Clock"
     , "description": "B!"
-    , "unlocksBy": null
+    , "unlocksBy": "day:3"
     , "users": ["strawberryclock"]
     }
 ,   { "id": "hellbenders"
@@ -77,19 +83,19 @@
     }
 ,   { "id": "meatboy"
     , "proper": "Meatboy"
-    , "description": "DEBUG TEXT"
+    , "description": "Is that skin or would skin be more horrifying?"
     , "unlocksBy": null
     , "users": ["bluebaby"]
     }
 ,   { "id": "salad_fingers"
     , "proper": "Salad Fingers"
-    , "description": "DEBUG TEXT"
+    , "description": "Goodness knows whatever happened to this guy, but he sure does love some rusty spoons."
     , "unlocksBy": null
     , "users": ["doki"]
     }
 ,   { "id": "blockhead"
     , "proper": "Blockhead"
-    , "description": "DEBUG TEXT"
+    , "description": "There’s a man sitting on a recliner chair in his mind."
     , "unlocksBy": null
     , "users": ["the-swain"]
     }
@@ -142,7 +148,7 @@
     }
 ,   { "id": "tom"
     , "proper": "Tom Fulp"
-    , "description": "Are we talking about Tom Fulp? I love talking about Tom Fulp what is your favorite Tom Fulp related fact? Mine\nis that Tom Fulp is the founder of Newgrounds.com. I wish they made Tom Fulp action figures. I am going to name\nmy child Tom Fulp. They should change the capital of Pennsylvania to Tom Fulp City because I really think well\nof Tom Fulp. If Tom fulp was bitten by a poisonous snake I would suck the venom out of him, even if it was his\ndick, and i'm not even gay I just really like Tom Fulp. The only thing I love more than Tom Fulp is talking\nabout Tom Fulp. I tried to make a Tom Fulp fan club at my school but no one joined so it was just me. If I\ncould meet Tom Fulp I would tell him all the things I know about Tom Fulp. I want to go to college to major in\nTom Fulp and then build my own business so I can create Tom Fulp related merchandise. Tom Fulp's face should be\nimmortalized in stone for his incredible contributions to the world and my life. If Tom Fulp was a Yugioh card\nhe was have infinite attack and defense points because he's Tom Fulp, the singular point with which my life\nrevolves. I love Tom Fulp, I want to be married to Tom Fulp. I would marry Wade Fulp just to be closer to Tom\nFulp. I am changing my name to Tom Fulp Fulp because I admire the strength and respect the name commands. I\nwould vote for Tom for president and mister universe because he is just that charismatic and handsome. The Fulp\nname should be listed among nobility. I am crying right now because I feel like no one else wants to talk about\nTom Fulp as much as I do. I must be the only person with a Tom Fulp diary that keeps a record of everything Tom\nFulp has ever said to me and things I hope he will say to me in the future. I framed a PM Tom Fulp sent to me\nand my mom wanted me to take it down for my diploma but fuck her she doesn't know what Tom Fulp means to me. I\nwish Tom Fulp was my dad, my dad sucks, Tom Fulp wouldn't suck if he was my dad. My life would be misery without\nTom Fulp. Everyday that I log onto Newgrounds and find a new thread to discuss some inane aspect of Tom Fulp's\nlife fills me with joy and meaning so please let me talk about Tom Fulp or i'm going to explode."
+    , "description":"Are we talking about Tom Fulp? I love talking about Tom Fulp what is your favorite Tom Fulp related fact? Mine is\nthat Tom Fulp is the founder of Newgrounds.com. I wish they made Tom Fulp action figures. I am going to name my\nchild Tom Fulp. They should change the capital of Pennsylvania to Tom Fulp City because I really think well of Tom\nFulp. If Tom fulp was bitten by a poisonous snake I would suck the venom out of him, even if it was his dick, and\nI'm not even gay I just really like Tom Fulp. The only thing I love more than Tom Fulp is talking about Tom Fulp. I\ntried to make a Tom Fulp fan club at my school but no one joined so it was just me. If I could meet Tom Fulp I would\ntell him all the things I know about Tom Fulp. I want to major in Tom Fulp in college and then build my own business\nso I can create Tom Fulp related merchandise. Tom Fulp's face should be immortalized in stone for his incredible\ncontributions to the world and my life. If Tom Fulp was a Yugioh card he was have infinite attack and defense points\nbecause he's Tom Fulp, the singular point with which my life revolves. I love Tom Fulp, I want to be married to Tom\nFulp. I would marry Wade Fulp just to be closer to Tom Fulp. I am changing my name to Tom Fulp Fulp because I admire\nthe strength and respect the name commands. I would vote for Tom for president and mister universe because he is\njust that charismatic and handsome. The Fulp name should be listed among nobility. I am crying right now because I\nfeel like no one else wants to talk aboutTom Fulp as much as I do. I must be the only person with a Tom Fulp diary\nthat keeps a record of everything Tom Fulp has ever said to me and things I hope he will say to me in the future. I\nframed a PM Tom Fulp sent to me and my mom wanted me to take it down for my diploma but fuck her she doesn't know what\nTom Fulp means to me. I wish Tom Fulp was my dad, my dad sucks, Tom Fulp wouldn't suck if he was my dad. My life would\nbe misery without Tom Fulp. Everyday that I log onto Newgrounds and find a new thread to discuss some inane aspect of\nTom Fulp's life fills me with joy and meaning so please let me talk about Tom Fulp or I'm going to explode."
     , "unlocksBy": null
     , "users": ["tomfulp"]
     }
@@ -156,7 +162,7 @@
 ,   { "id": "pump_and_skid"
     , "proper": "Pump'n'Skid"
     , "description": "The spooky boys will be dancing all month, and\nthe next month, and does Halloween ever truly end?"
-    , "unlocksBy": null
+    , "unlocksBy": "supporter"
     , "frames": 4
     , "users": ["srpelo"]
     }

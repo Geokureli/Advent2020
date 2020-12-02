@@ -149,7 +149,7 @@ class NGio
 	
 	static public function hasDayMedal(date:Int):Bool
 	{
-		return false;//hasMedal(MEDAL_0 + date);
+		return hasMedal(DAY_MEDAL_0 + date - 1);
 	}
 	
 	static public function hasMedal(id:Int):Bool
