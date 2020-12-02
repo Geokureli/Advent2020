@@ -27,7 +27,6 @@ import openfl.filters.ShaderFilter;
 class BedroomState extends RoomState
 {
     var dresser:OgmoDecal;
-    var note:OgmoDecal;
     var dresserNotif:Notif;
     
     override function create()
@@ -49,11 +48,15 @@ class BedroomState extends RoomState
     {
         super.initEntities();
         
-        note = foreground.getByName("note");
+        var door = background.getByName("door");
+        door.animation.add("close", [1]);
+        door.animation.play("close");
+        
+        var note = foreground.getByName("note");
         note.setBottomHeight(note.frameHeight);
         var noteText = Assets.getText("assets/data/letter_december_01.txt");
         var name = NGio.userName;
-        // if (name == null || name == "")
+        if (name == null || name == "")
             name = "UNREGISTERED NG LURKER";
         noteText = noteText.split("[NAME]").join(name);
         var text = new FlxBitmapText();

@@ -18,6 +18,8 @@ class EntranceState extends RoomState
     {
         super.create();
         
+        foreground.getByName("tree").setBottomHeight(32);
+        
         #if debug
         if(Game.state.match(Day1Intro(Started)|Day1Intro(Dressed)))
             Game.state = Day1Intro(Hallway);

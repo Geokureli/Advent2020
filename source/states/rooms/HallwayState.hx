@@ -28,6 +28,12 @@ class HallwayState extends RoomState
             Game.state = Day1Intro(Dressed);
         #end
         
+        for (door in background.getAllWithName("door").members)
+        {
+            door.animation.add("close", [1]);
+            door.animation.play("close");
+        }
+        
         switch(Game.state)
         {
             case Day1Intro(Dressed):
@@ -35,10 +41,9 @@ class HallwayState extends RoomState
                 var floor = background.getByName("hallway");
                 floor.setBottomHeight(floor.frameHeight);
                 shade = new ShadowSprite(floor.x, floor.y);
-                shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xFF000000);
-                shade.shadow.setLightPos(2, FlxG.width / 4 - 16, floor.height / 2);
-                shade.shadow.setLightPos(3, FlxG.width / 2, floor.height / 2);
-                shade.shadow.setLightPos(4, FlxG.width / 4 * 3 + 16, floor.height / 2);
+                shade.loadGraphic("assets/images/props/hallway/hallway_dark.png");
+                for (i=>candle in background.getAllWithName("candle").members)
+                    shade.shadow.setLightPos(i + 2, candle.x + candle.width / 2, candle.y);
                 add(shade);
                 
                 player.active = false;
@@ -50,13 +55,11 @@ class HallwayState extends RoomState
                 var floor = background.getByName("hallway");
                 floor.setBottomHeight(floor.frameHeight);
                 shade = new ShadowSprite(floor.x, floor.y);
-                shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xFF000000);
+                shade.loadGraphic("assets/images/props/hallway/hallway_dark.png");
                 
                 shade.shadow.setLightRadius(1, 60);
-                
-                shade.shadow.setLightPos(2, FlxG.width / 4 - 16, floor.height / 2);
-                shade.shadow.setLightPos(3, FlxG.width / 2, floor.height / 2);
-                shade.shadow.setLightPos(4, FlxG.width / 4 * 3 + 16, floor.height / 2);
+                for (i=>candle in background.getAllWithName("candle").members)
+                    shade.shadow.setLightPos(i + 2, candle.x + candle.width / 2, candle.y);
                 add(shade);
             }
             case _:
@@ -88,12 +91,12 @@ class HallwayState extends RoomState
         {
             case Day1Intro(eventState):
             {
-                shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
+                shade.shadow.setLightPos(1, player.x + player.width / 2, player.y - 16);
                 
                 if (eventState == Dressed && player.x > shade.shadow.getLightX(2))
                 {
                     Game.state = Day1Intro(Hallway);
-                    for (i in 0...3)
+                    for (i in 0...4)
                         tweenLightRadius(i + 2, 0, 80, 0.6, { startDelay:i * 0.75 });
                 }
             }
