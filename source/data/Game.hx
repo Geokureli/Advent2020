@@ -25,6 +25,9 @@ class Game
         
         if (Save.noPresentsOpened())
             state = Day1Intro(Started);
+        #if FORCE_INTRO
+        state = Day1Intro(Started);
+        #end
     }
     
     static public function goToRoom(target:String):Void

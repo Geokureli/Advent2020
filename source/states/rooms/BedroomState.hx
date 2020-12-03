@@ -3,7 +3,6 @@ package states.rooms;
 import data.Content;
 import data.EventState;
 import data.Game;
-import data.Manifest;
 import data.NGio;
 import data.Save;
 import props.InputPlayer;

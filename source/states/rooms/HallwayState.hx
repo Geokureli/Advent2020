@@ -44,7 +44,7 @@ class HallwayState extends RoomState
                 shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
                 for (i=>candle in background.getAllWithName("candle").members)
                     shade.shadow.setLightPos(i + 2, candle.x + candle.width / 2, candle.y);
-                add(shade);
+                topGround.add(shade);
                 
                 player.active = false;
                 
@@ -60,7 +60,7 @@ class HallwayState extends RoomState
                 shade.shadow.setLightRadius(1, 60);
                 for (i=>candle in background.getAllWithName("candle").members)
                     shade.shadow.setLightPos(i + 2, candle.x + candle.width / 2, candle.y);
-                add(shade);
+                topGround.add(shade);
             }
             case _:
         }
@@ -91,7 +91,7 @@ class HallwayState extends RoomState
         {
             case Day1Intro(eventState):
             {
-                shade.shadow.setLightPos(1, player.x + player.width / 2, player.y - 16);
+                shade.shadow.setLightPos(1, player.x + player.width / 2, player.y - 48);
                 
                 if (eventState == Dressed && player.x > shade.shadow.getLightX(2))
                 {
