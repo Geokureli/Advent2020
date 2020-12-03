@@ -86,6 +86,7 @@
         , "name"   : null
         , "authors": ["mixmuffin"]
         , "day"    : 3
+        , "ext"    : "jpg"
         , "medal"  : true
         }
     ,   { "id"     : "einmeister"

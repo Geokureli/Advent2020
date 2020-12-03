@@ -10,6 +10,7 @@ class Content
 {
     public static var credits:Map<User, CreditContent>;
     public static var artwork:Map<String, ArtCreation>;
+    public static var artworkByDay:Map<Int, ArtCreation>;
     public static var songs:Map<String, SongCreation>;
     public static var events:Map<Int, SongCreation>;
     
@@ -36,15 +37,19 @@ class Content
         }
         
         artwork = [];
+        artworkByDay = [];
         presentsById = [];
         presentsByIndex = [];
         for (i=>artData in (data.artwork:Array<ArtCreation>))
         {
             artwork[artData.id] = artData;
-            artData.path = 'assets/artwork/${artData.id}.png';
+            if (artData.day != null)
+                artworkByDay[artData.day] = artData;
+            
+            artData.path = 'assets/artwork/' + artData.id + "." + (artData.ext == null ? 'png' : artData.ext);
             artData.thumbPath = 'assets/images/thumbs/${artData.id}.png';
             artData.presentPath = 'assets/images/props/presents/${artData.id}.png';
-            // artData.medalPath = 'assets/images/medals/${artData.id}.png';
+            artData.medalPath = 'assets/images/medals/${artData.id}.png';
             presentsById[artData.id] = i;
             presentsByIndex[i] = artData.id;
         }
@@ -152,7 +157,7 @@ class Content
         var latestSong:SongCreation = null;
         for (song in songs)
         {
-            if (song.day < day && (latestSong == null || song.day > latestSong.day))
+            if (song.day <= day && (latestSong == null || song.day > latestSong.day))
                 latestSong = song;
         }
         
@@ -197,6 +202,7 @@ typedef Creation =
     var authors:Array<User>;
     var path:String;
     var day:Int;
+    var ext:String;
 }
 
 typedef ArtCreation
