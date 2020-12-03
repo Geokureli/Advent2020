@@ -1,5 +1,7 @@
 package data;
 
+import data.Content;
+import ui.MusicPopup;
 import flixel.FlxG;
 import flixel.graphics.FlxGraphic;
 import flixel.system.FlxSound;
@@ -131,7 +133,7 @@ class Manifest
             throw 'Invalid song id: $id';
         var data = Content.songs[id];
         
-        final song = new PeristentSound();
+        final song = new StreamedSound(data);
         songs[id] = song;
         #if PRELOAD_ALL
         song.loadEmbedded("noPreload:" + data.path, looped, false, onComplete);
@@ -201,8 +203,16 @@ class ArtSprite extends flixel.FlxSprite
     }
 }
 
-class PeristentSound extends FlxSound
+class StreamedSound extends FlxSound
 {
+    public var data:SongCreation;
+    
+    public function new(data)
+    {
+        this.data = data;
+        super();
+    }
+    
     override function reset()
     {
 		// destroy();
@@ -231,9 +241,15 @@ class PeristentSound extends FlxSound
 		_transform.pan = 0;
     }
     
+    override function play(ForceRestart = false, StartTime = 0.0, ?EndTime:Float):FlxSound
+    {
+        MusicPopup.showInfo(data);
+        return super.play(ForceRestart, StartTime, EndTime);
+    }
+    
     override function destroy()
     {
-        // throw "Can not destroy a PersistentSound";
+        // throw "Can not destroy a StreamedSound";
     }
 }
 

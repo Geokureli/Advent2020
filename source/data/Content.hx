@@ -132,6 +132,21 @@ class Content
         return errors.length == 0 ? null : errors;
     }
     
+    static public function listAuthorsProper(authors:Array<String>)
+    {
+        if (authors.length == 1)
+			return Content.credits[authors[0]].proper;
+		else
+		{
+			final authorNames:Array<String> = [];
+			for (author in authors)
+				authorNames.push(Content.credits[author].proper);
+			
+			final text = "and " + authorNames.pop();
+			return authorNames.join(", ") + text;
+		}
+    }
+    
     public static function isArtUnlocked(id:String)
     {
         return artwork.exists(id) && artwork[id].day <= Calendar.day;

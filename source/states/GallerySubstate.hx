@@ -124,18 +124,8 @@ class GallerySubstate extends FlxSubState
 		bigImage.visible = true;
 		
 		// regular artwork
+		imageText.text = "Art by " + Content.listAuthorsProper(data.authors);
 		bigPreview.loadGraphic(graphic);
-		if (data.authors.length == 1)
-			imageText.text = "Art by " + Content.credits[data.authors[0]].proper;
-		else
-		{
-			var authorNames:Array<String> = [];
-			for (author in data.authors)
-				authorNames.push(Content.credits[author].proper);
-			
-			var text = "and " + authorNames.pop();
-			imageText.text = "Art by " + authorNames.join(", ") + text;
-		}
 		
 		var horizSize = Std.int(bigPreview.width);
 		var vertSize = Std.int(bigPreview.height);
