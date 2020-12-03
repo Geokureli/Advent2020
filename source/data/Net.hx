@@ -30,7 +30,7 @@ class Net
                 #if USE_DEBUG_SERVER
                 client = new Client('wss://advent-colyseus-test.herokuapp.com');
                 #else
-                client = new Client('wss://advent2020server.herokuapp.com/');
+                client = new Client('wss://advent2020server.herokuapp.com');
                 #end
             #end
         }
