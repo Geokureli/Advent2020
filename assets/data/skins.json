@@ -13,11 +13,12 @@
     , "proper": "Orange Knight"
     , "description": "This fun-loving flamethrowing Castle Crasher will brighten up your day."
     , "unlocksBy": "free"
+    , "frames": 3
     , "users": ["tomfulp", "danpaladin"]
     }
 ,   { "id": "red_knight"
     , "proper": "Red Knight"
-    , "description": "This panicky zapping Castle Crasher is OP AF with his stunlock."
+    , "description": "This panicky zapping Castle Crasher is OP AF with their stunlock."
     , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
     }
@@ -32,6 +33,12 @@
     , "description": "This angry poisoning Castle Crasher got mad dps."
     , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
+    }
+,   { "id": "pink_knight"
+    , "proper": "Pink Knight"
+    , "description": "This joyful Castle Crasher knows 67 ways to kill a human being with just a lollipop."
+    , "unlocksBy": null
+    , "users": ["goodl"]
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
@@ -183,6 +190,24 @@
     , "description": "It's that guy from NEAR DEADline, you should play that game instead, trust me."
     , "unlocksBy": null
     , "users": ["nickconter"]
+    }
+,   { "id": "snake"
+    , "proper": "Snake"
+    , "description": "METAL GEAR, Awesome"
+    , "unlocksBy": null
+    , "users": ["egoraptor"]
+    }
+,   { "id": "aine"
+    , "proper": "Aine"
+    , "description": "This here’s Aine, she’s an orange knight with a feather to pick with a Dragon who did her dirty."
+    , "unlocksBy": null
+    , "users": ["squidly"]
+    }
+,   { "id": "karrion"
+    , "proper": "Karrion Killer"
+    , "description": "The Flesh Reaper Celebrateth."
+    , "unlocksBy": "day:6"
+    , "users": ["prosciuttoman"]
     }
 ,   { "id": "elk"
     , "proper": "Elk"
