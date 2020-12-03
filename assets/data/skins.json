@@ -268,6 +268,25 @@
     , "unlocksBy": null
     , "users": ["luis"]
     }
+,	{ "id": "ninjamuffin"
+    , "proper": "Ninja Muffin"
+    , "description": "Cameron Muffin | Game Dev"
+    , "unlocksBy": null
+    , "users": ["ninjamuffin99"]
+    }
+,	{ "id": "boyfriend"
+    , "proper": "Boyfriend"
+    , "description": "The boyfriend from the number one rated rhythm game of all time on Newgrounds, Friday Night Funkin'"
+    , "unlocksBy": null
+    , "users": ["ninjamuffin99", "phantomarcade", "evilsk8r", "kawaisprite", "geokureli", "brandybuizel"]
+    }
+,	{ "id": "drbees"
+    , "proper": "Dr. Bees"
+    , "description": "I'm Dr. Miles Manners, just your average wasp-themed superhero by day, but by night I become Dr. Bees!"
+    , "unlocksBy": null
+    , "users": ["happyharry"]
+    , "group":"harry"
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
