@@ -207,7 +207,7 @@
     , "proper": "Karrion Killer"
     , "description": "The Flesh Reaper Celebrateth."
     , "unlocksBy": "day:6"
-    , "users": ["prosciuttoman"]
+    , "users": ["prosciuttoman", "leviramirez"]
     }
 ,   { "id": "elk"
     , "proper": "Elk"
