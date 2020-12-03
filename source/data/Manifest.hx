@@ -168,7 +168,7 @@ class Manifest
         function loadFunc(song)
         {
             if (song == FlxG.sound.music)
-                song.play();
+                song.play(false, 0, song.endTime);
             
             if (onLoad != null)
                 onLoad(song);

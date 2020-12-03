@@ -459,6 +459,13 @@ class RoomState extends OgmoState
         if (FlxG.keys.justPressed.B)
             FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
         
+        if (FlxG.keys.justPressed.M)
+        {
+            var music = FlxG.sound.music;
+            var endTime = music.endTime != null ? music.endTime : music.length;
+            music.time = endTime - 3000;
+        }
+        
         FlxG.watch.addMouse();
         #end
     }
