@@ -104,7 +104,8 @@ class Player extends flixel.FlxSprite
             v.length = MAX_SPEED;
         
         hitbox.update(elapsed);
-        hitbox.setPosition(x + (width - hitbox.width) / 2, y + height - (frameHeight + 1) * scale.y);
+        final margin = (hitbox.width - width) / 2;
+        hitbox.setPosition(x - margin, y + height + margin - hitbox.height);
         
         #if debug
         if (FlxG.keys.justPressed.L && overlapsPoint(FlxG.mouse.getWorldPosition(FlxPoint.weak())))
@@ -241,8 +242,8 @@ class Player extends flixel.FlxSprite
         origin.y = 16;
         offset.x = (frameWidth - width) / 2;
         offset.y = frameHeight - height;
-        hitbox.width = (frameWidth - 2) * scale.x;
-        hitbox.height = (frameHeight + 2) * scale.y;
+        hitbox.width  = width  + 8;
+        hitbox.height = height + 10;
     }
     #end
 }
