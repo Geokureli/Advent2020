@@ -32,8 +32,8 @@
 	<define name="NG_NO_LOG"/>
 	
 	<!-- <define name="PRELOAD_ALL" if="debug" /> -->
-	<!-- <define name="USE_LOCAL_SERVER" if="debug"/> -->
-	<define name="USE_DEBUG_SERVER"/>
+	<define name="USE_LOCAL_SERVER" if="debug"/>
+	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
 	<!-- <define name="CLEAR_SAVE" if="debug"/> -->
 	<!-- <define name="LOG_SAVE" if="debug"/> -->

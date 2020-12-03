@@ -70,10 +70,16 @@ class Content
     {
         var errors = new Array<ContentError>();
         
+        var daysFound = new Array();
         for (art in artwork)
         {
             if (art.day != null && art.day <= Calendar.day)
             {
+                if (daysFound.contains(art.day))
+                    errors.push('Multiple artwork of day:${art.day}');
+                else
+                    daysFound.push(art.day);
+                
                 if (!Manifest.exists(art.path, IMAGE))
                     errors.push('Missing ${art.path}');
                 if (!Manifest.exists(art.thumbPath, IMAGE))
@@ -89,6 +95,16 @@ class Content
                     if (!credits.exists(author) || credits[author].proper == null)
                         errors.push('Missing credits author:$author');
                 }
+            }
+        }
+        
+        if (daysFound.length != Calendar.day)
+        {
+            daysFound.sort((a,b)->a-b);
+            for (i in 0...Calendar.day)
+            {
+                if (i >= daysFound.length || daysFound[i] != i + 1)
+                    errors.push('Missing art on day:${i + 1}');
             }
         }
         

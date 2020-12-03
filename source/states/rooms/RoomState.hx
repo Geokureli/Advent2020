@@ -185,7 +185,7 @@ class RoomState extends OgmoState
         &&  medal != null && medal != false)
             NGio.unlockDayMedal(data.day);
         
-        // FlxG.sound.play("assets/sounds/presentOpen.mp3", 1);
+        FlxG.sound.play("assets/sounds/present_open.mp3");
         present.animateOpen(function ()
             {
                 function onOpenComplete()

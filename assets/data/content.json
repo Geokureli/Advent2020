@@ -22,14 +22,17 @@
     , "mintyeggs":
         { "proper": "MintyEggs"
         }
-    , "splatterdash":
-        { "proper": "SplatterDash"
-        }
     , "mixmuffin":
         { "proper": "Liquid head"
         }
+    , "danfrombavaria":
+        { "proper": "DanFromBavaria"
+        }
     , "einmeister":
         { "proper": "EinMeister"
+        }
+    , "splatterdash":
+        { "proper": "SplatterDash"
         }
     }
 ,   "songs":
@@ -42,21 +45,28 @@
         , "ngId"     : 984774
         , "day"      : 1
         }
-    ,   { "id"     : "splatterdash"
-        , "name"   : null
-        , "authors": ["splatterdash"]
-        , "key"    : "cMaj"
-        , "bpm"    : 70
-        , "ngId"   : 0
-        }
     ,   { "id"       : "danfrombavaria"
-        , "name"     : null
+        , "name"     : "Coming Home for Newgrounds"
         , "authors"  : ["danfrombavaria"]
         , "key"      : "cMaj"
-        , "loopStart": 7111
+        , "loopStart": 17142
         , "loopEnd"  : 120000
         , "bpm"      : 70
         , "ngId"     : 0
+        , "day"      : 3
+        }
+    ,   { "id"       : "csyzsy"
+        , "name"     : "ave-xmas.wav"
+        , "authors"  : ["czyszy"]
+        , "key"      : "dMaj"
+        , "bpm"      : 94
+        , "ngId"     : 0
+        , "day"      : 5
+        }
+    ,   { "id"     : "splatterdash"
+        , "name"   : null
+        , "authors": ["splatterdash"]
+        , "ngId"   : 0
         }
     ]
 ,   "artwork":
