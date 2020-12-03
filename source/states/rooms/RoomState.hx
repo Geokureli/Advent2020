@@ -340,7 +340,11 @@ class RoomState extends OgmoState
             // trace(room.sessionId + ' this AINT you');
             if (!ghostsById.exists(key))
             {
-                var settings = new PlayerSettings(data.skin);
+                // check if skin is available in this version
+                var skin = data.skin;
+                if (!Skins.isValidSkin(skin))
+                    skin = 0;
+                var settings = new PlayerSettings(skin);
                 var ghost = new GhostPlayer(key, data.name, data.x, data.y, settings);
                 ghostsById[key] = ghost;
                 ghosts.add(ghost);

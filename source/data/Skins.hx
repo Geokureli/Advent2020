@@ -84,6 +84,11 @@ class Skins
         }
     }
     
+    static public function isValidSkin(index:Int)
+    {
+        return index < byIndex.length;
+    }
+    
     static public function getData(id:Int)
     {
         if (byIndex == null)
