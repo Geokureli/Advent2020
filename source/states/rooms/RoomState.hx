@@ -1,6 +1,5 @@
 package states.rooms;
 
-
 import data.Calendar;
 import data.Manifest;
 import data.Save;
@@ -16,6 +15,7 @@ import props.Player;
 import props.Present;
 import props.Teleport;
 import states.OgmoState;
+import ui.MedalPopup;
 import vfx.Inline;
 
 import flixel.FlxBasic;
@@ -50,6 +50,7 @@ class RoomState extends OgmoState
     var teleports = new FlxTypedGroup<Teleport>();
     var presents = new FlxTypedGroup<Present>();
     var spawnTeleport:Teleport;
+    var medalAnim:MedalPopup;
     
     var colliders = new FlxGroup();
     var characters = new FlxGroup();
@@ -113,6 +114,7 @@ class RoomState extends OgmoState
         initClient();
         
         add(infoBoxGroup);
+        add(medalAnim = MedalPopup.getInstance());
         
         NGio.logEventOnce(enter);
     }

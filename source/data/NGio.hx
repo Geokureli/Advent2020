@@ -16,7 +16,7 @@ import flixel.util.FlxSignal;
 
 class NGio
 {
-	inline static var DAY_MEDAL_0 = 61304;
+	inline static public var DAY_MEDAL_0 = 61304;
 	
 	public static var isLoggedIn(default, null):Bool = false;
 	public static var userName(default, null):String;
