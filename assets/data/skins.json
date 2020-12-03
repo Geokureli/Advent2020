@@ -1,6 +1,6 @@
 [   { "id": "tankman"
     , "proper": "Tankman"
-    , "description": "This tankman is the mascot of Newgrounds! His name is Jerry, say hi."
+    , "description": "The mascot of Newgrounds! Ever more widely known as John Captain. We found his name on the toy box, look it up."
     , "unlocksBy": "free"
     }
 ,   { "id": "pico"
@@ -214,6 +214,24 @@
     , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer."
     , "unlocksBy": null
     , "users": ["geokureli"]
+    }
+,	{ "id": "lucky"
+    , "proper": "Lucky"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["brandybuizel"]
+    }
+,	{ "id": "duncan_and_jones"
+    , "proper": "Duncan & Jones"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["snackers"]
+    }
+,	{ "id": "lucky"
+    , "proper": "Lucky"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["brandybuizel"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
