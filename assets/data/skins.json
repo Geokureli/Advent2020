@@ -44,7 +44,7 @@
     , "proper": "Pink Knight"
     , "description": "This joyful Castle Crasher knows 67 ways to kill a human being with just a lollipop."
     , "unlocksBy": null
-    , "users": ["goodl"]
+    , "users": ["tomfulp", "danpaladin", "goodl", "brandybuizel"]
     , "group":"castle_crashers"
     }
 ,   { "id": "madness_grunt"
@@ -213,14 +213,14 @@
     , "group":"devs"
     }
 ,   { "id": "snake"
-    , "proper": "Snake"
+    , "proper": "Solid Snake"
     , "description": "METAL GEAR, Awesome"
     , "unlocksBy": null
     , "users": ["egoraptor"]
     }
 ,   { "id": "aine"
     , "proper": "Aine"
-    , "description": "This here’s Aine, she’s an orange knight with a feather to pick with a Dragon who did her dirty."
+    , "description": "This here’s Aine, she’s an orange knight from Renaine with a feather to pick with a Dragon who did her dirty."
     , "unlocksBy": null
     , "users": ["squidly"]
     , "group":"renaine"
@@ -242,13 +242,25 @@
     , "proper": "Lucky"
     , "description": ""
     , "unlocksBy": null
-    , "users": ["brandybuizel"]
+    , "users": ["brandybuizel", "domdude111"]
     }
 ,   { "id": "duncan_and_jones"
     , "proper": "Duncan & Jones"
     , "description": ""
     , "unlocksBy": null
     , "users": ["snackers"]
+    }
+,	{ "id": "purple_imposter"
+    , "proper": "Purple Imposter"
+    , "description": "A not so nice crewmate from Among Us."
+    , "unlocksBy": null
+    , "users": ["puffballsunited", "fortebass", "aemu"]
+    }
+,	{ "id": "gilded_guy"
+    , "proper": "Gilded Guy"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["gildedguy"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
