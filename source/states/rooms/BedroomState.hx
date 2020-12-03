@@ -69,6 +69,9 @@ class BedroomState extends RoomState
         add(text);
         
         dresser = foreground.getByName("dresser");
+        dresser.animation.add("closed", [0]);
+        dresser.animation.add("open", [1]);
+        dresser.animation.play("closed");
         dresser.setBottomHeight(16);
         addHoverTextTo(dresser, "CHANGE CLOTHES", onOpenDresser);
         dresserNotif = new Notif();
@@ -85,9 +88,17 @@ class BedroomState extends RoomState
     
     function onOpenDresser()
     {
+        // player.active = false;
         dresserNotif.visible = false;
+        dresser.animation.play("open");
         var dressUp = new DressUpSubstate();
-        dressUp.closeCallback = ()->player.settings.applyTo(player);
+        dressUp.closeCallback = function()
+        {
+            // dresser.animation.finishCallback = null;
+            // player.active = true;
+            player.settings.applyTo(player);
+            dresser.animation.play("closed");
+        }
         openSubState(dressUp);
         
         if(Game.state.match(Day1Intro(Started)))
