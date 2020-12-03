@@ -267,6 +267,7 @@
     , "description": "Luis from the site, let's hope he doesn't spill any drinks on THIS server for ADVENT."
     , "unlocksBy": null
     , "users": ["luis"]
+    , "group": "ng"
     }
 ,   { "id": "custom"
     , "proper": "Custom"
