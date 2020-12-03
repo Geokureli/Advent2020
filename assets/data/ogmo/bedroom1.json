@@ -65,7 +65,7 @@
       "gridCellsX": 30,
       "gridCellsY": 17,
       "decals": [
-        {"x": 216, "y": 92, "texture": "bedroom/dresser.png"},
+        {"x": 222, "y": 92, "texture": "bedroom/dresser.png"},
         {"x": 368, "y": 128, "texture": "bedroom/note.png"},
         {"x": 216, "y": 184, "texture": "bedroom/bed.png"}
       ],
