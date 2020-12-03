@@ -80,7 +80,9 @@ class MedalPopup extends flixel.group.FlxSpriteGroup
         var numMedalsLocked = 0;
         for (medal in NG.core.medals) {
             
+            #if NG_NO_LOG
             trace('${medal.unlocked ? "unlocked" : "locked  "} - ${medal.name}');
+            #end
             
             if (!medal.unlocked)
                 numMedalsLocked++;
@@ -90,7 +92,9 @@ class MedalPopup extends flixel.group.FlxSpriteGroup
             
             numMedals++;
         }
+        #if NG_NO_LOG
         trace('loaded $numMedals medals, $numMedalsLocked locked ');
+        #end
     }
     
     function onMedalUnlock(medal:Medal):Void
