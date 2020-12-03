@@ -11,6 +11,7 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.text.FlxBitmapText;
 import flixel.util.FlxColor;
 
@@ -32,6 +33,7 @@ class DressUpSubstate extends flixel.FlxSubState
     var arrowRight:Button;
     var ok:Button;
     var oldDefaultCameras:Array<FlxCamera>;
+    var antiPressTime = 0.25;
     
     var currentSprite(get, never):SkinDisplay;
     inline function get_currentSprite() return sprites.members[current];
@@ -151,14 +153,27 @@ class DressUpSubstate extends flixel.FlxSubState
     {
         super.update(elapsed);
         
-        if (FlxG.keys.anyJustPressed([RIGHT, D]))
+        var justPressed = FlxG.gamepads.anyJustPressed;
+        function padAnyJustPressed(idArray:Array<FlxGamepadInputID>)
+        {
+            while(antiPressTime <= 0 && idArray.length > 0)
+            {
+                if (justPressed(idArray.shift()))
+                    return true;
+            }
+            return false;
+        }
+        
+        if (FlxG.keys.anyJustPressed([RIGHT, D]) || padAnyJustPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT]))
             toNext();
         
-        if (FlxG.keys.anyJustPressed([LEFT, A]))
+        if (FlxG.keys.anyJustPressed([LEFT, A]) || padAnyJustPressed([DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT]))
             toPrev();
         
-        if (FlxG.keys.anyJustPressed([Z, SPACE]))
+        if (FlxG.keys.anyJustPressed([Z, SPACE]) || padAnyJustPressed([A, B]))
             select();
+        
+        antiPressTime -= elapsed;
     }
     
     function toNext():Void

@@ -6,6 +6,7 @@ import data.PlayerSettings;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 
@@ -29,7 +30,60 @@ class InputPlayer extends Player
     
     override function update(elapsed:Float)
     {
-        interacting = FlxG.keys.justPressed.SPACE;
+        super.update(elapsed);
+        
+        timer += elapsed;
+        
+        final pad = FlxG.gamepads.lastActive;
+        if (FlxG.keys.pressed.ANY || pad == null || !pad.pressed.ANY)
+            updateKeys(elapsed);
+        else if (pad != null)
+            updateGamepad(elapsed);
+        
+        // prevents a bug on gamepads
+        if (wasInteracting && interacting)
+            interacting = false;
+        else
+            wasInteracting = interacting;
+    }
+    
+    function updateKeys(elapsed:Float)
+    {
+        var right = FlxG.keys.anyPressed([RIGHT, D]);
+        var left = FlxG.keys.anyPressed([LEFT, A]);
+        var up = FlxG.keys.anyPressed([UP, W]);
+        var down = FlxG.keys.anyPressed([DOWN, S]);
+        interacting = FlxG.keys.anyJustPressed([SPACE, Z]);
+        checkMouseInteracting();
+        
+        updateMovement(up, down, left, right, FlxG.mouse.pressed);
+    }
+    
+    function updateGamepad(elapsed:Float)
+    {
+        var pressed = FlxG.gamepads.anyPressed;
+        function anyPressed(idArray:Array<FlxGamepadInputID>)
+        {
+            while(idArray.length > 0)
+            {
+                if (pressed(idArray.shift()))
+                    return true;
+            }
+            return false;
+        }
+        interacting = FlxG.gamepads.lastActive.anyJustPressed([A]);
+        
+        var down  = anyPressed([DPAD_DOWN , LEFT_STICK_DIGITAL_DOWN ]);
+        var up    = anyPressed([DPAD_UP   , LEFT_STICK_DIGITAL_UP   ]);
+        var left  = anyPressed([DPAD_LEFT , LEFT_STICK_DIGITAL_LEFT ]);
+        var right = anyPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT]);
+        checkMouseInteracting();
+        
+        updateMovement(up, down, left, right, FlxG.mouse.pressed);
+    }
+    
+    function checkMouseInteracting()
+    {
         if (!interacting && FlxG.mouse.justPressed)
         {
             var mouse = FlxG.mouse.getWorldPosition();
@@ -41,52 +95,7 @@ class InputPlayer extends Player
                     : hitbox.overlapsPoint(mouse);
             }
         }
-        // prevents a bug on gamepads
-        if (wasInteracting && interacting)
-            interacting = false;
-        else
-            wasInteracting = interacting;
-        
-        super.update(elapsed);
-        
-        timer += elapsed;
-        
-        var right = FlxG.keys.anyPressed([RIGHT, D]);
-        var left = FlxG.keys.anyPressed([LEFT, A]);
-        var up = FlxG.keys.anyPressed([UP, W]);
-        var down = FlxG.keys.anyPressed([DOWN, S]);
-        
-        updateMovement(up, down, left, right, FlxG.mouse.pressed);
-        #if USE_RIG updateRigDebug(); #end
     }
-    
-    #if USE_RIG
-    function updateRigDebug(elapsed:Float)
-    {
-        if (FlxG.keys.justPressed.ONE)
-            setFullSkin("default");
-        
-        if (FlxG.keys.justPressed.TWO)
-            setFullSkin("solid");
-        
-        if (FlxG.keys.justPressed.THREE)
-            setFullSkin("pico");
-        
-        if (FlxG.keys.justPressed.FOUR)
-            setFullSkin("vector");
-        
-        if (FlxG.keys.justPressed.ZERO)
-            rig.color = rig.color == 0xffffff ? settings.color : 0xffffff;
-    }
-    
-    function setFullSkin(skinName:String)
-    {
-        rig.color = skinName == "default" ? settings.color : 0xffffff;//debug
-        
-        for (limb in Limb.getAll())
-            rig.setSkin(limb, skinName);
-    }
-    #end
     
     public function networkUpdate()
     {
