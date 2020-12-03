@@ -239,6 +239,12 @@
     , "unlocksBy": null
     , "users": ["gildedguy"]
     }
+,	{ "id": "luis"
+    , "proper": "Luis"
+    , "description": "Luis from the site, let's hope he doesn't spill any drinks on THIS server for ADVENT."
+    , "unlocksBy": null
+    , "users": ["luis"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
