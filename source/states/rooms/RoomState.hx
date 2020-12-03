@@ -16,6 +16,7 @@ import props.Present;
 import props.Teleport;
 import states.OgmoState;
 import ui.MedalPopup;
+import ui.MusicPopup;
 import vfx.Inline;
 
 import flixel.FlxBasic;
@@ -50,7 +51,8 @@ class RoomState extends OgmoState
     var teleports = new FlxTypedGroup<Teleport>();
     var presents = new FlxTypedGroup<Present>();
     var spawnTeleport:Teleport;
-    var medalAnim:MedalPopup;
+    var medalPopup:MedalPopup;
+    var musicPopup:MusicPopup;
     
     var colliders = new FlxGroup();
     var characters = new FlxGroup();
@@ -65,6 +67,7 @@ class RoomState extends OgmoState
     public var props(default, null):OgmoEntityLayer;
     public var foreground(default, null):OgmoDecalLayer;
     public var background(default, null):OgmoDecalLayer;
+    public var ui(default, null):FlxGroup;
     
     public function new(target:String)
     {
@@ -110,11 +113,9 @@ class RoomState extends OgmoState
         }
         loadLevel();
         initEntities();
+        initUi();
         initCamera();
         initClient();
-        
-        add(infoBoxGroup);
-        add(medalAnim = MedalPopup.getInstance());
         
         NGio.logEventOnce(enter);
     }
@@ -175,6 +176,13 @@ class RoomState extends OgmoState
         characters.add(player);
     }
     
+    function initUi()
+    {
+        add(ui = new FlxGroup());
+        ui.add(infoBoxGroup);
+        ui.add(medalPopup = MedalPopup.getInstance());
+        ui.add(musicPopup = MusicPopup.getInstance());
+    }
     
 	function openArtPresent(present:Present, ?callback:(Present)->Void):Void
 	{
