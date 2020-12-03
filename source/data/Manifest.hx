@@ -16,7 +16,7 @@ class Manifest
 {
     static public var noPreload:AssetManifest = null;
     
-    static public var songs = new Map<String, FlxSound>();
+    static public var songs = new Map<String, StreamedSound>();
     static var loadingSongs = new Map<String, (FlxSound)->Void>();
     
     static public var art = new Map<String, FlxGraphic>();
@@ -108,19 +108,24 @@ class Manifest
         if (songs.exists(id))
         {
             final song = songs[id];
-            if (onLoad != null && loadingSongs.exists(id))
+            if (onLoad != null)
             {
-                if (loadingSongs[id] == null)
-                    loadingSongs[id] = onLoad;
-                else
+                if (loadingSongs.exists(id))
                 {
-                    var oldOnLoad = loadingSongs[id];
-                    loadingSongs[id] = function(sound)
+                    if (loadingSongs[id] == null)
+                        loadingSongs[id] = onLoad;
+                    else
                     {
-                        onLoad(sound);
-                        oldOnLoad(sound);
+                        var oldOnLoad = loadingSongs[id];
+                        loadingSongs[id] = function(sound)
+                        {
+                            onLoad(sound);
+                            oldOnLoad(sound);
+                        }
                     }
                 }
+                else
+                    onLoad(song);
             }
             
             if(song.onComplete != null)
@@ -153,6 +158,8 @@ class Manifest
         
         if (data.loopStart != null)
             song.loopTime = data.loopStart;
+        else
+            song.loopTime = 1;
         
         if (data.loopEnd != null)
             song.endTime = data.loopEnd;
@@ -160,8 +167,9 @@ class Manifest
         return song;
     }
     
-    static public function playMusic(id, volume = 1.0, ?onComplete, ?onLoad:(FlxSound)->Void)
+    static public function playMusic(id, forceRestart = false, volume = 1.0, ?onComplete, ?onLoad:(FlxSound)->Void)
     {
+        
         var loaded = false;
         #if PRELOAD_ALL
         loaded = true;
@@ -170,7 +178,7 @@ class Manifest
         function loadFunc(song)
         {
             if (song == FlxG.sound.music)
-                song.play(false, 0, song.endTime);
+                song.play(forceRestart);
             
             if (onLoad != null)
                 onLoad(song);
@@ -178,17 +186,31 @@ class Manifest
             loaded = true;
         }
         #end
+        
+        // Stop last song
         if (FlxG.sound.music != null)
-            FlxG.sound.music.stop();
+        {
+            var oldMusic = Std.downcast(FlxG.sound.music, StreamedSound);
+            if (forceRestart || oldMusic == null || oldMusic.data.id != id)
+                FlxG.sound.music.stop();
+        }
         
         final song = loadSong(id, true, onComplete, loadFunc);
         song.volume = volume;
+        song.persist = true;
         
         FlxG.sound.music = song;
-        if (loaded)
+        if (loaded && !song.playing)
             song.play();
         
         return song;
+    }
+    
+    public static function showCurrentSongInfo():Void
+    {
+        final music = Std.downcast(FlxG.sound.music, StreamedSound);
+        if (music != null)
+            MusicPopup.showInfo(music.data);
     }
 }
 
@@ -215,36 +237,37 @@ class StreamedSound extends FlxSound
     
     override function reset()
     {
-		// destroy();
-
-		x = 0;
-		y = 0;
-
-		_time = 0;
-		_paused = false;
-		_volume = 1.0;
-		_volumeAdjust = 1.0;
-		looped = false;
-		loopTime = 0.0;
-		endTime = 0.0;
-		_target = null;
-		_radius = 0;
-		_proximityPan = false;
-		visible = false;
-		amplitude = 0;
-		amplitudeLeft = 0;
-		amplitudeRight = 0;
-		autoDestroy = false;
-
-		if (_transform == null)
-			_transform = new openfl.media.SoundTransform();
-		_transform.pan = 0;
+        // destroy();
+        
+        x = 0;
+        y = 0;
+        
+        _time = 0;
+        _paused = false;
+        _volume = 1.0;
+        _volumeAdjust = 1.0;
+        looped = false;
+        loopTime = 0.0;
+        endTime = 0.0;
+        _target = null;
+        _radius = 0;
+        _proximityPan = false;
+        visible = false;
+        amplitude = 0;
+        amplitudeLeft = 0;
+        amplitudeRight = 0;
+        autoDestroy = false;
+        
+        if (_transform == null)
+            _transform = new openfl.media.SoundTransform();
+        _transform.pan = 0;
     }
     
     override function play(ForceRestart = false, StartTime = 0.0, ?EndTime:Float):FlxSound
     {
-        MusicPopup.showInfo(data);
-        return super.play(ForceRestart, StartTime, EndTime);
+        if (StartTime == 0)
+            MusicPopup.showInfo(data);
+        return super.play(ForceRestart, StartTime, EndTime != null ? EndTime : this.data.loopEnd);
     }
     
     override function destroy()

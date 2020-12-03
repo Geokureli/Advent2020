@@ -152,9 +152,9 @@ class Content
         return artwork.exists(id) && artwork[id].day <= Calendar.day;
     }
     
-    inline public static function playTodaysSong()
+    inline public static function playTodaysSong(forceRestart = false)
     {
-        Manifest.playMusic(getTodaysSong().id);
+        Manifest.playMusic(getTodaysSong().id, forceRestart);
     }
     
     inline public static function playSongByDay(day:Int)

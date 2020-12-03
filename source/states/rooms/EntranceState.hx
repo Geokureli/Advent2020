@@ -104,6 +104,7 @@ class EntranceState extends RoomState
                             remove(shade);
                             Game.state = NoEvent;
                             NGio.logEvent(intro_complete);
+                            Manifest.showCurrentSongInfo();
                         }
                     });
             }

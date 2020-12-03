@@ -3,6 +3,7 @@ package states.rooms;
 import data.Calendar;
 import data.Manifest;
 import data.Save;
+import data.Skins;
 import data.Content;
 import data.Game;
 import data.NGio;
@@ -43,6 +44,7 @@ class RoomState extends OgmoState
     
     var camOffset = 0.0;
     var camFollow = new FlxObject();
+    var uiCamera:FlxCamera;
     
     var player:InputPlayer;
     var ghostsById:Map<String, GhostPlayer> = [];
@@ -50,15 +52,17 @@ class RoomState extends OgmoState
     var ghosts:FlxTypedGroup<GhostPlayer> = new FlxTypedGroup();
     var teleports = new FlxTypedGroup<Teleport>();
     var presents = new FlxTypedGroup<Present>();
-    var spawnTeleport:Teleport;
-    var medalPopup:MedalPopup;
-    var musicPopup:MusicPopup;
-    
     var colliders = new FlxGroup();
     var characters = new FlxGroup();
     var touchable = new FlxTypedGroup<FlxObject>();
     var infoBoxes = new Map<FlxObject, InfoBox>();
     var infoBoxGroup = new FlxTypedGroup<InfoBox>();
+    var topGround = new FlxGroup();
+    var ui = new FlxGroup();
+    
+    var spawnTeleport:Teleport;
+    var medalPopup:MedalPopup;
+    var musicPopup:MusicPopup;
     
     public var name(default, null):RoomName;
     public var spawnId(default, null) = -1;
@@ -67,7 +71,6 @@ class RoomState extends OgmoState
     public var props(default, null):OgmoEntityLayer;
     public var foreground(default, null):OgmoDecalLayer;
     public var background(default, null):OgmoDecalLayer;
-    public var ui(default, null):FlxGroup;
     
     public function new(target:String)
     {
@@ -135,6 +138,7 @@ class RoomState extends OgmoState
         props = getByName("Props");
         foreground = getByName("Foreground");
         background = getByName("Background");
+        add(topGround);
         
         geom = getByName("Geom");
         colliders.add(geom);
@@ -178,10 +182,17 @@ class RoomState extends OgmoState
     
     function initUi()
     {
-        add(ui = new FlxGroup());
         ui.add(infoBoxGroup);
         ui.add(medalPopup = MedalPopup.getInstance());
         ui.add(musicPopup = MusicPopup.getInstance());
+        ui.forEach(
+            function(obj)
+            {
+                if (Std.is(obj, FlxSprite))
+                    (cast obj:FlxSprite).scrollFactor.set(0,0);
+            }
+        );
+        add(ui);
     }
     
 	function openArtPresent(present:Present, ?callback:(Present)->Void):Void
@@ -474,7 +485,7 @@ class RoomState extends OgmoState
         if (FlxG.keys.justPressed.M)
         {
             var music = FlxG.sound.music;
-            var endTime = music.endTime != null ? music.endTime : music.length;
+            var endTime = music.endTime != null || music.endTime > 0 ? music.endTime : music.length;
             music.time = endTime - 3000;
         }
         
