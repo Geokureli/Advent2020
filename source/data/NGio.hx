@@ -101,7 +101,7 @@ class NGio
 		#if debug
 		isContributor = true;
 		#else
-		isContributor = Contents.isContributor(userName.toLowerCase);
+		isContributor = Content.isContributor(userName.toLowerCase());
 		#end
 		
 		ngDataLoaded.dispatch();

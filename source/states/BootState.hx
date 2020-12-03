@@ -143,8 +143,11 @@ class BootState extends flixel.FlxState
         waitTime -= elapsed;
         
         #if ALLOW_DAY_SKIP
-        if (state.match(Initing|Waiting) && FlxG.keys.pressed.SPACE)
+        if (!debugFutureEnabled && state.match(Initing|Waiting) && FlxG.keys.pressed.SPACE)
+        {
             debugFutureEnabled = true;
+            msg.text = "DEBUG\nTime travel activated";
+        }
         #end
         
         if (waitTime < 0)
@@ -155,16 +158,10 @@ class BootState extends flixel.FlxState
                 case Initing:
                 case Waiting:
                     #if ALLOW_DAY_SKIP
-                    final canSkip
-                        = (Calendar.isAdvent || Calendar.isDebugDay)
-                        && Calendar.day != 24
-                        && NGio.isContributor
-                        ;
                     
-                    if (canSkip && debugFutureEnabled)
+                    if (Calendar.canSkip() && debugFutureEnabled)
                     {
                         Calendar.showDebugNextDay();
-                        msg.text += "\nTime travel activated";
                         if (waitTime < 0.5)
                             waitTime = 0.5;
                     }

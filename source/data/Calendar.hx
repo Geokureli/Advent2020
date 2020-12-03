@@ -46,9 +46,17 @@ class Calendar
         callback();
     }
     
-    static public function showDebugNextDay():Void
+    @:allow(states.BootState)
+    static function canSkip()
+    {
+        return isAdvent && day != 32 && NGio.isContributor;
+    }
+    
+    @:allow(states.BootState)
+    static function showDebugNextDay():Void
     {
         day++;
         isDebugDay = true;
+        isUnseenDay = !Save.hasSeenDay(day);
     }
 }

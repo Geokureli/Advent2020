@@ -169,7 +169,7 @@ class Content
     
     static public function isContributor(name:String)
     {
-        credits.exists(name.toLowerCase());
+        return credits.exists(name.toLowerCase());
     }
     
     @:allow(data.Save)
