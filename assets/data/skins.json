@@ -2,12 +2,14 @@
     , "proper": "Tankman"
     , "description": "The mascot of Newgrounds! Ever more widely known as John Captain. We found his name on the toy box, look it up."
     , "unlocksBy": "free"
+    , "group":"ng"
     }
 ,   { "id": "pico"
     , "proper": "Pico"
     , "description": "The CNN debacle that started it all. Well, him and Tom’s “Club a seal” game."
     , "unlocksBy": "free"
     , "users": ["tomfulp"]
+    , "group":"ng"
     }
 ,   { "id": "orange_knight"
     , "proper": "Orange Knight"
@@ -15,66 +17,77 @@
     , "unlocksBy": "free"
     , "frames": 3
     , "users": ["tomfulp", "danpaladin"]
+    , "group":"castle_crashers"
     }
 ,   { "id": "red_knight"
     , "proper": "Red Knight"
     , "description": "This panicky zapping Castle Crasher is OP AF with their stunlock."
     , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
+    , "group":"castle_crashers"
     }
 ,   { "id": "blue_knight"
     , "proper": "Blue Knight"
     , "description": "This bored ice-powered Castle Crasher can clear a crowd no problem."
     , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
+    , "group":"castle_crashers"
     }
 ,   { "id": "green_knight"
     , "proper": "Green Knight"
     , "description": "This angry poisoning Castle Crasher got mad dps."
     , "unlocksBy": "free"
     , "users": ["tomfulp", "danpaladin"]
+    , "group":"castle_crashers"
     }
 ,   { "id": "pink_knight"
     , "proper": "Pink Knight"
     , "description": "This joyful Castle Crasher knows 67 ways to kill a human being with just a lollipop."
     , "unlocksBy": null
     , "users": ["tomfulp", "danpaladin", "goodl", "brandybuizel"]
+    , "group":"castle_crashers"
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
     , "description": "This isn’t Hank, this isn’t Desmos or anyone canonically cool or special.\nThis is the guy who dies, repeatedly."
     , "unlocksBy": "login"
     , "users": ["krinkels"]
+    , "group":"madness"
     }
 ,   { "id": "alien_hominid"
     , "proper": "Alien Hominid"
     , "description": "This cute alien has been escaping the clutches of the\ngovernment for a long time. Sound familiar?"
     , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin"]
+    , "group":"alien_hominid"
     }
 ,   { "id": "hatty"
     , "proper": "Hatty Hattington"
     , "description": "The most noteworthy friend of all, he’s like King Friend, best friend to\none and all and the very definition of handsome gentleman!"
     , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin", "stamper"]
+    , "group":"battleblock"
     }
 ,   { "id": "chutney"
     , "proper": "Chutney Glaze"
     , "description": "He's a cute lil fellow\nall covered in yellow!"
     , "unlocksBy": null
     , "users": ["chutneyglaze"]
+    , "group":"chutney"
     }
 ,   { "id": "nene"
     , "proper": "Nene"
     , "description": "Literally the only woman on Newgrounds, maybe even the entire internet."
     , "unlocksBy": null
     , "users": ["tomfulp"]
+    , "group":"ng"
     }
 ,   { "id": "strawberry_clock"
     , "proper": "Strawberry Clock"
     , "description": "B!"
     , "unlocksBy": "day:3"
     , "users": ["strawberryclock"]
+    , "group":"clocks"
     }
 ,   { "id": "hellbenders"
     , "proper": "The Hellbenders"
@@ -116,12 +129,14 @@
     , "proper": "P-Bot"
     , "description": "Curating the very best there is on Newgrounds, Daily! And sometimes Maxine."
     , "unlocksBy": null
+    , "group":"ng"
     }
 ,   { "id": "stan"
     , "proper": "Stan"
     , "description": "That one Nightmare Cops guy with the fanart you’ve seen. His name’s actually Stan, do you believe it?"
     , "unlocksBy": null
     , "users": ["tomfulp", "johnnyutah", "spazkid", "oney"]
+    , "group":"cops"
     }
 ,   { "id": "knight"
     , "proper": "Knight"
@@ -134,6 +149,7 @@
     , "description": "BAH-BUH BAH-DOO DA DOO-DA BOO DOO DOO BAH-DOO"
     , "unlocksBy": null
     , "users": ["aaron-long"]
+    , "group":"aalong"
     }
 ,   { "id": "glenda"
     , "proper": "Glenda"
@@ -146,6 +162,7 @@
     , "description": "That can’t be the real Hogstrong, those pixels make him look so scrawny."
     , "unlocksBy": null
     , "users": ["happyharry"]
+    , "group":"harry"
     }
 ,   { "id": "spoople"
     , "proper": "Spoople"
@@ -158,6 +175,7 @@
     , "description":"Are we talking about Tom Fulp? I love talking about Tom Fulp what is your favorite Tom Fulp related fact? Mine is\nthat Tom Fulp is the founder of Newgrounds.com. I wish they made Tom Fulp action figures. I am going to name my\nchild Tom Fulp. They should change the capital of Pennsylvania to Tom Fulp City because I really think well of Tom\nFulp. If Tom fulp was bitten by a poisonous snake I would suck the venom out of him, even if it was his dick, and\nI'm not even gay I just really like Tom Fulp. The only thing I love more than Tom Fulp is talking about Tom Fulp. I\ntried to make a Tom Fulp fan club at my school but no one joined so it was just me. If I could meet Tom Fulp I would\ntell him all the things I know about Tom Fulp. I want to major in Tom Fulp in college and then build my own business\nso I can create Tom Fulp related merchandise. Tom Fulp's face should be immortalized in stone for his incredible\ncontributions to the world and my life. If Tom Fulp was a Yugioh card he was have infinite attack and defense points\nbecause he's Tom Fulp, the singular point with which my life revolves. I love Tom Fulp, I want to be married to Tom\nFulp. I would marry Wade Fulp just to be closer to Tom Fulp. I am changing my name to Tom Fulp Fulp because I admire\nthe strength and respect the name commands. I would vote for Tom for president and mister universe because he is\njust that charismatic and handsome. The Fulp name should be listed among nobility. I am crying right now because I\nfeel like no one else wants to talk aboutTom Fulp as much as I do. I must be the only person with a Tom Fulp diary\nthat keeps a record of everything Tom Fulp has ever said to me and things I hope he will say to me in the future. I\nframed a PM Tom Fulp sent to me and my mom wanted me to take it down for my diploma but fuck her she doesn't know what\nTom Fulp means to me. I wish Tom Fulp was my dad, my dad sucks, Tom Fulp wouldn't suck if he was my dad. My life would\nbe misery without Tom Fulp. Everyday that I log onto Newgrounds and find a new thread to discuss some inane aspect of\nTom Fulp's life fills me with joy and meaning so please let me talk about Tom Fulp or I'm going to explode."
     , "unlocksBy": null
     , "users": ["tomfulp"]
+    , "group":"ng"
     }
 ,   { "id": "dad"
     , "proper": "Dad"
@@ -178,18 +196,21 @@
     , "description": "They say that God made us in his own image, so why not play as him? -b"
     , "unlocksBy": null
     , "users": ["brandybuizel"]
+    , "group":"devs"
     }
 ,   { "id": "velour"
     , "proper": "Velour"
     , "description": "I'm not super into madness, but I know that those \npeople are into her as well. A cute hologram OC by Cymbourine."
     , "unlocksBy": "medal:1"
     , "users": ["cymbourine"]
+    , "group":"devs"
     }
 ,   { "id": "horse"
     , "proper": "Horse"
     , "description": "It's that guy from NEAR DEADline, you should play that game instead, trust me."
     , "unlocksBy": null
     , "users": ["nickconter"]
+    , "group":"devs"
     }
 ,   { "id": "snake"
     , "proper": "Solid Snake"
@@ -202,12 +223,14 @@
     , "description": "This here’s Aine, she’s an orange knight from Renaine with a feather to pick with a Dragon who did her dirty."
     , "unlocksBy": null
     , "users": ["squidly"]
+    , "group":"renaine"
     }
 ,   { "id": "karrion"
     , "proper": "Karrion Killer"
     , "description": "The Flesh Reaper Celebrateth."
     , "unlocksBy": "day:6"
     , "users": ["prosciuttoman", "leviramirez"]
+    , "group":"prosciuttoman"
     }
 ,   { "id": "elk"
     , "proper": "Elk"
@@ -215,13 +238,13 @@
     , "unlocksBy": null
     , "users": ["geokureli"]
     }
-,	{ "id": "lucky"
+,   { "id": "lucky"
     , "proper": "Lucky"
     , "description": ""
     , "unlocksBy": null
     , "users": ["brandybuizel", "domdude111"]
     }
-,	{ "id": "duncan_and_jones"
+,   { "id": "duncan_and_jones"
     , "proper": "Duncan & Jones"
     , "description": ""
     , "unlocksBy": null

@@ -38,6 +38,7 @@
 	<!-- <define name="CLEAR_SAVE" if="debug"/> -->
 	<!-- <define name="LOG_SAVE" if="debug"/> -->
 	<define name="ALLOW_DAY_SKIP"/>
+	<!-- <define name="FORCE_INTRO" if="debug"/> -->
 	
 	<!-- <define name="USE_RIG" /> -->
 	<!-- <define name="UNLOCK_ALL_SKINS" if="debug"/> -->

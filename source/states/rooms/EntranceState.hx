@@ -38,7 +38,7 @@ class EntranceState extends RoomState
                 floor.setBottomHeight(floor.frameHeight);
                 shade = new ShadowSprite(floor.x, floor.y);
                 shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
-                add(shade);
+                topGround.add(shade);
                 
                 player.active = false;
                 player.flipX = true;
@@ -104,6 +104,7 @@ class EntranceState extends RoomState
                             remove(shade);
                             Game.state = NoEvent;
                             NGio.logEvent(intro_complete);
+                            Manifest.showCurrentSongInfo();
                         }
                     });
             }

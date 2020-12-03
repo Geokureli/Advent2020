@@ -13,10 +13,12 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
 {
     static var instance(default, null):MusicPopup;
     
+    inline static var DURATION = 5.0;
     inline static var MAIN_PATH = "assets/images/ui/music/popup.png";
     inline static var BAR_PATH = "assets/images/ui/music/popup_bar.png";
     
     static var info:SongCreation;
+    var tweener:FlxTweenManager = new FlxTweenManager();
     
     var main:FlxSprite;
     var bar:FlxSprite;
@@ -45,10 +47,17 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
         // visible = false;
         x = 0;
         y = FlxG.height;
+        scrollFactor.set(0,0);
         
         if (info != null)
             playAnim();
         
+    }
+    
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+        tweener.update(elapsed);
     }
     
     override function destroy()
@@ -62,17 +71,25 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
         text.text = info.name + " by " + Content.listAuthorsProper(info.authors);
         info = null;
         
-        FlxTween.cancelTweensOf(this);
+        tweener.cancelTweensOf(this);
         final duration = 0.5;
-        var outroTween = FlxTween.tween(this, { y:FlxG.height }, duration,
-            { startDelay:3.0, ease:FlxEase.circInOut, onComplete:(_)->visible = false });
+        function tweenOutro(?_)
+        {
+            var outroTween = tweener.tween(this, { y:FlxG.height }, duration,
+                { startDelay:DURATION, ease:FlxEase.circInOut, onComplete:(_)->visible = false });
+        }
+        
+        // if (y > FlxG.height - bar.height)
+            bar.x = text.x + text.width - bar.width + 6;
         
         if (y > FlxG.height - main.height)
         {
             final introTime = (y - (FlxG.height - main.height)) / main.height * duration;
-            FlxTween.tween(this, { y:FlxG.height - main.height }, introTime, { ease:FlxEase.circInOut })
-                .then(outroTween);
+            tweener.tween(this, { y:FlxG.height - main.height }, introTime,
+                { ease:FlxEase.circInOut, onComplete:tweenOutro });
         }
+        else
+            tweenOutro();
     }
     
     static public function showInfo(info:SongCreation)
