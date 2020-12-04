@@ -90,6 +90,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "snackers"}
+        },
+        {
+          "name": "Teleport",
+          "id": 8,
+          "_eid": "58765051",
+          "x": 328,
+          "y": 480,
+          "width": 80,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": 1, "target": "outside.0"}
         }
       ]
     },

@@ -130,7 +130,10 @@ class RoomState extends OgmoState
     
     function loadLevel()
     {
-        parseLevel('assets/data/ogmo/${name}1.json');
+        var day = Calendar.day;
+        while(day > 0 && !Manifest.exists('assets/data/ogmo/$name$day.json'))
+            day--;
+        parseLevel('assets/data/ogmo/$name$day.json');
     }
     
     function initEntities()
