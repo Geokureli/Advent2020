@@ -31,6 +31,12 @@
     , "einmeister":
         { "proper": "EinMeister"
         }
+    , "bub":
+        { "proper": "bub"
+        }
+    , "czyszy":
+        { "proper": "CzySzy"
+        }
     , "splatterdash":
         { "proper": "SplatterDash"
         }
@@ -55,7 +61,7 @@
         , "ngId"     : 0
         , "day"      : 3
         }
-    ,   { "id"       : "csyzsy"
+    ,   { "id"       : "czyszy"
         , "name"     : "ave-xmas.wav"
         , "authors"  : ["czyszy"]
         , "key"      : "dMaj"
@@ -64,7 +70,7 @@
         , "day"      : 5
         }
     ,   { "id"     : "splatterdash"
-        , "name"   : null
+        , "name"   : "Let The Snow Fall"
         , "authors": ["splatterdash"]
         , "ngId"   : 0
         }
