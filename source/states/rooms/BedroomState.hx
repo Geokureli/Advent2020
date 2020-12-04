@@ -58,8 +58,6 @@ class BedroomState extends RoomState
     {
         super.initEntities();
         
-        // notesById["december01"].animateIn();
-        
         door = background.getByName("door");
         door.animation.add("close", [1]);
         door.animation.play("close");
@@ -77,7 +75,10 @@ class BedroomState extends RoomState
         add(dresserNotif);
         
         if(Game.state.match(Day1Intro(Started)))
+        {
             addHoverTextTo(door, "Get dressed first");
+            notesById["december01"].animateIn(1.5);
+        }
         else
             dresserNotif.kill();
     }

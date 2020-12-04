@@ -45,16 +45,13 @@ class DitherShader extends flixel.system.FlxAssets.FlxShader
         
         vec4 dither(vec4 color, float amount, vec2 coord)
         {
-            return amount <= indexValue(coord) ? color : vec4(0.0, 0.0, 0.0, 0.0);
+            return amount > indexValue(coord) ? color : vec4(0.0, 0.0, 0.0, 0.0);
         }
         
         void main()
         {
-            // vec2 topLeft = bigPixelTopLeft(openfl_TextureCoordv * openfl_TextureSize);
-            // gl_FragColor = dither(bigPixelCenterColor(topLeft), amount, topLeft);
-            // gl_FragColor = bigPixelCenterColor(topLeft);
-            // gl_FragColor.a = 0;
-            gl_FragColor = vec4(1.0,1.0,1.0,1.0);
+            vec2 topLeft = bigPixelTopLeft(openfl_TextureCoordv * openfl_TextureSize);
+            gl_FragColor = dither(bigPixelCenterColor(topLeft), amount, topLeft);
         }
     ')
     public function new(pixelSize = 1.0)

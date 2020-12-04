@@ -39,14 +39,27 @@ class Note extends FlxSpriteGroup
         return text.split("[NAME]").join(name);
     }
     
-    inline static var RISE = 64;
-    public function animateIn(?onComplete:()->Void)
+    inline static var RISE = 32;
+    public function animateIn(delay = 0.0, ?onComplete:()->Void)
     {
         var dither = new vfx.DitherShader();
         dither.setAlpha(0);
-        shader = dither;
+        note.shader = dither;
         var startY = y + RISE;
-        FlxTween.num(0, 1, 2.5, { ease:FlxEase.circOut, onComplete:onComplete == null ? null : (_)->onComplete() },
+        
+        function func(_)
+        {
+            note.shader = null;
+            
+            if (onComplete != null)
+                onComplete();
+        }
+        
+        FlxTween.num(0, 1, 1.0,
+            { startDelay: delay
+            , ease:FlxEase.circOut
+            , onComplete:func
+            },
             function (num)
             {
                 y = startY - num * RISE;
