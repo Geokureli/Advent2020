@@ -78,7 +78,7 @@
 ,   { "id": "nene"
     , "proper": "Nene"
     , "description": "Literally the only woman on Newgrounds, maybe even the entire internet."
-    , "unlocksBy": null
+    , "unlocksBy": "day:4"
     , "users": ["tomfulp"]
     , "group":"ng"
     }
@@ -160,7 +160,7 @@
 ,   { "id": "hogstrong"
     , "proper": "Hogstrong"
     , "description": "That can’t be the real Hogstrong, those pixels make him look so scrawny."
-    , "unlocksBy": null
+    , "unlocksBy": "medal:4"
     , "users": ["happyharry"]
     , "group":"harry"
     }
