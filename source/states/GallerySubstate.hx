@@ -1,5 +1,6 @@
 package states;
 
+import flixel.text.FlxBitmapText;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.graphics.FlxGraphic;
 import data.Manifest;
@@ -29,7 +30,7 @@ class GallerySubstate extends FlxSubState
 	
 	private var data:ArtCreation;
 	private var curAnimPlaying:Int = 0;
-	private var imageText:FlxText;
+	private var imageText:FlxBitmapText;
 	private var infoBox:FlxSpriteButton;
 	private var bigPreview:FlxSprite;
 	private var bigImage:FlxSpriteGroup;
@@ -54,37 +55,29 @@ class GallerySubstate extends FlxSubState
 		bigImage.add(bigPreview);
 		bigImage.scrollFactor.set();
 		
-		imageText = new FlxText(0, FlxG.height - 16, FlxG.width - 6, "", 8);
-		imageText.scale.set(0.5, 0.5);
+		imageText = new FlxBitmapText();
+		imageText.y = FlxG.height - 16;
+		imageText.width = FlxG.width / 2;
 		imageText.updateHitbox();
 		imageText.alignment = FlxTextAlign.CENTER;
 		imageText.scrollFactor.set();
-		imageText.screenCenter(X);
 		
 		var profileUrl = Content.credits[data.authors[0]].newgrounds;
-		infoBox = new FlxSpriteButton(imageText.x - 2, imageText.y + 2, null, ()->FlxG.openURL(profileUrl));
-		infoBox.makeGraphic(Std.int(imageText.width) + 4, Std.int(imageText.height) + 4, FlxColor.BLACK);
+		infoBox = new FlxSpriteButton(0, imageText.y - 2, null, ()->FlxG.openURL(profileUrl));
+		infoBox.makeGraphic(Std.int(FlxG.width / 2) + 4, 36, FlxColor.BLACK);
 		infoBox.alpha = 0.5;
 		infoBox.screenCenter(X);
 		
-		// offset because the safari search bar covers the game a bit i think
-		var offset = 0;
-		#if html5
-			if (Std.string(FlxG.html5.browser) == "SAFARI")
-				offset = 60;
-
-		#end
-		
-		var msg = 'Current Pic - ${FlxG.onMobile ? "Tap" : "Click"} here to exit';
-		var text:FlxText = new FlxText(10, 10 + offset, 0, msg, 8);
-		text.scale.set(0.5, 0.5);
-		text.updateHitbox();
-		text.scrollFactor.set();
-		
-		textBG = new FlxSpriteButton(text.x - 2, text.y - 2, null, close);
-		textBG.makeGraphic(Std.int(text.width) + 4, Std.int(text.height) + 5, FlxColor.BLACK);
+		textBG = new FlxSpriteButton(4, 4, null, close);
+		textBG.makeGraphic(150, 18, FlxColor.BLACK);
 		textBG.alpha = 0.5;
 		textBG.scrollFactor.set();
+		
+		var text = new FlxBitmapText();
+		text.x = 16;
+		text.y = 11;
+		text.text = 'Current Pic - ${FlxG.onMobile ? "Tap" : "Click"} here to exit';
+		text.scrollFactor.set();
 		
 		add(bigImage);
 		
@@ -125,6 +118,7 @@ class GallerySubstate extends FlxSubState
 		// regular artwork
 		imageText.text = "Art by " + Content.listAuthorsProper(data.authors) + "\n"
 			+ (FlxG.onMobile ? "Tap" : "Click") +" here to view their profile";
+		imageText.screenCenter(X);
 		bigPreview.loadGraphic(graphic);
 		
 		var horizSize = Std.int(bigPreview.width);
