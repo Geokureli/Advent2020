@@ -101,7 +101,5 @@ class InputPlayer extends Player
     {
         timer = 0;
         lastSend.set(Std.int(x), Std.int(y));
-        color = FlxColor.WHITE;
-        // setGraphicSize(frameWidth + 4, frameWidth + 4);
     }
 }

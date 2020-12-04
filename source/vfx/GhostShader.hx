@@ -6,10 +6,11 @@ class GhostShader extends flixel.system.FlxAssets.FlxShader
 		#pragma header
 		
 		const float pixelSize = 0.5;
+		uniform bool invert;
 		
 		float checker(vec2 coord)
 		{
-			return mod(floor(coord.x / pixelSize) + floor(coord.y / pixelSize), 2.0);
+			return mod((invert ? 1.0 : 0.0) + floor(coord.x / pixelSize) + floor(coord.y / pixelSize), 2.0);
 		}
 		
 		vec4 pixelColor(vec2 coord)
@@ -63,6 +64,20 @@ class GhostShader extends flixel.system.FlxAssets.FlxShader
 			gl_FragColor = mix(vec4(0,0,0,0), gl_FragColor, checker(topLeft));
 		}
 	')
+	public function new()
+	{
+		super();
+		
+		this.invert.value = [true];
+	}
 	
-	public function new() { super(); }
+	public function updatePos(x:Int, y:Int)
+	{
+		this.invert.value[0] = ((x + y) % 2 == 1);
+	}
+	
+	inline public function updatePosRound(x:Float, y:Float)
+	{
+		updatePos(Math.round(x), Math.round(y));
+	}
 }

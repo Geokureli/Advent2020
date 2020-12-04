@@ -29,6 +29,14 @@ class GhostPlayer extends Player
         super.update(elapsed);
         
         updateMovement(false, false, false, false, false);
+        
+        var ghostShader = Std.downcast(shader, vfx.GhostShader);
+        if (ghostShader != null)
+        {
+            var screenPos = getScreenPosition();
+            ghostShader.updatePosRound(screenPos.x, screenPos.y);
+            screenPos.put();
+        }
     }
     
     override function draw()
