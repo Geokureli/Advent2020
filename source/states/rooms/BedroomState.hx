@@ -8,6 +8,7 @@ import data.Save;
 import props.InputPlayer;
 import props.InfoBox;
 import props.Notif;
+import props.Note;
 import states.OgmoState;
 import states.debug.AudioToolSubstate;
 import utils.GameSize;
@@ -30,9 +31,17 @@ class BedroomState extends RoomState
     var dresserNotif:Notif;
     var door:OgmoDecal;
     
+    var notesById = new Map<String, Note>();
+    
     override function create()
     {
-        // GameSize.setPixelSize(4);
+        entityTypes["Note"] = cast function(data)
+        {
+            var note = Note.fromEntity(data);
+            notesById[data.values.id] = note;
+            return note;
+        }
+        
         super.create();
         
         FlxG.camera.fade(FlxColor.BLACK, 1, true);
@@ -49,23 +58,11 @@ class BedroomState extends RoomState
     {
         super.initEntities();
         
+        // notesById["december01"].animateIn();
+        
         door = background.getByName("door");
         door.animation.add("close", [1]);
         door.animation.play("close");
-        
-        var note = foreground.getByName("note");
-        note.setBottomHeight(note.frameHeight);
-        var noteText = Assets.getText("assets/data/letter_december_01.txt");
-        var name = NGio.userName;
-        if (name == null || name == "")
-            name = "UNREGISTERED NG LURKER";
-        noteText = noteText.split("[NAME]").join(name);
-        var text = new FlxBitmapText();
-        text.x = note.x + 16;
-        text.y = note.y + 20;
-        text.text = noteText;
-        text.color = 0xFF000000;
-        add(text);
         
         dresser = foreground.getByName("dresser");
         dresser.animation.add("closed", [0]);

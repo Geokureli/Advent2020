@@ -52,6 +52,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": -1, "target": ""}
+        },
+        {
+          "name": "Note",
+          "id": 2,
+          "_eid": "09188334",
+          "x": 288,
+          "y": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "december01"}
         }
       ]
     },
@@ -65,7 +75,6 @@
       "gridCellsX": 60,
       "gridCellsY": 34,
       "decals": [
-        {"x": 368, "y": 128, "texture": "bedroom/note.png"},
         {"x": 216, "y": 184, "texture": "bedroom/bed.png"},
         {"x": 222, "y": 92, "texture": "bedroom/dresser.png"}
       ],
