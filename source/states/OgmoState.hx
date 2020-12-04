@@ -2,7 +2,6 @@ package states;
 
 import haxe.Json;
 
-
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -10,6 +9,7 @@ import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.tile.FlxTilemap;
 import flixel.group.FlxGroup;
+import flixel.math.FlxPoint;
 
 typedef EntityTypeMap = Map<String, (OgmoEntityData<Dynamic>)->FlxObject>;
 
@@ -138,6 +138,8 @@ class OgmoDecalLayer extends OgmoObjectLayer<OgmoDecal>
         
         for (decalData in data.decals)
         {
+            #if OGMO_LOG trace("creating decal:" + decalData.texture); #end
+            
             final name = getName(decalData.texture);
             final decal = new OgmoDecal(decalData);
             add(decal);
@@ -327,16 +329,12 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
     public function new(data:OgmoDecalData):Void
     {
         var path = "assets/images/props/" + data.texture;
-        this = switch(data.texture)
-        {
-            // case "props/cabin/tree.png": new Tree();
-            case _: new FlxSprite(path);
-        }
-        
+        this = new FlxSprite(path);
         this.x = data.x;
         this.y = data.y;
         if (path.indexOf("_ogmo.") != -1)
         {
+            var oldSize = FlxPoint.get(this.frameWidth, this.frameHeight);
             this.loadGraphic
                 ( path.split("_ogmo").join("")
                 , true
@@ -345,8 +343,15 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
                 );
             this.animation.add("anim", [for (i in 0...this.animation.frames) i], 12);
             this.animation.play("anim");
+            
+            if (this.graphic.bitmap.width % oldSize.x != 0 || this.graphic.bitmap.height % oldSize.y != 0)
+                throw 'Size mismatch on animation: $path expected '
+                    + 'frameSize:(${oldSize.x}, ${oldSize.x}) got (${this.frameWidth}, ${this.frameHeight})';
+            
         }
         
+        if (this.graphic == null)
+            throw "error loading " + path;
         // convert from center pos
         this.x -= Math.round(this.width / 2);
         this.y -= Math.round(this.height / 2);

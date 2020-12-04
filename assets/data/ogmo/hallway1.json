@@ -52,18 +52,6 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": 1, "target": "entrance.0"}
-        },
-        {
-          "name": "Teleport",
-          "id": 2,
-          "_eid": "58765051",
-          "x": 24,
-          "y": 112,
-          "width": 8,
-          "height": 8,
-          "originX": 0,
-          "originY": 0,
-          "values": {"id": 0, "target": ""}
         }
       ]
     },

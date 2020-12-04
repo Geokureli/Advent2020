@@ -390,7 +390,7 @@ class RoomState extends OgmoState
             }
         );
         
-        if (!touchingSpawn)
+        if (!touchingSpawn && spawnTeleport != null)
             spawnTeleport = null;
         
         if (player.x < FlxG.worldBounds.left)
