@@ -83,7 +83,7 @@
         , "medal"  : true
         }
     ,   { "id"     : "mixmuffin"
-        , "name"   : null
+        , "name"   : "Tanks Giving"
         , "authors": ["mixmuffin"]
         , "day"    : 3
         , "ext"    : "jpg"
@@ -96,7 +96,7 @@
         , "medal"  : true
         }
     ,   { "id"     : "bub"
-        , "name"   : null
+        , "name"   : "NOLLAIG SHONA"
         , "authors": ["bub"]
         , "day"    : 5
         , "medal"  : true

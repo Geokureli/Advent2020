@@ -116,7 +116,8 @@ class GallerySubstate extends FlxSubState
 		bigImage.visible = true;
 		
 		// regular artwork
-		imageText.text = "Art by " + Content.listAuthorsProper(data.authors) + "\n"
+		var title = data.name != null ? data.name : "Art";
+		imageText.text = title+ " by " + Content.listAuthorsProper(data.authors) + "\n"
 			+ (FlxG.onMobile ? "Tap" : "Click") +" here to view their profile";
 		imageText.screenCenter(X);
 		bigPreview.loadGraphic(graphic);
