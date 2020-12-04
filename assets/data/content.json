@@ -90,7 +90,7 @@
         , "medal"  : true
         }
     ,   { "id"     : "einmeister"
-        , "name"   : null
+        , "name"   : "New Grounds, New Wheels"
         , "authors": ["einmeister"]
         , "day"    : 4
         , "medal"  : true
