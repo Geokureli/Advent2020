@@ -338,12 +338,12 @@ class RoomState extends OgmoState
     
     function onAvatarAdd(data:Avatar, key:String)
     {
-        Net.logVerbose("avatar added at " + key + " => " + avatar);
+        Net.logVerbose("avatar added at " + key + " => " + data);
         Net.logVerbose(Net.room.sessionId + ' added: $key=>${data.name} ${data.skin}@(${data.x}, ${data.y})');
         
         if (key != Net.room.sessionId)
         {
-            Net.logVerbose(room.sessionId + ' this AINT you');
+            Net.logVerbose(Net.room.sessionId + ' this AINT you');
             if (!ghostsById.exists(key))
             {
                 // check if skin is available in this version
@@ -360,7 +360,7 @@ class RoomState extends OgmoState
             }
         }
         else
-            Net.logVerbose(room.sessionId + " this is you!");
+            Net.logVerbose(Net.room.sessionId + " this is you!");
     }
     
     function onAvatarRemove(data:Avatar, key:String)
