@@ -21,6 +21,7 @@ class GhostPlayer extends Player
         nameText = new FlxBitmapText();
         nameText.alignment = CENTER;
         updateNameText(name);
+        shader = new vfx.GhostShader();
     }
     
     override function update(elapsed:Float)
