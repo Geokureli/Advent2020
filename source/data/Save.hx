@@ -17,9 +17,11 @@ class Save
     
     static public function init()
     {
+        #if !(DISABLE_SAVE)
         if (FlxG.save.bind(name, path))
             data = FlxG.save.data;
         else
+        #end
             data = emptyData;
         
         var clearSave = #if CLEAR_SAVE true #else false #end;
