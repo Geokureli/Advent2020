@@ -95,6 +95,18 @@
         , "day"    : 4
         , "medal"  : true
         }
+    ,   { "id"     : "bub"
+        , "name"   : null
+        , "authors": ["bub"]
+        , "day"    : 5
+        , "medal"  : true
+        }
+    ,   { "id"     : "snackers"
+        , "name"   : null
+        , "authors": ["snackers"]
+        , "day"    : 6
+        , "medal"  : true
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false } }

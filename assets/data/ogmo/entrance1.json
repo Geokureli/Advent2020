@@ -70,6 +70,26 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "mixmuffin"}
+        },
+        {
+          "name": "Present",
+          "id": 6,
+          "_eid": "75464384",
+          "x": 576,
+          "y": 336,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "einmeister"}
+        },
+        {
+          "name": "Present",
+          "id": 7,
+          "_eid": "75464384",
+          "x": 224,
+          "y": 272,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "snackers"}
         }
       ]
     },
