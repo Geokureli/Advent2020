@@ -346,7 +346,7 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
             
             if (this.graphic.bitmap.width % oldSize.x != 0 || this.graphic.bitmap.height % oldSize.y != 0)
                 throw 'Size mismatch on animation: $path expected '
-                    + 'frameSize:(${oldSize.x}, ${oldSize.x}) got (${this.frameWidth}, ${this.frameHeight})';
+                    + 'frameSize:(${oldSize.x}, ${oldSize.y}) got (${this.graphic.bitmap.width}, ${this.graphic.bitmap.height})';
             
         }
         
