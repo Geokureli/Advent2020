@@ -30,6 +30,8 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
     {
         super();
         
+        FlxG.signals.preStateSwitch.remove(tweener.clear);
+        
         add(bar = new FlxSprite(BAR_PATH));
         add(main = new FlxSprite());
         add(text = new FlxBitmapText());
