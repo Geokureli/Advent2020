@@ -1,5 +1,6 @@
 package states;
 
+import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.graphics.FlxGraphic;
 import data.Manifest;
 import data.Content;
@@ -53,7 +54,6 @@ class GallerySubstate extends FlxSubState
 		bigImage.add(bigPreview);
 		bigImage.scrollFactor.set();
 		
-		
 		imageText = new FlxText(0, FlxG.height - 16, FlxG.width - 6, "", 8);
 		imageText.scale.set(0.5, 0.5);
 		imageText.updateHitbox();
@@ -66,7 +66,6 @@ class GallerySubstate extends FlxSubState
 		infoBox.makeGraphic(Std.int(imageText.width) + 4, Std.int(imageText.height) + 4, FlxColor.BLACK);
 		infoBox.alpha = 0.5;
 		infoBox.screenCenter(X);
-		
 		
 		// offset because the safari search bar covers the game a bit i think
 		var offset = 0;
@@ -124,7 +123,8 @@ class GallerySubstate extends FlxSubState
 		bigImage.visible = true;
 		
 		// regular artwork
-		imageText.text = "Art by " + Content.listAuthorsProper(data.authors);
+		imageText.text = "Art by " + Content.listAuthorsProper(data.authors) + "\n"
+			+ (FlxG.onMobile ? "Tap" : "Click") +" here to view their profile";
 		bigPreview.loadGraphic(graphic);
 		
 		var horizSize = Std.int(bigPreview.width);
@@ -207,35 +207,34 @@ class GallerySubstate extends FlxSubState
 	
 	private function gamepadControls(gamepad:FlxGamepad):Void
 	{
+		var pressed = FlxG.gamepads.anyPressed;
+		function anyPressed(idArray:Array<FlxGamepadInputID>)
+		{
+			while(idArray.length > 0)
+			{
+				if (pressed(idArray.shift()))
+					return true;
+			}
+			return false;
+		}
+		
 		//Close Substate
-		if (gamepad.anyPressed(["B"]))
+		if (pressed(B))
 			close();
 		
-		if (gamepad.anyPressed(["DOWN", "DPAD_DOWN", "LEFT_STICK_DIGITAL_DOWN"]))
-		{
-			bigPreview.offset.y += 5;
-		}
-		if (gamepad.anyPressed(["UP", "DPAD_UP", "LEFT_STICK_DIGITAL_UP"]))
-		{
-			bigPreview.offset.y -= 5;
-		}	
-		if (gamepad.anyPressed(["LEFT", "DPAD_LEFT", "LEFT_STICK_DIGITAL_LEFT"]))
-		{
-			bigPreview.offset.x -= 5;
-		}
-		if (gamepad.anyPressed(["RIGHT", "DPAD_RIGHT", "LEFT_STICK_DIGITAL_RIGHT"]))
-		{
-			bigPreview.offset.x += 5;
-		}
+		if (anyPressed([DPAD_DOWN , LEFT_STICK_DIGITAL_DOWN ])) bigPreview.offset.y += 5;
+		if (anyPressed([DPAD_UP   , LEFT_STICK_DIGITAL_UP   ])) bigPreview.offset.y -= 5;
+		if (anyPressed([DPAD_LEFT , LEFT_STICK_DIGITAL_LEFT ])) bigPreview.offset.x -= 5;
+		if (anyPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT])) bigPreview.offset.x += 5;
 		
 		//Zooms
-		if (gamepad.anyPressed(["RIGHT_TRIGGER", "RIGHT_STICK_DIGITAL_UP"]))
+		if (anyPressed([RIGHT_TRIGGER, RIGHT_STICK_DIGITAL_UP]))
 		{
 			bigPreview.setGraphicSize(Std.int(bigPreview.width + 10));
 			bigPreview.updateHitbox();
 			bigPreview.screenCenter();
 		}
-		if (gamepad.anyPressed(["LEFT_TRIGGER", "RIGHT_STICK_DIGITAL_DOWN"]))
+		if (anyPressed([LEFT_TRIGGER, RIGHT_STICK_DIGITAL_DOWN]))
 		{
 			bigPreview.setGraphicSize(Std.int(bigPreview.width - 10));
 			bigPreview.updateHitbox();

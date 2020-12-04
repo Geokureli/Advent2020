@@ -153,12 +153,12 @@ class DressUpSubstate extends flixel.FlxSubState
     {
         super.update(elapsed);
         
-        var justPressed = FlxG.gamepads.anyJustPressed;
+        var padJustPressed = FlxG.gamepads.anyJustPressed;
         function padAnyJustPressed(idArray:Array<FlxGamepadInputID>)
         {
             while(antiPressTime <= 0 && idArray.length > 0)
             {
-                if (justPressed(idArray.shift()))
+                if (padJustPressed(idArray.shift()))
                     return true;
             }
             return false;
@@ -170,8 +170,11 @@ class DressUpSubstate extends flixel.FlxSubState
         if (FlxG.keys.anyJustPressed([LEFT, A]) || padAnyJustPressed([DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT]))
             toPrev();
         
-        if (FlxG.keys.anyJustPressed([Z, SPACE]) || padAnyJustPressed([A, B]))
+        if (FlxG.keys.anyJustPressed([Z, SPACE]) || padJustPressed(A))
             select();
+        
+        if (FlxG.keys.anyJustPressed([X, ESCAPE]) || padJustPressed(B))
+            close();
         
         antiPressTime -= elapsed;
     }
