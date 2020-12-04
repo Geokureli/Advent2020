@@ -288,6 +288,12 @@
     , "users": ["happyharry"]
     , "group":"harry"
     }
+,	{ "id": "mvchan"
+    , "proper": "MV-Chan"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["speedo"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
