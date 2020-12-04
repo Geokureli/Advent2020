@@ -63,9 +63,6 @@ class BedroomState extends RoomState
         door.animation.play("close");
         
         dresser = foreground.getByName("dresser");
-        dresser.animation.add("closed", [0]);
-        dresser.animation.add("open", [1]);
-        dresser.animation.play("closed");
         dresser.setBottomHeight(16);
         addHoverTextTo(dresser, "CHANGE CLOTHES", onOpenDresser);
         dresserNotif = new Notif();
