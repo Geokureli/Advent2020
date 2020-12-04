@@ -242,8 +242,8 @@ class Player extends flixel.FlxSprite
         origin.y = 16;
         offset.x = (frameWidth - width) / 2;
         offset.y = frameHeight - height;
-        hitbox.width  = width  + 16;
-        hitbox.height = height + 18;
+        hitbox.width  = width  + 12;
+        hitbox.height = height + 14;
     }
     #end
 }
