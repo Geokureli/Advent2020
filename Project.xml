@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Advent2020" file="Advent2020" main="Main" version="0.2.4" company="HaxeFlixel" />
+	<app title="Advent2020" file="Advent2020" main="Main" version="0.2.5" company="HaxeFlixel" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -50,7 +50,7 @@
 	<classpath name="shared" />
 	
 	<assets path="assets/data"/>
-	<assets path="assets/images" exclude="*/*.aseprite"/>
+	<assets path="assets/images" include="*.png"/>
 	<assets path="assets/sounds" include="*.mp3"/>
 	
 	<library name="noPreload" preload="true" if="PRELOAD_ALL" />

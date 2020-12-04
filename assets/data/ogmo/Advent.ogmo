@@ -20,7 +20,7 @@
     {
       "definition": "tile",
       "name": "Geom",
-      "gridSize": {"x": 16, "y": 16},
+      "gridSize": {"x": 8, "y": 8},
       "exportID": "58635190",
       "exportMode": 0,
       "arrayMode": 0,
@@ -29,7 +29,7 @@
     {
       "definition": "entity",
       "name": "Props",
-      "gridSize": {"x": 16, "y": 16},
+      "gridSize": {"x": 8, "y": 8},
       "exportID": "58647788",
       "requiredTags": [],
       "excludedTags": []
@@ -37,7 +37,7 @@
     {
       "definition": "decal",
       "name": "Foreground",
-      "gridSize": {"x": 16, "y": 16},
+      "gridSize": {"x": 8, "y": 8},
       "exportID": "58641295",
       "folder": "../../images/props",
       "includeImageSequence": true,
@@ -48,7 +48,7 @@
     {
       "definition": "decal",
       "name": "Background",
-      "gridSize": {"x": 16, "y": 16},
+      "gridSize": {"x": 8, "y": 8},
       "exportID": "58641246",
       "folder": "../../images/props",
       "includeImageSequence": true,
@@ -62,7 +62,7 @@
       "exportID": "58765051",
       "name": "Teleport",
       "limit": -1,
-      "size": {"x": 16, "y": 16},
+      "size": {"x": 8, "y": 8},
       "origin": {"x": 0, "y": 0},
       "originAnchored": true,
       "shape": {
@@ -79,7 +79,7 @@
       "color": "#ff00ffff",
       "tileX": false,
       "tileY": false,
-      "tileSize": {"x": 16, "y": 16},
+      "tileSize": {"x": 8, "y": 8},
       "resizeableX": true,
       "resizeableY": true,
       "rotatable": false,
@@ -139,6 +139,6 @@
     }
   ],
   "tilesets": [
-    {"label": "walls", "path": "walls.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAQCAYAAAB3AH1ZAAAAAXNSR0IArs4c6QAAAC5JREFUSIljZCATrDEygjH/k2sGAwMDAxMlmqkBRh0w6oBRB4w6YNQBow4YdQAAog4CL71gOIwAAAAASUVORK5CYII=", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0}
+    {"label": "walls", "path": "walls.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAAAXNSR0IArs4c6QAAACBJREFUKJFjZMAD1hgZMTAwMPzHp4YJnyQxYNSAwWAAAP2rAh8qYCBbAAAAAElFTkSuQmCC", "tileWidth": 8, "tileHeight": 8, "tileSeparationX": 0, "tileSeparationY": 0}
   ]
 }

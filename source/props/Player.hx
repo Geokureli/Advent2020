@@ -53,13 +53,13 @@ class Player extends flixel.FlxSprite
         
         if (pathTile.graphic == null || pathTile.graphic.width == 0)
         {
-            pathTile.makeGraphic(32, 32);
+            pathTile.makeGraphic(8, 8);
             final bitmap = pathTile.graphic.bitmap;
             final rect = bitmap.rect.clone();
-            rect.x += 4;
-            rect.y += 4;
-            rect.width -= rect.x * 2;
-            rect.height -= rect.y * 2;
+            rect.x += 2;
+            rect.y += 2;
+            rect.width -= rect.x;
+            rect.height -= rect.y;
             bitmap.fillRect(rect, 0x0);
             pathTile.offset.copyFrom(pathTile.origin);
         }
@@ -105,7 +105,7 @@ class Player extends flixel.FlxSprite
         
         hitbox.update(elapsed);
         final margin = (hitbox.width - width) / 2;
-        hitbox.setPosition(x - margin, y + height + margin - hitbox.height);
+        hitbox.setPosition(x - margin, y + height + margin - hitbox.height - 4);
         
         #if debug
         if (FlxG.keys.justPressed.L && overlapsPoint(FlxG.mouse.getWorldPosition(FlxPoint.weak())))
@@ -237,13 +237,13 @@ class Player extends flixel.FlxSprite
         var data = Skins.getData(skin);
         data.loadTo(this);
         scale.set(2, 2);
-        width = 16;
-        height = 16;
+        width = 8;
+        height = 8;
         origin.y = 16;
         offset.x = (frameWidth - width) / 2;
         offset.y = frameHeight - height;
-        hitbox.width  = width  + 8;
-        hitbox.height = height + 10;
+        hitbox.width  = width  + 16;
+        hitbox.height = height + 18;
     }
     #end
 }
