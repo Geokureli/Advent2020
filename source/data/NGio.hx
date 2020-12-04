@@ -184,7 +184,7 @@ class NGio
 	
 	inline static function log(msg:String)
 	{
-		#if NG_NO_LOG trace(msg); #end
+		#if NG_LOG trace(msg); #end
 	}
 }
 

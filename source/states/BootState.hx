@@ -80,8 +80,9 @@ class BootState extends flixel.FlxState
             callback(isYes);
         }
         
-        add(yes = new YesButton(100, msg.y + msg.height + 5, onDecide.bind(true )));
-        add(no  = new NoButton (190, msg.y + msg.height + 5, onDecide.bind(false)));
+        add(yes = new YesButton(150, msg.y + msg.height + 5, onDecide.bind(true )));
+        add(no  = new NoButton (FlxG.width - 150, msg.y + msg.height + 5, onDecide.bind(false)));
+        no.x -= no.width;
     }
     
     function onManualConnectResult(result:ConnectResult):Void

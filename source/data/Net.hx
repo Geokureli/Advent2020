@@ -43,7 +43,7 @@ class Net
         client.joinOrCreate(roomName, [], GameState, 
             (error, room)->
             {
-                trace("joined:" + room.id);
+                log("joined:" + room.id);
                 if (error == null)
                 {
                     NGio.logEventOnce(first_connect);
@@ -71,6 +71,22 @@ class Net
     
     inline static public function send(type:String, data:Dynamic)
     {
+        Net.logVerbose('sending type:$type=>$data)');
         room.send({ type:type, data:data });
+    }
+    
+    inline static public function logDebug(msg:String)
+    {
+        #if debug log(msg); #end
+    }
+    
+    inline static public function logVerbose(msg:String)
+    {
+        #if NET_LOG_VERBOSE log(msg); #end
+    }
+    
+    inline static public function log(msg:String)
+    {
+        #if NET_LOG trace(msg); #end
     }
 }

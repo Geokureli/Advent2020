@@ -318,17 +318,12 @@ class RoomState extends OgmoState
     {
         if (error != null)
         {
-            trace("JOIN ERROR: " + error);
+            Net.log("JOIN ERROR: " + error);
             return;
         }
         
         room.state.avatars.onAdd = onAvatarAdd;
         room.state.avatars.onRemove = onAvatarRemove;
-        
-        // room.state.entities.onChange = function onEntityChange(entity, key)
-        // {
-        //     trace("entity changed at " + key + " => " + entity);
-        // }
         
         // room.onStateChange += process_state_change;
         Net.send("avatar", 
@@ -343,12 +338,12 @@ class RoomState extends OgmoState
     
     function onAvatarAdd(data:Avatar, key:String)
     {
-        // trace("avatar added at " + key + " => " + avatar);
-        // trace(Net.room.sessionId + ' added: $key=>${data.name} ${data.skin}@(${data.x}, ${data.y})');
+        Net.logVerbose("avatar added at " + key + " => " + avatar);
+        Net.logVerbose(Net.room.sessionId + ' added: $key=>${data.name} ${data.skin}@(${data.x}, ${data.y})');
         
         if (key != Net.room.sessionId)
         {
-            // trace(room.sessionId + ' this AINT you');
+            Net.logVerbose(room.sessionId + ' this AINT you');
             if (!ghostsById.exists(key))
             {
                 // check if skin is available in this version
@@ -364,8 +359,8 @@ class RoomState extends OgmoState
                 data.onChange = ghost.onChange;
             }
         }
-        // else
-        //     trace(room.sessionId + " this is you!");
+        else
+            Net.logVerbose(room.sessionId + " this is you!");
     }
     
     function onAvatarRemove(data:Avatar, key:String)
@@ -472,7 +467,6 @@ class RoomState extends OgmoState
             else if (moved && player.timer > player.sendDelay)
             {
                 final data = { x:Std.int(player.x), y:Std.int(player.y) };
-                // trace('sending: (${data.x}, ${data.y})');
                 Net.send("avatar", data);
                 player.networkUpdate();
             }
