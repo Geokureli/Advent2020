@@ -57,9 +57,9 @@ class GhostShader extends flixel.system.FlxAssets.FlxShader
 		void main()
 		{
 			vec2 topLeft = bigPixelTopLeft(openfl_TextureCoordv * openfl_TextureSize);
-			gl_FragColor = bigPixelCenterColor(topLeft) * vec4(0.45, 0.8, 1.2, 1.0);
+			gl_FragColor = bigPixelCenterColor(topLeft) * vec4(0.3, 0.7, 0.9, 0.2);
 			if (gl_FragColor.a > 0.0)
-				gl_FragColor += vec4(0.0, 0.1, 0.2, 0.0);
+				gl_FragColor += vec4(0.0, 0.2, 0.4, 0.1);
 			gl_FragColor = mix(vec4(0,0,0,0), gl_FragColor, checker(topLeft));
 		}
 	')
