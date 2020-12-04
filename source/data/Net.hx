@@ -40,6 +40,25 @@ class Net
         NGio.logEvent(attempt_connect);
         Net.roomName = roomName;
         connecting = true;
+        
+        // client.getAvailableRooms(roomName,
+        //     function (name, rooms)
+        //     {
+        //         for (i=>room in rooms)
+        //         {
+        //             trace('$roomName=>$name, $i:${room.roomId}, ${room.metadata}');
+        //             // if (room.metadata && room.metadata.friendlyFire)
+        //             // {
+                        
+        //                 // join the room with `friendlyFire` by id:
+                        
+        //                 // var room = client.join(room.roomId);
+        //                 // return;
+        //             // }
+        //         }
+        //     });
+        
+        // client.joinOrCreate(roomName, ["version"=>"0.2.5"], GameState, 
         client.joinOrCreate(roomName, [], GameState, 
             (error, room)->
             {
