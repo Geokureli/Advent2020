@@ -506,4 +506,5 @@ enum abstract RoomName(String) to String
     var Hallway  = "hallway";
     var Entrance = "entrance";
     var Outside  = "outside";
+    var Music    = "music";
 }
