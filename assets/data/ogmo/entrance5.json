@@ -143,7 +143,8 @@
       "gridCellsY": 62,
       "decals": [
         {"x": 368, "y": 248, "texture": "foyer/foyer.png"},
-        {"x": 368, "y": 384, "texture": "foyer/rug.png"}
+        {"x": 368, "y": 384, "texture": "foyer/rug.png"},
+        {"x": 368, "y": 120, "texture": "foyer/Chandelier.png"}
       ],
       "folder": "../../images/props"
     }

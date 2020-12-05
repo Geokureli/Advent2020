@@ -3,6 +3,7 @@ package states.rooms;
 import data.Game;
 import data.Manifest;
 import data.NGio;
+import states.OgmoState;
 import vfx.ShadowShader;
 import vfx.ShadowSprite;
 
@@ -18,12 +19,23 @@ import openfl.filters.ShaderFilter;
 class EntranceState extends RoomState
 {
     var shade:ShadowSprite;
+    var chandelier:OgmoDecal;
+    var tree:OgmoDecal;
     
     override function create()
     {
         super.create();
         
-        foreground.getByName("tree").setBottomHeight(32);
+        tree = foreground.getByName("tree");
+        tree.setBottomHeight(32);
+        tree.setMiddleWidth(56);
+        
+        chandelier = background.getByName("Chandelier");
+        if (chandelier != null)
+        {
+            chandelier.scrollFactor.y = 2.0;
+            chandelier.alpha = 0;
+        }
         
         safeAddHoverText("jar_small", "Spread the Love",
             function ()
@@ -154,6 +166,7 @@ class EntranceState extends RoomState
         return FlxTween.num(from, to, duration, options, (num)->shade.shadow.setLightRadius(light, num));
     }
     
+    inline static var TREE_HIDE_TIME = 2.0;
     override function update(elapsed:Float)
     {
         super.update(elapsed);
@@ -161,10 +174,23 @@ class EntranceState extends RoomState
         switch(Game.state)
         {
             case Day1Intro(_):
-            {
                 shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
-            }
             case _:
+        }
+        
+        final showChandelier = player.y < 150;
+        final isBehindTree = player.y < tree.y && player.x > tree.x && player.x + player.width < tree.x + tree.width;
+        if (showChandelier || isBehindTree)
+            tree.alpha = Math.max(0, tree.alpha - elapsed / TREE_HIDE_TIME);
+        else
+            tree.alpha = Math.min(1, tree.alpha + elapsed / TREE_HIDE_TIME);
+        
+        if (chandelier != null)
+        {
+            if (showChandelier)
+                chandelier.alpha = Math.min(1, chandelier.alpha + elapsed / TREE_HIDE_TIME);
+            else
+                chandelier.alpha = Math.max(0, chandelier.alpha - elapsed / TREE_HIDE_TIME);
         }
     }
 }
