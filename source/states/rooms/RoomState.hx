@@ -55,6 +55,8 @@ class RoomState extends OgmoState
     
     public var name(default, null):RoomName;
     public var spawnId(default, null) = -1;
+    public var forceDay(default, null) = -1;
+    public var roomDay(default, null) = 0;
     
     public var geom(default, null):FlxTilemap;
     public var props(default, null):OgmoEntityLayer;
@@ -119,10 +121,12 @@ class RoomState extends OgmoState
     
     function loadLevel()
     {
-        var day = Calendar.day;
-        while(day > 0 && !Manifest.exists('assets/data/ogmo/$name$day.json'))
-            day--;
-        parseLevel('assets/data/ogmo/$name$day.json');
+        roomDay = Calendar.day;
+        if (forceDay > 0)
+            roomDay = forceDay;
+        while(roomDay > 0 && !Manifest.exists('assets/data/ogmo/$name$roomDay.json'))
+            roomDay--;
+        parseLevel('assets/data/ogmo/$name$roomDay.json');
     }
     
     function initEntities()

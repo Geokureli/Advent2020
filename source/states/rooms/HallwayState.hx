@@ -16,8 +16,10 @@ class HallwayState extends RoomState
     
     override function create()
     {
-        super.create();
+        if(Game.state.match(Day1Intro(Started)))
+            forceDay = 1;
         
+        super.create();
     }
     
     override function initEntities()

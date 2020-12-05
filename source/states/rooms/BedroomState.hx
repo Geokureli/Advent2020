@@ -43,6 +43,9 @@ class BedroomState extends RoomState
             return note;
         }
         
+        if(Game.state.match(Day1Intro(Started)))
+            forceDay = 1;
+        
         super.create();
         
         FlxG.camera.fade(FlxColor.BLACK, 1, true);
@@ -79,8 +82,10 @@ class BedroomState extends RoomState
         else
             dresserNotif.kill();
         
-        if (Calendar.day == 5 && Calendar.isUnseenDay)
+        if (roomDay == 5 && Calendar.isUnseenDay)
+        {
             notesById["december05"].animateIn(1.5);
+        }
     }
     
     function onOpenDresser()
