@@ -31,14 +31,26 @@ class MultiCallback
                 numRemaining--;
                 
                 if (logId != null)
-                    trace('fired $logId - $id');
+                    log('fired $id, $numRemaining remaining');
                 
                 if (numRemaining == 0)
+                {
+                    if (logId != null)
+                        log('all callbacks fired');
                     callback();
+                }
             }
+            else
+                log('already fired $id');
         }
         unfired[id] = func;
         return func;
+    }
+    
+    inline function log(msg):Void
+    {
+        if (logId != null)
+            trace('$logId: $msg');
     }
     
     public function getFired() return fired.copy();

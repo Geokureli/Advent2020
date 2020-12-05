@@ -1,5 +1,8 @@
 package states;
 
+import utils.Log;
+
+import haxe.PosInfos;
 import haxe.Json;
 
 import flixel.FlxBasic;
@@ -30,7 +33,7 @@ class OgmoState extends FlxState
         data.layers.reverse();
         for (layerData in data.layers)
         {
-            // trace('layer: ${layerData.name}');
+            Log.ogmoVerbose('layer: ${layerData.name}');
             var layer = createLayer(layerData);
             add(layer);
             byName[layerData.name] = layer;
@@ -138,14 +141,14 @@ class OgmoDecalLayer extends OgmoObjectLayer<OgmoDecal>
         
         for (decalData in data.decals)
         {
-            #if OGMO_LOG trace("creating decal:" + decalData.texture); #end
+            Log.ogmo("creating decal:" + decalData.texture);
             
             final name = getName(decalData.texture);
             final decal = new OgmoDecal(decalData);
             add(decal);
             if (!byName.exists(name))
                 byName[name] = decal;
-            // trace('decal: $name x:${decal.x} y:${decal.y}');
+            Log.ogmoVerbose('decal: $name x:${decal.x} y:${decal.y}');
         }
         
         for (i in 0...data.decals.length)
@@ -202,15 +205,16 @@ class OgmoEntityLayer extends OgmoObjectLayer<FlxObject>
         
         for (entityData in data.entities)
         {
+            Log.ogmoVerbose('Creating entity: $entityData');
             var entity = add(create(entityData, types));
             if (entityData.values != null && entityData.values.id != "" && entityData.values.id != null)
             {
-                // trace("entity:" + entityData.values.id);
+                Log.ogmoVerbose("entity:" + entityData.values.id);
                 byName[entityData.values.id] = entity;
             }
             else if (!byName.exists(name))
             {
-                // trace("entity:" + entityData.name);
+                Log.ogmoVerbose("entity:" + entityData.name);
                 byName[entityData.name] = entity;
             }
         }

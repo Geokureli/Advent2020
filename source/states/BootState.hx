@@ -1,6 +1,5 @@
 package states;
 
-
 import data.Save;
 import data.Calendar;
 import data.Content;
@@ -16,6 +15,7 @@ import flixel.FlxG;
 import flixel.ui.FlxButton;
 import flixel.util.FlxTimer;
 import flixel.text.FlxBitmapText;
+import flixel.graphics.frames.FlxBitmapFont;
 
 import openfl.Assets;
 
@@ -104,12 +104,12 @@ class BootState extends flixel.FlxState
     
     function beginGame():Void
     {
-        state = Initing;
+        setState(Initing);
         
         var callbacks = new MultiCallback(
             function ()
             {
-                state = Waiting;
+                setState(Waiting);
                 #if ALLOW_DAY_SKIP
                 if ((Calendar.isAdvent || Calendar.isDebugDay)
                     && Calendar.day != 24
@@ -117,9 +117,11 @@ class BootState extends flixel.FlxState
                 {
                     waitTime = MSG_TIME;
                     msg.text = "(debug)\n Press SPACE to time travel";
+                    msg.screenCenter(XY);
                 }
                 #end
             }
+            #if BOOT_LOG , "BootState" #end// add logid
         );
         var callbacksSet = callbacks.add("wait");
         Manifest.init(callbacks.add("manifest"));
@@ -152,6 +154,7 @@ class BootState extends flixel.FlxState
         {
             debugFutureEnabled = true;
             msg.text = "DEBUG\nTime travel activated";
+            msg.screenCenter(XY);
         }
         #end
         
@@ -171,13 +174,25 @@ class BootState extends flixel.FlxState
                             waitTime = 0.5;
                     }
                     #end
-                    state = Checking;
+                    setState(Checking);
                 case Checking:
                     
+                    if(getIsBadBrowser())
+                    {
+                        msg.font = new NokiaFont();
+                        msg.text = "This browser is not supported, Chrome is recommended\n"
+                            + "If you're using brave, try disabling shields for this page\n"
+                            + "Sorry for the inconvenience";
+                        msg.screenCenter(XY);
+                        setState(Error);
+                        return;
+                    }
+                    
                     var errors = Content.verifyTodaysContent();
+                    
                     if (errors != null)
                     {
-                        state = Error;
+                        setState(Error);
                         if (NGio.isContributor)
                         {
                             msg.font = new NokiaFont();
@@ -192,17 +207,37 @@ class BootState extends flixel.FlxState
                         return;
                     }
                     
-                    state = Success;
+                    setState(Success);
                     onComplete();
                 case Success:
                 case Error:
             }
         }
     }
+    
+    function getIsBadBrowser()
+    {
+        var font = FlxBitmapFont.getDefaultFont();
+        return font.frames.length < 52;//Arbitrarily based on [a-zA-Z]
+    }
+    
     function onComplete()
     {
         Game.init();
         Game.goToRoom(Main.initialRoom);
+    }
+    
+    inline function setState(state:State)
+    {
+        #if BOOT_LOG
+        log('state:${this.state}->$state');
+        #end
+        this.state = state;
+    }
+    
+    inline static function log(msg)
+    {
+        #if BOOT_LOG trace(msg); #end
     }
 }
 

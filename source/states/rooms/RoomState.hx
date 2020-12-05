@@ -7,6 +7,7 @@ import states.OgmoState;
 import ui.MedalPopup;
 import ui.MusicPopup;
 import ui.Prompt;
+import utils.Log;
 import vfx.Inline;
 
 import flixel.FlxBasic;
@@ -105,28 +106,37 @@ class RoomState extends OgmoState
             
             return present;
         }
+        Log.ogmo('loading level');
         loadLevel();
+        Log.ogmo('initing entities');
         initEntities();
+        Log.ogmo('initing UI');
         initUi();
+        Log.ogmo('initing camera');
         initCamera();
+        Log.ogmo('initing client');
         initClient();
         
         NGio.logEventOnce(enter);
     }
     
-    function onOpenPresent(present)
-    {
-        
-    }
+    function onOpenPresent(present) { }
     
     function loadLevel()
     {
         roomDay = Calendar.day;
         if (forceDay > 0)
             roomDay = forceDay;
-        while(roomDay > 0 && !Manifest.exists('assets/data/ogmo/$name$roomDay.json'))
+        
+        var levelPath = 'assets/data/ogmo/$name$roomDay.json';
+        while(roomDay > 0 && !Manifest.exists(levelPath))
+        {
+            levelPath = 'assets/data/ogmo/$name$roomDay.json';
             roomDay--;
-        parseLevel('assets/data/ogmo/$name$roomDay.json');
+        }
+        
+        Log.ogmo('parsing $levelPath');
+        parseLevel(levelPath);
     }
     
     function initEntities()

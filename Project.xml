@@ -28,9 +28,11 @@
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<!-- <define name="NG_BYPASS_LOGIN" if="debug"/> -->
+	<!-- <define name="NG_LURKER" if="debug"/> -->
 	<!-- <define name="NG_VERBOSE" if="debug"/> -->
 	<!-- <define name="NG_LOG"/> -->
 	<define name="NET_LOG"/>
+	<!-- <define name="BOOT_LOG"/> -->
 	<!-- <define name="OGMO_LOG"/> -->
 	
 	<!-- <define name="PRELOAD_ALL" if="debug" /> -->
