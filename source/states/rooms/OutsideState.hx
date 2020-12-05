@@ -11,6 +11,6 @@ class OutsideState extends RoomState
     {
         super.initEntities();
         
-        //foo = foreground.getByName("foo");
+        background.setAnimFrameRate("shine", 4);
     }
 }

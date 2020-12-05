@@ -22,6 +22,7 @@ class Game
         roomTypes[Bedroom ] = BedroomState.new;
         roomTypes[Hallway ] = HallwayState.new;
         roomTypes[Entrance] = EntranceState.new;
+        roomTypes[Outside] = OutsideState.new;
         
         if (Save.noPresentsOpened())
             state = Day1Intro(Started);
