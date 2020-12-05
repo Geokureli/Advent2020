@@ -37,8 +37,17 @@
     , "czyszy":
         { "proper": "CzySzy"
         }
+    , "snackers":
+        { "proper": "Snackers"
+        }
+    , "mkmaffo":
+        { "proper": "MKMaffo"
+        }
     , "splatterdash":
         { "proper": "SplatterDash"
+        }
+    , "karlestonchew":
+        { "proper": "Karlestonchew"
         }
     }
 ,   "songs":
@@ -111,6 +120,18 @@
         , "name"   : null
         , "authors": ["snackers"]
         , "day"    : 6
+        , "medal"  : true
+        }
+    ,   { "id"     : "mkmaffo"
+        , "name"   : null
+        , "authors": ["mkmaffo"]
+        , "day"    : 7
+        , "medal"  : true
+        }
+    ,   { "id"     : "karlestonchew"
+        , "name"   : null
+        , "authors": ["karlestonchew"]
+        , "day"    : 7
         , "medal"  : true
         }
     ]

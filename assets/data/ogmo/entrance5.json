@@ -112,6 +112,42 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": 1, "target": "outside.0"}
+        },
+        {
+          "name": "Present",
+          "id": 9,
+          "_eid": "75464384",
+          "x": 488,
+          "y": 408,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "snackers"}
+        },
+        {
+          "name": "Present",
+          "id": 10,
+          "_eid": "75464384",
+          "x": 472,
+          "y": 256,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "mkmaffo"}
+        },
+        {
+          "name": "Present",
+          "id": 11,
+          "_eid": "75464384",
+          "x": 248,
+          "y": 360,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "karlestonchew"}
         }
       ]
     },
