@@ -177,7 +177,7 @@ class BootState extends flixel.FlxState
                     setState(Checking);
                 case Checking:
                     
-                    if(getIsBadBrowser())
+                    if(isBrowserFarbling())
                     {
                         msg.font = new NokiaFont();
                         msg.text = "This browser is not supported, Chrome is recommended\n"
@@ -215,10 +215,17 @@ class BootState extends flixel.FlxState
         }
     }
     
-    function getIsBadBrowser()
+    function isBrowserFarbling()
     {
-        var font = FlxBitmapFont.getDefaultFont();
-        return font.frames.length < 52;//Arbitrarily based on [a-zA-Z]
+        #if js
+        var bmd = new openfl.display.BitmapData(10, 10, false, 0xFF00FF);
+        for(i in 0...bmd.width * bmd.height)
+        {
+            if (bmd.getPixel(i % 10, Std.int(i / 10)) != 0xFF00FF)
+                return true;
+        }
+        #end
+        return false;
     }
     
     function onComplete()
