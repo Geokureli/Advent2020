@@ -14,16 +14,28 @@ class Calendar
     static public var isUnseenDay(default, null) = false;
     static public function init(callback:()->Void = null):Void
     {
-        if (DEBUG_DAY == 0)
+        inline function setDebugDayAndCall(debugDay:Int)
         {
-            NGio.checkNgDate(()->onDateReceived(NGio.ngDate, callback));
+            setDebugDay(debugDay);
+            if (callback != null)
+                callback();
         }
+        
+        #if FORCE_INTRO
+        setDebugDayAndCall(1);
+        #else
+        if (DEBUG_DAY > 0)
+            setDebugDaysetDebugDayAndCall(DEBUG_DAY);
         else
-        {
-            day = DEBUG_DAY;
-            isAdvent = true;
-            isDecember = true;
-        }
+            NGio.checkNgDate(()->onDateReceived(NGio.ngDate, callback));
+        #end
+    }
+    
+    static function setDebugDay(debugDay:Int)
+    {
+        day = debugDay;
+        isAdvent = true;
+        isDecember = true;
     }
     
     static function onDateReceived(date:Date, callback:()->Void):Void

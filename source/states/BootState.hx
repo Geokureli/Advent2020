@@ -19,6 +19,8 @@ import flixel.text.FlxBitmapText;
 
 import openfl.Assets;
 
+import io.newgrounds.NG;
+
 class BootState extends flixel.FlxState
 {
     inline static var MSG_TIME = 1.5;
@@ -119,10 +121,12 @@ class BootState extends flixel.FlxState
                 #end
             }
         );
-        var wait = callbacks.add("wait");
+        var callbacksSet = callbacks.add("wait");
         Manifest.init(callbacks.add("manifest"));
         Calendar.init(callbacks.add("calendar"));
-        wait();
+        if (NG.core.loggedIn && NG.core.medals == null)
+            NG.core.onMedalsLoaded.addOnce(callbacks.add("medal list"));
+        callbacksSet();
     }
     
     inline function showErrorAndBegin(_ = null)
