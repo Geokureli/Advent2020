@@ -57,7 +57,7 @@ class Note extends FlxSpriteGroup
         
         FlxTween.num(0, 1, 1.0,
             { startDelay: delay
-            , ease:FlxEase.circOut
+            , ease:FlxEase.backOut
             , onComplete:func
             },
             function (num)
