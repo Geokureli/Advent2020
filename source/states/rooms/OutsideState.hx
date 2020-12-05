@@ -13,7 +13,10 @@ class OutsideState extends RoomState
     {
         super.initEntities();
         
-        background.setAnimFrameRate("shine", 4);
+        var shine = background.setAnimFrameRate("shine", 4);
+        background.getByName("moon").scrollFactor.y = 0.5;
+        background.getByName("lake").scrollFactor.y = 0.75;
+        background.getByName("shine").scrollFactor.y = 0.75;
     }
     
     override function update(elapsed:Float)
