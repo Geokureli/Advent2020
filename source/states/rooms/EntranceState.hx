@@ -30,7 +30,7 @@ class EntranceState extends RoomState
             {
                 NGio.logEvent(donate);
                 openUrl
-                    ( "https://www.toysfortots.org/Default.aspx"
+                    ( "https://www.toysfortots.org/default.aspx"
                     , "Help bring Tankmas joy to less-fortunate children?"
                     , ()->NGio.logEvent(donate_yes)
                     );

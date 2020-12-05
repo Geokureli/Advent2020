@@ -489,15 +489,12 @@ class RoomState extends OgmoState
     {
         var prompt = new Prompt();
         add(prompt);
-        var prettyUrl = url;
-        if (prettyUrl.indexOf("://") != -1)
-            prettyUrl = url.split("://").pop();
         
         if (customMsg == null)
             customMsg = "";
         else
             customMsg += "\n\n";
-        customMsg += 'Open external page?\n$prettyUrl';
+        customMsg += 'Open external page?\n${prettyUrl(url)}';
         
         prompt.setup
             ( customMsg
@@ -505,6 +502,14 @@ class RoomState extends OgmoState
             , null
             , remove.bind(prompt)
             );
+    }
+    
+    function prettyUrl(url:String)
+    {
+        if (url.indexOf("://") != -1)
+            url = url.split("://").pop();
+        
+        return url.split("default.aspx").join("");
     }
     
     override function destroy()
