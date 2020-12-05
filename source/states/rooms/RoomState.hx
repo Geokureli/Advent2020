@@ -6,6 +6,7 @@ import props.InfoBox;
 import states.OgmoState;
 import ui.MedalPopup;
 import ui.MusicPopup;
+import ui.Prompt;
 import vfx.Inline;
 
 import flixel.FlxBasic;
@@ -482,6 +483,28 @@ class RoomState extends OgmoState
     function activateTeleport(target)
     {
         Game.goToRoom(target);
+    }
+    
+    function openUrl(url:String, ?customMsg:String, ?onYes:()->Void):Void
+    {
+        var prompt = new Prompt();
+        add(prompt);
+        var prettyUrl = url;
+        if (prettyUrl.indexOf("://") != -1)
+            prettyUrl = url.split("://").pop();
+        
+        if (customMsg == null)
+            customMsg = "";
+        else
+            customMsg += "\n\n";
+        customMsg += 'Open external page?\n$prettyUrl';
+        
+        prompt.setup
+            ( customMsg
+            , FlxG.openURL.bind(url)
+            , null
+            , remove.bind(prompt)
+            );
     }
     
     override function destroy()

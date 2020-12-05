@@ -25,6 +25,18 @@ class EntranceState extends RoomState
         
         foreground.getByName("tree").setBottomHeight(32);
         
+        safeAddHoverText("jar_small", "Spread the Love",
+            function ()
+            {
+                NGio.logEvent(donate);
+                openUrl
+                    ( "https://www.toysfortots.org/Default.aspx"
+                    , "Help bring Tankmas joy to less-fortunate children?"
+                    , ()->NGio.logEvent(donate_yes)
+                    );
+            }
+        );
+        
         #if debug
         if(Game.state.match(Day1Intro(Started)|Day1Intro(Dressed)))
             Game.state = Day1Intro(Hallway);
