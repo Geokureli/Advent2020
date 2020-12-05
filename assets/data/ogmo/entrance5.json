@@ -126,7 +126,9 @@
       "gridCellsY": 62,
       "decals": [
         {"x": 32, "y": 224, "texture": "shared/sign.png"},
-        {"x": 376, "y": 216, "texture": "foyer/tree.png"}
+        {"x": 376, "y": 216, "texture": "foyer/tree.png"},
+        {"x": 136, "y": 172, "texture": "foyer/jar_small.png"},
+        {"x": 368, "y": 457.5, "texture": "foyer/snow_wind_ogmo.png"}
       ],
       "folder": "../../images/props"
     },
