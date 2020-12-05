@@ -1,5 +1,6 @@
 package states.rooms;
 
+import states.OgmoState;
 import flixel.tweens.FlxEase;
 import flixel.FlxG;
 import openfl.filters.ShaderFilter;
@@ -27,12 +28,6 @@ class HallwayState extends RoomState
         if(Game.state.match(Day1Intro(Started)))
             Game.state = Day1Intro(Dressed);
         #end
-        
-        for (door in background.getAllWithName("door").members)
-        {
-            door.animation.add("close", [1]);
-            door.animation.play("close");
-        }
         
         switch(Game.state)
         {

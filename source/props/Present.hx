@@ -85,6 +85,8 @@ class Present extends flixel.FlxSprite
     
     static public function fromEntity(data:OgmoEntityData<PresentValues>)
     {
-        return new Present(data.values.id, data.x - 16, data.y - 17);
+        var present = new Present(data.values.id, data.x - 16, data.y - 17);
+        data.applyToSprite(present);
+        return present;
     }
 }

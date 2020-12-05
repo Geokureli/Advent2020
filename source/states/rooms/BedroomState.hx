@@ -1,11 +1,12 @@
 package states.rooms;
 
+import data.Calendar;
 import data.Content;
 import data.EventState;
 import data.Game;
 import data.NGio;
 import data.Save;
-import props.InputPlayer;
+import props.Door;
 import props.InfoBox;
 import props.Notif;
 import props.Note;
@@ -29,7 +30,7 @@ class BedroomState extends RoomState
 {
     var dresser:OgmoDecal;
     var dresserNotif:Notif;
-    var door:OgmoDecal;
+    var door:Door;
     
     var notesById = new Map<String, Note>();
     
@@ -58,9 +59,7 @@ class BedroomState extends RoomState
     {
         super.initEntities();
         
-        door = background.getByName("door");
-        door.animation.add("close", [1]);
-        door.animation.play("close");
+        door = cast props.getByName("door");
         
         dresser = foreground.getByName("dresser");
         dresser.setBottomHeight(16);
@@ -73,6 +72,7 @@ class BedroomState extends RoomState
         
         if(Game.state.match(Day1Intro(Started)))
         {
+            door.close();
             addHoverTextTo(door, "Get dressed first");
             notesById["december01"].animateIn(1.5);
         }
@@ -85,16 +85,12 @@ class BedroomState extends RoomState
     
     function onOpenDresser()
     {
-        // player.active = false;
         dresserNotif.visible = false;
-        dresser.animation.play("open");
         var dressUp = new DressUpSubstate();
         dressUp.closeCallback = function()
         {
-            // dresser.animation.finishCallback = null;
-            // player.active = true;
             player.settings.applyTo(player);
-            dresser.animation.play("closed");
+            door.open();
         }
         openSubState(dressUp);
         

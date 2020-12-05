@@ -1,20 +1,8 @@
 package states.rooms;
 
-import data.Calendar;
-import data.Manifest;
-import data.Save;
-import data.Skins;
-import data.Content;
-import data.Game;
-import data.NGio;
-import data.Net;
-import data.PlayerSettings;
-import props.GhostPlayer;
+import data.*;
+import props.*;
 import props.InfoBox;
-import props.InputPlayer;
-import props.Player;
-import props.Present;
-import props.Teleport;
 import states.OgmoState;
 import ui.MedalPopup;
 import ui.MusicPopup;
@@ -93,7 +81,7 @@ class RoomState extends OgmoState
         FlxG.mouse.visible = !FlxG.onMobile;
         // #if debug FlxG.debugger.drawDebug = true; #end
         
-        // No @:arrayAccess function for Map<String, (OgmoEntityData<Dynamic>)->FlxObject> accepts arguments of String and (OgmoEntityData<Dynamic>)->Void
+        entityTypes["Door"] = cast Door.fromEntity;
         entityTypes["Teleport"] = cast function(data)
         {
             var teleport = Teleport.fromEntity(data);
