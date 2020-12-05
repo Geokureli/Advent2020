@@ -30,13 +30,16 @@ class Present extends flixel.FlxSprite
         animation.add("opening", [1]);
         animation.play(Save.hasOpenedPresent(id) ? "opened" : "closed");
         graphic.bitmap.fillRect(new openfl.geom.Rectangle(32, 0, 32, 2), 0x0);
+        scale.set(0.5, 0.5);
+        offset.x = 8;
+        offset.y = -8;
         
         (this:OgmoDecal).setBottomHeight(this.frameHeight >> 1);
         drag.set(5000, 5000);
         
         confetti = new FlxSprite(CONFETTI_PATH);
         confetti.loadGraphic(CONFETTI_PATH, true, Math.floor(confetti.width / CONFETTI_FRAMES), Std.int(confetti.height));
-        confetti.offset.x = 10;
+        confetti.offset.x = 20;
         confetti.offset.y = -(height - frameHeight - confetti.height + 20);
         confetti.animation.add("idle", [0]);
         confetti.animation.add("anim", [for (i in 0...CONFETTI_FRAMES) i], 10, false);

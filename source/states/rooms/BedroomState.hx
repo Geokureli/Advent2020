@@ -59,7 +59,7 @@ class BedroomState extends RoomState
     {
         super.initEntities();
         
-        door = cast props.getByName("door");
+        door = cast props.getByName("Door");
         
         dresser = foreground.getByName("dresser");
         dresser.setBottomHeight(16);

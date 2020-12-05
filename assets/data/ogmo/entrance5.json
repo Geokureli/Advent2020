@@ -34,7 +34,9 @@
           "id": 1,
           "_eid": "75464384",
           "x": 360,
-          "y": 384,
+          "y": 392,
+          "width": 16,
+          "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"id": "cymbourine"}
@@ -57,6 +59,8 @@
           "_eid": "75464384",
           "x": 168,
           "y": 432,
+          "width": 16,
+          "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"id": "mintyeggs"}
@@ -67,6 +71,8 @@
           "_eid": "75464384",
           "x": 472,
           "y": 108,
+          "width": 16,
+          "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"id": "mixmuffin"}
@@ -77,6 +83,8 @@
           "_eid": "75464384",
           "x": 568,
           "y": 336,
+          "width": 16,
+          "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"id": "einmeister"}
@@ -87,6 +95,8 @@
           "_eid": "75464384",
           "x": 216,
           "y": 272,
+          "width": 16,
+          "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"id": "snackers"}
