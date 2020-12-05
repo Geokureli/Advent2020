@@ -25,7 +25,7 @@ class Calendar
         setDebugDayAndCall(1);
         #else
         if (DEBUG_DAY > 0)
-            setDebugDaysetDebugDayAndCall(DEBUG_DAY);
+            setDebugDayAndCall(DEBUG_DAY);
         else
             NGio.checkNgDate(()->onDateReceived(NGio.ngDate, callback));
         #end
