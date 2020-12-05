@@ -498,7 +498,11 @@ class RoomState extends OgmoState
         
         prompt.setup
             ( customMsg
-            , FlxG.openURL.bind(url)
+            , ()->
+            {
+                FlxG.openURL(url);
+                if (onYes != null) onYes();
+            }
             , null
             , remove.bind(prompt)
             );
