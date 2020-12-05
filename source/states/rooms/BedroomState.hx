@@ -78,6 +78,9 @@ class BedroomState extends RoomState
         }
         else
             dresserNotif.kill();
+        
+        if (Calendar.day == 5 && Calendar.isUnseenDay)
+            notesById["december05"].animateIn(1.5);
     }
     
     function onOpenDresser()
