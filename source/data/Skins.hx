@@ -55,7 +55,7 @@ class Skins
             }
         );
         
-        if (showPopup)
+        if (showPopup && unlockedCount > Save.countSkinsSeen())
             ui.SkinPopup.show(unlockedCount - Save.countSkinsSeen());
     }
     
