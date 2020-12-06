@@ -33,6 +33,8 @@ class EntranceState extends RoomState
         chandelier = background.getByName("Chandelier");
         if (chandelier != null)
         {
+            background.remove(chandelier);
+            topGround.add(chandelier);
             chandelier.scrollFactor.y = 2.0;
             chandelier.alpha = 0;
         }
@@ -178,7 +180,7 @@ class EntranceState extends RoomState
             case _:
         }
         
-        final showChandelier = player.y < 150;
+        final showChandelier = player.y < 160;
         final isBehindTree = player.y < tree.y && player.x > tree.x && player.x + player.width < tree.x + tree.width;
         if (showChandelier || isBehindTree)
             tree.alpha = Math.max(0, tree.alpha - elapsed / TREE_HIDE_TIME);
