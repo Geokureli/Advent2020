@@ -81,7 +81,7 @@ class Content
             if (art.day != null && art.day <= Calendar.day)
             {
                 if (daysFound.contains(art.day))
-                    errors.push('Multiple artwork woth medals of day:${art.day}');
+                    errors.push('Multiple artwork with medals of day:${art.day}');
                 else if (art.medal)
                     daysFound.push(art.day);
                 
