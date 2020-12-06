@@ -196,21 +196,21 @@
     , "description": "They say that God made us in his own image, so why not play as him? -b"
     , "unlocksBy": null
     , "users": ["brandybuizel"]
-    , "group":"devs"
+    , "group": "devs"
     }
 ,   { "id": "velour"
     , "proper": "Velour"
     , "description": "I'm not super into madness, but I know that those \npeople are into her as well. A cute hologram OC by Cymbourine."
     , "unlocksBy": "medal:1"
     , "users": ["cymbourine"]
-    , "group":"devs"
+    , "group": "devs"
     }
 ,   { "id": "horse"
     , "proper": "Horse"
     , "description": "It's that guy from NEAR DEADline, you should play that game instead, trust me."
     , "unlocksBy": null
     , "users": ["nickconter"]
-    , "group":"devs"
+    , "group": "devs"
     }
 ,   { "id": "snake"
     , "proper": "Solid Snake"
@@ -223,20 +223,20 @@
     , "description": "This here’s Aine, she’s an orange knight from Renaine with a feather to pick with a Dragon who did her dirty."
     , "unlocksBy": null
     , "users": ["squidly"]
-    , "group":"renaine"
+    , "group": "renaine"
     }
 ,   { "id": "karrion"
     , "proper": "Karrion Killer"
     , "description": "The Flesh Reaper Celebrateth."
     , "unlocksBy": "day:6"
     , "users": ["prosciuttoman", "leviramirez"]
-    , "group":"prosciuttoman"
+    , "group": "prosciuttoman"
     }
 ,   { "id": "elk"
     , "proper": "Elk"
-    , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer."
+    , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer. I call him Phil."
     , "unlocksBy": null
-    , "users": ["geokureli"]
+    , "users": ["brandybuizel", "sirlenward", "ellsketchlr", "geokureli"]
     }
 ,   { "id": "lucky"
     , "proper": "Lucky"
@@ -247,13 +247,13 @@
 ,   { "id": "duncan_and_jones"
     , "proper": "Duncan & Jones"
     , "description": ""
-    , "unlocksBy": null
+    , "unlocksBy": "medal:6"
     , "users": ["snackers"]
     }
 ,	{ "id": "purple_imposter"
     , "proper": "Purple Imposter"
     , "description": "A not so nice crewmate from Among Us."
-    , "unlocksBy": null
+    , "unlocksBy": 5
     , "users": ["puffballsunited", "fortebass", "aemu"]
     }
 ,	{ "id": "gilded_guy"
@@ -286,13 +286,19 @@
     , "description": "I'm Dr. Miles Manners, just your average wasp-themed superhero by day, but by night I become Dr. Bees!"
     , "unlocksBy": null
     , "users": ["happyharry"]
-    , "group":"harry"
+    , "group": "harry"
     }
 ,	{ "id": "mvchan"
     , "proper": "MV-Chan"
     , "description": ""
     , "unlocksBy": null
     , "users": ["speedo"]
+    }
+,	{ "id": "ritz"
+    , "proper": "Ritz"
+    , "description": ""
+    , "unlocksBy": "medal:7"
+    , "users": ["ninjamuffin99", "mkmaffo", "digimin", "kawaisprite"
     }
 ,   { "id": "custom"
     , "proper": "Custom"
