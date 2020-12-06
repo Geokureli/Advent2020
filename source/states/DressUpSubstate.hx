@@ -222,7 +222,7 @@ class DressUpSubstate extends flixel.FlxSubState
             descText.text = currentSkin.description;
             ok.active = true;
             ok.alpha = 1;
-            if (currentSprite.unseen.visible)
+            if (currentSprite.unseen.visible && !Calendar.isDebugDay)
                 Save.skinSeen(currentSkin.index);
         }
         else
