@@ -33,6 +33,23 @@ class Skins
         }
         
         checkUnlocks(!Game.state.match(Day1Intro(_)));
+        
+        if (NGio.isLoggedIn)
+        {
+            if (NG.core.medals != null)
+                medalsLoaded();
+            else
+                NG.core.onMedalsLoaded.add(medalsLoaded);
+        }
+    }
+    
+    static function medalsLoaded():Void
+    {
+        for (medal in NG.core.medals)
+        {
+            if(medal.unlocked #if debug || true #end)
+                medal.onUnlock.add(checkUnlocks.bind(true));
+        }
     }
     
     static public function checkUnlocks(showPopup = true)

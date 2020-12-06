@@ -124,7 +124,20 @@ class NGio
 	// --- MEDALS
 	static function onMedalsRequested():Void
 	{
-		// Calendar.onMedalsRequested();
+		#if NG_LOG
+		var numMedals = 0;
+		var numMedalsLocked = 0;
+		for (medal in NG.core.medals)
+		{
+			trace('${medal.unlocked ? "unlocked" : "locked  "} - ${medal.name}');
+			
+			if (!medal.unlocked)
+				numMedalsLocked++;
+			
+			numMedals++;
+		}
+		trace('loaded $numMedals medals, $numMedalsLocked locked ');
+		#end
 	}
 	
 	static public function unlockDayMedal(day:Int, showDebugUnlock = true):Void
