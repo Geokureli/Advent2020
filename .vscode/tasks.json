@@ -10,7 +10,14 @@
 		{
 			"label": "debug: html",
 			"command": "haxelib",
-			"args": ["run", "lime", "build", "html5", "-debug", "--port=3001"],
+			"args": ["run", "lime", "build", "html5", "-debug"],
+			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
+			"group": { "kind": "build", "isDefault": true }
+		},
+		{
+			"label": "dig game - debug: html",
+			"command": "haxelib",
+			"args": ["run", "lime", "build", "digMinigame/Project.xml", "html5", "-debug"],
 			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
 			"group": { "kind": "build", "isDefault": true }
 		}

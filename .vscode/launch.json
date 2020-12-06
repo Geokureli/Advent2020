@@ -19,6 +19,16 @@
 			"preLaunchTask": "debug: html"
 		},
 		{
+			"name": "ChromeDiggingGame",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://127.0.0.1:3000",
+			"sourceMaps": true,
+			"webRoot": "${workspaceFolder}/digMinigame",
+			"runtimeArgs": ["--disable-web-security"],
+			"preLaunchTask": "dig game - debug: html"
+		},
+		{
 			"name": "FireFox",
 			"type": "firefox",
 			"request": "launch",
