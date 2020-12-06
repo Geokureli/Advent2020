@@ -100,12 +100,13 @@ class DressUpSubstate extends flixel.FlxSubState
             top = Math.min(top, sprite.y);
             bottom = Math.max(bottom, sprite.y + sprite.height);
         }
+        top -= BAR_MARGIN;
         
         nameText.text = currentSkin.proper;
         nameText.screenCenter(X);
-        nameText.y = top - BAR_MARGIN - nameText.height;
+        nameText.y = top - nameText.height;
         nameText.scrollFactor.set(0, 0);
-        top -= nameText.height + BAR_MARGIN * 2;
+        top -= nameText.height + BAR_MARGIN;
         add(nameText);
         
         descText.text = currentSkin.description;
@@ -147,6 +148,8 @@ class DressUpSubstate extends flixel.FlxSubState
         ok.screenCenter(X);
         ok.y = bottom + BAR_MARGIN;
         ok.scrollFactor.set(0, 0);
+        
+        hiliteCurrent();
     }
     
     override function update(elapsed:Float)
@@ -184,10 +187,10 @@ class DressUpSubstate extends flixel.FlxSubState
         if(current >= sprites.length - 1)
             return;
         
+        unhiliteCurrent();
         currentSprite.x -= SIDE_GAP;
         current++;
         currentSprite.x -= SIDE_GAP;
-        
         hiliteCurrent();
     }
     
@@ -196,11 +199,17 @@ class DressUpSubstate extends flixel.FlxSubState
         if(current <= 0)
             return;
         
+        unhiliteCurrent();
         currentSprite.x += SIDE_GAP;
         current--;
         currentSprite.x += SIDE_GAP;
-        
         hiliteCurrent();
+    }
+    
+    function unhiliteCurrent()
+    {
+        currentSprite.unseen.visible
+            = currentSkin.unlocked && !Save.hasSeenskin(currentSkin.index);
     }
     
     function hiliteCurrent()
@@ -213,6 +222,8 @@ class DressUpSubstate extends flixel.FlxSubState
             descText.text = currentSkin.description;
             ok.active = true;
             ok.alpha = 1;
+            if (currentSprite.unseen.visible)
+                Save.skinSeen(currentSkin.index);
         }
         else
         {
@@ -259,6 +270,7 @@ class DressUpSubstate extends flixel.FlxSubState
 class SkinDisplay extends FlxSprite
 {
     public final data:SkinData;
+    public final unseen:FlxSprite;
     
     public function new (data:SkinData, x = 0.0, y = 0.0)
     {
@@ -266,5 +278,18 @@ class SkinDisplay extends FlxSprite
         super(x, y);
         
         data.loadTo(this);
+        unseen = new FlxSprite("assets/images/ui/new.png");
+        unseen.visible = data.unlocked && !Save.hasSeenskin(data.index);
+    }
+    
+    override function draw()
+    {
+        super.draw();
+        if (unseen.visible)
+        {
+            unseen.x = x + width - unseen.width / 2;
+            unseen.y = y - unseen.height;
+            unseen.draw();
+        }
     }
 }

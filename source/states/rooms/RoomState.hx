@@ -6,6 +6,7 @@ import props.InfoBox;
 import states.OgmoState;
 import ui.MedalPopup;
 import ui.MusicPopup;
+import ui.SkinPopup;
 import ui.Prompt;
 import utils.Log;
 import vfx.Inline;
@@ -53,6 +54,7 @@ class RoomState extends OgmoState
     var spawnTeleport:Teleport;
     var medalPopup:MedalPopup;
     var musicPopup:MusicPopup;
+    var skinPopup:SkinPopup;
     
     public var name(default, null):RoomName;
     public var spawnId(default, null) = -1;
@@ -191,6 +193,7 @@ class RoomState extends OgmoState
         ui.add(infoBoxGroup);
         ui.add(medalPopup = MedalPopup.getInstance());
         ui.add(musicPopup = MusicPopup.getInstance());
+        ui.add(skinPopup = SkinPopup.getInstance());
         ui.forEach(
             function(obj)
             {

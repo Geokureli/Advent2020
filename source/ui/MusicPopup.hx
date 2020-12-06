@@ -23,8 +23,6 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
     var main:FlxSprite;
     var bar:FlxSprite;
     var text:FlxBitmapText;
-    var time = 0.0;
-    var state = Hidden;
     
     public function new()
     {
@@ -107,11 +105,4 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
             instance = new MusicPopup();
         return instance;
     }
-}
-private enum State
-{
-    Hidden;
-    Intro;
-    Shown;
-    Outro;
 }

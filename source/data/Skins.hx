@@ -23,21 +23,28 @@ class Skins
         byIndex = Json.parse(Assets.getText("assets/data/skins.json"));
         byIndex.pop();//custom
         sorted = byIndex.copy();
-        for (i in 0...byIndex.length)
+        for (i=>data in byIndex)
         {
             byIndex[i].index = i;
             byIndex[i].unlocked = #if UNLOCK_ALL_SKINS true #else false #end;
+            
+            if (data.unlocksBy != null && !Std.is(data.unlocksBy, String))
+                throw 'Invalid unlocksBy:${data.unlocksBy} id:${data.id}';
         }
         
-        checkUnlocks();
+        checkUnlocks(!Game.state.match(Day1Intro(_)));
     }
     
-    static public function checkUnlocks()
+    static public function checkUnlocks(showPopup = true)
     {
+        var unlockedCount = 0;
         for (data in byIndex)
         {
-            if (!data.unlocked)
-                data.unlocked = checkUser(data.users) || checkUnlockCondition(data.unlocksBy);
+            if (!data.unlocked && (checkUser(data.users) || checkUnlockCondition(data.unlocksBy)))
+                data.unlocked = true;
+            
+            if (data.unlocked)
+                unlockedCount++;
         }
         
         sorted.sort(function (a, b)
@@ -47,6 +54,20 @@ class Skins
                 return (a.unlocked ? 0 : 1) - (b.unlocked ? 0 : 1);
             }
         );
+        
+        if (showPopup)
+            ui.SkinPopup.show(unlockedCount - Save.countSkinsSeen());
+    }
+    
+    static public function checkHasUnseen()
+    {
+        var unlockedCount = 0;
+        for (data in byIndex)
+        {
+            if (data.unlocked)
+                unlockedCount++;
+        }
+        return unlockedCount > Save.countSkinsSeen();
     }
     
     static function checkUser(users:Array<String>)

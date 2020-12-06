@@ -133,12 +133,15 @@ class NGio
 	}
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
-		if(isLoggedIn && !Calendar.isDebugDay)
+		if (isLoggedIn && !Calendar.isDebugDay)
 		{
 			log("unlocking " + id);
 			var medal = NG.core.medals.get(id);
 			if (!medal.unlocked)
+			{
 				medal.sendUnlock();
+				Skins.checkUnlocks();
+			}
 			else if (showDebugUnlock)
 				#if debug medal.onUnlock.dispatch();
 				#else log("already unlocked");

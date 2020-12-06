@@ -250,51 +250,51 @@
     , "unlocksBy": "medal:6"
     , "users": ["snackers"]
     }
-,	{ "id": "purple_imposter"
+,   { "id": "purple_imposter"
     , "proper": "Purple Imposter"
     , "description": "A not so nice crewmate from Among Us."
-    , "unlocksBy": 5
+    , "unlocksBy": "day:5"
     , "users": ["puffballsunited", "fortebass", "aemu"]
     }
-,	{ "id": "gilded_guy"
+,   { "id": "gilded_guy"
     , "proper": "Gilded Guy"
     , "description": ""
     , "unlocksBy": null
     , "users": ["gildedguy"]
     }
-,	{ "id": "luis"
+,   { "id": "luis"
     , "proper": "Luis"
     , "description": "Luis from the site, let's hope he doesn't spill any drinks on THIS server for ADVENT."
     , "unlocksBy": null
     , "users": ["luis"]
     , "group": "ng"
     }
-,	{ "id": "ninjamuffin"
+,   { "id": "ninjamuffin"
     , "proper": "Ninja Muffin"
     , "description": "Cameron Muffin | Game Dev"
     , "unlocksBy": null
     , "users": ["ninjamuffin99"]
     }
-,	{ "id": "boyfriend"
+,   { "id": "boyfriend"
     , "proper": "Boyfriend"
     , "description": "The boyfriend from the number one rated rhythm game of all time on Newgrounds, Friday Night Funkin'"
     , "unlocksBy": null
     , "users": ["ninjamuffin99", "phantomarcade", "evilsk8r", "kawaisprite", "geokureli", "brandybuizel"]
     }
-,	{ "id": "drbees"
+,   { "id": "drbees"
     , "proper": "Dr. Bees"
     , "description": "I'm Dr. Miles Manners, just your average wasp-themed superhero by day, but by night I become Dr. Bees!"
     , "unlocksBy": null
     , "users": ["happyharry"]
     , "group": "harry"
     }
-,	{ "id": "mvchan"
+,   { "id": "mvchan"
     , "proper": "MV-Chan"
     , "description": ""
     , "unlocksBy": null
     , "users": ["speedo"]
     }
-,	{ "id": "ritz"
+,   { "id": "ritz"
     , "proper": "Ritz"
     , "description": ""
     , "unlocksBy": "medal:7"

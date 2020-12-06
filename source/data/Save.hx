@@ -42,6 +42,13 @@ class Save
         }
         #if LOG_SAVE trace("seen days: " + data.days); #end
         
+        if (clearSave || data.skins == null)
+        {
+            data.skins = new BitArray();
+            newData = true;
+        }
+        #if LOG_SAVE trace("seen days: " + data.days); #end
+        
         if (clearSave || data.skin == null)
         {
             data.skin = 0;
@@ -122,7 +129,26 @@ class Save
     
     static public function countDaysSeen()
     {
-        return data.days.getLength();
+        return data.days.countTrue();
+    }
+    
+    static public function skinSeen(index:Int)
+    {
+        if (data.skins[index] == false)
+        {
+            data.skins[index] = true;
+            flush();
+        }
+    }
+    
+    static public function hasSeenskin(index:Int)
+    {
+        return data.skins[index];
+    }
+    
+    static public function countSkinsSeen()
+    {
+        return data.skins.countTrue();
     }
     
     static public function setSkin(id:Int)
@@ -141,5 +167,6 @@ typedef SaveData =
 {
     var presents:BitArray;
     var days:BitArray;
+    var skins:BitArray;
     var skin:Int;
 }

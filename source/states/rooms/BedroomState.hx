@@ -6,6 +6,7 @@ import data.EventState;
 import data.Game;
 import data.NGio;
 import data.Save;
+import data.Skins;
 import props.Door;
 import props.InfoBox;
 import props.Notif;
@@ -73,14 +74,15 @@ class BedroomState extends RoomState
         dresserNotif.animate();
         add(dresserNotif);
         
+        if (!Skins.checkHasUnseen())
+            dresserNotif.kill();
+        
         if(Game.state.match(Day1Intro(Started)))
         {
             door.close();
             addHoverTextTo(door, "Get dressed first");
             notesById["december01"].animateIn(1.5);
         }
-        else
-            dresserNotif.kill();
         
         if (roomDay == 5 && Calendar.isUnseenDay)
         {
