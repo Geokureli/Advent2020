@@ -1,3 +1,6 @@
 [submodule "server"]
 	path = server
 	url = https://github.com/Geokureli/Advent2020-Server.git
+[submodule "digMinigame"]
+	path = digMinigame
+	url = https://github.com/oscarcederberg/adventcollab20-digging.git
