@@ -2,6 +2,7 @@ package states;
 
 
 import data.Calendar;
+import data.NGio;
 import data.Save;
 import data.PlayerSettings;
 import data.Skins;
@@ -236,7 +237,7 @@ class DressUpSubstate extends flixel.FlxSubState
                 descText.text = switch (currentSkin.unlocksBy.split(":"))
                 {
                     case ["login"    ]: LOGIN;
-                    case ["medal", day]: Std.parseInt(day) > Calendar.day ? LOGIN : KEEP_PLAYING;
+                    case ["medal", day]: NGio.isLoggedIn ? KEEP_PLAYING : LOGIN;
                     case ["supporter"]: "Become a newgrounds supporter to unlock this";
                     default: KEEP_PLAYING;
                 }
