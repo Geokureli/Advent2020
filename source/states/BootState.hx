@@ -230,8 +230,25 @@ class BootState extends flixel.FlxState
     
     function onComplete()
     {
+        preloadArt("einmeister"); // takes forever to load, people think it froze
+        preloadSong("splatterdash"); // takes forever to load, people think it froze
+        
         Game.init();
         Game.goToRoom(Main.initialRoom);
+    }
+    
+    function preloadArt(id:String)
+    {
+        final data = Content.artwork[id];
+        if (Calendar.day >= data.day)
+            Manifest.loadArt(id);
+    }
+    
+    function preloadSong(id:String)
+    {
+        final data = Content.songs[id];
+        if (Calendar.day >= data.day)
+            Manifest.loadSong(id);
     }
     
     inline function setState(state:State)

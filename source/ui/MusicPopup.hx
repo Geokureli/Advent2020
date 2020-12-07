@@ -17,7 +17,7 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
     inline static var MAIN_PATH = "assets/images/ui/music/popup.png";
     inline static var BAR_PATH = "assets/images/ui/music/popup_bar.png";
     
-    static var info:SongCreation;
+    static var info:MusicInfo;
     var tweener:FlxTweenManager = new FlxTweenManager();
     
     var main:FlxSprite;
@@ -68,19 +68,34 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
     function playAnim():Void
     {
         visible = true;
-        text.text = info.name + " by " + Content.listAuthorsProper(info.authors);
-        info = null;
         
         tweener.cancelTweensOf(this);
+        var tweenOutro:(?_:FlxTween)->Void = null;
         final duration = 0.5;
-        function tweenOutro(?_)
+        
+        switch (info)
         {
-            var outroTween = tweener.tween(this, { y:FlxG.height }, duration,
-                { startDelay:DURATION, ease:FlxEase.circInOut, onComplete:(_)->visible = false });
+            case Playing(data):
+            {
+                text.text = data.name + " by " + Content.listAuthorsProper(data.authors);
+                tweenOutro = function (?_)
+                {
+                    var outroTween = tweener.tween(this, { y:FlxG.height }, duration,
+                        { startDelay:DURATION, ease:FlxEase.circInOut, onComplete:(_)->visible = false });
+                }
+            }
+            case Loading(data):
+                text.text = "Loading " + data.name + " by " + Content.listAuthorsProper(data.authors);
         }
         
-        // if (y > FlxG.height - bar.height)
+        if (y > FlxG.height - bar.height)
             bar.x = text.x + text.width - bar.width + 6;
+        else
+        {
+            FlxTween.tween(bar, { x:text.x + text.width - bar.width + 6 }, 0.25,
+                { ease:FlxEase.circInOut });
+        }
+        
         
         if (y > FlxG.height - main.height)
         {
@@ -90,11 +105,20 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
         }
         else
             tweenOutro();
+        
+        info = null;
     }
     
     static public function showInfo(info:SongCreation)
     {
-        MusicPopup.info = info;
+        MusicPopup.info = Playing(info);
+        if (instance != null)
+            instance.playAnim();
+    }
+    
+    static public function showLoading(info:SongCreation)
+    {
+        MusicPopup.info = Loading(info);
         if (instance != null)
             instance.playAnim();
     }
@@ -105,4 +129,10 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
             instance = new MusicPopup();
         return instance;
     }
+}
+
+private enum MusicInfo
+{
+    Playing(data:SongCreation);
+    Loading(data:SongCreation);
 }
