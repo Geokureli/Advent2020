@@ -49,6 +49,12 @@
     , "karlestonchew":
         { "proper": "Karlestonchew"
         }
+    , "chrisbasso":
+        { "proper": "chrisbasso"
+        }
+    , "knose":
+        { "proper": "KnoseDoge"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -87,6 +93,14 @@
         , "bpm"      : 60
         , "ngId"     : 986028
         , "day"      : 7
+        }
+    ,   { "id"     : "chrisbasso"
+        , "name"   : "Funky Christmas MIX"
+        , "authors": ["chrisbasso"]
+        , "key"      : "f#Maj"
+        , "bpm"      : 101
+        , "ngId"     : 1559697
+        , "day"      : null
         }
     ]
 ,   "artwork":
