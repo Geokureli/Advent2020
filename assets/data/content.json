@@ -165,7 +165,7 @@
 ,   "arcades":
     [   { "id":"digging"
         , "authors": ["knose", "chdonga", "gallowjolt", "splatterdash"]
-        , "scoreboard":9728
+        , "scoreboard":"Festive Forage"
         , "day":8
         , "ngId":1556969
         }

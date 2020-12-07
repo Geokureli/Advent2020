@@ -19,7 +19,6 @@ class NGio
 	inline static var DEBUG_SESSION = #if NG_DEBUG true #else false #end;
 	
 	inline static public var DAY_MEDAL_0 = 61304;
-	inline static public var DIGGING_BOARD = 9728;
 	
 	public static var isLoggedIn(default, null):Bool = false;
 	public static var userName(default, null):String;
@@ -133,6 +132,14 @@ class NGio
 		for (board in NG.core.scoreBoards)
 		{
 			log('Scoreboard loded ${board.name}:${board.id}');
+			for (arcade in Content.arcades)
+			{
+				if (board.name == arcade.scoreboard)
+				{
+					arcade.scoreboardId = board.id;
+					break;
+				}
+			}
 		}
 		
 		ngScoresLoaded.dispatch();
@@ -146,7 +153,7 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = Content.arcades[id].scoreboard;
+		var boardId = Content.arcades[id].scoreboardId;
 		if (!NG.core.scoreBoards.exists(boardId))
 			throw "Invalid boardId:" + boardId;
 		
@@ -164,7 +171,7 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = Content.arcades[id].scoreboard;
+		var boardId = Content.arcades[id].scoreboardId;
 		if (!NG.core.scoreBoards.exists(boardId))
 			throw "Invalid boardId:" + boardId;
 		
@@ -184,7 +191,7 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = Content.arcades[id].scoreboard;
+		var boardId = Content.arcades[id].scoreboardId;
 		if (!NG.core.scoreBoards.exists(boardId))
 			throw "Invalid boardId:" + boardId;
 		

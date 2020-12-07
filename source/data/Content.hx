@@ -274,7 +274,8 @@ typedef ArcadeCreation
 = Creation &
 {
     var ngId:Int;
-    var scoreboard:Int;
+    var scoreboard:String;
+    var scoreboardId:Int;
     var medalPath:String;
 }
 
