@@ -18,7 +18,7 @@ class InputPlayer extends Player
     
     public var timer = 0.0;
     public var lastSend = FlxPoint.get();
-    public var sendDelay = 0.5;
+    public var sendDelay = 1.0 / 6;
     
     public function new(x = 0.0, y = 0.0)
     {
