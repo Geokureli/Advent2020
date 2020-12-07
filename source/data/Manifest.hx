@@ -96,6 +96,7 @@ class Manifest
                 var graphic = FlxG.bitmap.add(bmd, true, id);
                 art[id] = graphic;
                 graphic.destroyOnNoUse = false;
+                graphic.persist = true;
                 if (loadingArt[id] != null)
                     loadingArt[id](graphic);
             }
