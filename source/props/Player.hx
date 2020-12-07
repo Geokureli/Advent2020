@@ -1,17 +1,16 @@
 package props;
 
-import flixel.math.FlxVector;
-import flixel.math.FlxMath;
 import Types;
 import data.PlayerSettings;
 import data.Skins;
 import states.rooms.RoomState;
-import rig.Rig;
 
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
+import flixel.math.FlxVector;
 import flixel.util.FlxDestroyUtil;
 
 class Player extends flixel.FlxSprite
@@ -34,6 +33,7 @@ class Player extends flixel.FlxSprite
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
     var bobTimer = 0.0;
+    var smooch:FlxSprite;
     
     public function new(x = 0.0, y = 0.0, settings:PlayerSettings)
     {
@@ -166,19 +166,12 @@ class Player extends flixel.FlxSprite
     {
         super.draw();
         
-        #if USE_RIG
-        if (rig.visible)
-            rig.drawTo(this);
-        #end
-        
         hitbox.draw();
     }
     
     override function destroy()
     {
         super.destroy();
-        
-        #if USE_RIG rig = FlxDestroyUtil.destroy(rig); #end
         offset = FlxDestroyUtil.put(offset);
         // scale = FlxDestroyUtil.put(scale);
     }
