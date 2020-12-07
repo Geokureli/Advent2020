@@ -54,9 +54,9 @@ class NGio
 			callback();
 		}
 		
-		
 		logDebug("connecting to newgrounds");
-		NG.createAndCheckSession(APIStuff.APIID, APIStuff.DebugSession, onSessionFail);
+		final ngDebug = #if NG_DEBUG true #else false #end;
+		NG.createAndCheckSession(APIStuff.APIID, ngDebug, APIStuff.DebugSession, onSessionFail);
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end
@@ -151,10 +151,7 @@ class NGio
 			log("unlocking " + id);
 			var medal = NG.core.medals.get(id);
 			if (!medal.unlocked)
-			{
 				medal.sendUnlock();
-				Skins.checkUnlocks();
-			}
 			else if (showDebugUnlock)
 				#if debug medal.onUnlock.dispatch();
 				#else log("already unlocked");
