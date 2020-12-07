@@ -10,6 +10,7 @@ class Main extends openfl.display.Sprite
 		// (RoomName.Hallway:String) + ".0";
 		// (RoomName.Entrance:String) + ".0";
 		// (RoomName.Outside:String) + ".0";
+		// "arcade.0";
 		#else
 		RoomName.Bedroom;
 		#end
