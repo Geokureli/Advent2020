@@ -12,6 +12,7 @@ class Content
     public static var artwork:Map<String, ArtCreation>;
     public static var artworkByDay:Map<Int, ArtCreation>;
     public static var songs:Map<String, SongCreation>;
+    public static var arcades:Map<String, ArcadeCreation>;
     public static var events:Map<Int, SongCreation>;
     
     static var presentsById:Map<String, Int>;
@@ -34,6 +35,14 @@ class Content
         {
             songData.path = 'assets/music/${songData.id}.mp3';
             songs[songData.id] = songData;
+        }
+        
+        arcades = [];
+        for (arcadeData in (data.arcades:Array<ArcadeCreation>))
+        {
+            arcadeData.path = 'assets/images/props/cabinets/${arcadeData.id}.png';
+            arcadeData.medalPath = 'assets/images/medals/${arcadeData.id}.png';
+            arcades[arcadeData.id] = arcadeData;
         }
         
         artwork = [];
@@ -91,6 +100,8 @@ class Content
                     errors.push('Missing ${art.thumbPath}');
                 if (!Manifest.exists(art.presentPath, IMAGE))
                     errors.push('Missing ${art.presentPath}');
+                if (!Manifest.exists(art.medalPath, IMAGE))
+                    errors.push('Missing ${art.medalPath}');
                 // if (Manifest.exists(art.medalPath))
                 //     errors.push('Missing thumbnail or invalid path id:${art.id} expected: ${art.medalPath}');
                 if (art.authors == null)
@@ -122,6 +133,24 @@ class Content
                 if (song.authors == null)
                     errors.push('Missing song authors id:${song.id}');
                 for (author in song.authors)
+                {
+                    if (!credits.exists(author) || credits[author].proper == null)
+                        errors.push('Missing credits author:$author');
+                }
+            }
+        }
+        
+        for (arcade in arcades)
+        {
+            if (arcade.day != null && arcade.day <= Calendar.day)
+            {
+                if (!Manifest.exists(arcade.path, MUSIC))
+                    errors.push('Missing ${arcade.path}');
+                if (!Manifest.exists(arcade.medalPath, IMAGE))
+                    errors.push('Missing ${arcade.medalPath}');
+                if (arcade.authors == null)
+                    errors.push('Missing arcade authors id:${arcade.id}');
+                for (author in arcade.authors)
                 {
                     if (!credits.exists(author) || credits[author].proper == null)
                         errors.push('Missing credits author:$author');
@@ -241,6 +270,14 @@ typedef SongCreation
     var ngId:Int;
 }
 
+typedef ArcadeCreation
+= Creation &
+{
+    var ngId:Int;
+    var scoreboard:Int;
+    var medalPath:String;
+}
+
 typedef EventContent = 
 {
     var id:String;
@@ -260,4 +297,9 @@ enum abstract User(String) from String to String
     var mixmuffin;
     var einmeister;
     var splatterdash;
+}
+
+enum abstract ArcadeName(String) to String
+{
+    var Digging = "digging";
 }

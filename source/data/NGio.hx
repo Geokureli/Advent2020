@@ -16,7 +16,10 @@ import flixel.util.FlxSignal;
 
 class NGio
 {
+	inline static var DEBUG_SESSION = #if NG_DEBUG true #else false #end;
+	
 	inline static public var DAY_MEDAL_0 = 61304;
+	inline static public var DIGGING_BOARD = 9728;
 	
 	public static var isLoggedIn(default, null):Bool = false;
 	public static var userName(default, null):String;
@@ -34,7 +37,8 @@ class NGio
 	static public function attemptAutoLogin(callback:Void->Void) {
 		
 		#if NG_BYPASS_LOGIN
-		NG.create(APIStuff.APIID);
+		NG.create(APIStuff.APIID, null, DEBUG_SESSION);
+		NG.core.requestScoreBoards(onScoreboardsRequested);
 		callback();
 		return;
 		#end
@@ -55,12 +59,14 @@ class NGio
 		}
 		
 		logDebug("connecting to newgrounds");
-		final ngDebug = #if NG_DEBUG true #else false #end;
-		NG.createAndCheckSession(APIStuff.APIID, ngDebug, APIStuff.DebugSession, onSessionFail);
+		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, APIStuff.DebugSession, onSessionFail);
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end
 		logEventOnce(view);
+		
+		// Load scoreboards even if not logging in
+		NG.core.requestScoreBoards(onScoreboardsRequested);
 		
 		if (!NG.core.attemptingLogin)
 			callback();
@@ -121,6 +127,70 @@ class NGio
 		.send();
 	}
 	
+	// --- SCOREBOARDS
+	static function onScoreboardsRequested():Void
+	{
+		for (board in NG.core.scoreBoards)
+		{
+			log('Scoreboard loded ${board.name}:${board.id}');
+		}
+		
+		ngScoresLoaded.dispatch();
+	}
+	
+	static public function requestHiscores(id:String, limit = 10, skip = 0, social = false, ?callback:(Array<Score>)->Void)
+	{
+		if (!isLoggedIn)
+			throw "Must log in to access player scores";
+		
+		if (NG.core.scoreBoards == null)
+			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
+		
+		var boardId = Content.arcades[id].scoreboard;
+		if (!NG.core.scoreBoards.exists(boardId))
+			throw "Invalid boardId:" + boardId;
+		
+		var board = NG.core.scoreBoards.get(boardId);
+		if (callback != null)
+			board.onUpdate.addOnce(()->callback(board.scores));
+		board.requestScores(limit, skip, ALL, social);
+	}
+	
+	static public function requestPlayerHiscore(id:String, callback:(Score)->Void)
+	{
+		if (!isLoggedIn)
+			throw "Must log in to access player scores";
+		
+		if (NG.core.scoreBoards == null)
+			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
+		
+		var boardId = Content.arcades[id].scoreboard;
+		if (!NG.core.scoreBoards.exists(boardId))
+			throw "Invalid boardId:" + boardId;
+		
+		NG.core.scoreBoards.get(boardId).requestScores(1, 0, ALL, false, null, userName);
+	}
+	
+	static public function requestPlayerHiscoreValue(id, callback:(Int)->Void)
+	{
+		requestPlayerHiscore(id, (score)->callback(score.value));
+	}
+	
+	static public function postPlayerHiscore(id:String, value:Int, ?tag)
+	{
+		if (!isLoggedIn)
+			throw "Must log in to access player scores";
+		
+		if (NG.core.scoreBoards == null)
+			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
+		
+		var boardId = Content.arcades[id].scoreboard;
+		if (!NG.core.scoreBoards.exists(boardId))
+			throw "Invalid boardId:" + boardId;
+		
+		NG.core.scoreBoards.get(boardId).postScore(value, tag);
+	}
+	
 	// --- MEDALS
 	static function onMedalsRequested():Void
 	{
@@ -144,8 +214,10 @@ class NGio
 	{
 		unlockMedal(DAY_MEDAL_0 + day - 1, showDebugUnlock);
 	}
+	
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
+		#if NG_DEBUG_API_KEY
 		if (isLoggedIn && !Calendar.isDebugDay)
 		{
 			log("unlocking " + id);
@@ -159,6 +231,9 @@ class NGio
 		}
 		else
 			log('no medal unlocked, loggedIn:$isLoggedIn debugDay${!Calendar.isDebugDay}');
+		#else
+		log('no medal unlocked, using debug api key');
+		#end
 	}
 	
 	static public function hasDayMedal(date:Int):Bool
@@ -168,11 +243,16 @@ class NGio
 	
 	static public function hasMedal(id:Int):Bool
 	{
+		#if NG_DEBUG_API_KEY
+		return false;
+		#else
 		return isLoggedIn && NG.core.medals.get(id).unlocked;
+		#end
 	}
 	
 	static public function logEvent(event:NgEvent, once = false)
 	{
+		#if !(NG_DEBUG_API_KEY)
 		if (loggedEvents.contains(event))
 		{
 			if (once) return;
@@ -183,6 +263,7 @@ class NGio
 		event += FlxG.onMobile ? "_mobile" : "_desktop";
 		logDebug("logging event: " + event);
 		NG.core.calls.event.logEvent(event).send();
+		#end
 	}
 	
 	static public function logEventOnce(event:NgEvent)

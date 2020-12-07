@@ -233,7 +233,11 @@ class BootState extends flixel.FlxState
         preloadArt("einmeister"); // takes forever to load, people think it froze
         
         Game.init();
+        #if SKIP_TO_DIG_GAME
+        Game.goToArcade(Digging);
+        #else
         Game.goToRoom(Main.initialRoom);
+        #end
     }
     
     function preloadArt(id:String)

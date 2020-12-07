@@ -55,6 +55,12 @@
     , "knose":
         { "proper": "KnoseDoge"
         }
+    , "chdonga":
+        { "proper": "Chdonga"
+        }
+    , "gallowjolt":
+        { "proper": "GallowJolt"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -156,4 +162,12 @@
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false } }
+,   "arcades":
+    [   { "id":"digging"
+        , "authors": ["knose", "chdonga", "gallowjolt", "splatterdash"]
+        , "scoreboard":9728
+        , "day":8
+        , "ngId":1556969
+        }
+    ]
 }

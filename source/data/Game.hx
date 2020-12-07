@@ -1,19 +1,23 @@
 package data;
 
+import data.Content;
 import data.Calendar;
 import states.rooms.RoomState;
 import states.rooms.*;
 
 import flixel.FlxG;
+import flixel.FlxState;
 
 class Game
 {
     static public var room(get, never):RoomState;
     static function get_room() return Std.downcast(FlxG.state, RoomState);
+    static public var arcadeName(default, null):ArcadeName = null;
     
     static public var state:EventState = NoEvent;
     
     static var roomTypes:Map<RoomName, RoomConstructor>;
+    static var arcadeTypes:Map<ArcadeName, ()->FlxState>;
     
     @:allow(states.BootState)
     static function init():Void
@@ -23,6 +27,9 @@ class Game
         roomTypes[Hallway ] = HallwayState.new;
         roomTypes[Entrance] = EntranceState.new;
         roomTypes[Outside] = OutsideState.new;
+        
+        arcadeTypes = [];
+        arcadeTypes[Digging] = PlayState.new.bind(0);
         
         if (Save.noPresentsOpened())
             state = Day1Intro(Started);
@@ -43,6 +50,20 @@ class Game
         
         final constructor = roomTypes.exists(name) ? roomTypes[name] : RoomState.new;
         FlxG.switchState(constructor(target));
+    }
+    
+    static public function goToArcade(name:ArcadeName):Void
+    {
+        if (!arcadeTypes.exists(name))
+            throw "No constructor found for arcade:" + name;
+        
+        arcadeName = name;
+        FlxG.switchState(arcadeTypes[name]());
+    }
+    
+    static public function exitArcade():Void
+    {
+        goToRoom(Arcade + "." + arcadeName);
     }
 }
 
