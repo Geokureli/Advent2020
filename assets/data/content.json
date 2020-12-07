@@ -67,7 +67,7 @@
         , "loopStart": 17142
         , "loopEnd"  : 120000
         , "bpm"      : 70
-        , "ngId"     : 0
+        , "ngId"     : 985036
         , "day"      : 3
         }
     ,   { "id"       : "czyszy"
@@ -75,7 +75,7 @@
         , "authors"  : ["czyszy"]
         , "key"      : "dMaj"
         , "bpm"      : 94
-        , "ngId"     : 0
+        , "ngId"     : 985502
         , "day"      : 5
         }
     ,   { "id"     : "splatterdash"
@@ -85,7 +85,7 @@
         , "loopEnd"  : 204500
         , "key"      : "eMaj"
         , "bpm"      : 60
-        , "ngId"     : 0
+        , "ngId"     : 986028
         , "day"      : 7
         }
     ]
