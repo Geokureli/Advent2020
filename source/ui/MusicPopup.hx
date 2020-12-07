@@ -103,7 +103,7 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
             tweener.tween(this, { y:FlxG.height - main.height }, introTime,
                 { ease:FlxEase.circInOut, onComplete:tweenOutro });
         }
-        else
+        else if (tweenOutro != null)
             tweenOutro();
         
         info = null;
