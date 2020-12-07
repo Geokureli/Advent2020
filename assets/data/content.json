@@ -81,8 +81,12 @@
     ,   { "id"     : "splatterdash"
         , "name"   : "Let The Snow Fall"
         , "authors": ["splatterdash"]
-        , "ngId"   : 0
-        , "day"    : 7
+        , "loopStart": 60500
+        , "loopEnd"  : 204500
+        , "key"      : "eMaj"
+        , "bpm"      : 60
+        , "ngId"     : 0
+        , "day"      : 7
         }
     ]
 ,   "artwork":
