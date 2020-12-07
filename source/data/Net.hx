@@ -8,7 +8,7 @@ import io.colyseus.Client;
 
 class Net
 {
-    static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside];
+    static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside, Arcade, Music];
     
     static public var client(default, null):Client;
     static public var room(default, null):Room<GameState>;
@@ -24,15 +24,16 @@ class Net
     {
         if (client == null)
         {
-            #if USE_LOCAL_SERVER
-            client = new Client('ws://localhost:2567');
-            #else
-                #if USE_DEBUG_SERVER
-                client = new Client('wss://advent-colyseus-test.herokuapp.com');
+            final serverPath = 
+                #if USE_LOCAL_SERVER
+                'ws://localhost:2567';
+                #elseif USE_DEBUG_SERVER
+                'wss://advent-colyseus-test.herokuapp.com';
                 #else
-                client = new Client('wss://advent2020server.herokuapp.com');
+                'wss://advent2020server.herokuapp.com';
                 #end
-            #end
+            log("Connecting to: " + serverPath);
+            client = new Client(serverPath);
         }
         else if (room != null)
             leaveCurrentRoom();
@@ -62,9 +63,9 @@ class Net
         client.joinOrCreate(roomName, [], GameState, 
             (error, room)->
             {
-                log("joined:" + room.id);
                 if (error == null)
                 {
+                    log("joined:" + room.id);
                     NGio.logEventOnce(first_connect);
                     NGio.logEvent(connect);
                 }

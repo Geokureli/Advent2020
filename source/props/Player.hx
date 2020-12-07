@@ -29,11 +29,12 @@ class Player extends flixel.FlxSprite
     public var state:PlayerState = Joining;
     public var usePaths = false;
     public var drawPath = false;
+    public var justEmoted(default, null) = false;
+    public var emote(default, null) = new Emote();
     
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
     var bobTimer = 0.0;
-    var smooch:FlxSprite;
     
     public function new(x = 0.0, y = 0.0, settings:PlayerSettings)
     {
@@ -89,6 +90,9 @@ class Player extends flixel.FlxSprite
         }
         
         super.update(elapsed);
+        if (emote.exists && emote.active)
+            emote.update(elapsed);
+        
         velocity.copyFrom(oldV);
         oldV.put();
         var last = FlxPoint.get(x, y);
@@ -116,43 +120,48 @@ class Player extends flixel.FlxSprite
         #end
     }
     
-    function updateMovement(pressU:Bool, pressD:Bool, pressL:Bool, pressR:Bool, pressMouse:Bool)
+    function updateMovement(pressU:Bool, pressD:Bool, pressL:Bool, pressR:Bool, pressB:Bool, pressMouse:Bool)
     {
-        if (pressR || pressL || pressU || pressD)
+        if (pressR || pressL || pressU || pressD || pressB)
         {
             cancelTargetPos();
         }
-        else
+        
+        if (pressMouse)
+            setTargetPos(FlxG.mouse.getWorldPosition(FlxPoint.weak()).subtract(width / 2, height / 2));
+        
+        justEmoted = false;
+        if (pressB && emote.type == None)
         {
-            if (pressMouse)
-                setTargetPos(FlxG.mouse.getWorldPosition(FlxPoint.weak()).subtract(width / 2, height / 2));
+            justEmoted = true;
+            emote.animate(Smooch);
+        }
+        var nextPos = targetPos;
+        if (movePath != null)
+        {
+            final map = (cast FlxG.state:RoomState).geom;
+            final index = map.getTileIndexByCoords(FlxPoint.weak(x + width / 2, y + height / 2));
+            // final index = map.getTileIndexByCoords(FlxPoint.weak(x, y));
             
-            var nextPos = targetPos;
-            if (movePath != null)
-            {
-                final map = (cast FlxG.state:RoomState).geom;
-                final index = map.getTileIndexByCoords(FlxPoint.weak(x + width / 2, y + height / 2));
-                // final index = map.getTileIndexByCoords(FlxPoint.weak(x, y));
-                
-                while(movePath.length > 1 && map.getTileIndexByCoords(movePath[0]) == index)
-                    movePath.shift();//.put();
-                
-                nextPos = FlxPoint.weak().copyFrom(movePath[0]).subtract(width / 2, height / 2);
-            }
+            while(movePath.length > 1 && map.getTileIndexByCoords(movePath[0]) == index)
+                movePath.shift();//.put();
             
-            if (nextPos != null)
-            {
-                final vx = Math.abs(velocity.x);
-                final vy = Math.abs(velocity.y);
-                final slideX = Math.max(1, (vx / 2) * (vx / drag.x));
-                final slideY = Math.max(1, (vy / 2) * (vy / drag.y));
-                
-                pressR = x - nextPos.x < -slideX;
-                pressL = x - nextPos.x >  slideX;
-                pressD = y - nextPos.y < -slideY;
-                pressU = y - nextPos.y >  slideY;
-                nextPos.putWeak();
-            }
+            nextPos = FlxPoint.weak().copyFrom(movePath[0]).subtract(width / 2, height / 2);
+        }
+        
+        if (nextPos != null)
+        {
+            final vx = Math.abs(velocity.x);
+            final vy = Math.abs(velocity.y);
+            final slideX = Math.max(1, (vx / 2) * (vx / drag.x));
+            final slideY = Math.max(1, (vy / 2) * (vy / drag.y));
+            
+            final canMove = emote.type == None;
+            pressR = canMove && x - nextPos.x < -slideX;
+            pressL = canMove && x - nextPos.x >  slideX;
+            pressD = canMove && y - nextPos.y < -slideY;
+            pressU = canMove && y - nextPos.y >  slideY;
+            nextPos.putWeak();
         }
         
         acceleration.x = ((pressR ? 1 : 0) - (pressL ? 1 : 0)) * ACCEL_SPEED;
@@ -167,6 +176,12 @@ class Player extends flixel.FlxSprite
         super.draw();
         
         hitbox.draw();
+        if (emote.exists && emote.visible)
+        {
+            emote.x = x;
+            emote.y = y;
+            emote.draw();
+        }
     }
     
     override function destroy()
@@ -239,4 +254,60 @@ class Player extends flixel.FlxSprite
         hitbox.height = height + 14;
     }
     #end
+}
+
+class Emote extends FlxSprite
+{
+    inline static var SMOOCH_PATH = "assets/images/emotes/heart.png";
+    inline static var SMOOCH_FRAMES = 13;
+    inline static var SMOOCH_FPS = 10;
+    
+    public var type(default, null) = None;
+    
+    public function new()
+    {
+        super();
+        visible = false;
+    }
+    
+    public function animate(type:EmoteType)
+    {
+        this.type = type;
+        
+        inline function calcOffset(x = 0.0, y = 0.0)
+        {
+            return FlxPoint.weak(width / 2 + x, y);
+        }
+        
+        switch(type)
+        {
+            case Smooch: load(SMOOCH_PATH, SMOOCH_FRAMES, SMOOCH_FPS, calcOffset());
+            case None:
+                animation.finishCallback = null;
+                visible = false;
+        }
+    }
+    
+    inline function load(path:String, frames:Int, fps:Int, ?offset:FlxPoint)
+    {
+        visible = true;
+        loadGraphic(path);
+        loadGraphic(path, true, Std.int(frameWidth / frames), frameHeight);
+        
+        if (offset != null)
+            offset = FlxPoint.weak();
+        this.offset.copyFrom(offset);
+        this.offset.x += frameWidth / 2;
+        this.offset.y += frameHeight;
+        
+        animation.add("anim", [for (i in 0...fps) i], fps, false);
+        animation.play("anim");
+        animation.finishCallback = onAnimComplete;
+    }
+    
+    function onAnimComplete(animName:String)
+    {
+        animation.callback = null;
+        animate(None);
+    }
 }

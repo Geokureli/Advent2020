@@ -1,5 +1,6 @@
 package props;
 
+import Types;
 import ui.Font;
 import flixel.text.FlxBitmapText;
 import flixel.math.FlxPoint;
@@ -28,7 +29,7 @@ class GhostPlayer extends Player
     {
         super.update(elapsed);
         
-        updateMovement(false, false, false, false, false);
+        updateMovement(false, false, false, false, false, false);
         
         var ghostShader = Std.downcast(shader, vfx.GhostShader);
         if (ghostShader != null)
@@ -78,6 +79,10 @@ class GhostPlayer extends Player
                     state = change.value;
                 case "name":
                     updateNameText(change.value);
+                case "emote":
+                    var newType = (change.value:EmoteType);
+                    if (emote.type != newType)
+                        emote.animate(newType);
             }
         }
         

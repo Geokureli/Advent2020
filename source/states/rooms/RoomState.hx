@@ -469,14 +469,19 @@ class RoomState extends OgmoState
         
         if (Net.room != null)
         {
-            final moved = Std.int(player.x) != player.lastSend.x || Std.int(player.y) != player.lastSend.y;
-            if (!moved)
+            final changed
+                =  Std.int(player.x) != player.lastSend.x
+                || Std.int(player.y) != player.lastSend.y
+                || player.emote.type != player.lastSendEmote
+                ;
+            
+            if (!changed)
             {
                 player.timer = 0;
             }
-            else if (moved && player.timer > player.sendDelay)
+            else if (changed && player.timer > player.sendDelay)
             {
-                final data = { x:Std.int(player.x), y:Std.int(player.y) };
+                final data = { x:Std.int(player.x), y:Std.int(player.y), emote:player.emote.type };
                 Net.send("avatar", data);
                 player.networkUpdate();
             }

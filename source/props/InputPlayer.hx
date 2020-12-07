@@ -1,6 +1,6 @@
 package props;
 
-import rig.Limb;
+import Types;
 import data.PlayerSettings;
 
 import flixel.FlxG;
@@ -18,6 +18,7 @@ class InputPlayer extends Player
     
     public var timer = 0.0;
     public var lastSend = FlxPoint.get();
+    public var lastSendEmote = EmoteType.None;
     public var sendDelay = 1.0 / 6;
     
     public function new(x = 0.0, y = 0.0)
@@ -53,10 +54,11 @@ class InputPlayer extends Player
         var left = FlxG.keys.anyPressed([LEFT, A]);
         var up = FlxG.keys.anyPressed([UP, W]);
         var down = FlxG.keys.anyPressed([DOWN, S]);
-        interacting = FlxG.keys.anyJustPressed([SPACE, Z]);
+        var smooch = FlxG.keys.anyJustPressed([X, K]);
+        interacting = FlxG.keys.anyJustPressed([SPACE, Z, J]);
         checkMouseInteracting();
         
-        updateMovement(up, down, left, right, FlxG.mouse.pressed);
+        updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
     }
     
     function updateGamepad(elapsed:Float)
@@ -73,13 +75,14 @@ class InputPlayer extends Player
         }
         interacting = FlxG.gamepads.lastActive.anyJustPressed([A]);
         
-        var down  = anyPressed([DPAD_DOWN , LEFT_STICK_DIGITAL_DOWN ]);
-        var up    = anyPressed([DPAD_UP   , LEFT_STICK_DIGITAL_UP   ]);
-        var left  = anyPressed([DPAD_LEFT , LEFT_STICK_DIGITAL_LEFT ]);
-        var right = anyPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT]);
+        var down   = anyPressed([DPAD_DOWN , LEFT_STICK_DIGITAL_DOWN ]);
+        var up     = anyPressed([DPAD_UP   , LEFT_STICK_DIGITAL_UP   ]);
+        var left   = anyPressed([DPAD_LEFT , LEFT_STICK_DIGITAL_LEFT ]);
+        var right  = anyPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT]);
+        var smooch = FlxG.gamepads.anyJustPressed(B);
         checkMouseInteracting();
         
-        updateMovement(up, down, left, right, FlxG.mouse.pressed);
+        updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
     }
     
     function checkMouseInteracting()
@@ -101,5 +104,6 @@ class InputPlayer extends Player
     {
         timer = 0;
         lastSend.set(Std.int(x), Std.int(y));
+        lastSendEmote = emote.type;
     }
 }
