@@ -246,7 +246,7 @@
     }
 ,   { "id": "duncan_and_jones"
     , "proper": "Duncan & Jones"
-    , "description": ""
+    , "description": "The two hottest crime fighters on the website."
     , "unlocksBy": "medal:6"
     , "users": ["snackers"]
     }
@@ -296,7 +296,7 @@
     }
 ,   { "id": "ritz"
     , "proper": "Ritz"
-    , "description": ""
+    , "description": "Ritz the Rat, a bimbo."
     , "unlocksBy": "medal:7"
     , "users": ["ninjamuffin99", "mkmaffo", "digimin", "kawaisprite"]
     }
