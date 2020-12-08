@@ -235,8 +235,8 @@
 ,   { "id": "elk"
     , "proper": "Elk"
     , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer. I call him Phil."
-    , "unlocksBy": null
-    , "users": ["brandybuizel", "sirlenward", "ellsketchlr", "geokureli"]
+    , "unlocksBy": "medal:61364"
+    , "users": ["sirlenward", "ellsketchlr"]
     }
 ,   { "id": "lucky"
     , "proper": "Lucky"

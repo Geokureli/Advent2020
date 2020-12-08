@@ -117,7 +117,8 @@ class Skins
             case ["supporter"]: NGio.isLoggedIn && NG.core.user.supporter;
             case [_]: throw "Unhandled unlockBy:" + data;
             case ["day"  , day  ]: Save.countDaysSeen() >= Std.parseInt(day);
-            case ["medal", medal]: NGio.hasDayMedal(Std.parseInt(medal));
+            case ["medal", medal] if (medal.length < 3): NGio.hasDayMedal(Std.parseInt(medal));
+            case ["medal", medal]: NGio.hasMedal(Std.parseInt(medal));
             default: throw "Unhandled unlockBy:" + data;
         }
     }
