@@ -31,7 +31,7 @@ class Game
         
         arcadeTypes = [];
         #if INCLUDE_DIG_GAME
-        arcadeTypes[Digging] = PlayState.new.bind(0);
+        arcadeTypes[Digging] = MenuState.new.bind(0);
         #end
         
         if (Save.noPresentsOpened())
