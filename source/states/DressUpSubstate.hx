@@ -1,6 +1,7 @@
 package states;
 
 
+import flixel.group.FlxSpriteGroup;
 import data.Calendar;
 import data.NGio;
 import data.Save;
@@ -26,14 +27,13 @@ class DressUpSubstate extends flixel.FlxSubState
     inline static var SIDE_GAP = 48;
     inline static var SPACING = 28;
     
-    var sprites = new FlxTypedGroup<SkinDisplay>();
+    var sprites = new FlxTypedSpriteGroup<SkinDisplay>();
     var current = -1;
     var nameText = new FlxBitmapText();
     var descText = new FlxBitmapText();
     var arrowLeft:Button;
     var arrowRight:Button;
     var ok:Button;
-    var oldDefaultCameras:Array<FlxCamera>;
     var antiPressTime = 0.25;
     
     var currentSprite(get, never):SkinDisplay;
@@ -48,16 +48,6 @@ class DressUpSubstate extends flixel.FlxSubState
         var bg = new FlxSprite();
         add(bg);
         add(sprites);
-        
-        oldDefaultCameras = FlxCamera.defaultCameras;
-        FlxCamera.defaultCameras = [FlxG.camera];
-        cameras = [new FlxCamera().copyFrom(camera)];
-        FlxG.cameras.add(camera);
-        camera.bgColor = 0x0;
-        camera.minScrollX = null;
-        camera.maxScrollX = null;
-        camera.minScrollY = 0;
-        camera.maxScrollY = FlxG.height;
         
         var instructions = new FlxBitmapText();
         instructions.setBorderStyle(OUTLINE, FlxColor.BLACK, 1);
@@ -79,6 +69,7 @@ class DressUpSubstate extends flixel.FlxSubState
             sprites.add(sprite);
             sprite.scale.set(2, 2);
             sprite.updateHitbox();
+            sprite.scrollFactor.set(0, 0);
             
             sprite.x = SPACING * i;
             if (data.offsetX != null)
@@ -215,7 +206,7 @@ class DressUpSubstate extends flixel.FlxSubState
     
     function hiliteCurrent()
     {
-        camera.follow(currentSprite);
+        sprites.x = (current+1) * -SPACING - BAR_MARGIN*2 + (FlxG.width - currentSprite.width) / 2;
         
         if (currentSkin.unlocked)
         {
@@ -256,15 +247,6 @@ class DressUpSubstate extends flixel.FlxSubState
             Save.setSkin(currentSkin.index);
             close();
         }
-    }
-    
-    override function close()
-    {
-        FlxCamera.defaultCameras = oldDefaultCameras;
-        oldDefaultCameras = null;
-        FlxG.cameras.remove(camera);
-        
-        super.close();
     }
 }
 
