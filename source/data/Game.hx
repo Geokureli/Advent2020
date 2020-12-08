@@ -26,7 +26,8 @@ class Game
         roomTypes[Bedroom ] = BedroomState.new;
         roomTypes[Hallway ] = HallwayState.new;
         roomTypes[Entrance] = EntranceState.new;
-        roomTypes[Outside] = OutsideState.new;
+        roomTypes[Outside ] = OutsideState.new;
+        roomTypes[Arcade  ] = ArcadeState.new;
         
         arcadeTypes = [];
         arcadeTypes[Digging] = PlayState.new.bind(0);
