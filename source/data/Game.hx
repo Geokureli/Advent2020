@@ -30,7 +30,9 @@ class Game
         roomTypes[Arcade  ] = ArcadeState.new;
         
         arcadeTypes = [];
+        #if INCLUDE_DIG_GAME
         arcadeTypes[Digging] = PlayState.new.bind(0);
+        #end
         
         if (Save.noPresentsOpened())
             state = Day1Intro(Started);
