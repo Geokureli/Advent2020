@@ -156,6 +156,9 @@ class BootState extends flixel.FlxState
             msg.text = "DEBUG\nTime travel activated";
             msg.screenCenter(XY);
         }
+        
+        if (debugFutureEnabled && state.match(Error) && FlxG.keys.justPressed.SPACE)
+            onComplete();
         #end
         
         if (waitTime < 0)
@@ -196,7 +199,8 @@ class BootState extends flixel.FlxState
                         if (NGio.isContributor)
                         {
                             msg.font = new NokiaFont();
-                            msg.text = "ERROR (debug):\n" + errors.join("\n");
+                            msg.text = "ERROR (debug):\n" + errors.join("\n")
+                                + "\nPress SPACE to play, anyway";
                         }
                         else
                         {
