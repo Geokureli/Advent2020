@@ -42,6 +42,8 @@ class Content
         {
             arcadeData.path = 'assets/images/props/cabinets/${arcadeData.id}.png';
             arcadeData.medalPath = 'assets/images/medals/${arcadeData.id}.png';
+            if (arcadeData.scoreboard == null)
+                arcadeData.scoreboard = arcadeData.name;
             arcades[arcadeData.id] = arcadeData;
         }
         

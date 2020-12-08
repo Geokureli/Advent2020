@@ -152,22 +152,23 @@
         , "day"    : 7
         , "medal"  : true
         }
-    ,   { "id"     : "karlestonchew"
-        , "name"   : "The Pico Express"
-        , "authors": ["karlestonchew"]
-        , "day"    : 8
-        , "medal"  : true
+    ,   { "id"       : "karlestonchew"
+        , "name"     : "The Pico Express"
+        , "authors"  : ["karlestonchew"]
+        , "day"      : 8
+        , "medal"    : true
         , "antiAlias": false
         }
     ]
 ,   "events":
-    { "1": { "id":"day1intro", "saveState":false } }
+    { "1": { "id":"day1intro", "saveState":false }
+    }
 ,   "arcades":
-    [   { "id":"digging"
+    [   { "id"     : "digging"
+        , "name"   : "Festive Forage"
         , "authors": ["knose", "chdonga", "gallowjolt", "splatterdash"]
-        , "scoreboard":"Festive Forage"
-        , "day":8
-        , "ngId":1556969
+        , "day"    : 8
+        , "ngId"   : 1556969
         }
     ]
 }
