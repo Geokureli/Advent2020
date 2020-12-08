@@ -73,7 +73,8 @@
         {"x": 184, "y": -32, "texture": "arcade/light.png"},
         {"x": 376, "y": -32, "texture": "arcade/light.png"},
         {"x": 304, "y": 56, "texture": "arcade/light.png"},
-        {"x": 112, "y": 56, "texture": "arcade/light.png"}
+        {"x": 112, "y": 56, "texture": "arcade/light.png"},
+        {"x": 320, "y": 48, "texture": "cabinets/digging.png"}
       ],
       "folder": "../../images/props"
     },

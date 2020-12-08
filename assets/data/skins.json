@@ -128,7 +128,7 @@
 ,   { "id": "pbot"
     , "proper": "P-Bot"
     , "description": "Curating the very best there is on Newgrounds, Daily! And sometimes Maxine."
-    , "unlocksBy": null
+    , "unlocksBy": "supporter"
     , "group":"ng"
     }
 ,   { "id": "stan"
@@ -278,7 +278,7 @@
 ,   { "id": "boyfriend"
     , "proper": "Boyfriend"
     , "description": "The boyfriend from the number one rated rhythm game of all time on Newgrounds, Friday Night Funkin'"
-    , "unlocksBy": null
+    , "unlocksBy": "day:11"
     , "users": ["ninjamuffin99", "phantomarcade", "evilsk8r", "kawaisprite", "geokureli", "brandybuizel"]
     }
 ,   { "id": "drbees"

@@ -70,7 +70,7 @@
 	<library path="assets/swfs/Animations.swf" id="Animations" preload="true" />
 
 	<define name="ADVENT"/>
-	<define name="INCLUDE_DIG_GAME"/>
+	<!-- <define name="INCLUDE_DIG_GAME"/> -->
 	<section if="INCLUDE_DIG_GAME">
 		<!-- <define name="SKIP_TO_DIG_GAME"/> -->
 		
