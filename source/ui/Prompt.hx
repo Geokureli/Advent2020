@@ -57,8 +57,8 @@ class Prompt extends flixel.group.FlxGroup {
 			if (singleButton)
 				add(yesMouse = new OkButton((FlxG.width - 28) / 2, 0));
 			else {
-				add(yesMouse = new YesButton(FlxG.width / 2 - 28 - 4, 0));
-				add(noMouse  = new NoButton (FlxG.width / 2      + 4, 0));
+				add(yesMouse = new YesButton(FlxG.width / 2 - 28 - 16, 0));
+				add(noMouse  = new NoButton (FlxG.width / 2      + 16, 0));
 			}
 			
 		} else {
@@ -114,7 +114,7 @@ class Prompt extends flixel.group.FlxGroup {
 			
 			yesMouse.onUp.callback = null;
 			if (noMouse != null)
-				noMouse .onUp.callback = null;
+				noMouse.onUp.callback = null;
 			
 			if(!FlxG.onMobile)
 				FlxG.mouse.visible = false;
@@ -153,7 +153,12 @@ class Prompt extends flixel.group.FlxGroup {
 	function cancel():Void
 	{
 		if (forceMouse)
-			noMouse.onUp.fire();
+		{
+			if (noMouse != null)
+				noMouse.onUp.fire();
+			else // single button prompt
+				yesMouse.onUp.fire();
+		}
 		// else
 		//	
 	}
@@ -163,17 +168,22 @@ class Prompt extends flixel.group.FlxGroup {
 	 * @param text    the dialog messsage.
 	 * @param buttons the active ui group being interrupted.
 	 */
-	inline static public function showOKInterrupt(text:String, buttons:FlxBasic):Void {
+	static public function showOKInterrupt(text:String, ?interruptee:FlxBasic):Void {
 		
 		var prompt = new Prompt(true);
 		var parent = FlxG.state;
 		parent.add(prompt);
-		buttons.active = false;
+		
+		if (interruptee != null)
+			interruptee.active = false;
+		
 		prompt.setup(text, null, null,
 			function () {
 				
 				parent.remove(prompt);
-				buttons.active = true;
+				
+				if (interruptee != null)
+					interruptee.active = true;
 			}
 		);
 	}

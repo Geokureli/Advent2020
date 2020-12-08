@@ -4,7 +4,9 @@ import data.Calendar;
 import data.Game;
 import data.Content;
 import props.Cabinet;
+import ui.Prompt;
 
+import flixel.FlxG;
 import flixel.math.FlxMath;
 
 class ArcadeState extends RoomState
@@ -15,7 +17,7 @@ class ArcadeState extends RoomState
         {
             var cabinet = Cabinet.fromEntity(data);
             if (cabinet.enabled)
-                addHoverTextTo(cabinet, cabinet.data.name, ()->Game.goToArcade(cast cabinet.data.id));
+                addHoverTextTo(cabinet, cabinet.data.name, playCabinet.bind(cabinet.data));
             
             return cabinet;
         }
@@ -32,6 +34,14 @@ class ArcadeState extends RoomState
             topGround.add(light);
             foreground.remove(light);
         }
+    }
+    
+    function playCabinet(data:ArcadeCreation)
+    {
+        if (FlxG.onMobile)
+            Prompt.showOKInterrupt("This game is not available on mobile\n...yet.");
+        else
+            Game.goToArcade(cast data.id);
     }
     
     override function update(elapsed:Float)
