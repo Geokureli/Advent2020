@@ -153,7 +153,7 @@
         , "medal"  : true
         }
     ,   { "id"     : "karlestonchew"
-        , "name"   : null
+        , "name"   : "The Pico Express"
         , "authors": ["karlestonchew"]
         , "day"    : 8
         , "medal"  : true
