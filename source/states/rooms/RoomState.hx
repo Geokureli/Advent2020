@@ -57,7 +57,7 @@ class RoomState extends OgmoState
     var skinPopup:SkinPopup;
     
     public var name(default, null):RoomName;
-    public var spawnId(default, null) = -1;
+    public var spawnId(default, null):String = null;
     public var forceDay(default, null) = -1;
     public var roomDay(default, null) = 0;
     
@@ -71,9 +71,11 @@ class RoomState extends OgmoState
         if (target.indexOf(".") != -1)
         {
             final split = target.split(".");
-            spawnId = Std.parseInt(split.pop());
+            spawnId = split.pop();
             target = split.join(".");
         }
+        else
+            spawnId = "";
         
         name = cast target;
         
@@ -91,6 +93,13 @@ class RoomState extends OgmoState
         entityTypes["Teleport"] = cast function(data)
         {
             var teleport = Teleport.fromEntity(data);
+            
+            if (teleport.id == "" && teleport.target != "")
+                teleport.id = teleport.target;
+            
+            if (teleport.target != "" && teleport.target.indexOf(".") == -1)
+                teleport.target += "." + name;
+            
             teleports.add(teleport);
             return teleport;
         }
@@ -160,7 +169,7 @@ class RoomState extends OgmoState
         
         if (spawnTeleport == null)
         {
-            throw spawnId != -1
+            throw spawnId != ""
                 ? 'Could not find a teleport with a id of $spawnId'
                 : 'Missing the default spawn point'
                 ;

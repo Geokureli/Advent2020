@@ -39,7 +39,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"id": 1, "target": "hallway.0"}
+          "values": {"id": "", "target": "hallway"}
         },
         {
           "name": "Teleport",
@@ -51,7 +51,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"id": -1, "target": ""}
+          "values": {"id": "", "target": ""}
         },
         {
           "name": "Note",

@@ -93,7 +93,7 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "id", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100},
+        {"name": "id", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "target", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
     },

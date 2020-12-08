@@ -7,10 +7,10 @@ class Main extends openfl.display.Sprite
 	public static var initialRoom(default, null) = 
 		#if debug
 		RoomName.Bedroom;
-		// (RoomName.Hallway:String) + ".0";
-		// (RoomName.Entrance:String) + ".0";
-		// (RoomName.Outside:String) + ".0";
-		// "arcade.0";
+		// RoomName.Hallway + "." + RoomName.Bedroom;
+		// RoomName.Entrance + "." + RoomName.Hallway;
+		// RoomName.Outside + "." + RoomName.Entrance;
+		// RoomName.Arcade + "." + RoomName.Entrance;
 		#else
 		RoomName.Bedroom;
 		#end

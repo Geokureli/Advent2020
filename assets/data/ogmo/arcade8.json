@@ -39,7 +39,7 @@
           "height": 80,
           "originX": 0,
           "originY": 0,
-          "values": {"id": 0, "target": "entrance.2"}
+          "values": {"id": "", "target": "entrance"}
         }
       ]
     },
