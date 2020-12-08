@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Advent2020" file="Advent2020" main="Main" version="0.4.0" company="HaxeFlixel" />
+	<app title="Advent2020" file="Advent2020" main="Main" version="0.4.1" company="HaxeFlixel" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -72,7 +72,7 @@
 	<define name="ADVENT"/>
 	<define name="INCLUDE_DIG_GAME"/>
 	<section if="INCLUDE_DIG_GAME">
-		<!-- <define name="SKIP_TO_DIG_GAME"/> -->
+		<!-- <define name="SKIP_TO_DIG_GAME" if="debug"/> -->
 		
 		<classpath name="digMinigame/source" if="INCLUDE_DIG_GAME"/>
 		<assets path="digMinigame/assets" rename="assets"/>

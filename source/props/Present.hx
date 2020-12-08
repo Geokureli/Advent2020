@@ -6,7 +6,6 @@ import states.OgmoState;
 
 typedef PresentValues = { id:String }
 
-@:forward
 class Present extends flixel.FlxSprite
 {
     inline static var CONFETTI_PATH = "assets/images/props/confetti/confetti.png";

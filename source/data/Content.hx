@@ -144,7 +144,7 @@ class Content
         {
             if (arcade.day != null && arcade.day <= Calendar.day)
             {
-                if (!Manifest.exists(arcade.path, MUSIC))
+                if (!Manifest.exists(arcade.path, IMAGE))
                     errors.push('Missing ${arcade.path}');
                 if (!Manifest.exists(arcade.medalPath, IMAGE))
                     errors.push('Missing ${arcade.medalPath}');

@@ -157,6 +157,7 @@
         , "authors": ["karlestonchew"]
         , "day"    : 8
         , "medal"  : true
+        , "antiAlias": false
         }
     ]
 ,   "events":

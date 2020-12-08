@@ -224,7 +224,7 @@ class NGio
 	
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
-		#if NG_DEBUG_API_KEY
+		#if !(NG_DEBUG_API_KEY)
 		if (isLoggedIn && !Calendar.isDebugDay)
 		{
 			log("unlocking " + id);
