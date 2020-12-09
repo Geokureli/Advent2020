@@ -147,6 +147,7 @@ class Content
         }
         
         var cabinetIds = getEntityIds("arcade", "Cabinet");
+        var teleportIds = getEntityIds("arcade", "Teleport");
         for (arcade in arcades)
         {
             if (arcade.day != null && arcade.day <= Calendar.day)
@@ -156,7 +157,9 @@ class Content
                 if (arcade.type != External && !Manifest.exists(arcade.medalPath, IMAGE))
                     errors.push('Missing ${arcade.medalPath}');
                 if (!cabinetIds.contains(arcade.id))
-                    errors.push('Missing cabinet in arcade id:${arcade.id}');
+                    errors.push('Missing Cabinet in arcade id:${arcade.id}');
+                if (arcade.type == State && !teleportIds.contains(arcade.id))
+                    errors.push('Missing Teleport in arcade id:${arcade.id}');
                 // if (arcade.authors == null)
                 //     errors.push('Missing arcade authors id:${arcade.id}');
                 if (arcade.authors != null)
