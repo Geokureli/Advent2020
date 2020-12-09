@@ -26,7 +26,7 @@ class EntranceState extends RoomState
     {
         super.create();
         
-        tree = foreground.getByName("tree");
+        tree = getDaySprite(foreground, "tree");
         tree.setBottomHeight(32);
         tree.setMiddleWidth(56);
         

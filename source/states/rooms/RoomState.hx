@@ -239,7 +239,12 @@ class RoomState extends OgmoState
                     Save.presentOpened(present.id);
             }
         );
-	}
+    }
+    
+    function getDaySprite(layer:OgmoDecalLayer, name:String)
+    {
+        return layer.getIndexNamedObject(name, Calendar.day);
+    }
     
     function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
     {
