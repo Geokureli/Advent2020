@@ -134,11 +134,13 @@ class Save
     
     static public function skinSeen(index:Int)
     {
+        #if !(UNLOCK_ALL_SKINS)
         if (data.skins[index] == false)
         {
             data.skins[index] = true;
             flush();
         }
+        #end
     }
     
     static public function hasSeenskin(index:Int)
