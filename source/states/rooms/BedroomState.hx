@@ -115,4 +115,14 @@ class BedroomState extends RoomState
         
         super.activateTeleport(target);
     }
+    
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+        
+        #if debug
+        if (FlxG.keys.justPressed.H)
+            openSubState(new horse.HorseSubState());
+        #end
+    }
 }

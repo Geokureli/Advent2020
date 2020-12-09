@@ -60,6 +60,9 @@
     , "gallowjolt":
         { "proper": "GallowJolt"
         }
+    , "midgetsausage":
+        { "proper": "midgetsausage"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -169,6 +172,27 @@
         , "authors": ["knose", "chdonga", "gallowjolt", "splatterdash"]
         , "day"    : 8
         , "ngId"   : 1556969
+        , "mobile" : false
+        , "type"   : "state"
+        }
+    ,   { "id"     : "horse"
+        , "name"   : "Pin the Tail"
+        , "authors": ["nockconter", "geokureli", "midgetsausage", "brandybuizel"]
+        , "day"    : 9
+        , "mobile" : false
+        , "type"   : "overlay"
+        }
+    ,   { "id"     : "advent2019"
+        , "name"   : "Christmas ADVENTure 2019"
+        , "authors": null
+        , "day"    : 10
+        , "type"   : "external"
+        }
+    ,   { "id"     : "advent2018"
+        , "name"   : "Christmas ADVENTure 2018"
+        , "authors": null
+        , "day"    : 10
+        , "type"   : "external"
         }
     ]
 }

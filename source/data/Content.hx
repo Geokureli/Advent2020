@@ -279,6 +279,7 @@ typedef ArcadeCreation
     var scoreboard:String;
     var scoreboardId:Int;
     var medalPath:String;
+    var type:ArcadeType;
 }
 
 typedef EventContent = 
@@ -305,4 +306,12 @@ enum abstract User(String) from String to String
 enum abstract ArcadeName(String) to String
 {
     var Digging = "digging";
+    var Horse = "horse";
+}
+
+enum abstract ArcadeType(String) to String
+{
+    var State    = "state";
+    var Overlay  = "overlay";
+    var External = "external";
 }

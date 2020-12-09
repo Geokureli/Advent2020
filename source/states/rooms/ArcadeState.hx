@@ -1,5 +1,6 @@
 package states.rooms;
 
+import states.OgmoState;
 import data.Calendar;
 import data.Game;
 import data.Content;
@@ -13,14 +14,7 @@ class ArcadeState extends RoomState
 {
     override function create()
     {
-        entityTypes["Cabinet"] = cast function(data)
-        {
-            var cabinet = Cabinet.fromEntity(data);
-            if (cabinet.enabled)
-                addHoverTextTo(cabinet, cabinet.data.name, playCabinet.bind(cabinet.data));
-            
-            return cabinet;
-        }
+        entityTypes["Cabinet"] = cast initCabinet;
         
         super.create();
     }
@@ -34,6 +28,15 @@ class ArcadeState extends RoomState
             topGround.add(light);
             foreground.remove(light);
         }
+    }
+    
+    function initCabinet(data:OgmoEntityData<CabinetValues>)
+    {
+        var cabinet = Cabinet.fromEntity(data);
+        if (cabinet.enabled)
+            addHoverTextTo(cabinet, cabinet.data.name, playCabinet.bind(cabinet.data));
+        
+        return cabinet;
     }
     
     function playCabinet(data:ArcadeCreation)
