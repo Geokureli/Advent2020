@@ -300,6 +300,12 @@
     , "unlocksBy": "medal:7"
     , "users": ["ninjamuffin99", "mkmaffo", "digimin", "kawaisprite"]
     }
+,   { "id": "knose"
+    , "proper": "KnoseDoge"
+    , "description": "You better pronounce it \"Qu-No-Se\" or he'll cut you with a Qu-nife"
+    , "unlocksBy": null
+    , "users": ["knosedoge"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
