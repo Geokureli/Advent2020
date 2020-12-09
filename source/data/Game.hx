@@ -60,6 +60,10 @@ class Game
         if (!arcadeTypes.exists(name))
             throw "No constructor found for arcade:" + name;
         
+        if (FlxG.sound.music != null)
+            FlxG.sound.music.stop();
+        FlxG.sound.music = null;
+        
         arcadeName = name;
         FlxG.switchState(arcadeTypes[name]());
     }
@@ -67,6 +71,11 @@ class Game
     static public function exitArcade():Void
     {
         goToRoom(Arcade + "." + arcadeName);
+        
+        if (FlxG.sound.music != null)
+            FlxG.sound.music.stop();
+        FlxG.sound.music = null;
+        Content.playTodaysSong();
     }
 }
 

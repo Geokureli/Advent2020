@@ -111,7 +111,7 @@
         , "key"      : "f#Maj"
         , "bpm"      : 101
         , "ngId"     : 1559697
-        , "day"      : null
+        , "day"      : 9
         }
     ]
 ,   "artwork":
@@ -186,7 +186,7 @@
         }
     ,   { "id"     : "horse"
         , "name"   : "Pin the Tail"
-        , "authors": ["nockconter", "geokureli", "midgetsausage", "brandybuizel"]
+        , "authors": ["nickconter", "geokureli", "midgetsausage", "brandybuizel"]
         , "day"    : 9
         , "mobile" : false
         , "type"   : "overlay"

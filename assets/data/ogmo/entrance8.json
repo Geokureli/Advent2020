@@ -160,6 +160,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "karlestonchew"}
+        },
+        {
+          "name": "Present",
+          "id": 13,
+          "_eid": "75464384",
+          "x": 464,
+          "y": 336,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "sirlenward"}
         }
       ]
     },

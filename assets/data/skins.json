@@ -110,7 +110,7 @@
 ,   { "id": "salad_fingers"
     , "proper": "Salad Fingers"
     , "description": "Goodness knows whatever happened to this guy, but he sure does love some rusty spoons."
-    , "unlocksBy": null
+    , "unlocksBy": "day:7"
     , "users": ["doki"]
     }
 ,   { "id": "blockhead"
@@ -141,7 +141,7 @@
 ,   { "id": "knight"
     , "proper": "Knight"
     , "description": "Realm Raiders"
-    , "unlocksBy": null
+    , "unlocksBy": "day:8"
     , "users": ["tyler"]
     }
 ,   { "id": "tangy_mustard"
@@ -167,7 +167,7 @@
 ,   { "id": "spoople"
     , "proper": "Spoople"
     , "description": "\"I wasn’t born in the traditional sense but rather constructed. An impossible, technical\nmarriage of flesh and paradox. At least that's what my baby pictures say.\""
-    , "unlocksBy": null
+    , "unlocksBy": "day:9"
     , "users": ["frasermcniven"]
     }
 ,   { "id": "tom"
@@ -208,7 +208,7 @@
 ,   { "id": "horse"
     , "proper": "Horse"
     , "description": "It's that guy from NEAR DEADline, you should play that game instead, trust me."
-    , "unlocksBy": null
+    , "unlocksBy": "medal:61392"
     , "users": ["nickconter"]
     , "group": "devs"
     }

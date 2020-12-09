@@ -1,5 +1,6 @@
 package horse;
 
+import data.Content;
 import data.NGio;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -20,7 +21,7 @@ class HorseSubState extends flixel.FlxSubState
     var tail:FlxSprite;
     var instructions:FlxBitmapText;
     
-    var state = State.Unstarted;
+    var state = HorseState.Unstarted;
     var time = 0.0;
     var score = 0;
     
@@ -45,6 +46,7 @@ class HorseSubState extends flixel.FlxSubState
         title.y = (bg.y - title.height) / 2;
         title.screenCenter(X);
         title.x += 2; // kerning
+        title.setBorderStyle(OUTLINE);
         add(title);
         
         instructions = new FlxBitmapText(new ui.Font.XmasFont());
@@ -55,6 +57,13 @@ class HorseSubState extends flixel.FlxSubState
         instructions.screenCenter(X);
         instructions.x += 2; // kerning
         add(instructions);
+        
+        var escapeText = new FlxBitmapText();
+        escapeText.text = "Escape to quit";
+        escapeText.x = 4;
+        escapeText.y = 4;
+        escapeText.setBorderStyle(OUTLINE);
+        add(escapeText);
         
         nick = new Nick();
         nick.setMaskfrom(bg);
@@ -67,6 +76,8 @@ class HorseSubState extends flixel.FlxSubState
         tail.scale.scale(1 / 4);
         gameLayer.add(tail);
         FlxG.mouse.visible = false;
+        
+        FlxG.sound.playMusic("assets/sounds/horse.mp3");
         
         restart();
     }
@@ -146,12 +157,7 @@ class HorseSubState extends flixel.FlxSubState
                 if (this.time <= 0)
                 {
                     if (FlxG.mouse.justPressed)
-                    {
-                        // if (state == Results)
-                        //     NGio.postPlayerHiscore("horse", score);
-                        
                         restart();
-                    }
                     
                     if(oldTime > 0)
                         setInstructions(instructions.text + "\nClick to retry");
@@ -169,7 +175,12 @@ class HorseSubState extends flixel.FlxSubState
     function showScore()
     {
         var dis = FlxVector.get(nick.x - tail.x, nick.y - tail.y);
-        score = Math.floor(dis.length * 5);
+        score = Math.floor(dis.length);
+        NGio.postPlayerHiscore("horse", score);
+        
+        if (score <= 10)
+            NGio.unlockMedal(61392);
+        
         setInstructions("Distance: " + score);
     }
     
@@ -184,8 +195,9 @@ class HorseSubState extends flixel.FlxSubState
     
     override function close()
     {
-        super.close();
         FlxG.mouse.visible = true;
+        
+        super.close();
     }
 }
 
@@ -275,7 +287,7 @@ private class Nick extends FlxSprite
     }
 }
 
-private enum State
+private enum HorseState
 {
     Unstarted;
     HidingMouse;
