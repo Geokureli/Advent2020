@@ -60,6 +60,9 @@
     , "gallowjolt":
         { "proper": "GallowJolt"
         }
+    , "midgetsausage":
+        { "proper": "midgetsausage"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -152,22 +155,44 @@
         , "day"    : 7
         , "medal"  : true
         }
-    ,   { "id"     : "karlestonchew"
-        , "name"   : "The Pico Express"
-        , "authors": ["karlestonchew"]
-        , "day"    : 8
-        , "medal"  : true
+    ,   { "id"       : "karlestonchew"
+        , "name"     : "The Pico Express"
+        , "authors"  : ["karlestonchew"]
+        , "day"      : 8
+        , "medal"    : true
         , "antiAlias": false
         }
     ]
 ,   "events":
-    { "1": { "id":"day1intro", "saveState":false } }
+    { "1": { "id":"day1intro", "saveState":false }
+    }
 ,   "arcades":
-    [   { "id":"digging"
+    [   { "id"     : "digging"
+        , "name"   : "Festive Forage"
         , "authors": ["knose", "chdonga", "gallowjolt", "splatterdash"]
-        , "scoreboard":"Festive Forage"
-        , "day":8
-        , "ngId":1556969
+        , "day"    : 8
+        , "ngId"   : 1556969
+        , "mobile" : false
+        , "type"   : "state"
+        }
+    ,   { "id"     : "horse"
+        , "name"   : "Pin the Tail"
+        , "authors": ["nockconter", "geokureli", "midgetsausage", "brandybuizel"]
+        , "day"    : 9
+        , "mobile" : false
+        , "type"   : "overlay"
+        }
+    ,   { "id"     : "advent2019"
+        , "name"   : "Christmas ADVENTure 2019"
+        , "authors": null
+        , "day"    : 10
+        , "type"   : "external"
+        }
+    ,   { "id"     : "advent2018"
+        , "name"   : "Christmas ADVENTure 2018"
+        , "authors": null
+        , "day"    : 10
+        , "type"   : "external"
         }
     ]
 }

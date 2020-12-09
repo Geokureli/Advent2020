@@ -42,6 +42,8 @@ class Content
         {
             arcadeData.path = 'assets/images/props/cabinets/${arcadeData.id}.png';
             arcadeData.medalPath = 'assets/images/medals/${arcadeData.id}.png';
+            if (arcadeData.scoreboard == null)
+                arcadeData.scoreboard = arcadeData.name;
             arcades[arcadeData.id] = arcadeData;
         }
         
@@ -277,6 +279,8 @@ typedef ArcadeCreation
     var scoreboard:String;
     var scoreboardId:Int;
     var medalPath:String;
+    var mobile:Bool;
+    var type:ArcadeType;
 }
 
 typedef EventContent = 
@@ -303,4 +307,14 @@ enum abstract User(String) from String to String
 enum abstract ArcadeName(String) to String
 {
     var Digging = "digging";
+    var Horse = "horse";
+    var Advent2018 = "2018";
+    var Advent2019 = "2019";
+}
+
+enum abstract ArcadeType(String) to String
+{
+    var State    = "state";
+    var Overlay  = "overlay";
+    var External = "external";
 }

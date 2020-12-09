@@ -57,7 +57,7 @@ class NGio
 			callback();
 		}
 		
-		logDebug("connecting to newgrounds");
+		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + APIStuff.DebugSession);
 		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, APIStuff.DebugSession, onSessionFail);
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
