@@ -59,7 +59,7 @@ class GhostPlayer extends Player
         );
         
         var oldState = state;
-        var newPos = FlxPoint.get(x + width / 2, y + height / 2);
+        var newPos = FlxPoint.get(x, y);
         var isMoving = false;
         
         for (change in changes)
