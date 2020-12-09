@@ -1,5 +1,7 @@
 package data;
 
+import states.OgmoState;
+
 import flixel.system.FlxSound;
 
 import openfl.utils.Assets;
@@ -87,6 +89,7 @@ class Content
     {
         var errors = new Array<ContentError>();
         
+        var presentIds = getEntityIds("entrance", "Present");
         var daysFound = new Array();
         for (art in artwork)
         {
@@ -105,8 +108,8 @@ class Content
                     errors.push('Missing ${art.presentPath}');
                 if (!Manifest.exists(art.medalPath, IMAGE))
                     errors.push('Missing ${art.medalPath}');
-                // if (Manifest.exists(art.medalPath))
-                //     errors.push('Missing thumbnail or invalid path id:${art.id} expected: ${art.medalPath}');
+                if (!presentIds.contains(art.id))
+                    errors.push('Missing present in entrance, id:${art.id}');
                 if (art.authors == null)
                     errors.push('Missing artwork authors id:${art.id}');
                 for (author in art.authors)
@@ -143,25 +146,60 @@ class Content
             }
         }
         
+        var cabinetIds = getEntityIds("arcade", "Cabinet");
         for (arcade in arcades)
         {
             if (arcade.day != null && arcade.day <= Calendar.day)
             {
                 if (!Manifest.exists(arcade.path, IMAGE))
                     errors.push('Missing ${arcade.path}');
-                if (!Manifest.exists(arcade.medalPath, IMAGE))
+                if (arcade.type != External && !Manifest.exists(arcade.medalPath, IMAGE))
                     errors.push('Missing ${arcade.medalPath}');
-                if (arcade.authors == null)
-                    errors.push('Missing arcade authors id:${arcade.id}');
-                for (author in arcade.authors)
+                if (!cabinetIds.contains(arcade.id))
+                    errors.push('Missing cabinet in arcade id:${arcade.id}');
+                // if (arcade.authors == null)
+                //     errors.push('Missing arcade authors id:${arcade.id}');
+                if (arcade.authors != null)
                 {
-                    if (!credits.exists(author) || credits[author].proper == null)
-                        errors.push('Missing credits author:$author');
+                    for (author in arcade.authors)
+                    {
+                        if (!credits.exists(author) || credits[author].proper == null)
+                            errors.push('Missing credits author:$author');
+                    }
                 }
             }
         }
         
         return errors.length == 0 ? null : errors;
+    }
+    
+    static function getEntityIds(room:String, entityName:String)
+    {
+        final list = new Array<String>();
+        var day = Calendar.day;
+        
+        var levelPath = 'assets/data/ogmo/$room$day.json';
+        while(day-- > 0 && !Manifest.exists(levelPath))
+            levelPath = 'assets/data/ogmo/$room$day.json';
+        
+        if (day <= 0)
+            return list;
+        
+        var levelString = openfl.Assets.getText(levelPath).split("\\\\").join("/");
+        var level:OgmoLevelData = Json.parse(levelString);
+        for (layerData in level.layers)
+        {
+            if (Reflect.hasField(layerData, "entities"))
+            {
+                for (entityData in (cast layerData:OgmoEntityLayerData).entities)
+                {
+                    if (entityData.name == entityName)
+                        list.push(entityData.values.id);
+                }
+            }
+        }
+        
+        return list;
     }
     
     static public function listAuthorsProper(authors:Array<String>)
