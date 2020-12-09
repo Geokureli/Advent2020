@@ -234,7 +234,7 @@ class BootState extends flixel.FlxState
     
     function onComplete()
     {
-        preloadArt("einmeister"); // takes forever to load, people think it froze
+        preloadArt();
         
         Game.init();
         #if SKIP_TO_DIG_GAME
@@ -244,11 +244,13 @@ class BootState extends flixel.FlxState
         #end
     }
     
-    function preloadArt(id:String)
+    function preloadArt()
     {
-        final data = Content.artwork[id];
-        if (Calendar.day >= data.day)
-            Manifest.loadArt(id);
+        for (artwork in Content.artwork)
+        {
+            if (artwork.preload || artwork.day == Calendar.day)
+                Manifest.loadArt(artwork.id);
+        }
     }
     
     function preloadSong(id:String)

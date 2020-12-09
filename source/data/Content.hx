@@ -61,6 +61,7 @@ class Content
             artData.thumbPath = 'assets/images/thumbs/${artData.id}.png';
             artData.presentPath = 'assets/images/props/presents/${artData.id}.png';
             artData.medalPath = 'assets/images/medals/${artData.id}.png';
+            artData.preload = artData.preload == true;
             presentsById[artData.id] = i;
             presentsByIndex[i] = artData.id;
         }
@@ -260,6 +261,7 @@ typedef ArtCreation
     var medalPath:String;
     var antiAlias:Null<Bool>;
     var medal:Null<Bool>;
+    var preload:Bool;
 }
 
 typedef SongCreation

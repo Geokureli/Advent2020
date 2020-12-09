@@ -139,6 +139,7 @@
         , "authors": ["einmeister"]
         , "day"    : 4
         , "medal"  : true
+        , "preload": true
         }
     ,   { "id"     : "bub"
         , "name"   : "NOLLAIG SHONA"
@@ -166,10 +167,11 @@
         , "antiAlias": false
         }
     ,   { "id"     : "sirlenward"
-        , "name"   : null
+        , "name"   : "Funky Mischief"
         , "authors": ["sirlenward"]
         , "day"    : 9
         , "medal"  : true
+        , "preload": true
         }
     ]
 ,   "events":
