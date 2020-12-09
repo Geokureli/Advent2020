@@ -279,6 +279,7 @@ typedef ArcadeCreation
     var scoreboard:String;
     var scoreboardId:Int;
     var medalPath:String;
+    var mobile:Bool;
     var type:ArcadeType;
 }
 
@@ -307,6 +308,8 @@ enum abstract ArcadeName(String) to String
 {
     var Digging = "digging";
     var Horse = "horse";
+    var Advent2018 = "2018";
+    var Advent2019 = "2019";
 }
 
 enum abstract ArcadeType(String) to String

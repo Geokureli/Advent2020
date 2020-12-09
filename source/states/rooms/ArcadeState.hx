@@ -41,10 +41,40 @@ class ArcadeState extends RoomState
     
     function playCabinet(data:ArcadeCreation)
     {
-        if (FlxG.onMobile)
+        if (data.mobile == false && FlxG.onMobile)
             Prompt.showOKInterrupt("This game is not available on mobile\n...yet.");
         else
-            Game.goToArcade(cast data.id);
+        {
+            switch(data.type)
+            {
+                case State: Game.goToArcade(cast data.id);
+                case Overlay: openOverlayArcade(cast data.id);
+                case External: openExternalArcade(cast data.id);
+            }
+        }
+    }
+    
+    function openOverlayArcade(id:ArcadeName)
+    {
+        var overlay = switch(id)
+        {
+            case Horse: new horse.HorseSubState();
+            default:
+                throw "Unhandled arcade id:" + id;
+        }
+        openSubState(overlay);
+    }
+    
+    function openExternalArcade(id:ArcadeName)
+    {
+        var url = switch(id)
+        {
+            case Advent2018: "https://www.newgrounds.com/portal/view/721061";
+            case Advent2019: "https://www.newgrounds.com/portal/view/743161";
+            default:
+                throw "Unhandled arcade id:" + id;
+        }
+        openUrl(url);
     }
     
     override function update(elapsed:Float)

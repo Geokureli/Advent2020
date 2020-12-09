@@ -75,6 +75,9 @@ class HorseSubState extends flixel.FlxSubState
     {
         super.update(elapsed);
         
+        if (FlxG.keys.anyJustPressed([ESCAPE, X]))
+            close();
+        
         switch(state)
         {
             case Unstarted:
@@ -132,14 +135,15 @@ class HorseSubState extends flixel.FlxSubState
                     tail.visible = true;
                     FlxG.mouse.visible = true;
                     state = Results;
+                    time = 1.0;
                     showScore();
                 }
             }
             case Results | Fail:
             {
-                var oldTime  = time;
+                var oldTime = time;
                 time -= elapsed;
-                if (time <= 0)
+                if (this.time <= 0)
                 {
                     if (FlxG.mouse.justPressed)
                     {
@@ -175,6 +179,7 @@ class HorseSubState extends flixel.FlxSubState
         nick.reset(FlxG.width / 2, FlxG.height / 2);
         state = Unstarted;
         FlxG.mouse.visible = false;
+        setInstructions("Click to start");
     }
     
     override function close()
