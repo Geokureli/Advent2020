@@ -555,10 +555,14 @@ class RoomState extends OgmoState
     }
     
     
-	public static inline function byYNullSafe(order:Int, a:Null<FlxObject>, b:Null<FlxObject>):Int
+	public static function byYNullSafe(order:Int, a:Null<FlxObject>, b:Null<FlxObject>):Int
 	{
-        if (a == null || b == null)
+        if (a == null && b == null)
             return 0;
+        if (a == null)
+            return -order;
+        if (b == null)
+            return order;
 		return FlxSort.byValues(order, a.y, b.y);
 	}
 }

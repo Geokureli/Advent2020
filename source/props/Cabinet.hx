@@ -33,7 +33,7 @@ class Cabinet extends flixel.FlxSprite
         else
             loadGraphic('assets/images/props/arcade/cabinet_broken.png');
         
-        (this:OgmoDecal).setBottomHeight(this.frameHeight >> 1);
+        (this:OgmoDecal).setBottomHeight(this.frameHeight / 4);
         immovable = true;
     }
     

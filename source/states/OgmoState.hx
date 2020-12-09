@@ -360,10 +360,10 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         this.x -= Math.round(this.width / 2);
         this.y -= Math.round(this.height / 2);
         // allow player to go behind stuff
-        setBottomHeight(Math.round(this.height / 3));
+        setBottomHeight(this.height / 3);
     }
     
-    public function setBottomHeight(value:Int)
+    public function setBottomHeight(value:Float)
     {
         var oldHeight = this.height;
         this.height = value;
@@ -371,7 +371,7 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         this.offset.y += oldHeight - value;
     }
     
-    public function setMiddleWidth(value:Int)
+    public function setMiddleWidth(value:Float)
     {
         var oldWidth = this.width;
         this.width = value;
