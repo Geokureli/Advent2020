@@ -98,6 +98,7 @@ class HorseSubState extends flixel.FlxSubState
                     state = HidingMouse;
                     setInstructions("Ready");
                     time = 3.0;
+                    nick.startAnimating();
                 }
                 tail.x = FlxG.mouse.x;
                 tail.y = FlxG.mouse.y;
@@ -179,7 +180,14 @@ class HorseSubState extends flixel.FlxSubState
         NGio.postPlayerHiscore("horse", score);
         
         if (score <= 10)
+        {
             NGio.unlockMedal(61392);
+            nick.animation.play("hit");
+        }
+        else if (score <= 20)
+            nick.animation.play("near");
+        else if (score <= 30)
+            nick.animation.play("miss");
         
         setInstructions("Distance: " + score);
     }
@@ -207,11 +215,20 @@ private class Nick extends FlxSprite
     public var rect = FlxRect.get();
     public var targetPos = FlxPoint.get();
     
+    var animTime = 0.0;
+    
     public function new()
     {
-        super(FlxG.width / 2, FlxG.height / 2, "assets/images/horse/nick.png");
-        
+        super("assets/images/horse/nick.png");
         loadGraphic(graphic.key, true, frameWidth >> 2, frameHeight);
+        animation.add("idle", [0]);
+        animation.add("look", [0,1,2], 4, false);
+        animation.add("away", [2,1,0], 4, false);
+        animation.add("miss", [1]);
+        animation.add("near", [2]);
+        animation.add("hit", [3]);
+        animation.play("idle");
+        
         offset.set(540, 215);
         origin.copyFrom(offset);
         scale.scale(1 / 4);
@@ -228,6 +245,29 @@ private class Nick extends FlxSprite
         // updateHitbox();
     }
     
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+        
+        final animName = animation.curAnim.name;
+        
+        if (animName != "idle")
+        {
+            animTime -= elapsed;
+            if (animTime <= 0)
+            {
+                animation.play(animName == "look" ? "away" : "look");
+                animTime = FlxG.random.float(0.25, 1.5);
+            }
+        }
+    }
+    
+    inline public function startAnimating()
+    {
+        animation.play("look");
+        animTime = FlxG.random.float(0.25, 1.5);
+    }
+    
     override function draw()
     {
         clipToBounds();
@@ -238,6 +278,7 @@ private class Nick extends FlxSprite
     {
         super.reset(x, y);
         targetPos.set(x, y);
+        animation.play("idle");
     }
     
     public function moveRandomly()
