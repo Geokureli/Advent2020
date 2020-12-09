@@ -63,6 +63,9 @@
     , "midgetsausage":
         { "proper": "midgetsausage"
         }
+    , "sirlenward":
+        { "proper": "SirLenward"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -161,6 +164,12 @@
         , "day"      : 8
         , "medal"    : true
         , "antiAlias": false
+        }
+    ,   { "id"     : "sirlenward"
+        , "name"   : null
+        , "authors": ["sirlenward"]
+        , "day"    : 9
+        , "medal"  : true
         }
     ]
 ,   "events":
