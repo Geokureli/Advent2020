@@ -169,6 +169,9 @@ class Player extends flixel.FlxSprite
         
         if (velocity.x != 0)
             flipX = velocity.x > 0;
+        
+        if (targetPos != null && velocity.x == 0 && velocity.y == 0 && acceleration.x == 0 && acceleration.y == 0)
+            targetPosReached();
     }
     
     override function draw()
@@ -190,6 +193,7 @@ class Player extends flixel.FlxSprite
         offset = FlxDestroyUtil.put(offset);
         // scale = FlxDestroyUtil.put(scale);
     }
+    
     public function setTargetPos(newPos:FlxPoint)
     {
         if (usePaths)
@@ -225,6 +229,11 @@ class Player extends flixel.FlxSprite
         }
         start.put();
         end.put();
+    }
+    
+    function targetPosReached()
+    {
+        cancelTargetPos();
     }
     
     function cancelTargetPos()

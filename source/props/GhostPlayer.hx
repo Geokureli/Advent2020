@@ -12,6 +12,7 @@ class GhostPlayer extends Player
     var key:String;
     var name:String;
     var nameText:FlxBitmapText;
+    var leaveCallback:()->Void;
     
     public function new(key:String, name:String, x = 0.0, y = 0.0, settings)
     {
@@ -38,6 +39,9 @@ class GhostPlayer extends Player
             ghostShader.updatePosRound(screenPos.x, screenPos.y);
             screenPos.put();
         }
+        
+        if (leaveCallback != null && velocity.x == 0 && velocity.y == 0 && acceleration.x == 0 && acceleration.y == 0)
+            leaveCallback();
     }
     
     override function draw()
@@ -100,6 +104,11 @@ class GhostPlayer extends Player
         newPos.put();
     }
     
+    public function leave(callback:()->Void)
+    {
+        leaveCallback = callback;
+    }
+    
     function updateNameText(name:String)
     {
         nameText.text = name == null ? "" : name;
@@ -110,5 +119,11 @@ class GhostPlayer extends Player
     inline function outputChange(change:DataChange)
     {
         return change.field + ":" + change.previousValue + "->" + change.value;
+    }
+    
+    override function destroy()
+    {
+        super.destroy();
+        leaveCallback = null;
     }
 }

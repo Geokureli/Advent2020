@@ -77,13 +77,19 @@ class Net
         );
     }
     
+    inline static public function safeLeaveCurrentRoom(consented = true)
+    {
+        if (client != null && room != null)
+            room.leave(consented);
+    }
+    
     static public function leaveCurrentRoom(consented = true)
     {
         if (client == null)
             throw "Attempting to leave current room before client is setup";
         
         if (room != null)
-            room.leave();
+            room.leave(consented);
         
         room = null;
         roomName = null;

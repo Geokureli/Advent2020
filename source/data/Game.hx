@@ -52,6 +52,7 @@ class Game
         }
         
         final constructor = roomTypes.exists(name) ? roomTypes[name] : RoomState.new;
+        Net.safeLeaveCurrentRoom();
         FlxG.switchState(constructor(target));
     }
     

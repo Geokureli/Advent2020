@@ -385,14 +385,17 @@ class RoomState extends OgmoState
     function onAvatarRemove(data:Avatar, key:String)
     {
         if (ghostsById.exists(key))
-        {
-            var ghost = ghostsById[key];
-            ghostsById.remove(key);
-            ghosts.remove(ghost);
-            foreground.remove(ghost);
-            avatars.remove(ghost);
-            data.onChange = null;
-        }
+            ghostsById[key].leave(()->removeAvatar(data, key));
+    }
+    
+    function removeAvatar(data:Avatar, key:String)
+    {
+        var ghost = ghostsById[key];
+        ghostsById.remove(key);
+        ghosts.remove(ghost);
+        foreground.remove(ghost);
+        avatars.remove(ghost);
+        data.onChange = null;
     }
     
     override public function update(elapsed:Float):Void 
@@ -513,6 +516,12 @@ class RoomState extends OgmoState
     
     function activateTeleport(target)
     {
+        if (Net.room != null)
+        {
+            // This call is never received, the player is removed from the room before, TODO: fix
+            // final data = { x:Std.int(player.x), y:Std.int(player.y), state:PlayerState.Leaving };
+            // Net.send("avatar", data);
+        }
         Game.goToRoom(target);
     }
     
