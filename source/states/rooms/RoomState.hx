@@ -157,6 +157,7 @@ class RoomState extends OgmoState
         foreground = getByName("Foreground");
         background = getByName("Background");
         add(topGround);
+        topGround.add(infoBoxGroup);
         
         geom = getByName("Geom");
         colliders.add(geom);
@@ -205,7 +206,6 @@ class RoomState extends OgmoState
         uiCamera.bgColor = 0x0;
         FlxG.cameras.add(uiCamera);
         ui.camera = uiCamera;
-        ui.add(infoBoxGroup);
         ui.add(medalPopup = MedalPopup.getInstance());
         ui.add(musicPopup = MusicPopup.getInstance());
         ui.add(skinPopup = SkinPopup.getInstance());
