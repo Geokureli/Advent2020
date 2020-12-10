@@ -8,7 +8,7 @@
         , "roles" : ["Organizer"]
         }
     , "nickconter":
-        { "proper": "NickConter"
+        { "proper": "Nick Conter"
         , "roles" : ["Organizer"]
         }
     , "albegian":
@@ -75,6 +75,15 @@
     , "jamesrennamusic":
         { "proper": "James Renna"
         }
+    , "hyenaedon":
+        { "proper": "Hyenaedon"
+        }
+    , "carmet":
+        { "proper": "Carmet"
+        }
+    , "goodl":
+        { "proper": "GoodL"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -125,10 +134,32 @@
     ,   { "id"     : "connorgrail"
         , "name"   : "We Three Kings"
         , "authors": ["connorgrail","rennajamesmusic"]
-        , "key"      : "f#Maj"
-        , "bpm"      : 101
+        , "key"      : "aMaj"
+        , "bpm"      : 166
         , "ngId"     : 0
         , "day"      : 11
+        }
+    ,   { "id"     : "hyenaedon"
+        , "name"   : "Woodland Sprites"
+        , "authors": ["hyenaedon"]
+        , "ngId"     : 0
+        , "day"      : 13
+        }
+    ,   { "id"     : "carmet"
+        , "name"   : "It's Cold"
+        , "authors": ["carmet"]
+        , "key"      : "f#Maj"
+        , "bpm"      : 60
+        , "ngId"     : 0
+        , "day"      : 15
+        }
+    ,   { "id"     : "goodl"
+        , "name"   : "Holidays Under Contruction"
+        , "authors": ["goodl"]
+        , "key"      : "aMaj"
+        , "bpm"      : 130
+        , "ngId"     : 0
+        , "day"      : 17
         }
     ]
 ,   "artwork":
@@ -233,6 +264,12 @@
         , "authors": null
         , "day"    : 10
         , "type"   : "external"
+        }
+    ,   { "id"     : "positivity"
+        , "name"   : "Think Positive"
+        , "authors": "mig_moog"
+        , "day"    : 18
+        , "type"   : "overlay"
         }
     ]
 }
