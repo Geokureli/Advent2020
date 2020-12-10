@@ -69,6 +69,12 @@
     , "shirogaia":
         { "proper": "Shiro Gaia"
         }
+    , "connorgrail":
+        { "proper": "Connor Grail"
+        }
+    , "jamesrennamusic":
+        { "proper": "James Renna"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -115,6 +121,14 @@
         , "bpm"      : 101
         , "ngId"     : 1559697
         , "day"      : 9
+        }
+    ,   { "id"     : "connorgrail"
+        , "name"   : "We Three Kings"
+        , "authors": ["connorgrail","rennajamesmusic"]
+        , "key"      : "f#Maj"
+        , "bpm"      : 101
+        , "ngId"     : 0
+        , "day"      : 11
         }
     ]
 ,   "artwork":
