@@ -7,7 +7,7 @@ import flixel.ui.FlxButton;
 
 class Button extends FlxTypedButton<FlxSprite>
 {
-    public function new(x:Float, y:Float, ?onClick:Void->Void, graphic, ?labelGraphic:FlxGraphicAsset)
+    public function new(x = 0.0, y = 0.0, ?onClick:Void->Void, graphic, ?labelGraphic:FlxGraphicAsset)
     {
         super(x, y, onClick);
         
@@ -36,9 +36,9 @@ class Button extends FlxTypedButton<FlxSprite>
 @:forward
 abstract IconButton(Button) to Button
 {
-    inline static public var GRAPHIC = "assets/images/ui/iconBtn.png";
+    inline static public var GRAPHIC = "assets/images/ui/buttons/iconBtn.png";
     
-    inline public function new(x, y, ?icon:String, ?onClick)
+    inline public function new(x = 0.0, y = 0.0, ?icon:String, ?onClick)
     {
         this = new Button(x, y, onClick, GRAPHIC, icon);
     }
@@ -47,49 +47,49 @@ abstract IconButton(Button) to Button
 @:forward
 abstract YesButton(Button) to Button
 {
-    public function new(x, y, ?onClick)
+    public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/button_yes.png");
+        this = new Button(x, y, onClick, "assets/images/ui/buttons/yes.png");
     }
 }
 
 @:forward
 abstract NoButton(Button) to Button
 {
-    public function new(x, y, ?onClick)
+    public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/button_no.png");
+        this = new Button(x, y, onClick, "assets/images/ui/buttons/no.png");
     }
 }
 
 @:forward
 abstract OkButton(Button) to Button
 {
-    public function new(x, y, ?onClick)
+    public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/button_ok.png");
+        this = new Button(x, y, onClick, "assets/images/ui/buttons/button_ok.png");
     }
 }
 
 @:forward
 abstract BackButton(Button) to Button
 {
-    public function new(x, y, ?onClick)
+    public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/back.png");
+        this = new Button(x, y, onClick, "assets/images/ui/buttons/back.png");
     }
 }
 
 class FullscreenButton extends Button
 {
-    public function new(x, y)
+    public function new(x = 0.0, y = 0.0)
     {
-        super(x, y, toggle, "assets/images/ui/fullscreen_off.png");
+        super(x, y, toggle, "assets/images/ui/buttons/fullscreen_off.png");
     }
     
     function toggle():Void
     {
         FlxG.fullscreen = !FlxG.fullscreen;
-        this.setGraphic('assets/images/ui/fullscreen_${FlxG.fullscreen ? "on" : "off"}.png');
+        this.setGraphic('assets/images/ui/buttons/fullscreen_${FlxG.fullscreen ? "on" : "off"}.png');
     }
 }

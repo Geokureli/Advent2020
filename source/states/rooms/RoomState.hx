@@ -1,5 +1,6 @@
 package states.rooms;
 
+import ui.Button;
 import data.*;
 import props.*;
 import props.InfoBox;
@@ -199,17 +200,20 @@ class RoomState extends OgmoState
     
     function initUi()
     {
+        camera = FlxG.camera;
+        var uiCamera = new FlxCamera();
+        uiCamera.bgColor = 0x0;
+        FlxG.cameras.add(uiCamera);
+        ui.camera = uiCamera;
         ui.add(infoBoxGroup);
         ui.add(medalPopup = MedalPopup.getInstance());
         ui.add(musicPopup = MusicPopup.getInstance());
         ui.add(skinPopup = SkinPopup.getInstance());
-        ui.forEach(
-            function(obj)
-            {
-                if (Std.is(obj, FlxSprite))
-                    (cast obj:FlxSprite).scrollFactor.set(0,0);
-            }
-        );
+        var fullscreen = new FullscreenButton();
+        fullscreen.updateHitbox();
+        fullscreen.x = FlxG.width - fullscreen.width - 4;
+        fullscreen.y = 4;
+        ui.add(fullscreen);
         add(ui);
     }
     

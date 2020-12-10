@@ -33,7 +33,7 @@ class SkinPopup extends FlxTypedSpriteGroup<FlxSprite>
         text.x = 4;
         text.y = 4;
         
-        x = FlxG.width - bg.width;
+        x = FlxG.width - bg.width - 30;
         y = -bg.height;
         scrollFactor.set(0,0);
         
