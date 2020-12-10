@@ -66,6 +66,9 @@
     , "sirlenward":
         { "proper": "SirLenward"
         }
+    , "shirogaia":
+        { "proper": "Shiro Gaia"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -173,10 +176,16 @@
         , "medal"  : true
         , "preload": true
         }
+    ,   { "id"     : "shirogaia"
+        , "name"   : "Friday Nite Build Date"
+        , "authors": ["shirogaia"]
+        , "day"    : 10
+        , "medal"  : true
+        }
     ,   { "id"     : "nickconter"
         , "name"   : null
         , "authors": ["nickconter"]
-        , "day"    : 10
+        , "day"    : 11
         , "medal"  : true
         }
     ]
