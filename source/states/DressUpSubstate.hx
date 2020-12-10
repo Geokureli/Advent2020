@@ -8,6 +8,7 @@ import data.Save;
 import data.PlayerSettings;
 import data.Skins;
 import ui.Button;
+import ui.Controls;
 
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -34,7 +35,8 @@ class DressUpSubstate extends flixel.FlxSubState
     var arrowLeft:Button;
     var arrowRight:Button;
     var ok:Button;
-    var antiPressTime = 0.25;
+    // prevents instant selection
+    var wasAReleased = false;
     
     var currentSprite(get, never):SkinDisplay;
     inline function get_currentSprite() return sprites.members[current];
@@ -148,30 +150,17 @@ class DressUpSubstate extends flixel.FlxSubState
     {
         super.update(elapsed);
         
-        var padJustPressed = FlxG.gamepads.anyJustPressed;
-        function padAnyJustPressed(idArray:Array<FlxGamepadInputID>)
-        {
-            while(antiPressTime <= 0 && idArray.length > 0)
-            {
-                if (padJustPressed(idArray.shift()))
-                    return true;
-            }
-            return false;
-        }
+        if (!wasAReleased && Controls.released.A)
+            wasAReleased = true;
         
-        if (FlxG.keys.anyJustPressed([RIGHT, D]) || padAnyJustPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT]))
+        if (Controls.justPressed.RIGHT)
             toNext();
-        
-        if (FlxG.keys.anyJustPressed([LEFT, A]) || padAnyJustPressed([DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT]))
+        if (Controls.justPressed.LEFT )
             toPrev();
-        
-        if (FlxG.keys.anyJustPressed([Z, SPACE]) || padJustPressed(A))
+        if (Controls.justPressed.A && !wasAReleased)
             select();
-        
-        if (FlxG.keys.anyJustPressed([X, ESCAPE]) || padJustPressed(B))
+        if (Controls.justPressed.B    )
             close();
-        
-        antiPressTime -= elapsed;
     }
     
     function toNext():Void

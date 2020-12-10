@@ -2,6 +2,7 @@ package props;
 
 import Types;
 import data.PlayerSettings;
+import ui.Controls;
 
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -35,54 +36,21 @@ class InputPlayer extends Player
         
         timer += elapsed;
         
-        final pad = FlxG.gamepads.lastActive;
-        if (FlxG.keys.pressed.ANY || pad == null || !pad.pressed.ANY)
-            updateKeys(elapsed);
-        else if (pad != null)
-            updateGamepad(elapsed);
+        var right   = Controls.pressed.RIGHT;
+        var left    = Controls.pressed.LEFT ;
+        var up      = Controls.pressed.UP   ;
+        var down    = Controls.pressed.DOWN ;
+        interacting = Controls.justPressed.A;
+        var smooch  = Controls.justPressed.B;
+        checkMouseInteracting();
+        
+        updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
         
         // prevents a bug on gamepads
         if (wasInteracting && interacting)
             interacting = false;
         else
             wasInteracting = interacting;
-    }
-    
-    function updateKeys(elapsed:Float)
-    {
-        var right = FlxG.keys.anyPressed([RIGHT, D]);
-        var left = FlxG.keys.anyPressed([LEFT, A]);
-        var up = FlxG.keys.anyPressed([UP, W]);
-        var down = FlxG.keys.anyPressed([DOWN, S]);
-        var smooch = FlxG.keys.anyJustPressed([X, K]);
-        interacting = FlxG.keys.anyJustPressed([SPACE, Z, J]);
-        checkMouseInteracting();
-        
-        updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
-    }
-    
-    function updateGamepad(elapsed:Float)
-    {
-        var pressed = FlxG.gamepads.anyPressed;
-        function anyPressed(idArray:Array<FlxGamepadInputID>)
-        {
-            while(idArray.length > 0)
-            {
-                if (pressed(idArray.shift()))
-                    return true;
-            }
-            return false;
-        }
-        interacting = FlxG.gamepads.lastActive.anyJustPressed([A]);
-        
-        var down   = anyPressed([DPAD_DOWN , LEFT_STICK_DIGITAL_DOWN ]);
-        var up     = anyPressed([DPAD_UP   , LEFT_STICK_DIGITAL_UP   ]);
-        var left   = anyPressed([DPAD_LEFT , LEFT_STICK_DIGITAL_LEFT ]);
-        var right  = anyPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT]);
-        var smooch = FlxG.gamepads.anyJustPressed(B);
-        checkMouseInteracting();
-        
-        updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
     }
     
     function checkMouseInteracting()

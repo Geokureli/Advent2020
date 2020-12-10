@@ -8,6 +8,7 @@ import data.APIStuff;
 import data.Manifest;
 import data.NGio;
 import ui.Button;
+import ui.Controls;
 import ui.Font;
 import utils.MultiCallback;
 
@@ -199,7 +200,20 @@ class BootState extends flixel.FlxState
                         if (NGio.isContributor)
                         {
                             msg.font = new NokiaFont();
-                            msg.text = "ERROR (debug):\n" + errors.join("\n")
+                            if (debugFutureEnabled)
+                            {
+                                msg.text
+                                    = "(debug) You pressed space to see tommorow's content,"
+                                    + "\nwhich is not ready yet because of the following errors:";
+                            }
+                            else
+                            {
+                                msg.text = "Errors:";
+                            }
+                            
+                            msg.text 
+                                += "\n" + errors.join("\n")
+                                + "\nYou are only seeing this message because you are in the credits"
                                 + "\nPress SPACE to play, anyway";
                         }
                         else
@@ -237,6 +251,7 @@ class BootState extends flixel.FlxState
         preloadArt();
         
         Game.init();
+        Controls.init();
         #if SKIP_TO_DIG_GAME
         Game.goToArcade(Digging);
         #else
