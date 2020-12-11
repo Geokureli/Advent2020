@@ -1,6 +1,7 @@
 package props;
 
 import Types;
+import data.Instrument;
 import data.PlayerSettings;
 
 import flixel.FlxG;
@@ -46,6 +47,8 @@ class InputPlayer extends Player
             interacting = false;
         else
             wasInteracting = interacting;
+        
+        Instrument.checkKeys();
     }
     
     function updateKeys(elapsed:Float)

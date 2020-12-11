@@ -274,4 +274,46 @@
         , "type"   : "overlay"
         }
     ]
+,   "instruments":
+    [   { "id"    : "piano"
+        , "name"  : "Piano"
+        , "day"   : 11
+        , "volume": 1.0
+        }
+    ,   { "id"    : "glockenspiel"
+        , "name"  : "Glockenspiel"
+        , "day"   : 12
+        , "volume": 0.5
+        }
+    ,   { "id"     : "flute"
+        , "name"   : "Flute"
+        , "icon"   : "Flute"
+        , "day"    : 14
+        , "volume" : 0.5
+        , "sustain":true
+        , "singleNote":true
+        }
+    ,   { "id"     : "drums"
+        , "icon"   : "sticks"
+        , "name"   : "Drum Set"
+        , "day"    : 16
+        , "volume" : 1.0
+        , "keys":
+            { "E":"snare"
+            , "4":"clap"
+            , "R":"tom"
+            , "5":"hat"
+            , "T":"bongo_1"
+            , "Y":"bongo_3"
+            , "7":"bongo_2"
+            , "U":"kick"
+            , "8":"bells"
+            , "I":"tambourine"
+            , "9":"triangle"
+            , "O":"stick"
+            , "P":"crash"
+            }
+        }
+    ]
+    
 }

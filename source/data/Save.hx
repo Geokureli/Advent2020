@@ -1,11 +1,14 @@
 package data;
 
+import data.Content;
+
 import utils.Log;
 import utils.BitArray;
 
 import flixel.FlxG;
 
 import haxe.Int64;
+import haxe.PosInfos;
 
 class Save
 {
@@ -58,6 +61,20 @@ class Save
             newData = true;
         }
         log("skin: " + data.skin);
+        
+        if (clearSave || data.instrument == null)
+        {
+            data.instrument = -1;
+            newData = true;
+        }
+        log("instrument: " + data.skin);
+        
+        if (clearSave || data.seenInstruments == null)
+        {
+            data.seenInstruments = new BitArray();
+            newData = true;
+        }
+        log("instruments seen: " + data.seenInstruments);
         
         if (newData)
             flush();
@@ -167,6 +184,36 @@ class Save
         return data.skin;
     }
     
+    static public function setInstrument(type:InstrumentType)
+    {
+        if (type == null) return;
+        
+        PlayerSettings.user.instrument = type;
+        data.instrument = Content.instruments[type].index;
+        flush();
+    }
+    
+    static public function getInstrument()
+    {
+        if (data.instrument < 0) return null;
+        return Content.instrumentsByIndex[data.instrument].id;
+    }
+    
+    static public function instrumentSeen(type:InstrumentType)
+    {
+        if (type == null) return;
+        
+        data.seenInstruments[Content.instruments[type].index] = true;
+        flush();
+    }
+    
+    static public function seenInstrument(type:InstrumentType)
+    {
+        if (type == null) return true;
+        
+        return data.seenInstruments[Content.instruments[type].index];
+    }
+    
     inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
 
@@ -176,4 +223,6 @@ typedef SaveData =
     var days:BitArray;
     var skins:BitArray;
     var skin:Int;
+    var instrument:Int;
+    var seenInstruments:BitArray;
 }

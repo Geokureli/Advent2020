@@ -15,6 +15,8 @@ class Content
     public static var artworkByDay:Map<Int, ArtCreation>;
     public static var songs:Map<String, SongCreation>;
     public static var arcades:Map<String, ArcadeCreation>;
+    public static var instruments:Map<InstrumentType, InstrumentData>;
+    public static var instrumentsByIndex:Map<Int, InstrumentData>;
     public static var events:Map<Int, SongCreation>;
     
     static var presentsById:Map<String, Int>;
@@ -22,7 +24,7 @@ class Content
     
     public static function init(data:String)
     {
-        var data:Dynamic = Json.parse(data);
+        var data:ContentFile = Json.parse(data);
         
         credits = [];
         for (user in Reflect.fields(data.credits))
@@ -33,14 +35,14 @@ class Content
         }
         
         songs = [];
-        for (songData in (data.songs:Array<SongCreation>))
+        for (songData in data.songs)
         {
             songData.path = 'assets/music/${songData.id}.mp3';
             songs[songData.id] = songData;
         }
         
         arcades = [];
-        for (arcadeData in (data.arcades:Array<ArcadeCreation>))
+        for (arcadeData in data.arcades)
         {
             arcadeData.path = 'assets/images/props/cabinets/${arcadeData.id}.png';
             arcadeData.medalPath = 'assets/images/medals/${arcadeData.id}.png';
@@ -53,7 +55,7 @@ class Content
         artworkByDay = [];
         presentsById = [];
         presentsByIndex = [];
-        for (i=>artData in (data.artwork:Array<ArtCreation>))
+        for (i=>artData in data.artwork)
         {
             artwork[artData.id] = artData;
             if (artData.day != null)
@@ -66,6 +68,28 @@ class Content
             artData.preload = artData.preload == true;
             presentsById[artData.id] = i;
             presentsByIndex[i] = artData.id;
+        }
+        
+        instruments = [];
+        instrumentsByIndex = [];
+        for (index=>instrument in data.instruments)
+        {
+            instrument.index = index;
+            if (instrument.icon == null)
+                instrument.icon = instrument.id;
+            instrument.iconPath = 'assets/images/medals/${instrument.id}.png';
+            instruments[instrument.id] = instrument;
+            instrumentsByIndex[index] = instrument;
+            instrument.singleNote = instrument.singleNote == null ? false: instrument.singleNote;
+            instrument.sustain = instrument.sustain == null ? false: instrument.sustain;
+            if (instrument.keys != null)
+            {
+                final keyOrder = "E4R5TY7U8I9OP";
+                instrument.mapping = [];
+                instrument.mapping.resize(keyOrder.length);
+                for (key in Reflect.fields(instrument.keys))
+                    instrument.mapping[keyOrder.indexOf(key)] = Reflect.field(instrument.keys, key);
+            }
         }
         
         events = [];
@@ -208,16 +232,16 @@ class Content
     static public function listAuthorsProper(authors:Array<String>)
     {
         if (authors.length == 1)
-			return Content.credits[authors[0]].proper;
-		else
-		{
-			final authorNames:Array<String> = [];
-			for (author in authors)
-				authorNames.push(Content.credits[author].proper);
-			
-			final text = "and " + authorNames.pop();
-			return authorNames.join(", ") + text;
-		}
+            return Content.credits[authors[0]].proper;
+        else
+        {
+            final authorNames:Array<String> = [];
+            for (author in authors)
+                authorNames.push(Content.credits[author].proper);
+            
+            final text = "and " + authorNames.pop();
+            return authorNames.join(", ") + text;
+        }
     }
     
     public static function isArtUnlocked(id:String)
@@ -270,6 +294,16 @@ class Content
     
     @:allow(data.Save)
     static function getPresentId(index:Int) return presentsByIndex[index];
+}
+
+private typedef ContentFile =
+{
+    var artwork:Array<ArtCreation>;
+    var songs:Array<SongCreation>;
+    var instruments:Array<InstrumentData>;
+    var arcades:Array<ArcadeCreation>;
+    var credits:Dynamic;
+    var events:Dynamic;
 }
 
 typedef ContentError = String;
@@ -326,6 +360,43 @@ typedef ArcadeCreation
     var type:ArcadeType;
 }
 
+enum abstract ArcadeName(String) to String
+{
+    var Digging = "digging";
+    var Horse = "horse";
+    var Advent2018 = "2018";
+    var Advent2019 = "2019";
+}
+
+enum abstract ArcadeType(String) to String
+{
+    var State    = "state";
+    var Overlay  = "overlay";
+    var External = "external";
+}
+
+typedef InstrumentData =
+{
+    var id:InstrumentType;
+    var index:Int;
+    var name:String;
+    var icon:String;
+    var iconPath:String;
+    var day:Int;
+    var keys:Dynamic;
+    var mapping:Array<String>;
+    var singleNote:Bool;
+    var sustain:Bool;
+}
+
+enum abstract InstrumentType(String) to String
+{
+    var Piano = "piano";
+    var Glock = "glockenspiel";
+    var Flute = "flute";
+    var Drums = "drums";
+}
+
 typedef EventContent = 
 {
     var id:String;
@@ -345,19 +416,4 @@ enum abstract User(String) from String to String
     var mixmuffin;
     var einmeister;
     var splatterdash;
-}
-
-enum abstract ArcadeName(String) to String
-{
-    var Digging = "digging";
-    var Horse = "horse";
-    var Advent2018 = "2018";
-    var Advent2019 = "2019";
-}
-
-enum abstract ArcadeType(String) to String
-{
-    var State    = "state";
-    var Overlay  = "overlay";
-    var External = "external";
 }
