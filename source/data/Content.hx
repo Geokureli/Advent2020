@@ -387,6 +387,7 @@ typedef InstrumentData =
     var mapping:Array<String>;
     var singleNote:Bool;
     var sustain:Bool;
+    var volume:Float;
 }
 
 enum abstract InstrumentType(String) to String

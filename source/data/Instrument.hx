@@ -25,7 +25,6 @@ class Instrument
     
     static var root:Int;
     static var scale:Array<Int>;
-    static var volume:Float;
     static var currentNote:Null<Int> = null;
     static var activeNotes:Array<FlxSound> = [];
     
@@ -64,7 +63,7 @@ class Instrument
         currentNote = note;
         var soundName = (current.mapping != null ? current.mapping[note] : notes[root + note]);
         if (soundName != null)
-            activeNotes[note] = FlxG.sound.play('assets/sounds/${current.id}/$soundName.mp3', volume);
+            activeNotes[note] = FlxG.sound.play('assets/sounds/${current.id}/$soundName.mp3', current.volume);
     }
     
     static public function release(note:Int):Void
