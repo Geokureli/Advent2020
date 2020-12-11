@@ -12,8 +12,8 @@
         , "roles" : ["Organizer"]
         }
     , "albegian":
-        { "proper"    : "AlbeGian"
-        , "bandcamp"  : "albegian"
+        { "proper"  : "AlbeGian"
+        , "bandcamp": "albegian"
         }
     , "cymbourine":
         { "proper": "Cymbourine"
@@ -72,7 +72,7 @@
     , "connorgrail":
         { "proper": "Connor Grail"
         }
-    , "jamesrennamusic":
+    , "misterjamesss":
         { "proper": "James Renna"
         }
     , "hyenaedon":
@@ -133,7 +133,7 @@
         }
     ,   { "id"     : "connorgrail"
         , "name"   : "We Three Kings"
-        , "authors": ["connorgrail","rennajamesmusic"]
+        , "authors": ["connorgrail","misterjamesss"]
         , "key"      : "aMaj"
         , "bpm"      : 166
         , "ngId"     : 0
@@ -229,10 +229,17 @@
         , "day"    : 10
         , "medal"  : true
         }
+    ,   { "id"       : "chdonga"
+        , "name"     : "Santa Clauminid"
+        , "authors"  : ["chdonga"]
+        , "day"      : 11
+        , "medal"    : true
+        , "antiAlias": false
+        }
     ,   { "id"     : "nickconter"
         , "name"   : null
         , "authors": ["nickconter"]
-        , "day"    : 11
+        , "day"    : 12
         , "medal"  : true
         }
     ]

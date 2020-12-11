@@ -239,7 +239,7 @@ class Content
             for (author in authors)
                 authorNames.push(Content.credits[author].proper);
             
-            final text = "and " + authorNames.pop();
+            final text = " and " + authorNames.pop();
             return authorNames.join(", ") + text;
         }
     }
