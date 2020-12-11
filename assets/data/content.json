@@ -142,6 +142,8 @@
     ,   { "id"     : "hyenaedon"
         , "name"   : "Woodland Sprites"
         , "authors": ["hyenaedon"]
+        , "key"      : "g#Maj"
+        , "bpm"      : 153
         , "ngId"     : 0
         , "day"      : 13
         }
