@@ -38,6 +38,8 @@ class Content
         for (songData in data.songs)
         {
             songData.path = 'assets/music/${songData.id}.mp3';
+            if (songData.volume == null)
+                songData.volume = 0.5;
             songs[songData.id] = songData;
         }
         
@@ -77,7 +79,7 @@ class Content
             instrument.index = index;
             if (instrument.icon == null)
                 instrument.icon = instrument.id;
-            instrument.iconPath = 'assets/images/medals/${instrument.id}.png';
+            instrument.iconPath = 'assets/images/props/instruments/${instrument.id}.png';
             instruments[instrument.id] = instrument;
             instrumentsByIndex[index] = instrument;
             instrument.singleNote = instrument.singleNote == null ? false: instrument.singleNote;
@@ -347,6 +349,7 @@ typedef SongCreation
     var key:String;
     var bpm:Float;
     var ngId:Int;
+    var volume:Float;
 }
 
 typedef ArcadeCreation
@@ -388,10 +391,12 @@ typedef InstrumentData =
     var singleNote:Bool;
     var sustain:Bool;
     var volume:Float;
+    var octave:Int;
 }
 
 enum abstract InstrumentType(String) to String
 {
+    var Acoustic = "guitar_ac";
     var Piano = "piano";
     var Glock = "glockenspiel";
     var Flute = "flute";

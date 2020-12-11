@@ -282,28 +282,37 @@
         }
     ]
 ,   "instruments":
-    [   { "id"    : "piano"
-        , "name"  : "Piano"
+    [   { "id"    : "guitar_ac"
+        , "name"  : "Acoustic Guitar"
         , "day"   : 12
         , "volume": 1.0
+        , "octave": 3
+        }
+    ,   { "id"    : "piano"
+        , "name"  : "Piano"
+        , "day"   : 13
+        , "volume": 1.0
+        , "octave": 6
         }
     ,   { "id"    : "glockenspiel"
         , "name"  : "Glockenspiel"
-        , "day"   : 13
+        , "day"   : 14
         , "volume": 0.5
+        , "octave": 6
         }
     ,   { "id"     : "flute"
         , "name"   : "Flute"
         , "icon"   : "Flute"
-        , "day"    : 15
+        , "day"    : 16
         , "volume" : 0.5
         , "sustain":true
         , "singleNote":true
+        , "octave": 6
         }
     ,   { "id"     : "drums"
         , "icon"   : "sticks"
         , "name"   : "Drum Set"
-        , "day"    : 17
+        , "day"    : 18
         , "volume" : 1.0
         , "keys":
             { "E":"snare"

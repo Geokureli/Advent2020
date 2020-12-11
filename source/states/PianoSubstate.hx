@@ -68,7 +68,7 @@ abstract BlackKey(Key) to Key
 			, TOP
 			, WIDTH
 			, HEIGHT
-			, "assets/images/ui/blacKey.png"
+			, "assets/images/ui/music/blacKey.png"
 			, label
 			, onClick.bind(label, _)
 			);
@@ -97,7 +97,7 @@ abstract WhiteKey(Key) to Key
 			, TOP
 			, WIDTH
 			, HEIGHT
-			, "assets/images/ui/whitekey.png"
+			, "assets/images/ui/music/whitekey.png"
 			, label
 			, onClick.bind(label, _)
 			);
@@ -141,7 +141,7 @@ class Key extends FlxBitmapTextButton
 			= labelOffsets[2].y = height - label.height - LETTER_BUFFER;
 		
 		var instrument = Content.instruments[Save.getInstrument()];
-		if (instrument.keys[PianoSubstate.musicKeys.indexOf(char)] == null)
+		if (instrument.keys != null && instrument.keys[PianoSubstate.musicKeys.indexOf(char)] == null)
 		{
 			active = false;
 			update(FlxG.elapsed);

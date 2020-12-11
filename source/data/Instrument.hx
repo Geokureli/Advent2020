@@ -13,10 +13,8 @@ class Instrument
     
     static var majorScale:Array<Int> = [0,2,4,5,7,9,11,12];
     static var minorScale:Array<Int> = [0,2,3,5,7,8,10,12];
-    static var notes = 
-    [ "6a", "6aS", "6b", "6c", "6cS", "6d", "6dS", "6e", "6f", "6fS", "6g", "6gS"
-    , "7a", "7aS", "7b", "7c", "7cS", "7d", "7dS", "7e", "7f", "7fS", "7g", "7gS"
-    ];
+    static var notes
+        = [ "a", "aS", "b", "c", "cS", "d", "dS", "e", "f", "fS", "g", "gS" ];
     
     static var musicKeys:Array<FlxKey>
         = [ E, FOUR, R, FIVE, T, Y, SEVEN, U, EIGHT, I, NINE, O, P];
@@ -62,9 +60,18 @@ class Instrument
         }
         
         currentNote = note;
-        var soundName = (current.mapping != null ? current.mapping[note] : notes[root + note]);
+        
+        var soundName = current.mapping != null
+            ? current.mapping[note]
+            : getNoteName(root + note, current.octave);
+        
         if (soundName != null)
             activeNotes[note] = FlxG.sound.play('assets/sounds/${current.id}/$soundName.mp3', current.volume);
+    }
+    
+    inline static function getNoteName(scaleNote:Int, octave:Int)
+    {
+        return (octave + Math.floor(scaleNote / notes.length)) + notes[scaleNote % notes.length];
     }
     
     static public function release(note:Int):Void
@@ -99,7 +106,7 @@ class Instrument
         return lastPressed;
     }
     
-    inline static function set_key(value:Key):Key
+    static function set_key(value:Key):Key
     {
         var note:String;
         switch(value)
@@ -112,13 +119,12 @@ class Instrument
                 scale = minorScale;
         }
         
-        switch (note)
-        {
-            case "a"|"aS"|"b"|"c"|"cS"|"d"|"dS"|"e"|"f"|"fS"|"g"|"gS":
-                root = notes.indexOf("6" + note);
-            default:
-                throw "invalid key";
-        }
+        root = notes.indexOf(note);
+        if (root == -1)
+            throw "invalid key";
+        else if (root == 0)
+            root = 12;
+        
         return Instrument.key = key;
     }
     

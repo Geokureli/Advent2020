@@ -165,10 +165,13 @@ class Manifest
         if (data.loopEnd != null)
             song.endTime = data.loopEnd;
         
+        song.volume = song.data.volume;
+        Instrument.setKeyFromString(song.data.key);
+        
         return song;
     }
     
-    static public function playMusic(id, forceRestart = false, volume = 1.0, ?onComplete, ?onLoad:(FlxSound)->Void)
+    static public function playMusic(id, forceRestart = false, ?onComplete, ?onLoad:(FlxSound)->Void)
     {
         MusicPopup.showLoading(Content.songs[id]);
         var loaded = false;
@@ -197,7 +200,6 @@ class Manifest
         }
         
         final song = loadSong(id, true, onComplete, loadFunc);
-        song.volume = volume;
         song.persist = true;
         
         FlxG.sound.music = song;
