@@ -1,5 +1,10 @@
 package states;
 
+import ui.Button;
+import ui.Controls;
+import ui.Font;
+import utils.GameSize;
+
 import flixel.text.FlxBitmapText;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.graphics.FlxGraphic;
@@ -34,7 +39,6 @@ class GallerySubstate extends FlxSubState
 	private var infoBox:FlxSpriteButton;
 	private var bigPreview:FlxSprite;
 	private var bigImage:FlxSpriteGroup;
-	private var textBG:FlxSpriteButton;
 	private var onClose:Null<()->Void>;
 	
 	// GET TOUCH CONTROLS FOR EXITING GOING HERE
@@ -47,47 +51,36 @@ class GallerySubstate extends FlxSubState
 	
 	override public function create():Void 
 	{
-		FlxG.camera.bgColor = FlxColor.TRANSPARENT;
+		camera = new FlxCamera();
+		camera.bgColor = 0x0;
+		FlxG.cameras.add(camera);
 		
 		bigImage = new FlxSpriteGroup();
 		bigPreview = new FlxSprite();
 		bigPreview.antialiasing = data.antiAlias == null || data.antiAlias == true;
 		bigImage.add(bigPreview);
-		bigImage.scrollFactor.set();
-		
-		imageText = new FlxBitmapText();
-		imageText.y = FlxG.height - 16;
-		imageText.width = FlxG.width / 2;
-		imageText.updateHitbox();
-		imageText.alignment = FlxTextAlign.CENTER;
-		imageText.scrollFactor.set();
-		
-		var profileUrl = Content.credits[data.authors[0]].newgrounds;
-		infoBox = new FlxSpriteButton(0, imageText.y - 2, null, ()->FlxG.openURL(profileUrl));
-		infoBox.makeGraphic(Std.int(FlxG.width / 2) + 4, 36, FlxColor.BLACK);
-		infoBox.alpha = 0.5;
-		infoBox.screenCenter(X);
-		
-		textBG = new FlxSpriteButton(4, 4, null, close);
-		textBG.makeGraphic(150, 18, FlxColor.BLACK);
-		textBG.alpha = 0.5;
-		textBG.scrollFactor.set();
-		
-		var text = new FlxBitmapText();
-		text.x = 16;
-		text.y = 11;
-		text.text = 'Current Pic - ${FlxG.onMobile ? "Tap" : "Click"} here to exit';
-		text.scrollFactor.set();
-		
 		add(bigImage);
 		
-		add(textBG);
-		add(infoBox);
+		imageText = new FlxBitmapText();
+		imageText.y = FlxG.height - 20;
+		imageText.width = FlxG.width / 2;
+		imageText.lineSpacing = 2;
+		imageText.updateHitbox();
+		imageText.alignment = FlxTextAlign.CENTER;
 		add(imageText);
-		add(text);
+		
+		var profileUrl = Content.credits[data.authors[0]].newgrounds;
+		infoBox = new FlxSpriteButton(0, imageText.y - 5, null, ()->FlxG.openURL(profileUrl));
+		infoBox.makeGraphic(Std.int(FlxG.width / 2) + 4, 20, FlxColor.BLACK);
+		infoBox.alpha = 0.5;
+		infoBox.screenCenter(X);
+		add(infoBox);
+		
+		var button = new BackButton(4, 4, close);
+		button.x = FlxG.width - button.width - 4;
+		add(button);
 		
 		bigImage.visible = false;
-		
 		loadImage();
 		
 		super.create();
@@ -95,7 +88,8 @@ class GallerySubstate extends FlxSubState
 	
 	function loadImage()
 	{
-		final text = new FlxText(0, 0, 0, "Loading", 16);
+		final text = new FlxBitmapText(new NokiaFont16());
+		text.text = "Loading";
 		text.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
 		text.autoSize = true;
 		text.x = camera.scroll.x + (camera.width  - text.width) / 2;
@@ -151,13 +145,7 @@ class GallerySubstate extends FlxSubState
 			return;
 		
 		#if !mobile
-			keyboardControls();
-			
-			var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-			if (gamepad != null)
-			{
-				gamepadControls(gamepad);
-			}
+			checkControls();
 		#end
 		
 		if (FlxG.keys.justPressed.ENTER)
@@ -166,70 +154,25 @@ class GallerySubstate extends FlxSubState
 		dragControls();
 	}
 	
-	
-	private function keyboardControls():Void
+	private function checkControls():Void
 	{
-		#if !mobile
-		if (FlxG.mouse.wheel != 0)
-		{
-			bigPreview.setGraphicSize(Std.int(bigPreview.width + (FlxG.mouse.wheel * 1.5)));
-			bigPreview.updateHitbox();
-			bigPreview.screenCenter();
-		}
-		#end
-		
-		if (FlxG.keys.anyJustPressed([ESCAPE, SPACE, X]))
-			close();
-		
-		// REPLACE THESE TO BE CLEANER LATER AND WITH MORE KEYS
-		if (FlxG.keys.pressed.D)
-		{
-			bigPreview.offset.x += 5;
-		}
-		if (FlxG.keys.pressed.W)
-		{
-			bigPreview.offset.y -= 5;
-		}	
-		if (FlxG.keys.pressed.A)
-		{
-			bigPreview.offset.x -= 5;
-		}
-		if (FlxG.keys.pressed.S)
-		{
-			bigPreview.offset.y += 5;
-		}
-	}
-	
-	private function gamepadControls(gamepad:FlxGamepad):Void
-	{
-		var pressed = FlxG.gamepads.anyPressed;
-		function anyPressed(idArray:Array<FlxGamepadInputID>)
-		{
-			while(idArray.length > 0)
-			{
-				if (pressed(idArray.shift()))
-					return true;
-			}
-			return false;
-		}
-		
 		//Close Substate
-		if (pressed(B))
+		if (Controls.justPressed.B)
 			close();
 		
-		if (anyPressed([DPAD_DOWN , LEFT_STICK_DIGITAL_DOWN ])) bigPreview.offset.y += 5;
-		if (anyPressed([DPAD_UP   , LEFT_STICK_DIGITAL_UP   ])) bigPreview.offset.y -= 5;
-		if (anyPressed([DPAD_LEFT , LEFT_STICK_DIGITAL_LEFT ])) bigPreview.offset.x -= 5;
-		if (anyPressed([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT])) bigPreview.offset.x += 5;
+		if (Controls.pressed.DOWN ) bigPreview.offset.y += 5;
+		if (Controls.pressed.UP   ) bigPreview.offset.y -= 5;
+		if (Controls.pressed.LEFT ) bigPreview.offset.x -= 5;
+		if (Controls.pressed.RIGHT) bigPreview.offset.x += 5;
 		
 		//Zooms
-		if (anyPressed([RIGHT_TRIGGER, RIGHT_STICK_DIGITAL_UP]))
+		if (Controls.pressed.ZOOM_IN)
 		{
 			bigPreview.setGraphicSize(Std.int(bigPreview.width + 10));
 			bigPreview.updateHitbox();
 			bigPreview.screenCenter();
 		}
-		if (anyPressed([LEFT_TRIGGER, RIGHT_STICK_DIGITAL_DOWN]))
+		if (Controls.pressed.ZOOM_OUT)
 		{
 			bigPreview.setGraphicSize(Std.int(bigPreview.width - 10));
 			bigPreview.updateHitbox();

@@ -213,8 +213,20 @@ class RoomState extends OgmoState
         add(ui);
     }
     
-	function openArtPresent(present:Present, ?callback:(Present)->Void):Void
-	{
+    override function openSubState(substate)
+    {
+        super.openSubState(substate);
+        ui.visible = false;
+    }
+    
+    override function closeSubState()
+    {
+        super.closeSubState();
+        ui.visible = true;
+    }
+    
+    function openArtPresent(present:Present, ?callback:(Present)->Void):Void
+    {
         // Start loading now, hopefully it finishes during the animation
         Manifest.loadArt(present.id);
         
