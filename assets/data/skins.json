@@ -149,7 +149,7 @@
     , "description": "BAH-BUH BAH-DOO DA DOO-DA BOO DOO DOO BAH-DOO"
     , "unlocksBy": null
     , "users": ["aaron-long"]
-    , "group":"aalong"
+    , "group": "aalong"
     }
 ,   { "id": "glenda"
     , "proper": "Glenda"
