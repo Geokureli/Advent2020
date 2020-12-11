@@ -1,9 +1,9 @@
 package ui;
 
-import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.FlxG;
 import flixel.input.FlxInput;
 import flixel.input.gamepad.FlxGamepadButton;
+import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
 
 class Controls extends flixel.FlxBasic
