@@ -1,10 +1,11 @@
 package states.rooms;
 
-import ui.Button;
 import data.*;
+import data.Content;
 import props.*;
 import props.InfoBox;
 import states.OgmoState;
+import ui.Button;
 import ui.MedalPopup;
 import ui.MusicPopup;
 import ui.SkinPopup;
@@ -56,6 +57,7 @@ class RoomState extends OgmoState
     var medalPopup:MedalPopup;
     var musicPopup:MusicPopup;
     var skinPopup:SkinPopup;
+    var instrument:FlxButton;
     
     public var name(default, null):RoomName;
     public var spawnId(default, null):String = null;
@@ -209,6 +211,9 @@ class RoomState extends OgmoState
         ui.add(medalPopup = MedalPopup.getInstance());
         ui.add(musicPopup = MusicPopup.getInstance());
         ui.add(skinPopup = SkinPopup.getInstance());
+        ui.add(instrument = new FlxButton(FlxG.width, 0, onInstrumentClick));
+        Instrument.onChange.add(updateInstrument);
+        updateInstrument();
         var fullscreen = new FullscreenButton();
         fullscreen.updateHitbox();
         fullscreen.x = FlxG.width - fullscreen.width - 4;
@@ -217,8 +222,8 @@ class RoomState extends OgmoState
         add(ui);
     }
     
-	function openArtPresent(present:Present, ?callback:(Present)->Void):Void
-	{
+    function openArtPresent(present:Present, ?callback:(Present)->Void):Void
+    {
         // Start loading now, hopefully it finishes during the animation
         Manifest.loadArt(present.id);
         
@@ -555,6 +560,28 @@ class RoomState extends OgmoState
             , null
             , remove.bind(prompt)
             );
+    }
+    
+    
+    function updateInstrument():Void
+    {
+        switch(Content.instruments[Save.getInstrument()])
+        {
+            case null:
+                instrument.visible = false;
+            case data:
+            {
+                instrument.visible = true;
+                instrument.loadGraphic(data.iconPath);
+                instrument.x = FlxG.width - instrument.width - 32;
+                instrument.y = 2;
+            }
+        }
+    }
+    
+    function onInstrumentClick():Void
+    {
+        openSubState(new PianoSubstate());
     }
     
     function prettyUrl(url:String)

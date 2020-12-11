@@ -22,6 +22,7 @@ class Instrument
         = [ E, FOUR, R, FIVE, T, Y, SEVEN, U, EIGHT, I, NINE, O, P];
     
     static public var key(default, set):Key;
+    static public var onChange(default, null) = new FlxSignal();
     
     static var root:Int;
     static var scale:Array<Int>;
@@ -123,7 +124,6 @@ class Instrument
     
     static inline function getCurrent():InstrumentData
     {
-        // return Content.instruments[Piano];
         return Content.instruments[Save.getInstrument()];
     }
     

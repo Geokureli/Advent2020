@@ -186,11 +186,12 @@ class Save
     
     static public function setInstrument(type:InstrumentType)
     {
-        if (type == null) return;
+        if (type == null || type == getInstrument()) return;
         
         PlayerSettings.user.instrument = type;
         data.instrument = Content.instruments[type].index;
         flush();
+        Instrument.onChange.dispatch();
     }
     
     static public function getInstrument()

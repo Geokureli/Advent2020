@@ -208,6 +208,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "nickconter"}
+        },
+        {
+          "name": "Teleport",
+          "id": 17,
+          "_eid": "58765051",
+          "x": 0,
+          "y": 56,
+          "width": 16,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "", "target": "studio"}
         }
       ]
     },

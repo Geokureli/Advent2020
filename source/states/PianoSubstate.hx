@@ -1,10 +1,11 @@
 package states;
 
-import data.BitArray;
-import data.DrumKit;
+import data.Content;
+import data.Save;
+import utils.BitArray;
 import data.Instrument;
-import sprites.Button;
-import sprites.Font;
+import ui.Button;
+import ui.Font;
 
 import openfl.geom.Rectangle;
 
@@ -139,7 +140,8 @@ class Key extends FlxBitmapTextButton
 			= labelOffsets[1].y
 			= labelOffsets[2].y = height - label.height - LETTER_BUFFER;
 		
-		if (Instrument.type == Drums && !DrumKit.isKeyActive(char))
+		var instrument = Content.instruments[Save.getInstrument()];
+		if (instrument.keys[PianoSubstate.musicKeys.indexOf(char)] == null)
 		{
 			active = false;
 			update(FlxG.elapsed);

@@ -284,18 +284,18 @@
 ,   "instruments":
     [   { "id"    : "piano"
         , "name"  : "Piano"
-        , "day"   : 11
+        , "day"   : 12
         , "volume": 1.0
         }
     ,   { "id"    : "glockenspiel"
         , "name"  : "Glockenspiel"
-        , "day"   : 12
+        , "day"   : 13
         , "volume": 0.5
         }
     ,   { "id"     : "flute"
         , "name"   : "Flute"
         , "icon"   : "Flute"
-        , "day"    : 14
+        , "day"    : 15
         , "volume" : 0.5
         , "sustain":true
         , "singleNote":true
@@ -303,7 +303,7 @@
     ,   { "id"     : "drums"
         , "icon"   : "sticks"
         , "name"   : "Drum Set"
-        , "day"    : 16
+        , "day"    : 17
         , "volume" : 1.0
         , "keys":
             { "E":"snare"
