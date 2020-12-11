@@ -1,9 +1,11 @@
 package states.rooms;
 
 import data.*;
+import data.Content;
 import props.*;
 import props.InfoBox;
 import states.OgmoState;
+import ui.Button;
 import ui.MedalPopup;
 import ui.MusicPopup;
 import ui.SkinPopup;
@@ -55,6 +57,7 @@ class RoomState extends OgmoState
     var medalPopup:MedalPopup;
     var musicPopup:MusicPopup;
     var skinPopup:SkinPopup;
+    var instrument:FlxButton;
     
     public var name(default, null):RoomName;
     public var spawnId(default, null):String = null;
@@ -156,6 +159,7 @@ class RoomState extends OgmoState
         foreground = getByName("Foreground");
         background = getByName("Background");
         add(topGround);
+        topGround.add(infoBoxGroup);
         
         geom = getByName("Geom");
         colliders.add(geom);
@@ -199,17 +203,22 @@ class RoomState extends OgmoState
     
     function initUi()
     {
-        ui.add(infoBoxGroup);
+        camera = FlxG.camera;
+        var uiCamera = new FlxCamera();
+        uiCamera.bgColor = 0x0;
+        FlxG.cameras.add(uiCamera);
+        ui.camera = uiCamera;
         ui.add(medalPopup = MedalPopup.getInstance());
         ui.add(musicPopup = MusicPopup.getInstance());
         ui.add(skinPopup = SkinPopup.getInstance());
-        ui.forEach(
-            function(obj)
-            {
-                if (Std.is(obj, FlxSprite))
-                    (cast obj:FlxSprite).scrollFactor.set(0,0);
-            }
-        );
+        ui.add(instrument = new FlxButton(FlxG.width, 0, onInstrumentClick));
+        Instrument.onChange.add(updateInstrument);
+        updateInstrument();
+        var fullscreen = new FullscreenButton();
+        fullscreen.updateHitbox();
+        fullscreen.x = FlxG.width - fullscreen.width - 4;
+        fullscreen.y = 4;
+        ui.add(fullscreen);
         add(ui);
     }
     
@@ -563,6 +572,28 @@ class RoomState extends OgmoState
             , null
             , remove.bind(prompt)
             );
+    }
+    
+    
+    function updateInstrument():Void
+    {
+        switch(Content.instruments[Save.getInstrument()])
+        {
+            case null:
+                instrument.visible = false;
+            case data:
+            {
+                instrument.visible = true;
+                instrument.loadGraphic(data.iconPath);
+                instrument.x = FlxG.width - instrument.width - 32;
+                instrument.y = 2;
+            }
+        }
+    }
+    
+    function onInstrumentClick():Void
+    {
+        openSubState(new PianoSubstate());
     }
     
     function prettyUrl(url:String)

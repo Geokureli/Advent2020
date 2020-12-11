@@ -49,7 +49,7 @@
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
-    , "description": "This isn’t Hank, this isn’t Desmos or anyone canonically cool or special.\nThis is the guy who dies, repeatedly."
+    , "description": "This isn’t Hank, this isn’t Deimos or anyone canonically cool or special.\nThis is the guy who dies, repeatedly."
     , "unlocksBy": "login"
     , "users": ["krinkels"]
     , "group":"madness"
@@ -71,7 +71,7 @@
 ,   { "id": "chutney"
     , "proper": "Chutney Glaze"
     , "description": "He's a cute lil fellow\nall covered in yellow!"
-    , "unlocksBy": null
+    , "unlocksBy": "day:10"
     , "users": ["chutneyglaze"]
     , "group":"chutney"
     }

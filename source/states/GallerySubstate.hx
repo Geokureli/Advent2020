@@ -4,7 +4,6 @@ import ui.Button;
 import ui.Controls;
 import ui.Font;
 import utils.GameSize;
-
 import flixel.text.FlxBitmapText;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.graphics.FlxGraphic;
@@ -133,6 +132,13 @@ class GallerySubstate extends FlxSubState
 		
 		bigPreview.updateHitbox();
 		bigPreview.screenCenter();
+		
+		if (bigPreview.antialiasing == false)
+		{
+			bigPreview.scale.x = bigPreview.scale.y = Math.floor(bigPreview.scale.x * GameSize.pixelSize) / GameSize.pixelSize;
+			bigPreview.updateHitbox();
+			bigPreview.screenCenter();
+		}
 	}
 	
 	override public function update(elapsed:Float):Void 

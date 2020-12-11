@@ -8,12 +8,12 @@
         , "roles" : ["Organizer"]
         }
     , "nickconter":
-        { "proper": "NickConter"
+        { "proper": "Nick Conter"
         , "roles" : ["Organizer"]
         }
     , "albegian":
-        { "proper"    : "AlbeGian"
-        , "bandcamp"  : "albegian"
+        { "proper"  : "AlbeGian"
+        , "bandcamp": "albegian"
         }
     , "cymbourine":
         { "proper": "Cymbourine"
@@ -66,6 +66,24 @@
     , "sirlenward":
         { "proper": "SirLenward"
         }
+    , "shirogaia":
+        { "proper": "Shiro Gaia"
+        }
+    , "connorgrail":
+        { "proper": "Connor Grail"
+        }
+    , "misterjamesss":
+        { "proper": "James Renna"
+        }
+    , "hyenaedon":
+        { "proper": "Hyenaedon"
+        }
+    , "carmet":
+        { "proper": "Carmet"
+        }
+    , "goodl":
+        { "proper": "GoodL"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -113,6 +131,38 @@
         , "ngId"     : 1559697
         , "day"      : 9
         }
+    ,   { "id"     : "connorgrail"
+        , "name"   : "We Three Kings"
+        , "authors": ["connorgrail","misterjamesss"]
+        , "key"      : "aMaj"
+        , "bpm"      : 166
+        , "ngId"     : 0
+        , "day"      : 11
+        }
+    ,   { "id"     : "hyenaedon"
+        , "name"   : "Woodland Sprites"
+        , "authors": ["hyenaedon"]
+        , "key"      : "g#Maj"
+        , "bpm"      : 153
+        , "ngId"     : 0
+        , "day"      : 13
+        }
+    ,   { "id"     : "carmet"
+        , "name"   : "It's Cold"
+        , "authors": ["carmet"]
+        , "key"      : "f#Maj"
+        , "bpm"      : 60
+        , "ngId"     : 0
+        , "day"      : 15
+        }
+    ,   { "id"     : "goodl"
+        , "name"   : "Holidays Under Contruction"
+        , "authors": ["goodl"]
+        , "key"      : "aMaj"
+        , "bpm"      : 130
+        , "ngId"     : 0
+        , "day"      : 17
+        }
     ]
 ,   "artwork":
     [   { "id"     : "cymbourine"
@@ -154,7 +204,7 @@
         , "medal"  : true
         }
     ,   { "id"     : "mkmaffo"
-        , "name"   : null
+        , "name"   : "Holy Nights Funkin!"
         , "authors": ["mkmaffo"]
         , "day"    : 7
         , "medal"  : true
@@ -173,10 +223,23 @@
         , "medal"  : true
         , "preload": true
         }
+    ,   { "id"     : "shirogaia"
+        , "name"   : "Friday Nite Build Date"
+        , "authors": ["shirogaia"]
+        , "day"    : 10
+        , "medal"  : true
+        }
+    ,   { "id"       : "chdonga"
+        , "name"     : "Santa Clauminid"
+        , "authors"  : ["chdonga"]
+        , "day"      : 11
+        , "medal"    : true
+        , "antiAlias": false
+        }
     ,   { "id"     : "nickconter"
         , "name"   : null
         , "authors": ["nickconter"]
-        , "day"    : 10
+        , "day"    : 12
         , "medal"  : true
         }
     ]
@@ -211,5 +274,53 @@
         , "day"    : 10
         , "type"   : "external"
         }
+    ,   { "id"     : "positivity"
+        , "name"   : "Think Positive"
+        , "authors": "mig_moog"
+        , "day"    : 18
+        , "type"   : "overlay"
+        }
     ]
+,   "instruments":
+    [   { "id"    : "piano"
+        , "name"  : "Piano"
+        , "day"   : 12
+        , "volume": 1.0
+        }
+    ,   { "id"    : "glockenspiel"
+        , "name"  : "Glockenspiel"
+        , "day"   : 13
+        , "volume": 0.5
+        }
+    ,   { "id"     : "flute"
+        , "name"   : "Flute"
+        , "icon"   : "Flute"
+        , "day"    : 15
+        , "volume" : 0.5
+        , "sustain":true
+        , "singleNote":true
+        }
+    ,   { "id"     : "drums"
+        , "icon"   : "sticks"
+        , "name"   : "Drum Set"
+        , "day"    : 17
+        , "volume" : 1.0
+        , "keys":
+            { "E":"snare"
+            , "4":"clap"
+            , "R":"tom"
+            , "5":"hat"
+            , "T":"bongo_1"
+            , "Y":"bongo_3"
+            , "7":"bongo_2"
+            , "U":"kick"
+            , "8":"bells"
+            , "I":"tambourine"
+            , "9":"triangle"
+            , "O":"stick"
+            , "P":"crash"
+            }
+        }
+    ]
+    
 }

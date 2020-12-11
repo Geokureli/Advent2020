@@ -1,6 +1,7 @@
 package props;
 
 import Types;
+import data.Instrument;
 import data.PlayerSettings;
 import ui.Controls;
 
@@ -51,6 +52,8 @@ class InputPlayer extends Player
             interacting = false;
         else
             wasInteracting = interacting;
+        
+        Instrument.checkKeys();
     }
     
     function checkMouseInteracting()

@@ -1,10 +1,14 @@
 package data;
 
+import data.Content;
+
+import utils.Log;
 import utils.BitArray;
 
 import flixel.FlxG;
 
 import haxe.Int64;
+import haxe.PosInfos;
 
 class Save
 {
@@ -33,28 +37,44 @@ class Save
             data.presents = new BitArray();
             newData = true;
         }
-        #if LOG_SAVE trace("presents: " + data.presents); #end
+        log("presents: " + data.presents);
         
         if (clearSave || data.days == null)
         {
             data.days = new BitArray();
             newData = true;
         }
-        #if LOG_SAVE trace("seen days: " + data.days); #end
+        log("seen days: " + data.days);
         
+        //PLURAL: seen skins
         if (clearSave || data.skins == null)
         {
             data.skins = new BitArray();
             newData = true;
         }
-        #if LOG_SAVE trace("seen days: " + data.days); #end
+        log("seen skins: " + data.skins);
         
+        //SINGULAR: current skin
         if (clearSave || data.skin == null)
         {
             data.skin = 0;
             newData = true;
         }
-        #if LOG_SAVE trace("skin: " + data.skin); #end
+        log("skin: " + data.skin);
+        
+        if (clearSave || data.instrument == null)
+        {
+            data.instrument = -1;
+            newData = true;
+        }
+        log("instrument: " + data.skin);
+        
+        if (clearSave || data.seenInstruments == null)
+        {
+            data.seenInstruments = new BitArray();
+            newData = true;
+        }
+        log("instruments seen: " + data.seenInstruments);
         
         if (newData)
             flush();
@@ -163,6 +183,39 @@ class Save
     {
         return data.skin;
     }
+    
+    static public function setInstrument(type:InstrumentType)
+    {
+        if (type == null || type == getInstrument()) return;
+        
+        PlayerSettings.user.instrument = type;
+        data.instrument = Content.instruments[type].index;
+        flush();
+        Instrument.onChange.dispatch();
+    }
+    
+    static public function getInstrument()
+    {
+        if (data.instrument < 0) return null;
+        return Content.instrumentsByIndex[data.instrument].id;
+    }
+    
+    static public function instrumentSeen(type:InstrumentType)
+    {
+        if (type == null) return;
+        
+        data.seenInstruments[Content.instruments[type].index] = true;
+        flush();
+    }
+    
+    static public function seenInstrument(type:InstrumentType)
+    {
+        if (type == null) return true;
+        
+        return data.seenInstruments[Content.instruments[type].index];
+    }
+    
+    inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
 
 typedef SaveData =
@@ -171,4 +224,6 @@ typedef SaveData =
     var days:BitArray;
     var skins:BitArray;
     var skin:Int;
+    var instrument:Int;
+    var seenInstruments:BitArray;
 }
