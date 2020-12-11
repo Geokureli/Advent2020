@@ -23,4 +23,9 @@ class Log
     inline static public function netDebug  (msg:String, ?info:PosInfos) { #if debug           net(msg, info);   #end }
     inline static public function netVerbose(msg:String, ?info:PosInfos) { #if NET_LOG_VERBOSE net(msg, info);   #end }
     inline static public function netError  (msg:String, ?info:PosInfos) { net("Error: " + msg, info); }
+    
+    inline static public function save       (msg:String, ?info:PosInfos) { #if SAVE_LOG         trace(msg, info); #end }
+    inline static public function saveDebug  (msg:String, ?info:PosInfos) { #if debug            net(msg, info);   #end }
+    inline static public function saveVerbose(msg:String, ?info:PosInfos) { #if SAVE_LOG_VERBOSE net(msg, info);   #end }
+    inline static public function saveError  (msg:String, ?info:PosInfos) { net("Error: " + msg, info); }
 }

@@ -1,5 +1,6 @@
 package data;
 
+import utils.Log;
 import utils.BitArray;
 
 import flixel.FlxG;
@@ -33,28 +34,30 @@ class Save
             data.presents = new BitArray();
             newData = true;
         }
-        #if LOG_SAVE trace("presents: " + data.presents); #end
+        log("presents: " + data.presents);
         
         if (clearSave || data.days == null)
         {
             data.days = new BitArray();
             newData = true;
         }
-        #if LOG_SAVE trace("seen days: " + data.days); #end
+        log("seen days: " + data.days);
         
+        //PLURAL: seen skins
         if (clearSave || data.skins == null)
         {
             data.skins = new BitArray();
             newData = true;
         }
-        #if LOG_SAVE trace("seen days: " + data.days); #end
+        log("seen skins: " + data.skins);
         
+        //SINGULAR: current skin
         if (clearSave || data.skin == null)
         {
             data.skin = 0;
             newData = true;
         }
-        #if LOG_SAVE trace("skin: " + data.skin); #end
+        log("skin: " + data.skin);
         
         if (newData)
             flush();
@@ -163,6 +166,8 @@ class Save
     {
         return data.skin;
     }
+    
+    inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
 
 typedef SaveData =
