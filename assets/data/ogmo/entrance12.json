@@ -253,7 +253,8 @@
         {"x": 368, "y": 248, "texture": "foyer/foyer.png"},
         {"x": 368, "y": 384, "texture": "foyer/rug.png"},
         {"x": 368, "y": 120, "texture": "foyer/Chandelier.png"},
-        {"x": 688, "y": 24, "texture": "cabin/neon_ogmo.png"}
+        {"x": 688, "y": 24, "texture": "cabin/neon_ogmo.png"},
+        {"x": 48, "y": 24, "texture": "foyer/neon2_ogmo.png"}
       ],
       "folder": "../../images/props"
     }
