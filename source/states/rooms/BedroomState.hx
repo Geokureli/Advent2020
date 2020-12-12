@@ -51,12 +51,6 @@ class BedroomState extends RoomState
         super.create();
         
         FlxG.camera.fade(FlxColor.BLACK, 1, true);
-        switch (Game.state)
-        {
-            case NoEvent: Content.playTodaysSong();
-            // case Day1Intro(Started):
-            default:
-        }
         // #if debug FlxG.debugger.drawDebug = true; #end
     }
     

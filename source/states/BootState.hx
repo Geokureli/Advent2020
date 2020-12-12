@@ -8,7 +8,6 @@ import data.APIStuff;
 import data.Manifest;
 import data.NGio;
 import ui.Button;
-import ui.Controls;
 import ui.Font;
 import utils.MultiCallback;
 
@@ -250,13 +249,7 @@ class BootState extends flixel.FlxState
     {
         preloadArt();
         
-        Game.init();
-        Controls.init();
-        #if SKIP_TO_DIG_GAME
-        Game.goToArcade(Digging);
-        #else
-        Game.goToRoom(Main.initialRoom);
-        #end
+        Game.goToInitialRoom();
     }
     
     function preloadArt()

@@ -4,6 +4,7 @@ import data.Content;
 import data.Calendar;
 import states.rooms.RoomState;
 import states.rooms.*;
+import ui.Controls;
 
 import flixel.FlxG;
 import flixel.FlxState;
@@ -19,7 +20,18 @@ class Game
     static var roomTypes:Map<RoomName, RoomConstructor>;
     static var arcadeTypes:Map<ArcadeName, ()->FlxState>;
     
-    @:allow(states.BootState)
+    public static var initialRoom(default, null) = 
+        #if debug
+        // RoomName.Bedroom;
+        // RoomName.Hallway + "." + RoomName.Bedroom;
+        // RoomName.Entrance + "." + RoomName.Hallway;
+        // RoomName.Outside + "." + RoomName.Entrance;
+        // RoomName.Arcade + "." + RoomName.Entrance;
+        RoomName.Studio + "." + RoomName.Entrance;
+        #else
+        RoomName.Bedroom;
+        #end
+    
     static function init():Void
     {
         roomTypes = [];
@@ -55,6 +67,26 @@ class Game
         final constructor = roomTypes.exists(name) ? roomTypes[name] : RoomState.new;
         Net.safeLeaveCurrentRoom();
         FlxG.switchState(constructor(target));
+    }
+    
+    @:allow(states.BootState)
+    inline static function goToInitialRoom()
+    {
+        init();
+        Controls.init();
+        
+        switch (Game.state)
+        {
+            case NoEvent: Content.playTodaysSong();
+            // case Day1Intro(Started):
+            default:
+        }
+        
+        #if SKIP_TO_DIG_GAME
+        Game.goToArcade(Digging);
+        #else
+        Game.goToRoom(initialRoom);
+        #end
     }
     
     static public function goToArcade(name:ArcadeName):Void

@@ -4,17 +4,6 @@ import states.rooms.RoomState;
 
 class Main extends openfl.display.Sprite
 {
-	public static var initialRoom(default, null) = 
-		#if debug
-		RoomName.Bedroom;
-		// RoomName.Hallway + "." + RoomName.Bedroom;
-		// RoomName.Entrance + "." + RoomName.Hallway;
-		// RoomName.Outside + "." + RoomName.Entrance;
-		// RoomName.Arcade + "." + RoomName.Entrance;
-		// RoomName.Studio + "." + RoomName.Entrance;
-		#else
-		RoomName.Bedroom;
-		#end
 	public function new()
 	{
 		super();
