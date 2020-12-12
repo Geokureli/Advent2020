@@ -3,6 +3,10 @@ package states.rooms;
 import data.Save;
 import data.Calendar;
 import data.Content;
+import states.MusicSelectionSubstate;
+
+import flixel.FlxG;
+import flixel.FlxSprite;
 
 class StudioState extends RoomState
 {
@@ -15,7 +19,7 @@ class StudioState extends RoomState
     {
         super.initEntities();
         
-        for (id=>data in Content.instruments.keys())
+        for (id=>data in Content.instruments)
         {
             var instrument = foreground.getByName(id);
             if (instrument != null)
@@ -30,16 +34,23 @@ class StudioState extends RoomState
     
     function initInstrument(sprite:FlxSprite, data:InstrumentData)
     {
-        addHoverTextTo(sprite, data.name, ()->pickupInstrument(data));
+        addHoverTextTo(sprite, data.name, ()->pickupInstrument(sprite, data));
     }
     
     function pickupInstrument(sprite:FlxSprite, data:InstrumentData)
     {
-        Save.setInstrument = data.index;
+        Save.setInstrument(data.id);
     }
     
     override function update(elapsed:Float)
     {
         super.update(elapsed);
+        
+        #if debug
+        if (FlxG.keys.justPressed.H)
+        {
+            openSubState(new MusicSelectionSubstate());
+        }
+        #end
     }
 }

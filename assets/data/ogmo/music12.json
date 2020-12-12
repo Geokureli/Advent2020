@@ -56,7 +56,8 @@
         {"x": 320, "y": 224, "texture": "instruments/drums.png"},
         {"x": 224, "y": 216, "texture": "instruments/flute.png"},
         {"x": 296, "y": 248, "texture": "instruments/glockenspiel.png"},
-        {"x": 232, "y": 248, "texture": "instruments/piano.png"}
+        {"x": 232, "y": 248, "texture": "instruments/piano.png"},
+        {"x": 184, "y": 224, "texture": "instruments/guitar_ac.png"}
       ],
       "folder": "../../images/props"
     },

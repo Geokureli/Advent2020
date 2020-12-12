@@ -8,7 +8,7 @@ import io.colyseus.Client;
 
 class Net
 {
-    static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside, Arcade, Music];
+    static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside, Arcade, Studio];
     
     static public var client(default, null):Client;
     static public var room(default, null):Room<GameState>;

@@ -28,6 +28,7 @@ class Game
         roomTypes[Entrance] = EntranceState.new;
         roomTypes[Outside ] = OutsideState.new;
         roomTypes[Arcade  ] = ArcadeState.new;
+        roomTypes[Studio  ] = StudioState.new;
         
         arcadeTypes = [];
         #if INCLUDE_DIG_GAME

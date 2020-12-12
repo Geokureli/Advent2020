@@ -14,6 +14,7 @@ class Content
     public static var artwork:Map<String, ArtCreation>;
     public static var artworkByDay:Map<Int, ArtCreation>;
     public static var songs:Map<String, SongCreation>;
+    public static var songsOrdered:Array<SongCreation>;
     public static var arcades:Map<String, ArcadeCreation>;
     public static var instruments:Map<InstrumentType, InstrumentData>;
     public static var instrumentsByIndex:Map<Int, InstrumentData>;
@@ -35,13 +36,20 @@ class Content
         }
         
         songs = [];
+        songsOrdered = [];
         for (songData in data.songs)
         {
             songData.path = 'assets/music/${songData.id}.mp3';
+            songData.samplePath = 'assets/sounds/samples/${songData.id}.mp3';
             if (songData.volume == null)
                 songData.volume = 0.5;
             songs[songData.id] = songData;
+            songsOrdered.push(songData);
         }
+        
+        songsOrdered.sort((a, b)->a.day - b.day);
+        for (i=>song in songsOrdered)
+            song.index = i;
         
         arcades = [];
         for (arcadeData in data.arcades)
@@ -162,6 +170,8 @@ class Content
             {
                 if (!Manifest.exists(song.path, MUSIC))
                     errors.push('Missing ${song.path}');
+                if (!Manifest.exists(song.samplePath, MUSIC))
+                    errors.push('Missing ${song.samplePath}');
                 if (song.authors == null)
                     errors.push('Missing song authors id:${song.id}');
                 for (author in song.authors)
@@ -344,12 +354,14 @@ typedef ArtCreation
 typedef SongCreation
 = Creation &
 {
+    var samplePath:String;
     var loopStart:Null<Int>;
     var loopEnd:Null<Int>;
     var key:String;
     var bpm:Float;
     var ngId:Int;
     var volume:Float;
+    var index:Int;
 }
 
 typedef ArcadeCreation
