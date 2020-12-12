@@ -2,7 +2,9 @@ package data;
 
 class Calendar
 {
+    #if debug
     inline static var DEBUG_DAY:Int = 0;// 0 to disable debug feature
+    #end
     static public var isDebugDay = DEBUG_DAY > 0;
     static public var isPast(default, null) = false;
     static public var participatedInAdvent(default, null) = false;
@@ -23,12 +25,12 @@ class Calendar
         
         #if FORCE_INTRO
         setDebugDayAndCall(1);
-        #else
+        #elseif debug
         if (DEBUG_DAY > 0)
             setDebugDayAndCall(DEBUG_DAY);
         else
-            NGio.checkNgDate(()->onDateReceived(NGio.ngDate, callback));
         #end
+            NGio.checkNgDate(()->onDateReceived(NGio.ngDate, callback));
     }
     
     static function setDebugDay(debugDay:Int)
