@@ -155,11 +155,11 @@ class DressUpSubstate extends flixel.FlxSubState
         
         if (Controls.justPressed.RIGHT)
             toNext();
-        if (Controls.justPressed.LEFT )
+        if (Controls.justPressed.LEFT)
             toPrev();
-        if (Controls.justPressed.A && !wasAReleased)
+        if (Controls.justPressed.A && wasAReleased)
             select();
-        if (Controls.justPressed.B    )
+        if (Controls.justPressed.B)
             close();
     }
     
