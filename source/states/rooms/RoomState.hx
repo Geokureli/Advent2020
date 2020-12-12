@@ -606,6 +606,7 @@ class RoomState extends OgmoState
     
     override function destroy()
     {
+        Instrument.onChange.remove(updateInstrument);
         super.destroy();
         
         infoBoxes.clear();

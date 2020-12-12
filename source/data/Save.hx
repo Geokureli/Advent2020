@@ -62,7 +62,7 @@ class Save
         }
         log("skin: " + data.skin);
         
-        if (clearSave || data.instrument == null)
+        // if (clearSave || data.instrument == null)
         {
             data.instrument = -1;
             newData = true;
