@@ -1,10 +1,9 @@
 package states;
 
-import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
 import data.Calendar;
 import data.Content;
 import data.Manifest;
+import ui.Button;
 import ui.Controls;
 
 import flixel.FlxCamera;
@@ -12,9 +11,14 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxBitmapText;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 
 class MusicSelectionSubstate extends flixel.FlxSubState
 {
+    static inline var LEFT_PATH = "assets/images/ui/carousel/left.png";
+    static inline var RIGHT_PATH = "assets/images/ui/carousel/right.png";
+    
     var carousel:Carousel;
     // prevents instant selection
     var wasAReleased = false;
@@ -23,26 +27,43 @@ class MusicSelectionSubstate extends flixel.FlxSubState
     {
         super.create();
         
-        cameras = [new FlxCamera()];
-        // camera.zoom = 2;
-        camera.bgColor = 0x0;
-        FlxG.cameras.add(camera);
-        
         carousel = new Carousel();
         carousel.screenCenter(XY);
-        
-        final border = 60;
-        var boxMiddle = new FlxSprite(0, carousel.y);
-        boxMiddle.makeGraphic(FlxG.width, Std.int(carousel.height) + border, 0xFF555555);
-        add(boxMiddle);
         add(carousel);
         
-        var boxAbove = new FlxSprite(0, carousel.y - border);
-        boxAbove.makeGraphic(FlxG.width, border, 0xFF555555);
-        add(boxAbove);
-        var boxbelow = new FlxSprite(0, carousel.y + carousel.height);
-        boxbelow.makeGraphic(FlxG.width, border, 0xFF555555);
-        add(boxbelow);
+        var camera = new FlxCamera(0, 0, Std.int(carousel.width), Std.int(carousel.height), 2);
+        cameras = [camera];
+        camera.x = FlxG.width / camera.zoom - camera.width;
+        camera.y = FlxG.height / camera.zoom - camera.height;
+        camera.bgColor = 0x0;
+        FlxG.cameras.add(camera);
+        camera.scroll.x = carousel.x;
+        camera.scroll.y = carousel.y;
+        
+        var left = new Button(0, 0, carousel.toPrev, LEFT_PATH);
+        left.scrollFactor.set(1,1);
+        left.x = carousel.x;
+        left.y = carousel.y + carousel.height - left.height;
+        add(left);
+        var right = new Button(0, 0, carousel.toNext, RIGHT_PATH);
+        right.x = carousel.x + carousel.width - right.width;
+        right.y = carousel.y + carousel.height - right.height;
+        right.scrollFactor.set(1,1);
+        add(right);
+        
+        // Show these with the default camera because they are out of range
+        var okay = new OkButton(0, 0, selectCurrent);
+        okay.camera = FlxG.camera;
+        okay.scale.set(2, 2);
+        okay.updateHitbox();
+        okay.y = FlxG.height - okay.height;
+        okay.screenCenter(X);
+        add(okay);
+        
+        var back = new BackButton(4, 4, cancel);
+        back.camera = FlxG.camera;
+        back.x = FlxG.width - back.width - 4;
+        add(back);
     }
     
     
@@ -61,19 +82,35 @@ class MusicSelectionSubstate extends flixel.FlxSubState
         if (Controls.justPressed.LEFT)
             carousel.toPrev();
         if (Controls.justPressed.A && wasAReleased)
-            carousel.select(onSelectComplete);
+            selectCurrent();
         if (Controls.justPressed.B)
-        {
-            if (carousel.playingIndex > -1)
-                Manifest.playMusic(Content.songsOrdered[carousel.playingIndex].id);
-            close();
-        }
+            cancel();
+    }
+    
+    function selectCurrent()
+    {
+        carousel.select(onSelectComplete);
+    }
+    
+    function cancel()
+    {
+        if (carousel.playingIndex > -1)
+            Manifest.playMusic(Content.songsOrdered[carousel.playingIndex].id);
+        close();
     }
     
     function onSelectComplete(song:SongCreation)
     {
         Manifest.playMusic(song.id);
         close();
+    }
+    
+    override function close()
+    {
+        if (camera == null)
+            FlxG.cameras.remove(camera);
+        
+        super.close();
     }
 }
 
