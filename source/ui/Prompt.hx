@@ -85,8 +85,8 @@ class Prompt extends flixel.group.FlxGroup {
 		
 		if (forceMouse) {
 			
-			if(!FlxG.onMobile)
-				FlxG.mouse.visible = true;
+			// if(!FlxG.onMobile)
+			// 	FlxG.mouse.visible = true;
 			
 			yesMouse.y = box.y + box.height - yesMouse.height - 4;
 			yesMouse.onUp.callback = onDecide.bind(onYes, onChoose);
@@ -116,8 +116,8 @@ class Prompt extends flixel.group.FlxGroup {
 			if (noMouse != null)
 				noMouse.onUp.callback = null;
 			
-			if(!FlxG.onMobile)
-				FlxG.mouse.visible = false;
+			// if(!FlxG.onMobile)
+			// 	FlxG.mouse.visible = false;
 			
 		} else {
 			

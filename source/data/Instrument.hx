@@ -119,7 +119,7 @@ class Instrument
                 scale = minorScale;
         }
         
-        root = notes.indexOf(note);
+        root = notes.indexOf(note.split("#").join("S"));
         if (root == -1)
             throw "invalid key";
         else if (root == 0)

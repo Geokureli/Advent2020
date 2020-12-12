@@ -158,7 +158,7 @@ class BootState extends flixel.FlxState
             msg.screenCenter(XY);
         }
         
-        if (debugFutureEnabled && state.match(Error) && FlxG.keys.justPressed.SPACE)
+        if (state.match(Error) && FlxG.keys.justPressed.SPACE)
             onComplete();
         #end
         

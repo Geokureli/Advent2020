@@ -97,7 +97,7 @@ abstract WhiteKey(Key) to Key
 			, TOP
 			, WIDTH
 			, HEIGHT
-			, "assets/images/ui/piano/whiteKey.png"
+			, "assets/images/ui/piano/whitekey.png"
 			, label
 			, onClick.bind(label, _)
 			);

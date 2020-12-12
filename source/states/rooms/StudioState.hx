@@ -1,5 +1,6 @@
 package states.rooms;
 
+import ui.Prompt;
 import data.Save;
 import data.Calendar;
 import data.Content;
@@ -30,6 +31,14 @@ class StudioState extends RoomState
                     initInstrument(instrument, data);
             }
         }
+        
+        var juke = foreground.getByName("juke");
+        addHoverTextTo(juke, "Music", selectJuke);
+    }
+    
+    public function selectJuke()
+    {
+        openSubState(new MusicSelectionSubstate());
     }
     
     function initInstrument(sprite:FlxSprite, data:InstrumentData)
@@ -40,17 +49,16 @@ class StudioState extends RoomState
     function pickupInstrument(sprite:FlxSprite, data:InstrumentData)
     {
         Save.setInstrument(data.id);
+        if (!Save.seenInstrument(data.id))
+        {
+            Save.instrumentSeen(data.id);
+            Prompt.showOKInterrupt('You got the ${data.name}, play by pressing the ERTYUIOP\nkeys or by clicking it icon in the top right');
+        }
     }
     
     override function update(elapsed:Float)
     {
         super.update(elapsed);
         
-        #if debug
-        if (FlxG.keys.justPressed.H)
-        {
-            openSubState(new MusicSelectionSubstate());
-        }
-        #end
     }
 }

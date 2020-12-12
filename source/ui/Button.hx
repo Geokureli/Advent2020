@@ -67,7 +67,7 @@ abstract OkButton(Button) to Button
 {
     public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/buttons/button_ok.png");
+        this = new Button(x, y, onClick, "assets/images/ui/buttons/ok.png");
     }
 }
 
