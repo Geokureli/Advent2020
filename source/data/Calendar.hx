@@ -4,8 +4,10 @@ class Calendar
 {
     #if debug
     inline static var DEBUG_DAY:Int = 0;// 0 to disable debug feature
-    #end
     static public var isDebugDay = DEBUG_DAY > 0;
+    #else
+    static public var isDebugDay = false;
+    #end
     static public var isPast(default, null) = false;
     static public var participatedInAdvent(default, null) = false;
     static public var day(default, null) = 24;
