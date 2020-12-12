@@ -62,19 +62,31 @@ class Save
         }
         log("skin: " + data.skin);
         
-        // if (clearSave || data.instrument == null)
+        #if FORGET_INSTRUMENT data.instrument = null; #end
+        if (clearSave || data.instrument == null)
         {
             data.instrument = -1;
             newData = true;
         }
-        log("instrument: " + data.skin);
+        log("instrument: " + data.instrument);
         
+        #if FORGET_INSTRUMENT data.seenInstruments = null; #end
         if (clearSave || data.seenInstruments == null)
         {
             data.seenInstruments = new BitArray();
             newData = true;
         }
         log("instruments seen: " + data.seenInstruments);
+        
+        if (data.instrument < -1 && (data.seenInstruments:Int64) > 0)
+        {
+            // fix an old glitch where i deleted instrument save
+            var i = 0;
+            while (!data.seenInstruments[i] && i < 32)
+                i++;
+            data.instrument = i;
+            newData = true;
+        }
         
         if (newData)
             flush();
