@@ -19,9 +19,9 @@ class Instrument
     static var musicKeys:Array<FlxKey>
         = [ E, FOUR, R, FIVE, T, Y, SEVEN, U, EIGHT, I, NINE, O, P];
     
-    static public var key(default, set):Key;
     static public var onChange(default, null) = new FlxSignal();
     
+    static var key:Key;
     static var root:Int;
     static var scale:Array<Int>;
     static var currentNote:Null<Int> = null;
@@ -106,7 +106,7 @@ class Instrument
         return lastPressed;
     }
     
-    static function set_key(value:Key):Key
+    static function setKey(value:Key):Key
     {
         var note:String;
         switch(value)
@@ -125,7 +125,7 @@ class Instrument
         else if (root == 0)
             root = 12;
         
-        return Instrument.key = key;
+        return key = value;
     }
     
     static inline function getCurrent():InstrumentData
@@ -135,7 +135,7 @@ class Instrument
     
     inline static public function setKeyFromString(key:String):Void
     {
-        Instrument.key = getKeyFromString(key);
+        setKey(getKeyFromString(key));
     }
     
     inline static public function getKeyFromString(key:String):Key

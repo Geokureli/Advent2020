@@ -63,7 +63,11 @@ class MusicSelectionSubstate extends flixel.FlxSubState
         if (Controls.justPressed.A && wasAReleased)
             carousel.select(onSelectComplete);
         if (Controls.justPressed.B)
+        {
+            if (carousel.playingIndex > -1)
+                Manifest.playMusic(Content.songsOrdered[carousel.playingIndex].id);
             close();
+        }
     }
     
     function onSelectComplete(song:SongCreation)
@@ -84,12 +88,12 @@ class Carousel extends FlxSpriteGroup
     static inline var FRONT_PATH = "assets/images/ui/carousel/front.png";
     
     public var selecting = false;
+    public var playingIndex(default, null) = -1;
     
     var back:FlxSprite;
     var disks = new FlxTypedSpriteGroup<FlxSprite>();
     var disk:FlxSprite;
     var infoField:FlxBitmapText;
-    var playingIndex = -1;
     var current = 0;
     
     var currentSprite(get, never):FlxSprite;
@@ -177,17 +181,14 @@ class Carousel extends FlxSpriteGroup
     
     function unhiliteCurrent()
     {
-        if (Std.is(FlxG.sound.music, StreamedSound))
-        {
-            FlxG.sound.music.stop();
-            FlxG.sound.music = null;
-        }
     }
     
     function hiliteCurrent()
     {
+        FlxG.sound.music.stop();
+        FlxG.sound.music = null;
         // disks.x = (current+1) * -SPACING - SIDE_GAP*2 + (FlxG.width - currentSprite.width) / 2;
-        FlxG.sound.playMusic(currentSong.samplePath);
+        FlxG.sound.playMusic(currentSong.samplePath, currentSong.volume);
         infoField.text = currentSong.name + "\n" + Content.listAuthorsProper(currentSong.authors);
         infoField.x = back.x + (back.width - infoField.width) / 2;
         // ok.active = true;

@@ -586,7 +586,7 @@ class RoomState extends OgmoState
                 instrument.visible = true;
                 instrument.loadGraphic(data.iconPath);
                 instrument.x = FlxG.width - instrument.width - 32;
-                instrument.y = 2;
+                instrument.y = 30 - instrument.height;
             }
         }
     }
