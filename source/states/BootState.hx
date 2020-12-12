@@ -212,8 +212,8 @@ class BootState extends flixel.FlxState
                             }
                             
                             msg.text 
-                                += "\n" + errors.join("\n")
-                                + "\nYou are only seeing this message because you are in the credits"
+                                += "\n\n" + errors.join("\n")
+                                + "\n\nYou are only seeing this message because you are in the credits"
                                 + "\nPress SPACE to play, anyway";
                         }
                         else
