@@ -68,7 +68,7 @@ abstract BlackKey(Key) to Key
 			, TOP
 			, WIDTH
 			, HEIGHT
-			, "assets/images/ui/music/blacKey.png"
+			, "assets/images/ui/piano/blackKey.png"
 			, label
 			, onClick.bind(label, _)
 			);
@@ -97,7 +97,7 @@ abstract WhiteKey(Key) to Key
 			, TOP
 			, WIDTH
 			, HEIGHT
-			, "assets/images/ui/music/whitekey.png"
+			, "assets/images/ui/piano/whiteKey.png"
 			, label
 			, onClick.bind(label, _)
 			);

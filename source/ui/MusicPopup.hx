@@ -14,8 +14,8 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
     static var instance(default, null):MusicPopup;
     
     inline static var DURATION = 5.0;
-    inline static var MAIN_PATH = "assets/images/ui/music/popup.png";
-    inline static var BAR_PATH = "assets/images/ui/music/popup_bar.png";
+    inline static var MAIN_PATH = "assets/images/ui/music_popup/main.png";
+    inline static var BAR_PATH = "assets/images/ui/music_popup/bar.png";
     
     static var info:MusicInfo;
     var tweener:FlxTweenManager = new FlxTweenManager();
