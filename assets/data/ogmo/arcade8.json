@@ -194,7 +194,19 @@
         {"x": 184, "y": -32, "texture": "arcade/light.png"},
         {"x": 376, "y": -32, "texture": "arcade/light.png"},
         {"x": 304, "y": 64, "texture": "arcade/light.png"},
-        {"x": 112, "y": 64, "texture": "arcade/light.png"}
+        {"x": 112, "y": 64, "texture": "arcade/light.png"},
+        {"x": 360, "y": 88, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 400, "y": 88, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 440, "y": 88, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 320, "y": 88, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 128, "y": 208, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 176, "y": 208, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 224, "y": 208, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 272, "y": 208, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 320, "y": 208, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 368, "y": 208, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 120, "y": 88, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 160, "y": 88, "texture": "shared/lucia_cat_ogmo.png"}
       ],
       "folder": "../../images/props"
     },

@@ -60,7 +60,12 @@
         {"x": 152, "y": 192, "texture": "instruments/guitar_ac.png"},
         {"x": 112, "y": 64, "texture": "studio/speaker.png"},
         {"x": 64, "y": 208, "texture": "studio/speaker2.png"},
-        {"x": 336, "y": 72, "texture": "studio/juke.png"}
+        {"x": 336, "y": 72, "texture": "studio/juke.png"},
+        {"x": 112, "y": 88, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 336, "y": 104, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 272, "y": 104, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 400, "y": 104, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 176, "y": 96, "texture": "shared/lucia_cat_ogmo.png"}
       ],
       "folder": "../../images/props"
     },
