@@ -84,6 +84,30 @@
     , "goodl":
         { "proper": "GoodL"
         }
+    , "tenodiboris":
+        { "proper": null
+        }
+    , "mattrguitar123":
+        { "proper": null
+        }
+    , "kawaisprite":
+        { "proper": "KawaiSprite"
+        }
+    , "k-4998572":
+        { "proper": null
+        }
+    , "heyopc":
+        { "proper": null
+        }
+    , "everratic":
+        { "proper": null
+        }
+    , "dogl":
+        { "proper": null
+        }
+    , "anarchyaxel":
+        { "proper": null
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -138,6 +162,7 @@
         , "bpm"      : 166
         , "ngId"     : 0
         , "day"      : 11
+        , "volume"   : 0.25
         }
     ,   { "id"     : "hyenaedon"
         , "name"   : "Woodland Sprites"

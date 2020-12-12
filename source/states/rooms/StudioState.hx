@@ -32,6 +32,28 @@ class StudioState extends RoomState
             }
         }
         
+        var authorsFound = new Array<String>();
+        for (data in Content.songs)
+        {
+            for (author in data.authors)
+            {
+                authorsFound.push(author);
+                var avatar = background.getByName(author);
+                if (avatar != null)// && data.day > Calendar.day)
+                    avatar.kill();
+            }
+        }
+        
+        for (user in Content.credits.keys())
+        {
+            if (!authorsFound.contains(user))
+            {
+                var avatar = background.getByName(user);
+                if (avatar != null)// && data.day > Calendar.day)
+                    avatar.kill();
+            }
+        }
+        
         var juke = foreground.getByName("juke");
         addHoverTextTo(juke, "Music", selectJuke);
     }
