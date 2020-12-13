@@ -279,13 +279,13 @@ class RoomState extends OgmoState
         var uiBun = new FlxSprite(4, 4);
         uiBun.loadGraphic("assets/images/props/shared/lucia_cat.png", true, 32, 32);
         uiBun.animation.add("anim", [for (i in 0...uiBun.animation.frames) i], 10);
-        uiBun.scale.set(0.5, 0.5);
+        uiBun.animation.play("anim");
         uiBun.updateHitbox();
         ui.add(uiBun);
         
         ui.add(luciaCount = new FlxBitmapText(new NokiaFont16()));
         luciaCount.x = uiBun.x + uiBun.width + 4;
-        luciaCount.y = 4;
+        luciaCount.y = 12;
         luciaCount.setBorderStyle(OUTLINE, 0xFF000000);
         updateLuciaCount();
         
@@ -613,7 +613,7 @@ class RoomState extends OgmoState
         
         if (player.touched != firstTouched)
         {
-            if (player.touched != null)
+            if (player.touched != null && infoBoxes.exists(player.touched) && infoBoxes[player.touched] != null)//todo: clear refs better in removeHoverFrom
             {
                 infoBoxes[player.touched].alive = false;
                 if (Std.is(player.touched, FlxSprite))
