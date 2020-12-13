@@ -1,5 +1,6 @@
 package states.rooms;
 
+import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxPoint;
 import flixel.text.FlxBitmapText;
@@ -202,7 +203,6 @@ class RoomState extends OgmoState
                     bun.updateHitbox();
                     bun.x += bun.width / 4;
                     bun.y += bun.height / 4;
-                    bun.setBottomHeight(bun.height / 2);
                 }
             }
         }
@@ -286,13 +286,13 @@ class RoomState extends OgmoState
         ui.add(luciaCount = new FlxBitmapText(new NokiaFont16()));
         luciaCount.x = uiBun.x + uiBun.width + 4;
         luciaCount.y = 4;
-        luciaCount.setBorderStyle(OUTLINE, 0xffffff);
+        luciaCount.setBorderStyle(OUTLINE, 0xFF000000);
         updateLuciaCount();
         
         ui.add(luciaTimer = new FlxBitmapText(new NokiaFont16()));
         luciaTimer.x = 4;
         luciaTimer.y = luciaCount.y + luciaCount.height + 4;
-        luciaTimer.setBorderStyle(OUTLINE, 0xffffff);
+        luciaTimer.setBorderStyle(OUTLINE, 0xFF000000);
         updateLuciaTimer();
     }
     
@@ -536,6 +536,7 @@ class RoomState extends OgmoState
                 function(_, bun)
                 {
                     Lucia.collect(name, luciaBuns.members.indexOf(bun));
+                    FlxG.sound.play("assets/sounds/pickup.mp3");
                     foreground.remove(bun);
                     topGround.add(bun);
                     bun.solid = false;
@@ -548,7 +549,18 @@ class RoomState extends OgmoState
                         {
                             bun.kill();
                             Lucia.onComplete(name, FlxPoint.get(bun.x, bun.y));
-                            playLuciaCutscene();
+                            var field = new FlxBitmapText(new XmasFont());
+                            field.setBorderStyle(OUTLINE, 0xFF000000);
+                            field.text = "Complete!";
+                            field.screenCenter();
+                            ui.add(field);
+                            new FlxTimer().start(1.0,
+                                function(_)
+                                {
+                                    field.kill();
+                                    playLuciaCutscene();
+                                }
+                            );
                         }
                     }
                     FlxTween.tween(bun, { y: bun.y - 16, alpha:0 }, 0.5,
@@ -667,7 +679,7 @@ class RoomState extends OgmoState
     {
         var present = new Present(Lucia.USER, Lucia.presentLoc.pos.x, Lucia.presentLoc.pos.y);
         initArtPresent(present, onOpenPresent);
-        add(present);
+        foreground.add(present);
         final RISE = 16;
         present.alpha = 0;
         present.offset.y += RISE;

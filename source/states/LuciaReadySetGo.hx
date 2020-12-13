@@ -10,6 +10,7 @@ class LuciaReadySetGo extends FlxSubState
     {
         var field = new FlxBitmapText(new ui.Font.XmasFont());
         field.text = "Collect all the buns!";
+        field.setBorderStyle(OUTLINE, 0xFF000000);
         field.screenCenter(XY);
         add(field);
         

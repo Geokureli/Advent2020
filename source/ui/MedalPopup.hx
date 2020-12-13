@@ -107,6 +107,9 @@ class MedalPopup extends flixel.group.FlxSpriteGroup
         var medalData = animQueue.shift();
         
         var medalNum = medalData.id - MEDAL_0 + 1;
+        if (!Content.artworkByDay.exists(medalNum))
+            return;
+        
         medal.loadGraphic(Content.artworkByDay[medalNum].medalPath);
         
         visible = true;

@@ -82,9 +82,8 @@ class Game
         
         switch (Game.state)
         {
-            case NoEvent: Content.playTodaysSong();
-            // case Day1Intro(Started):
-            default:
+            case Day1Intro(Started):
+            default: Content.playTodaysSong();
         }
         
         #if SKIP_TO_DIG_GAME
