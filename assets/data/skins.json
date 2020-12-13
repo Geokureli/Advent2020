@@ -194,7 +194,7 @@
 ,   { "id": "brandybuizel"
     , "proper": "BrandyBuizel"
     , "description": "They say that God made us in his own image, so why not play as him? -b"
-    , "unlocksBy": null
+    , "unlocksBy": "medal:61514"
     , "users": ["brandybuizel"]
     , "group": "devs"
     }
