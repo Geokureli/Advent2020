@@ -39,10 +39,8 @@ class LuciaUi extends FlxGroup
     {
         super.update(elapsed);
         if (Lucia.finding)
-        {
             Lucia.update(elapsed);
-            updateFields();
-        }
+        updateFields();
     }
     
     function updateFields()

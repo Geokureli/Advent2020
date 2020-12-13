@@ -243,7 +243,6 @@ class RoomState extends OgmoState
     
     function initLuciaBuns()
     {
-        
         luciaBuns = foreground.getAllWithName("lucia_cat");
         var clearBuns = true;
         if (Lucia.present)
