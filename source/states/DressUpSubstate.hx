@@ -259,7 +259,7 @@ class SkinDisplay extends FlxSprite
         super.draw();
         if (unseen.visible)
         {
-            unseen.x = x + width - unseen.width / 2;
+            unseen.x = x + (width - unseen.width) / 2;
             unseen.y = y - unseen.height;
             unseen.draw();
         }

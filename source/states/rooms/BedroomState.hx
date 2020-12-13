@@ -5,6 +5,7 @@ import data.Calendar;
 import data.Content;
 import data.EventState;
 import data.Game;
+import data.Lucia;
 import data.NGio;
 import data.Save;
 import data.Skins;
@@ -86,18 +87,22 @@ class BedroomState extends RoomState
         }
         
         desk = foreground.getByName("desk_lucia");
-        if (desk != null && Game.state.match(NoEvent))
+        if (desk != null && Game.state.match(NoEvent|LuciaDay(Finding)|LuciaDay(Present)))
             addHoverTextTo(desk, "Replay Lucia Hunt", replayLuciaHunt);
     }
     
     function replayLuciaHunt()
     {
+        var wasPlaying = Game.state.match(NoEvent);
         Game.state = LuciaDay(Started);
+        Lucia.reset();
+        if (luciaUi != null)
+            luciaUi.kill();
         
         removeHoverFrom(desk);
         var field = new FlxBitmapText();
         field.setBorderStyle(OUTLINE, 0xFF000000);
-        field.text = "Activated";
+        field.text = wasPlaying ? "Activated" : "Restarted";
         field.x = desk.x + (desk.width - field.width) / 2;
         field.y = desk.y;
         topGround.add(field);

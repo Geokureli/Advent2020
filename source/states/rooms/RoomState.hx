@@ -12,6 +12,7 @@ import props.InfoBox;
 import states.OgmoState;
 import ui.Button;
 import ui.Font;
+import ui.LuciaUi;
 import ui.MedalPopup;
 import ui.MusicPopup;
 import ui.SkinPopup;
@@ -61,8 +62,7 @@ class RoomState extends OgmoState
     var topGround = new FlxGroup();
     var ui = new FlxGroup();
     var luciaBuns:FlxTypedGroup<OgmoDecal>;
-    var luciaCount:FlxBitmapText;
-    var luciaTimer:FlxBitmapText;
+    var luciaUi:LuciaUi;
     
     var spawnTeleport:Teleport;
     var medalPopup:MedalPopup;
@@ -178,41 +178,7 @@ class RoomState extends OgmoState
         colliders.add(geom);
         add(geom);
         
-        luciaBuns = foreground.getAllWithName("lucia_cat");
-        var clearBuns = true;
-        if (Lucia.present)
-        {
-            if (Lucia.presentLoc.room == name)
-            {
-                var present = new Present(Lucia.USER, Lucia.presentLoc.pos.x, Lucia.presentLoc.pos.y);
-                initArtPresent(present, onOpenPresent);
-            }
-        }
-        else if (Lucia.active && !Lucia.isCleared(name))
-        {
-            clearBuns = false;
-            Lucia.initRoom(name, luciaBuns.length);
-            for (i=>bun in luciaBuns.members)
-            {
-                if (Lucia.isCollected(name, i))
-                    bun.kill();
-                else
-                {
-                    bun.setBottomHeight(bun.frameHeight);
-                    bun.scale.set(0.5, 0.5);
-                    bun.updateHitbox();
-                    bun.x += bun.width / 4;
-                    bun.y += bun.height / 4;
-                }
-            }
-        }
-        
-        if (clearBuns)
-        {
-            var i = luciaBuns.members.length;
-            while(i-- > 0)
-                luciaBuns.members.shift().kill();
-        }
+        initLuciaBuns();
         
         for (teleport in teleports.members)
         {
@@ -274,36 +240,61 @@ class RoomState extends OgmoState
         if (Lucia.finding)
             initLuciaUi();
     }
+    
+    function initLuciaBuns()
+    {
+        
+        luciaBuns = foreground.getAllWithName("lucia_cat");
+        var clearBuns = true;
+        if (Lucia.present)
+        {
+            if (Lucia.presentLoc.room == name)
+                initLuciaPresent();
+        }
+        else if (Lucia.active && !Lucia.isCleared(name))
+        {
+            clearBuns = false;
+            Lucia.initRoom(name, luciaBuns.length);
+            for (i=>bun in luciaBuns.members)
+            {
+                if (Lucia.isCollected(name, i))
+                    bun.kill();
+                else
+                {
+                    bun.setBottomHeight(bun.frameHeight);
+                    bun.scale.set(0.5, 0.5);
+                    bun.updateHitbox();
+                    bun.x += bun.width / 4;
+                    bun.y += bun.height / 4;
+                }
+            }
+        }
+        
+        if (clearBuns)
+        {
+            var i = luciaBuns.members.length;
+            while(i-- > 0)
+                luciaBuns.members.shift().kill();
+        }
+    }
+    
     function initLuciaUi()
     {
-        var uiBun = new FlxSprite(4, 4);
-        uiBun.loadGraphic("assets/images/props/shared/lucia_cat.png", true, 32, 32);
-        uiBun.animation.add("anim", [for (i in 0...uiBun.animation.frames) i], 10);
-        uiBun.animation.play("anim");
-        uiBun.updateHitbox();
-        ui.add(uiBun);
-        
-        ui.add(luciaCount = new FlxBitmapText(new NokiaFont16()));
-        luciaCount.x = uiBun.x + uiBun.width + 4;
-        luciaCount.y = 12;
-        luciaCount.setBorderStyle(OUTLINE, 0xFF000000);
-        updateLuciaCount();
-        
-        ui.add(luciaTimer = new FlxBitmapText(new NokiaFont16()));
-        luciaTimer.x = 4;
-        luciaTimer.y = luciaCount.y + luciaCount.height + 4;
-        luciaTimer.setBorderStyle(OUTLINE, 0xFF000000);
-        updateLuciaTimer();
+        ui.add(luciaUi = new LuciaUi());
     }
     
-    function updateLuciaCount()
+    function initLuciaPresent()
     {
-        luciaCount.text = Lucia.collected + "/" + Lucia.TOTAL;
-    }
-    
-    function updateLuciaTimer()
-    {
-        luciaTimer.text = "Time: " + Lucia.getDisplayTimer();
+        var present = new Present(Lucia.USER, Lucia.presentLoc.pos.x, Lucia.presentLoc.pos.y);
+        initArtPresent(present, function(present)
+            {
+                if (Game.state.match(LuciaDay(Present)))
+                    Game.state = NoEvent;
+                onOpenPresent(present);
+            }
+        );
+        foreground.add(present);
+        return present;
     }
     
     override function openSubState(substate)
@@ -530,8 +521,6 @@ class RoomState extends OgmoState
                 Lucia.debugSkip();
             #end
             
-            Lucia.update(elapsed);
-            
             FlxG.overlap(player, luciaBuns,
                 function(_, bun)
                 {
@@ -543,24 +532,17 @@ class RoomState extends OgmoState
                     var onTweenComplete:(FlxTween)->Void = (_)->bun.kill();
                     if (Lucia.collected >= Lucia.TOTAL)
                     {
-                        Game.state = LuciaDay(Present);
+                        if (Save.hasOpenedPresent(Lucia.USER))
+                            Game.state = NoEvent;
+                        else
+                            Game.state = LuciaDay(Present);
+                        
                         player.enabled = false;
                         onTweenComplete = function(_)
                         {
                             bun.kill();
                             Lucia.onComplete(name, FlxPoint.get(bun.x, bun.y));
-                            var field = new FlxBitmapText(new XmasFont());
-                            field.setBorderStyle(OUTLINE, 0xFF000000);
-                            field.text = "Complete!";
-                            field.screenCenter();
-                            ui.add(field);
-                            new FlxTimer().start(1.0,
-                                function(_)
-                                {
-                                    field.kill();
-                                    playLuciaCutscene();
-                                }
-                            );
+                            luciaUi.onComplete(playLuciaCutscene);
                         }
                     }
                     FlxTween.tween(bun, { y: bun.y - 16, alpha:0 }, 0.5,
@@ -568,8 +550,6 @@ class RoomState extends OgmoState
                     
                 }
             );
-            updateLuciaTimer();
-            updateLuciaCount();
         }
         
         if (!touchingSpawn && spawnTeleport != null)
@@ -677,9 +657,7 @@ class RoomState extends OgmoState
     
     function playLuciaCutscene()
     {
-        var present = new Present(Lucia.USER, Lucia.presentLoc.pos.x, Lucia.presentLoc.pos.y);
-        initArtPresent(present, onOpenPresent);
-        foreground.add(present);
+        var present = initLuciaPresent();
         final RISE = 16;
         present.alpha = 0;
         present.offset.y += RISE;
