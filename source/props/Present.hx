@@ -1,8 +1,10 @@
 package props;
 
+import data.Content;
 import data.Save;
-import flixel.FlxSprite;
 import states.OgmoState;
+
+import flixel.FlxSprite;
 
 typedef PresentValues = { id:String }
 
@@ -33,7 +35,8 @@ class Present extends flixel.FlxSprite
         offset.x = 8;
         offset.y = -8;
         
-        (this:OgmoDecal).setBottomHeight(this.frameHeight >> 1);
+        width = frameWidth / 2;
+        (this:OgmoDecal).setBottomHeight(this.frameHeight >> 2);
         drag.set(5000, 5000);
         
         confetti = new FlxSprite(CONFETTI_PATH);
@@ -88,7 +91,7 @@ class Present extends flixel.FlxSprite
     static public function fromEntity(data:OgmoEntityData<PresentValues>)
     {
         var present = new Present(data.values.id, data.x - 16, data.y - 17);
-        data.applyToSprite(present);
+        // data.applyToSprite(present);
         return present;
     }
 }
