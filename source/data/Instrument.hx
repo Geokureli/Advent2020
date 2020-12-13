@@ -122,8 +122,6 @@ class Instrument
         root = notes.indexOf(note.split("#").join("S"));
         if (root == -1)
             throw "invalid key";
-        else if (root == 0)
-            root = 12;
         
         return key = value;
     }

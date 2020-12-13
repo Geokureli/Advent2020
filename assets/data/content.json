@@ -325,9 +325,17 @@
         , "volume": 1.0
         , "octave": 6
         }
+    ,   { "id"    : "guitar_el"
+        , "name"  : "Electric Guitar"
+        , "day"   : 14
+        , "volume": 1.0
+        , "sustain":true
+        , "singleNote":true
+        , "octave": 4
+        }
     ,   { "id"    : "glockenspiel"
         , "name"  : "Glockenspiel"
-        , "day"   : 14
+        , "day"   : 15
         , "volume": 0.5
         , "octave": 6
         }
