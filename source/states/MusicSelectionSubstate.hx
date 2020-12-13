@@ -244,7 +244,7 @@ class Carousel extends FlxSpriteGroup
         
         if (current == -1)
         {
-            infoField.text = "The Sound of Simon & Garfunkel\nGeoKureli";
+            infoField.text = "Silence\nby GeoKureli";
             infoField.x = back.x + (back.width - infoField.width) / 2;
         }
         else
