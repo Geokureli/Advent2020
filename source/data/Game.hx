@@ -47,7 +47,7 @@ class Game
         arcadeTypes[Digging] = digging.MenuState.new.bind(0);
         #end
         
-        if (Calendar.day == 13 && Save.hasOpenedPresentByDay(13))
+        if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
             state = LuciaDay(Started);
         else if (Save.noPresentsOpened())
             state = Day1Intro(Started);

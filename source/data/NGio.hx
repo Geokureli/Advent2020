@@ -31,6 +31,7 @@ class NGio
 	public static var ngDataLoaded(default, null):FlxSignal = new FlxSignal();
 	public static var ngScoresLoaded(default, null):FlxSignal = new FlxSignal();
 	
+	static var boardsByName(default, null) = new Map<String, Int>();
 	static var loggedEvents = new Array<NgEvent>();
 	
 	static public function attemptAutoLogin(callback:Void->Void) {
@@ -131,7 +132,8 @@ class NGio
 	{
 		for (board in NG.core.scoreBoards)
 		{
-			log('Scoreboard loded ${board.name}:${board.id}');
+			boardsByName[board.name] = board.id;
+			log('Scoreboard loaded ${board.name}:${board.id}');
 			for (arcade in Content.arcades)
 			{
 				if (board.name == arcade.scoreboard)
@@ -153,7 +155,7 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = Content.arcades[id].scoreboardId;
+		var boardId = boardsByName[id];
 		if (!NG.core.scoreBoards.exists(boardId))
 			throw "Invalid boardId:" + boardId;
 		
@@ -171,7 +173,7 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = Content.arcades[id].scoreboardId;
+		var boardId = boardsByName[id];
 		if (!NG.core.scoreBoards.exists(boardId))
 			throw "Invalid boardId:" + boardId;
 		
@@ -191,7 +193,7 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = Content.arcades[id].scoreboardId;
+		var boardId = boardsByName[id];
 		if (!NG.core.scoreBoards.exists(boardId))
 			throw "Invalid boardId:" + boardId;
 		

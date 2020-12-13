@@ -38,11 +38,23 @@ class Lucia
         roomTotals.clear();
         roomCollected.clear();
         roomCleared.clear();
+        debugSkipped = false;
+        presentLoc = null;
+        timer = 0.0;
+        collected = 0;
     }
     
     static public function debugSkip()
     {
+        debugSkipped = true;
         collected = 98;
+    }
+    
+    static public function onComplete(room:RoomName, pos:FlxPoint)
+    {
+        presentLoc = { room:room, pos:pos };
+        if (!debugSkipped)
+            NGio.postPlayerHiscore("Hot Bun Run", Math.floor(timer * 1000));
     }
     
     static public function isCleared(room:RoomName)

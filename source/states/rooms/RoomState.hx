@@ -547,7 +547,7 @@ class RoomState extends OgmoState
                         onTweenComplete = function(_)
                         {
                             bun.kill();
-                            Lucia.presentLoc = { room:name, pos:FlxPoint.get(bun.x, bun.y) };
+                            Lucia.onComplete(name, FlxPoint.get(bun.x, bun.y));
                             playLuciaCutscene();
                         }
                     }
