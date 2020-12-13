@@ -155,9 +155,9 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = boardsByName[id];
-		if (!NG.core.scoreBoards.exists(boardId))
-			throw "Invalid boardId:" + boardId;
+		var boardId = getBoardById(id);
+		if (boardId < 0)
+			throw "Invalid board id:" + id;
 		
 		var board = NG.core.scoreBoards.get(boardId);
 		if (callback != null)
@@ -173,9 +173,9 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = boardsByName[id];
-		if (!NG.core.scoreBoards.exists(boardId))
-			throw "Invalid boardId:" + boardId;
+		var boardId = getBoardById(id);
+		if (boardId < 0)
+			throw "Invalid board id:" + id;
 		
 		NG.core.scoreBoards.get(boardId).requestScores(1, 0, ALL, false, null, userName);
 	}
@@ -193,11 +193,22 @@ class NGio
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		
-		var boardId = boardsByName[id];
-		if (!NG.core.scoreBoards.exists(boardId))
-			throw "Invalid boardId:" + boardId;
+		var boardId = getBoardById(id);
+		if (boardId < 0)
+			throw "Invalid board id:" + id;
 		
 		NG.core.scoreBoards.get(boardId).postScore(value, tag);
+	}
+	
+	static function getBoardById(id:String)
+	{
+		if (boardsByName.exists(id))
+			return boardsByName[id];
+		
+		if (Content.arcades.exists(id))
+			return Content.arcades[id].scoreboardId;
+		
+		return -1;
 	}
 	
 	// --- MEDALS
