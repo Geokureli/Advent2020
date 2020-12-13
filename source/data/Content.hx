@@ -42,7 +42,7 @@ class Content
             songData.path = 'assets/music/${songData.id}.mp3';
             songData.samplePath = 'assets/sounds/samples/${songData.id}.mp3';
             if (songData.volume == null)
-                songData.volume = 0.5;
+                songData.volume = 1.0;
             songs[songData.id] = songData;
             songsOrdered.push(songData);
         }
