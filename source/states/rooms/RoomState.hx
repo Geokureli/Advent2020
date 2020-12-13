@@ -523,7 +523,7 @@ class RoomState extends OgmoState
             }
         );
         
-        if (Lucia.finding && !Lucia.isCleared(name))
+        if (Lucia.finding)
         {
             #if debug
             if (FlxG.keys.justPressed.L)

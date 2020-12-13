@@ -40,6 +40,9 @@ class Calendar
         day = debugDay;
         isAdvent = true;
         isDecember = true;
+        #if FORGET_TODAY
+        Save.debugForgetDay(day);
+        #end
     }
     
     static function onDateReceived(date:Date, callback:()->Void):Void
@@ -54,6 +57,9 @@ class Calendar
             {
                 isAdvent = true;
                 day = date.getDate();
+                #if FORGET_TODAY
+                Save.debugForgetDay(day);
+                #end
                 isUnseenDay = !Save.hasSeenDay(day);
                 Save.daySeen(day);
             }
