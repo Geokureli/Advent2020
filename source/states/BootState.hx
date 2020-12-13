@@ -111,7 +111,8 @@ class BootState extends flixel.FlxState
             {
                 setState(Waiting);
                 #if ALLOW_DAY_SKIP
-                if ((Calendar.isAdvent || Calendar.isDebugDay)
+                if (Calendar.canSkip()
+                    && (Calendar.isAdvent || Calendar.isDebugDay)
                     && Calendar.day != 24
                     && NGio.isContributor)
                 {

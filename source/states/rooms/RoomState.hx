@@ -1,11 +1,16 @@
 package states.rooms;
 
+import flixel.tweens.FlxTween;
+import flixel.math.FlxPoint;
+import flixel.text.FlxBitmapText;
+import flixel.tweens.FlxEase;
 import data.*;
 import data.Content;
 import props.*;
 import props.InfoBox;
 import states.OgmoState;
 import ui.Button;
+import ui.Font;
 import ui.MedalPopup;
 import ui.MusicPopup;
 import ui.SkinPopup;
@@ -33,6 +38,8 @@ typedef RoomConstructor = (String)->RoomState;
 
 class RoomState extends OgmoState 
 {
+    public static var roomOrder = [Bedroom, Hallway, Entrance, Outside, Arcade, Studio];
+    
     static var outlineShader = new Inline();
     
     var camOffset = 0.0;
@@ -52,6 +59,9 @@ class RoomState extends OgmoState
     var infoBoxGroup = new FlxTypedGroup<InfoBox>();
     var topGround = new FlxGroup();
     var ui = new FlxGroup();
+    var luciaBuns:FlxTypedGroup<OgmoDecal>;
+    var luciaCount:FlxBitmapText;
+    var luciaTimer:FlxBitmapText;
     
     var spawnTeleport:Teleport;
     var medalPopup:MedalPopup;
@@ -109,12 +119,10 @@ class RoomState extends OgmoState
         entityTypes["Present"] = cast function(data)
         {
             var present = Present.fromEntity(data);
-            if (Content.isArtUnlocked(present.id))
-            {
-                presents.add(present);
-                colliders.add(present);
+            
+            final isLucia = Lucia.active && present.id == Lucia.USER;
+            if (!isLucia && Content.isArtUnlocked(present.id))
                 initArtPresent(present, onOpenPresent);
-            }
             else
                 present.kill();
             
@@ -139,6 +147,10 @@ class RoomState extends OgmoState
     function loadLevel()
     {
         roomDay = Calendar.day;
+        
+        if(Game.state.match(LuciaDay(_)))
+            forceDay = 13;
+        
         if (forceDay > 0)
             roomDay = forceDay;
         
@@ -165,6 +177,43 @@ class RoomState extends OgmoState
         colliders.add(geom);
         add(geom);
         
+        luciaBuns = foreground.getAllWithName("lucia_cat");
+        var clearBuns = true;
+        if (Lucia.present)
+        {
+            if (Lucia.presentLoc.room == name)
+            {
+                var present = new Present(Lucia.USER, Lucia.presentLoc.pos.x, Lucia.presentLoc.pos.y);
+                initArtPresent(present, onOpenPresent);
+            }
+        }
+        else if (Lucia.active && !Lucia.isCleared(name))
+        {
+            clearBuns = false;
+            Lucia.initRoom(name, luciaBuns.length);
+            for (i=>bun in luciaBuns.members)
+            {
+                if (Lucia.isCollected(name, i))
+                    bun.kill();
+                else
+                {
+                    bun.setBottomHeight(bun.frameHeight);
+                    bun.scale.set(0.5, 0.5);
+                    bun.updateHitbox();
+                    bun.x += bun.width / 4;
+                    bun.y += bun.height / 4;
+                    bun.setBottomHeight(bun.height / 2);
+                }
+            }
+        }
+        
+        if (clearBuns)
+        {
+            var i = luciaBuns.members.length;
+            while(i-- > 0)
+                luciaBuns.members.shift().kill();
+        }
+        
         for (teleport in teleports.members)
         {
             if (spawnId == teleport.id)
@@ -182,6 +231,7 @@ class RoomState extends OgmoState
         player = new InputPlayer();
         player.x = spawnTeleport.x + (spawnTeleport.width - player.width) / 2;
         player.y = spawnTeleport.y + (spawnTeleport.height - player.height) / 2;
+        player.last.set(player.x, player.y);
         foreground.add(player);
         
         for (child in props.members)
@@ -220,6 +270,40 @@ class RoomState extends OgmoState
         fullscreen.y = 4;
         ui.add(fullscreen);
         add(ui);
+        
+        if (Lucia.finding)
+            initLuciaUi();
+    }
+    function initLuciaUi()
+    {
+        var uiBun = new FlxSprite(4, 4);
+        uiBun.loadGraphic("assets/images/props/shared/lucia_cat.png", true, 32, 32);
+        uiBun.animation.add("anim", [for (i in 0...uiBun.animation.frames) i], 10);
+        uiBun.scale.set(0.5, 0.5);
+        uiBun.updateHitbox();
+        ui.add(uiBun);
+        
+        ui.add(luciaCount = new FlxBitmapText(new NokiaFont16()));
+        luciaCount.x = uiBun.x + uiBun.width + 4;
+        luciaCount.y = 4;
+        luciaCount.setBorderStyle(OUTLINE, 0xffffff);
+        updateLuciaCount();
+        
+        ui.add(luciaTimer = new FlxBitmapText(new NokiaFont16()));
+        luciaTimer.x = 4;
+        luciaTimer.y = luciaCount.y + luciaCount.height + 4;
+        luciaTimer.setBorderStyle(OUTLINE, 0xffffff);
+        updateLuciaTimer();
+    }
+    
+    function updateLuciaCount()
+    {
+        luciaCount.text = Lucia.collected + "/" + Lucia.TOTAL;
+    }
+    
+    function updateLuciaTimer()
+    {
+        luciaTimer.text = "Time: " + Lucia.getDisplayTimer();
     }
     
     override function openSubState(substate)
@@ -294,6 +378,8 @@ class RoomState extends OgmoState
     
     inline function initArtPresent(present:Present, ?callback:(Present)->Void)
     {
+        presents.add(present);
+        colliders.add(present);
         var data = Content.artwork[present.id];
         var box = addThumbnailTo(present, data.thumbPath, openArtPresent.bind(present, callback));
         box.sprite.visible = present.isOpen;
@@ -437,6 +523,43 @@ class RoomState extends OgmoState
             }
         );
         
+        if (Lucia.finding && !Lucia.isCleared(name))
+        {
+            #if debug
+            if (FlxG.keys.justPressed.L)
+                Lucia.debugSkip();
+            #end
+            
+            Lucia.update(elapsed);
+            
+            FlxG.overlap(player, luciaBuns,
+                function(_, bun)
+                {
+                    Lucia.collect(name, luciaBuns.members.indexOf(bun));
+                    foreground.remove(bun);
+                    topGround.add(bun);
+                    bun.solid = false;
+                    var onTweenComplete:(FlxTween)->Void = (_)->bun.kill();
+                    if (Lucia.collected >= Lucia.TOTAL)
+                    {
+                        Game.state = LuciaDay(Present);
+                        player.enabled = false;
+                        onTweenComplete = function(_)
+                        {
+                            bun.kill();
+                            Lucia.presentLoc = { room:name, pos:FlxPoint.get(bun.x, bun.y) };
+                            playLuciaCutscene();
+                        }
+                    }
+                    FlxTween.tween(bun, { y: bun.y - 16, alpha:0 }, 0.5,
+                        { ease:(t)->FlxEase.quadOut(Math.min(1, t * 1.5)), onComplete:onTweenComplete });
+                    
+                }
+            );
+            updateLuciaTimer();
+            updateLuciaCount();
+        }
+        
         if (!touchingSpawn && spawnTeleport != null)
             spawnTeleport = null;
         
@@ -538,6 +661,25 @@ class RoomState extends OgmoState
         
         FlxG.watch.addMouse();
         #end
+    }
+    
+    function playLuciaCutscene()
+    {
+        var present = new Present(Lucia.USER, Lucia.presentLoc.pos.x, Lucia.presentLoc.pos.y);
+        initArtPresent(present, onOpenPresent);
+        add(present);
+        final RISE = 16;
+        present.alpha = 0;
+        present.offset.y += RISE;
+        FlxTween.tween(present, { alpha:1 }, 0.25);
+        FlxTween.tween(present.offset, { y:present.offset.y - RISE }, 0.75,
+            { startDelay:1.0, ease:FlxEase.circOut, onComplete:(_)->player.enabled = true });
+    }
+    
+    function onOpenLuciaPresent(present:Present)
+    {
+        Game.state = NoEvent;
+        onOpenPresent(present);
     }
     
     function activateTeleport(target)

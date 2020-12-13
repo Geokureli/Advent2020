@@ -1,14 +1,17 @@
 package states.rooms;
 
-import states.OgmoState;
-import flixel.tweens.FlxEase;
-import flixel.FlxG;
-import openfl.filters.ShaderFilter;
-import vfx.ShadowShader;
-import flixel.tweens.FlxTween;
-import vfx.ShadowSprite;
 import data.Game;
 import data.Manifest;
+import states.OgmoState;
+import states.LuciaReadySetGo;
+import vfx.ShadowShader;
+import vfx.ShadowSprite;
+
+import flixel.FlxG;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+
+import openfl.filters.ShaderFilter;
 
 class HallwayState extends RoomState
 {
@@ -96,6 +99,16 @@ class HallwayState extends RoomState
                     for (i in 0...4)
                         tweenLightRadius(i + 2, 0, 80, 0.6, { startDelay:i * 0.75 });
                 }
+            }
+            case LuciaDay(Started):
+            {
+                Game.state = LuciaDay(Finding);
+                var substate = new LuciaReadySetGo();
+                substate.closeCallback = function ()
+                {
+                    initLuciaUi();
+                }
+                openSubState(substate);
             }
             case _:
         }

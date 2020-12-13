@@ -434,4 +434,5 @@ enum abstract User(String) from String to String
     var mixmuffin;
     var einmeister;
     var splatterdash;
+    var midgetsausage;
 }

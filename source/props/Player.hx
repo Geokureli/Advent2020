@@ -31,6 +31,7 @@ class Player extends flixel.FlxSprite
     public var drawPath = false;
     public var justEmoted(default, null) = false;
     public var emote(default, null) = new Emote();
+    public var enabled = true;
     
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
@@ -122,6 +123,13 @@ class Player extends flixel.FlxSprite
     
     function updateMovement(pressU:Bool, pressD:Bool, pressL:Bool, pressR:Bool, pressB:Bool, pressMouse:Bool)
     {
+        if (!enabled)
+        {
+            velocity.set(0, 0);
+            acceleration.set(0, 0);
+            return;
+        }
+        
         if (pressR || pressL || pressU || pressD || pressB)
         {
             cancelTargetPos();

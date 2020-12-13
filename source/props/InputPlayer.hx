@@ -35,17 +35,22 @@ class InputPlayer extends Player
     {
         super.update(elapsed);
         
-        timer += elapsed;
         
-        var right   = Controls.pressed.RIGHT;
-        var left    = Controls.pressed.LEFT ;
-        var up      = Controls.pressed.UP   ;
-        var down    = Controls.pressed.DOWN ;
-        interacting = Controls.justPressed.A;
-        var smooch  = Controls.justPressed.B;
-        checkMouseInteracting();
-        
-        updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
+        if (this.enabled)
+        {
+            timer += elapsed;
+            var right   = Controls.pressed.RIGHT;
+            var left    = Controls.pressed.LEFT ;
+            var up      = Controls.pressed.UP   ;
+            var down    = Controls.pressed.DOWN ;
+            interacting = Controls.justPressed.A;
+            var smooch  = Controls.justPressed.B;
+            checkMouseInteracting();
+            
+            updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
+        }
+        else
+            updateMovement(false, false, false, false, false, false);
         
         // prevents a bug on gamepads
         if (wasInteracting && interacting)

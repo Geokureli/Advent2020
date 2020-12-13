@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Advent2020" file="Advent2020" main="Main" version="0.6.5" company="HaxeFlixel" />
+	<app title="Advent2020" file="Advent2020" main="Main" version="0.7.0" company="HaxeFlixel" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -52,6 +52,7 @@
 	<!-- <define name="DISABLE_SAVE" if="debug"/> -->
 	<!-- <define name="FORGET_INSTRUMENT" if="debug"/> -->
 	<!-- <define name="FORCE_INTRO" if="debug"/> -->
+	<!-- <define name="FORCE_LUCIA" if="debug"/> -->
 	<define name="ALLOW_DAY_SKIP" unless="FORCE_INTRO"/>
 	
 	<!-- <define name="UNLOCK_ALL_SKINS" if="debug"/> -->

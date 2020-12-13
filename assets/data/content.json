@@ -267,6 +267,12 @@
         , "day"    : 12
         , "medal"  : true
         }
+    ,   { "id"     : "midgetsausage"
+        , "name"   : null
+        , "authors": ["midgetsausage"]
+        , "day"    : 13
+        , "medal"  : true
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }

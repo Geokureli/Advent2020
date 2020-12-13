@@ -65,7 +65,8 @@ class Calendar
     @:allow(states.BootState)
     static function canSkip()
     {
-        return isAdvent && day != 32 && NGio.isContributor;
+        return isAdvent && day != 32 && NGio.isContributor
+            #if debug && DEBUG_DAY == 0 #end;
     }
     
     @:allow(states.BootState)

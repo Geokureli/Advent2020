@@ -1,6 +1,7 @@
 package data;
 
 import data.Content;
+import states.rooms.RoomState;
 
 import utils.Log;
 import utils.BitArray;
@@ -106,26 +107,31 @@ class Save
     
     static public function presentOpened(id:String)
     {
-        var i = Content.getPresentIndex(id);
+        var day = Content.getPresentIndex(id);
         
-        if (i < 0)
+        if (day < 0)
             throw "invalid present id:" + id;
         
-        if (data.presents[i] == false)
+        if (data.presents[day] == false)
         {
-            data.presents[i] = true;
+            data.presents[day] = true;
             flush();
         }
     }
     
     static public function hasOpenedPresent(id:String)
     {
-        var i = Content.getPresentIndex(id);
+        var day = Content.getPresentIndex(id);
         
-        if (i < 0)
+        if (day < 0)
             throw "invalid present id:" + id;
         
-        return data.presents[i];
+        return hasOpenedPresentByDay(day);
+    }
+    
+    inline static public function hasOpenedPresentByDay(day:Int)
+    {
+        return data.presents[day];
     }
     
     static public function countPresentsOpened(id:String)
