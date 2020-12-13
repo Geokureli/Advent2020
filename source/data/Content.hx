@@ -41,6 +41,8 @@ class Content
         {
             songData.path = 'assets/music/${songData.id}.mp3';
             songData.samplePath = 'assets/sounds/samples/${songData.id}.mp3';
+            songData.sideDiskPath = 'assets/images/ui/carousel/disks/side_${songData.id}.png';
+            songData.frontDiskPath = 'assets/images/ui/carousel/disks/front_${songData.id}.png';
             if (songData.volume == null)
                 songData.volume = 1.0;
             songs[songData.id] = songData;
@@ -172,6 +174,10 @@ class Content
                     errors.push('Missing ${song.path}');
                 if (!Manifest.exists(song.samplePath, MUSIC))
                     errors.push('Missing ${song.samplePath}');
+                if (!Manifest.exists(song.sideDiskPath, IMAGE))
+                    errors.push('Missing ${song.sideDiskPath}');
+                if (!Manifest.exists(song.frontDiskPath, IMAGE))
+                    errors.push('Missing ${song.frontDiskPath}');
                 if (song.authors == null)
                     errors.push('Missing song authors id:${song.id}');
                 for (author in song.authors)
@@ -355,6 +361,8 @@ typedef SongCreation
 = Creation &
 {
     var samplePath:String;
+    var sideDiskPath:String;
+    var frontDiskPath:String;
     var loopStart:Null<Int>;
     var loopEnd:Null<Int>;
     var key:String;

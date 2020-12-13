@@ -96,12 +96,19 @@ class MusicSelectionSubstate extends flixel.FlxSubState
     {
         if (carousel.playingIndex > -1)
             Manifest.playMusic(Content.songsOrdered[carousel.playingIndex].id);
+        else
+            stopMusic();
+        
         close();
     }
     
     function onSelectComplete(song:SongCreation)
     {
-        Manifest.playMusic(song.id);
+        if (song != null)
+            Manifest.playMusic(song.id);
+        else
+            stopMusic();
+        
         close();
     }
     
@@ -112,6 +119,14 @@ class MusicSelectionSubstate extends flixel.FlxSubState
         
         super.close();
     }
+    
+    inline public static function stopMusic()
+    {
+        if (FlxG.sound.music != null)
+            FlxG.sound.music.stop();
+        
+        FlxG.sound.music = null;
+    }
 }
 
 class Carousel extends FlxSpriteGroup
@@ -119,8 +134,6 @@ class Carousel extends FlxSpriteGroup
     static inline var SPACING = 10;
     static inline var SIDE_GAP = 20;
     static inline var BACK_PATH = "assets/images/ui/carousel/back.png";
-    static inline var DISK_SIDE_PATH = "assets/images/ui/carousel/disk_side.png";
-    static inline var DISK_FRONT_PATH = "assets/images/ui/carousel/disk_front.png";
     static inline var SLOT_PATH = "assets/images/ui/carousel/slot.png";
     static inline var FRONT_PATH = "assets/images/ui/carousel/front.png";
     
@@ -134,9 +147,11 @@ class Carousel extends FlxSpriteGroup
     var current = 0;
     
     var currentSprite(get, never):FlxSprite;
-    inline function get_currentSprite() return disks.members[current];
-    var currentSong(get, never):SongCreation;
-    inline function get_currentSong() return Content.songsOrdered[current];
+    inline function get_currentSprite() return disks.members[current + 1];
+    function getCurrentSong()
+    {
+        return current == -1 ? null : Content.songsOrdered[current];
+    }
     
     public function new(x = 0.0, y = 0.0)
     {
@@ -145,19 +160,22 @@ class Carousel extends FlxSpriteGroup
         add(back);
         add(disks);
         
-        current = 0;
         playingIndex = -1;
-        if (FlxG.sound.music != null && Std.is(FlxG.sound.music, StreamedSound))
-            playingIndex = (cast FlxG.sound.music:StreamedSound).data.index;
+        var music = Std.downcast(FlxG.sound.music, StreamedSound);
+        if (music != null)
+            playingIndex = music.data.index;
         
-        if (playingIndex > 0)
-            current = playingIndex;
+        current = playingIndex;
         
-        for (i=>song in Content.songsOrdered)
+        for (i in -1...Content.songsOrdered.length)
         {
-            if (song.day <= Calendar.day)
+            if (i < 0 || Content.songsOrdered[i].day <= Calendar.day)
             {
-                final disk = new FlxSprite(DISK_SIDE_PATH);
+                var path = "assets/images/ui/carousel/disks/side_silence.png";
+                if (i >= 0)
+                    path = Content.songsOrdered[i].sideDiskPath;
+                
+                final disk = new FlxSprite(path);
                 disk.x = SPACING * disks.length;
                 if (i == current)
                     disk.x += SIDE_GAP;
@@ -168,12 +186,12 @@ class Carousel extends FlxSpriteGroup
                 disks.add(disk);
             }
         }
-        var width = SPACING * disks.length + disks.members[0].width;
-        disks.x = (back.width - disks.width) / 2;
+        var width = SPACING * disks.length + disks.members[0].width + SIDE_GAP * 2;
+        disks.x = (back.width - width) / 2;
         
         add(new FlxSprite(SLOT_PATH));
         
-        disk = new FlxSprite(DISK_FRONT_PATH);
+        disk = new FlxSprite("assets/images/ui/carousel/disks/front_silence.png");
         disk.x = (back.width - disk.width) / 2;
         add(disk).kill();
         
@@ -194,7 +212,7 @@ class Carousel extends FlxSpriteGroup
     
     public function toNext():Void
     {
-        if(current >= disks.length - 1)
+        if(this.current >= this.disks.group.length - 2)
             return;
         
         unhiliteCurrent();
@@ -206,7 +224,7 @@ class Carousel extends FlxSpriteGroup
     
     public function toPrev():Void
     {
-        if(current <= 0)
+        if(current <= -1)
             return;
         
         unhiliteCurrent();
@@ -222,25 +240,35 @@ class Carousel extends FlxSpriteGroup
     
     function hiliteCurrent()
     {
-        FlxG.sound.music.stop();
-        FlxG.sound.music = null;
-        // disks.x = (current+1) * -SPACING - SIDE_GAP*2 + (FlxG.width - currentSprite.width) / 2;
-        FlxG.sound.playMusic(currentSong.samplePath, currentSong.volume);
-        infoField.text = currentSong.name + "\n" + Content.listAuthorsProper(currentSong.authors);
-        infoField.x = back.x + (back.width - infoField.width) / 2;
-        // ok.active = true;
-        // ok.alpha = 1;
+        MusicSelectionSubstate.stopMusic();
+        
+        if (current == -1)
+        {
+            infoField.text = "The Sound of Simon & Garfunkel\nGeoKureli";
+            infoField.x = back.x + (back.width - infoField.width) / 2;
+        }
+        else
+        {
+            var song = getCurrentSong();
+            FlxG.sound.playMusic(song.samplePath, song.volume);
+            infoField.text = song.name + "\n" + Content.listAuthorsProper(song.authors);
+            infoField.x = back.x + (back.width - infoField.width) / 2;
+        }
     }
     
     public function select(callback:(SongCreation)->Void)
     {
         selecting = true;
         
+        var song = getCurrentSong();
+        if (song != null)
+            disk.loadGraphic(song.frontDiskPath);
         disk.y = back.y - disk.height;
+        
         FlxTween.tween(currentSprite, { y: back.y - currentSprite.height }, 0.5,
             { ease:FlxEase.quadIn });
         FlxTween.tween(disk, { y:back.y + back.height }, 1.0,
-            { startDelay:1.0, ease:FlxEase.quadOut, onStart: (_)->disk.revive(), onComplete: (_)->callback(currentSong) });
+            { startDelay:1.0, ease:FlxEase.quadOut, onStart: (_)->disk.revive(), onComplete: (_)->callback(song) });
     }
 }
 
