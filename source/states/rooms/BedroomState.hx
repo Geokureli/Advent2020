@@ -33,6 +33,7 @@ class BedroomState extends RoomState
     var dresser:OgmoDecal;
     var dresserNotif:Notif;
     var door:Door;
+    var desk:OgmoDecal;
     
     var notesById = new Map<String, Note>();
     
@@ -83,6 +84,24 @@ class BedroomState extends RoomState
         {
             notesById["december05"].animateIn(1.5);
         }
+        
+        desk = foreground.getByName("desk_lucia");
+        if (desk != null && Game.state.match(NoEvent))
+            addHoverTextTo(desk, "Replay Lucia Hunt", replayLuciaHunt);
+    }
+    
+    function replayLuciaHunt()
+    {
+        Game.state = LuciaDay(Started);
+        
+        removeHoverFrom(desk);
+        var field = new FlxBitmapText();
+        field.setBorderStyle(OUTLINE, 0xFF000000);
+        field.text = "Activated";
+        field.x = desk.x + (desk.width - field.width) / 2;
+        field.y = desk.y;
+        topGround.add(field);
+        FlxTween.tween(field, { y:field.y - 16 }, 0.25, { ease:FlxEase.backOut });
     }
     
     function onOpenDresser()
