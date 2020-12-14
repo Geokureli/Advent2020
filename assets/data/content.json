@@ -84,6 +84,9 @@
     , "goodl":
         { "proper": "GoodL"
         }
+    , "krinkels":
+        { "proper": "krinkels"
+        }
     , "tenodiboris":
         { "proper": null
         }
@@ -262,15 +265,21 @@
         , "antiAlias": false
         }
     ,   { "id"     : "nickconter"
-        , "name"   : null
+        , "name"   : "Quadruple Date on Christmas"
         , "authors": ["nickconter"]
         , "day"    : 12
         , "medal"  : true
         }
     ,   { "id"     : "midgetsausage"
-        , "name"   : null
+        , "name"   : "The Last Tankmas Supper"
         , "authors": ["midgetsausage"]
         , "day"    : 13
+        , "medal"  : true
+        }
+    ,   { "id"     : "krinkels"
+        , "name"   : "nevadean christmas tree"
+        , "authors": ["midgetsausage"]
+        , "day"    : 14
         , "medal"  : true
         }
     ]
