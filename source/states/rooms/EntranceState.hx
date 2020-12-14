@@ -1,11 +1,13 @@
 package states.rooms;
 
+import flixel.math.FlxPoint;
 import data.Game;
 import data.Manifest;
 import data.NGio;
 import states.OgmoState;
 import vfx.ShadowShader;
 import vfx.ShadowSprite;
+import vfx.PeekDitherShader;
 
 import schema.Avatar;
 
@@ -18,17 +20,42 @@ import openfl.filters.ShaderFilter;
 
 class EntranceState extends RoomState
 {
+    inline static var TREE_HIDE_Y = 160;
+    
     var shade:ShadowSprite;
     var chandelier:OgmoDecal;
     var tree:OgmoDecal;
+    var treeShader:PeekDitherShader;
+    var chandelierShader:PeekDitherShader;
     
     override function create()
     {
         super.create();
         
+        #if debug
+        if(Game.state.match(Day1Intro(Started)|Day1Intro(Dressed)))
+            Game.state = Day1Intro(Hallway);
+        #end
+        
+        switch(Game.state)
+        {
+            case Day1Intro(Hallway):
+                showIntroCutscene();
+            case _:
+        }
+    }
+    
+    override function initEntities()
+    {
+        super.initEntities();
+        
         tree = getDaySprite(foreground, "tree");
         tree.setBottomHeight(32);
         tree.setMiddleWidth(56);
+        treeShader = new PeekDitherShader();
+        tree.shader = treeShader;
+        if (player.y < TREE_HIDE_Y)
+            treeShader.setAlpha(0);
         
         chandelier = background.getByName("Chandelier");
         if (chandelier != null)
@@ -36,7 +63,9 @@ class EntranceState extends RoomState
             background.remove(chandelier);
             topGround.add(chandelier);
             chandelier.scrollFactor.y = 2.0;
-            chandelier.alpha = 0;
+            chandelierShader = new PeekDitherShader();
+            chandelier.shader = chandelierShader;
+            // chandelierShader.setAlpha(0);
         }
         
         safeAddHoverText("jar_small", "Spread the Love",
@@ -50,91 +79,82 @@ class EntranceState extends RoomState
                     );
             }
         );
+    }
+    
+    function showIntroCutscene()
+    {
+        var floor = background.getByName("foyer");
+        floor.setBottomHeight(floor.frameHeight);
+        shade = new ShadowSprite(floor.x, floor.y);
+        shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
+        topGround.add(shade);
         
-        #if debug
-        if(Game.state.match(Day1Intro(Started)|Day1Intro(Dressed)))
-            Game.state = Day1Intro(Hallway);
-        #end
+        player.active = false;
+        player.flipX = true;
+        for (ghost in ghosts.members)
+            ghost.visible = false;
         
-        switch(Game.state)
+        var present = null;
+        for (p in presents)
         {
-            case Day1Intro(Hallway):
+            if (p.id == "cymbourine")
             {
-                var floor = background.getByName("foyer");
-                floor.setBottomHeight(floor.frameHeight);
-                shade = new ShadowSprite(floor.x, floor.y);
-                shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
-                topGround.add(shade);
-                
-                player.active = false;
-                player.flipX = true;
-                for (ghost in ghosts.members)
-                    ghost.visible = false;
-                
-                var present = null;
-                for (p in presents)
-                {
-                    if (p.id == "cymbourine")
-                    {
-                        present = p;
-                        break;
-                    }
-                }
-                
-                if (present == null)
-                    throw "missing cymbouring present";
-                
-                shade.shadow.setLightPos(2, present.x + present.width / 2, present.y);
-                var cam = FlxG.camera;
-                
-                Manifest.playMusic("albegian");
-                var delay = 0.0;
-                tweenLightRadius(1, 0, 60, 0.5,
-                    { startDelay:1.0 });
-                delay += 1.5;
-                FlxTween.tween(cam, { zoom: 2 }, 0.75, 
-                    { startDelay:delay + 0.25
-                    , ease:FlxEase.quadInOut
-                    , onComplete: (_)->cam.follow(null)
-                    });
-                // delay = tween.duration + tween.delay;
-                delay += 1.0;
-                FlxTween.tween(cam.scroll, { x: cam.scroll.x + 300 }, 1.00, 
-                    { startDelay:delay + 0.5
-                    , ease:FlxEase.quadInOut
-                    });
-                delay += 1.5;
-                tweenLightRadius(2, 0, 100, 2.0, 
-                    { startDelay:delay + 0.5
-                    ,   onComplete: function(_)
-                        {
-                            tweenLightRadius(2, 100, 1000, 3.0, 
-                                { startDelay:0.25
-                                , ease:FlxEase.circInOut
-                                });
-                            FlxTween.tween(cam, { zoom: 1 }, 2.00, 
-                                { startDelay: 0.25
-                                , ease:FlxEase.quadInOut
-                                });
-                            showGhosts(0.5, 1.0);
-                        }
-                    });
-                delay += 2.5 + 3.25;
-                FlxTween.tween(cam.scroll, { x: cam.scroll.x }, 1.0, 
-                    { startDelay:delay
-                    , ease:FlxEase.quadInOut
-                    ,   onComplete:function(_)
-                        {
-                            player.active = true;
-                            cam.follow(player, 0.1);
-                            remove(shade);
-                            Game.state = NoEvent;
-                            NGio.logEvent(intro_complete);
-                        }
-                    });
+                present = p;
+                break;
             }
-            case _:
         }
+        
+        if (present == null)
+            throw "missing cymbouring present";
+        
+        shade.shadow.setLightPos(2, present.x + present.width / 2, present.y);
+        var cam = FlxG.camera;
+        
+        Manifest.playMusic("albegian");
+        var delay = 0.0;
+        tweenLightRadius(1, 0, 60, 0.5,
+            { startDelay:1.0 });
+        delay += 1.5;
+        FlxTween.tween(cam, { zoom: 2 }, 0.75, 
+            { startDelay:delay + 0.25
+            , ease:FlxEase.quadInOut
+            , onComplete: (_)->cam.follow(null)
+            });
+        // delay = tween.duration + tween.delay;
+        delay += 1.0;
+        FlxTween.tween(cam.scroll, { x: cam.scroll.x + 300 }, 1.00, 
+            { startDelay:delay + 0.5
+            , ease:FlxEase.quadInOut
+            });
+        delay += 1.5;
+        tweenLightRadius(2, 0, 100, 2.0, 
+            { startDelay:delay + 0.5
+            ,   onComplete: function(_)
+                {
+                    tweenLightRadius(2, 100, 1000, 3.0, 
+                        { startDelay:0.25
+                        , ease:FlxEase.circInOut
+                        });
+                    FlxTween.tween(cam, { zoom: 1 }, 2.00, 
+                        { startDelay: 0.25
+                        , ease:FlxEase.quadInOut
+                        });
+                    showGhosts(0.5, 1.0);
+                }
+            });
+        delay += 2.5 + 3.25;
+        FlxTween.tween(cam.scroll, { x: cam.scroll.x }, 1.0, 
+            { startDelay:delay
+            , ease:FlxEase.quadInOut
+            ,   onComplete:function(_)
+                {
+                    player.active = true;
+                    cam.follow(player, 0.1);
+                    remove(shade);
+                    Game.state = NoEvent;
+                    NGio.logEvent(intro_complete);
+                }
+            });
     }
     
     function showGhosts(delay = 0.0, duration = 1.0)
@@ -179,19 +199,21 @@ class EntranceState extends RoomState
             case _:
         }
         
-        final showChandelier = player.y < 160;
-        final isBehindTree = player.y < tree.y && player.x > tree.x && player.x + player.width < tree.x + tree.width;
-        if (showChandelier || isBehindTree)
-            tree.alpha = Math.max(0, tree.alpha - elapsed / TREE_HIDE_TIME);
+        final hideTree = player.y < TREE_HIDE_Y;
+        // final isBehindTree = player.y < tree.y && player.x > tree.x && player.x + player.width < tree.x + tree.width;
+        treeShader.setPlayerPosWithSprite(player.x + player.width / 2, player.y, tree);
+        if (hideTree)
+            treeShader.setAlpha(Math.max(0, treeShader.getAlpha() - elapsed / TREE_HIDE_TIME));
         else
-            tree.alpha = Math.min(1, tree.alpha + elapsed / TREE_HIDE_TIME);
+            treeShader.setAlpha(Math.min(1, treeShader.getAlpha() + elapsed / TREE_HIDE_TIME));
         
         if (chandelier != null)
         {
-            if (showChandelier)
-                chandelier.alpha = Math.min(1, chandelier.alpha + elapsed / TREE_HIDE_TIME);
-            else
-                chandelier.alpha = Math.max(0, chandelier.alpha - elapsed / TREE_HIDE_TIME);
+            chandelierShader.setPlayerPosWithSprite(player.x + player.width / 2, player.y, chandelier);
+            // if (hideTree)
+            //     chandelierShader.setAlpha(Math.min(1, chandelierShader.getAlpha() + elapsed / TREE_HIDE_TIME));
+            // else
+            //     chandelierShader.setAlpha(Math.max(0, chandelierShader.getAlpha() - elapsed / TREE_HIDE_TIME));
         }
     }
 }
