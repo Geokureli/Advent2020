@@ -98,13 +98,13 @@
 ,   { "id": "tardigrade"
     , "proper": "Captain Tardigrade"
     , "description": "A tardigrade is a microscopic extremophile, an extremophile can endure and \nsurvive extreme conditions which makes them virtually indestructible."
-    , "unlocksBy": null
+    , "unlocksBy": "day:13"
     , "users": ["ianmichaelmiller"]
     }
 ,   { "id": "meatboy"
     , "proper": "Meatboy"
     , "description": "Is that skin or would skin be more horrifying?"
-    , "unlocksBy": null
+    , "unlocksBy": "day:12"
     , "users": ["bluebaby"]
     }
 ,   { "id": "salad_fingers"
@@ -116,13 +116,13 @@
 ,   { "id": "blockhead"
     , "proper": "Blockhead"
     , "description": "There’s a man sitting on a recliner chair in his mind."
-    , "unlocksBy": null
+    , "unlocksBy": "day:14"
     , "users": ["the-swain"]
     }
 ,   { "id": "bitey"
     , "proper": "Bitey"
     , "description": "The tricky Dashkin from Brackenwood."
-    , "unlocksBy": null
+    , "unlocksBy": "day:15"
     , "users": ["chluaid"]
     }
 ,   { "id": "pbot"
@@ -305,6 +305,24 @@
     , "description": "You better pronounce it \"Qu-No-Se\" or he'll cut you with a Qu-nife"
     , "unlocksBy": null
     , "users": ["knosedoge"]
+    }
+,   { "id": "satina"
+    , "proper": "Satina"
+    , "description": "This princess of the underworld has charm, talent and a casual dad who works in IT."
+    , "unlocksBy": null
+    , "users": null
+    }
+,   { "id": "madness_hank"
+    , "proper": "Hank J. Wimbleton"
+    , "description": "A psychopathic mercenary gunman on a take-no-prisoners mission to wipe out an all-powerful Agency..."
+    , "unlocksBy": "medal:14"
+    , "users": ["krinkels"]
+    }
+,   { "id": "madness_auditor"
+    , "proper": "The Auditor"
+    , "description": "Antagonist, creator of the Improbability Drive? Is that a Douglas Adams reference? Lemme DM Krinkels real quick."
+    , "unlocksBy": "supporter"
+    , "users": ["krinkels"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
