@@ -322,6 +322,7 @@
     , "proper": "The Auditor"
     , "description": "Antagonist, creator of the Improbability Drive? Is that a Douglas Adams reference? Lemme DM Krinkels real quick. Okay, he said: 'it absolutely is!' while streaming Furi."
     , "unlocksBy": "supporter"
+    , "frames": 3
     , "users": ["krinkels"]
     }
 ,   { "id": "custom"
