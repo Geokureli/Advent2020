@@ -114,8 +114,9 @@ class MusicSelectionSubstate extends flixel.FlxSubState
     
     override function close()
     {
-        if (camera == null)
-            FlxG.cameras.remove(camera);
+        while (cameras != null && cameras.length > 0)
+            FlxG.cameras.remove(cameras.pop());
+        cameras = null;
         
         super.close();
     }
