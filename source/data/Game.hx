@@ -11,6 +11,7 @@ import flixel.FlxState;
 
 class Game
 {
+    static public var version(default, null):String;
     static public var room(get, never):RoomState;
     static function get_room() return Std.downcast(FlxG.state, RoomState);
     static public var arcadeName(default, null):ArcadeName = null;
@@ -34,6 +35,7 @@ class Game
     
     static function init():Void
     {
+        version = openfl.Lib.application.meta.get("version");
         roomTypes = [];
         roomTypes[Bedroom ] = BedroomState.new;
         roomTypes[Hallway ] = HallwayState.new;
@@ -114,6 +116,11 @@ class Game
             FlxG.sound.music.stop();
         FlxG.sound.music = null;
         Content.playTodaysSong();
+    }
+    
+    static public function isCompatibleVersion(version:String)
+    {
+        return Game.version == version;
     }
 }
 

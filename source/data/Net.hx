@@ -6,6 +6,8 @@ import states.rooms.RoomState;
 import io.colyseus.Room;
 import io.colyseus.Client;
 
+typedef JoinCallback = (error:String, room:Room<GameState>)->Void;
+
 class Net
 {
     static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside, Arcade, Studio];
@@ -20,7 +22,12 @@ class Net
         return netRooms.contains(name);
     }
     
-    static public function joinRoom(roomName:RoomName, callback)
+    inline static public function joinRoom(roomName:RoomName, onJoin:JoinCallback)
+    {
+        joinRoomWithMeta(roomName, null, onJoin);
+    }
+    
+    static public function joinRoomWithMeta(roomName:RoomName, meta:Dynamic = null, onJoin:JoinCallback)
     {
         if (client == null)
         {
@@ -42,39 +49,77 @@ class Net
         Net.roomName = roomName;
         connecting = true;
         
-        // client.getAvailableRooms(roomName,
-        //     function (name, rooms)
-        //     {
-        //         for (i=>room in rooms)
-        //         {
-        //             trace('$roomName=>$name, $i:${room.roomId}, ${room.metadata}');
-        //             // if (room.metadata && room.metadata.friendlyFire)
-        //             // {
-                        
-        //                 // join the room with `friendlyFire` by id:
-                        
-        //                 // var room = client.join(room.roomId);
-        //                 // return;
-        //             // }
-        //         }
-        //     });
+        var callback:JoinCallback = function(error, room)
+        {
+            onRoomJoin(error, room);
+            onJoin(error, room);
+        }
         
-        // client.joinOrCreate(roomName, ["version"=>"0.2.5"], GameState, 
-        client.joinOrCreate(roomName, [], GameState, 
-            (error, room)->
+        client.getAvailableRooms(roomName,
+            function (name, rooms)
             {
-                if (error == null)
+                var joined = false;
+                for (i=>room in rooms)
                 {
-                    log("joined:" + room.id);
-                    NGio.logEventOnce(first_connect);
-                    NGio.logEvent(connect);
+                    // trace('$roomName=>$name, $i:${room.roomId}, ${room.metadata}');
+                    if (matchesMetadata(meta, room.metadata))
+                    {
+                        joined = true;
+                        client.joinById(room.roomId, [], GameState, callback);
+                        return;
+                    }
                 }
                 
-                Net.room = room;
-                connecting = false;
-                callback(error, room);
-            }
-        );
+                if (!joined)
+                {
+                    client.create(roomName, [], GameState, function(error, room)
+                        {
+                            if (meta != null)
+                                room.send({ type:"meta", data:meta });
+                            
+                            callback(error, room);
+                        }
+                    );
+                }
+            });
+        
+        // client.joinOrCreate(roomName, ["version"=>"0.2.5"], GameState, 
+        // client.joinOrCreate(roomName, [], GameState, onRoomJoin);
+    }
+    
+    static function matchesMetadata(target:Dynamic, room:Dynamic)
+    {
+        if (target == null)
+            return true;
+        
+        if (room == null)
+            return false;
+        
+        var hasField = false;
+        for (field in Reflect.fields(target))
+        {
+            hasField = true;
+            if (Reflect.field(room, field) != Reflect.field(target, field))
+                return false;
+        }
+        
+        if (!hasField)
+            throw "invalid metadata:{}, use null";
+        
+        return true;
+    }
+    
+    static function onRoomJoin(error:String, room:Room<GameState>)
+    {
+        if (error == null)
+        {
+            log("joined:" + room.id);
+            NGio.logEventOnce(first_connect);
+            NGio.logEvent(connect);
+        }
+        
+        Net.room = room;
+        connecting = false;
     }
     
     inline static public function safeLeaveCurrentRoom(consented = true)
