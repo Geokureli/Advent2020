@@ -320,7 +320,7 @@
     }
 ,   { "id": "madness_auditor"
     , "proper": "The Auditor"
-    , "description": "Antagonist, creator of the Improbability Drive? Is that a Douglas Adams reference? Lemme DM Krinkels real quick."
+    , "description": "Antagonist, creator of the Improbability Drive? Is that a Douglas Adams reference? Lemme DM Krinkels real quick. Okay, he said: 'it absolutely is!' while streaming Furi."
     , "unlocksBy": "supporter"
     , "users": ["krinkels"]
     }
