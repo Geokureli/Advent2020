@@ -214,20 +214,23 @@ class NGio
 	// --- MEDALS
 	static function onMedalsRequested():Void
 	{
-		#if NG_LOG
 		var numMedals = 0;
 		var numMedalsLocked = 0;
 		for (medal in NG.core.medals)
 		{
-			trace('${medal.unlocked ? "unlocked" : "locked  "} - ${medal.name}');
+			log('${medal.unlocked ? "unlocked" : "locked  "} - ${medal.name}');
 			
 			if (!medal.unlocked)
 				numMedalsLocked++;
+			else if(medal.id - DAY_MEDAL_0 <= 31 && !Save.hasSeenDay(medal.id - DAY_MEDAL_0))
+			{
+				log("seen day:" + (medal.id - DAY_MEDAL_0 + 1));
+				Save.daySeen(medal.id - DAY_MEDAL_0 + 1);
+			}
 			
 			numMedals++;
 		}
-		trace('loaded $numMedals medals, $numMedalsLocked locked ');
-		#end
+		log('loaded $numMedals medals, $numMedalsLocked locked ');
 	}
 	
 	static public function unlockDayMedal(day:Int, showDebugUnlock = true):Void

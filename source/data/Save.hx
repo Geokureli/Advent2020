@@ -149,28 +149,28 @@ class Save
         return data.presents.getLength() == 0;
     }
     
-    static public function daySeen(id:Int)
+    static public function daySeen(day:Int)
     {
-        id--;//saves start at 0
-        if (data.days[id] == false)
+        day--;//saves start at 0
+        if (data.days[day] == false)
         {
-            data.days[id] = true;
+            data.days[day] = true;
             flush();
         }
     }
     
-    static public function debugForgetDay(id:Int)
+    static public function debugForgetDay(day:Int)
     {
-        id--;//saves start at 0
-        data.days[id] = false;
-        data.presents[id] = false;
+        day--;//saves start at 0
+        data.days[day] = false;
+        data.presents[day] = false;
         flush();
     }
     
-    static public function hasSeenDay(id:Int)
+    static public function hasSeenDay(day:Int)
     {
         //saves start at 0
-        return data.days[id - 1];
+        return data.days[day - 1];
     }
     
     static public function countDaysSeen()
