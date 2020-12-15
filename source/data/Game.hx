@@ -19,6 +19,9 @@ class Game
     
     static var roomTypes:Map<RoomName, RoomConstructor>;
     static var arcadeTypes:Map<ArcadeName, ()->FlxState>;
+    static public var allowShaders(default, null):Bool = true;
+    static public var disableShaders(get, never):Bool;
+    inline static function get_disableShaders() return !allowShaders;
     
     public static var initialRoom(default, null) = 
         #if debug
@@ -34,6 +37,14 @@ class Game
     
     static function init():Void
     {
+        #if js
+        allowShaders = switch(FlxG.stage.window.context.type)
+        {
+            case OPENGL, OPENGLES, WEBGL: true;
+            default: false;
+        }
+        #end
+        
         roomTypes = [];
         roomTypes[Bedroom ] = BedroomState.new;
         roomTypes[Hallway ] = HallwayState.new;
