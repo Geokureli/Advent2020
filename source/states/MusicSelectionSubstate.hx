@@ -177,6 +177,8 @@ class Carousel extends FlxSpriteGroup
                     path = Content.songsOrdered[i].sideDiskPath;
                 
                 final disk = new FlxSprite(path);
+                disk.scale.set(0.5, 0.5);
+                disk.updateHitbox();
                 disk.x = SPACING * disks.length;
                 if (i == current)
                     disk.x += SIDE_GAP;
@@ -193,6 +195,8 @@ class Carousel extends FlxSpriteGroup
         add(new FlxSprite(SLOT_PATH));
         
         disk = new FlxSprite("assets/images/ui/carousel/disks/front_silence.png");
+        disk.scale.set(0.5, 0.5);
+        disk.updateHitbox();
         disk.x = (back.width - disk.width) / 2;
         add(disk).kill();
         

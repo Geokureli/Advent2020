@@ -60,6 +60,9 @@ class Skins
             if (!data.unlocked && (checkUser(data.users) || checkUnlockCondition(data.unlocksBy)))
                 data.unlocked = true;
             
+            if (!data.unlocked && Save.hasSeenskin(data.index))
+                trace('skin ${data.id} is locked but was seen, unlocksBy:${data.unlocksBy}');
+            
             if (data.unlocked)
                 unlockedCount++;
         }

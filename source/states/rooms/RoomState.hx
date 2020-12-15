@@ -445,6 +445,11 @@ class RoomState extends OgmoState
         
         room.state.avatars.onAdd = onAvatarAdd;
         room.state.avatars.onRemove = onAvatarRemove;
+        room.onLeave += function()
+        {
+            room.state.avatars.onAdd = null;
+            room.state.avatars.onRemove = null;
+        }
         
         // room.onStateChange += process_state_change;
         Net.send("avatar", 
@@ -467,6 +472,9 @@ class RoomState extends OgmoState
             Net.logVerbose(Net.room.sessionId + ' this AINT you');
             if (!ghostsById.exists(key))
             {
+                //can be called while being destroyed
+                if (this.members == null)
+                    return;
                 // check if skin is available in this version
                 var skin = data.skin;
                 if (!Skins.isValidSkin(skin))

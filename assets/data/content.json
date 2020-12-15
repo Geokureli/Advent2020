@@ -111,6 +111,9 @@
     , "anarchyaxel":
         { "proper": null
         }
+    , "mimny":
+        { "proper": "Mimny"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -278,8 +281,16 @@
         }
     ,   { "id"     : "krinkels"
         , "name"   : "nevadean christmas tree"
-        , "authors": ["midgetsausage"]
+        , "authors": ["krinkels"]
         , "day"    : 14
+        , "ext"    : "jpg"
+        , "medal"  : true
+        }
+    ,   { "id"     : "mimny"
+        , "name"   : "Playful Spirit"
+        , "authors": ["mimny"]
+        , "day"    : 15
+        , "ext"    : "jpg"
         , "medal"  : true
         }
     ]
