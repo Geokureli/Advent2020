@@ -29,6 +29,7 @@ class Game
         // RoomName.Outside + "." + RoomName.Entrance;
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
+        // RoomName.Venue;
         #else
         RoomName.Bedroom;
         #end
@@ -43,6 +44,7 @@ class Game
         roomTypes[Outside ] = OutsideState.new;
         roomTypes[Arcade  ] = ArcadeState.new;
         roomTypes[Studio  ] = StudioState.new;
+        roomTypes[Venue   ] = VenueState.new;
         
         arcadeTypes = [];
         #if INCLUDE_DIG_GAME
