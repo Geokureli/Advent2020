@@ -272,8 +272,10 @@ class Carousel extends FlxSpriteGroup
         
         FlxTween.tween(currentSprite, { y: back.y - currentSprite.height }, 0.5,
             { ease:FlxEase.quadIn });
-        FlxTween.tween(disk, { y:back.y + back.height }, 1.0,
-            { startDelay:1.0, ease:FlxEase.quadOut, onStart: (_)->disk.revive(), onComplete: (_)->callback(song) });
+        FlxTween.tween(disk, { y:back.y + 10 }, 0.75,
+            { startDelay:1.0, ease:FlxEase.quadOut, onStart: (_)->disk.revive() });
+        FlxTween.tween(disk, { y:back.y + back.height }, 1.5,
+            { startDelay:1.75, ease:FlxEase.quadInOut, onComplete: (_)->callback(song) });
     }
 }
 
