@@ -256,6 +256,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "mimny"}
+        },
+        {
+          "name": "Present",
+          "id": 21,
+          "_eid": "75464384",
+          "x": 432,
+          "y": 424,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "figburn"}
         }
       ]
     },
