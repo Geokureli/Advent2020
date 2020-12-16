@@ -17,9 +17,13 @@ class Game
     static public var arcadeName(default, null):ArcadeName = null;
     
     static public var state:EventState = NoEvent;
+    static public var chosenSong:String = null;
     
     static var roomTypes:Map<RoomName, RoomConstructor>;
     static var arcadeTypes:Map<ArcadeName, ()->FlxState>;
+    static public var allowShaders(default, null):Bool = true;
+    static public var disableShaders(get, never):Bool;
+    inline static function get_disableShaders() return !allowShaders;
     
     public static var initialRoom(default, null) = 
         #if debug
@@ -37,6 +41,17 @@ class Game
     static function init():Void
     {
         version = openfl.Lib.application.meta.get("version");
+        trace("version:" + version);
+        
+        #if js
+        trace("render context: " + FlxG.stage.window.context.type);
+        allowShaders = switch(stage.window.context.type)
+        {
+            case OPENGL, OPENGLES, WEBGL: true;
+            default: false;
+        }
+        #end
+        
         roomTypes = [];
         roomTypes[Bedroom ] = BedroomState.new;
         roomTypes[Hallway ] = HallwayState.new;
@@ -117,7 +132,7 @@ class Game
         if (FlxG.sound.music != null)
             FlxG.sound.music.stop();
         FlxG.sound.music = null;
-        Content.playTodaysSong();
+        Manifest.playMusic(chosenSong);
     }
     
     static public function isCompatibleVersion(version:String)

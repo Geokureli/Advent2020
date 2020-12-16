@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Advent2020" file="Advent2020" main="Main" version="0.7.8" company="HaxeFlixel" />
+	<app title="Advent2020" file="Advent2020" main="Main" version="0.7.9" company="HaxeFlixel" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -17,7 +17,7 @@
 	<window width="960" height="540" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
-	<window if="html5" resizable="true" />
+	<window if="html5" resizable="true" failIfMajorPerformanceCaveat="false"/>
 
 	<!--Desktop-specific-->
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />

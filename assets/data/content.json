@@ -114,6 +114,9 @@
     , "mimny":
         { "proper": "Mimny"
         }
+    , "figburn":
+        { "proper": "Figburn"
+        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -293,6 +296,12 @@
         , "ext"    : "jpg"
         , "medal"  : true
         }
+    ,   { "id"     : "figburn"
+        , "name"   : "Playful Spirit"
+        , "authors": ["figburn"]
+        , "day"    : 16
+        , "medal"  : true
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }
@@ -356,14 +365,14 @@
     ,   { "id"    : "glockenspiel"
         , "name"  : "Glockenspiel"
         , "day"   : 15
-        , "volume": 0.5
+        , "volume": 1.0
         , "octave": 6
         }
     ,   { "id"     : "flute"
         , "name"   : "Flute"
         , "icon"   : "Flute"
         , "day"    : 16
-        , "volume" : 0.5
+        , "volume" : 1.0
         , "sustain":true
         , "singleNote":true
         , "octave": 6
@@ -371,7 +380,7 @@
     ,   { "id"     : "drums"
         , "icon"   : "sticks"
         , "name"   : "Drum Set"
-        , "day"    : 18
+        , "day"    : 17
         , "volume" : 1.0
         , "keys":
             { "E":"snare"

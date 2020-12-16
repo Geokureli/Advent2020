@@ -1,6 +1,5 @@
 package states.rooms;
 
-import flixel.math.FlxPoint;
 import data.Game;
 import data.Manifest;
 import data.NGio;
@@ -13,6 +12,7 @@ import schema.Avatar;
 
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.math.FlxPoint;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
@@ -87,7 +87,8 @@ class EntranceState extends RoomState
         floor.setBottomHeight(floor.frameHeight);
         shade = new ShadowSprite(floor.x, floor.y);
         shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
-        topGround.add(shade);
+        if (Game.allowShaders)
+            topGround.add(shade);
         
         player.active = false;
         player.flipX = true;
@@ -199,21 +200,36 @@ class EntranceState extends RoomState
             case _:
         }
         
-        final hideTree = player.y < TREE_HIDE_Y;
         // final isBehindTree = player.y < tree.y && player.x > tree.x && player.x + player.width < tree.x + tree.width;
-        treeShader.setPlayerPosWithSprite(player.x + player.width / 2, player.y, tree);
-        if (hideTree)
-            treeShader.setAlpha(Math.max(0, treeShader.getAlpha() - elapsed / TREE_HIDE_TIME));
-        else
-            treeShader.setAlpha(Math.min(1, treeShader.getAlpha() + elapsed / TREE_HIDE_TIME));
-        
-        if (chandelier != null)
+        if (Game.allowShaders)
         {
-            chandelierShader.setPlayerPosWithSprite(player.x + player.width / 2, player.y, chandelier);
-            // if (hideTree)
-            //     chandelierShader.setAlpha(Math.min(1, chandelierShader.getAlpha() + elapsed / TREE_HIDE_TIME));
-            // else
-            //     chandelierShader.setAlpha(Math.max(0, chandelierShader.getAlpha() - elapsed / TREE_HIDE_TIME));
+            final hideTree = player.y < TREE_HIDE_Y;
+            treeShader.setPlayerPosWithSprite(player.x + player.width / 2, player.y, tree);
+            if (hideTree)
+                treeShader.setAlpha(Math.max(0, treeShader.getAlpha() - elapsed / TREE_HIDE_TIME));
+            else
+                treeShader.setAlpha(Math.min(1, treeShader.getAlpha() + elapsed / TREE_HIDE_TIME));
+            
+            if (chandelier != null)
+                chandelierShader.setPlayerPosWithSprite(player.x + player.width / 2, player.y, chandelier);
         }
+        else// CANVAS
+        {
+            final isBehindTree = player.y < tree.y && player.x > tree.x && player.x + player.width < tree.x + tree.width;
+            final hideTree = player.y < TREE_HIDE_Y || isBehindTree;
+            if (hideTree)
+                tree.alpha = Math.max(0, tree.alpha - elapsed / TREE_HIDE_TIME);
+            else
+                tree.alpha = Math.min(1, tree.alpha + elapsed / TREE_HIDE_TIME);
+            
+            if (chandelier != null)
+            {
+                if (hideTree)
+                    chandelier.alpha = Math.min(1, chandelier.alpha + elapsed / TREE_HIDE_TIME);
+                else
+                    chandelier.alpha = Math.max(0, chandelier.alpha - elapsed / TREE_HIDE_TIME);
+            }
+        }
+        
     }
 }
