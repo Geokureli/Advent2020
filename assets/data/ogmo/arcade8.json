@@ -220,7 +220,8 @@
       "gridCellsX": 60,
       "gridCellsY": 34,
       "decals": [
-        {"x": 240, "y": 136, "texture": "arcade/arcade.png"}
+        {"x": 240, "y": 136, "texture": "arcade/arcade.png"},
+        {"x": 280, "y": 136, "texture": "shared/cheese.png"}
       ],
       "folder": "../../images/props"
     }
