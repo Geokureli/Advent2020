@@ -174,6 +174,7 @@ class Manifest
     static public function playMusic(id, forceRestart = false, ?onComplete, ?onLoad:(FlxSound)->Void)
     {
         MusicPopup.showLoading(Content.songs[id]);
+        Game.chosenSong = id;
         var loaded = false;
         #if PRELOAD_ALL
         loaded = true;

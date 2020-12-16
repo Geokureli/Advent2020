@@ -16,6 +16,7 @@ class Game
     static public var arcadeName(default, null):ArcadeName = null;
     
     static public var state:EventState = NoEvent;
+    static public var chosenSong:String = null;
     
     static var roomTypes:Map<RoomName, RoomConstructor>;
     static var arcadeTypes:Map<ArcadeName, ()->FlxState>;
@@ -124,7 +125,7 @@ class Game
         if (FlxG.sound.music != null)
             FlxG.sound.music.stop();
         FlxG.sound.music = null;
-        Content.playTodaysSong();
+        Manifest.playMusic(chosenSong);
     }
 }
 

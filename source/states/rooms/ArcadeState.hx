@@ -1,5 +1,6 @@
 package states.rooms;
 
+import data.Manifest;
 import states.OgmoState;
 import data.Calendar;
 import data.Game;
@@ -69,7 +70,7 @@ class ArcadeState extends RoomState
         {
             if (FlxG.sound.music != null)
                 FlxG.sound.music.stop();
-            Content.playTodaysSong();
+            Manifest.playMusic(Game.chosenSong);
         }
         openSubState(overlay);
     }
