@@ -328,9 +328,9 @@
 ,   { "id": "alan"
     , "proper": "Alan"
     , "description": "My personal favorite Smiling Friend, don't steal his cheese."
-    , "unlocksBy": null
+    , "unlocksBy": "medal:61555"
     , "offset": {"y":5}
-    , "users": ["brandybuizel", "geokureli", "ellsketchlr"]
+    , "users": null
     }
 ,   { "id": "custom"
     , "proper": "Custom"
