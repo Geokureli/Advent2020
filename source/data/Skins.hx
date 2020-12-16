@@ -54,21 +54,19 @@ class Skins
     
     static public function checkUnlocks(showPopup = true)
     {
-        var unlockedCount = 0;
-        var seenCount = Save.countSkinsSeen();
+        var newUnlocks = 0;
+        
         for (data in byIndex)
         {
             if (!data.unlocked && (checkUser(data.users) || checkUnlockCondition(data.unlocksBy)))
-                data.unlocked = true;
-            
-            if (!data.unlocked && Save.hasSeenskin(data.index))
             {
-                seenCount--;
-                trace('skin ${data.id} is locked but was seen, unlocksBy:${data.unlocksBy}');
+                data.unlocked = true;
+                if (!Save.hasSeenskin(data.index))
+                    newUnlocks++;
             }
             
-            if (data.unlocked)
-                unlockedCount++;
+            if (!data.unlocked && Save.hasSeenskin(data.index))
+                trace('skin ${data.id} is locked but was seen, unlocksBy:${data.unlocksBy}');
         }
         
         sorted.sort(function (a, b)
@@ -79,8 +77,8 @@ class Skins
             }
         );
         
-        if (showPopup && unlockedCount > seenCount)
-            ui.SkinPopup.show(unlockedCount - seenCount);
+        if (showPopup && newUnlocks > 0)
+            ui.SkinPopup.show(newUnlocks);
     }
     
     static public function checkHasUnseen()
