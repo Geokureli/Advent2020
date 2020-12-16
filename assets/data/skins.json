@@ -181,8 +181,8 @@
     , "proper": "Dad"
     , "description": "The very embodiment of “he protec” since 2005."
     , "unlocksBy": null
-    , "offsetX": 2
-    , "users": ["danpaladin"]
+    , "offset": {"x":6, "y":5 }
+    , "users": ["danpaladin", "geokureli"]
     }
 ,   { "id": "pump_and_skid"
     , "proper": "Pump'n'Skid"

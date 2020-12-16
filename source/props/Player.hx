@@ -36,6 +36,7 @@ class Player extends flixel.FlxSprite
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
     var bobTimer = 0.0;
+    var skinOffset = FlxPoint.get();
     
     public function new(x = 0.0, y = 0.0, settings:PlayerSettings)
     {
@@ -89,6 +90,7 @@ class Player extends flixel.FlxSprite
             var bobTime = Math.max(0, FlxMath.fastSin(bobTimer / BOB_PERIOD * Math.PI));
             offset.y = frameHeight - height + bobTime * BOB;
         }
+        offset.y += skinOffset.y;
         
         super.update(elapsed);
         if (emote.exists && emote.active)
@@ -176,7 +178,10 @@ class Player extends flixel.FlxSprite
         acceleration.y = ((pressD ? 1 : 0) - (pressU ? 1 : 0)) * ACCEL_SPEED;
         
         if (velocity.x != 0)
+        {
             flipX = velocity.x > 0;
+            offset.x = (frameWidth - width) / 2 + (flipX ? -skinOffset.x : skinOffset.x);
+        }
         
         if (targetPos != null && velocity.x == 0 && velocity.y == 0 && acceleration.x == 0 && acceleration.y == 0)
             targetPosReached();
@@ -267,6 +272,12 @@ class Player extends flixel.FlxSprite
         origin.y = 16;
         offset.x = (frameWidth - width) / 2;
         offset.y = frameHeight - height;
+        skinOffset.set(0, 0);
+        if (data.offset != null)
+        {
+            skinOffset.set(data.offset.x, data.offset.y);
+            offset.addPoint(skinOffset);
+        }
         hitbox.width  = width  + 12;
         hitbox.height = height + 14;
     }

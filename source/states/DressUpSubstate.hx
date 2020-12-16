@@ -74,8 +74,8 @@ class DressUpSubstate extends flixel.FlxSubState
             sprite.scrollFactor.set(0, 0);
             
             sprite.x = SPACING * i;
-            if (data.offsetX != null)
-                sprite.offset.x = data.offsetX;
+            if (data.offset != null)
+                sprite.offset.set(data.offset.x, data.offset.y);
             
             if (data.index == PlayerSettings.user.skin)
             {
@@ -86,7 +86,7 @@ class DressUpSubstate extends flixel.FlxSubState
             else if (i > current && current > -1)
                 sprite.x += SIDE_GAP * 2;
             
-            sprite.y = (FlxG.height - sprite.height) / 2;
+            sprite.y = (FlxG.height - sprites.members[0].height) / 2;
             
             if (!data.unlocked)
                 sprite.color = FlxColor.BLACK;

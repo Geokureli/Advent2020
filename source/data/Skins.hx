@@ -170,8 +170,7 @@ typedef SkinDataRaw =
     var unlocksBy:String;
     var frames:Null<Int>;
     var fps:Null<Int>;
-    var offsetX:Null<Float>;
-    var offsetY:Null<Float>;
+    var offset:Null<{x:Float, y:Float}>;
     var users:Null<Array<String>>;
 }
 
