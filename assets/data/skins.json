@@ -329,7 +329,7 @@
     , "proper": "Alan"
     , "description": "My personal favorite Smiling Friend, don't steal his cheese."
     , "unlocksBy": "medal:61555"
-    , "offset": {"y":5}
+    , "offset": { "x":2, "y":6 }
     , "users": null
     }
 ,   { "id": "custom"

@@ -47,7 +47,7 @@ class Skins
     {
         for (medal in NG.core.medals)
         {
-            if(medal.unlocked #if debug || true #end)
+            if(!medal.unlocked #if debug || true #end)
                 medal.onUnlock.add(checkUnlocks.bind(true));
         }
     }
@@ -55,13 +55,17 @@ class Skins
     static public function checkUnlocks(showPopup = true)
     {
         var unlockedCount = 0;
+        var seenCount = Save.countSkinsSeen();
         for (data in byIndex)
         {
             if (!data.unlocked && (checkUser(data.users) || checkUnlockCondition(data.unlocksBy)))
                 data.unlocked = true;
             
             if (!data.unlocked && Save.hasSeenskin(data.index))
+            {
+                seenCount--;
                 trace('skin ${data.id} is locked but was seen, unlocksBy:${data.unlocksBy}');
+            }
             
             if (data.unlocked)
                 unlockedCount++;
@@ -75,8 +79,8 @@ class Skins
             }
         );
         
-        if (showPopup && unlockedCount > Save.countSkinsSeen())
-            ui.SkinPopup.show(unlockedCount - Save.countSkinsSeen());
+        if (showPopup && unlockedCount > seenCount)
+            ui.SkinPopup.show(unlockedCount - seenCount);
     }
     
     static public function checkHasUnseen()

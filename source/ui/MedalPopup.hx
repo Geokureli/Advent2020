@@ -78,7 +78,7 @@ class MedalPopup extends flixel.group.FlxSpriteGroup
     {
         for (medal in NG.core.medals)
         {
-            if(medal.unlocked #if debug || true #end)
+            if(!medal.unlocked #if debug || true #end)
                 medal.onUnlock.add(onMedalUnlock.bind(medal));
         }
     }
