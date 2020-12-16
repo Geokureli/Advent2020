@@ -56,7 +56,8 @@ class Instrument
         if (current.singleNote && currentNote != note && activeNotes[currentNote] != null)
         {
             var sound = activeNotes[currentNote];
-            sound.fadeOut(0.1, 0, (_)->sound.kill());
+            if (sound.playing)
+                sound.fadeOut(0.1, 0, (_)->sound.kill());
         }
         
         currentNote = note;
@@ -90,7 +91,7 @@ class Instrument
                     press(lastPressed);
             }
             
-            if (current.sustain && sound != null)
+            if (current.sustain && sound != null && sound.playing)
                 sound.fadeOut(0.1, 0, (_)->sound.kill());
         }
     }

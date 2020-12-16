@@ -325,6 +325,13 @@
     , "frames": 3
     , "users": ["krinkels"]
     }
+,   { "id": "alan"
+    , "proper": "Alan"
+    , "description": "My personal favorite Smiling Friend, don't steal his cheese."
+    , "unlocksBy": "medal:61555"
+    , "offset": { "x":2, "y":6 }
+    , "users": null
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."

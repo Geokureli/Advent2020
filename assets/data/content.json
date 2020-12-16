@@ -15,108 +15,42 @@
         { "proper"  : "AlbeGian"
         , "bandcamp": "albegian"
         }
-    , "cymbourine":
-        { "proper": "Cymbourine"
-        }
-    , "mintyeggs":
-        { "proper": "MintyEggs"
-        }
-    , "mixmuffin":
-        { "proper": "Liquid head"
-        }
-    , "danfrombavaria":
-        { "proper": "DanFromBavaria"
-        }
-    , "einmeister":
-        { "proper": "EinMeister"
-        }
-    , "bub":
-        { "proper": "bub"
-        }
-    , "czyszy":
-        { "proper": "CzySzy"
-        }
-    , "snackers":
-        { "proper": "Snackers"
-        }
-    , "mkmaffo":
-        { "proper": "MKMaffo"
-        }
-    , "splatterdash":
-        { "proper": "SplatterDash"
-        }
-    , "karlestonchew":
-        { "proper": "Karlestonchew"
-        }
-    , "chrisbasso":
-        { "proper": "chrisbasso"
-        }
-    , "knose":
-        { "proper": "KnoseDoge"
-        }
-    , "chdonga":
-        { "proper": "Chdonga"
-        }
-    , "gallowjolt":
-        { "proper": "GallowJolt"
-        }
-    , "midgetsausage":
-        { "proper": "midgetsausage"
-        }
-    , "sirlenward":
-        { "proper": "SirLenward"
-        }
-    , "shirogaia":
-        { "proper": "Shiro Gaia"
-        }
-    , "connorgrail":
-        { "proper": "Connor Grail"
-        }
-    , "misterjamesss":
-        { "proper": "James Renna"
-        }
-    , "hyenaedon":
-        { "proper": "Hyenaedon"
-        }
-    , "carmet":
-        { "proper": "Carmet"
-        }
-    , "goodl":
-        { "proper": "GoodL"
-        }
-    , "krinkels":
-        { "proper": "krinkels"
-        }
-    , "tenodiboris":
-        { "proper": null
-        }
-    , "mattrguitar123":
-        { "proper": null
-        }
-    , "kawaisprite":
-        { "proper": "KawaiSprite"
-        }
-    , "k-4998572":
-        { "proper": null
-        }
-    , "heyopc":
-        { "proper": null
-        }
-    , "everratic":
-        { "proper": null
-        }
-    , "dogl":
-        { "proper": null
-        }
-    , "anarchyaxel":
-        { "proper": null
-        }
-    , "mimny":
-        { "proper": "Mimny"
-        }
-    , "figburn":
-        { "proper": "Figburn"
-        }
+    , "cymbourine"      : { "proper": "Cymbourine"      }
+    , "mintyeggs"       : { "proper": "MintyEggs"       }
+    , "mixmuffin"       : { "proper": "Liquid head"     }
+    , "danfrombavaria"  : { "proper": "DanFromBavaria"  }
+    , "einmeister"      : { "proper": "EinMeister"      }
+    , "bub"             : { "proper": "bub"             }
+    , "czyszy"          : { "proper": "CzySzy"          }
+    , "snackers"        : { "proper": "Snackers"        }
+    , "mkmaffo"         : { "proper": "MKMaffo"         }
+    , "splatterdash"    : { "proper": "SplatterDash"    }
+    , "karlestonchew"   : { "proper": "Karlestonchew"   }
+    , "chrisbasso"      : { "proper": "chrisbasso"      }
+    , "knose"           : { "proper": "KnoseDoge"       }
+    , "chdonga"         : { "proper": "Chdonga"         }
+    , "gallowjolt"      : { "proper": "GallowJolt"      }
+    , "midgetsausage"   : { "proper": "midgetsausage"   }
+    , "sirlenward"      : { "proper": "SirLenward"      }
+    , "shirogaia"       : { "proper": "Shiro Gaia"      }
+    , "connorgrail"     : { "proper": "Connor Grail"    }
+    , "misterjamesss"   : { "proper": "James Renna"     }
+    , "hyenaedon"       : { "proper": "Hyenaedon"       }
+    , "carmet"          : { "proper": "Carmet"          }
+    , "goodl"           : { "proper": "GoodL"           }
+    , "krinkels"        : { "proper": "krinkels"        }
+    , "tenodiboris"     : { "proper": null              }
+    , "mattrguitar123"  : { "proper": null              }
+    , "kawaisprite"     : { "proper": "KawaiSprite"     }
+    , "k-4998572"       : { "proper": null              }
+    , "heyopc"          : { "proper": null              }
+    , "everratic"       : { "proper": "Everratic"       }
+    , "dogl"            : { "proper": null              }
+    , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
+    , "mimny"           : { "proper": "Mimny"           }
+    , "figburn"         : { "proper": "Figburn"         }
+    , "precipitation24" : { "proper": "Precipitation24" }
+    , "octong"          : { "proper": "OctoNG"          }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -196,6 +130,30 @@
         , "bpm"      : 130
         , "ngId"     : 0
         , "day"      : 17
+        }
+    ,   { "id"     : "anarchyaxel"
+        , "name"   : "Chrimuh"
+        , "authors": ["anarchyaxel"]
+        , "key"      : "cMaj"
+        , "bpm"      : 120
+        , "ngId"     : 0
+        , "day"      : 19
+        }
+    ,   { "id"     : "everratic"
+        , "name"   : "A Perfect Day"
+        , "authors": ["everratic"]
+        , "key"      : "aMaj"
+        , "bpm"      : 96
+        , "ngId"     : 0
+        , "day"      : 23
+        }
+    ,   { "id"     : "precipitation24"
+        , "name"   : "Anastasia and Cinderella"
+        , "authors": ["precipitation24"]
+        , "key"      : "aMaj"
+        , "bpm"      : 130
+        , "ngId"     : 833947
+        , "day"      : 25
         }
     ]
 ,   "artwork":
@@ -286,8 +244,8 @@
         , "name"   : "nevadean christmas tree"
         , "authors": ["krinkels"]
         , "day"    : 14
-        , "ext"    : "jpg"
         , "medal"  : true
+        , "preload": true
         }
     ,   { "id"     : "mimny"
         , "name"   : "Playful Spirit"
@@ -300,6 +258,12 @@
         , "name"   : "Playful Spirit"
         , "authors": ["figburn"]
         , "day"    : 16
+        , "medal"  : true
+        }
+    ,   { "id"     : "octong"
+        , "name"   : "A very Boot Rot Christmas"
+        , "authors": ["octong"]
+        , "day"    : 17
         , "medal"  : true
         }
     ]

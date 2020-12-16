@@ -63,6 +63,7 @@ class RoomState extends OgmoState
     var ui = new FlxGroup();
     var luciaBuns:FlxTypedGroup<OgmoDecal>;
     var luciaUi:LuciaUi;
+    var cheese:OgmoDecal;
     
     var spawnTeleport:Teleport;
     var medalPopup:MedalPopup;
@@ -179,6 +180,16 @@ class RoomState extends OgmoState
         add(geom);
         
         initLuciaBuns();
+        
+        cheese = background.getByName("cheese");
+        if (cheese == null)
+            cheese = foreground.getByName("cheese");
+        
+        if (cheese != null && NGio.hasMedal(61555))
+        {
+            cheese.kill();
+            cheese = null;
+        }
         
         for (teleport in teleports.members)
         {
@@ -521,6 +532,17 @@ class RoomState extends OgmoState
             }
         );
         
+        if (cheese != null && cheese.overlaps(player))
+        {
+            NGio.unlockMedal(61555);
+            FlxG.sound.play("assets/sounds/pickup2.mp3");
+            cheese.solid = false;
+            FlxTween.tween(cheese, { y: cheese.y - 32 }, 0.5,
+                { ease:FlxEase.sineOut });
+            FlxTween.tween(cheese, { alpha: 0 }, 0.25,
+                { startDelay:0.75 });
+        }
+        
         if (Lucia.finding)
         {
             #if debug
@@ -552,8 +574,11 @@ class RoomState extends OgmoState
                             luciaUi.onComplete(playLuciaCutscene);
                         }
                     }
-                    FlxTween.tween(bun, { y: bun.y - 16, alpha:0 }, 0.5,
-                        { ease:(t)->FlxEase.quadOut(Math.min(1, t * 1.5)), onComplete:onTweenComplete });
+                    
+                    FlxTween.tween(bun, { y: bun.y - 16 }, 0.35,
+                        { ease:FlxEase.sineOut });
+                    FlxTween.tween(bun, { alpha: 0 }, 0.2,
+                        { startDelay:0.3, onComplete:onTweenComplete });
                     
                 }
             );
