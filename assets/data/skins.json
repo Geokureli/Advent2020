@@ -43,7 +43,7 @@
 ,   { "id": "pink_knight"
     , "proper": "Pink Knight"
     , "description": "This joyful Castle Crasher knows 67 ways to kill a human being with just a lollipop."
-    , "unlocksBy": null
+    , "unlocksBy": "supporter"
     , "users": ["tomfulp", "danpaladin", "goodl", "brandybuizel"]
     , "group":"castle_crashers"
     }
@@ -134,7 +134,7 @@
 ,   { "id": "stan"
     , "proper": "Stan"
     , "description": "That one Nightmare Cops guy with the fanart you’ve seen. His name’s actually Stan, do you believe it?"
-    , "unlocksBy": null
+    , "unlocksBy": "login"
     , "users": ["tomfulp", "johnnyutah", "spazkid", "oney"]
     , "group":"cops"
     }
@@ -147,14 +147,14 @@
 ,   { "id": "tangy_mustard"
     , "proper": "Tangy Mustard"
     , "description": "BAH-BUH BAH-DOO DA DOO-DA BOO DOO DOO BAH-DOO"
-    , "unlocksBy": null
+    , "unlocksBy": "day:17"
     , "users": ["aaron-long"]
     , "group": "aalong"
     }
 ,   { "id": "glenda"
     , "proper": "Glenda"
     , "description": "The classiest galaxy tourist."
-    , "unlocksBy": null
+    , "unlocksBy": "day:18"
     , "users": ["someonesex"]
     }
 ,   { "id": "hogstrong"
@@ -309,7 +309,7 @@
 ,   { "id": "satina"
     , "proper": "Satina"
     , "description": "This princess of the underworld has charm, talent and a casual dad who works in IT."
-    , "unlocksBy": null
+    , "unlocksBy": "day:16"
     , "users": null
     }
 ,   { "id": "madness_hank"
@@ -320,7 +320,7 @@
     }
 ,   { "id": "madness_auditor"
     , "proper": "The Auditor"
-    , "description": "Antagonist, creator of the Improbability Drive? Is that a Douglas Adams reference? Lemme DM Krinkels real quick. Okay, he said: 'it absolutely is!' while streaming Furi."
+    , "description": "Antagonist, creator of the Improbability Drive? Is that a Douglas Adams reference?\nLemme DM Krinkels real quick. Okay, he said: 'it absolutely is!' while streaming Furi."
     , "unlocksBy": "supporter"
     , "frames": 3
     , "users": ["krinkels"]
