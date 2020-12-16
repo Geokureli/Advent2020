@@ -261,7 +261,7 @@
         , "medal"  : true
         }
     ,   { "id"     : "octong"
-        , "name"   : null
+        , "name"   : "A very Boot Rot Christmas"
         , "authors": ["octong"]
         , "day"    : 17
         , "medal"  : true
