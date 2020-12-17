@@ -89,7 +89,7 @@ class Content
             instrument.index = index;
             if (instrument.icon == null)
                 instrument.icon = instrument.id;
-            instrument.iconPath = 'assets/images/props/instruments/${instrument.id}.png';
+            instrument.iconPath = 'assets/images/props/instruments/${instrument.icon}.png';
             instruments[instrument.id] = instrument;
             instrumentsByIndex[index] = instrument;
             instrument.singleNote = instrument.singleNote == null ? false: instrument.singleNote;
