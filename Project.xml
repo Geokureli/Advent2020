@@ -79,8 +79,16 @@
 	<section if="INCLUDE_DIG_GAME">
 		<!-- <define name="SKIP_TO_DIG_GAME" if="debug"/> -->
 		
-		<classpath name="digMinigame/source" if="INCLUDE_DIG_GAME"/>
+		<classpath name="digMinigame/source"/>
 		<assets path="digMinigame/assets" rename="assets"/>
+		
+	</section>
+	
+	<define name="INCLUDE_THOUGHTS_GAME"/>
+	<section if="INCLUDE_THOUGHTS_GAME">
+		
+		<classpath name="positivity/source"/>
+		<assets path="positivity/assets" rename="assets" exclude="*.ase"/>
 		
 	</section>
 	<!-- _______________________________ Libraries ______________________________ -->

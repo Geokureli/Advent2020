@@ -20,6 +20,13 @@
 			"args": ["run", "lime", "build", "digMinigame/Project.xml", "html5", "-debug"],
 			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
 			"group": { "kind": "build", "isDefault": true }
+		},
+		{
+			"label": "positive game - debug: html",
+			"command": "haxelib",
+			"args": ["run", "lime", "build", "positivity/Project.xml", "html5", "-debug"],
+			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
+			"group": { "kind": "build", "isDefault": true }
 		}
 	]
 }

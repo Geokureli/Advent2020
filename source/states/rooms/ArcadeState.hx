@@ -60,9 +60,12 @@ class ArcadeState extends RoomState
         if (FlxG.sound.music != null)
             FlxG.sound.music.stop();
         FlxG.sound.music = null;
+        
+        var data = Content.arcades[id];
         var overlay = switch(id)
         {
             case Horse: new horse.HorseSubState();
+            case Positivity: new OverlaySubstate(new Creds(), data.camera);
             default:
                 throw "Unhandled arcade id:" + id;
         }

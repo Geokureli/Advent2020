@@ -60,6 +60,7 @@ class ControlsList
         , PAUSE    => [P, ENTER]
         , ZOOM_IN  => [PERIOD]
         , ZOOM_OUT => [COMMA]
+        , EXIT     => [ESCAPE]
         ];
     
     static var buttons:Map<Action, Array<FlxGamepadInputID>> =
@@ -72,6 +73,7 @@ class ControlsList
         , PAUSE    => [START]
         , ZOOM_IN  => [RIGHT_TRIGGER, RIGHT_STICK_DIGITAL_UP]
         , ZOOM_OUT => [RIGHT_TRIGGER, RIGHT_STICK_DIGITAL_UP]
+        , EXIT     => [BACK]
         ];
     
     var state:FlxInputState;
@@ -84,6 +86,12 @@ class ControlsList
     public function check(action:Action)
     {
         return Controls.useKeys ? checkKeys(action) : checkButtons(action);
+    }
+    
+    function checkAny()
+    {
+        @:privateAccess
+        return FlxG.keys.checkStatus(FlxKey.ANY, state) || FlxG.gamepads.anyHasState(FlxGamepadInputID.ANY, state);
     }
     
     function checkKeys(action:Action)
@@ -112,9 +120,11 @@ class ControlsList
     public var PAUSE   (get, never):Bool; inline function get_PAUSE   () return check(Action.PAUSE   );
     public var ZOOM_IN (get, never):Bool; inline function get_ZOOM_IN () return check(Action.ZOOM_IN );
     public var ZOOM_OUT(get, never):Bool; inline function get_ZOOM_OUT() return check(Action.ZOOM_OUT);
+    public var EXIT    (get, never):Bool; inline function get_EXIT    () return check(Action.EXIT    );
+    public var ANY     (get, never):Bool; inline function get_ANY     () return checkAny();
 }
 
-private enum Action
+enum Action
 {
     UP;
     DOWN;
@@ -125,6 +135,7 @@ private enum Action
     PAUSE;
     ZOOM_IN;
     ZOOM_OUT;
+    EXIT;
 }
 
 enum ControlMode

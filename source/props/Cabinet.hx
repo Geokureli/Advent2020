@@ -2,6 +2,7 @@ package props;
 
 import data.Calendar;
 import data.Content;
+import data.Manifest;
 import data.Save;
 import states.OgmoState;
 
@@ -26,8 +27,16 @@ class Cabinet extends flixel.FlxSprite
         
         if (enabled)
         {
-            loadGraphic('assets/images/props/cabinets/${id}.png', true, 40, 60);
-            animation.add("anim", [0, 1], 4);
+            final path = 'assets/images/props/cabinets/${id}.png';
+            #if debug
+            if (Manifest.exists(path, IMAGE))
+                loadGraphic(path, true, 40, 60);
+            else
+                loadGraphic('assets/images/props/arcade/cabinet_ogmo.png');
+            #else
+            loadGraphic(path, true, 40, 60);
+            #end
+            animation.add("anim", [for (i in 0...animation.frames) i], 4);
             animation.play("anim");
         }
         else
