@@ -1,6 +1,6 @@
 package states.rooms;
 
-class VenueState extends RoomState
+class DanceState extends RoomState
 {
     override function create()
     {

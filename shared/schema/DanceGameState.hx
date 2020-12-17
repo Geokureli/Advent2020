@@ -8,8 +8,11 @@
 package schema;
 import io.colyseus.serializer.schema.Schema;
 
-class VenueGameState extends GameState {
+class DanceGameState extends GameState {
 	@:type("map", "number")
 	public var songs: MapSchema<Dynamic> = new MapSchema<Dynamic>();
+
+	@:type("number")
+	public var songStartTime: Dynamic = 0;
 
 }

@@ -27,13 +27,13 @@ class Game
     
     public static var initialRoom(default, null) = 
         #if debug
-        RoomName.Bedroom;
+        // RoomName.Bedroom;
         // RoomName.Hallway + "." + RoomName.Bedroom;
         // RoomName.Entrance + "." + RoomName.Hallway;
         // RoomName.Outside + "." + RoomName.Entrance;
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
-        // RoomName.Venue;
+        RoomName.Dance;
         #else
         RoomName.Bedroom;
         #end
@@ -45,7 +45,7 @@ class Game
         
         #if js
         trace("render context: " + FlxG.stage.window.context.type);
-        allowShaders = switch(stage.window.context.type)
+        allowShaders = switch(FlxG.stage.window.context.type)
         {
             case OPENGL, OPENGLES, WEBGL: true;
             default: false;
@@ -59,7 +59,7 @@ class Game
         roomTypes[Outside ] = OutsideState.new;
         roomTypes[Arcade  ] = ArcadeState.new;
         roomTypes[Studio  ] = StudioState.new;
-        roomTypes[Venue   ] = VenueState.new;
+        roomTypes[Dance   ] = DanceState.new;
         
         arcadeTypes = [];
         #if INCLUDE_DIG_GAME
