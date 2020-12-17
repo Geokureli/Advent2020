@@ -332,6 +332,24 @@
     , "offset": { "x":2, "y":6 }
     , "users": null
     }
+,   { "id": "zone"
+    , "proper": "Zone-tan"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["zone-sama"]
+    }
+,   { "id": "gentles"
+    , "proper": "Gentles"
+    , "description": "The amazing dog straight out of the 2020 Pet Jam and from TV!"
+    , "unlocksBy": null
+    , "users": ["jaquin", "jonarock", "chrisbasso", "dylanmann", "worldsbestmichael"]
+    }
+,   { "id": "slime"
+    , "proper": "Slime Girl"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["brandybuizel", "ninjamuffin99", "digimin"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."

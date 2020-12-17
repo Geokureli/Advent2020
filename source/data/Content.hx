@@ -89,7 +89,7 @@ class Content
             instrument.index = index;
             if (instrument.icon == null)
                 instrument.icon = instrument.id;
-            instrument.iconPath = 'assets/images/props/instruments/${instrument.id}.png';
+            instrument.iconPath = 'assets/images/props/instruments/${instrument.icon}.png';
             instruments[instrument.id] = instrument;
             instrumentsByIndex[index] = instrument;
             instrument.singleNote = instrument.singleNote == null ? false: instrument.singleNote;
@@ -196,7 +196,7 @@ class Content
             {
                 if (!Manifest.exists(arcade.path, IMAGE))
                     errors.push('Missing ${arcade.path}');
-                if (arcade.type != External && !Manifest.exists(arcade.medalPath, IMAGE))
+                if (arcade.medal == true && !Manifest.exists(arcade.medalPath, IMAGE))
                     errors.push('Missing ${arcade.medalPath}');
                 if (!cabinetIds.contains(arcade.id))
                     errors.push('Missing Cabinet in arcade id:${arcade.id}');
@@ -372,6 +372,13 @@ typedef SongCreation
     var index:Int;
 }
 
+typedef ArcadeCamera =
+{
+    var width:Int;
+    var height:Int;
+    var zoom:Int;
+}
+
 typedef ArcadeCreation
 = Creation &
 {
@@ -381,12 +388,15 @@ typedef ArcadeCreation
     var medalPath:String;
     var mobile:Bool;
     var type:ArcadeType;
+    var medal:Bool;
+    var camera:ArcadeCamera;
 }
 
 enum abstract ArcadeName(String) to String
 {
     var Digging = "digging";
     var Horse = "horse";
+    var Positivity = "positivity";
     var Advent2018 = "2018";
     var Advent2019 = "2019";
 }

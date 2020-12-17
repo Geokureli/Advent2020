@@ -140,11 +140,8 @@ class Prompt extends flixel.group.FlxGroup {
 		super.update(elapsed);
 		
 		var goBack = false;
-		if (FlxG.keys.anyPressed([X, ESCAPE]))
+		if (Controls.pressed.B)
 			goBack = true;
-		
-		if (!goBack && FlxG.gamepads.lastActive != null)
-			goBack = FlxG.gamepads.lastActive.anyPressed([B, BACK]);
 		
 		if (goBack)
 			cancel();

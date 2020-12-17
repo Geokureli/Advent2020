@@ -29,6 +29,16 @@
 			"preLaunchTask": "dig game - debug: html"
 		},
 		{
+			"name": "ChromePositiveGame",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://127.0.0.1:3000",
+			"sourceMaps": true,
+			"webRoot": "${workspaceFolder}/positivity",
+			"runtimeArgs": ["--disable-web-security"],
+			"preLaunchTask": "positive game - debug: html"
+		},
+		{
 			"name": "FireFox",
 			"type": "firefox",
 			"request": "launch",

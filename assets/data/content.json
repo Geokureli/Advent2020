@@ -5,7 +5,7 @@
         }
     , "brandybuizel":
         { "proper": "BrandyBuizel"
-        , "roles" : ["Organizer"]
+        , "roles" : ["Organizer", "Artist"]
         }
     , "nickconter":
         { "proper": "Nick Conter"
@@ -38,10 +38,9 @@
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
     , "carmet"          : { "proper": "Carmet"          }
     , "goodl"           : { "proper": "GoodL"           }
-    , "krinkels"        : { "proper": "krinkels"        }
+    , "krinkels"        : { "proper": "Krinkels"        }
     , "tenodiboris"     : { "proper": null              }
     , "mattrguitar123"  : { "proper": null              }
-    , "kawaisprite"     : { "proper": "KawaiSprite"     }
     , "k-4998572"       : { "proper": null              }
     , "heyopc"          : { "proper": null              }
     , "everratic"       : { "proper": "Everratic"       }
@@ -51,6 +50,7 @@
     , "figburn"         : { "proper": "Figburn"         }
     , "precipitation24" : { "proper": "Precipitation24" }
     , "octong"          : { "proper": "OctoNG"          }
+    , "mig-moog"        : { "proper": "Mig-Moog"        }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -278,6 +278,7 @@
         , "ngId"   : 1556969
         , "mobile" : false
         , "type"   : "state"
+        , "medal"  : true
         }
     ,   { "id"     : "horse"
         , "name"   : "Pin the Tail"
@@ -285,24 +286,29 @@
         , "day"    : 9
         , "mobile" : false
         , "type"   : "overlay"
+        , "medal"  : true
         }
     ,   { "id"     : "2019"
         , "name"   : "Christmas ADVENTure 2019"
         , "authors": null
         , "day"    : 10
         , "type"   : "external"
+        , "medal"  : false
         }
     ,   { "id"     : "2018"
         , "name"   : "Christmas ADVENTure 2018"
         , "authors": null
         , "day"    : 10
         , "type"   : "external"
+        , "medal"  : false
         }
     ,   { "id"     : "positivity"
         , "name"   : "Think Positive"
-        , "authors": "mig_moog"
+        , "authors": ["mig-moog"]
         , "day"    : 18
         , "type"   : "overlay"
+        , "medal"  : false
+        , "camera" : { "width":192, "height": 108, "zoom": 2 }
         }
     ]
 ,   "instruments":
@@ -334,7 +340,6 @@
         }
     ,   { "id"     : "flute"
         , "name"   : "Flute"
-        , "icon"   : "Flute"
         , "day"    : 16
         , "volume" : 1.0
         , "sustain":true
