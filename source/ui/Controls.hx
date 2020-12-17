@@ -26,7 +26,7 @@ class Controls extends flixel.FlxBasic
             case Keys if (FlxG.keys.pressed.ANY): Keys;
             case Keys if (FlxG.gamepads.anyPressed(ANY)): Gamepad;
             case Gamepad if (FlxG.gamepads.anyPressed(ANY)): Gamepad;
-            case Gamepad if (FlxG.keys.pressed.ANY): Gamepad; 
+            case Gamepad if (FlxG.keys.pressed.ANY): Keys; 
             case _: mode;
         }
     }
