@@ -5,7 +5,7 @@
         }
     , "brandybuizel":
         { "proper": "BrandyBuizel"
-        , "roles" : ["Organizer"]
+        , "roles" : ["Organizer", "Artist"]
         }
     , "nickconter":
         { "proper": "Nick Conter"
@@ -38,10 +38,9 @@
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
     , "carmet"          : { "proper": "Carmet"          }
     , "goodl"           : { "proper": "GoodL"           }
-    , "krinkels"        : { "proper": "krinkels"        }
+    , "krinkels"        : { "proper": "Krinkels"        }
     , "tenodiboris"     : { "proper": null              }
     , "mattrguitar123"  : { "proper": null              }
-    , "kawaisprite"     : { "proper": "KawaiSprite"     }
     , "k-4998572"       : { "proper": null              }
     , "heyopc"          : { "proper": null              }
     , "everratic"       : { "proper": "Everratic"       }
