@@ -4,3 +4,6 @@
 [submodule "digMinigame"]
 	path = digMinigame
 	url = https://github.com/oscarcederberg/adventcollab20-digging.git
+[submodule "positivity"]
+	path = positivity
+	url = https://github.com/mig-moog/newgrounds-adventure2020
