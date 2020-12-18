@@ -235,12 +235,12 @@ class RoomState extends OgmoState
         uiCamera.bgColor = 0x0;
         FlxG.cameras.add(uiCamera);
         ui.camera = uiCamera;
-        ui.add(medalPopup = MedalPopup.getInstance());
-        ui.add(musicPopup = MusicPopup.getInstance());
-        ui.add(skinPopup = SkinPopup.getInstance());
         ui.add(instrument = new FlxButton(FlxG.width, 0, onInstrumentClick));
         Instrument.onChange.add(updateInstrument);
         updateInstrument();
+        ui.add(medalPopup = MedalPopup.getInstance());
+        ui.add(musicPopup = MusicPopup.getInstance());
+        ui.add(skinPopup = SkinPopup.getInstance());
         var fullscreen = new FullscreenButton();
         fullscreen.updateHitbox();
         fullscreen.x = FlxG.width - fullscreen.width - 4;
