@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Advent2020" file="Advent2020" main="Main" version="0.8.0" company="HaxeFlixel" />
+	<app title="Advent2020" file="Advent2020" main="Main" version="0.8.1" company="HaxeFlixel" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -33,9 +33,9 @@
 	<!-- <define name="NG_LURKER" if="debug"/> -->
 	<define name="NG_DEBUG" if="debug"/>
 	
-	<define name="LOG"/>
+	<define name="LOG" if="debug"/>
 	<section if="LOG">
-		<!-- <define name="NG_LOG"/> -->
+		<define name="NG_LOG"/>
 		<!-- <define name="NG_VERBOSE" if="debug"/> -->
 		<define name="NET_LOG"/>
 		<!-- <define name="NET_LOG_VERBOSE"/> -->
@@ -88,7 +88,7 @@
 	<section if="INCLUDE_THOUGHTS_GAME">
 		
 		<classpath name="positivity/source"/>
-		<assets path="positivity/assets" rename="assets" exclude="*.ase"/>
+		<assets path="positivity/assets" rename="assets" exclude="*.ase|*.wav"/>
 		
 	</section>
 	<!-- _______________________________ Libraries ______________________________ -->

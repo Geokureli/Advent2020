@@ -66,6 +66,7 @@ class ArcadeState extends RoomState
         {
             case Horse: new horse.HorseSubState();
             case Positivity: new OverlaySubstate(new Creds(), data.camera);
+            case Digging: new OverlaySubstate(new digging.MenuState(), data.camera);
             default:
                 throw "Unhandled arcade id:" + id;
         }
