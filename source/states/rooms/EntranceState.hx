@@ -40,7 +40,13 @@ class EntranceState extends RoomState
         switch(Game.state)
         {
             case Day1Intro(Hallway):
-                showIntroCutscene();
+                if (Game.allowShaders)
+                    showIntroCutscene();
+                else
+                {
+                    Game.state = NoEvent;
+                    NGio.logEvent(intro_complete);
+                }
             case _:
         }
     }
@@ -87,8 +93,7 @@ class EntranceState extends RoomState
         floor.setBottomHeight(floor.frameHeight);
         shade = new ShadowSprite(floor.x, floor.y);
         shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
-        if (Game.allowShaders)
-            topGround.add(shade);
+        topGround.add(shade);
         
         player.active = false;
         player.flipX = true;
@@ -196,7 +201,8 @@ class EntranceState extends RoomState
         switch(Game.state)
         {
             case Day1Intro(_):
-                shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
+                if (Game.allowShaders)
+                    shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
             case _:
         }
         

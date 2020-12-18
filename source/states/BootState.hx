@@ -158,7 +158,7 @@ class BootState extends flixel.FlxState
             msg.screenCenter(XY);
         }
         
-        if (state.match(Error) && FlxG.keys.justPressed.SPACE)
+        if (state.match(Error(false)) && FlxG.keys.justPressed.SPACE)
             onComplete();
         #end
         
@@ -188,7 +188,7 @@ class BootState extends flixel.FlxState
                             + "If you're using brave, try disabling shields for this page\n"
                             + "Sorry for the inconvenience";
                         msg.screenCenter(XY);
-                        setState(Error);
+                        setState(Error(true));
                         return;
                     }
                     
@@ -196,7 +196,6 @@ class BootState extends flixel.FlxState
                     
                     if (errors != null)
                     {
-                        setState(Error);
                         if (NGio.isContributor)
                         {
                             msg.font = new NokiaFont();
@@ -215,20 +214,33 @@ class BootState extends flixel.FlxState
                                 += "\n\n" + errors.join("\n")
                                 + "\n\nYou are only seeing this message because you are in the credits"
                                 + "\nPress SPACE to play, anyway";
+                            setState(Error(false));
                         }
                         else
                         {
                             msg.font = new NokiaFont();
                             msg.text = "Today's content is almost done,\nplease try again soon.\n Sorry";
+                            setState(Error(true));
                         }
                         msg.screenCenter(XY);
+                        return;
+                    }
+                    else if (!isWebGl())
+                    {
+                        msg.font = new NokiaFont();
+                        msg.text = "You browser does not support webgl, meaning"
+                            + "\ncertain features and flourishes will not work"
+                            + "\nSorry for the inconvenience"
+                            + "\nPress SPACE to play anyway";
+                        msg.screenCenter(XY);
+                        setState(Error(false));
                         return;
                     }
                     
                     setState(Success);
                     onComplete();
                 case Success:
-                case Error:
+                case Error(_):
             }
         }
     }
@@ -244,6 +256,15 @@ class BootState extends flixel.FlxState
         }
         #end
         return false;
+    }
+    
+    function isWebGl()
+    {
+        return switch(FlxG.stage.window.context.type)
+        {
+            case OPENGL, OPENGLES, WEBGL: true;
+            default: false;
+        }
     }
     
     function onComplete()
@@ -290,5 +311,5 @@ private enum State
     Waiting;
     Checking;
     Success;
-    Error;
+    Error(blocking:Bool);
 }
