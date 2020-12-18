@@ -52,6 +52,7 @@
     , "octong"          : { "proper": "OctoNG"          }
     , "mig-moog"        : { "proper": "Mig-Moog"        }
     , "boomnm"          : { "proper": "boomnm"          }
+    , "fushark"         : { "proper": "FuShark"         }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -133,12 +134,20 @@
         , "day"      : 17
         }
     ,   { "id"     : "anarchyaxel"
-        , "name"   : "Chrimuh"
+        , "name"   : "Hot Chocolate"
         , "authors": ["anarchyaxel"]
         , "key"      : "cMaj"
         , "bpm"      : 120
         , "ngId"     : 0
         , "day"      : 19
+        }
+    ,   { "id"     : "tenodiboris"
+        , "name"   : "MerryXmass"
+        , "authors": ["tenodiboris"]
+        , "key"      : "dMin"
+        , "bpm"      : 120
+        , "ngId"     : 0
+        , "day"      : 21
         }
     ,   { "id"     : "everratic"
         , "name"   : "A Perfect Day"
@@ -271,6 +280,12 @@
         , "name"   : "Cold War"
         , "authors": ["boomnm"]
         , "day"    : 18
+        , "medal"  : true
+        }
+    ,   { "id"     : "fushark"
+        , "name"   : "Duncan & Jones: Cancel Christmas"
+        , "authors": ["fushark"]
+        , "day"    : 19
         , "medal"  : true
         }
     ]

@@ -25,7 +25,11 @@ class Present extends flixel.FlxSprite
     {
         this.id = id;
         super(x, y);
-        loadGraphic('assets/images/props/presents/${id}.png', true, 32, 34);
+        var path = 'assets/images/props/presents/${id}.png';
+        if (!data.Manifest.exists(path, IMAGE))
+            path = 'assets/images/props/presents/debug.png';
+        
+        loadGraphic(path, true, 32, 34);
         animation.add("closed", [0]);
         animation.add("opened", [1]);
         animation.add("opening", [1]);

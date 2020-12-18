@@ -93,8 +93,8 @@
           "name": "Present",
           "id": 7,
           "_eid": "75464384",
-          "x": 216,
-          "y": 272,
+          "x": 256,
+          "y": 240,
           "width": 16,
           "height": 16,
           "originX": 0,
@@ -292,6 +292,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "boomnm"}
+        },
+        {
+          "name": "Present",
+          "id": 24,
+          "_eid": "75464384",
+          "x": 208,
+          "y": 296,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "fushark"}
         }
       ]
     },
