@@ -478,6 +478,9 @@ class RoomState extends OgmoState
         Net.logVerbose("avatar added at " + key + " => " + data);
         Net.logVerbose(Net.room.sessionId + ' added: $key=>${data.name} ${data.skin}@(${data.x}, ${data.y})');
         
+        if (key == null)
+            return;
+        
         if (key != Net.room.sessionId)
         {
             Net.logVerbose(Net.room.sessionId + ' this AINT you');
