@@ -238,6 +238,14 @@ class NGio
 		unlockMedal(DAY_MEDAL_0 + day - 1, showDebugUnlock);
 	}
 	
+	static public function unlockMedalByName(name:String, showDebugUnlock = true):Void
+	{
+		if (!Content.medals.exists(name))
+			throw 'invalid name:%name';
+		
+		unlockMedal(Content.medals[name]);
+	}
+	
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
 		#if !(NG_DEBUG_API_KEY)

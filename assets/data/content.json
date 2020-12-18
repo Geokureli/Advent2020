@@ -285,7 +285,6 @@
         , "ngId"   : 1556969
         , "mobile" : false
         , "type"   : "state"
-        , "medal"  : true
         }
     ,   { "id"     : "horse"
         , "name"   : "Pin the Tail"
@@ -293,31 +292,34 @@
         , "day"    : 9
         , "mobile" : false
         , "type"   : "overlay"
-        , "medal"  : true
         }
     ,   { "id"     : "2019"
         , "name"   : "Christmas ADVENTure 2019"
         , "authors": null
         , "day"    : 10
         , "type"   : "external"
-        , "medal"  : false
         }
     ,   { "id"     : "2018"
         , "name"   : "Christmas ADVENTure 2018"
         , "authors": null
         , "day"    : 10
         , "type"   : "external"
-        , "medal"  : false
         }
     ,   { "id"     : "positivity"
         , "name"   : "Think Positive"
         , "authors": ["mig-moog"]
         , "day"    : 18
         , "type"   : "overlay"
-        , "medal"  : false
         , "camera" : { "width":192, "height": 108, "zoom": 2 }
         }
     ]
+,   "medals":
+    { "digging"   : 61364
+    , "horse"     : 61392
+    , "lucia"     : 61514
+    , "cheese"    : 61555
+    , "positivity": 61559
+    }
 ,   "instruments":
     [   { "id"    : "guitar_ac"
         , "name"  : "Acoustic Guitar"

@@ -181,7 +181,7 @@ class HorseSubState extends flixel.FlxSubState
         
         if (score <= 10)
         {
-            NGio.unlockMedal(61392);
+            NGio.unlockMedalByName("horse");
             nick.animation.play("hit");
         }
         else if (score <= 20)

@@ -19,6 +19,8 @@ class Content
     public static var instruments:Map<InstrumentType, InstrumentData>;
     public static var instrumentsByIndex:Map<Int, InstrumentData>;
     public static var events:Map<Int, SongCreation>;
+    public static var medals:Map<String, Int>;
+    public static var medalsById:Map<Int, String>;
     
     static var presentsById:Map<String, Int>;
     static var presentsByIndex:Map<Int, String>;
@@ -115,6 +117,15 @@ class Content
             event.day = day;
             events[day] = event;
         }
+        
+        medals = [];
+        medalsById = [];
+        for (name in Reflect.fields(data.medals))
+        {
+            var id = Reflect.field(data.medals, name);
+            medals[name] = id;
+            medalsById[id] = name;
+        }
     }
     
     /**
@@ -196,7 +207,7 @@ class Content
             {
                 if (!Manifest.exists(arcade.path, IMAGE))
                     errors.push('Missing ${arcade.path}');
-                if (arcade.medal == true && !Manifest.exists(arcade.medalPath, IMAGE))
+                if (arcade.type != External && !Manifest.exists(arcade.medalPath, IMAGE))
                     errors.push('Missing ${arcade.medalPath}');
                 if (!cabinetIds.contains(arcade.id))
                     errors.push('Missing Cabinet in arcade id:${arcade.id}');
@@ -322,6 +333,7 @@ private typedef ContentFile =
     var arcades:Array<ArcadeCreation>;
     var credits:Dynamic;
     var events:Dynamic;
+    var medals:Dynamic;
 }
 
 typedef ContentError = String;
@@ -388,7 +400,6 @@ typedef ArcadeCreation
     var medalPath:String;
     var mobile:Bool;
     var type:ArcadeType;
-    var medal:Bool;
     var camera:ArcadeCamera;
 }
 

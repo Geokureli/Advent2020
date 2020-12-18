@@ -532,9 +532,9 @@ class RoomState extends OgmoState
             }
         );
         
-        if (cheese != null && cheese.overlaps(player))
+        if (cheese != null && cheese.overlaps(player) && cheese.solid)
         {
-            NGio.unlockMedal(61555);
+            NGio.unlockMedalByName("cheese");
             FlxG.sound.play("assets/sounds/pickup2.mp3");
             cheese.solid = false;
             FlxTween.tween(cheese, { y: cheese.y - 32 }, 0.5,
