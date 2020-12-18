@@ -51,6 +51,7 @@
     , "precipitation24" : { "proper": "Precipitation24" }
     , "octong"          : { "proper": "OctoNG"          }
     , "mig-moog"        : { "proper": "Mig-Moog"        }
+    , "boomnm"          : { "proper": "boomnm"          }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -264,6 +265,12 @@
         , "name"   : "A very Boot Rot Christmas"
         , "authors": ["octong"]
         , "day"    : 17
+        , "medal"  : true
+        }
+    ,   { "id"     : "boomnm"
+        , "name"   : "Cold War"
+        , "authors": ["boomnm"]
+        , "day"    : 18
         , "medal"  : true
         }
     ]
