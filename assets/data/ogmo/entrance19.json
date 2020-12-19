@@ -313,7 +313,7 @@
           "y": 173,
           "originX": 0,
           "originY": 0,
-          "values": {"open": false}
+          "values": {"open": true}
         },
         {
           "name": "Teleport",
@@ -325,7 +325,7 @@
           "height": 24,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": ""}
+          "values": {"id": "", "target": "movie"}
         }
       ]
     },
