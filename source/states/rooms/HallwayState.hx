@@ -67,6 +67,8 @@ class HallwayState extends RoomState
                 case _:
             }
         }
+        else if (Game.state.match(Day1Intro(Dressed)))
+            Game.state = Day1Intro(Hallway);
     }
     
     function tweenLightRadius(light:Int, from:Float, to:Float, duration:Float, options:TweenOptions)

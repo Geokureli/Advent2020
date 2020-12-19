@@ -324,6 +324,7 @@
         , "name"   : "Think Positive"
         , "authors": ["mig-moog"]
         , "day"    : 18
+        , "mobile" : false
         , "type"   : "overlay"
         , "camera" : { "width":192, "height": 108, "zoom": 2 }
         }

@@ -97,7 +97,7 @@ class EntranceState extends RoomState
     
     function showIntroCutscene()
     {
-        var floor = background.getByName("foyer");
+        var floor = getDaySprite(background, "foyer");
         floor.setBottomHeight(floor.frameHeight);
         shade = new ShadowSprite(floor.x, floor.y);
         shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
