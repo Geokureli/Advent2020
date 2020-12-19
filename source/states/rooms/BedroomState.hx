@@ -141,7 +141,7 @@ class BedroomState extends RoomState
         
         #if debug
         if (FlxG.keys.justPressed.H)
-            openSubState(new VideoSubstate("assets/movies/test.mp4"));
+            openSubState(new VideoSubstate("assets/movies/snackers.mp4"));
         #end
     }
 }
