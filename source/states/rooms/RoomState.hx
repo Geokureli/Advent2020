@@ -104,7 +104,14 @@ class RoomState extends OgmoState
         FlxG.mouse.visible = !FlxG.onMobile;
         // #if debug FlxG.debugger.drawDebug = true; #end
         
-        entityTypes["Door"] = cast Door.fromEntity;
+        function addDoor(data)
+        {
+            var door = Door.fromEntity(data);
+            colliders.add(door);
+            return door;
+        }
+        entityTypes["Door"] = cast addDoor;
+        entityTypes["BigDoor"] = cast addDoor;
         entityTypes["Teleport"] = cast function(data)
         {
             var teleport = Teleport.fromEntity(data);
@@ -360,7 +367,7 @@ class RoomState extends OgmoState
         if (decal == null)
             throw 'can\'t find $target in foreground or props';
         
-        addHoverTextTo(decal, text, callback, hoverDis);
+        return addHoverTextTo(decal, text, callback, hoverDis);
     }
     
     function safeAddHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
@@ -369,12 +376,14 @@ class RoomState extends OgmoState
         if (decal == null)
             decal = cast props.getByName(target);
         if (decal != null)
-            addHoverTextTo(decal, text, callback, hoverDis);
+            return addHoverTextTo(decal, text, callback, hoverDis);
+        
+        return null;
     }
     
     function addHoverTextTo(target:FlxObject, ?text:String, ?callback:Void->Void, hoverDis = 20)
     {
-        addHoverTo(target, cast new InfoTextBox(text, callback), hoverDis);
+        return addHoverTo(target, cast new InfoTextBox(text, callback), hoverDis);
     }
     
     inline function initArtPresent(present:Present, ?callback:(Present)->Void)

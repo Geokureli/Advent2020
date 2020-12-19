@@ -1,5 +1,6 @@
 package states.rooms;
 
+import data.Calendar;
 import data.Game;
 import data.Manifest;
 import data.NGio;
@@ -85,6 +86,13 @@ class EntranceState extends RoomState
                     );
             }
         );
+        
+        if (Calendar.day == 19)
+        {
+            var door = props.getByName("BigDoor");
+            var box = addHoverTextTo(door, "opens at 6:00PM EST");
+            // doorCountdown = cast box.sprite;
+        }
     }
     
     function showIntroCutscene()
