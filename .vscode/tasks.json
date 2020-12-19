@@ -8,6 +8,20 @@
 			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"]
 		},
 		{
+			"label": "release: html",
+			"command": "haxelib",
+			"args": ["run", "lime", "build", "html5", "-Djs-source-map", "-clean"],
+			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
+			"group": { "kind": "build", "isDefault": true }
+		},
+		{
+			"label": "release: html-canvas",
+			"command": "haxelib",
+			"args": ["run", "lime", "build", "html5", "-Dcanvas", "-Djs-source-map", "-clean"],
+			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
+			"group": { "kind": "build", "isDefault": true }
+		},
+		{
 			"label": "debug: html",
 			"command": "haxelib",
 			"args": ["run", "lime", "build", "html5", "-debug"],

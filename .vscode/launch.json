@@ -9,7 +9,7 @@
 			"preLaunchTask": "debug: flash"
 		},
 		{
-			"name": "Chrome",
+			"name": "Chrome-debug",
 			"type": "chrome",
 			"request": "launch",
 			"url": "http://127.0.0.1:3001",
@@ -17,6 +17,16 @@
 			"webRoot": "${workspaceFolder}",
 			"runtimeArgs": ["--disable-web-security"],
 			"preLaunchTask": "debug: html"
+		},
+		{
+			"name": "Chrome-release",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://127.0.0.1:3001",
+			"sourceMaps": true,
+			"webRoot": "${workspaceFolder}",
+			"runtimeArgs": ["--disable-web-security"],
+			"preLaunchTask": "release: html"
 		},
 		{
 			"name": "Chrome-canvas",
