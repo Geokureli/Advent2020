@@ -249,7 +249,7 @@ class Player extends flixel.FlxSprite
         cancelTargetPos();
     }
     
-    function cancelTargetPos()
+    public function cancelTargetPos()
     {
         targetPos = null;
         movePath = null;

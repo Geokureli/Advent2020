@@ -17,13 +17,17 @@ class MovieState extends RoomState
         var screen = background.getByName("screen");
         if (screen == null)
             throw "missing screen";
+        addHoverTextTo(screen, "watch", watchMovie);
     }
     
     override function update(elapsed:Float)
     {
         super.update(elapsed);
-        
-        
+    }
+    
+    function watchMovie()
+    {
+        openSubState(new VideoSubstate("assets/movies/snackers.mp4"));
     }
     
     inline static var GRID_LEFT = 88;
@@ -39,11 +43,12 @@ class MovieState extends RoomState
         if (ghostsById.exists(key))
         {
             var ghost = ghostsById[key];
-            ghost.cancelTargetPos()
+            ghost.cancelTargetPos();
             final gridRight = FlxG.worldBounds.right - GRID_LEFT;
             final gridB = FlxG.worldBounds.right - GRID_LEFT;
-            // ghost.x = GRID_LEFT + GRID_COL * FlxG.random.int(GRID_RIGHT
+            ghost.x = GRID_LEFT + GRID_COL * FlxG.random.int(0, Std.int((gridRight - GRID_LEFT) / GRID_COL));
+            ghost.y = GRID_TOP + GRID_ROW * FlxG.random.int(0, Std.int((GRID_BOTTOM - GRID_TOP) / GRID_ROW));
         }
-        data.onChange = null;
+        data.onChange = (_)->{};
     }
 }

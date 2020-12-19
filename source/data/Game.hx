@@ -32,6 +32,7 @@ class Game
         // RoomName.Outside + "." + RoomName.Entrance;
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
+        // RoomName.Movie + "." + RoomName.Entrance;
         #else
         RoomName.Bedroom;
         #end
