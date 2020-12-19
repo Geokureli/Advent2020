@@ -2,6 +2,7 @@ package props;
 
 import Types;
 import ui.Font;
+import utils.Log;
 import flixel.text.FlxBitmapText;
 import flixel.math.FlxPoint;
 
@@ -58,7 +59,7 @@ class GhostPlayer extends Player
     
     public function onChange(changes:Array<DataChange>)
     {
-        trace('avatar changes[$key] ' 
+        Log.netVerbose('avatar changes[$key] ' 
             + ([for (change in changes) outputChange(change)].join(", "))
         );
         
@@ -98,7 +99,7 @@ class GhostPlayer extends Player
         }
         else if (isMoving)
         {
-            trace('moving to $newPos');
+            Log.netVerbose('moving to $newPos');
             setTargetPos(newPos);
         }
         newPos.put();

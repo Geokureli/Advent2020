@@ -1,5 +1,7 @@
 package data;
 
+import utils.Log;
+
 import schema.GameState;
 import states.rooms.RoomState;
 
@@ -101,18 +103,7 @@ class Net
         room.send({ type:type, data:data });
     }
     
-    inline static public function logDebug(msg:String)
-    {
-        #if debug log(msg); #end
-    }
-    
-    inline static public function logVerbose(msg:String)
-    {
-        #if NET_LOG_VERBOSE log(msg); #end
-    }
-    
-    inline static public function log(msg:String)
-    {
-        #if NET_LOG trace(msg); #end
-    }
+    inline static public function logDebug(msg:String) Log.netDebug(msg);
+    inline static public function logVerbose(msg:String) Log.netVerbose(msg);
+    inline static public function log(msg:String) Log.net(msg);
 }

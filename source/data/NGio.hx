@@ -292,7 +292,7 @@ class NGio
 			loggedEvents.push(event);
 		
 		event += FlxG.onMobile ? "_mobile" : "_desktop";
-		logDebug("logging event: " + event);
+		log("logging event: " + event);
 		NG.core.calls.event.logEvent(event).send();
 		#end
 	}

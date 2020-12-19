@@ -1,11 +1,14 @@
 package data;
 
 
-import io.newgrounds.NG;
 import data.Calendar;
+import utils.Log;
+
 import flixel.FlxSprite;
 
 import openfl.utils.Assets;
+
+import io.newgrounds.NG;
 
 import haxe.Json;
 using StringTools;
@@ -66,7 +69,7 @@ class Skins
             }
             
             if (!data.unlocked && Save.hasSeenskin(data.index))
-                trace('skin ${data.id} is locked but was seen, unlocksBy:${data.unlocksBy}');
+                Log.save('skin ${data.id} is locked but was seen, unlocksBy:${data.unlocksBy}');
         }
         
         sorted.sort(function (a, b)
