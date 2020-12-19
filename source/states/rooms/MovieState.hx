@@ -31,7 +31,7 @@ class MovieState extends RoomState
     }
     
     inline static var GRID_LEFT = 88;
-    inline static var GRID_TOP = 168;
+    inline static var GRID_TOP = 164;
     inline static var GRID_BOTTOM = 320;
     inline static var GRID_COL = 16;
     inline static var GRID_ROW = 32;
