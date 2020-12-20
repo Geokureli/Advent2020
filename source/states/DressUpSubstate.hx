@@ -34,7 +34,7 @@ class DressUpSubstate extends flixel.FlxSubState
     var descText = new FlxBitmapText();
     var arrowLeft:Button;
     var arrowRight:Button;
-    var ok:Button;
+    var ok:OkButton;
     // prevents instant selection
     var wasAReleased = false;
     
@@ -138,7 +138,7 @@ class DressUpSubstate extends flixel.FlxSubState
         arrowRight.x = (FlxG.width - arrowRight.width + SIDE_GAP + SPACING) / 2;
         arrowRight.y = bg.y + (bg.height - arrowRight.height) / 2;
         arrowRight.scrollFactor.set(0, 0);
-        add(ok = new Button(0, 0, select, "assets/images/ui/ok.png"));
+        add(ok = new OkButton(0, 0, select));
         ok.screenCenter(X);
         ok.y = bottom + BAR_MARGIN;
         ok.scrollFactor.set(0, 0);
