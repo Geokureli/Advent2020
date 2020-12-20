@@ -5,7 +5,7 @@
         }
     , "brandybuizel":
         { "proper": "BrandyBuizel"
-        , "roles" : ["Organizer", "Artist"]
+        , "roles" : ["Organizer"]
         }
     , "nickconter":
         { "proper": "Nick Conter"
@@ -14,6 +14,10 @@
     , "albegian":
         { "proper"  : "AlbeGian"
         , "bandcamp": "albegian"
+        }
+    , "goodl":
+        { "proper": "GoodL"
+        , "roles" : ["Electric Guitar"]
         }
     , "cymbourine"      : { "proper": "Cymbourine"      }
     , "mintyeggs"       : { "proper": "MintyEggs"       }
@@ -37,7 +41,6 @@
     , "misterjamesss"   : { "proper": "James Renna"     }
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
     , "carmet"          : { "proper": "Carmet"          }
-    , "goodl"           : { "proper": "GoodL"           }
     , "krinkels"        : { "proper": "Krinkels"        }
     , "tenodiboris"     : { "proper": null              }
     , "mattrguitar123"  : { "proper": null              }
@@ -54,6 +57,12 @@
     , "boomnm"          : { "proper": "boomnm"          }
     , "fushark"         : { "proper": "FuShark"         }
 	, "snailpirate"     : { "proper": "snailpirate"     }
+    , "ninjamuffin99"   : { "proper": "ninjamuffin99"   }
+    , "dogl"            : { "proper": "dogl"            }
+    , "irri"            : { "proper": "irri"            }
+    , "thriftman"       : { "proper": "thriftman"       }
+    , "wandaboy"        : { "proper": "wandaboy"        }
+    , "wavetro"         : { "proper": "wavetro"         }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -400,5 +409,21 @@
             }
         }
     ]
-    
+,   "movies":
+    {   "snackers": 
+        { "name": "Duncan & Jones 3"
+        , "path": "https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"
+        , "credits":
+            [ "snackers"
+            , "ninjamuffin99:music"
+            , "carmet:music"
+            , "dogl:adl_art"
+            , "irri:bg"
+            , "mkmaffo:adl_anim"
+            , "thriftman:va"
+            , "wandaboy:adl_anim"
+            , "wavetro:va"
+            ]
+        }
+    }
 }

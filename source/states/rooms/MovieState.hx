@@ -27,7 +27,7 @@ class MovieState extends RoomState
     
     function watchMovie()
     {
-        openSubState(new VideoSubstate("assets/movies/snackers.mp4"));
+        openSubState(new VideoSubstate("https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"));
     }
     
     inline static var GRID_LEFT = 88;
