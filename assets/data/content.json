@@ -53,6 +53,7 @@
     , "mig-moog"        : { "proper": "Mig-Moog"        }
     , "boomnm"          : { "proper": "boomnm"          }
     , "fushark"         : { "proper": "FuShark"         }
+	, "snailpirate"     : { "proper": "snailpirate"     }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -286,6 +287,12 @@
         , "name"   : "Duncan & Jones: Cancel Christmas"
         , "authors": ["fushark"]
         , "day"    : 19
+        , "medal"  : true
+        }
+	,   { "id"     : "snailpirate"
+        , "name"   : "The Coziest Of NG Christmas Parties"
+        , "authors": ["snailpirate"]
+        , "day"    : 20
         , "medal"  : true
         }
     ]

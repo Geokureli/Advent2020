@@ -92,7 +92,7 @@
 ,   { "id": "hellbenders"
     , "proper": "The Hellbenders"
     , "description": "Two friends: Chris and Zach. They live in a world surrounded\nby... not-so-normal things."
-    , "unlocksBy": null
+    , "unlocksBy": "day:19"
     , "users": ["oney", "ricepirate", "psychicpebbles"]
     }
 ,   { "id": "tardigrade"
@@ -259,7 +259,7 @@
 ,   { "id": "gilded_guy"
     , "proper": "Gilded Guy"
     , "description": ""
-    , "unlocksBy": null
+    , "unlocksBy": "day:20"
     , "users": ["gildedguy"]
     }
 ,   { "id": "luis"
@@ -346,9 +346,9 @@
     }
 ,   { "id": "slime"
     , "proper": "Slime Girl"
-    , "description": ""
-    , "unlocksBy": null
-    , "users": ["brandybuizel", "ninjamuffin99", "digimin"]
+    , "description": "She's all the rage in both monster and monster hunter circles.\nSmash her in her breakout role as dungeon hottie in Monster Mashing on Newgrounds!"
+    , "unlocksBy": "medal:19"
+    , "users": ["brandybuizel", "ninjamuffin99", "digimin", "fushark"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
