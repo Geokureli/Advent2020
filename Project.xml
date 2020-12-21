@@ -109,7 +109,7 @@
 		<!-- <define name="SKIP_TO_DIG_GAME" if="debug"/> -->
 		
 		<classpath name="digMinigame/source"/>
-		<assets path="digMinigame/assets" rename="assets"/>
+		<assets path="digMinigame/assets" rename="assets" exclude="*.ase|*.wav" />
 		
 	</section>
 	

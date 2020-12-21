@@ -36,10 +36,10 @@ class Instrument
         var type = Save.getInstrument();
         Log.instrument(type + " setting");
         #if !(PRELOAD_INSTRUMENTS)
-        if (Assets.getLibrary(type) == null)
+        loading = Assets.getLibrary(type) == null;
+        if (loading)
         {
             Log.instrument(type + " loading");
-            loading = true;
             Assets.loadLibrary(type).onComplete(
                 function (lib)
                 {
