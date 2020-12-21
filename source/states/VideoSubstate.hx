@@ -1,6 +1,7 @@
 package states;
 
 
+import data.NGio;
 import openfl.display.MovieClip;
 import openfl.display.Bitmap;
 import openfl.geom.Rectangle;
@@ -38,6 +39,7 @@ class VideoSubstate extends flixel.FlxSubState
             FlxG.sound.music.pause();
         
         FlxG.stage.addChild(ui);
+        NGio.unlockMedalByName("movie");
     }
     
     override function update(elapsed:Float)
