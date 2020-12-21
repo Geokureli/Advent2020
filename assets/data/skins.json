@@ -258,7 +258,7 @@
     }
 ,   { "id": "gilded_guy"
     , "proper": "Gilded Guy"
-    , "description": "If he took off the helmet you'd be like "who's this", but with the\nfull suit on you'll recognize this lad from some amazingly kickass animated fights!"
+    , "description": "If he took off the helmet you'd be like 'who's this', but with the\nfull suit on you'll recognize this lad from some amazingly kickass animated fights!"
     , "unlocksBy": "day:20"
     , "users": ["gildedguy"]
     }
