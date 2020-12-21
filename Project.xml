@@ -42,6 +42,8 @@
 		<!-- <define name="BOOT_LOG"/> -->
 		<!-- <define name="OGMO_LOG"/> -->
 		<!-- <define name="SAVE_LOG"/> -->
+		<define name="INSTRUMENT_LOG"/>
+		<!-- <define name="INSTRUMENT_LOG_VERBOSE"/> -->
 	</section>
 	
 	<!-- <define name="PRELOAD_ALL" if="debug" /> -->
@@ -92,12 +94,12 @@
 		<library name="guitar_el"    preload="false" />
 		<library name="piano"        preload="false" />
 	</section>
-	<assets path="assets/notes/drums"        library="drums" />
-	<assets path="assets/notes/flute"        library="flute" />
-	<assets path="assets/notes/glockenspiel" library="glockenspiel" />
-	<assets path="assets/notes/guitar_ac"    library="guitar_ac" />
-	<assets path="assets/notes/guitar_el"    library="guitar_el" />
-	<assets path="assets/notes/piano"        library="piano" />
+	<assets path="assets/notes/drums"        exclude="*.wav" library="drums" />
+	<assets path="assets/notes/flute"        exclude="*.wav" library="flute" />
+	<assets path="assets/notes/glockenspiel" exclude="*.wav" library="glockenspiel" />
+	<assets path="assets/notes/guitar_ac"    exclude="*.wav" library="guitar_ac" />
+	<assets path="assets/notes/guitar_el"    exclude="*.wav" library="guitar_el" />
+	<assets path="assets/notes/piano"        exclude="*.wav" library="piano" />
 	
 	<library path="assets/swfs/Animations.swf" id="Animations" preload="true" />
 

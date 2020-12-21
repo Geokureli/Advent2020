@@ -1,5 +1,6 @@
 package data;
 
+import utils.Log;
 import openfl.utils.Assets;
 import data.Content;
 
@@ -33,13 +34,16 @@ class Instrument
     static public function setCurrent():Void
     {
         var type = Save.getInstrument();
+        Log.instrument(type + " setting");
         #if !(PRELOAD_INSTRUMENTS)
         if (Assets.getLibrary(type) == null)
         {
+            Log.instrument(type + " loading");
             loading = true;
             Assets.loadLibrary(type).onComplete(
                 function (lib)
                 {
+                    Log.instrument(type + " loaded, current:" + (current.id == type));
                     if (current.id == type)
                         loading = false;
                 }
