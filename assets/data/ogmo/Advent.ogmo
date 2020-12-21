@@ -296,6 +296,44 @@
       ],
       "texture": "../../images/props/shared/big_door_ogmo.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAoCAYAAAC8cqlMAAAAAXNSR0IArs4c6QAAAypJREFUWIXtWU1rGkEYfixWQhKpIehGVkpMPdUQSGgwOXjy7j23/A3zBwL5FfkNbS8NhBJySMEeSmmgAatQXPxKUUkjRQ/2IDPOzs7szOraWukDwuzs7LzPs+/7zs47BqCJg+jOUHesn/jQ+hzQGaccxApIm+FpOHnGrfVA2ypB0pt/UwAPHUHCTiKCFfDj5y9/2WlifXWJtokgkRhHx0F0Z+gmoN4d+MfSBRvPntqueUG8GNsFK4IVwJIv5ExtMteVpu06m4xpP3t6adE2K4oI4sXQhpuI48Mo4sshAECt16dtN7z+UgUArK2MxrYf+wCA/HZC+Sxro9br4/ympRTzRCai3h2g3h2gkDNtxHVETAveXiFnUj4sx7QZpvkcYBObFVHImaj1+ig1OgDGYWHGNxyGP377TtvFsj2ceI8Q7G+Nw+zVi+eOOa1aHcA4PFNGBPHlEE4vLeqd9dUlugAEiQgZUkaEimENsGDfYH47getK00GcFcbnimhOnoMMaTOMW+thFFqAPaTShv0j7iVJVYbd7onA204bQ0eIARgLkeFP5IQfHGxCRN6YFu3HvjTMJgXrFQKlR0TJrQJ5g2xCk/YkHtbhoBTyr2BmQlhvuPX5hf8emTcIhcwyBKaFjJtDyDyLIBBxXOzQYqHaB4mwd3aCTP7I0Z/JH2Hv7MTzfDocfPdIa3MX9xd3AIDgywztJ+37izu0Nnf9Nrs4oRX0e8Kv79/h6tOoHA5VK7T/5u0bXCWSAACjbSHqcUetgtAjbP3hFdlkDEbbsokgCFUrCFUrnssCHW4OIcVy03PNwCObjNHKcH8rRpfLtZWQVs3uhpQRcVShwIxypNaTb9vd7k2DhUl2X4WI3nap0RHGtd+eWWyPTLpqsdWfqLxl+yY9C9BetWQk5gUybosdWtNAJ4lnsQQrhXg1qhP7XvOD5UA+tDxchYi+oDIjtV6f/tyeK5abtrE80Um5KD1SanRcDfEn5zorXqnR0T7hZw/SCUReCYoOsMlAL/siQoZsCEUH2fwBtm4YxhWbzLQZHv+tQHB8GFVOzrtZVufzb1K2GdWdj8X5Tct2/RukrHIPayhDZgAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "56131194",
+      "name": "Seat",
+      "limit": -1,
+      "size": {"x": 8, "y": 8},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#00ff00ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 8, "y": 8},
+      "resizeableX": true,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "popular", "definition": "Boolean", "defaults": true}
+      ]
     }
   ],
   "tilesets": [

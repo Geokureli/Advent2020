@@ -10,8 +10,8 @@ import io.colyseus.serializer.schema.Schema;
 
 class GhostPlayer extends Player
 {
-    var key:String;
-    var name:String;
+    public var key(default, null):String;
+    public var name(default, null):String;
     var nameText:FlxBitmapText;
     var leaveCallback:()->Void;
     
@@ -25,6 +25,7 @@ class GhostPlayer extends Player
         nameText.alignment = CENTER;
         updateNameText(name);
         shader = new vfx.GhostShader();
+        usePaths = true;
     }
     
     override function update(elapsed:Float)
