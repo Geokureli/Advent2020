@@ -47,22 +47,21 @@
     , "k-4998572"       : { "proper": null              }
     , "heyopc"          : { "proper": null              }
     , "everratic"       : { "proper": "Everratic"       }
-    , "dogl"            : { "proper": null              }
     , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
     , "mimny"           : { "proper": "Mimny"           }
     , "figburn"         : { "proper": "Figburn"         }
     , "precipitation24" : { "proper": "Precipitation24" }
     , "octong"          : { "proper": "OctoNG"          }
     , "mig-moog"        : { "proper": "Mig-Moog"        }
-    , "boomnm"          : { "proper": "boomnm"          }
+    , "boomnm"          : { "proper": "Boomnm"          }
     , "fushark"         : { "proper": "FuShark"         }
-	, "snailpirate"     : { "proper": "snailpirate"     }
+	, "snailpirate"     : { "proper": "SnailPirate"     }
     , "ninjamuffin99"   : { "proper": "ninjamuffin99"   }
     , "dogl"            : { "proper": "dogl"            }
-    , "irri"            : { "proper": "irri"            }
-    , "thriftman"       : { "proper": "thriftman"       }
-    , "wandaboy"        : { "proper": "wandaboy"        }
-    , "wavetro"         : { "proper": "wavetro"         }
+    , "irri"            : { "proper": "Irri"            }
+    , "thriftman"       : { "proper": "Thriftman"       }
+    , "wandaboy"        : { "proper": "Wandaboy"        }
+    , "wavetro"         : { "proper": "Wavetro"         }
     }
 ,   "songs":
     [   { "id"       : "albegian"
