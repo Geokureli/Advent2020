@@ -42,10 +42,6 @@
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
     , "carmet"          : { "proper": "Carmet"          }
     , "krinkels"        : { "proper": "Krinkels"        }
-    , "tenodiboris"     : { "proper": null              }
-    , "mattrguitar123"  : { "proper": null              }
-    , "k-4998572"       : { "proper": null              }
-    , "heyopc"          : { "proper": null              }
     , "everratic"       : { "proper": "Everratic"       }
     , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
     , "mimny"           : { "proper": "Mimny"           }
@@ -62,6 +58,12 @@
     , "thriftman"       : { "proper": "Thriftman"       }
     , "wandaboy"        : { "proper": "Wandaboy"        }
     , "wavetro"         : { "proper": "Wavetro"         }
+    , "rgpanims"        : { "proper": "RGPAnims"        }
+    , "loganphresh"     : { "proper": "LoganPhresh"     }
+    , "tenodiboris"     : { "proper": "TenodiBoris"     }
+    , "mattrguitar123"  : { "proper": null              }
+    , "k-4998572"       : { "proper": null              }
+    , "heyopc"          : { "proper": null              }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -303,6 +305,18 @@
         , "day"    : 20
         , "medal"  : true
         }
+	,   { "id"     : "rgpanims"
+        , "name"   : "The Coziest Of NG Christmas Parties"
+        , "authors": ["rgpanims"]
+        , "day"    : 21
+        , "medal"  : true
+        }
+	,   { "id"     : "loganphresh"
+        , "name"   : "Sex and Candy"
+        , "authors": ["loganphresh"]
+        , "day"    : 22
+        , "medal"  : true
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }
@@ -350,6 +364,7 @@
     , "lucia"     : 61514
     , "cheese"    : 61555
     , "positivity": 61559
+    , "movie"     : 61559
     }
 ,   "instruments":
     [   { "id"    : "guitar_ac"
