@@ -105,22 +105,22 @@
       "gridCellsX": 60,
       "gridCellsY": 34,
       "decals": [
-        {"x": 72, "y": 120, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 96, "y": 128, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 120, "y": 128, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 144, "y": 128, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 168, "y": 128, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 272, "y": 168, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 224, "y": 160, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 248, "y": 168, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 192, "y": 136, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 320, "y": 120, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 344, "y": 120, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 368, "y": 120, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 392, "y": 176, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 416, "y": 176, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 440, "y": 176, "texture": "shared/lucia_cat_ogmo.png"},
-        {"x": 16, "y": 144, "texture": "shared/lucia_cat_ogmo.png"}
+        {"x": 72, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 96, "y": 128, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 120, "y": 128, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 144, "y": 128, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 168, "y": 128, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 272, "y": 168, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 224, "y": 160, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 248, "y": 168, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 192, "y": 136, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 320, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 344, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 368, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 392, "y": 176, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 416, "y": 176, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 440, "y": 176, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"},
+        {"x": 16, "y": 144, "scaleX": 1, "scaleY": 1, "texture": "shared/lucia_cat_ogmo.png"}
       ],
       "folder": "../../images/props"
     },
@@ -134,11 +134,11 @@
       "gridCellsX": 60,
       "gridCellsY": 34,
       "decals": [
-        {"x": 240, "y": 124.5, "texture": "hallway/hallway.png"},
-        {"x": 96, "y": 76, "texture": "hallway/candle.png"},
-        {"x": 208, "y": 76, "texture": "hallway/candle.png"},
-        {"x": 320, "y": 76, "texture": "hallway/candle.png"},
-        {"x": 432, "y": 76, "texture": "hallway/candle.png"}
+        {"x": 240, "y": 124.5, "scaleX": 1, "scaleY": 1, "texture": "hallway/hallway.png"},
+        {"x": 96, "y": 76, "scaleX": 1, "scaleY": 1, "texture": "hallway/candle.png"},
+        {"x": 208, "y": 76, "scaleX": 1, "scaleY": 1, "texture": "hallway/candle.png"},
+        {"x": 320, "y": 76, "scaleX": 1, "scaleY": 1, "texture": "hallway/candle.png"},
+        {"x": 432, "y": 76, "scaleX": 1, "scaleY": 1, "texture": "hallway/candle.png"}
       ],
       "folder": "../../images/props"
     }

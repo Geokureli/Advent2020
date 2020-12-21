@@ -41,7 +41,7 @@
       "exportID": "58641295",
       "folder": "../../images/props",
       "includeImageSequence": true,
-      "scaleable": false,
+      "scaleable": true,
       "rotatable": false,
       "values": []
     },
@@ -52,7 +52,7 @@
       "exportID": "58641246",
       "folder": "../../images/props",
       "includeImageSequence": true,
-      "scaleable": false,
+      "scaleable": true,
       "rotatable": false,
       "values": []
     }
