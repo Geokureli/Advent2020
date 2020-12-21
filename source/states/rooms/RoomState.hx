@@ -360,7 +360,11 @@ class RoomState extends OgmoState
     
     function getDaySprite(layer:OgmoDecalLayer, name:String)
     {
-        return layer.getIndexNamedObject(name, Calendar.day);
+        final index = layer.getObjectNameIndex(name, Calendar.day);
+        if (index != null)
+            return layer.getByName(name + index);
+        
+        return layer.getByName(name);
     }
     
     function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
