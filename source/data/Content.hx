@@ -3,6 +3,7 @@ package data;
 import states.OgmoState;
 
 import flixel.system.FlxSound;
+import flixel.util.FlxSignal;
 
 import openfl.utils.Assets;
 
@@ -10,6 +11,9 @@ import haxe.Json;
 
 class Content
 {
+    public static var onInit(default, null) = new FlxSignal();
+    public static var isInitted(default, null) = false;
+    
     public static var credits:Map<User, CreditContent>;
     public static var artwork:Map<String, ArtCreation>;
     public static var artworkByDay:Map<Int, ArtCreation>;
@@ -126,6 +130,9 @@ class Content
             medals[name] = id;
             medalsById[id] = name;
         }
+        
+        isInitted = true;
+        onInit.dispatch();
     }
     
     /**
