@@ -247,7 +247,7 @@
 ,   { "id": "duncan_and_jones"
     , "proper": "Duncan & Jones"
     , "description": "The two hottest crime fighters on the website."
-    , "unlocksBy": "medal:6"
+    , "unlocksBy": "medal:6,medal:19"
     , "users": ["snackers"]
     }
 ,   { "id": "purple_imposter"
