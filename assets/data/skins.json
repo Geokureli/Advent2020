@@ -258,7 +258,7 @@
     }
 ,   { "id": "gilded_guy"
     , "proper": "Gilded Guy"
-    , "description": ""
+    , "description": "If he took off the helmet you'd be like "who's this", but with the\nfull suit on you'll recognize this lad from some amazingly kickass animated fights!"
     , "unlocksBy": "day:20"
     , "users": ["gildedguy"]
     }
@@ -284,7 +284,7 @@
 ,   { "id": "drbees"
     , "proper": "Dr. Bees"
     , "description": "I'm Dr. Miles Manners, just your average wasp-themed superhero by day, but by night I become Dr. Bees!"
-    , "unlocksBy": null
+    , "unlocksBy": "day:22"
     , "users": ["happyharry"]
     , "group": "harry"
     }
