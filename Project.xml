@@ -73,7 +73,7 @@
 	<library name="noPreload" preload="true" if="PRELOAD_ALL" />
 	<library name="noPreload" preload="false" unless="PRELOAD_ALL" />
 	<assets path="assets/music" library="noPreload"  include="*.mp3" />
-	<assets path="assets/artwork" library="noPreload" />
+	<assets path="assets/artwork" library="noPreload" include="*.png|*.jpg|*.jpeg"/>
 	<assets path="assets/movies" library="noPreload" if="INCLUDE_MOVIES" />
 	
 	<!-- <define name="PRELOAD_INSTRUMENTS"/> -->
