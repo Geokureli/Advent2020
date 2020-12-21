@@ -258,7 +258,7 @@
     }
 ,   { "id": "gilded_guy"
     , "proper": "Gilded Guy"
-    , "description": ""
+    , "description": "If he took off the helmet you'd be like 'who's this', but with the\nfull suit on you'll recognize this lad from some amazingly kickass animated fights!"
     , "unlocksBy": "day:20"
     , "users": ["gildedguy"]
     }
@@ -284,7 +284,7 @@
 ,   { "id": "drbees"
     , "proper": "Dr. Bees"
     , "description": "I'm Dr. Miles Manners, just your average wasp-themed superhero by day, but by night I become Dr. Bees!"
-    , "unlocksBy": null
+    , "unlocksBy": "day:22"
     , "users": ["happyharry"]
     , "group": "harry"
     }
@@ -336,7 +336,7 @@
     , "proper": "Zone-tan"
     , "description": ""
     , "unlocksBy": null
-    , "users": ["zone-sama"]
+    , "users": ["zone-sama", "brandybuizel"]
     }
 ,   { "id": "gentles"
     , "proper": "Gentles"
@@ -349,6 +349,12 @@
     , "description": "She's all the rage in both monster and monster hunter circles.\nSmash her in her breakout role as dungeon hottie in Monster Mashing on Newgrounds!"
     , "unlocksBy": "medal:19"
     , "users": ["brandybuizel", "ninjamuffin99", "digimin", "fushark"]
+    }
+,   { "id": "squado"
+    , "proper": "Ghost Squad James"
+    , "description": "He's been murdered by a ghost and forced to be an anime\ncrime-fighting teen as the green member of the GHOST SQUAD!"
+    , "unlocksBy": null
+    , "users": ["brandybuizel", "Kieran-s"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
