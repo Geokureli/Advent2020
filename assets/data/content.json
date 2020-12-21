@@ -59,7 +59,7 @@
     , "wandaboy"        : { "proper": "Wandaboy"        }
     , "wavetro"         : { "proper": "Wavetro"         }
     , "rgpanims"        : { "proper": "RGPAnims"        }
-    , "loganphresh"     : { "proper": "LoganPhresh"     }
+    , "loganphresh"     : { "proper": "Logan Phresh"     }
     , "tenodiboris"     : { "proper": "TenodiBoris"     }
     , "mattrguitar123"  : { "proper": null              }
     , "k-4998572"       : { "proper": null              }
@@ -316,6 +316,7 @@
         , "authors": ["loganphresh"]
         , "day"    : 22
         , "medal"  : true
+        , "sound"  : "sexandcandy.mp3"
         }
     ]
 ,   "events":

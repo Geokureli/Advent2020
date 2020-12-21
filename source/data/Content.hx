@@ -374,6 +374,7 @@ typedef ArtCreation
     var antiAlias:Null<Bool>;
     var medal:Null<Bool>;
     var preload:Bool;
+    var sound:String;
 }
 
 typedef SongCreation

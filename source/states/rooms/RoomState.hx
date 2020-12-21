@@ -330,11 +330,15 @@ class RoomState extends OgmoState
     {
         // Start loading now, hopefully it finishes during the animation
         Manifest.loadArt(present.id);
+        var data = Content.artwork[present.id];
         
-        FlxG.sound.play("assets/sounds/present_open.mp3");
+        var sound = "present_open.mp3";
+        if (data.sound != null && NGio.isLoggedIn && !NGio.hasDayMedal(data.day) && !present.isOpen)
+            sound = data.sound;
+        FlxG.sound.play("assets/sounds/" + sound);
+        
         present.animateOpen(function ()
             {
-                var data = Content.artwork[present.id];
                 var medal = data.medal;
                 if (!Calendar.isDebugDay
                 &&  (data.day == 1 || Calendar.day == data.day)
