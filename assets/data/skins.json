@@ -333,7 +333,7 @@
     , "users": null
     }
 ,   { "id": "zone"
-    , "proper": "Zone-tan"
+    , "proper": "Zone-Tan"
     , "description": ""
     , "unlocksBy": null
     , "users": ["zone-sama", "brandybuizel"]
