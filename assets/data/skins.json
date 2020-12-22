@@ -316,7 +316,7 @@
     , "proper": "Hank J. Wimbleton"
     , "description": "A psychopathic mercenary gunman on a take-no-prisoners mission to wipe out an all-powerful Agency..."
     , "unlocksBy": "medal:14"
-    , "users": ["krinkels"]
+    , "users": ["krinkels", "AlmightyHans"]
     }
 ,   { "id": "madness_auditor"
     , "proper": "The Auditor"
