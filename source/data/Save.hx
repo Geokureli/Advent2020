@@ -91,6 +91,18 @@ class Save
         
         if (newData)
             flush();
+        
+        function setInitialInstrument()
+        {
+            var instrument = getInstrument();
+            if (instrument != null)
+                Instrument.setCurrent();
+        }
+        
+        if (Content.isInitted)
+            setInitialInstrument();
+        else
+            Content.onInit.addOnce(setInitialInstrument);
     }
     
     static function flush()
@@ -217,7 +229,7 @@ class Save
         PlayerSettings.user.instrument = type;
         data.instrument = Content.instruments[type].index;
         flush();
-        Instrument.onChange.dispatch();
+        Instrument.setCurrent();
     }
     
     static public function getInstrument()

@@ -41,7 +41,7 @@
       "exportID": "58641295",
       "folder": "../../images/props",
       "includeImageSequence": true,
-      "scaleable": false,
+      "scaleable": true,
       "rotatable": false,
       "values": []
     },
@@ -52,7 +52,7 @@
       "exportID": "58641246",
       "folder": "../../images/props",
       "includeImageSequence": true,
-      "scaleable": false,
+      "scaleable": true,
       "rotatable": false,
       "values": []
     }
@@ -256,6 +256,84 @@
       ],
       "texture": "../../images/props/arcade/cabinet_ogmo.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8CAYAAAAUufjgAAAACXBIWXMAAAsTAAALEwEAmpwYAAAMjmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAyMC0xMi0wN1QyMTozMS0wNTowMCIgeG1wOk1vZGlmeURhdGU9IjIwMjAtMTItMDdUMjM6MDk6MTAtMDU6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjAtMTItMDdUMjM6MDk6MTAtMDU6MDAiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MWM2YzFmOTItMWU4OC02MjQ5LTg4OTEtYjA2Yzk3YzhiYWU2IiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6YTRkYTI3NDEtM2Y5OS0wNjQwLWEyMDktMDAwYzM1MjJhNmIzIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6YmI2MmI5YWItYjFiNi0yZDRiLWI3OTctYjM1YWMxYWZjMmU1Ij4gPHBob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHJkZjpCYWc+IDxyZGY6bGk+eG1wLmRpZDpiYjYyYjlhYi1iMWI2LTJkNGItYjc5Ny1iMzVhYzFhZmMyZTU8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpiYjYyYjlhYi1iMWI2LTJkNGItYjc5Ny1iMzVhYzFhZmMyZTUiIHN0RXZ0OndoZW49IjIwMjAtMTItMDdUMjE6MzEtMDU6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NDQ3MTRkNWUtMjFiNC1hYzQ0LTg2ZDMtMjc4YjA3MmJlMDg3IiBzdEV2dDp3aGVuPSIyMDIwLTEyLTA3VDIyOjUwOjM1LTA1OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjlmZDM5NGI0LTY4ZTEtOTg0OC04ZTBkLTA3ZmQwNTk1ZDA1YiIgc3RFdnQ6d2hlbj0iMjAyMC0xMi0wN1QyMzowMTo1MC0wNTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjb252ZXJ0ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImZyb20gaW1hZ2UvcG5nIHRvIGFwcGxpY2F0aW9uL3ZuZC5hZG9iZS5waG90b3Nob3AiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImRlcml2ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImNvbnZlcnRlZCBmcm9tIGltYWdlL3BuZyB0byBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo4NWUyMzJmNC03ZTZlLThkNGQtYWQ3YS1kMzAwOWJkYTQwNWIiIHN0RXZ0OndoZW49IjIwMjAtMTItMDdUMjM6MDE6NTAtMDU6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6Mzk1NmE1NzAtMzJkMS0xNzQwLTk5MTAtMThmMzU3Yjg2NDFhIiBzdEV2dDp3aGVuPSIyMDIwLTEyLTA3VDIzOjA5OjEwLTA1OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iZGVyaXZlZCIgc3RFdnQ6cGFyYW1ldGVycz0iY29udmVydGVkIGZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCB0byBpbWFnZS9wbmciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjFjNmMxZjkyLTFlODgtNjI0OS04ODkxLWIwNmM5N2M4YmFlNiIgc3RFdnQ6d2hlbj0iMjAyMC0xMi0wN1QyMzowOToxMC0wNTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozOTU2YTU3MC0zMmQxLTE3NDAtOTkxMC0xOGYzNTdiODY0MWEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODVlMjMyZjQtN2U2ZS04ZDRkLWFkN2EtZDMwMDliZGE0MDViIiBzdFJlZjpvcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6YmI2MmI5YWItYjFiNi0yZDRiLWI3OTctYjM1YWMxYWZjMmU1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+IzryAAAAAmxJREFUaN7t2TtLA0EQB/B8DLGxVwwWPjDYGkyhjUYs1EZIvoCCjcVZ2Ch2ChYGsbCRgI0idtZWKfNpTuZgZDLZ2Udu93aRFH+I593t7+Zem0ktz/PaW6+nzOzMXN45zaIFxq9JQIo7u7yuNIgTgbFxWiD+IwaOVm9rpzMOpLjY194YEHEpBHBK4EH3PFo4TqwgXTl0nIC8ilUjkwfimBQnPmZSqKLxORj7Zmk2j/VvktjRAjl2dbk1lqf3z1JR7RNhmImAZWE6aGkg7PBnOBxJ0kAfFcwen8sBKdI3jgI5zhlIq+fzGvQGDFE9BEK8AX3fxd6AeIpD4LwBQ1UvSSDFJQfkuKOLLA0gh2G8PQdDAKF60lukMqBUOa/Aer3hDYUwDAfCZ/gSbw0c3LzkX+v7RepLK15QFIdADHYZrIGIu19YLICIVCFuXwf52tVHEQmlm0lTnPV0C3EQ01QdcfOHd87TfNqjsQLSDeGblk3zB3GQSRtIMOZGY9fcH8QN4JQCsN/vF5/pzlrb7b9rE5fZHoyE0wJV5UYkIjiK4kwHAxXmy3nlIMrOAq+cLtIgqoOhKGk7bLshTmx9hGhK6g6G9gQpTtnditmw5LgRYEpNSxEYqw+jqtwU6Io0AvEmkVYMGV0Vk+vya4H8TYJP9NDh4xmBVZ9uCWcEpnAnWwN9vjVsgbAMLNZAm18obdazBcJyZ+B3tlcE53ywYxUQB+Tb2AKxes7Ah3Z3IiBs5wLE6nk5xc3NkxEg/F3mFNPqOQFhYFVUN4JuXROQVs8JWMVdzKuXHJBX7/8Aq3iTqHBToMvPr1J3I4nZjA74C8RAHIaX+SauAAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "39224284",
+      "name": "BigDoor",
+      "limit": -1,
+      "size": {"x": 50, "y": 40},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 50, "y": 40},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "open", "definition": "Boolean", "defaults": false}
+      ],
+      "texture": "../../images/props/shared/big_door_ogmo.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAoCAYAAAC8cqlMAAAAAXNSR0IArs4c6QAAAypJREFUWIXtWU1rGkEYfixWQhKpIehGVkpMPdUQSGgwOXjy7j23/A3zBwL5FfkNbS8NhBJySMEeSmmgAatQXPxKUUkjRQ/2IDPOzs7szOraWukDwuzs7LzPs+/7zs47BqCJg+jOUHesn/jQ+hzQGaccxApIm+FpOHnGrfVA2ypB0pt/UwAPHUHCTiKCFfDj5y9/2WlifXWJtokgkRhHx0F0Z+gmoN4d+MfSBRvPntqueUG8GNsFK4IVwJIv5ExtMteVpu06m4xpP3t6adE2K4oI4sXQhpuI48Mo4sshAECt16dtN7z+UgUArK2MxrYf+wCA/HZC+Sxro9br4/ympRTzRCai3h2g3h2gkDNtxHVETAveXiFnUj4sx7QZpvkcYBObFVHImaj1+ig1OgDGYWHGNxyGP377TtvFsj2ceI8Q7G+Nw+zVi+eOOa1aHcA4PFNGBPHlEE4vLeqd9dUlugAEiQgZUkaEimENsGDfYH47getK00GcFcbnimhOnoMMaTOMW+thFFqAPaTShv0j7iVJVYbd7onA204bQ0eIARgLkeFP5IQfHGxCRN6YFu3HvjTMJgXrFQKlR0TJrQJ5g2xCk/YkHtbhoBTyr2BmQlhvuPX5hf8emTcIhcwyBKaFjJtDyDyLIBBxXOzQYqHaB4mwd3aCTP7I0Z/JH2Hv7MTzfDocfPdIa3MX9xd3AIDgywztJ+37izu0Nnf9Nrs4oRX0e8Kv79/h6tOoHA5VK7T/5u0bXCWSAACjbSHqcUetgtAjbP3hFdlkDEbbsokgCFUrCFUrnssCHW4OIcVy03PNwCObjNHKcH8rRpfLtZWQVs3uhpQRcVShwIxypNaTb9vd7k2DhUl2X4WI3nap0RHGtd+eWWyPTLpqsdWfqLxl+yY9C9BetWQk5gUybosdWtNAJ4lnsQQrhXg1qhP7XvOD5UA+tDxchYi+oDIjtV6f/tyeK5abtrE80Um5KD1SanRcDfEn5zorXqnR0T7hZw/SCUReCYoOsMlAL/siQoZsCEUH2fwBtm4YxhWbzLQZHv+tQHB8GFVOzrtZVufzb1K2GdWdj8X5Tct2/RukrHIPayhDZgAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "56131194",
+      "name": "Seat",
+      "limit": -1,
+      "size": {"x": 8, "y": 8},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#00ff00ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 8, "y": 8},
+      "resizeableX": true,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "popular", "definition": "Boolean", "defaults": true}
+      ]
     }
   ],
   "tilesets": [

@@ -104,7 +104,14 @@ class RoomState extends OgmoState
         FlxG.mouse.visible = !FlxG.onMobile;
         // #if debug FlxG.debugger.drawDebug = true; #end
         
-        entityTypes["Door"] = cast Door.fromEntity;
+        function addDoor(data)
+        {
+            var door = Door.fromEntity(data);
+            colliders.add(door);
+            return door;
+        }
+        entityTypes["Door"] = cast addDoor;
+        entityTypes["BigDoor"] = cast addDoor;
         entityTypes["Teleport"] = cast function(data)
         {
             var teleport = Teleport.fromEntity(data);
@@ -235,12 +242,12 @@ class RoomState extends OgmoState
         uiCamera.bgColor = 0x0;
         FlxG.cameras.add(uiCamera);
         ui.camera = uiCamera;
-        ui.add(medalPopup = MedalPopup.getInstance());
-        ui.add(musicPopup = MusicPopup.getInstance());
-        ui.add(skinPopup = SkinPopup.getInstance());
         ui.add(instrument = new FlxButton(FlxG.width, 0, onInstrumentClick));
         Instrument.onChange.add(updateInstrument);
         updateInstrument();
+        ui.add(medalPopup = MedalPopup.getInstance());
+        ui.add(musicPopup = MusicPopup.getInstance());
+        ui.add(skinPopup = SkinPopup.getInstance());
         var fullscreen = new FullscreenButton();
         fullscreen.updateHitbox();
         fullscreen.x = FlxG.width - fullscreen.width - 4;
@@ -323,11 +330,15 @@ class RoomState extends OgmoState
     {
         // Start loading now, hopefully it finishes during the animation
         Manifest.loadArt(present.id);
+        var data = Content.artwork[present.id];
         
-        FlxG.sound.play("assets/sounds/present_open.mp3");
+        var sound = "present_open.mp3";
+        if (data.sound != null && NGio.isLoggedIn && !NGio.hasDayMedal(data.day) && !present.isOpen)
+            sound = data.sound;
+        FlxG.sound.play("assets/sounds/" + sound);
+        
         present.animateOpen(function ()
             {
-                var data = Content.artwork[present.id];
                 var medal = data.medal;
                 if (!Calendar.isDebugDay
                 &&  (data.day == 1 || Calendar.day == data.day)
@@ -349,7 +360,11 @@ class RoomState extends OgmoState
     
     function getDaySprite(layer:OgmoDecalLayer, name:String)
     {
-        return layer.getIndexNamedObject(name, Calendar.day);
+        final index = layer.getObjectNameIndex(name, Calendar.day);
+        if (index != null)
+            return layer.getByName(name + index);
+        
+        return layer.getByName(name);
     }
     
     function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
@@ -360,7 +375,7 @@ class RoomState extends OgmoState
         if (decal == null)
             throw 'can\'t find $target in foreground or props';
         
-        addHoverTextTo(decal, text, callback, hoverDis);
+        return addHoverTextTo(decal, text, callback, hoverDis);
     }
     
     function safeAddHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
@@ -369,12 +384,14 @@ class RoomState extends OgmoState
         if (decal == null)
             decal = cast props.getByName(target);
         if (decal != null)
-            addHoverTextTo(decal, text, callback, hoverDis);
+            return addHoverTextTo(decal, text, callback, hoverDis);
+        
+        return null;
     }
     
     function addHoverTextTo(target:FlxObject, ?text:String, ?callback:Void->Void, hoverDis = 20)
     {
-        addHoverTo(target, cast new InfoTextBox(text, callback), hoverDis);
+        return addHoverTo(target, cast new InfoTextBox(text, callback), hoverDis);
     }
     
     inline function initArtPresent(present:Present, ?callback:(Present)->Void)
@@ -478,6 +495,9 @@ class RoomState extends OgmoState
         Net.logVerbose("avatar added at " + key + " => " + data);
         Net.logVerbose(Net.room.sessionId + ' added: $key=>${data.name} ${data.skin}@(${data.x}, ${data.y})');
         
+        if (key == null)
+            return;
+        
         if (key != Net.room.sessionId)
         {
             Net.logVerbose(Net.room.sessionId + ' this AINT you');
@@ -532,9 +552,9 @@ class RoomState extends OgmoState
             }
         );
         
-        if (cheese != null && cheese.overlaps(player))
+        if (cheese != null && cheese.overlaps(player) && cheese.solid)
         {
-            NGio.unlockMedal(61555);
+            NGio.unlockMedalByName("cheese");
             FlxG.sound.play("assets/sounds/pickup2.mp3");
             cheese.solid = false;
             FlxTween.tween(cheese, { y: cheese.y - 32 }, 0.5,
@@ -799,5 +819,9 @@ enum abstract RoomName(String) to String
     var Outside  = "outside";
     var Arcade   = "arcade";
     var Studio   = "music";
+<<<<<<< HEAD
     var Dance    = "dance";
+=======
+    var Movie    = "movie";
+>>>>>>> master
 }

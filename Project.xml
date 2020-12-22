@@ -2,7 +2,11 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
+<<<<<<< HEAD
 	<app title="Advent2020" file="Advent2020" main="Main" version="0.8.0" company="HaxeFlixel" />
+=======
+	<app title="Advent2020" file="Advent2020" main="Main" version="0.8.7" company="HaxeFlixel" />
+>>>>>>> master
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -33,19 +37,26 @@
 	<!-- <define name="NG_LURKER" if="debug"/> -->
 	<define name="NG_DEBUG" if="debug"/>
 	
-	<define name="LOG"/>
+	<define name="LOG" if="debug"/>
 	<section if="LOG">
-		<!-- <define name="NG_LOG"/> -->
+		<define name="NG_LOG"/>
 		<!-- <define name="NG_VERBOSE" if="debug"/> -->
 		<define name="NET_LOG"/>
 		<!-- <define name="NET_LOG_VERBOSE"/> -->
 		<!-- <define name="BOOT_LOG"/> -->
 		<!-- <define name="OGMO_LOG"/> -->
 		<!-- <define name="SAVE_LOG"/> -->
+		<define name="INSTRUMENT_LOG"/>
+		<!-- <define name="INSTRUMENT_LOG_VERBOSE"/> -->
 	</section>
 	
 	<!-- <define name="PRELOAD_ALL" if="debug" /> -->
+<<<<<<< HEAD
 	<define name="USE_LOCAL_SERVER" if="debug"/>
+=======
+	<!-- <define name="INCLUDE_MOVIES" /> -->
+	<!-- <define name="USE_LOCAL_SERVER" if="debug"/> -->
+>>>>>>> master
 	<define name="USE_DEBUG_SERVER"/>
 	
 	<!-- <define name="CLEAR_SAVE" if="debug"/> -->
@@ -70,7 +81,33 @@
 	<library name="noPreload" preload="true" if="PRELOAD_ALL" />
 	<library name="noPreload" preload="false" unless="PRELOAD_ALL" />
 	<assets path="assets/music" library="noPreload"  include="*.mp3" />
-	<assets path="assets/artwork" library="noPreload" />
+	<assets path="assets/artwork" library="noPreload" include="*.png|*.jpg|*.jpeg"/>
+	<assets path="assets/movies" library="noPreload" if="INCLUDE_MOVIES" />
+	
+	<!-- <define name="PRELOAD_INSTRUMENTS"/> -->
+	<define name="PRELOAD_INSTRUMENTS" if="PRELOAD_ALL"/>
+	<section if="PRELOAD_INSTRUMENTS">
+		<library name="drums"        preload="true" />
+		<library name="flute"        preload="true" />
+		<library name="glockenspiel" preload="true" />
+		<library name="guitar_ac"    preload="true" />
+		<library name="guitar_el"    preload="true" />
+		<library name="piano"        preload="true" />
+	</section>
+	<section unless="PRELOAD_INSTRUMENTS">
+		<library name="drums"        preload="false" />
+		<library name="flute"        preload="false" />
+		<library name="glockenspiel" preload="false" />
+		<library name="guitar_ac"    preload="false" />
+		<library name="guitar_el"    preload="false" />
+		<library name="piano"        preload="false" />
+	</section>
+	<assets path="assets/notes/drums"        exclude="*.wav" library="drums" />
+	<assets path="assets/notes/flute"        exclude="*.wav" library="flute" />
+	<assets path="assets/notes/glockenspiel" exclude="*.wav" library="glockenspiel" />
+	<assets path="assets/notes/guitar_ac"    exclude="*.wav" library="guitar_ac" />
+	<assets path="assets/notes/guitar_el"    exclude="*.wav" library="guitar_el" />
+	<assets path="assets/notes/piano"        exclude="*.wav" library="piano" />
 	
 	<library path="assets/swfs/Animations.swf" id="Animations" preload="true" />
 
@@ -80,7 +117,19 @@
 		<!-- <define name="SKIP_TO_DIG_GAME" if="debug"/> -->
 		
 		<classpath name="digMinigame/source"/>
+<<<<<<< HEAD
 		<assets path="digMinigame/assets" rename="assets"/>
+=======
+		<assets path="digMinigame/assets" rename="assets" exclude="*.ase|*.wav" />
+		
+	</section>
+	
+	<define name="INCLUDE_THOUGHTS_GAME"/>
+	<section if="INCLUDE_THOUGHTS_GAME">
+		
+		<classpath name="positivity/source"/>
+		<assets path="positivity/assets" rename="assets" exclude="*.ase|*.wav"/>
+>>>>>>> master
 		
 	</section>
 	

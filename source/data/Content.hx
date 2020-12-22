@@ -3,6 +3,7 @@ package data;
 import states.OgmoState;
 
 import flixel.system.FlxSound;
+import flixel.util.FlxSignal;
 
 import openfl.utils.Assets;
 
@@ -10,6 +11,9 @@ import haxe.Json;
 
 class Content
 {
+    public static var onInit(default, null) = new FlxSignal();
+    public static var isInitted(default, null) = false;
+    
     public static var credits:Map<User, CreditContent>;
     public static var artwork:Map<String, ArtCreation>;
     public static var artworkByDay:Map<Int, ArtCreation>;
@@ -19,6 +23,8 @@ class Content
     public static var instruments:Map<InstrumentType, InstrumentData>;
     public static var instrumentsByIndex:Map<Int, InstrumentData>;
     public static var events:Map<Int, SongCreation>;
+    public static var medals:Map<String, Int>;
+    public static var medalsById:Map<Int, String>;
     
     static var presentsById:Map<String, Int>;
     static var presentsByIndex:Map<Int, String>;
@@ -115,6 +121,18 @@ class Content
             event.day = day;
             events[day] = event;
         }
+        
+        medals = [];
+        medalsById = [];
+        for (name in Reflect.fields(data.medals))
+        {
+            var id = Reflect.field(data.medals, name);
+            medals[name] = id;
+            medalsById[id] = name;
+        }
+        
+        isInitted = true;
+        onInit.dispatch();
     }
     
     /**
@@ -322,6 +340,7 @@ private typedef ContentFile =
     var arcades:Array<ArcadeCreation>;
     var credits:Dynamic;
     var events:Dynamic;
+    var medals:Dynamic;
 }
 
 typedef ContentError = String;
@@ -355,6 +374,7 @@ typedef ArtCreation
     var antiAlias:Null<Bool>;
     var medal:Null<Bool>;
     var preload:Bool;
+    var sound:String;
 }
 
 typedef SongCreation
@@ -388,7 +408,10 @@ typedef ArcadeCreation
     var medalPath:String;
     var mobile:Bool;
     var type:ArcadeType;
+<<<<<<< HEAD
     var medal:Bool;
+=======
+>>>>>>> master
     var camera:ArcadeCamera;
 }
 

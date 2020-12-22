@@ -1,5 +1,6 @@
 package states.rooms;
 
+import data.Calendar;
 import data.Game;
 import data.Manifest;
 import data.NGio;
@@ -40,7 +41,13 @@ class EntranceState extends RoomState
         switch(Game.state)
         {
             case Day1Intro(Hallway):
-                showIntroCutscene();
+                if (Game.allowShaders)
+                    showIntroCutscene();
+                else
+                {
+                    Game.state = NoEvent;
+                    NGio.logEvent(intro_complete);
+                }
             case _:
         }
     }
@@ -79,16 +86,22 @@ class EntranceState extends RoomState
                     );
             }
         );
+        
+        if (Calendar.day == 19)
+        {
+            var door = props.getByName("BigDoor");
+            var box = addHoverTextTo(door, "opens at 6:00PM EST");
+            // doorCountdown = cast box.sprite;
+        }
     }
     
     function showIntroCutscene()
     {
-        var floor = background.getByName("foyer");
+        var floor = getDaySprite(background, "foyer");
         floor.setBottomHeight(floor.frameHeight);
         shade = new ShadowSprite(floor.x, floor.y);
         shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
-        if (Game.allowShaders)
-            topGround.add(shade);
+        topGround.add(shade);
         
         player.active = false;
         player.flipX = true;
@@ -196,7 +209,8 @@ class EntranceState extends RoomState
         switch(Game.state)
         {
             case Day1Intro(_):
-                shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
+                if (Game.allowShaders)
+                    shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
             case _:
         }
         

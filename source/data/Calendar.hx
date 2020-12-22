@@ -25,9 +25,7 @@ class Calendar
                 callback();
         }
         
-        #if FORCE_INTRO
-        setDebugDayAndCall(1);
-        #elseif debug
+        #if debug
         if (DEBUG_DAY > 0)
             setDebugDayAndCall(DEBUG_DAY);
         else

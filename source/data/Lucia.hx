@@ -57,7 +57,7 @@ class Lucia
         {
             NGio.postPlayerHiscore("Hot Bun Run", Math.floor(timer * 1000));
             if (timer < 90)
-                NGio.unlockMedal(61514);
+                NGio.unlockMedalByName("lucia");
         }
     }
     

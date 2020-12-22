@@ -189,6 +189,28 @@ class Player extends flixel.FlxSprite
     
     override function draw()
     {
+        if (drawPath)
+        {
+            if (movePath != null)
+            {
+                final len = movePath.length;
+                for (i=>pos in movePath)
+                {
+                    pathTile.x = pos.x;
+                    pathTile.y = pos.y;
+                    pathTile.alpha = (len - i) / len;
+                    pathTile.draw();
+                }
+            }
+            else if (targetPos != null)
+            {
+                pathTile.x = targetPos.x;
+                pathTile.y = targetPos.y;
+                pathTile.alpha = 1;
+                pathTile.draw();
+            }
+        }
+        
         super.draw();
         
         hitbox.draw();
@@ -249,7 +271,7 @@ class Player extends flixel.FlxSprite
         cancelTargetPos();
     }
     
-    function cancelTargetPos()
+    public function cancelTargetPos()
     {
         targetPos = null;
         movePath = null;

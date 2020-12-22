@@ -15,6 +15,10 @@
         { "proper"  : "AlbeGian"
         , "bandcamp": "albegian"
         }
+    , "goodl":
+        { "proper": "GoodL"
+        , "roles" : ["Electric Guitar"]
+        }
     , "cymbourine"      : { "proper": "Cymbourine"      }
     , "mintyeggs"       : { "proper": "MintyEggs"       }
     , "mixmuffin"       : { "proper": "Liquid head"     }
@@ -37,20 +41,41 @@
     , "misterjamesss"   : { "proper": "James Renna"     }
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
     , "carmet"          : { "proper": "Carmet"          }
+<<<<<<< HEAD
     , "goodl"           : { "proper": "GoodL"           }
     , "krinkels"        : { "proper": "Krinkels"        }
     , "tenodiboris"     : { "proper": null              }
     , "mattrguitar123"  : { "proper": null              }
     , "k-4998572"       : { "proper": null              }
     , "heyopc"          : { "proper": null              }
+=======
+    , "krinkels"        : { "proper": "Krinkels"        }
+>>>>>>> master
     , "everratic"       : { "proper": "Everratic"       }
-    , "dogl"            : { "proper": null              }
     , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
     , "mimny"           : { "proper": "Mimny"           }
     , "figburn"         : { "proper": "Figburn"         }
     , "precipitation24" : { "proper": "Precipitation24" }
     , "octong"          : { "proper": "OctoNG"          }
     , "mig-moog"        : { "proper": "Mig-Moog"        }
+<<<<<<< HEAD
+=======
+    , "boomnm"          : { "proper": "Boomnm"          }
+    , "fushark"         : { "proper": "FuShark"         }
+	, "snailpirate"     : { "proper": "SnailPirate"     }
+    , "ninjamuffin99"   : { "proper": "ninjamuffin99"   }
+    , "dogl"            : { "proper": "dogl"            }
+    , "irri"            : { "proper": "Irri"            }
+    , "thriftman"       : { "proper": "Thriftman"       }
+    , "wandaboy"        : { "proper": "Wandaboy"        }
+    , "wavetro"         : { "proper": "Wavetro"         }
+    , "rgpanims"        : { "proper": "RGPAnims"        }
+    , "loganphresh"     : { "proper": "Logan Phresh"     }
+    , "tenodiboris"     : { "proper": "TenodiBoris"     }
+    , "mattrguitar123"  : { "proper": null              }
+    , "k-4998572"       : { "proper": null              }
+    , "heyopc"          : { "proper": null              }
+>>>>>>> master
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -132,12 +157,20 @@
         , "day"      : 17
         }
     ,   { "id"     : "anarchyaxel"
-        , "name"   : "Chrimuh"
+        , "name"   : "Hot Chocolate"
         , "authors": ["anarchyaxel"]
         , "key"      : "cMaj"
         , "bpm"      : 120
         , "ngId"     : 0
         , "day"      : 19
+        }
+    ,   { "id"     : "tenodiboris"
+        , "name"   : "MerryXmass"
+        , "authors": ["tenodiboris"]
+        , "key"      : "dMin"
+        , "bpm"      : 120
+        , "ngId"     : 0
+        , "day"      : 21
         }
     ,   { "id"     : "everratic"
         , "name"   : "A Perfect Day"
@@ -266,6 +299,37 @@
         , "day"    : 17
         , "medal"  : true
         }
+    ,   { "id"     : "boomnm"
+        , "name"   : "Cold War"
+        , "authors": ["boomnm"]
+        , "day"    : 18
+        , "medal"  : true
+        }
+    ,   { "id"     : "fushark"
+        , "name"   : "Duncan & Jones: Cancel Christmas"
+        , "authors": ["fushark"]
+        , "day"    : 19
+        , "medal"  : true
+        }
+	,   { "id"     : "snailpirate"
+        , "name"   : "The Coziest Of NG Christmas Parties"
+        , "authors": ["snailpirate"]
+        , "day"    : 20
+        , "medal"  : true
+        }
+	,   { "id"     : "rgpanims"
+        , "name"   : "The Coziest Of NG Christmas Parties"
+        , "authors": ["rgpanims"]
+        , "day"    : 21
+        , "medal"  : true
+        }
+	,   { "id"     : "loganphresh"
+        , "name"   : "Sex and Candy"
+        , "authors": ["loganphresh"]
+        , "day"    : 22
+        , "medal"  : true
+        , "sound"  : "sexandcandy.mp3"
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }
@@ -277,8 +341,12 @@
         , "day"    : 8
         , "ngId"   : 1556969
         , "mobile" : false
+<<<<<<< HEAD
         , "type"   : "state"
         , "medal"  : true
+=======
+        , "type"   : "overlay"
+>>>>>>> master
         }
     ,   { "id"     : "horse"
         , "name"   : "Pin the Tail"
@@ -306,11 +374,23 @@
         , "name"   : "Think Positive"
         , "authors": ["mig-moog"]
         , "day"    : 18
+        , "mobile" : false
         , "type"   : "overlay"
+<<<<<<< HEAD
         , "medal"  : false
+=======
+>>>>>>> master
         , "camera" : { "width":192, "height": 108, "zoom": 2 }
         }
     ]
+,   "medals":
+    { "digging"   : 61364
+    , "horse"     : 61392
+    , "lucia"     : 61514
+    , "cheese"    : 61555
+    , "positivity": 61559
+    , "movie"     : 61568
+    }
 ,   "instruments":
     [   { "id"    : "guitar_ac"
         , "name"  : "Acoustic Guitar"
@@ -368,5 +448,21 @@
             }
         }
     ]
-    
+,   "movies":
+    {   "snackers": 
+        { "name": "Duncan & Jones 3"
+        , "path": "https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"
+        , "credits":
+            [ "snackers"
+            , "ninjamuffin99:music"
+            , "carmet:music"
+            , "dogl:adl_art"
+            , "irri:bg"
+            , "mkmaffo:adl_anim"
+            , "thriftman:va"
+            , "wandaboy:adl_anim"
+            , "wavetro:va"
+            ]
+        }
+    }
 }

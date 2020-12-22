@@ -14,6 +14,11 @@ class OverlayGlobal
     inline static function get_height() return container.camera.height;
     public static var camera(get, never):FlxCamera;
     inline static function get_camera() return container.camera;
+<<<<<<< HEAD
+=======
+    public static var state(get, never):FlxState;
+    inline static function get_state() return container.state;
+>>>>>>> master
     
     @:allow(states.OverlaySubstate)
     static var container:OverlaySubstate;
@@ -22,9 +27,12 @@ class OverlayGlobal
     {
         container.switchState(state);
     }
+<<<<<<< HEAD
     
     static public function createTimer()
     {
         return container.createTimer();
     }
+=======
+>>>>>>> master
 }

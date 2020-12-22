@@ -149,10 +149,10 @@
       "gridCellsX": 92,
       "gridCellsY": 62,
       "decals": [
-        {"x": 32, "y": 224, "texture": "shared/sign.png"},
-        {"x": 432, "y": 376, "texture": "foyer/jar_small.png"},
-        {"x": 368, "y": 457.5, "texture": "foyer/snow_wind_ogmo.png"},
-        {"x": 368, "y": 208, "texture": "foyer/tree1.png"}
+        {"x": 32, "y": 224, "scaleX": 1, "scaleY": 1, "texture": "shared/sign.png"},
+        {"x": 432, "y": 376, "scaleX": 1, "scaleY": 1, "texture": "foyer/jar_small.png"},
+        {"x": 368, "y": 457.5, "scaleX": 1, "scaleY": 1, "texture": "foyer/snow_wind_ogmo.png"},
+        {"x": 368, "y": 208, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree1.png"}
       ],
       "folder": "../../images/props"
     },
@@ -166,9 +166,9 @@
       "gridCellsX": 92,
       "gridCellsY": 62,
       "decals": [
-        {"x": 368, "y": 248, "texture": "foyer/foyer.png"},
-        {"x": 368, "y": 384, "texture": "foyer/rug.png"},
-        {"x": 368, "y": 120, "texture": "foyer/Chandelier.png"}
+        {"x": 368, "y": 248, "scaleX": 1, "scaleY": 1, "texture": "foyer/foyer1.png"},
+        {"x": 368, "y": 384, "scaleX": 1, "scaleY": 1, "texture": "foyer/rug.png"},
+        {"x": 368, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "foyer/Chandelier.png"}
       ],
       "folder": "../../images/props"
     }

@@ -2,6 +2,7 @@ package props;
 
 import Types;
 import ui.Font;
+import utils.Log;
 import flixel.text.FlxBitmapText;
 import flixel.math.FlxPoint;
 
@@ -9,8 +10,8 @@ import io.colyseus.serializer.schema.Schema;
 
 class GhostPlayer extends Player
 {
-    var key:String;
-    var name:String;
+    public var key(default, null):String;
+    public var name(default, null):String;
     var nameText:FlxBitmapText;
     var leaveCallback:()->Void;
     
@@ -24,6 +25,7 @@ class GhostPlayer extends Player
         nameText.alignment = CENTER;
         updateNameText(name);
         shader = new vfx.GhostShader();
+        usePaths = true;
     }
     
     override function update(elapsed:Float)
@@ -58,7 +60,7 @@ class GhostPlayer extends Player
     
     public function onChange(changes:Array<DataChange>)
     {
-        trace('avatar changes[$key] ' 
+        Log.netVerbose('avatar changes[$key] ' 
             + ([for (change in changes) outputChange(change)].join(", "))
         );
         
@@ -98,7 +100,7 @@ class GhostPlayer extends Player
         }
         else if (isMoving)
         {
-            trace('moving to $newPos');
+            Log.netVerbose('moving to $newPos');
             setTargetPos(newPos);
         }
         newPos.put();

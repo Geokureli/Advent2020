@@ -33,7 +33,11 @@ class Game
         // RoomName.Outside + "." + RoomName.Entrance;
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
+<<<<<<< HEAD
         RoomName.Dance;
+=======
+        // RoomName.Movie + "." + RoomName.Entrance;
+>>>>>>> master
         #else
         RoomName.Bedroom;
         #end
@@ -59,7 +63,11 @@ class Game
         roomTypes[Outside ] = OutsideState.new;
         roomTypes[Arcade  ] = ArcadeState.new;
         roomTypes[Studio  ] = StudioState.new;
+<<<<<<< HEAD
         roomTypes[Dance   ] = DanceState.new;
+=======
+        roomTypes[Movie   ] = MovieState.new;
+>>>>>>> master
         
         arcadeTypes = [];
         #if INCLUDE_DIG_GAME
