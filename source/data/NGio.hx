@@ -281,6 +281,15 @@ class NGio
 		#end
 	}
 	
+	
+	static public function hasMedalByName(name:String):Bool
+	{
+		if (!Content.medals.exists(name))
+			throw 'invalid name:%name';
+		
+		return hasMedal(Content.medals[name]);
+	}
+	
 	static public function logEvent(event:NgEvent, once = false)
 	{
 		#if !(NG_DEBUG_API_KEY)

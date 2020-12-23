@@ -1,7 +1,5 @@
 package states;
 
-
-import data.NGio;
 import openfl.display.MovieClip;
 import openfl.display.Bitmap;
 import openfl.geom.Rectangle;
@@ -12,6 +10,8 @@ import openfl.net.NetConnection;
 import openfl.net.NetStream;
 import openfl.utils.Assets;
 
+import data.NGio;
+import ui.OpenFlBackButton;
 import ui.Controls;
 
 import flixel.FlxG;
@@ -83,7 +83,7 @@ class VideoUi extends openfl.display.Sprite
     var netStream:NetStream;
     var video:Video;
     var path:String;
-    var backBtn:BackButton;
+    var backBtn:OpenFlBackButton;
     var moveTimer = 2.0;
     
     public function new(path:String)
@@ -93,7 +93,7 @@ class VideoUi extends openfl.display.Sprite
         
         FlxG.mouse.useSystemCursor = true;
         addChild(video = new Video());
-        backBtn = new BackButton(()->requestedExit = true);
+        backBtn = new OpenFlBackButton(()->requestedExit = true);
         addChild(backBtn);
         
         var netConnection = new NetConnection();
@@ -186,57 +186,5 @@ class VideoUi extends openfl.display.Sprite
     public function destroy()
     {
         netStream.dispose();
-    }
-}
-
-
-private class BackButton extends openfl.display.Sprite
-{
-    inline static var WIDTH = 27;
-    inline static var HEIGHT = 30;
-    
-    override function get_width():Float return scrollRect.width;
-    override function get_height():Float return scrollRect.height;
-    
-    var frame:Int = 0;
-    var callback:()->Void;
-    
-    public function new(callback:()->Void)
-    {
-        this.callback = callback;
-        super();
-        addChild(new Bitmap(Assets.getBitmapData("assets/images/ui/buttons/back.png")));
-        scaleX = scaleY = 2;
-        scrollRect = new Rectangle(0, 0, WIDTH, HEIGHT);
-        useHandCursor = true;
-        buttonMode = true;
-    }
-    
-    public function update(elapsed:Float):Void
-    {
-        var mouseX = this.mouseX - WIDTH * frame;
-        var isMouseOver = mouseX > 0 && mouseX < WIDTH && mouseY > 0 && mouseY < HEIGHT;
-        if (FlxG.mouse.justPressed && isMouseOver)
-            setFrame(1);
-        else if (!FlxG.mouse.pressed && frame == 1)
-        {
-            setFrame(0);
-            if (isMouseOver)
-                callback();
-        }
-    }
-    
-    function setFrame(frame:Int)
-    {
-        var rect = scrollRect;
-        rect.x = rect.width * frame;
-        scrollRect = rect;
-        this.frame = frame;
-    }
-    
-    public function destroy()
-    {
-        callback = null;
-        removeChildren();
     }
 }

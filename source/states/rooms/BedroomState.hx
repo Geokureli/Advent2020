@@ -14,6 +14,7 @@ import props.InfoBox;
 import props.Notif;
 import props.Note;
 import states.OgmoState;
+import states.ToyBoxState;
 import states.debug.AudioToolSubstate;
 import utils.GameSize;
 import vfx.PixelPerfectShader;
@@ -69,7 +70,7 @@ class BedroomState extends RoomState
         dresserNotif.x = dresser.x + (dresser.width - dresserNotif.width) / 2;
         dresserNotif.y = dresser.y + dresser.height - dresser.frameHeight;
         dresserNotif.animate();
-        add(dresserNotif);
+        topGround.add(dresserNotif);
         
         if (!Skins.checkHasUnseen())
             dresserNotif.kill();
@@ -89,6 +90,26 @@ class BedroomState extends RoomState
         desk = foreground.getByName("desk_lucia");
         if (desk != null && Game.state.match(NoEvent|LuciaDay(Finding)|LuciaDay(Present)))
             addHoverTextTo(desk, "Replay Lucia Hunt", replayLuciaHunt);
+        
+        var chest = foreground.getByName("chest");
+        if (chest != null)
+        {
+            var notif = new Notif();
+            if (NGio.hasMedalByName("butzbo") == false)
+            {
+                notif.x = chest.x + (chest.width - notif.width) / 2;
+                notif.y = chest.y + chest.height - chest.frameHeight - notif.height;
+                notif.animate();
+                topGround.add(notif);
+            }
+            
+            addHoverTextTo(chest, "Butzbo's Music Box", function()
+                {
+                    notif.kill();
+                    playOverlay(new ToyBoxState());
+                }
+            );
+        }
     }
     
     function replayLuciaHunt()
@@ -141,9 +162,22 @@ class BedroomState extends RoomState
         
         #if debug
         if (FlxG.keys.justPressed.H)
-        {
-            ui.add(new ui.DjUi(10, 10));
-        }
+            playOverlay(new ToyBoxState());
         #end
+    }
+    
+    function playOverlay(overlay:flixel.FlxSubState)
+    {
+        if (FlxG.sound.music != null)
+            FlxG.sound.music.stop();
+        FlxG.sound.music = null;
+        
+        overlay.closeCallback = ()->
+        {
+            if (FlxG.sound.music != null)
+                FlxG.sound.music.stop();
+            data.Manifest.playMusic(data.Game.chosenSong);
+        }
+        openSubState(overlay);
     }
 }
