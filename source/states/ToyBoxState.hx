@@ -220,11 +220,12 @@ class ToyBox extends Sprite
     
     public function destroy()
     {
-        gearsSound.destroy();
+        if (gearsSound != null)
+            gearsSound.kill();
         gearsSound = null;
+            
         for (sound in sounds)
-            sound.destroy();
-        
+            sound.kill();
         sounds.clear();
         
         var i = toys.length;
