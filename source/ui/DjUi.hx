@@ -1,8 +1,8 @@
 package ui;
 
-import utils.GameSize;
-import openfl.geom.Point;
 import dj.SongLoader;
+import ui.Font;
+import utils.GameSize;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -14,6 +14,7 @@ import flixel.text.FlxBitmapText;
 import flixel.addons.display.FlxSliceSprite;
 
 import openfl.display.BitmapData;
+import openfl.geom.Point;
 
 class DjUi extends FlxGroup
 {
@@ -93,12 +94,15 @@ class DjUi extends FlxGroup
 
 class SongFinder extends FlxSpriteGroup
 {
+    inline static var MARGIN = 2;
+    
     var bg:UiBgHeader;
     var input:FlxBitmapText;
     
     public function new(x = 0.0, y = 0.0)
     {
-        bg = new UiBgHeader(x, y, 200, 100);
+        super(x, y);
+        bg = new UiBgHeader(0, 0, 200, 100);
         add(bg);
         
         var header = new FlxBitmapText();
@@ -112,11 +116,7 @@ class SongFinder extends FlxSpriteGroup
         input.text = "######";
         input.x = bg.x + (bg.width - input.width) / 2;
         input.y = bg.y + UiBgHeader.HEADER_HEIGHT + MARGIN;
-        
-        
     }
-    
-    function 
 }
 
 class UiBgHeader extends FlxSliceSprite
@@ -217,7 +217,8 @@ abstract DialButton(Button) to Button
     public function new(digit:Int, x = 0.0, y = 0.0, ?onClick)
     {
         this = new Button(x, y, onClick, "assets/images/ui/buttons/sqaure.png");
-        label = new FlxBitmapText(ui.Font.NokiaFont16);
-        label.text = Std.string(digit);
+        var numLabel = new FlxBitmapText(new NokiaFont16());
+        this.label = numLabel;
+        numLabel.text = Std.string(digit);
     }
 }
