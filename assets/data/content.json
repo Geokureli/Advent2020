@@ -59,8 +59,9 @@
     , "wandaboy"        : { "proper": "Wandaboy"        }
     , "wavetro"         : { "proper": "Wavetro"         }
     , "rgpanims"        : { "proper": "RGPAnims"        }
-    , "loganphresh"     : { "proper": "Logan Phresh"     }
+    , "loganphresh"     : { "proper": "Logan Phresh"    }
     , "tenodiboris"     : { "proper": "TenodiBoris"     }
+    , "camuri"          : { "proper": "Camuri"          }
     , "mattrguitar123"  : { "proper": null              }
     , "k-4998572"       : { "proper": null              }
     , "heyopc"          : { "proper": null              }
@@ -317,6 +318,12 @@
         , "day"    : 22
         , "medal"  : true
         , "sound"  : "sexandcandy.mp3"
+        }
+	,   { "id"     : "camuri"
+        , "name"   : "Holiday Lobotomy"
+        , "authors": ["camuri"]
+        , "day"    : 23
+        , "medal"  : true
         }
     ]
 ,   "events":
