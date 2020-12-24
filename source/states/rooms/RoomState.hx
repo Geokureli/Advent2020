@@ -129,6 +129,12 @@ class RoomState extends OgmoState
         {
             var present = Present.fromEntity(data);
             
+            if (present.id == "comic")
+            {
+                initComicPresent(present);
+                return present;
+            }
+            
             final isLucia = Lucia.active && present.id == Lucia.USER;
             if (!isLucia && Content.isArtUnlocked(present.id))
                 initArtPresent(present, onOpenPresent);
@@ -311,6 +317,18 @@ class RoomState extends OgmoState
             }
         );
         foreground.add(present);
+        return present;
+    }
+    
+    function initComicPresent(present:Present)
+    {
+        present.scale.set(1, 1);
+        present.width *= 2;
+        present.offset.x -= 4;
+        present.immovable = true;
+        presents.add(present);
+        colliders.add(present);
+        addHoverTextTo(present, "", ()->Prompt.showOKInterrupt("Check back at 6pm EST"));
         return present;
     }
     

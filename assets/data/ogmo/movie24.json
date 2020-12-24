@@ -525,9 +525,9 @@
         {"x": 256, "y": 200, "scaleX": 1, "scaleY": 1, "texture": "movie/theater.png"},
         {"x": 256, "y": 64, "scaleX": 1, "scaleY": 1, "texture": "movie/screen.png"},
         {"x": 39, "y": 59, "scaleX": 1, "scaleY": 1, "texture": "movie/snackers.png"},
-        {"x": 108, "y": 59, "scaleX": 1, "scaleY": 1, "texture": "movie/poster_slot.png"},
         {"x": 404, "y": 59, "scaleX": 1, "scaleY": 1, "texture": "movie/poster_slot.png"},
-        {"x": 472, "y": 59, "scaleX": 1, "scaleY": 1, "texture": "movie/poster_slot.png"}
+        {"x": 472, "y": 59, "scaleX": 1, "scaleY": 1, "texture": "movie/poster_slot.png"},
+        {"x": 108, "y": 59, "scaleX": 1, "scaleY": 1, "texture": "movie/coming_soon.png"}
       ],
       "folder": "../../images/props"
     }

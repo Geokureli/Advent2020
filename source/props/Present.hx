@@ -33,7 +33,10 @@ class Present extends flixel.FlxSprite
         animation.add("closed", [0]);
         animation.add("opened", [1]);
         animation.add("opening", [1]);
-        animation.play(Save.hasOpenedPresent(id) ? "opened" : "closed");
+        if (id == "comic")
+            animation.play("closed");
+        else
+            animation.play(Save.hasOpenedPresent(id) ? "opened" : "closed");
         graphic.bitmap.fillRect(new openfl.geom.Rectangle(32, 0, 32, 2), 0x0);
         scale.set(0.5, 0.5);
         offset.x = 8;

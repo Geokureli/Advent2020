@@ -62,6 +62,9 @@
     , "loganphresh"     : { "proper": "Logan Phresh"    }
     , "tenodiboris"     : { "proper": "TenodiBoris"     }
     , "camuri"          : { "proper": "Camuri"          }
+    , "chobiluck"       : { "proper": "Chobi"           }
+    , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
+    , "mismash"         : { "proper": "MisMash"         }
     , "mattrguitar123"  : { "proper": null              }
     , "k-4998572"       : { "proper": null              }
     , "heyopc"          : { "proper": null              }
@@ -323,6 +326,18 @@
         , "name"   : "Holiday Lobotomy"
         , "authors": ["camuri"]
         , "day"    : 23
+        , "medal"  : true
+        }
+	,   { "id"     : "chobiluck"
+        , "name"   : "Happy Holidays 2020"
+        , "authors": ["chobiluck"]
+        , "day"    : 24
+        , "medal"  : true
+        }
+	,   { "id"     : "mismash"
+        , "name"   : "NGfestival"
+        , "authors": ["mismash"]
+        , "day"    : 26
         , "medal"  : true
         }
     ]
