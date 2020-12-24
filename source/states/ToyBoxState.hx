@@ -56,7 +56,6 @@ class ToyBox extends Sprite
     var gearsSound:FlxSound;
     
     var songTime = 0.0;
-    var songLoopTime = 0.0;
     
     public function new ()
     {
@@ -95,33 +94,29 @@ class ToyBox extends Sprite
     
     function updateToys(elapsed:Float)
     {
-        var anyPlaying = false;
+        var minTime = Math.POSITIVE_INFINITY;
         for (sound in sounds)
         {
             sound.update(elapsed);
-            if (sound.playing)
-                anyPlaying = true;
+            if (sound.playing && sound.time < minTime && sound.looped)
+                minTime = sound.time;
         }
         
-        if (anyPlaying)
-            songTime += elapsed;
-        else
-            songTime = 0.0;
+        var hasReset = minTime < songTime;
+        if (minTime < Math.POSITIVE_INFINITY)
+            songTime = minTime / 1000;
         
         for (toy in toys)
         {
             var sound = sounds[toy.name];
             if (sound.playing)
             {
-                if (songTime >= songLoopTime)
-                    sound.time = 0.0;
+                if (hasReset)
+                    sound.time = minTime;
                 
                 toy.gotoAndStop(Math.floor((sound.time / sound.length * (toy.totalFrames - 1)) + 1));
             }
         }
-        
-        if (songTime >= songLoopTime)
-            songTime -= songLoopTime;
     }
     
     function onOpen()
@@ -142,14 +137,12 @@ class ToyBox extends Sprite
             return toy;
         }
         
-        songLoopTime = Math.POSITIVE_INFINITY;
+
         function initLooper(name:String)
         {
             var toy = initToy(name, clickToy, true);
             toys.push(toy);
             var sound = sounds[name];
-            songLoopTime = Math.min(songLoopTime, sound.length / 1000);
-            trace(songLoopTime);
             return toy;
         }
         
@@ -173,6 +166,7 @@ class ToyBox extends Sprite
     function clickOneShot(e:MouseEvent)
     {
         final toy = cast (e.target, MovieClip);
+        
         sounds[toy.name].play(true);
         toy.playFromTo(2, 1);
         clicked[toy.name] = true;
