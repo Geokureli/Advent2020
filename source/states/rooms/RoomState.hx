@@ -328,7 +328,7 @@ class RoomState extends OgmoState
         present.immovable = true;
         presents.add(present);
         colliders.add(present);
-        addHoverTextTo(present, "", ()->Prompt.showOKInterrupt("Check back at 6pm EST"));
+        addHoverTextTo(present, "Check back at 6pm EST");
         return present;
     }
     

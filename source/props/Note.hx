@@ -23,7 +23,7 @@ class Note extends FlxSpriteGroup
         super(x, y);
         add(note = new FlxSprite(0, 0, "assets/images/props/bedroom/note.png"));
         add(text = new FlxBitmapText());
-        text.x = note.x + 16;
+        text.x = note.x + 15;
         text.y = note.y + 20;
         text.text = getText(id);
         text.color = 0xFF000000;

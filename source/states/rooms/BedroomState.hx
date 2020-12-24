@@ -81,10 +81,11 @@ class BedroomState extends RoomState
             addHoverTextTo(door, "Get dressed first");
             notesById["december01"].animateIn(1.5);
         }
-        
-        if (roomDay == 5 && Calendar.isUnseenDay)
+        else if (Calendar.isUnseenDay)
         {
-            notesById["december05"].animateIn(1.5);
+            var noteId = "december" + StringTools.lpad(Std.string(roomDay), "0", 2);
+            if (notesById.exists(noteId))
+                notesById[noteId].animateIn(1.5);
         }
         
         desk = foreground.getByName("desk_lucia");
