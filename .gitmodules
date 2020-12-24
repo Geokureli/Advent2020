@@ -7,3 +7,6 @@
 [submodule "positivity"]
 	path = positivity
 	url = https://github.com/mig-moog/newgrounds-adventure2020
+[submodule "chimney"]
+	path = chimney
+	url = https://github.com/oscarcederberg/adventcollab2020-chimney

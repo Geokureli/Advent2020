@@ -121,6 +121,17 @@
 		<assets path="positivity/assets" rename="assets" exclude="*.ase|*.wav"/>
 		
 	</section>
+
+	<!--
+	<define name="INCLUDE_CHIMNEY_GAME"/>
+	<section if="INCLUDE_CHIMNEY_GAME">
+		
+		<classpath name="chimney/source"/>
+		<assets path="chimney/assets" rename="assets" exclude="*.ase|*.wav"/>
+		
+	</section>
+	-->
+
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
