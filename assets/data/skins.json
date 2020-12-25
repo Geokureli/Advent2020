@@ -180,7 +180,7 @@
 ,   { "id": "dad"
     , "proper": "Dad"
     , "description": "The very embodiment of “he protec” since 2005."
-    , "unlocksBy": null
+    , "unlocksBy": "supporter"
     , "offset": {"x":6, "y":5 }
     , "users": ["danpaladin", "geokureli"]
     }
@@ -215,7 +215,7 @@
 ,   { "id": "snake"
     , "proper": "Solid Snake"
     , "description": "METAL GEAR, Awesome"
-    , "unlocksBy": null
+    , "unlocksBy": "medal:26"
     , "users": ["egoraptor"]
     }
 ,   { "id": "aine"
@@ -241,7 +241,7 @@
 ,   { "id": "lucky"
     , "proper": "Lucky"
     , "description": ""
-    , "unlocksBy": null
+    , "unlocksBy": "medal:25"
     , "users": ["brandybuizel", "domdude111"]
     }
 ,   { "id": "duncan_and_jones"
@@ -291,7 +291,7 @@
 ,   { "id": "mvchan"
     , "proper": "MV-Chan"
     , "description": ""
-    , "unlocksBy": null
+    , "unlocksBy": "day:24"
     , "users": ["speedo"]
     }
 ,   { "id": "ritz"
@@ -341,7 +341,7 @@
 ,   { "id": "gentles"
     , "proper": "Gentles"
     , "description": "The amazing dog straight out of the 2020 Pet Jam and from TV!"
-    , "unlocksBy": null
+    , "unlocksBy": "medal:25"
     , "users": ["jaquin", "jonarock", "chrisbasso", "dylanmann", "worldsbestmichael"]
     }
 ,   { "id": "slime"
@@ -353,7 +353,7 @@
 ,   { "id": "squado"
     , "proper": "Ghost Squad James"
     , "description": "He's been murdered by a ghost and forced to be an anime\ncrime-fighting teen as the green member of the GHOST SQUAD!"
-    , "unlocksBy": null
+    , "unlocksBy": "day:25"
     , "users": ["brandybuizel", "Kieran-s"]
     }
 ,   { "id": "custom"
