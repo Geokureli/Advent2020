@@ -1,5 +1,8 @@
 package states.rooms;
 
+import flixel.text.FlxBitmapText;
+import props.InfoBox;
+import data.Content;
 import data.Net;
 import data.Skins;
 import data.PlayerSettings;
@@ -21,6 +24,8 @@ class MovieState extends RoomState
     var debugGhostSettings = new PlayerSettings();
     #end
     var alreadySeatedTimer = 0.5;
+    var selectedMovie = "grinch";
+    var isPremier = false;
     
     override function create()
     {
@@ -75,6 +80,40 @@ class MovieState extends RoomState
         if (screen == null)
             throw "missing screen";
         addHoverTextTo(screen, "watch", watchMovie);
+        
+        for (id in Content.movies.keys())
+        {
+            final data = Content.movies[id];
+            final poster = background.getByName(id);
+            if (poster != null)
+            {
+                var text = data.name;
+                if (isPremier && id == selectedMovie)
+                    text = "Now Playing!";
+                
+                addHoverTextTo(poster, text, ()->onPosterSelect(data));
+            }
+        }
+    }
+    
+    function onPosterSelect(movie:MovieCreation)
+    {
+        if (isPremier)
+            return;
+        
+        selectedMovie = movie.id;
+    }
+    
+    function watchMovie()
+    {
+        final movie = Content.movies[selectedMovie];
+        openSubState(new VideoSubstate(movie.path));
+        if (isPremier)
+        {
+            isPremier = false;
+            final poster = background.getByName(selectedMovie);
+            cast(infoBoxes[poster].sprite, FlxBitmapText).text = movie.name;
+        }
     }
     
     override function update(elapsed:Float)
@@ -114,11 +153,6 @@ class MovieState extends RoomState
         ghostsById.remove(ghost.key);
     }
     #end
-    
-    function watchMovie()
-    {
-        openSubState(new VideoSubstate("https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"));
-    }
     
     override function onAvatarAdd(data:Avatar, key:String)
     {

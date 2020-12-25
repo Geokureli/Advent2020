@@ -137,22 +137,27 @@ class VideoUi extends openfl.display.Sprite
     
     function onMetaData(data:MetaData)
     {
-        trace(haxe.Json.stringify(data));
-        
+        final stage = FlxG.stage;
         video.attachNetStream(netStream);
         video.width = video.videoWidth;
         video.height = video.videoHeight;
         
-        if (video.videoWidth / FlxG.stage.stageWidth > video.videoHeight / FlxG.stage.stageHeight)
+        if (video.videoWidth / stage.stageWidth > video.videoHeight / stage.stageHeight)
         {
-            video.width = FlxG.stage.stageWidth;
-            video.height = FlxG.stage.stageWidth * video.videoHeight / video.videoWidth;
+            video.width = stage.stageWidth;
+            video.height = stage.stageWidth * video.videoHeight / video.videoWidth;
         }
         else
         {
-            video.height = FlxG.stage.stageHeight;
-            video.width = FlxG.stage.stageHeight * video.videoWidth / video.videoHeight;
+            video.height = stage.stageHeight;
+            video.width = stage.stageHeight * video.videoWidth / video.videoHeight;
         }
+        
+        if (video.width < stage.stageWidth)
+            video.x = (stage.stageWidth - video.width) / 2;
+        
+        if (video.height < stage.stageHeight)
+            video.y = (stage.stageHeight - video.height) / 2;
     }
     
     function onPlayStatus(data:PlayStatusData)
