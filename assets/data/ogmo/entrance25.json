@@ -446,6 +446,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "midgetsausage2"}
+        },
+        {
+          "name": "Present",
+          "id": 38,
+          "_eid": "75464384",
+          "x": 112,
+          "y": 384,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "toppleng"}
         }
       ]
     },

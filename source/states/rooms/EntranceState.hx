@@ -58,6 +58,8 @@ class EntranceState extends RoomState
         tree = getDaySprite(foreground, "tree");
         tree.setBottomHeight(32);
         tree.setMiddleWidth(56);
+        if (tree.animation != null && tree.animation.curAnim != null)
+            tree.animation.curAnim.frameRate = 3;
         treeShader = new PeekDitherShader(tree);
         tree.shader = treeShader;
         if (player.y < TREE_HIDE_Y)

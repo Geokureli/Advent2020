@@ -69,9 +69,8 @@
     , "chobiluck"       : { "proper": "Chobi"           }
     , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
     , "mismash"         : { "proper": "MisMash"         }
-    , "wandaboy"        : { "proper": "Wandaboy"        }
-    , "mattrguitar123"  : { "proper": null              }
-    , "k-4998572"       : { "proper": null              }
+    , "toppleng"        : { "proper": "ToppleNG"        }
+    , "syntrus"         : { "proper": "Syntrus"         }
     , "heyopc"          : { "proper": null              }
     }
 ,   "songs":
@@ -184,6 +183,14 @@
         , "bpm"      : 130
         , "ngId"     : 833947
         , "day"      : 25
+        }
+    ,   { "id"     : "syntrus"
+        , "name"   : "The Chill of the Solstice"
+        , "authors": ["precipitation24"]
+        , "key"      : "gMaj"
+        , "bpm"      : 82
+        , "ngId"     : 986972
+        , "day"      : 26
         }
     ]
 ,   "artwork":
@@ -359,11 +366,18 @@
         , "medal"  : false
         }
     ,   { "id"     : "thedyingsun"
-        , "name"   : null
+        , "name"   : "Thank you NG"
         , "authors": ["thedyingsun"]
         , "day"    : 25
         , "ext"    : "jpg"
         , "medal"  : true
+        }
+    ,   { "id"       : "toppleng"
+        , "name"     : "Topple says merry Christmas"
+        , "authors"  : ["toppleng"]
+        , "day"      : 26
+        , "medal"    : true
+        , "animation": { "frames":2, "fps":2 }
         }
     ]
 ,   "events":
