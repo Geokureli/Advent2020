@@ -165,10 +165,17 @@ class Content
         {
             if (art.day != null && art.day <= Calendar.day)
             {
-                if (daysFound.contains(art.day))
-                    errors.push('Multiple artwork with medals of day:${art.day}');
-                else if (art.medal)
-                    daysFound.push(art.day);
+                if (art.medal)
+                {
+                    if (!Manifest.exists(art.medalPath, IMAGE))
+                        errors.push('Missing ${art.medalPath}');
+                    
+                    if (daysFound.contains(art.day))
+                        errors.push('Multiple artwork with medals of day:${art.day}');
+                    else
+                        daysFound.push(art.day);
+                    
+                }
                 
                 if (!Manifest.exists(art.path, IMAGE))
                     errors.push('Missing ${art.path}');
@@ -176,8 +183,6 @@ class Content
                     errors.push('Missing ${art.thumbPath}');
                 if (!Manifest.exists(art.presentPath, IMAGE))
                     errors.push('Missing ${art.presentPath}');
-                if (!Manifest.exists(art.medalPath, IMAGE))
-                    errors.push('Missing ${art.medalPath}');
                 if (!presentIds.contains(art.id))
                     errors.push('Missing present in entrance, id:${art.id}');
                 if (art.authors == null)

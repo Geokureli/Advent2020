@@ -95,7 +95,7 @@ class EntranceState extends RoomState
         if (roomDay == 24)
         {
             var door = props.getByName("BigDoor");
-            var box = addHoverTextTo(door, "opens at 9:00PM EST");
+            var box = addHoverTextTo(door, "opens at 10:30PM EST");
         }
     }
     

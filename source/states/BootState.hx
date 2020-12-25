@@ -113,7 +113,6 @@ class BootState extends flixel.FlxState
                 #if ALLOW_DAY_SKIP
                 if (Calendar.canSkip()
                     && (Calendar.isAdvent || Calendar.isDebugDay)
-                    && Calendar.day != 24
                     && NGio.isContributor)
                 {
                     waitTime = MSG_TIME;

@@ -11,6 +11,10 @@
         { "proper": "Nick Conter"
         , "roles" : ["Organizer"]
         }
+    , "thedyingsun":
+        { "proper": "TheDyingSun"
+        , "roles" : ["Decorator"]
+        }
     , "albegian":
         { "proper"  : "AlbeGian"
         , "bandcamp": "albegian"
@@ -65,6 +69,7 @@
     , "chobiluck"       : { "proper": "Chobi"           }
     , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
     , "mismash"         : { "proper": "MisMash"         }
+    , "wandaboy"        : { "proper": "Wandaboy"        }
     , "mattrguitar123"  : { "proper": null              }
     , "k-4998572"       : { "proper": null              }
     , "heyopc"          : { "proper": null              }
@@ -334,11 +339,30 @@
         , "day"    : 24
         , "medal"  : true
         }
+	,   { "id"     : "thedyingsun"
+        , "name"   : null
+        , "authors": ["thedyingsun"]
+        , "day"    : 25
+        , "medal"  : true
+        }
 	,   { "id"     : "mismash"
         , "name"   : "NGfestival"
         , "authors": ["mismash"]
-        , "day"    : 26
-        , "medal"  : true
+        , "day"    : 25
+        , "medal"  : false
+        }
+	,   { "id"     : "wandaboy"
+        , "name"   : "dope naenae swag"
+        , "authors": ["wandaboy"]
+        , "day"    : 25
+        , "medal"  : false
+        }
+	,   { "id"     : "midgetsausage2"
+        , "name"   : "DEBUG TEXT"
+        , "authors": ["midgetsausage"]
+        , "day"    : 25
+        , "ext"    : "jpeg"
+        , "medal"  : false
         }
     ]
 ,   "events":
