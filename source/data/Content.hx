@@ -25,6 +25,7 @@ class Content
     public static var events:Map<Int, SongCreation>;
     public static var medals:Map<String, Int>;
     public static var medalsById:Map<Int, String>;
+    public static var comics:Map<String, ComicCreation>;
     
     static var presentsById:Map<String, Int>;
     static var presentsByIndex:Map<Int, String>;
@@ -129,6 +130,13 @@ class Content
             var id = Reflect.field(data.medals, name);
             medals[name] = id;
             medalsById[id] = name;
+        }
+        
+        comics = [];
+        for (id in Reflect.fields(data.comics))
+        {
+            comics[id] = cast Reflect.field(data.comics, id);
+            comics[id].id = id;
         }
         
         isInitted = true;
@@ -341,6 +349,7 @@ private typedef ContentFile =
     var credits:Dynamic;
     var events:Dynamic;
     var medals:Dynamic;
+    var comics:Dynamic;
 }
 
 typedef ContentError = String;
@@ -409,6 +418,14 @@ typedef ArcadeCreation
     var mobile:Bool;
     var type:ArcadeType;
     var camera:ArcadeCamera;
+}
+
+typedef ComicCreation =
+{
+    var id:String;
+    var name:String;
+    var audioPath:String;
+    var dataPath:String;
 }
 
 enum abstract ArcadeName(String) to String

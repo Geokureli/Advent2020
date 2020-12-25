@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Advent2020" file="Advent2020" main="Main" version="0.9.0" company="HaxeFlixel" />
+	<app title="Advent2020" file="Advent2020" main="Main" version="0.9.1" company="HaxeFlixel" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -103,7 +103,10 @@
 	
 	<library path="assets/swfs/butzbo.swf" id="butzbo" preload="true"/>
 	<!-- <library path="assets/swfs/Animations.swf" id="Animations" preload="true" /> -->
-
+	
+	<library name="night_before" preload="false" />
+	<assets path="assets/comics/night_before" rename="night_before" library="night_before"/>
+	
 	<define name="ADVENT"/>
 	<define name="INCLUDE_DIG_GAME"/>
 	<section if="INCLUDE_DIG_GAME">

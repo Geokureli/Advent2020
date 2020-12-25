@@ -328,8 +328,29 @@ class RoomState extends OgmoState
         present.immovable = true;
         presents.add(present);
         colliders.add(present);
-        addHoverTextTo(present, "Check back at 6pm EST");
+        addHoverTextTo(present, "Twas the Night Before Tankmas", ()->openComicPresent(present));
         return present;
+    }
+    
+    function openComicPresent(present:Present)
+    {
+        present.animateOpen(()->playOverlay(new states.ComicSubstate("night_before")));
+    }
+    
+    
+    function playOverlay(overlay:flixel.FlxSubState)
+    {
+        if (FlxG.sound.music != null)
+            FlxG.sound.music.stop();
+        FlxG.sound.music = null;
+        
+        overlay.closeCallback = ()->
+        {
+            if (FlxG.sound.music != null)
+                FlxG.sound.music.stop();
+            data.Manifest.playMusic(data.Game.chosenSong);
+        }
+        openSubState(overlay);
     }
     
     override function openSubState(substate)

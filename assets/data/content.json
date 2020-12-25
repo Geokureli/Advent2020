@@ -448,7 +448,27 @@
         }
     ]
 ,   "movies":
-    {   "snackers": 
+    {   "grinch":
+        { "name": "How The Grinch Stole A Bunch Of Stuff"
+        , "path": "https://uploads.ungrounded.net/alternate/1530000/1530686_alternate_111296.720p.mp4?f1602919729"
+        , "credits":
+            [ "sevi"
+            , "johnnyutah"
+            , "rehdah"
+            , "antonm"
+            , "shigloo"
+            , "brandybuizel"
+            , "sierrasaura"
+            , "jazzhat"
+            , "ggloryboyy"
+            , "spazkid"
+            , "eok97"
+            , "bassetfilms"
+            , "cayfettart:bg"
+            , "tayzonday:va"
+            ]
+        }
+    ,   "snackers": 
         { "name": "Duncan & Jones 3"
         , "path": "https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"
         , "credits":
@@ -462,6 +482,13 @@
             , "wandaboy:adl_anim"
             , "wavetro:va"
             ]
+        }
+    }
+,   "comics":
+    {   "night_before":
+        { "pages": 11
+        , "audioPath": "audio.mp3"
+        , "dataPath": "data.json"
         }
     }
 }

@@ -163,22 +163,7 @@ class BedroomState extends RoomState
         
         #if debug
         if (FlxG.keys.justPressed.H)
-            playOverlay(new ToyBoxState());
+            playOverlay(new states.VideoSubstate("https://uploads.ungrounded.net/alternate"));
         #end
-    }
-    
-    function playOverlay(overlay:flixel.FlxSubState)
-    {
-        if (FlxG.sound.music != null)
-            FlxG.sound.music.stop();
-        FlxG.sound.music = null;
-        
-        overlay.closeCallback = ()->
-        {
-            if (FlxG.sound.music != null)
-                FlxG.sound.music.stop();
-            data.Manifest.playMusic(data.Game.chosenSong);
-        }
-        openSubState(overlay);
     }
 }
