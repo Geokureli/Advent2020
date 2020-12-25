@@ -58,7 +58,7 @@ class EntranceState extends RoomState
         tree = getDaySprite(foreground, "tree");
         tree.setBottomHeight(32);
         tree.setMiddleWidth(56);
-        treeShader = new PeekDitherShader();
+        treeShader = new PeekDitherShader(tree);
         tree.shader = treeShader;
         if (player.y < TREE_HIDE_Y)
             treeShader.setAlpha(0);
@@ -69,7 +69,7 @@ class EntranceState extends RoomState
             background.remove(chandelier);
             topGround.add(chandelier);
             chandelier.scrollFactor.y = 2.0;
-            chandelierShader = new PeekDitherShader();
+            chandelierShader = new PeekDitherShader(chandelier);
             chandelier.shader = chandelierShader;
             // chandelierShader.setAlpha(0);
         }

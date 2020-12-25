@@ -339,12 +339,6 @@
         , "day"    : 24
         , "medal"  : true
         }
-	,   { "id"     : "thedyingsun"
-        , "name"   : null
-        , "authors": ["thedyingsun"]
-        , "day"    : 25
-        , "medal"  : true
-        }
 	,   { "id"     : "mismash"
         , "name"   : "NGfestival"
         , "authors": ["mismash"]
@@ -363,6 +357,13 @@
         , "day"    : 25
         , "ext"    : "jpeg"
         , "medal"  : false
+        }
+    ,   { "id"     : "thedyingsun"
+        , "name"   : null
+        , "authors": ["thedyingsun"]
+        , "day"    : 25
+        , "ext"    : "jpg"
+        , "medal"  : true
         }
     ]
 ,   "events":

@@ -105,22 +105,22 @@
       "gridCellsX": 60,
       "gridCellsY": 34,
       "decals": [
-        {"x": 242, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 172, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 62, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 132, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 354, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 284, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 464, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 394, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 242, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 172, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 62, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 132, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 354, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 284, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 394, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
         {"x": 464, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
-        {"x": 394, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"}
+        {"x": 284, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 354, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 132, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 62, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 172, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 242, "y": 169, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 394, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 464, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 284, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 354, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 132, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 62, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 172, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"},
+        {"x": 242, "y": 125, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorlamp.png"}
       ],
       "folder": "../../images/props"
     },
@@ -150,7 +150,8 @@
         {"x": 428.5, "y": 171, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorwreaths.png"},
         {"x": 318.5, "y": 171, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorwreaths.png"},
         {"x": 206.5, "y": 171, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorwreaths.png"},
-        {"x": 96.5, "y": 171, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorwreaths.png"}
+        {"x": 96.5, "y": 171, "scaleX": 1, "scaleY": 1, "texture": "hallway/floorwreaths.png"},
+        {"x": 240, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "hallway/streamers.png"}
       ],
       "folder": "../../images/props"
     }
