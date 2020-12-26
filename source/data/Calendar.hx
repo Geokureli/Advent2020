@@ -51,7 +51,7 @@ class Calendar
         if (isDecember)// && date.getFullYear() == 2019)
         {
             hanukkahDay = date.getDate() - 10;
-            if (date.getDate() < 26)
+            if (date.getDate() < 32)
             {
                 isAdvent = true;
                 day = date.getDate();
