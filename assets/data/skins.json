@@ -221,7 +221,7 @@
 ,   { "id": "aine"
     , "proper": "Aine"
     , "description": "This here’s Aine, she’s an orange knight from Renaine with a feather to pick with a Dragon who did her dirty."
-    , "unlocksBy": null
+    , "unlocksBy": "day:27"
     , "users": ["squidly"]
     , "group": "renaine"
     }
@@ -240,7 +240,7 @@
     }
 ,   { "id": "lucky"
     , "proper": "Lucky"
-    , "description": ""
+    , "description": "something big is coming 2021..."
     , "unlocksBy": "medal:25"
     , "users": ["brandybuizel", "domdude111"]
     }
@@ -290,7 +290,7 @@
     }
 ,   { "id": "mvchan"
     , "proper": "MV-Chan"
-    , "description": ""
+    , "description": "The cutie from Speedo's amazing music videos."
     , "unlocksBy": "day:24"
     , "users": ["speedo"]
     }
