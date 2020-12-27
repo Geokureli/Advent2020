@@ -120,8 +120,16 @@ class GallerySubstate extends FlxSubState
 		if (data.animation != null)
 		{
 			final frames = data.animation.frames;
-			final fps = data.animation.frames == null ? frames : data.animation.frames;
-			horizSize = Std.int(horizSize / frames);
+			final fps = data.animation.fps == null ? frames : data.animation.fps;
+			var columns = frames;
+			var rows = 1;
+			if (data.animation.columns != null)
+			{
+				columns = data.animation.columns;
+				rows = Math.ceil(frames / columns);
+			}
+			horizSize = Std.int(horizSize / columns);
+			vertSize = Std.int(vertSize / rows);
 			bigPreview.loadGraphic(graphic, true, horizSize, vertSize);
 			bigPreview.animation.add("anim", [for (i in 0...frames) i], fps);
 			bigPreview.animation.play("anim");

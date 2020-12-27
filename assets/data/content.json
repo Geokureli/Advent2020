@@ -71,6 +71,7 @@
     , "mismash"         : { "proper": "MisMash"         }
     , "toppleng"        : { "proper": "ToppleNG"        }
     , "syntrus"         : { "proper": "Syntrus"         }
+    , "onishaggy"       : { "proper": "OniShaggy"       }
     , "heyopc"          : { "proper": null              }
     }
 ,   "songs":
@@ -378,6 +379,20 @@
         , "day"      : 26
         , "medal"    : true
         , "animation": { "frames":2, "fps":2 }
+        }
+    ,   { "id"       : "gallowjolt"
+        , "name"     : "Ritzmas"
+        , "authors"  : ["gallowjolt"]
+        , "day"      : 27
+        , "medal"    : true
+        , "animation": { "frames":30, "fps":10, "columns":5 }
+        , "antiAlias": false
+        }
+    ,   { "id"       : "onishaggy"
+        , "name"     : "date night 99"
+        , "authors"  : ["onishaggy"]
+        , "day"      : 28
+        , "medal"    : true
         }
     ]
 ,   "events":

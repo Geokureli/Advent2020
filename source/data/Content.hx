@@ -390,7 +390,7 @@ typedef Creation =
 typedef ArtCreation
  = Creation & 
 {
-    var animation:Null<{frames:Int, fps:Int}>;
+    var animation:Null<{frames:Int, fps:Int, columns:Int}>;
     var thumbPath:String;
     var presentPath:String;
     var medalPath:String;
