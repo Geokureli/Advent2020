@@ -77,7 +77,9 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
         {
             case Playing(data):
             {
-                text.text = data.name + " by " + Content.listAuthorsProper(data.authors);
+                text.text = (data.name != null ? data.name : "UNTITLED") 
+                    + " by " + Content.listAuthorsProper(data.authors);
+                
                 tweenOutro = function (?_)
                 {
                     var outroTween = tweener.tween(this, { y:FlxG.height }, duration,
@@ -85,7 +87,9 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
                 }
             }
             case Loading(data):
-                text.text = "Loading " + data.name + " by " + Content.listAuthorsProper(data.authors);
+                text.text = "Loading "
+                    + (data.name != null ? data.name : "UNTITLED") 
+                    + " by " + Content.listAuthorsProper(data.authors);
         }
         
         if (y > FlxG.height - bar.height)

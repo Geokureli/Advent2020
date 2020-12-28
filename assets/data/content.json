@@ -72,6 +72,7 @@
     , "toppleng"        : { "proper": "ToppleNG"        }
     , "syntrus"         : { "proper": "Syntrus"         }
     , "onishaggy"       : { "proper": "OniShaggy"       }
+    , "pktoastyva"       : { "proper": "PKToastyVA"       }
     , "heyopc"          : { "proper": null              }
     }
 ,   "songs":
@@ -192,6 +193,13 @@
         , "bpm"      : 82
         , "ngId"     : 986972
         , "day"      : 26
+        }
+    ,   { "id"     : "pktoastyva"
+        , "name"   : "side b cd stylin'"
+        , "authors": ["pktoastyva"]
+        , "key"      : "eMaj"
+        , "bpm"      : 130
+        , "day"      : 28
         }
     ]
 ,   "artwork":
