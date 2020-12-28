@@ -1,5 +1,6 @@
 package ui;
 
+import flixel.input.IFlxInput;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.system.FlxAssets;
@@ -11,6 +12,7 @@ class Button extends FlxTypedButton<FlxSprite>
     {
         super(x, y, onClick);
         
+        allowSwiping = false;
         this.statusAnimations[FlxButton.HIGHLIGHT] = "normal";
         setGraphic(graphic);
         
@@ -24,6 +26,15 @@ class Button extends FlxTypedButton<FlxSprite>
         this.loadGraphic(graphic, true, Std.int(this.width / 2), Std.int(this.height));
     }
     
+    override function updateStatus(input:IFlxInput)
+    {
+        super.updateStatus(input);
+        if (currentInput != null && !allPressed.contains(this))
+            allPressed.push(this);
+        else if (currentInput == null && allPressed.contains(this))
+            allPressed.remove(this);
+    }
+    
     inline public function setLabelGraphic(graphic):Void
     {
         if (this.label != null)
@@ -31,6 +42,18 @@ class Button extends FlxTypedButton<FlxSprite>
         else
             this.label = new FlxSprite(graphic);
     }
+    
+    override function destroy()
+    {
+        super.destroy();
+        
+        if (allPressed.contains(this))
+            allPressed.remove(this);
+    }
+    
+    static var allPressed(default, null) = new Array<Button>();
+    
+    public static function isBlockingMouse() return allPressed.length > 0;
 }
 
 @:forward
@@ -91,5 +114,13 @@ class FullscreenButton extends Button
     {
         FlxG.fullscreen = !FlxG.fullscreen;
         this.setGraphic('assets/images/ui/buttons/fullscreen_${FlxG.fullscreen ? "on" : "off"}.png');
+    }
+}
+
+class EmoteButton extends Button
+{
+    public function new(x = 0.0, y = 0.0, ?onClick)
+    {
+        super(x, y, onClick, "assets/images/ui/buttons/emote.png");
     }
 }

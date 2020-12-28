@@ -146,6 +146,7 @@ class Player extends flixel.FlxSprite
             justEmoted = true;
             emote.animate(Smooch);
         }
+        
         var nextPos = targetPos;
         if (movePath != null)
         {

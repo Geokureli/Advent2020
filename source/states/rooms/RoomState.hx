@@ -254,11 +254,17 @@ class RoomState extends OgmoState
         ui.add(medalPopup = MedalPopup.getInstance());
         ui.add(musicPopup = MusicPopup.getInstance());
         ui.add(skinPopup = SkinPopup.getInstance());
+        
+        final MARGIN = 4;
         var fullscreen = new FullscreenButton();
         fullscreen.updateHitbox();
-        fullscreen.x = FlxG.width - fullscreen.width - 4;
-        fullscreen.y = 4;
+        fullscreen.x = FlxG.width - fullscreen.width - MARGIN;
+        fullscreen.y = MARGIN;
         ui.add(fullscreen);
+        
+        if (FlxG.onMobile)
+            add(new EmoteButton(MARGIN, MARGIN, player.mobileEmotePressed));
+        
         add(ui);
         
         if (Lucia.finding)
