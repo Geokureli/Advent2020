@@ -1,5 +1,6 @@
 package horse;
 
+import ui.Controls;
 import data.Content;
 import data.NGio;
 import flixel.FlxG;
@@ -86,7 +87,7 @@ class HorseSubState extends flixel.FlxSubState
     {
         super.update(elapsed);
         
-        if (FlxG.keys.anyJustPressed([ESCAPE, X]))
+        if (Controls.justPressed.B)
             close();
         
         switch(state)

@@ -128,7 +128,6 @@
 		
 	</section>
 
-	<!--
 	<define name="INCLUDE_CHIMNEY_GAME"/>
 	<section if="INCLUDE_CHIMNEY_GAME">
 		
@@ -136,7 +135,6 @@
 		<assets path="chimney/assets" rename="assets" exclude="*.ase|*.wav"/>
 		
 	</section>
-	-->
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

@@ -447,6 +447,7 @@ typedef MovieCreation =
 enum abstract ArcadeName(String) to String
 {
     var Digging = "digging";
+    var Chimney = "chimney";
     var Horse = "horse";
     var Positivity = "positivity";
     var Advent2018 = "2018";
