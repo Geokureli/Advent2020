@@ -232,7 +232,7 @@ class ComicSubstate extends flixel.FlxSubState
         super.close();
     }
     
-    inline function getPath(path:String) return '${data.id}:${data.id}/$path';
+    inline function getPath(path:String) return '${data.id}:assets/${data.id}/$path';
     inline function getImage(path:String) return Assets.getBitmapData(getPath(path));
     inline function hasImage(path:String) return Assets.exists(getPath(path), IMAGE);
     inline function getPage(num:Int) return Assets.getBitmapData(getPath(getPageName(num)));

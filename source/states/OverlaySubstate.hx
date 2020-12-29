@@ -37,11 +37,12 @@ class OverlaySubstate extends flixel.FlxSubState
         requestedState = initialState;
         if (cameraData == null)
             cameraData = { width:FlxG.width, height:FlxG.height, zoom:1 };
-        camera = new FlxCamera(0, 0, cameraData.width, cameraData.height, cameraData.zoom);
+        final zoom = cameraData.zoom != null ? cameraData.zoom : 1;
+        camera = new FlxCamera(0, 0, cameraData.width, cameraData.height, zoom);
         camera.setFilters([new ShaderFilter(new CrtShader())]);
         camera.bgColor = 0x0;
-        camera.x = (FlxG.width - camera.width * cameraData.zoom) / 2;
-        camera.y = (FlxG.height - camera.height * cameraData.zoom) / 2;
+        camera.x = (FlxG.width - camera.width * zoom) / 2;
+        camera.y = (FlxG.height - camera.height * zoom) / 2;
     }
     
     override function create()
@@ -110,7 +111,7 @@ class OverlaySubstate extends flixel.FlxSubState
         
         timers.clear();
         tweens.clear();
-		FlxG.worldBounds.set(-10, -10, camera.width + 20, camera.height + 20);
+        FlxG.worldBounds.set(-10, -10, camera.width + 20, camera.height + 20);
         camera.scroll.set(0, 0);
         camera.setScrollBounds(null, null, null, null);
         camera.follow(null);

@@ -45,7 +45,6 @@
 			"url": "http://127.0.0.1:3000",
 			"sourceMaps": true,
 			"webRoot": "${workspaceFolder}/digMinigame",
-			"runtimeArgs": ["--disable-web-security"],
 			"preLaunchTask": "dig game - debug: html"
 		},
 		{
@@ -55,8 +54,16 @@
 			"url": "http://127.0.0.1:3000",
 			"sourceMaps": true,
 			"webRoot": "${workspaceFolder}/positivity",
-			"runtimeArgs": ["--disable-web-security"],
 			"preLaunchTask": "positive game - debug: html"
+		},
+		{
+			"name": "ChromeChimneyGame",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://127.0.0.1:3000",
+			"sourceMaps": true,
+			"webRoot": "${workspaceFolder}/chimney",
+			"preLaunchTask": "chimney game - debug: html"
 		},
 		{
 			"name": "FireFox",

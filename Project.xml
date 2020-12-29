@@ -105,10 +105,10 @@
 	<!-- <library path="assets/swfs/Animations.swf" id="Animations" preload="true" /> -->
 	
 	<library name="night_before" preload="false" />
-	<assets path="assets/comics/night_before" rename="night_before" library="night_before"/>
+	<assets path="assets/comics/night_before" rename="assets/night_before" library="night_before"/>
 	
 	<library name="santa_smackdown" preload="false" />
-	<assets path="assets/comics/santa_smackdown" rename="santa_smackdown" library="santa_smackdown"/>
+	<assets path="assets/comics/santa_smackdown" rename="assets/santa_smackdown" library="santa_smackdown"/>
 	
 	<define name="ADVENT"/>
 	<define name="INCLUDE_DIG_GAME"/>
@@ -128,7 +128,7 @@
 		
 	</section>
 
-	<!-- <define name="INCLUDE_CHIMNEY_GAME"/> -->
+	<define name="INCLUDE_CHIMNEY_GAME"/>
 	<section if="INCLUDE_CHIMNEY_GAME">
 		
 		<classpath name="chimney/source"/>

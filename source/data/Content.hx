@@ -65,6 +65,8 @@ class Content
         {
             arcadeData.path = 'assets/images/props/cabinets/${arcadeData.id}.png';
             arcadeData.medalPath = 'assets/images/medals/${arcadeData.id}.png';
+            if (arcadeData.medal == null)
+                arcadeData.medal = arcadeData.type != External;
             if (arcadeData.scoreboard == null)
                 arcadeData.scoreboard = arcadeData.name;
             arcades[arcadeData.id] = arcadeData;
@@ -229,7 +231,7 @@ class Content
             {
                 if (!Manifest.exists(arcade.path, IMAGE))
                     errors.push('Missing ${arcade.path}');
-                if (arcade.type != External && !Manifest.exists(arcade.medalPath, IMAGE))
+                if (arcade.type != External && arcade.medal && !Manifest.exists(arcade.medalPath, IMAGE))
                     errors.push('Missing ${arcade.medalPath}');
                 if (!cabinetIds.contains(arcade.id))
                     errors.push('Missing Cabinet in arcade id:${arcade.id}');
@@ -425,6 +427,7 @@ typedef ArcadeCreation
     var scoreboardId:Int;
     var medalPath:String;
     var mobile:Bool;
+    var medal:Bool;
     var type:ArcadeType;
     var camera:ArcadeCamera;
 }

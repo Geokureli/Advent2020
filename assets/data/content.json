@@ -466,8 +466,9 @@
     ,   { "id"     : "chimney"
         , "name"   : "Holiday Hominid Drop"
         , "authors": ["brandybuizel", "knose", "danfrombavaria"]
-        , "day"    : 30
+        , "day"    : 29
         , "mobile" : false
+        , "medal"  : false
         , "type"   : "overlay"
         , "camera" : { "width":240, "height": 270 }
         }
