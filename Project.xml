@@ -116,15 +116,17 @@
 		<!-- <define name="SKIP_TO_DIG_GAME" if="debug"/> -->
 		
 		<classpath name="digMinigame/source"/>
-		<assets path="digMinigame/assets" rename="assets" exclude="*.ase|*.wav" />
+		<library name="digging" preload="false" />
+		<assets path="digMinigame/assets" rename="assets/arcades/digging" library="digging" exclude="*.ase|*.wav" />
 		
 	</section>
-	
+	 
 	<define name="INCLUDE_THOUGHTS_GAME"/>
 	<section if="INCLUDE_THOUGHTS_GAME">
 		
 		<classpath name="positivity/source"/>
-		<assets path="positivity/assets" rename="assets" exclude="*.ase|*.wav"/>
+		<library name="positivity" preload="false" />
+		<assets path="positivity/assets" rename="assets/arcades/positivity" library="positivity" exclude="*.ase|*.wav"/>
 		
 	</section>
 
@@ -132,7 +134,8 @@
 	<section if="INCLUDE_CHIMNEY_GAME">
 		
 		<classpath name="chimney/source"/>
-		<assets path="chimney/assets" rename="assets" exclude="*.ase|*.wav"/>
+		<library name="chimney" preload="false" />
+		<assets path="chimney/assets" rename="assets/arcades/chimney" library="chimney" exclude="*.ase|*.wav"/>
 		
 	</section>
 

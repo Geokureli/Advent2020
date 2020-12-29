@@ -1,5 +1,7 @@
 package states;
 
+import openfl.utils.Assets;
+import ui.Font;
 import flixel.math.FlxRect;
 import flixel.FlxSprite;
 import flixel.text.FlxBitmapText;
@@ -19,7 +21,9 @@ import openfl.filters.ShaderFilter;
 
 class OverlaySubstate extends flixel.FlxSubState
 {
+    public var data:ArcadeCreation;
     public var state(default, null):FlxState = null;
+    
     var requestedState:FlxState = null;
     var timers = new FlxTimerManager();
     var oldTimers:FlxTimerManager;
@@ -29,12 +33,14 @@ class OverlaySubstate extends flixel.FlxSubState
     var oldBounds:FlxRect;
     var bg:FlxSprite;
     
-    public function new(initialState:FlxState, cameraData:ArcadeCamera)
+    public function new(data:ArcadeCreation, initialState:FlxState)
     {
         super();
         
+        this.data = data;
         OverlayGlobal.container = this;
-        requestedState = initialState;
+        requestedState = new LoadingState(initialState, data.id);
+        var cameraData = data.camera;
         if (cameraData == null)
             cameraData = { width:FlxG.width, height:FlxG.height, zoom:1 };
         final zoom = cameraData.zoom != null ? cameraData.zoom : 1;
@@ -142,5 +148,43 @@ class OverlaySubstate extends flixel.FlxSubState
         oldBounds.put();
         cameras = null;
         super.close();
+    }
+}
+
+class LoadingState extends FlxState
+{
+    var nextState:FlxState;
+    var libraryName:String;
+    
+    public function new(nextState, libraryName:String)
+    {
+        super();
+        this.nextState = nextState;
+        this.libraryName = libraryName;
+    }
+    
+    override function create()
+    {
+        var text = new FlxBitmapText(new NokiaFont16());
+        text.text = "Loading...";
+        text.x = (OverlayGlobal.width - text.width) / 2;
+        text.y = (OverlayGlobal.height - text.height) / 2;
+        add(text);
+        
+        super.create();
+        
+        Assets.loadLibrary(libraryName).onComplete((_)->loadComplete());
+    }
+    
+    function loadComplete()
+    {
+        OverlayGlobal.switchState(nextState);
+    }
+    
+    override function destroy()
+    {
+        super.destroy();
+        
+        nextState = null;
     }
 }

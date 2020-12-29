@@ -24,4 +24,10 @@ class OverlayGlobal
     {
         container.switchState(state);
     }
+    
+    static public function asset(path:String):String
+    {
+        final id = container.data.id;
+        return id + ":" + path.split("assets/").join('assets/arcades/$id/');
+    }
 }
