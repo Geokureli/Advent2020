@@ -52,7 +52,7 @@
 		{
 			"label": "chimney game - debug: html",
 			"command": "haxelib",
-			"args": ["run", "lime", "build", "chimmney/Project.xml", "html5", "-debug"],
+			"args": ["run", "lime", "build", "chimney/Project.xml", "html5", "-debug"],
 			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
 			"group": { "kind": "build", "isDefault": true }
 		}
