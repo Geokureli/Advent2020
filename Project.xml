@@ -128,7 +128,7 @@
 		
 	</section>
 
-	<define name="INCLUDE_CHIMNEY_GAME"/>
+	<!-- <define name="INCLUDE_CHIMNEY_GAME"/> -->
 	<section if="INCLUDE_CHIMNEY_GAME">
 		
 		<classpath name="chimney/source"/>

@@ -322,7 +322,14 @@ class RoomState extends OgmoState
     
     function openComicPresent(present:Present, data:ArtCreation)
     {
-        present.animateOpen(()->playOverlay(new states.ComicSubstate(present.id), data.comic.audioPath != null));
+        present.animateOpen(function()
+        {
+            final medal = data.medal;
+            if (!Calendar.isDebugDay && Calendar.day == data.day
+              && medal != null && medal != false)
+                NGio.unlockDayMedal(data.day);
+            playOverlay(new ComicSubstate(present.id), data.comic.audioPath != null);
+        });
     }
     
     function playOverlay(overlay:flixel.FlxSubState, stopMusic = true)

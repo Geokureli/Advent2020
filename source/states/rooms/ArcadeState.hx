@@ -67,10 +67,13 @@ class ArcadeState extends RoomState
             case Horse: new horse.HorseSubState();
             case Positivity: new OverlaySubstate(new Creds(), data.camera);
             case Digging: new OverlaySubstate(new digging.MenuState(), data.camera);
+            #if INCLUDE_CHIMNEY_GAME
             case Chimney: new OverlaySubstate(new chimney.PlayState(), data.camera);
+            #end
             default:
                 throw "Unhandled arcade id:" + id;
         }
+        
         overlay.closeCallback = ()->
         {
             if (FlxG.sound.music != null)
