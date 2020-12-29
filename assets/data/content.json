@@ -465,7 +465,7 @@
         }
     ,   { "id"     : "chimney"
         , "name"   : "Holiday Hominid Drop"
-        , "authors": ["knose", "brandybuizel"]
+        , "authors": ["brandybuizel", "knose", "danfrombavaria"]
         , "day"    : 30
         , "mobile" : false
         , "type"   : "overlay"
