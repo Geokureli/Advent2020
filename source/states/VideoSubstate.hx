@@ -11,7 +11,7 @@ import openfl.net.NetStream;
 import openfl.utils.Assets;
 
 import data.NGio;
-import ui.OpenFlBackButton;
+import ui.OpenFlButton;
 import ui.Controls;
 
 import flixel.FlxG;

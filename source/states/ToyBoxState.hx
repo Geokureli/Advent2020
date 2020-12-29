@@ -1,7 +1,7 @@
 package states;
 
 import data.NGio;
-import ui.OpenFlBackButton;
+import ui.OpenFlButton;
 
 import flixel.FlxG;
 import flixel.system.FlxSound;

@@ -6,7 +6,7 @@ import openfl.geom.Rectangle;
 import openfl.utils.Assets;
 import openfl.display.Bitmap;
 
-class OpenFlBackButton extends openfl.display.Sprite
+class OpenFlButton extends openfl.display.Sprite
 {
     inline static var WIDTH = 27;
     inline static var HEIGHT = 30;
@@ -17,11 +17,11 @@ class OpenFlBackButton extends openfl.display.Sprite
     var frame:Int = 0;
     var callback:()->Void;
     
-    public function new(callback:()->Void)
+    public function new(id:String, callback:()->Void)
     {
         this.callback = callback;
         super();
-        addChild(new Bitmap(Assets.getBitmapData("assets/images/ui/buttons/back.png")));
+        addChild(new Bitmap(Assets.getBitmapData('assets/images/ui/buttons/$id.png')));
         scaleX = scaleY = 2;
         scrollRect = new Rectangle(0, 0, WIDTH, HEIGHT);
         useHandCursor = true;
@@ -30,6 +30,9 @@ class OpenFlBackButton extends openfl.display.Sprite
     
     public function update(elapsed:Float):Void
     {
+        if (!visible || !mouseEnabled)
+            return;
+        
         var mouseX = this.mouseX - WIDTH * frame;
         var isMouseOver = mouseX > 0 && mouseX < WIDTH && mouseY > 0 && mouseY < HEIGHT;
         if (FlxG.mouse.justPressed && isMouseOver)
@@ -55,4 +58,10 @@ class OpenFlBackButton extends openfl.display.Sprite
         callback = null;
         removeChildren();
     }
+}
+
+@:forward
+abstract OpenFlBackButton(OpenFlButton) from OpenFlButton to OpenFlButton
+{
+    inline public function new (callback) { this = new OpenFlButton("back", callback); }
 }

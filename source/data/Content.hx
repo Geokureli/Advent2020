@@ -25,7 +25,6 @@ class Content
     public static var events:Map<Int, SongCreation>;
     public static var medals:Map<String, Int>;
     public static var medalsById:Map<Int, String>;
-    public static var comics:Map<String, ComicCreation>;
     public static var movies:Map<String, MovieCreation>;
     
     static var presentsById:Map<String, Int>;
@@ -133,13 +132,6 @@ class Content
             medalsById[id] = name;
         }
         
-        comics = [];
-        for (id in Reflect.fields(data.comics))
-        {
-            comics[id] = cast Reflect.field(data.comics, id);
-            comics[id].id = id;
-        }
-        
         movies = [];
         for (id in Reflect.fields(data.movies))
         {
@@ -176,11 +168,13 @@ class Content
                         daysFound.push(art.day);
                     
                 }
-                
-                if (!Manifest.exists(art.path, IMAGE))
-                    errors.push('Missing ${art.path}');
-                if (!Manifest.exists(art.thumbPath, IMAGE))
-                    errors.push('Missing ${art.thumbPath}');
+                if (art.comic == null)
+                {
+                    if (!Manifest.exists(art.path, IMAGE))
+                        errors.push('Missing ${art.path}');
+                    if (!Manifest.exists(art.thumbPath, IMAGE))
+                        errors.push('Missing ${art.thumbPath}');
+                }
                 if (!Manifest.exists(art.presentPath, IMAGE))
                     errors.push('Missing ${art.presentPath}');
                 if (!presentIds.contains(art.id))
@@ -398,6 +392,7 @@ typedef ArtCreation
     var medal:Null<Bool>;
     var preload:Bool;
     var sound:String;
+    var comic:ComicCreation;
 }
 
 typedef SongCreation
@@ -436,8 +431,7 @@ typedef ArcadeCreation
 
 typedef ComicCreation =
 {
-    var id:String;
-    var name:String;
+    var pages:Int;
     var audioPath:String;
     var dataPath:String;
 }

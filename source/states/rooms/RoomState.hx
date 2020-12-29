@@ -129,12 +129,6 @@ class RoomState extends OgmoState
         {
             var present = Present.fromEntity(data);
             
-            if (present.id == "comic")
-            {
-                initComicPresent(present);
-                return present;
-            }
-            
             final isLucia = Lucia.active && present.id == Lucia.USER;
             if (!isLucia && Content.isArtUnlocked(present.id))
                 initArtPresent(present, onOpenPresent);
@@ -326,26 +320,19 @@ class RoomState extends OgmoState
         return present;
     }
     
-    function initComicPresent(present:Present)
+    function openComicPresent(present:Present, data:ArtCreation)
     {
-        present.scale.set(1, 1);
-        present.width *= 2;
-        present.offset.x -= 4;
-        present.immovable = true;
-        presents.add(present);
-        colliders.add(present);
-        addHoverTextTo(present, "Twas the Night Before Tankmas", ()->openComicPresent(present));
-        return present;
+        present.animateOpen(()->playOverlay(new states.ComicSubstate(present.id), data.comic.audioPath != null));
     }
     
-    function openComicPresent(present:Present)
+    function playOverlay(overlay:flixel.FlxSubState, stopMusic = true)
     {
-        present.animateOpen(()->playOverlay(new states.ComicSubstate("night_before")));
-    }
-    
-    
-    function playOverlay(overlay:flixel.FlxSubState)
-    {
+        if (!stopMusic)
+        {
+            openSubState(overlay);
+            return;
+        }
+        
         if (FlxG.sound.music != null)
             FlxG.sound.music.stop();
         FlxG.sound.music = null;
@@ -444,8 +431,16 @@ class RoomState extends OgmoState
         presents.add(present);
         colliders.add(present);
         var data = Content.artwork[present.id];
-        var box = addThumbnailTo(present, data.thumbPath, openArtPresent.bind(present, callback));
-        box.sprite.visible = present.isOpen;
+        if (data.comic != null)
+        {
+            present.embiggen();
+            addHoverTextTo(present, data.name, ()->openComicPresent(present, data));
+        }
+        else
+        {
+            var box = addThumbnailTo(present, data.thumbPath, openArtPresent.bind(present, callback));
+            box.sprite.visible = present.isOpen;
+        }
     }
     
     inline function addThumbnailTo(target:FlxObject, ?asset, ?callback:Void->Void)

@@ -163,7 +163,8 @@ class BedroomState extends RoomState
         
         #if debug
         if (FlxG.keys.justPressed.H)
-            playOverlay(new states.VideoSubstate("https://uploads.ungrounded.net/alternate"));
+            playOverlay(new states.ComicSubstate("night_before"));
+            // playOverlay(new states.ComicSubstate("santa_smackdown"));
         #end
     }
 }

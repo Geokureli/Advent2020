@@ -68,11 +68,13 @@
     , "camuri"          : { "proper": "Camuri"          }
     , "chobiluck"       : { "proper": "Chobi"           }
     , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
+    , "mrshmoods"       : { "proper": "MrShmoods"       }
     , "mismash"         : { "proper": "MisMash"         }
     , "toppleng"        : { "proper": "ToppleNG"        }
     , "syntrus"         : { "proper": "Syntrus"         }
     , "onishaggy"       : { "proper": "OniShaggy"       }
-    , "pktoastyva"       : { "proper": "PKToastyVA"       }
+    , "pktoastyva"      : { "proper": "PKToastyVA"      }
+    , "piesaus"         : { "proper": "PieSaus"         }
     , "heyopc"          : { "proper": null              }
     }
 ,   "songs":
@@ -324,50 +326,50 @@
         , "day"    : 19
         , "medal"  : true
         }
-	,   { "id"     : "snailpirate"
+    ,   { "id"     : "snailpirate"
         , "name"   : "The Coziest Of NG Christmas Parties"
         , "authors": ["snailpirate"]
         , "day"    : 20
         , "medal"  : true
         }
-	,   { "id"     : "rgpanims"
+    ,   { "id"     : "rgpanims"
         , "name"   : "The Coziest Of NG Christmas Parties"
         , "authors": ["rgpanims"]
         , "day"    : 21
         , "medal"  : true
         }
-	,   { "id"     : "loganphresh"
+    ,   { "id"     : "loganphresh"
         , "name"   : "Sex and Candy"
         , "authors": ["loganphresh"]
         , "day"    : 22
         , "medal"  : true
         , "sound"  : "sexandcandy.mp3"
         }
-	,   { "id"     : "camuri"
+    ,   { "id"     : "camuri"
         , "name"   : "Holiday Lobotomy"
         , "authors": ["camuri"]
         , "day"    : 23
         , "medal"  : true
         }
-	,   { "id"     : "chobiluck"
+    ,   { "id"     : "chobiluck"
         , "name"   : "Happy Holidays 2020"
         , "authors": ["chobiluck"]
         , "day"    : 24
         , "medal"  : true
         }
-	,   { "id"     : "mismash"
+    ,   { "id"     : "mismash"
         , "name"   : "NGfestival"
         , "authors": ["mismash"]
         , "day"    : 25
         , "medal"  : false
         }
-	,   { "id"     : "wandaboy"
+    ,   { "id"     : "wandaboy"
         , "name"   : "dope naenae swag"
         , "authors": ["wandaboy"]
         , "day"    : 25
         , "medal"  : false
         }
-	,   { "id"     : "midgetsausage2"
+    ,   { "id"     : "midgetsausage2"
         , "name"   : "DEBUG TEXT"
         , "authors": ["midgetsausage"]
         , "day"    : 25
@@ -396,11 +398,30 @@
         , "animation": { "frames":30, "fps":10, "columns":5 }
         , "antiAlias": false
         }
-    ,   { "id"       : "onishaggy"
-        , "name"     : "date night 99"
-        , "authors"  : ["onishaggy"]
-        , "day"      : 28
-        , "medal"    : true
+    ,   { "id"     : "onishaggy"
+        , "name"   : "date night 99"
+        , "authors": ["onishaggy"]
+        , "day"    : 28
+        , "medal"  : true
+        }
+    ,   { "id"     : "night_before"
+        , "name"   : "Twas the Night Before Christmas"
+        , "authors": ["voicesbycorey", "mrshmoods", "connorgrail"]
+        , "day"    : 24
+        , "comic"  :
+            { "pages"    : 11
+            , "audioPath": "audio.mp3"
+            , "dataPath" : "data.json"
+            }
+        , "medal"  : false
+        , "comments": "this is listed after day 28 because I added comic stuff later and moving it would mess up the save indices"
+        }
+    ,   { "id"     : "santa_smackdown"
+        , "name"   : "Santa Smackdown"
+        , "authors": ["piesaus"]
+        , "day"    : 29
+        , "comic"  : { "pages"  : 34 }
+        , "medal"  : true
         }
     ]
 ,   "events":
@@ -544,13 +565,6 @@
             , "wandaboy:adl_anim"
             , "wavetro:va"
             ]
-        }
-    }
-,   "comics":
-    {   "night_before":
-        { "pages": 11
-        , "audioPath": "audio.mp3"
-        , "dataPath": "data.json"
         }
     }
 }

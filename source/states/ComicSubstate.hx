@@ -1,5 +1,6 @@
 package states;
 
+import ui.OpenFlButton;
 import ui.Controls;
 import data.Content;
 
@@ -14,7 +15,7 @@ import openfl.utils.Assets;
 
 class ComicSubstate extends flixel.FlxSubState
 {
-    var data:ComicCreation;
+    var data:ArtCreation;
     
     var container = new Sprite();
     var bitmap = new Bitmap();
@@ -23,10 +24,18 @@ class ComicSubstate extends flixel.FlxSubState
     var playing = false;
     var currentPage = -1;
     var pageTimes:Array<Float>;
+    var prev:OpenFlButton;
+    var next:OpenFlButton;
+    var exit:OpenFlButton;
+    var buttons:Sprite;
+    var moveTimer = 2.0;
     
     public function new (id:String, bgColor = 0x0)
     {
-        this.data = Content.comics[id];
+        data = Content.artwork[id];
+        if (data.comic == null)
+            throw "Invalid comic data, id:" + data.id;
+        
         super(bgColor);
     }
     
@@ -56,41 +65,83 @@ class ComicSubstate extends flixel.FlxSubState
     {
         FlxG.mouse.useSystemCursor = true;
         loaded = true;
-        FlxG.stage.addChild(container);
-        container.addChild(bitmap);
-        pageTimes = cast haxe.Json.parse(getText(data.dataPath));
         
+        final stage = FlxG.stage;
+        stage.addChild(container);
+        container.addChild(bitmap);
+        stage.addChild(buttons = new Sprite());
+        buttons.addChild(prev = new PrevButton(clickPrev));
+        buttons.addChild(next = new NextButton(clickNext));
+        buttons.addChild(exit = new OpenFlBackButton(close));
+        prev.x = 16;
+        prev.y = (stage.stageHeight - prev.height) / 2;
+        prev.visible = false;
+        next.x = stage.stageWidth - next.width * next.scaleX - prev.x;
+        next.y = prev.y;
+        next.mouseEnabled = false;
+        
+        if (data.comic.dataPath != null)
+        {
+            if (!hasText(data.comic.dataPath))
+                throw "invalid dataPath:" + data.comic.dataPath;
+            pageTimes = cast haxe.Json.parse(getText(data.comic.dataPath));
+            pageTimes.unshift(0);
+        }
         if (hasImage("cover.png"))
             setBitmapData(getImage("cover.png"));
         else
             start();
     }
     
+    function clickPrev()
+    {
+        if (playing)
+            prevPage();
+    }
+    
+    function clickNext()
+    {
+        if (playing)
+            nextPage();
+    }
+    
     function start()
     {
         playing = true;
-        currentPage = 1;
-        showCurrentPage();
+        if (data.comic.audioPath != null)
+            audio = FlxG.sound.play(getPath(data.comic.audioPath), close);
         
-        if (data.audioPath != null)
-            audio = FlxG.sound.play(getPath(data.audioPath), close);
+        currentPage = 1;
+        showCurrentPage(false);
     }
     
-    function nextPage()
+    function nextPage(setAudio = true)
     {
-        currentPage++;
-        showCurrentPage();
+        if (currentPage < data.comic.pages)
+        {
+            currentPage++;
+            showCurrentPage(setAudio);
+        }
     }
     
     function prevPage()
     {
-        currentPage++;
-        showCurrentPage();
+        if (currentPage > 1)
+        {
+            currentPage--;
+            showCurrentPage(true);
+        }
     }
     
-    function showCurrentPage()
+    function showCurrentPage(setAudio = true)
     {
+        prev.visible = currentPage > 1;
+        next.visible = currentPage < data.comic.pages;
+        
         setBitmapData(getPage(currentPage));
+        
+        if (setAudio && audio != null && pageTimes != null)
+            audio.time = pageTimes[currentPage - 1];
     }
     
     function setBitmapData(bitmapData:BitmapData)
@@ -124,6 +175,10 @@ class ComicSubstate extends flixel.FlxSubState
         if (!loaded)
             return;
         
+        prev.update(elapsed);
+        next.update(elapsed);
+        exit.update(elapsed);
+        
         if (!playing)
         {
             if (FlxG.mouse.justPressed || Controls.justPressed.A)
@@ -131,15 +186,31 @@ class ComicSubstate extends flixel.FlxSubState
         }
         else
         {
+            if (!next.mouseEnabled && !FlxG.mouse.pressed)
+                next.mouseEnabled = true;
+            
             if (pageTimes != null && audio != null)
             {
-                final nextTime = pageTimes[currentPage - 1];
+                final nextTime = pageTimes[currentPage];
                 if (audio.time > nextTime)
-                    nextPage();
+                    nextPage(false);
             }
-            else
+            
+            if (Controls.justPressed.LEFT ) prevPage();
+            if (Controls.justPressed.RIGHT) nextPage();
+            if (Controls.justPressed.B    ) close();
+            
+            if (moveTimer > 0)
             {
-                //left right stuff
+                moveTimer -= elapsed;
+                if (moveTimer <= 0)
+                    buttons.visible = false;
+            }
+            
+            if (FlxG.mouse.justMoved || FlxG.mouse.pressed)
+            {
+                buttons.visible = true;
+                moveTimer = 2.0;
             }
         }
     }
@@ -147,7 +218,17 @@ class ComicSubstate extends flixel.FlxSubState
     override function close()
     {
         FlxG.mouse.useSystemCursor = false;
-        FlxG.stage.removeChild(container);
+        
+        final stage = FlxG.stage;
+        stage.removeChild(container);
+        stage.removeChild(buttons);
+        prev.destroy();
+        next.destroy();
+        exit.destroy();
+        
+        if (audio != null)
+            audio.kill();
+        
         super.close();
     }
     
@@ -160,4 +241,16 @@ class ComicSubstate extends flixel.FlxSubState
     inline function hasText(path:String) return Assets.exists(getPath(path), TEXT);
     
     function getPageName(num:Int) return "page" + StringTools.lpad(Std.string(num), "0", 2) + ".png";
+}
+
+@:forward
+abstract PrevButton(OpenFlButton) from OpenFlButton to OpenFlButton
+{
+    inline public function new (callback) { this = new OpenFlButton("prev", callback); }
+}
+
+@:forward
+abstract NextButton(OpenFlButton) from OpenFlButton to OpenFlButton
+{
+    inline public function new (callback) { this = new OpenFlButton("next", callback); }
 }

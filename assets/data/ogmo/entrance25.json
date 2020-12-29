@@ -397,7 +397,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "comic"}
+          "values": {"id": "night_before"}
         },
         {
           "name": "Present",
@@ -482,6 +482,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "onishaggy"}
+        },
+        {
+          "name": "Present",
+          "id": 41,
+          "_eid": "75464384",
+          "x": 520,
+          "y": 328,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "santa_smackdown"}
         }
       ]
     },

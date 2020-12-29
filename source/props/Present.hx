@@ -33,10 +33,7 @@ class Present extends flixel.FlxSprite
         animation.add("closed", [0]);
         animation.add("opened", [1]);
         animation.add("opening", [1]);
-        if (id == "comic")
-            animation.play("closed");
-        else
-            animation.play(Save.hasOpenedPresent(id) ? "opened" : "closed");
+        animation.play(Save.hasOpenedPresent(id) ? "opened" : "closed");
         graphic.bitmap.fillRect(new openfl.geom.Rectangle(32, 0, 32, 2), 0x0);
         scale.set(0.5, 0.5);
         offset.x = 8;
@@ -53,6 +50,15 @@ class Present extends flixel.FlxSprite
         confetti.animation.add("idle", [0]);
         confetti.animation.add("anim", [for (i in 0...CONFETTI_FRAMES) i], 10, false);
         confetti.kill();
+    }
+    
+    /** Yes, this is a Simpsons reference */
+    public function embiggen()
+    {
+        scale.set(1, 1);
+        width *= 2;
+        offset.x -= 4;
+        immovable = true;
     }
     
     public function animateOpen(callback:()->Void)
