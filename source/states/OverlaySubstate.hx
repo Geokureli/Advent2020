@@ -173,7 +173,8 @@ class LoadingState extends FlxState
         
         super.create();
         
-        Assets.loadLibrary(libraryName).onComplete((_)->loadComplete());
+        if (Assets.getLibrary(libraryName) == null)
+            Assets.loadLibrary(libraryName).onComplete((_)->loadComplete());
     }
     
     function loadComplete()

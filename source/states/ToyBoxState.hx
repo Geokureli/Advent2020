@@ -1,15 +1,18 @@
 package states;
 
 import data.NGio;
+import ui.Font;
 import ui.OpenFlButton;
 
 import flixel.FlxG;
+import flixel.text.FlxBitmapText;
 import flixel.system.FlxSound;
 
 import openfl.events.MouseEvent;
 import openfl.events.Event;
 import openfl.display.MovieClip;
 import openfl.utils.Assets;
+import openfl.utils.AssetType;
 import openfl.display.Sprite;
 
 using states.ToyBoxState.SwfTools;
@@ -22,16 +25,41 @@ class ToyBoxState extends flixel.FlxSubState
     {
         super.create();
         
+        final lib = Assets.getLibrary("butzbo");
+        if (lib == null || !lib.exists("", cast AssetType.MOVIE_CLIP))
+        {
+            var text = new FlxBitmapText(new NokiaFont16());
+            text.text = "Loading...";
+            text.setBorderStyle(OUTLINE, 0xFF000000);
+            text.screenCenter();
+            add(text);
+            
+            Assets.loadLibrary("butzbo").onComplete(function(_)
+            {
+                remove(text);
+                loadComplete();
+            });
+        }
+        else
+            loadComplete();
+    }
+    
+    function loadComplete()
+    {
         FlxG.stage.addChild(toyBox = new ToyBox());
     }
     
     override function update(elapsed:Float)
     {
         super.update(elapsed);
-        toyBox.update(elapsed);
         
-        if (toyBox.requestedExit || FlxG.keys.justPressed.ESCAPE)
-            close();
+        if (toyBox != null)
+        {
+            toyBox.update(elapsed);
+            
+            if (toyBox.requestedExit || FlxG.keys.justPressed.ESCAPE)
+                close();
+        }
     }
     
     override function close()
