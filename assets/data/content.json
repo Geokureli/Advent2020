@@ -463,6 +463,13 @@
         , "type"   : "overlay"
         , "camera" : { "width":192, "height": 108, "zoom": 2 }
         }
+	,   { "id"     : "chimney"
+        , "name"   : "Holiday Hominid Drop"
+        , "authors": ["brandybuizel", "knose", "danfrombavaria"]
+        , "day"    : 29
+        , "mobile" : false
+        , "type"   : "overlay"
+        }
     ]
 ,   "medals":
     { "digging"   : 61364
