@@ -70,7 +70,7 @@ class ArcadeState extends RoomState
             case Digging: new OverlaySubstate(data, new digging.MenuState());
             #end
             #if INCLUDE_CHIMNEY_GAME
-            case Chimney: new OverlaySubstate(data, new chimney.MenuState());
+            case Chimney: new OverlaySubstate(data, new chimney.PlayState());
             #end
             default:
                 throw "Unhandled arcade id:" + id;
