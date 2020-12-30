@@ -75,6 +75,8 @@
     , "onishaggy"       : { "proper": "OniShaggy"       }
     , "pktoastyva"      : { "proper": "PKToastyVA"      }
     , "piesaus"         : { "proper": "PieSaus"         }
+    , "aramortart"      : { "proper": "ARAMort"         }
+    , "circuitreats"    : { "proper": "Circuitreats"    }
     , "heyopc"          : { "proper": null              }
     }
 ,   "songs":
@@ -97,17 +99,17 @@
         , "ngId"     : 985036
         , "day"      : 3
         }
-    ,   { "id"       : "czyszy"
-        , "name"     : "ave-xmas.wav"
-        , "authors"  : ["czyszy"]
-        , "key"      : "dMaj"
-        , "bpm"      : 94
-        , "ngId"     : 985502
-        , "day"      : 5
+    ,   { "id"     : "czyszy"
+        , "name"   : "ave-xmas.wav"
+        , "authors": ["czyszy"]
+        , "key"    : "dMaj"
+        , "bpm"    : 94
+        , "ngId"   : 985502
+        , "day"    : 5
         }
-    ,   { "id"     : "splatterdash"
-        , "name"   : "Let The Snow Fall"
-        , "authors": ["splatterdash"]
+    ,   { "id"       : "splatterdash"
+        , "name"     : "Let The Snow Fall"
+        , "authors"  : ["splatterdash"]
         , "loopStart": 60500
         , "loopEnd"  : 204500
         , "key"      : "eMaj"
@@ -118,90 +120,97 @@
     ,   { "id"     : "chrisbasso"
         , "name"   : "Funky Christmas MIX"
         , "authors": ["chrisbasso"]
-        , "key"      : "f#Maj"
-        , "bpm"      : 101
-        , "ngId"     : 1559697
-        , "day"      : 9
+        , "key"    : "f#Maj"
+        , "bpm"    : 101
+        , "ngId"   : 1559697
+        , "day"    : 9
         }
     ,   { "id"     : "connorgrail"
         , "name"   : "We Three Kings"
         , "authors": ["connorgrail","misterjamesss"]
-        , "key"      : "aMaj"
-        , "bpm"      : 166
-        , "ngId"     : 0
-        , "day"      : 11
-        , "volume"   : 0.25
+        , "key"    : "aMaj"
+        , "bpm"    : 166
+        , "ngId"   : 0
+        , "day"    : 11
+        , "volume" : 0.25
         }
     ,   { "id"     : "hyenaedon"
         , "name"   : "Woodland Sprites"
         , "authors": ["hyenaedon"]
-        , "key"      : "g#Maj"
-        , "bpm"      : 153
-        , "ngId"     : 0
-        , "day"      : 13
+        , "key"    : "g#Maj"
+        , "bpm"    : 153
+        , "ngId"   : 0
+        , "day"    : 13
         }
     ,   { "id"     : "carmet"
         , "name"   : "It's Cold"
         , "authors": ["carmet"]
-        , "key"      : "f#Maj"
-        , "bpm"      : 60
-        , "ngId"     : 0
-        , "day"      : 15
+        , "key"    : "f#Maj"
+        , "bpm"    : 60
+        , "ngId"   : 0
+        , "day"    : 15
         }
     ,   { "id"     : "goodl"
         , "name"   : "Holidays Under Contruction"
         , "authors": ["goodl"]
-        , "key"      : "aMaj"
-        , "bpm"      : 130
-        , "ngId"     : 0
-        , "day"      : 17
+        , "key"    : "aMaj"
+        , "bpm"    : 130
+        , "ngId"   : 0
+        , "day"    : 17
         }
     ,   { "id"     : "anarchyaxel"
         , "name"   : "Hot Chocolate"
         , "authors": ["anarchyaxel"]
-        , "key"      : "cMaj"
-        , "bpm"      : 120
-        , "ngId"     : 0
-        , "day"      : 19
+        , "key"    : "cMaj"
+        , "bpm"    : 120
+        , "ngId"   : 0
+        , "day"    : 19
         }
     ,   { "id"     : "tenodiboris"
         , "name"   : "MerryXmass"
         , "authors": ["tenodiboris"]
-        , "key"      : "dMin"
-        , "bpm"      : 120
-        , "ngId"     : 0
-        , "day"      : 21
+        , "key"    : "dMin"
+        , "bpm"    : 120
+        , "ngId"   : 0
+        , "day"    : 21
         }
     ,   { "id"     : "everratic"
         , "name"   : "A Perfect Day"
         , "authors": ["everratic"]
-        , "key"      : "aMaj"
-        , "bpm"      : 96
-        , "ngId"     : 0
-        , "day"      : 23
+        , "key"    : "aMaj"
+        , "bpm"    : 96
+        , "ngId"   : 0
+        , "day"    : 23
         }
     ,   { "id"     : "precipitation24"
         , "name"   : "Anastasia and Cinderella"
         , "authors": ["precipitation24"]
-        , "key"      : "aMaj"
-        , "bpm"      : 130
-        , "ngId"     : 833947
-        , "day"      : 25
+        , "key"    : "aMaj"
+        , "bpm"    : 130
+        , "ngId"   : 833947
+        , "day"    : 25
         }
     ,   { "id"     : "syntrus"
         , "name"   : "The Chill of the Solstice"
         , "authors": ["syntrus"]
-        , "key"      : "gMaj"
-        , "bpm"      : 82
-        , "ngId"     : 986972
-        , "day"      : 26
+        , "key"    : "gMaj"
+        , "bpm"    : 82
+        , "ngId"   : 986972
+        , "day"    : 26
         }
     ,   { "id"     : "pktoastyva"
         , "name"   : "side b cd stylin'"
         , "authors": ["pktoastyva"]
-        , "key"      : "eMaj"
-        , "bpm"      : 130
-        , "day"      : 28
+        , "key"    : "eMaj"
+        , "bpm"    : 130
+        , "day"    : 28
+        }
+    ,   { "id"     : "aramortart"
+        , "name"   : "Fizzy Snow"
+        , "authors": ["aramortart"]
+        , "key"    : "cMaj"
+        , "bpm"    : 70
+        , "day"    : 30
         }
     ]
 ,   "artwork":
@@ -420,7 +429,7 @@
         , "name"   : "Santa Smackdown"
         , "authors": ["piesaus"]
         , "day"    : 29
-        , "comic"  : { "pages"  : 34 }
+        , "comic"  : { "pages": 34 }
         , "medal"  : true
         }
     ]
