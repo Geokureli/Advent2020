@@ -11,6 +11,7 @@ import flixel.FlxState;
 
 class Game
 {
+    static public var version(default, null):String;
     static public var room(get, never):RoomState;
     static function get_room() return Std.downcast(FlxG.state, RoomState);
     static public var arcadeName(default, null):ArcadeName = null;
@@ -26,12 +27,13 @@ class Game
     
     public static var initialRoom(default, null) = 
         #if debug
-        RoomName.Bedroom;
+        // RoomName.Bedroom;
         // RoomName.Hallway + "." + RoomName.Bedroom;
         // RoomName.Entrance + "." + RoomName.Hallway;
         // RoomName.Outside + "." + RoomName.Entrance;
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
+        RoomName.Dance + "." + RoomName.Entrance;
         // RoomName.Movie + "." + RoomName.Entrance;
         #else
         RoomName.Bedroom;
@@ -39,7 +41,11 @@ class Game
     
     static function init():Void
     {
+        version = openfl.Lib.application.meta.get("version");
+        trace("version:" + version);
+        
         #if js
+        trace("render context: " + FlxG.stage.window.context.type);
         allowShaders = switch(FlxG.stage.window.context.type)
         {
             case OPENGL, OPENGLES, WEBGL: true;
@@ -55,6 +61,7 @@ class Game
         roomTypes[Arcade  ] = ArcadeState.new;
         roomTypes[Studio  ] = StudioState.new;
         roomTypes[Movie   ] = MovieState.new;
+        roomTypes[Dance   ] = DanceState.new;
         
         arcadeTypes = [];
         #if INCLUDE_DIG_GAME
@@ -128,6 +135,11 @@ class Game
             FlxG.sound.music.stop();
         FlxG.sound.music = null;
         Manifest.playMusic(chosenSong);
+    }
+    
+    static public function isCompatibleVersion(version:String)
+    {
+        return Game.version == version;
     }
 }
 
