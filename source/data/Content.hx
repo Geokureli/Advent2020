@@ -3,6 +3,7 @@ package data;
 import states.OgmoState;
 
 import flixel.system.FlxSound;
+import flixel.util.FlxSignal;
 
 import openfl.utils.Assets;
 
@@ -10,6 +11,9 @@ import haxe.Json;
 
 class Content
 {
+    public static var onInit(default, null) = new FlxSignal();
+    public static var isInitted(default, null) = false;
+    
     public static var credits:Map<User, CreditContent>;
     public static var artwork:Map<String, ArtCreation>;
     public static var artworkByDay:Map<Int, ArtCreation>;
@@ -19,6 +23,9 @@ class Content
     public static var instruments:Map<InstrumentType, InstrumentData>;
     public static var instrumentsByIndex:Map<Int, InstrumentData>;
     public static var events:Map<Int, SongCreation>;
+    public static var medals:Map<String, Int>;
+    public static var medalsById:Map<Int, String>;
+    public static var movies:Map<String, MovieCreation>;
     
     static var presentsById:Map<String, Int>;
     static var presentsByIndex:Map<Int, String>;
@@ -58,6 +65,8 @@ class Content
         {
             arcadeData.path = 'assets/images/props/cabinets/${arcadeData.id}.png';
             arcadeData.medalPath = 'assets/images/medals/${arcadeData.id}.png';
+            if (arcadeData.medal == null)
+                arcadeData.medal = arcadeData.type != External;
             if (arcadeData.scoreboard == null)
                 arcadeData.scoreboard = arcadeData.name;
             arcades[arcadeData.id] = arcadeData;
@@ -115,6 +124,25 @@ class Content
             event.day = day;
             events[day] = event;
         }
+        
+        medals = [];
+        medalsById = [];
+        for (name in Reflect.fields(data.medals))
+        {
+            var id = Reflect.field(data.medals, name);
+            medals[name] = id;
+            medalsById[id] = name;
+        }
+        
+        movies = [];
+        for (id in Reflect.fields(data.movies))
+        {
+            movies[id] = cast Reflect.field(data.movies, id);
+            movies[id].id = id;
+        }
+        
+        isInitted = true;
+        onInit.dispatch();
     }
     
     /**
@@ -131,19 +159,26 @@ class Content
         {
             if (art.day != null && art.day <= Calendar.day)
             {
-                if (daysFound.contains(art.day))
-                    errors.push('Multiple artwork with medals of day:${art.day}');
-                else if (art.medal)
-                    daysFound.push(art.day);
-                
-                if (!Manifest.exists(art.path, IMAGE))
-                    errors.push('Missing ${art.path}');
-                if (!Manifest.exists(art.thumbPath, IMAGE))
-                    errors.push('Missing ${art.thumbPath}');
+                if (art.medal)
+                {
+                    if (!Manifest.exists(art.medalPath, IMAGE))
+                        errors.push('Missing ${art.medalPath}');
+                    
+                    if (daysFound.contains(art.day))
+                        errors.push('Multiple artwork with medals of day:${art.day}');
+                    else
+                        daysFound.push(art.day);
+                    
+                }
+                if (art.comic == null)
+                {
+                    if (!Manifest.exists(art.path, IMAGE))
+                        errors.push('Missing ${art.path}');
+                    if (!Manifest.exists(art.thumbPath, IMAGE))
+                        errors.push('Missing ${art.thumbPath}');
+                }
                 if (!Manifest.exists(art.presentPath, IMAGE))
                     errors.push('Missing ${art.presentPath}');
-                if (!Manifest.exists(art.medalPath, IMAGE))
-                    errors.push('Missing ${art.medalPath}');
                 if (!presentIds.contains(art.id))
                     errors.push('Missing present in entrance, id:${art.id}');
                 if (art.authors == null)
@@ -196,7 +231,7 @@ class Content
             {
                 if (!Manifest.exists(arcade.path, IMAGE))
                     errors.push('Missing ${arcade.path}');
-                if (arcade.medal == true && !Manifest.exists(arcade.medalPath, IMAGE))
+                if (arcade.type != External && arcade.medal && !Manifest.exists(arcade.medalPath, IMAGE))
                     errors.push('Missing ${arcade.medalPath}');
                 if (!cabinetIds.contains(arcade.id))
                     errors.push('Missing Cabinet in arcade id:${arcade.id}');
@@ -322,6 +357,9 @@ private typedef ContentFile =
     var arcades:Array<ArcadeCreation>;
     var credits:Dynamic;
     var events:Dynamic;
+    var medals:Dynamic;
+    var comics:Dynamic;
+    var movies:Dynamic;
 }
 
 typedef ContentError = String;
@@ -348,13 +386,15 @@ typedef Creation =
 typedef ArtCreation
  = Creation & 
 {
-    var animation:Null<{frames:Int, fps:Int}>;
+    var animation:Null<{frames:Int, fps:Int, columns:Int}>;
     var thumbPath:String;
     var presentPath:String;
     var medalPath:String;
     var antiAlias:Null<Bool>;
     var medal:Null<Bool>;
     var preload:Bool;
+    var sound:String;
+    var comic:ComicCreation;
 }
 
 typedef SongCreation
@@ -387,14 +427,30 @@ typedef ArcadeCreation
     var scoreboardId:Int;
     var medalPath:String;
     var mobile:Bool;
-    var type:ArcadeType;
     var medal:Bool;
+    var type:ArcadeType;
     var camera:ArcadeCamera;
+}
+
+typedef ComicCreation =
+{
+    var pages:Int;
+    var audioPath:String;
+    var dataPath:String;
+}
+
+typedef MovieCreation =
+{
+    var id:String;
+    var name:String;
+    var path:String;
+    var credits:Array<String>;
 }
 
 enum abstract ArcadeName(String) to String
 {
     var Digging = "digging";
+    var Chimney = "chimney";
     var Horse = "horse";
     var Positivity = "positivity";
     var Advent2018 = "2018";

@@ -1,5 +1,7 @@
 package data;
 
+import utils.Log;
+import openfl.utils.Assets;
 import data.Content;
 
 import flixel.FlxG;
@@ -26,16 +28,35 @@ class Instrument
     static var scale:Array<Int>;
     static var currentNote:Null<Int> = null;
     static var activeNotes:Array<FlxSound> = [];
+    static var current:InstrumentData;
+    static var loading = false;
     
-    static public function setInitial():Void
+    static public function setCurrent():Void
     {
-        setKeyFromString(Content.getTodaysSong().key);
+        var type = Save.getInstrument();
+        Log.instrument(type + " setting");
+        #if !(PRELOAD_INSTRUMENTS)
+        loading = Assets.getLibrary(type) == null;
+        if (loading)
+        {
+            Log.instrument(type + " loading");
+            Assets.loadLibrary(type).onComplete(
+                function (lib)
+                {
+                    Log.instrument(type + " loaded, current:" + (current.id == type));
+                    if (current.id == type)
+                        loading = false;
+                }
+            );
+        }
+        #end
+        current = Content.instruments[type];
+        onChange.dispatch();
     }
     
     static public function checkKeys()
     {
-        var current = getCurrent();
-        if (current != null)
+        if (current != null && !loading)
         {
             for (i in 0...musicKeys.length)
             {
@@ -52,7 +73,9 @@ class Instrument
     
     static public function press(note:Int):Void
     {
-        var current = getCurrent();
+        if (loading)
+            return;
+        
         if (current.singleNote && currentNote != note && activeNotes[currentNote] != null)
         {
             var sound = activeNotes[currentNote];
@@ -66,8 +89,9 @@ class Instrument
             ? current.mapping[note]
             : getNoteName(root + note, current.octave);
         
+        final id = current.id;
         if (soundName != null)
-            activeNotes[note] = FlxG.sound.play('assets/sounds/${current.id}/$soundName.mp3', current.volume);
+            activeNotes[note] = FlxG.sound.play('$id:assets/notes/$id/$soundName.mp3', current.volume);
     }
     
     inline static function getNoteName(scaleNote:Int, octave:Int)
@@ -77,7 +101,6 @@ class Instrument
     
     static public function release(note:Int):Void
     {
-        var current = getCurrent();
         if (activeNotes[note] != null)
         {
             final sound = activeNotes[note];
@@ -125,11 +148,6 @@ class Instrument
             throw "invalid key";
         
         return key = value;
-    }
-    
-    static inline function getCurrent():InstrumentData
-    {
-        return Content.instruments[Save.getInstrument()];
     }
     
     inline static public function setKeyFromString(key:String):Void

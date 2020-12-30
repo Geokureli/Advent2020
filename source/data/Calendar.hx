@@ -25,9 +25,7 @@ class Calendar
                 callback();
         }
         
-        #if FORCE_INTRO
-        setDebugDayAndCall(1);
-        #elseif debug
+        #if debug
         if (DEBUG_DAY > 0)
             setDebugDayAndCall(DEBUG_DAY);
         else
@@ -53,7 +51,7 @@ class Calendar
         if (isDecember)// && date.getFullYear() == 2019)
         {
             hanukkahDay = date.getDate() - 10;
-            if (date.getDate() < 26)
+            if (date.getDate() < 32)
             {
                 isAdvent = true;
                 day = date.getDate();

@@ -1,5 +1,6 @@
 package states;
 
+import utils.GameSize;
 import data.Calendar;
 import data.Content;
 import data.Manifest;
@@ -34,7 +35,6 @@ class MusicSelectionSubstate extends flixel.FlxSubState
         var camera = new FlxCamera(0, 0, Std.int(carousel.width), Std.int(carousel.height), 2);
         cameras = [camera];
         camera.x = FlxG.width / camera.zoom - camera.width;
-        camera.y = FlxG.height / camera.zoom - camera.height;
         camera.bgColor = 0x0;
         FlxG.cameras.add(camera);
         camera.scroll.x = carousel.x;
@@ -64,8 +64,11 @@ class MusicSelectionSubstate extends flixel.FlxSubState
         back.camera = FlxG.camera;
         back.x = FlxG.width - back.width - 4;
         add(back);
+        
+        var margin = (FlxG.height - (okay.height + camera.height * camera.zoom)) / 3;
+        camera.y = margin;
+        okay.y -= margin;
     }
-    
     
     override function update(elapsed:Float)
     {
@@ -132,8 +135,8 @@ class MusicSelectionSubstate extends flixel.FlxSubState
 
 class Carousel extends FlxSpriteGroup
 {
-    static inline var SPACING = 10;
-    static inline var SIDE_GAP = 20;
+    static inline var SPACING = 5;
+    static inline var SIDE_GAP = 30;
     static inline var BACK_PATH = "assets/images/ui/carousel/back.png";
     static inline var SLOT_PATH = "assets/images/ui/carousel/slot.png";
     static inline var FRONT_PATH = "assets/images/ui/carousel/front.png";
@@ -142,12 +145,12 @@ class Carousel extends FlxSpriteGroup
     public var playingIndex(default, null) = -1;
     
     var back:FlxSprite;
-    var disks = new FlxTypedSpriteGroup<FlxSprite>();
-    var disk:FlxSprite;
+    var disks = new FlxTypedSpriteGroup<DiskSprite>();
+    var animDisk:FlxSprite;
     var infoField:FlxBitmapText;
     var current = 0;
     
-    var currentSprite(get, never):FlxSprite;
+    var currentSprite(get, never):DiskSprite;
     inline function get_currentSprite() return disks.members[current + 1];
     function getCurrentSong()
     {
@@ -170,35 +173,30 @@ class Carousel extends FlxSpriteGroup
         
         for (i in -1...Content.songsOrdered.length)
         {
-            if (i < 0 || Content.songsOrdered[i].day <= Calendar.day)
+            var songData = Content.songsOrdered[i];
+            if (i < 0 || songData.day <= Calendar.day)
             {
-                var path = "assets/images/ui/carousel/disks/side_silence.png";
-                if (i >= 0)
-                    path = Content.songsOrdered[i].sideDiskPath;
-                
-                final disk = new FlxSprite(path);
-                disk.scale.set(0.5, 0.5);
-                disk.updateHitbox();
-                disk.x = SPACING * disks.length;
+                final disk = new DiskSprite(songData, SPACING * disks.length);
                 if (i == current)
                     disk.x += SIDE_GAP;
                 else if (i > current)
                     disk.x += SIDE_GAP * 2;
                 
                 disk.y = (back.height - disk.height) / 2;
+                trace("disk.y:" + y);
                 disks.add(disk);
             }
         }
-        var width = SPACING * disks.length + disks.members[0].width + SIDE_GAP * 2;
+        var width = SPACING * disks.length + SIDE_GAP * 2;
         disks.x = (back.width - width) / 2;
         
         add(new FlxSprite(SLOT_PATH));
         
-        disk = new FlxSprite("assets/images/ui/carousel/disks/front_silence.png");
-        disk.scale.set(0.5, 0.5);
-        disk.updateHitbox();
-        disk.x = (back.width - disk.width) / 2;
-        add(disk).kill();
+        animDisk = new FlxSprite(DiskSprite.SILENCE_FRONT);
+        animDisk.scale.set(0.5, 0.5);
+        animDisk.updateHitbox();
+        animDisk.x = (back.width - animDisk.width) / 2;
+        add(animDisk).kill();
         
         var front = new FlxSprite();
         front.loadGraphic(FRONT_PATH, true, back.frameWidth, back.frameHeight);
@@ -241,6 +239,7 @@ class Carousel extends FlxSpriteGroup
     
     function unhiliteCurrent()
     {
+        currentSprite.loadSideGraphic();
     }
     
     function hiliteCurrent()
@@ -259,6 +258,8 @@ class Carousel extends FlxSpriteGroup
             infoField.text = song.name + "\n" + Content.listAuthorsProper(song.authors);
             infoField.x = back.x + (back.width - infoField.width) / 2;
         }
+        currentSprite.loadFrontGraphic();
+        trace('disk y:${currentSprite.y} back y:${back.y}');
     }
     
     public function select(callback:(SongCreation)->Void)
@@ -266,16 +267,54 @@ class Carousel extends FlxSpriteGroup
         selecting = true;
         
         var song = getCurrentSong();
-        if (song != null)
-            disk.loadGraphic(song.frontDiskPath);
-        disk.y = back.y - disk.height;
+        animDisk.loadGraphicFromSprite(currentSprite);
+        animDisk.y = back.y - animDisk.height;
         
         FlxTween.tween(currentSprite, { y: back.y - currentSprite.height }, 0.5,
             { ease:FlxEase.quadIn });
-        FlxTween.tween(disk, { y:back.y + 10 }, 0.75,
-            { startDelay:1.0, ease:FlxEase.quadOut, onStart: (_)->disk.revive() });
-        FlxTween.tween(disk, { y:back.y + back.height }, 1.5,
+        FlxTween.tween(animDisk, { y:back.y + 10 }, 0.75,
+            { startDelay:1.0, ease:FlxEase.quadOut, onStart: (_)->animDisk.revive() });
+        FlxTween.tween(animDisk, { y:back.y + back.height }, 1.5,
             { startDelay:1.75, ease:FlxEase.quadInOut, onComplete: (_)->callback(song) });
     }
+    
+    override function get_width():Float return back.width;
+    override function get_height():Float return back.height;
 }
 
+
+class DiskSprite extends FlxSprite
+{
+    static public inline var SILENCE_FRONT = "assets/images/ui/carousel/disks/front_silence.png";
+    static public inline var SILENCE_SIDE = "assets/images/ui/carousel/disks/side_silence.png";
+    
+    var data:SongCreation;
+    
+    public function new (data, x = 0.0, y = 0.0)
+    {
+        this.data = data;
+        super(x, y);
+        
+        scale.set(0.5, 0.5);
+        loadSideGraphic();
+    }
+    
+    inline public function loadSideGraphic()
+    {
+        return loadGraphicAndCenter(data == null ? SILENCE_SIDE : data.sideDiskPath);
+    }
+    
+    inline public function loadFrontGraphic()
+    {
+        return loadGraphicAndCenter(data == null ? SILENCE_FRONT : data.frontDiskPath);
+    }
+    
+    function loadGraphicAndCenter(graphic):FlxSprite
+    {
+        loadGraphic(graphic);
+        updateHitbox();
+        offset.x = origin.x;
+        
+        return this;
+    }
+}

@@ -14,6 +14,7 @@ import props.InfoBox;
 import props.Notif;
 import props.Note;
 import states.OgmoState;
+import states.ToyBoxState;
 import states.debug.AudioToolSubstate;
 import utils.GameSize;
 import vfx.PixelPerfectShader;
@@ -69,7 +70,7 @@ class BedroomState extends RoomState
         dresserNotif.x = dresser.x + (dresser.width - dresserNotif.width) / 2;
         dresserNotif.y = dresser.y + dresser.height - dresser.frameHeight;
         dresserNotif.animate();
-        add(dresserNotif);
+        topGround.add(dresserNotif);
         
         if (!Skins.checkHasUnseen())
             dresserNotif.kill();
@@ -80,15 +81,36 @@ class BedroomState extends RoomState
             addHoverTextTo(door, "Get dressed first");
             notesById["december01"].animateIn(1.5);
         }
-        
-        if (roomDay == 5 && Calendar.isUnseenDay)
+        else if (Calendar.isUnseenDay)
         {
-            notesById["december05"].animateIn(1.5);
+            var noteId = "december" + StringTools.lpad(Std.string(roomDay), "0", 2);
+            if (notesById.exists(noteId))
+                notesById[noteId].animateIn(1.5);
         }
         
         desk = foreground.getByName("desk_lucia");
         if (desk != null && Game.state.match(NoEvent|LuciaDay(Finding)|LuciaDay(Present)))
             addHoverTextTo(desk, "Replay Lucia Hunt", replayLuciaHunt);
+        
+        var chest = foreground.getByName("chest");
+        if (chest != null)
+        {
+            var notif = new Notif();
+            if (NGio.hasMedalByName("butzbo") == false)
+            {
+                notif.x = chest.x + (chest.width - notif.width) / 2;
+                notif.y = chest.y + chest.height - chest.frameHeight - notif.height;
+                notif.animate();
+                topGround.add(notif);
+            }
+            
+            addHoverTextTo(chest, "Butzbo's Music Box", function()
+                {
+                    notif.kill();
+                    playOverlay(new ToyBoxState());
+                }
+            );
+        }
     }
     
     function replayLuciaHunt()
@@ -141,7 +163,8 @@ class BedroomState extends RoomState
         
         #if debug
         if (FlxG.keys.justPressed.H)
-            openSubState(new horse.HorseSubState());
+            playOverlay(new states.ComicSubstate("night_before"));
+            // playOverlay(new states.ComicSubstate("santa_smackdown"));
         #end
     }
 }

@@ -28,4 +28,9 @@ class Log
     inline static public function saveDebug  (msg:String, ?info:PosInfos) { #if debug            save(msg, info);   #end }
     inline static public function saveVerbose(msg:String, ?info:PosInfos) { #if SAVE_LOG_VERBOSE save(msg, info);   #end }
     inline static public function saveError  (msg:String, ?info:PosInfos) { save("Error: " + msg, info); }
+    
+    inline static public function instrument       (msg:String, ?info:PosInfos) { #if INSTRUMENT_LOG         haxe.Log.trace(msg, info); #end }
+    inline static public function instrumentDebug  (msg:String, ?info:PosInfos) { #if debug                  save(msg, info);   #end }
+    inline static public function instrumentVerbose(msg:String, ?info:PosInfos) { #if INSTRUMENT_LOG_VERBOSE save(msg, info);   #end }
+    inline static public function instrumentError  (msg:String, ?info:PosInfos) { save("Error: " + msg, info); }
 }

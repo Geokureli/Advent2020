@@ -238,6 +238,14 @@ class NGio
 		unlockMedal(DAY_MEDAL_0 + day - 1, showDebugUnlock);
 	}
 	
+	static public function unlockMedalByName(name:String, showDebugUnlock = true):Void
+	{
+		if (!Content.medals.exists(name))
+			throw 'invalid name:%name';
+		
+		unlockMedal(Content.medals[name]);
+	}
+	
 	static public function unlockMedal(id:Int, showDebugUnlock = true):Void
 	{
 		#if !(NG_DEBUG_API_KEY)
@@ -273,6 +281,15 @@ class NGio
 		#end
 	}
 	
+	
+	static public function hasMedalByName(name:String):Bool
+	{
+		if (!Content.medals.exists(name))
+			throw 'invalid name:%name';
+		
+		return hasMedal(Content.medals[name]);
+	}
+	
 	static public function logEvent(event:NgEvent, once = false)
 	{
 		#if !(NG_DEBUG_API_KEY)
@@ -284,7 +301,7 @@ class NGio
 			loggedEvents.push(event);
 		
 		event += FlxG.onMobile ? "_mobile" : "_desktop";
-		logDebug("logging event: " + event);
+		log("logging event: " + event);
 		NG.core.calls.event.logEvent(event).send();
 		#end
 	}

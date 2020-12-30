@@ -40,7 +40,13 @@ class EntranceState extends RoomState
         switch(Game.state)
         {
             case Day1Intro(Hallway):
-                showIntroCutscene();
+                if (Game.allowShaders)
+                    showIntroCutscene();
+                else
+                {
+                    Game.state = NoEvent;
+                    NGio.logEvent(intro_complete);
+                }
             case _:
         }
     }
@@ -52,7 +58,9 @@ class EntranceState extends RoomState
         tree = getDaySprite(foreground, "tree");
         tree.setBottomHeight(32);
         tree.setMiddleWidth(56);
-        treeShader = new PeekDitherShader();
+        if (tree.animation != null && tree.animation.curAnim != null)
+            tree.animation.curAnim.frameRate = 3;
+        treeShader = new PeekDitherShader(tree);
         tree.shader = treeShader;
         if (player.y < TREE_HIDE_Y)
             treeShader.setAlpha(0);
@@ -63,7 +71,7 @@ class EntranceState extends RoomState
             background.remove(chandelier);
             topGround.add(chandelier);
             chandelier.scrollFactor.y = 2.0;
-            chandelierShader = new PeekDitherShader();
+            chandelierShader = new PeekDitherShader(chandelier);
             chandelier.shader = chandelierShader;
             // chandelierShader.setAlpha(0);
         }
@@ -79,16 +87,27 @@ class EntranceState extends RoomState
                     );
             }
         );
+        
+        if (roomDay == 19)
+        {
+            var door = props.getByName("BigDoor");
+            var box = addHoverTextTo(door, "opens at 6:00PM EST");
+        }
+        
+        if (roomDay == 24)
+        {
+            var door = props.getByName("BigDoor");
+            var box = addHoverTextTo(door, "opens at 10:30PM EST");
+        }
     }
     
     function showIntroCutscene()
     {
-        var floor = background.getByName("foyer");
+        var floor = getDaySprite(background, "foyer");
         floor.setBottomHeight(floor.frameHeight);
         shade = new ShadowSprite(floor.x, floor.y);
         shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
-        if (Game.allowShaders)
-            topGround.add(shade);
+        topGround.add(shade);
         
         player.active = false;
         player.flipX = true;
@@ -196,7 +215,8 @@ class EntranceState extends RoomState
         switch(Game.state)
         {
             case Day1Intro(_):
-                shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
+                if (Game.allowShaders)
+                    shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
             case _:
         }
         

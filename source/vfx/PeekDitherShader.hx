@@ -79,8 +79,11 @@ class PeekDitherShader extends flixel.system.FlxAssets.FlxShader
         }
     ')
     
-    public function new()
+    var sprite:FlxSprite;
+    
+    public function new(sprite:FlxSprite)
     {
+        this.sprite = sprite;
         super();
         
         // this.indices.value =
@@ -95,6 +98,7 @@ class PeekDitherShader extends flixel.system.FlxAssets.FlxShader
     
     public function setPlayerPosWithSprite(x:Float, y:Float, target:FlxSprite)
     {
+        x += this.sprite.animation.frameIndex * this.sprite.frameWidth;
         setPlayerPos(x - (target.x - target.offset.x), y - (target.y - target.offset.y));
     }
     

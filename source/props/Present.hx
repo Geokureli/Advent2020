@@ -25,7 +25,11 @@ class Present extends flixel.FlxSprite
     {
         this.id = id;
         super(x, y);
-        loadGraphic('assets/images/props/presents/${id}.png', true, 32, 34);
+        var path = 'assets/images/props/presents/${id}.png';
+        if (!data.Manifest.exists(path, IMAGE))
+            path = 'assets/images/props/presents/debug.png';
+        
+        loadGraphic(path, true, 32, 34);
         animation.add("closed", [0]);
         animation.add("opened", [1]);
         animation.add("opening", [1]);
@@ -46,6 +50,15 @@ class Present extends flixel.FlxSprite
         confetti.animation.add("idle", [0]);
         confetti.animation.add("anim", [for (i in 0...CONFETTI_FRAMES) i], 10, false);
         confetti.kill();
+    }
+    
+    /** Yes, this is a Simpsons reference */
+    public function embiggen()
+    {
+        scale.set(1, 1);
+        width *= 2;
+        offset.x -= 4;
+        immovable = true;
     }
     
     public function animateOpen(callback:()->Void)

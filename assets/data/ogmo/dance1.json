@@ -65,7 +65,7 @@
       "gridCellsX": 74,
       "gridCellsY": 42,
       "decals": [
-        {"x": 296, "y": 168, "texture": "dance/dance.png"}
+        {"x": 296, "y": 168, "scaleX": 1, "scaleY": 1, "texture": "dance/dance.png"}
       ],
       "folder": "../../images/props"
     }

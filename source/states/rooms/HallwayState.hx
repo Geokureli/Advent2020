@@ -19,7 +19,12 @@ class HallwayState extends RoomState
     
     override function create()
     {
+        #if debug
         if(Game.state.match(Day1Intro(Started)))
+            Game.state = Day1Intro(Dressed);
+        #end
+        
+        if(Game.state.match(Day1Intro(Dressed)))
             forceDay = 1;
         
         super.create();
@@ -29,18 +34,13 @@ class HallwayState extends RoomState
     {
         super.initEntities();
         
-        #if debug
-        if(Game.state.match(Day1Intro(Started)))
-            Game.state = Day1Intro(Dressed);
-        #end
-        
         if (Game.allowShaders)
         {
             switch(Game.state)
             {
                 case Day1Intro(Dressed):
                 {
-                    var floor = background.getByName("hallway");
+                    var floor = getDaySprite(background, "hallway");
                     floor.setBottomHeight(floor.frameHeight);
                     shade = new ShadowSprite(floor.x, floor.y);
                     shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
@@ -54,7 +54,7 @@ class HallwayState extends RoomState
                 }
                 case Day1Intro(Hallway):
                 {
-                    var floor = background.getByName("hallway");
+                    var floor = getDaySprite(background, "hallway");
                     floor.setBottomHeight(floor.frameHeight);
                     shade = new ShadowSprite(floor.x, floor.y);
                     shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
@@ -67,6 +67,8 @@ class HallwayState extends RoomState
                 case _:
             }
         }
+        else if (Game.state.match(Day1Intro(Dressed)))
+            Game.state = Day1Intro(Hallway);
     }
     
     function tweenLightRadius(light:Int, from:Float, to:Float, duration:Float, options:TweenOptions)

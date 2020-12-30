@@ -7,6 +7,8 @@ class OutsideState extends RoomState
     override function create()
     {
         super.create();
+        
+		add(new vfx.Snow());
     }
     
     override function initEntities()

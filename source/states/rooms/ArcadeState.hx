@@ -65,10 +65,17 @@ class ArcadeState extends RoomState
         var overlay = switch(id)
         {
             case Horse: new horse.HorseSubState();
-            case Positivity: new OverlaySubstate(new Creds(), data.camera);
+            case Positivity: new OverlaySubstate(data, new Creds());
+            #if INCLUDE_DIG_GAME
+            case Digging: new OverlaySubstate(data, new digging.MenuState());
+            #end
+            #if INCLUDE_CHIMNEY_GAME
+            case Chimney: new OverlaySubstate(data, new chimney.PlayState());
+            #end
             default:
                 throw "Unhandled arcade id:" + id;
         }
+        
         overlay.closeCallback = ()->
         {
             if (FlxG.sound.music != null)

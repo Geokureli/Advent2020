@@ -1,5 +1,6 @@
 package props;
 
+import ui.Button;
 import Types;
 import data.Instrument;
 import data.PlayerSettings;
@@ -47,7 +48,11 @@ class InputPlayer extends Player
             var smooch  = Controls.justPressed.B;
             checkMouseInteracting();
             
-            updateMovement(up, down, left, right, smooch, FlxG.mouse.pressed);
+            final mousePressed = FlxG.mouse.pressed
+                && !FlxG.mouse.justPressed
+                && !Button.isBlockingMouse();
+            
+            updateMovement(up, down, left, right, smooch, mousePressed);
         }
         else
             updateMovement(false, false, false, false, false, false);
@@ -63,7 +68,7 @@ class InputPlayer extends Player
     
     function checkMouseInteracting()
     {
-        if (!interacting && FlxG.mouse.justPressed)
+        if (!interacting && FlxG.mouse.justPressed && !Button.isBlockingMouse())
         {
             var mouse = FlxG.mouse.getWorldPosition();
             interacting = hitbox.overlapsPoint(mouse);
@@ -73,6 +78,15 @@ class InputPlayer extends Player
                     ? (cast touched:FlxSprite).pixelsOverlapPoint(mouse)
                     : hitbox.overlapsPoint(mouse);
             }
+        }
+    }
+    
+    public function mobileEmotePressed()
+    {
+        if (emote.type == None)
+        {
+            justEmoted = true;
+            emote.animate(Smooch);
         }
     }
     

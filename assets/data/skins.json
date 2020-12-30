@@ -92,7 +92,7 @@
 ,   { "id": "hellbenders"
     , "proper": "The Hellbenders"
     , "description": "Two friends: Chris and Zach. They live in a world surrounded\nby... not-so-normal things."
-    , "unlocksBy": null
+    , "unlocksBy": "day:19"
     , "users": ["oney", "ricepirate", "psychicpebbles"]
     }
 ,   { "id": "tardigrade"
@@ -180,7 +180,7 @@
 ,   { "id": "dad"
     , "proper": "Dad"
     , "description": "The very embodiment of “he protec” since 2005."
-    , "unlocksBy": null
+    , "unlocksBy": "supporter"
     , "offset": {"x":6, "y":5 }
     , "users": ["danpaladin", "geokureli"]
     }
@@ -215,13 +215,13 @@
 ,   { "id": "snake"
     , "proper": "Solid Snake"
     , "description": "METAL GEAR, Awesome"
-    , "unlocksBy": null
+    , "unlocksBy": "medal:26"
     , "users": ["egoraptor"]
     }
 ,   { "id": "aine"
     , "proper": "Aine"
     , "description": "This here’s Aine, she’s an orange knight from Renaine with a feather to pick with a Dragon who did her dirty."
-    , "unlocksBy": null
+    , "unlocksBy": "day:27"
     , "users": ["squidly"]
     , "group": "renaine"
     }
@@ -240,14 +240,14 @@
     }
 ,   { "id": "lucky"
     , "proper": "Lucky"
-    , "description": ""
-    , "unlocksBy": null
+    , "description": "something big is coming 2021..."
+    , "unlocksBy": "medal:25"
     , "users": ["brandybuizel", "domdude111"]
     }
 ,   { "id": "duncan_and_jones"
     , "proper": "Duncan & Jones"
     , "description": "The two hottest crime fighters on the website."
-    , "unlocksBy": "medal:6"
+    , "unlocksBy": "medal:6,medal:19"
     , "users": ["snackers"]
     }
 ,   { "id": "purple_imposter"
@@ -258,8 +258,8 @@
     }
 ,   { "id": "gilded_guy"
     , "proper": "Gilded Guy"
-    , "description": ""
-    , "unlocksBy": null
+    , "description": "If he took off the helmet you'd be like 'who's this', but with the\nfull suit on you'll recognize this lad from some amazingly kickass animated fights!"
+    , "unlocksBy": "day:20"
     , "users": ["gildedguy"]
     }
 ,   { "id": "luis"
@@ -284,14 +284,14 @@
 ,   { "id": "drbees"
     , "proper": "Dr. Bees"
     , "description": "I'm Dr. Miles Manners, just your average wasp-themed superhero by day, but by night I become Dr. Bees!"
-    , "unlocksBy": null
+    , "unlocksBy": "day:22"
     , "users": ["happyharry"]
     , "group": "harry"
     }
 ,   { "id": "mvchan"
     , "proper": "MV-Chan"
-    , "description": ""
-    , "unlocksBy": null
+    , "description": "The cutie from Speedo's amazing music videos."
+    , "unlocksBy": "day:24"
     , "users": ["speedo"]
     }
 ,   { "id": "ritz"
@@ -316,7 +316,7 @@
     , "proper": "Hank J. Wimbleton"
     , "description": "A psychopathic mercenary gunman on a take-no-prisoners mission to wipe out an all-powerful Agency..."
     , "unlocksBy": "medal:14"
-    , "users": ["krinkels"]
+    , "users": ["krinkels", "AlmightyHans"]
     }
 ,   { "id": "madness_auditor"
     , "proper": "The Auditor"
@@ -333,22 +333,28 @@
     , "users": null
     }
 ,   { "id": "zone"
-    , "proper": "Zone-tan"
+    , "proper": "Zone-Tan"
     , "description": ""
     , "unlocksBy": null
-    , "users": ["zone-sama"]
+    , "users": ["zone-sama", "brandybuizel"]
     }
 ,   { "id": "gentles"
     , "proper": "Gentles"
     , "description": "The amazing dog straight out of the 2020 Pet Jam and from TV!"
-    , "unlocksBy": null
+    , "unlocksBy": "medal:25"
     , "users": ["jaquin", "jonarock", "chrisbasso", "dylanmann", "worldsbestmichael"]
     }
 ,   { "id": "slime"
     , "proper": "Slime Girl"
-    , "description": ""
-    , "unlocksBy": null
-    , "users": ["brandybuizel", "ninjamuffin99", "digimin"]
+    , "description": "She's all the rage in both monster and monster hunter circles.\nSmash her in her breakout role as dungeon hottie in Monster Mashing on Newgrounds!"
+    , "unlocksBy": "medal:19"
+    , "users": ["brandybuizel", "ninjamuffin99", "digimin", "fushark"]
+    }
+,   { "id": "squado"
+    , "proper": "Ghost Squad James"
+    , "description": "He's been murdered by a ghost and forced to be an anime\ncrime-fighting teen as the green member of the GHOST SQUAD!"
+    , "unlocksBy": "day:25"
+    , "users": ["brandybuizel", "Kieran-s"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"

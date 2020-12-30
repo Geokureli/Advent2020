@@ -34,6 +34,7 @@ class Game
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
         RoomName.Dance;
+        // RoomName.Movie + "." + RoomName.Entrance;
         #else
         RoomName.Bedroom;
         #end
@@ -59,6 +60,7 @@ class Game
         roomTypes[Outside ] = OutsideState.new;
         roomTypes[Arcade  ] = ArcadeState.new;
         roomTypes[Studio  ] = StudioState.new;
+        roomTypes[Movie   ] = MovieState.new;
         roomTypes[Dance   ] = DanceState.new;
         
         arcadeTypes = [];

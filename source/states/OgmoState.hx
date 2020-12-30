@@ -113,6 +113,11 @@ class OgmoObjectLayer<T:FlxBasic> extends FlxTypedGroup<T>
         return cast byName[name];
     }
     
+    public function existsByName(name:String):Bool
+    {
+        return cast byName.exists(name);
+    }
+    
     public function getObjectNameIndex(suffix:String, maxValue:Int):Null<Int>
     {
         var value = maxValue;

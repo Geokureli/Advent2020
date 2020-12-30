@@ -14,6 +14,8 @@ class OverlayGlobal
     inline static function get_height() return container.camera.height;
     public static var camera(get, never):FlxCamera;
     inline static function get_camera() return container.camera;
+    public static var state(get, never):FlxState;
+    inline static function get_state() return container.state;
     
     @:allow(states.OverlaySubstate)
     static var container:OverlaySubstate;
@@ -23,8 +25,9 @@ class OverlayGlobal
         container.switchState(state);
     }
     
-    static public function createTimer()
+    static public function asset(path:String):String
     {
-        return container.createTimer();
+        final id = container.data.id;
+        return id + ":" + path.split("assets/").join('assets/arcades/$id/');
     }
 }

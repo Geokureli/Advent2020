@@ -11,9 +11,17 @@
         { "proper": "Nick Conter"
         , "roles" : ["Organizer"]
         }
+    , "thedyingsun":
+        { "proper": "TheDyingSun"
+        , "roles" : ["Decorator"]
+        }
     , "albegian":
         { "proper"  : "AlbeGian"
         , "bandcamp": "albegian"
+        }
+    , "goodl":
+        { "proper": "GoodL"
+        , "roles" : ["Electric Guitar"]
         }
     , "cymbourine"      : { "proper": "Cymbourine"      }
     , "mintyeggs"       : { "proper": "MintyEggs"       }
@@ -37,20 +45,39 @@
     , "misterjamesss"   : { "proper": "James Renna"     }
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
     , "carmet"          : { "proper": "Carmet"          }
-    , "goodl"           : { "proper": "GoodL"           }
     , "krinkels"        : { "proper": "Krinkels"        }
-    , "tenodiboris"     : { "proper": null              }
-    , "mattrguitar123"  : { "proper": null              }
-    , "k-4998572"       : { "proper": null              }
-    , "heyopc"          : { "proper": null              }
     , "everratic"       : { "proper": "Everratic"       }
-    , "dogl"            : { "proper": null              }
     , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
     , "mimny"           : { "proper": "Mimny"           }
     , "figburn"         : { "proper": "Figburn"         }
     , "precipitation24" : { "proper": "Precipitation24" }
     , "octong"          : { "proper": "OctoNG"          }
     , "mig-moog"        : { "proper": "Mig-Moog"        }
+    , "boomnm"          : { "proper": "Boomnm"          }
+    , "fushark"         : { "proper": "FuShark"         }
+	, "snailpirate"     : { "proper": "SnailPirate"     }
+    , "ninjamuffin99"   : { "proper": "ninjamuffin99"   }
+    , "dogl"            : { "proper": "dogl"            }
+    , "irri"            : { "proper": "Irri"            }
+    , "thriftman"       : { "proper": "Thriftman"       }
+    , "wandaboy"        : { "proper": "Wandaboy"        }
+    , "wavetro"         : { "proper": "Wavetro"         }
+    , "rgpanims"        : { "proper": "RGPAnims"        }
+    , "loganphresh"     : { "proper": "Logan Phresh"    }
+    , "tenodiboris"     : { "proper": "TenodiBoris"     }
+    , "camuri"          : { "proper": "Camuri"          }
+    , "chobiluck"       : { "proper": "Chobi"           }
+    , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
+    , "mrshmoods"       : { "proper": "MrShmoods"       }
+    , "mismash"         : { "proper": "MisMash"         }
+    , "toppleng"        : { "proper": "ToppleNG"        }
+    , "syntrus"         : { "proper": "Syntrus"         }
+    , "onishaggy"       : { "proper": "OniShaggy"       }
+    , "pktoastyva"      : { "proper": "PKToastyVA"      }
+    , "piesaus"         : { "proper": "PieSaus"         }
+    , "aramortart"      : { "proper": "ARAMort"         }
+    , "circuitreats"    : { "proper": "Circuitreats"    }
+    , "heyopc"          : { "proper": null              }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -72,17 +99,17 @@
         , "ngId"     : 985036
         , "day"      : 3
         }
-    ,   { "id"       : "czyszy"
-        , "name"     : "ave-xmas.wav"
-        , "authors"  : ["czyszy"]
-        , "key"      : "dMaj"
-        , "bpm"      : 94
-        , "ngId"     : 985502
-        , "day"      : 5
+    ,   { "id"     : "czyszy"
+        , "name"   : "ave-xmas.wav"
+        , "authors": ["czyszy"]
+        , "key"    : "dMaj"
+        , "bpm"    : 94
+        , "ngId"   : 985502
+        , "day"    : 5
         }
-    ,   { "id"     : "splatterdash"
-        , "name"   : "Let The Snow Fall"
-        , "authors": ["splatterdash"]
+    ,   { "id"       : "splatterdash"
+        , "name"     : "Let The Snow Fall"
+        , "authors"  : ["splatterdash"]
         , "loopStart": 60500
         , "loopEnd"  : 204500
         , "key"      : "eMaj"
@@ -93,67 +120,97 @@
     ,   { "id"     : "chrisbasso"
         , "name"   : "Funky Christmas MIX"
         , "authors": ["chrisbasso"]
-        , "key"      : "f#Maj"
-        , "bpm"      : 101
-        , "ngId"     : 1559697
-        , "day"      : 9
+        , "key"    : "f#Maj"
+        , "bpm"    : 101
+        , "ngId"   : 1559697
+        , "day"    : 9
         }
     ,   { "id"     : "connorgrail"
         , "name"   : "We Three Kings"
         , "authors": ["connorgrail","misterjamesss"]
-        , "key"      : "aMaj"
-        , "bpm"      : 166
-        , "ngId"     : 0
-        , "day"      : 11
-        , "volume"   : 0.25
+        , "key"    : "aMaj"
+        , "bpm"    : 166
+        , "ngId"   : 0
+        , "day"    : 11
+        , "volume" : 0.25
         }
     ,   { "id"     : "hyenaedon"
         , "name"   : "Woodland Sprites"
         , "authors": ["hyenaedon"]
-        , "key"      : "g#Maj"
-        , "bpm"      : 153
-        , "ngId"     : 0
-        , "day"      : 13
+        , "key"    : "g#Maj"
+        , "bpm"    : 153
+        , "ngId"   : 0
+        , "day"    : 13
         }
     ,   { "id"     : "carmet"
         , "name"   : "It's Cold"
         , "authors": ["carmet"]
-        , "key"      : "f#Maj"
-        , "bpm"      : 60
-        , "ngId"     : 0
-        , "day"      : 15
+        , "key"    : "f#Maj"
+        , "bpm"    : 60
+        , "ngId"   : 0
+        , "day"    : 15
         }
     ,   { "id"     : "goodl"
         , "name"   : "Holidays Under Contruction"
         , "authors": ["goodl"]
-        , "key"      : "aMaj"
-        , "bpm"      : 130
-        , "ngId"     : 0
-        , "day"      : 17
+        , "key"    : "aMaj"
+        , "bpm"    : 130
+        , "ngId"   : 0
+        , "day"    : 17
         }
     ,   { "id"     : "anarchyaxel"
-        , "name"   : "Chrimuh"
+        , "name"   : "Hot Chocolate"
         , "authors": ["anarchyaxel"]
-        , "key"      : "cMaj"
-        , "bpm"      : 120
-        , "ngId"     : 0
-        , "day"      : 19
+        , "key"    : "cMaj"
+        , "bpm"    : 120
+        , "ngId"   : 0
+        , "day"    : 19
+        }
+    ,   { "id"     : "tenodiboris"
+        , "name"   : "MerryXmass"
+        , "authors": ["tenodiboris"]
+        , "key"    : "dMin"
+        , "bpm"    : 120
+        , "ngId"   : 0
+        , "day"    : 21
         }
     ,   { "id"     : "everratic"
         , "name"   : "A Perfect Day"
         , "authors": ["everratic"]
-        , "key"      : "aMaj"
-        , "bpm"      : 96
-        , "ngId"     : 0
-        , "day"      : 23
+        , "key"    : "aMaj"
+        , "bpm"    : 96
+        , "ngId"   : 0
+        , "day"    : 23
         }
     ,   { "id"     : "precipitation24"
         , "name"   : "Anastasia and Cinderella"
         , "authors": ["precipitation24"]
-        , "key"      : "aMaj"
-        , "bpm"      : 130
-        , "ngId"     : 833947
-        , "day"      : 25
+        , "key"    : "aMaj"
+        , "bpm"    : 130
+        , "ngId"   : 833947
+        , "day"    : 25
+        }
+    ,   { "id"     : "syntrus"
+        , "name"   : "The Chill of the Solstice"
+        , "authors": ["syntrus"]
+        , "key"    : "gMaj"
+        , "bpm"    : 82
+        , "ngId"   : 986972
+        , "day"    : 26
+        }
+    ,   { "id"     : "pktoastyva"
+        , "name"   : "side b cd stylin'"
+        , "authors": ["pktoastyva"]
+        , "key"    : "eMaj"
+        , "bpm"    : 130
+        , "day"    : 28
+        }
+    ,   { "id"     : "aramortart"
+        , "name"   : "Fizzy Snow"
+        , "authors": ["aramortart"]
+        , "key"    : "cMaj"
+        , "bpm"    : 70
+        , "day"    : 30
         }
     ]
 ,   "artwork":
@@ -266,6 +323,121 @@
         , "day"    : 17
         , "medal"  : true
         }
+    ,   { "id"     : "boomnm"
+        , "name"   : "Cold War"
+        , "authors": ["boomnm"]
+        , "day"    : 18
+        , "medal"  : true
+        }
+    ,   { "id"     : "fushark"
+        , "name"   : "Duncan & Jones: Cancel Christmas"
+        , "authors": ["fushark"]
+        , "day"    : 19
+        , "medal"  : true
+        }
+    ,   { "id"     : "snailpirate"
+        , "name"   : "The Coziest Of NG Christmas Parties"
+        , "authors": ["snailpirate"]
+        , "day"    : 20
+        , "medal"  : true
+        }
+    ,   { "id"     : "rgpanims"
+        , "name"   : "The Coziest Of NG Christmas Parties"
+        , "authors": ["rgpanims"]
+        , "day"    : 21
+        , "medal"  : true
+        }
+    ,   { "id"     : "loganphresh"
+        , "name"   : "Sex and Candy"
+        , "authors": ["loganphresh"]
+        , "day"    : 22
+        , "medal"  : true
+        , "sound"  : "sexandcandy.mp3"
+        }
+    ,   { "id"     : "camuri"
+        , "name"   : "Holiday Lobotomy"
+        , "authors": ["camuri"]
+        , "day"    : 23
+        , "medal"  : true
+        }
+    ,   { "id"     : "chobiluck"
+        , "name"   : "Happy Holidays 2020"
+        , "authors": ["chobiluck"]
+        , "day"    : 24
+        , "medal"  : true
+        }
+    ,   { "id"     : "mismash"
+        , "name"   : "NGfestival"
+        , "authors": ["mismash"]
+        , "day"    : 25
+        , "medal"  : false
+        }
+    ,   { "id"     : "wandaboy"
+        , "name"   : "dope naenae swag"
+        , "authors": ["wandaboy"]
+        , "day"    : 25
+        , "medal"  : false
+        }
+    ,   { "id"     : "midgetsausage2"
+        , "name"   : "DEBUG TEXT"
+        , "authors": ["midgetsausage"]
+        , "day"    : 25
+        , "ext"    : "jpeg"
+        , "medal"  : false
+        }
+    ,   { "id"     : "thedyingsun"
+        , "name"   : "Thank you NG"
+        , "authors": ["thedyingsun"]
+        , "day"    : 25
+        , "ext"    : "jpg"
+        , "medal"  : true
+        }
+    ,   { "id"       : "toppleng"
+        , "name"     : "Topple says merry Christmas"
+        , "authors"  : ["toppleng"]
+        , "day"      : 26
+        , "medal"    : true
+        , "animation": { "frames":2, "fps":2 }
+        }
+    ,   { "id"       : "gallowjolt"
+        , "name"     : "Ritzmas"
+        , "authors"  : ["gallowjolt"]
+        , "day"      : 27
+        , "medal"    : true
+        , "animation": { "frames":30, "fps":10, "columns":5 }
+        , "antiAlias": false
+        }
+    ,   { "id"     : "onishaggy"
+        , "name"   : "date night 99"
+        , "authors": ["onishaggy"]
+        , "day"    : 28
+        , "medal"  : true
+        }
+    ,   { "id"     : "night_before"
+        , "name"   : "Twas the Night Before Christmas"
+        , "authors": ["voicesbycorey", "mrshmoods", "connorgrail"]
+        , "day"    : 24
+        , "comic"  :
+            { "pages"    : 11
+            , "audioPath": "audio.mp3"
+            , "dataPath" : "data.json"
+            }
+        , "medal"  : false
+        , "comments": "this is listed after day 28 because I added comic stuff later and moving it would mess up the save indices"
+        }
+    ,   { "id"     : "santa_smackdown"
+        , "name"   : "Santa Smackdown"
+        , "authors": ["piesaus"]
+        , "day"    : 29
+        , "comic"  : { "pages": 34 }
+        , "medal"  : true
+        }
+    ,   { "id"     : "circuitreats"
+        , "name"   : "Tankmen Celebration"
+        , "authors": ["circuitreats"]
+        , "day"    : 30
+        , "medal"  : true
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }
@@ -277,8 +449,7 @@
         , "day"    : 8
         , "ngId"   : 1556969
         , "mobile" : false
-        , "type"   : "state"
-        , "medal"  : true
+        , "type"   : "overlay"
         }
     ,   { "id"     : "horse"
         , "name"   : "Pin the Tail"
@@ -306,11 +477,29 @@
         , "name"   : "Think Positive"
         , "authors": ["mig-moog"]
         , "day"    : 18
+        , "mobile" : false
         , "type"   : "overlay"
-        , "medal"  : false
         , "camera" : { "width":192, "height": 108, "zoom": 2 }
         }
+    ,   { "id"     : "chimney"
+        , "name"   : "Holiday Hominid Drop"
+        , "authors": ["brandybuizel", "knose", "danfrombavaria"]
+        , "day"    : 29
+        , "mobile" : false
+        , "medal"  : false
+        , "type"   : "overlay"
+        , "camera" : { "width":240, "height": 270 }
+        }
     ]
+,   "medals":
+    { "digging"   : 61364
+    , "horse"     : 61392
+    , "lucia"     : 61514
+    , "cheese"    : 61555
+    , "positivity": 61559
+    , "movie"     : 61568
+    , "butzbo"    : 61560
+    }
 ,   "instruments":
     [   { "id"    : "guitar_ac"
         , "name"  : "Acoustic Guitar"
@@ -368,5 +557,41 @@
             }
         }
     ]
-    
+,   "movies":
+    {   "grinch":
+        { "name": "How The Grinch Stole A Bunch Of Stuff"
+        , "path": "https://uploads.ungrounded.net/alternate/1568000/1568506_alternate_118108.720p.mp4?1608865813"
+        , "credits":
+            [ "sevi"
+            , "johnnyutah"
+            , "rehdah"
+            , "antonm"
+            , "shigloo"
+            , "brandybuizel"
+            , "sierrasaura"
+            , "jazzhat"
+            , "ggloryboyy"
+            , "spazkid"
+            , "eok97"
+            , "bassetfilms"
+            , "cayfettart:bg"
+            , "tayzonday:va"
+            ]
+        }
+    ,   "snackers": 
+        { "name": "Duncan & Jones 3"
+        , "path": "https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"
+        , "credits":
+            [ "snackers"
+            , "ninjamuffin99:music"
+            , "carmet:music"
+            , "dogl:adl_art"
+            , "irri:bg"
+            , "mkmaffo:adl_anim"
+            , "thriftman:va"
+            , "wandaboy:adl_anim"
+            , "wavetro:va"
+            ]
+        }
+    }
 }

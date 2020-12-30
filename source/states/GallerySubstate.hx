@@ -119,8 +119,20 @@ class GallerySubstate extends FlxSubState
 		var vertSize = Std.int(bigPreview.height);
 		if (data.animation != null)
 		{
-			horizSize = Std.int(horizSize / data.animation.frames);
+			final frames = data.animation.frames;
+			final fps = data.animation.fps == null ? frames : data.animation.fps;
+			var columns = frames;
+			var rows = 1;
+			if (data.animation.columns != null)
+			{
+				columns = data.animation.columns;
+				rows = Math.ceil(frames / columns);
+			}
+			horizSize = Std.int(horizSize / columns);
+			vertSize = Std.int(vertSize / rows);
 			bigPreview.loadGraphic(graphic, true, horizSize, vertSize);
+			bigPreview.animation.add("anim", [for (i in 0...frames) i], fps);
+			bigPreview.animation.play("anim");
 		}
 		
 		bigPreview.setGraphicSize(0, Std.int(FlxG.height));
@@ -210,33 +222,33 @@ class GallerySubstate extends FlxSubState
 		midScreen.set(FlxG.width / 2, FlxG.height / 2);
 				
 		
-		#if !mobile
-			if (FlxG.mouse.pressed)
-			{
-				if (FlxG.mouse.justPressed)
-				{
-					dragPos = FlxG.mouse.getPosition();
-					buttonJustPressed = true;
-				}
+		// #if !mobile
+		// 	if (FlxG.mouse.pressed)
+		// 	{
+		// 		if (FlxG.mouse.justPressed)
+		// 		{
+		// 			dragPos = FlxG.mouse.getPosition();
+		// 			buttonJustPressed = true;
+		// 		}
 				
-				pressingButton = true;
-				buttonPos = FlxG.mouse.getPosition();
-			}
+		// 		pressingButton = true;
+		// 		buttonPos = FlxG.mouse.getPosition();
+		// 	}
 			
-			if (FlxG.mouse.pressedRight)
-			{
-				if (FlxG.mouse.justPressedRight)
-				{
-					zoomButtonJustPressed = true;
-				}
+		// 	if (FlxG.mouse.pressedRight)
+		// 	{
+		// 		if (FlxG.mouse.justPressedRight)
+		// 		{
+		// 			zoomButtonJustPressed = true;
+		// 		}
 				
-				zoomPressingButton = true;
+		// 		zoomPressingButton = true;
 				
-				rads = Math.atan2(midScreen.y - FlxG.mouse.y, midScreen.x - FlxG.mouse.x);
-				touchNew = FlxMath.vectorLength(midScreen.x - FlxG.mouse.x, midScreen.y - FlxG.mouse.y);
-			}
+		// 		rads = Math.atan2(midScreen.y - FlxG.mouse.y, midScreen.x - FlxG.mouse.x);
+		// 		touchNew = FlxMath.vectorLength(midScreen.x - FlxG.mouse.x, midScreen.y - FlxG.mouse.y);
+		// 	}
 			
-		#else
+		// #else
 			if (FlxG.touches.list.length == 1)
 			{
 				if (FlxG.touches.list[0].justPressed)
@@ -261,7 +273,7 @@ class GallerySubstate extends FlxSubState
 				rads = Math.atan2(FlxG.touches.list[0].y - FlxG.touches.list[1].y, FlxG.touches.list[0].x - FlxG.touches.list[1].x);
 				touchNew = FlxMath.vectorLength(FlxG.touches.list[0].x - FlxG.touches.list[1].x, FlxG.touches.list[0].y - FlxG.touches.list[1].y);
 			}
-		#end
+		// #end
 		
 		// drag behaviour
 		if (pressingButton)

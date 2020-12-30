@@ -39,12 +39,12 @@ class PianoSubstate extends flixel.FlxSubState
 	{
 		if (isPress)
 		{
-			trace('press $char');
+			// trace('press $char');
 			Instrument.press(musicKeys.indexOf(char));
 		}
 		else
 		{
-			trace('release $char');
+			// trace('release $char');
 			Instrument.release(musicKeys.indexOf(char));
 		}
 	}
