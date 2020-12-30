@@ -329,6 +329,8 @@ class RoomState extends OgmoState
               && medal != null && medal != false)
                 NGio.unlockDayMedal(data.day);
             playOverlay(new ComicSubstate(present.id), data.comic.audioPath != null);
+            if (!Calendar.isDebugDay)
+                Save.presentOpened(present.id);
         });
     }
     

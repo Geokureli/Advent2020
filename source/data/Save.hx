@@ -119,26 +119,26 @@ class Save
     
     static public function presentOpened(id:String)
     {
-        var day = Content.getPresentIndex(id);
+        var index = Content.getPresentIndex(id);
         
-        if (day < 0)
+        if (index < 0)
             throw "invalid present id:" + id;
         
-        if (data.presents[day] == false)
+        if (data.presents[index] == false)
         {
-            data.presents[day] = true;
+            data.presents[index] = true;
             flush();
         }
     }
     
     static public function hasOpenedPresent(id:String)
     {
-        var id = Content.getPresentIndex(id);
+        var index = Content.getPresentIndex(id);
         
-        if (id < 0)
+        if (index < 0)
             throw "invalid present id:" + id;
         
-        return data.presents[id];
+        return data.presents[index];
     }
     
     inline static public function hasOpenedPresentByDay(day:Int)
