@@ -5,7 +5,7 @@
         }
     , "brandybuizel":
         { "proper": "BrandyBuizel"
-        , "roles" : ["Organizer", "Artist"]
+        , "roles" : ["Organizer"]
         }
     , "nickconter":
         { "proper": "Nick Conter"
@@ -448,7 +448,6 @@
         , "authors": ["knose", "chdonga", "gallowjolt", "splatterdash"]
         , "day"    : 8
         , "ngId"   : 1556969
-        , "mobile" : false
         , "type"   : "overlay"
         }
     ,   { "id"     : "horse"
@@ -457,27 +456,23 @@
         , "day"    : 9
         , "mobile" : false
         , "type"   : "overlay"
-        , "medal"  : true
         }
     ,   { "id"     : "2019"
         , "name"   : "Christmas ADVENTure 2019"
         , "authors": null
         , "day"    : 10
         , "type"   : "external"
-        , "medal"  : false
         }
     ,   { "id"     : "2018"
         , "name"   : "Christmas ADVENTure 2018"
         , "authors": null
         , "day"    : 10
         , "type"   : "external"
-        , "medal"  : false
         }
     ,   { "id"     : "positivity"
         , "name"   : "Think Positive"
         , "authors": ["mig-moog"]
         , "day"    : 18
-        , "mobile" : false
         , "type"   : "overlay"
         , "camera" : { "width":192, "height": 108, "zoom": 2 }
         }
@@ -486,7 +481,6 @@
         , "authors": ["brandybuizel", "knose", "danfrombavaria"]
         , "day"    : 29
         , "mobile" : false
-        , "medal"  : false
         , "type"   : "overlay"
         , "camera" : { "width":240, "height": 270 }
         }
