@@ -277,7 +277,7 @@ class BootState extends flixel.FlxState
     {
         for (artwork in Content.artwork)
         {
-            if (artwork.preload || artwork.day == Calendar.day)
+            if (artwork.preload || (artwork.day == Calendar.day && artwork.comic != null))
                 Manifest.loadArt(artwork.id);
         }
     }
