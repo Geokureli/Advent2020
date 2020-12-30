@@ -432,6 +432,12 @@
         , "comic"  : { "pages": 34 }
         , "medal"  : true
         }
+    ,   { "id"     : "circuitreats"
+        , "name"   : "Tankmen Celebration"
+        , "authors": ["circuitreats"]
+        , "day"    : 30
+        , "medal"  : true
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }
