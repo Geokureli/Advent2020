@@ -506,6 +506,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "circuitreats"}
+        },
+        {
+          "name": "Present",
+          "id": 43,
+          "_eid": "75464384",
+          "x": 192,
+          "y": 240,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "sevi"}
         }
       ]
     },
