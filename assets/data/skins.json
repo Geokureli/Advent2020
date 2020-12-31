@@ -358,9 +358,9 @@
     }
 ,   { "id": "satan"
     , "proper": "Satan"
-    , "description": "When he's not teaching young Leo life lessons he's overseeing\nthe horrid depths of the udnerworld."
+    , "description": "When he's not teaching young Leo life lessons he's overseeing\nthe horrid depths of the underworld."
     , "unlocksBy": "day:28"
-    , "users": ["oneyng"]
+    , "users": ["brandybuizel", "oneyng"]
     }
 ,   { "id": "emi"
     , "proper": "Emi"
