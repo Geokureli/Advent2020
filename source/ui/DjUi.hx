@@ -1,6 +1,5 @@
 package ui;
 
-import lime.system.Clipboard;
 import dj.SongLoader;
 import ui.Button;
 import ui.Font;
@@ -11,6 +10,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.input.keyboard.FlxKey;
+import flixel.ui.FlxButton;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import flixel.text.FlxBitmapText;
@@ -61,6 +61,7 @@ class DjUi extends FlxSpriteGroup
         queueHeader.y = queueBg.y + MARGIN + 1;
         
         add(queueSprites);
+        queueSprites.x = queueBg.x + MARGIN;
         queueSprites.y = queueBg.y + queueBg.height + MARGIN;
         
         addBtn = new AddButton(0, 0, openAddSongWindow);
@@ -84,23 +85,39 @@ class DjUi extends FlxSpriteGroup
     
     function addSong(data:SongFeed)
     {
-        queue.push(data);
-        redrawQueue();
+        if (data != null)
+        {
+            queue.push(data);
+            redrawQueue();
+        }
+        else
+        {
+            trace("no song selected");
+        }
     }
     
     function redrawQueue()
     {
+        currentSong.setData(queue.length > 0 ? queue[0] : null);
+        
+        while(queueSprites.members.length < queue.length - 1)
+        {
+            var sprite = new SongSprite(0, 0);
+            sprite.y += queueSprites.members.length * sprite.height;
+            queueSprites.add(sprite);
+        }
+        
         var queueBottom = queueSprites.y;
         for (i in 0...queueSprites.members.length)
         {
             final sprite = queueSprites.members[i];
-            if (i >= queue.length)
+            if (i + 1 > queue.length)
                 sprite.kill();
             else
             {
                 if (!sprite.exists)
                     sprite.revive();
-                sprite.setData(queue[i]);
+                sprite.setData(queue[i + 1]);
                 queueBottom = sprite.y + sprite.height + MARGIN;
             }
         }
@@ -155,7 +172,7 @@ class SongFinder extends FlxSpriteGroup
 {
     inline static var DEFAULT_SEARCH = "######";
     inline static var COLOR_ON  = 0xFFffffff;
-    inline static var COLOR_OFF = 0xFF808080;
+    inline static var COLOR_OFF = 0xFF000000;
     
     inline static var MARGIN = 2;
     
@@ -166,11 +183,12 @@ class SongFinder extends FlxSpriteGroup
     var info:FlxBitmapText;
     var searching = false;
     var searchedData:SongFeed;
+    var numButtons = new Map<Int, DigitButton>();
     
     public function new(x = 0.0, y = 0.0)
     {
         super(x, y);
-        bg = new UiBgHeader(0, 0, 200, 100);
+        bg = new UiBgHeader(0, 0, 200, 200);
         add(bg);
         
         var header = new FlxBitmapText();
@@ -188,18 +206,50 @@ class SongFinder extends FlxSpriteGroup
         instructions.y = bg.y + UiBgHeader.HEADER_HEIGHT + MARGIN;
         
         input = new FlxBitmapText();
-        add(input);
         input.text = DEFAULT_SEARCH;
         input.color = COLOR_OFF;
         input.x = bg.x + (bg.width - input.width) / 2;
         input.y = instructions.y + instructions.height + MARGIN;
         
+        var inputBox = new FlxSprite();
+        add(inputBox);
+        add(input);
+        inputBox.x = input.x - 2;
+        inputBox.y = input.y - 2;
+        inputBox.makeGraphic(Std.int(input.width), Std.int(input.height), 0xFF928fb8);
+        
         info = new FlxBitmapText();
         add(info);
         info.alignment = CENTER;
-        info.text = "";
+        info.text = "not one but\ntwo lines";
         info.x = input.x + (bg.width - info.width) / 2;
         info.y = input.y + input.height + MARGIN;
+        
+        var dialPad = new FlxTypedSpriteGroup<DialButton>(0, info.y + info.height + MARGIN);
+        info.text = "";
+        var bitmap = FlxG.bitmap.add(DigitButton.PATH).bitmap;
+        var spacing = new FlxPoint((bitmap.width >> 1) + MARGIN, bitmap.height);
+        for (i in 0...9)
+        {
+            final digit = new DigitButton
+                ( i + 1
+                , (i % 3) * spacing.x
+                , Math.floor(i / 3) * spacing.y
+                , ()->onDial(i + 1)
+                );
+            // numButtons[i + 1] = digit;
+            dialPad.add(digit);
+        }
+        dialPad.add(new ClearDialButton(spacing.x * 3, spacing.y * 0, deleteChar));
+        dialPad.add(new OkDialButton   (spacing.x * 3, spacing.y * 1, enter));
+        var zero = new DigitButton  (0, spacing.x * 3, spacing.y * 2, ()->onDial(0));
+        dialPad.add(zero);
+        numButtons[0] = zero;
+        
+        dialPad.x = (bg.width - 4 * spacing.x) / 2;
+        add(dialPad);
+        
+        bg.height = (dialPad.y + 3 * spacing.y + MARGIN) - bg.y + 1;
     }
     
     static var keys:Array<FlxKey> = [ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE];
@@ -213,24 +263,26 @@ class SongFinder extends FlxSpriteGroup
             return;
         }
         
-        if (FlxG.onMobile)
-        {
-        }
-        else
+        if (!FlxG.onMobile)
         {
             if (FlxG.keys.justPressed.V)
             {
-                var clipboard = Clipboard.text;
-                if (digitFinder.match(clipboard))
+                searchedData = null;
+                setInfo("");
+                js.Browser.navigator.clipboard.readText().then(function (clipboard)
                 {
-                    info.text = digitFinder.matched(0);
-                    input.color = COLOR_ON;
-                }
-                else
-                {
-                    info.text = DEFAULT_SEARCH;
-                    input.color = COLOR_OFF;
-                }
+                    if (digitFinder.match(clipboard))
+                    {
+                        input.text = digitFinder.matched(0);
+                        input.color = COLOR_ON;
+                    }
+                    else
+                    {
+                        input.text = DEFAULT_SEARCH;
+                        input.color = COLOR_OFF;
+                        setInfo("could now parse clipboard:\n" + cap(clipboard, 50));
+                    }
+                });
             }
             
             for (i in 0...keys.length)
@@ -283,6 +335,15 @@ class SongFinder extends FlxSpriteGroup
     
     function enter()
     {
+        if (input.text == DEFAULT_SEARCH)
+            return;
+        
+        if (input.text.length < 6)
+        {
+            setInfo("Must be 6 digits");
+            return;
+        }
+        
         if (searchedData != null)
         {
             songSelected(searchedData);
@@ -290,12 +351,10 @@ class SongFinder extends FlxSpriteGroup
         }
         
         searching = true;
-        info.color = COLOR_OFF;
         setInfo("searching...");
         SongLoader.checkCode(input.text, function(response)
         {
             searching = false;
-            info.color = COLOR_ON;
             switch(response)
             {
                 case Success(data):
@@ -327,6 +386,12 @@ class SongFinder extends FlxSpriteGroup
     {
         info.text = msg;
         info.x = bg.x + (bg.width - info.width) / 2;
+    }
+    
+    override function destroy()
+    {
+        super.destroy();
+        numButtons.clear();
     }
 }
 
@@ -425,11 +490,62 @@ abstract AddButton(Button) to Button
 @:forward
 abstract DialButton(Button) to Button
 {
+    inline public function new (x = 0.0, y = 0.0, ?onClick, graphic, ?labelGraphic)
+    {
+        this = new Button(x, y, onClick, graphic, labelGraphic);
+    }
+    
+    public function showPress()
+    {
+        this.status = FlxButton.PRESSED;
+        @:privateAccess
+        this.updateStatusAnimation();
+    }
+    
+    public function showRelease()
+    {
+        this.status = FlxButton.NORMAL;
+        @:privateAccess
+        this.updateStatusAnimation();
+    }
+}
+
+@:forward
+abstract DigitButton(DialButton) to DialButton
+{
+    inline static public var PATH = "assets/images/ui/buttons/square.png";
+    
     public function new(digit:Int, x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/buttons/sqaure.png");
+        this = new DialButton(x, y, onClick, PATH);
         var numLabel = new FlxBitmapText(new NokiaFont16());
         this.label = numLabel;
         numLabel.text = Std.string(digit);
+        this.labelAlphas = [1,1,1];
+        this.labelOffsets[0].set(8, 6);
+        this.labelOffsets[1].set(8, 6);
+        this.labelOffsets[2].set(8, 9);
+    }
+}
+
+@:forward
+abstract ClearDialButton(DialButton) to DialButton
+{
+    inline static public var PATH = "assets/images/ui/buttons/backspace.png";
+    
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
+    {
+        this = new DialButton(x, y, onClick, PATH);
+    }
+}
+
+@:forward
+abstract OkDialButton(DialButton) to DialButton
+{
+    inline static public var PATH = "assets/images/ui/buttons/square_ok.png";
+    
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
+    {
+        this = new DialButton(x, y, onClick, PATH);
     }
 }
