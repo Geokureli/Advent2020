@@ -52,7 +52,7 @@
     , "figburn"         : { "proper": "Figburn"         }
     , "precipitation24" : { "proper": "Precipitation24" }
     , "octong"          : { "proper": "OctoNG"          }
-    , "mig-moog"        : { "proper": "Mig-Moog"        }
+    , "migmoog"         : { "proper": "Mig-Moog"        }
     , "boomnm"          : { "proper": "Boomnm"          }
     , "fushark"         : { "proper": "FuShark"         }
 	, "snailpirate"     : { "proper": "SnailPirate"     }
@@ -78,7 +78,7 @@
     , "aramortart"      : { "proper": "ARAMort"         }
     , "circuitreats"    : { "proper": "Circuitreats"    }
     , "sevi"            : { "proper": "Sevi"            }
-    , "heyopc"          : { "proper": null              }
+    , "heyopc"          : { "proper": "heyopc"          }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -212,6 +212,10 @@
         , "key"    : "cMaj"
         , "bpm"    : 70
         , "day"    : 30
+        }
+	,   { "id"     : "heyopc"
+        , "name"   : "Tankmas Rap 2020"
+        , "authors": ["heyopc"]
         }
     ]
 ,   "artwork":
@@ -445,6 +449,18 @@
         , "day"    : 31
         , "medal"  : true
         }
+	,   { "id"     : "brandybuizel"
+        , "name"   : "Time with Friends"
+        , "authors": ["brandybuizel"]
+        , "day"    : 32
+        , "medal"  : true
+        }
+	,   { "id"     : "spiggygee"
+        , "name"   : ""
+        , "authors": ["spiggygee"]
+        , "day"    : 32
+        , "medal"  : false
+        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }
@@ -479,7 +495,7 @@
         }
     ,   { "id"     : "positivity"
         , "name"   : "Think Positive"
-        , "authors": ["mig-moog"]
+        , "authors": ["migmoog"]
         , "day"    : 18
         , "mobile" : false
         , "type"   : "overlay"

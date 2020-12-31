@@ -356,6 +356,24 @@
     , "unlocksBy": "day:25"
     , "users": ["brandybuizel", "Kieran-s"]
     }
+,   { "id": "emi"
+    , "proper": "Emi"
+    , "description": "A cutie with a booty and other flashy bits."
+    , "unlocksBy": null
+    , "users": ["brandybuizel", "twistedgrim"]
+    }
+,   { "id": "jeff"
+    , "proper": "Jeff"
+    , "description": "Keep trcuking along in this Dead Estate."
+    , "unlocksBy": null
+    , "users": ["milkbarjack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
+    }
+,   { "id": "leo_and_satan"
+    , "proper": ""
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["oneyng"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."

@@ -334,6 +334,47 @@
       "values": [
         {"name": "popular", "definition": "Boolean", "defaults": true}
       ]
+    },
+    {
+      "exportID": "44932309",
+      "name": "Cellar",
+      "limit": -1,
+      "size": {"x": 36, "y": 24},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 36, "y": 24},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "id", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "target", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ],
+      "texture": "../../images/props/outside/cellar.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAYCAYAAACSuF9OAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGmGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTEyLTMxVDE2OjE1OjU2LTA1OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIwLTEyLTMxVDE2OjE1OjU2LTA1OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0xMi0zMVQxNjoxNTo1Ni0wNTowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NTdkYmE3NC0wZDFkLTFmNGUtYjVjMC1jMDcyOWFkMzE1NzciIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpjZjZhM2EzMy04MzkzLTZjNGItYjM0ZC1iYjg2MTYxNzljZWUiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0MmU0YjBlNS1jODRhLTg4NDUtOTQ5My01YzE3ZWE4ODk4OTQiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjQyZTRiMGU1LWM4NGEtODg0NS05NDkzLTVjMTdlYTg4OTg5NCIgc3RFdnQ6d2hlbj0iMjAyMC0xMi0zMVQxNjoxNTo1Ni0wNTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NTdkYmE3NC0wZDFkLTFmNGUtYjVjMC1jMDcyOWFkMzE1NzciIHN0RXZ0OndoZW49IjIwMjAtMTItMzFUMTY6MTU6NTYtMDU6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPHBob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHJkZjpCYWc+IDxyZGY6bGk+YWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmZkNjM1YTM3LTUwYTUtNTk0Ny1hOGJlLTJhNjA5NDA0OTMwMzwvcmRmOmxpPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOkRvY3VtZW50QW5jZXN0b3JzPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PskGG0oAAAEYSURBVEjHvZYBCsMwCEX/lXq13h8yUuqwf9GoTVaQjcGWt+fXFq017Cx1NV3HcVxFnwN/ALoOO8+zF/qrhmLQ7TA3yKN+IHYA9asbsCAYaGhnNVAEZrshykgdpAI0uL5BjYAsNyQ5UVlBxkgACK/bI/ukFx/GcBaQCjjKMBrE+rf34bDMyXdTQNIey4xlZAaTNqQPi2RkBhKcNJjtEaDI1HCOXow9hjlhIDahARaB+ECRfFRBvCEIA1njWzFCQAgDZW4Jzn4Bj7Zn6GKw7FQh+Hc8EOqEDxR9lhkFfLQ0LSDXkGfHgYC0RttgAKdVv0BeuyzFMzMeIL3HFCjTkgpQ2FA2H4uAHhPPQGC1kpPEtp1vY37KU6vnAxOaFVVCn6b0AAAAAElFTkSuQmCC"
     }
   ],
   "tilesets": [

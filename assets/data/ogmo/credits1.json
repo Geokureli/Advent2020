@@ -28,7 +28,32 @@
       "gridCellHeight": 8,
       "gridCellsX": 36,
       "gridCellsY": 34,
-      "entities": []
+      "entities": [
+        {
+          "name": "Teleport",
+          "id": 0,
+          "_eid": "58765051",
+          "x": 0,
+          "y": 112,
+          "width": 24,
+          "height": 80,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "", "target": "entrance"}
+        },
+        {
+          "name": "Teleport",
+          "id": 1,
+          "_eid": "58765051",
+          "x": 264,
+          "y": 112,
+          "width": 24,
+          "height": 80,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "", "target": "outside"}
+        }
+      ]
     },
     {
       "name": "Foreground",
