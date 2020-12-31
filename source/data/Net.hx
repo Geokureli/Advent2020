@@ -12,7 +12,7 @@ typedef JoinCallback = (error:String, room:Room<GameState>)->Void;
 
 class Net
 {
-    static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside, Arcade, Studio, Movie];
+    static var netRooms:Array<RoomName> = [Hallway, Entrance, Outside, Arcade, Studio, Movie, Dance];
     
     static public var client(default, null):Client;
     static public var room(default, null):Room<GameState>;
@@ -61,14 +61,17 @@ class Net
             function (name, rooms)
             {
                 var joined = false;
-                for (i=>room in rooms)
+                if (rooms != null)
                 {
-                    // trace('$roomName=>$name, $i:${room.roomId}, ${room.metadata}');
-                    if (matchesMetadata(meta, room.metadata))
+                    for (i=>room in rooms)
                     {
-                        joined = true;
-                        client.joinById(room.roomId, [], GameState, callback);
-                        return;
+                        // trace('$roomName=>$name, $i:${room.roomId}, ${room.metadata}');
+                        if (matchesMetadata(meta, room.metadata))
+                        {
+                            joined = true;
+                            client.joinById(room.roomId, [], GameState, callback);
+                            return;
+                        }
                     }
                 }
                 

@@ -1,5 +1,6 @@
 package ui;
 
+import data.Net;
 import dj.SongLoader;
 import ui.Button;
 import ui.Font;
@@ -88,12 +89,18 @@ class DjUi extends FlxSpriteGroup
         if (data != null)
         {
             queue.push(data);
+            Net.send("addSong", {song:data.id});
             redrawQueue();
         }
         else
         {
             trace("no song selected");
         }
+    }
+    
+    public function onNetQueueChange()
+    {
+        
     }
     
     function redrawQueue()

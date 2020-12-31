@@ -15,4 +15,7 @@ class DanceGameState extends GameState {
 	@:type("number")
 	public var songStartTime: Dynamic = 0;
 
+	@:type("number")
+	public var songLength: Dynamic = 0;
+
 }
