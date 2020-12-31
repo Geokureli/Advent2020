@@ -1,5 +1,7 @@
 package states.rooms;
 
+import ui.DjUi;
+import flixel.FlxG;
 import schema.GameState;
 
 import io.colyseus.Room;
@@ -20,6 +22,11 @@ class DanceState extends RoomState
     override function update(elapsed:Float)
     {
         super.update(elapsed);
+        
+        #if debug
+        if (FlxG.keys.justPressed.H)
+            ui.add(new DjUi());
+        #end
     }
     
     override function onRoomJoin(error:String, room:Room<GameState>)

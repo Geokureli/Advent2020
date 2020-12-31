@@ -97,7 +97,6 @@ enum LoadResponse
 enum FailureType
 {
     ScrapeError(msg:String);
-    StreamError(msg:String);
     ApiNotAllowed;
     InvalidFeedInfo;
     IoError(event:IOErrorEvent);

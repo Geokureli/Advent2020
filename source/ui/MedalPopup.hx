@@ -154,7 +154,7 @@ class MedalPopup extends flixel.group.FlxSpriteGroup
         }
         
         #if debug
-        if (FlxG.keys.justPressed.ENTER)
+        if (FlxG.keys.justPressed.SLASH)
             playDebugAnim();
         #end
     }

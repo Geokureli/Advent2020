@@ -1,8 +1,9 @@
 package ui;
 
-import flixel.input.IFlxInput;
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.input.IFlxInput;
 import flixel.system.FlxAssets;
 import flixel.ui.FlxButton;
 
@@ -26,13 +27,16 @@ class Button extends FlxTypedButton<FlxSprite>
         this.loadGraphic(graphic, true, Std.int(this.width / 2), Std.int(this.height));
     }
     
-    override function updateStatus(input:IFlxInput)
+    override function onOverHandler()
     {
-        super.updateStatus(input);
-        if (currentInput != null && !allPressed.contains(this))
-            allPressed.push(this);
-        else if (currentInput == null && allPressed.contains(this))
-            allPressed.remove(this);
+        super.onOverHandler();
+        allBlocking.push(this);
+    }
+    
+    override function onOutHandler()
+    {
+        super.onOutHandler();
+        allBlocking.remove(this);
     }
     
     inline public function setLabelGraphic(graphic):Void
@@ -47,13 +51,13 @@ class Button extends FlxTypedButton<FlxSprite>
     {
         super.destroy();
         
-        if (allPressed.contains(this))
-            allPressed.remove(this);
+        if (allBlocking.contains(this))
+            allBlocking.remove(this);
     }
     
-    static var allPressed(default, null) = new Array<Button>();
+    static public var allBlocking(default, null) = new Array<FlxObject>();
     
-    public static function isBlockingMouse() return allPressed.length > 0;
+    public static function isBlockingMouse() return allBlocking.length > 0;
 }
 
 @:forward
