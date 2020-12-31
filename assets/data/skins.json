@@ -359,20 +359,26 @@
 ,   { "id": "satan"
     , "proper": "Satan"
     , "description": "When he's not teaching young Leo life lessons he's overseeing\nthe horrid depths of the underworld."
-    , "unlocksBy": "day:28"
+    , "unlocksBy": "medal:61559"
     , "users": ["brandybuizel", "oneyng"]
     }
 ,   { "id": "emi"
     , "proper": "Emi"
     , "description": "A cutie with a booty and other flashy bits by TwistedGrim."
-    , "unlocksBy": "day:29"
+    , "unlocksBy": "day:28"
     , "users": ["brandybuizel", "twistedgrim"]
     }
 ,   { "id": "jeff"
     , "proper": "Jeff"
-    , "description": "Keep trcuking along in this Dead Estate."
-    , "unlocksBy": "day:30"
+    , "description": "Keep trucking along in this Dead Estate."
+    , "unlocksBy": "day:29"
     , "users": ["milkbarjack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
+    }
+,   { "id": "ena"
+    , "proper": "ENA"
+    , "description": "Between her and Margo, the people chose her. Welcome to Newgrounds ENA!"
+    , "unlocksBy": "day:30"
+    , "users": ["joelg"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
