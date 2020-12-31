@@ -356,23 +356,23 @@
     , "unlocksBy": "day:25"
     , "users": ["brandybuizel", "Kieran-s"]
     }
+,   { "id": "satan"
+    , "proper": "Satan"
+    , "description": "When he's not teaching young Leo life lessons he's overseeing\nthe horrid depths of the udnerworld."
+    , "unlocksBy": "day:28"
+    , "users": ["oneyng"]
+    }
 ,   { "id": "emi"
     , "proper": "Emi"
-    , "description": "A cutie with a booty and other flashy bits."
-    , "unlocksBy": null
+    , "description": "A cutie with a booty and other flashy bits by TwistedGrim."
+    , "unlocksBy": "day:29"
     , "users": ["brandybuizel", "twistedgrim"]
     }
 ,   { "id": "jeff"
     , "proper": "Jeff"
     , "description": "Keep trcuking along in this Dead Estate."
-    , "unlocksBy": null
+    , "unlocksBy": "day:30"
     , "users": ["milkbarjack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
-    }
-,   { "id": "leo_and_satan"
-    , "proper": ""
-    , "description": ""
-    , "unlocksBy": null
-    , "users": ["oneyng"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
