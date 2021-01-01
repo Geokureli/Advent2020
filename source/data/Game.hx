@@ -26,13 +26,14 @@ class Game
     
     public static var initialRoom(default, null) = 
         #if debug
-        RoomName.Bedroom;
+        // RoomName.Bedroom;
         // RoomName.Hallway + "." + RoomName.Bedroom;
         // RoomName.Entrance + "." + RoomName.Hallway;
         // RoomName.Outside + "." + RoomName.Entrance;
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
         // RoomName.Movie + "." + RoomName.Entrance;
+        RoomName.Credits + "." + RoomName.Entrance;
         #else
         RoomName.Bedroom;
         #end
@@ -55,6 +56,7 @@ class Game
         roomTypes[Arcade  ] = ArcadeState.new;
         roomTypes[Studio  ] = StudioState.new;
         roomTypes[Movie   ] = MovieState.new;
+        roomTypes[Credits ] = CreditsState.new;
         
         arcadeTypes = [];
         #if INCLUDE_DIG_GAME

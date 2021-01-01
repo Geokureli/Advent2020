@@ -496,6 +496,7 @@ typedef EventContent =
     var saveState:Bool;
 }
 
+@:forward
 enum abstract User(String) from String to String
 {
     var geokureli;

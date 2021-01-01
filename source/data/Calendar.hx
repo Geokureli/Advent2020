@@ -37,7 +37,6 @@ class Calendar
     {
         day = debugDay;
         isAdvent = true;
-        isDecember = true;
         #if FORGET_TODAY
         Save.debugForgetDay(day);
         #end
@@ -45,22 +44,18 @@ class Calendar
     
     static function onDateReceived(date:Date, callback:()->Void):Void
     {
-        isDecember = date.getMonth() == 11;
-        isChristmas = date.getDate() == 25;
+        trace("month:" + date.getMonth(), "day:" + date.getDate());
+        isAdvent = date.getMonth() == 11 || (date.getMonth() == 0 && date.getDate() == 1);
+        isChristmas = date.getMonth() == 11 && date.getDate() == 25;
         
-        if (isDecember)// && date.getFullYear() == 2019)
+        if (isAdvent)// && date.getFullYear() == 2019)
         {
-            hanukkahDay = date.getDate() - 10;
-            if (date.getDate() < 32)
-            {
-                isAdvent = true;
-                day = date.getDate();
-                #if FORGET_TODAY
-                Save.debugForgetDay(day);
-                #end
-                isUnseenDay = !Save.hasSeenDay(day);
-                Save.daySeen(day);
-            }
+            day = date.getDate() + (date.getMonth() == 11 ? 1 : 31);
+            #if FORGET_TODAY
+            Save.debugForgetDay(day);
+            #end
+            isUnseenDay = !Save.hasSeenDay(day);
+            Save.daySeen(day);
         }
         
         callback();

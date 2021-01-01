@@ -869,4 +869,5 @@ enum abstract RoomName(String) to String
     var Arcade   = "arcade";
     var Studio   = "music";
     var Movie    = "movie";
+    var Credits  = "credits";
 }
