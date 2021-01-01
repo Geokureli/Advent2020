@@ -554,6 +554,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "spiggygee"}
+        },
+        {
+          "name": "Teleport",
+          "id": 50,
+          "_eid": "58765051",
+          "x": 712,
+          "y": 312,
+          "width": 24,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "", "target": "credits", "enabled": true}
         }
       ]
     },

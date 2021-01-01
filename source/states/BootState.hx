@@ -194,23 +194,23 @@ class BootState extends flixel.FlxState
                     final showWarnings  = #if debug true #else false #end;
                     var errors = Content.verifyTodaysContent(showWarnings);
                     
-                    var warningsOnly = true;
-                    var blockingList = new Array<String>();
-                    var warningList = new Array<String>();
-                    for (error in errors)
-                    {
-                        switch (error)
-                        {
-                            case Blocking(msg):
-                                warningsOnly = false;
-                                blockingList.push(msg);
-                            case Warning(msg):
-                                warningList.push(msg);
-                        }
-                    }
-                    
                     if (errors != null)
                     {
+                        var warningsOnly = true;
+                        var blockingList = new Array<String>();
+                        var warningList = new Array<String>();
+                        for (error in errors)
+                        {
+                            switch (error)
+                            {
+                                case Blocking(msg):
+                                    warningsOnly = false;
+                                    blockingList.push(msg);
+                                case Warning(msg):
+                                    warningList.push(msg);
+                            }
+                        }
+                        
                         if (NGio.isContributor)
                         {
                             msg.font = new NokiaFont();

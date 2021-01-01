@@ -237,9 +237,10 @@
         , "bpm"    : 70
         , "day"    : 30
         }
-	,   { "id"     : "heyopc"
+    ,   { "id"     : "heyopc"
         , "name"   : "Tankmas Rap 2020"
         , "authors": ["heyopc"]
+        , "key"    : "cMaj"
         }
     ]
 ,   "artwork":

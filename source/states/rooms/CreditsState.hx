@@ -1,5 +1,6 @@
 package states.rooms;
 
+import data.Game;
 import ui.DjUi;
 import ui.Controls;
 import ui.Font;
@@ -20,6 +21,7 @@ class CreditsState extends RoomState
     var sections:FlxTypedGroup<Section>;
     var sectionsWidth = 0;
     var exitTeleport:Teleport;
+    var prevSong:String;
     
     override function create()
     {
@@ -27,6 +29,9 @@ class CreditsState extends RoomState
         add(sections);
         
         super.create();
+        
+        prevSong = Game.chosenSong;
+        Manifest.playMusic("heyopc");
     }
     
     override function initEntities()
@@ -121,6 +126,12 @@ class CreditsState extends RoomState
             }
         }
     }
+    
+    override function activateTeleport(target:String)
+    {
+        super.activateTeleport(target);
+        Manifest.playMusic(prevSong);
+    }
 }
 
 class PopupCredits extends FlxSubState
@@ -139,7 +150,10 @@ class PopupCredits extends FlxSubState
         var bg = new ui.DialogBg(EDGE, EDGE, FlxG.width - EDGE * 2, FlxG.height - EDGE * 2);
         add(bg);
         
-        var portrait = new FlxSprite(data.portraitPath);
+        var path = data.portraitPath;
+        if (!Manifest.exists(path, IMAGE))
+            path = Portrait.MISSING_PATH;
+        var portrait = new FlxSprite(path);
         portrait.y = bg.y + (bg.height - portrait.height) / 2;
         portrait.x = bg.x + portrait.y - bg.y;
         portrait.antialiasing = true;
@@ -240,7 +254,7 @@ class Section extends FlxSpriteGroup
 @:forward
 abstract Portrait(FlxSprite) from FlxSprite to FlxSprite
 {
-    inline static var MISSING_PATH = "assets/images/portraits/missing.png";
+    inline public static var MISSING_PATH = "assets/images/portraits/missing.png";
     
     inline public function new (x = 0.0, y = 0.0, ?path:String)
     {
