@@ -191,7 +191,23 @@ class BootState extends flixel.FlxState
                         return;
                     }
                     
-                    var errors = Content.verifyTodaysContent();
+                    final showWarnings  = #if debug true #else false #end;
+                    var errors = Content.verifyTodaysContent(showWarnings);
+                    
+                    var warningsOnly = true;
+                    var blockingList = new Array<String>();
+                    var warningList = new Array<String>();
+                    for (error in errors)
+                    {
+                        switch (error)
+                        {
+                            case Blocking(msg):
+                                warningsOnly = false;
+                                blockingList.push(msg);
+                            case Warning(msg):
+                                warningList.push(msg);
+                        }
+                    }
                     
                     if (errors != null)
                     {
@@ -199,19 +215,22 @@ class BootState extends flixel.FlxState
                         {
                             msg.font = new NokiaFont();
                             if (debugFutureEnabled)
+                                msg.text = "(debug) You pressed space to see tommorow's content.\n";
+                            
+                            if (blockingList.length > 0)
                             {
-                                msg.text
-                                    = "(debug) You pressed space to see tommorow's content,"
-                                    + "\nwhich is not ready yet because of the following errors:";
+                                msg.text += "This day is not ready yet.\n"
+                                    + "Errors:\n\n" + blockingList.join("\n") + "\n";
                             }
                             else
-                            {
-                                msg.text = "Errors:";
-                            }
+                                msg.text += "There are no errors but there are non-blocking issues.\n"
+                                    + "Non-collab players will not see this message.\n";
+                            
+                            if (warningList.length > 0)
+                                msg.text += "Warnings:\n\n" + warningList.join("\n") + "\n";
                             
                             msg.text 
-                                += "\n\n" + errors.join("\n")
-                                + "\n\nYou are only seeing this message because you are in the credits"
+                                += "\nYou are only seeing this message because you are in the credits"
                                 + "\nPress SPACE to play, anyway";
                             setState(Error(false));
                         }

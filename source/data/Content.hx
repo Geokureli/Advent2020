@@ -15,6 +15,8 @@ class Content
     public static var isInitted(default, null) = false;
     
     public static var credits:Map<User, CreditContent>;
+    public static var creditsOrdered:Array<CreditContent>;
+    public static var extras:Map<User, CreditContent>;
     public static var artwork:Map<String, ArtCreation>;
     public static var artworkByDay:Map<Int, ArtCreation>;
     public static var songs:Map<String, SongCreation>;
@@ -38,8 +40,23 @@ class Content
         for (user in Reflect.fields(data.credits))
         {
             var data:CreditContent = Reflect.field(data.credits, user);
+            data.id = user;
+            if (data.roles == null)
+                data.roles = [];
             credits.set(user, data);
             data.newgrounds = 'http://$user.newgrounds.com';
+            data.portraitPath = 'assets/images/portraits/$user.png';
+        }
+        
+        extras = [];
+        for (user in Reflect.fields(data.extras))
+        {
+            var data:CreditContent = Reflect.field(data.extras, user);
+            data.id = user;
+            data.roles = [];
+            extras.set(user, data);
+            data.newgrounds = 'http://$user.newgrounds.com';
+            data.portraitPath = 'assets/images/portraits/$user.png';
         }
         
         songs = [];
@@ -141,17 +158,147 @@ class Content
             movies[id].id = id;
         }
         
+        parseCredits();
+        
         isInitted = true;
         onInit.dispatch();
+    }
+    
+    
+    static function parseCredits()
+    {
+        creditsOrdered = [];
+        for (data in credits)
+        {
+            data.firstDay = data.roles.indexOf(RoleType.pm) != -1 ? 0 : 32;
+            for (i in 0...data.roles.length)
+                data.roles[i] = parseRole(data.roles[i]);
+            creditsOrdered.push(data);
+        }
+        
+        for (data in artwork)
+        {
+            var contentName = data.name == null ? "Untitled Illustration" : data.name;
+            for (author in data.authors)
+                addRole(author, art, contentName, data.day);
+        }
+        
+        for (data in songs)
+        {
+            var contentName = data.name == null ? "Untitled Song" : data.name;
+            for (author in data.authors)
+                addRole(author, music, contentName, data.day);
+        }
+        
+        for (data in arcades)
+        {
+            var contentName = data.name == null ? "Untitled Minigame" : data.name;
+            if (data.authors != null)
+            {
+                for (author in data.authors)
+                    addRole(author, owner, contentName, data.day);
+            }
+        }
+        
+        for (data in movies)
+        {
+            var contentName = data.name == null ? "Untitled Movie" : data.name;
+            for (author in data.authors)
+                addRole(author, owner, contentName, data.day);
+        }
+        
+        creditsOrdered.sort((a, b)->a.firstDay - b.firstDay);
+    }
+    
+    static function getUserId(user:User)
+    {
+        if (user.indexOf(":") != -1)
+            user = user.split(":")[0];
+        return user;
+    }
+    
+    static function creditsExists(user:User)
+    {
+        user = getUserId(user);
+        
+        var data:CreditContent = null;
+        if (extras.exists(user))
+            data = extras[user];
+        else if (credits.exists(user))
+            data = credits[user];
+        
+        return data != null && data.proper != null;
+    }
+    
+    static function addRole(user:User, ownerRole:RoleType, contentName:String, day:Int)
+    {
+        var role:String;
+        if (user.indexOf(":") != -1)
+        {
+            var split = user.split(":");
+            user = split[0];
+            role = parseRole(split[1]);
+        }
+        else
+            role = parseRole(ownerRole);
+        
+        var data:CreditContent;
+        if (extras.exists(user))
+            data = extras[user];
+        else if (credits.exists(user))
+            data = credits[user];
+        else
+            throw "invalid user:" + user;
+        
+        data.roles.push('$role: $contentName');
+        
+        if (day < data.firstDay && day > 0)
+            data.firstDay = day;
+    }
+    
+    static function parseRole(type:RoleType)
+    {
+        var display = "";
+        if (StringTools.startsWith(type, RoleType.adl_))
+        {
+            display += "Additional ";
+            type = type.substring(4);
+        }
+        
+        return display + switch(type)
+        {
+            case owner  : "Creator";
+            case pm     : "Organizer";
+            case code   : "Code";
+            case design : "Design";
+            case art    : "Art";
+            case anim   : "Animation";
+            case music  : "Music";
+            case sound  : "Sound Effects";
+            case bg     : "Background Art";
+            case va     : "Voice Acting";
+            case sprites: "Sprites";
+            default: type;
+        }
     }
     
     /**
      * finds missing files or data and lets
      * @return String
      */
-    public static function verifyTodaysContent():Array<ContentError>
+    public static function verifyTodaysContent(includeWarnings:Bool):Array<ContentError>
     {
         var errors = new Array<ContentError>();
+        
+        function addError(msg:String)
+        {
+            errors.push(Blocking(msg));
+        }
+        function addWarning(msg:String)
+        {
+            if (includeWarnings)
+                errors.push(Warning(msg));
+        }
         
         var presentIds = getEntityIds("entrance", "Present");
         var daysFound = new Array();
@@ -162,10 +309,10 @@ class Content
                 if (art.medal)
                 {
                     if (!Manifest.exists(art.medalPath, IMAGE))
-                        errors.push('Missing ${art.medalPath}');
+                        addError('Missing ${art.medalPath}');
                     
                     if (daysFound.contains(art.day))
-                        errors.push('Multiple artwork with medals of day:${art.day}');
+                        addError('Multiple artwork with medals of day:${art.day}');
                     else
                         daysFound.push(art.day);
                     
@@ -173,20 +320,23 @@ class Content
                 if (art.comic == null)
                 {
                     if (!Manifest.exists(art.path, IMAGE))
-                        errors.push('Missing ${art.path}');
+                        addError('Missing ${art.path}');
                     if (!Manifest.exists(art.thumbPath, IMAGE))
-                        errors.push('Missing ${art.thumbPath}');
+                        addError('Missing ${art.thumbPath}');
                 }
                 if (!Manifest.exists(art.presentPath, IMAGE))
-                    errors.push('Missing ${art.presentPath}');
+                    addError('Missing ${art.presentPath}');
                 if (!presentIds.contains(art.id))
-                    errors.push('Missing present in entrance, id:${art.id}');
+                    addError('Missing present in entrance, id:${art.id}');
                 if (art.authors == null)
-                    errors.push('Missing artwork authors id:${art.id}');
+                    addError('Missing artwork authors id:${art.id}');
                 for (author in art.authors)
                 {
-                    if (!credits.exists(author) || credits[author].proper == null)
-                        errors.push('Missing credits author:$author');
+                    author = getUserId(author);
+                    if (!creditsExists(author))
+                        addError('Missing credits, author:$author');
+                    else if (!Manifest.exists(credits[author].portraitPath, IMAGE))
+                        addWarning('Missing portrait, author:$author');
                 }
             }
         }
@@ -197,7 +347,7 @@ class Content
             for (i in 0...Calendar.day)
             {
                 if (i >= daysFound.length || daysFound[i] != i + 1)
-                    errors.push('Missing art on day:${i + 1}');
+                    addError('Missing art on day:${i + 1}');
             }
         }
         
@@ -206,19 +356,22 @@ class Content
             if (song.day != null && song.day <= Calendar.day)
             {
                 if (!Manifest.exists(song.path, MUSIC))
-                    errors.push('Missing ${song.path}');
+                    addError('Missing ${song.path}');
                 if (!Manifest.exists(song.samplePath, MUSIC))
-                    errors.push('Missing ${song.samplePath}');
+                    addError('Missing ${song.samplePath}');
                 if (!Manifest.exists(song.sideDiskPath, IMAGE))
-                    errors.push('Missing ${song.sideDiskPath}');
+                    addError('Missing ${song.sideDiskPath}');
                 if (!Manifest.exists(song.frontDiskPath, IMAGE))
-                    errors.push('Missing ${song.frontDiskPath}');
+                    addError('Missing ${song.frontDiskPath}');
                 if (song.authors == null)
-                    errors.push('Missing song authors id:${song.id}');
+                    addError('Missing song authors id:${song.id}');
                 for (author in song.authors)
                 {
-                    if (!credits.exists(author) || credits[author].proper == null)
-                        errors.push('Missing credits author:$author');
+                    author = getUserId(author);
+                    if (!creditsExists(author))
+                        addError('Missing credits, author:$author');
+                    else if (!Manifest.exists(credits[author].portraitPath, IMAGE))
+                        addWarning('Missing portrait, author:$author');
                 }
             }
         }
@@ -230,21 +383,24 @@ class Content
             if (arcade.day != null && arcade.day <= Calendar.day)
             {
                 if (!Manifest.exists(arcade.path, IMAGE))
-                    errors.push('Missing ${arcade.path}');
+                    addError('Missing ${arcade.path}');
                 if (arcade.type != External && arcade.medal && !Manifest.exists(arcade.medalPath, IMAGE))
-                    errors.push('Missing ${arcade.medalPath}');
+                    addError('Missing ${arcade.medalPath}');
                 if (!cabinetIds.contains(arcade.id))
-                    errors.push('Missing Cabinet in arcade id:${arcade.id}');
+                    addError('Missing Cabinet in arcade id:${arcade.id}');
                 if (arcade.type == State && !teleportIds.contains(arcade.id))
-                    errors.push('Missing Teleport in arcade id:${arcade.id}');
+                    addError('Missing Teleport in arcade id:${arcade.id}');
                 // if (arcade.authors == null)
                 //     errors.push('Missing arcade authors id:${arcade.id}');
                 if (arcade.authors != null)
                 {
                     for (author in arcade.authors)
                     {
-                        if (!credits.exists(author) || credits[author].proper == null)
-                            errors.push('Missing credits author:$author');
+                        author = getUserId(author);
+                        if (!creditsExists(author))
+                            addError('Missing credits, author:$author');
+                        else if (!Manifest.exists(credits[author].portraitPath, IMAGE))
+                            addWarning('Missing portrait, author:$author');
                     }
                 }
             }
@@ -356,21 +512,29 @@ private typedef ContentFile =
     var instruments:Array<InstrumentData>;
     var arcades:Array<ArcadeCreation>;
     var credits:Dynamic;
+    var extras:Dynamic;
     var events:Dynamic;
     var medals:Dynamic;
     var comics:Dynamic;
     var movies:Dynamic;
 }
 
-typedef ContentError = String;
+enum ContentError
+{
+    Blocking(msg:String);
+    Warning(msg:String);
+}
 
 typedef CreditContent =
 {
+    var id:String;
     var proper:String;
     var roles:Array<String>;
     var soundcloud:String;
     var bandcamp:String;
     var newgrounds:String;
+    var firstDay:Int;
+    var portraitPath:String;
 }
 
 typedef Creation = 
@@ -380,7 +544,6 @@ typedef Creation =
     var authors:Array<User>;
     var path:String;
     var day:Int;
-    var ext:String;
 }
 
 typedef ArtCreation
@@ -395,6 +558,7 @@ typedef ArtCreation
     var preload:Bool;
     var sound:String;
     var comic:ComicCreation;
+    var ext:String;
 }
 
 typedef SongCreation
@@ -410,6 +574,7 @@ typedef SongCreation
     var ngId:Int;
     var volume:Float;
     var index:Int;
+    var ext:String;
 }
 
 typedef ArcadeCamera =
@@ -439,12 +604,8 @@ typedef ComicCreation =
     var dataPath:String;
 }
 
-typedef MovieCreation =
+typedef MovieCreation = Creation &
 {
-    var id:String;
-    var name:String;
-    var path:String;
-    var credits:Array<String>;
 }
 
 enum abstract ArcadeName(String) to String
@@ -510,4 +671,22 @@ enum abstract User(String) from String to String
     var einmeister;
     var splatterdash;
     var midgetsausage;
+}
+
+
+@:forward
+enum abstract RoleType(String) from String to String
+{
+    var owner;
+    var pm;
+    var code;
+    var design;
+    var art;
+    var anim;
+    var music;
+    var sound;
+    var bg;
+    var va;
+    var sprites;
+    var adl_;
 }

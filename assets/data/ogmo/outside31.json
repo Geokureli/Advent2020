@@ -39,7 +39,7 @@
           "height": 12,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "entrance"}
+          "values": {"id": "", "target": "entrance", "enabled": true}
         },
         {
           "name": "Teleport",
@@ -51,7 +51,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "credits"}
+          "values": {"id": "", "target": "credits", "enabled": false}
         },
         {
           "name": "Teleport",
@@ -63,7 +63,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "cabin"}
+          "values": {"id": "", "target": "cabin", "enabled": false}
         }
       ]
     },

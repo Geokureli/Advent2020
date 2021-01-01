@@ -39,7 +39,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "bedroom"}
+          "values": {"id": "", "target": "bedroom", "enabled": true}
         },
         {
           "name": "Teleport",
@@ -51,7 +51,7 @@
           "height": 80,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "entrance"}
+          "values": {"id": "", "target": "entrance", "enabled": true}
         },
         {
           "name": "Door",

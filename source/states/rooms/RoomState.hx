@@ -382,7 +382,7 @@ class RoomState extends OgmoState
             {
                 var medal = data.medal;
                 if (!Calendar.isDebugDay
-                &&  (data.day == 1 || Calendar.day == data.day)
+                &&  (data.day == 32 || Calendar.day == data.day)
                 &&  medal != null && medal != false)
                     NGio.unlockDayMedal(data.day);
                 
@@ -470,7 +470,7 @@ class RoomState extends OgmoState
             );
     }
     
-    inline function addHoverTo(target:FlxObject, box:InfoBox, hoverDis = 20)
+    function addHoverTo(target:FlxObject, box:InfoBox, hoverDis = 20)
     {
         removeHoverFrom(target);
         

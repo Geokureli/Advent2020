@@ -94,7 +94,8 @@
       "tags": [],
       "values": [
         {"name": "id", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
-        {"name": "target", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+        {"name": "target", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "enabled", "definition": "Boolean", "defaults": true}
       ]
     },
     {

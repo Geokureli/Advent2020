@@ -1,19 +1,19 @@
 {   "credits":
     { "geokureli":
         { "proper": "GeoKureli"
-        , "roles" : ["Organizer", "Programmer"]
+        , "roles" : ["pm", "Lead Programmer"]
         }
     , "brandybuizel":
         { "proper": "BrandyBuizel"
-        , "roles" : ["Organizer"]
+        , "roles" : ["pm", "Lead Artist"]
         }
     , "nickconter":
         { "proper": "Nick Conter"
-        , "roles" : ["Organizer"]
+        , "roles" : ["sprites"]
         }
     , "thedyingsun":
         { "proper": "TheDyingSun"
-        , "roles" : ["Decorator"]
+        , "roles" : ["Decorator", "sprites"]
         }
     , "albegian":
         { "proper"  : "AlbeGian"
@@ -22,6 +22,10 @@
     , "goodl":
         { "proper": "GoodL"
         , "roles" : ["Electric Guitar"]
+        }
+    , "prosciuttoman":
+        { "proper": "ProsciuttoMan"
+        , "roles" : ["sprites"]
         }
     , "cymbourine"      : { "proper": "Cymbourine"      }
     , "mintyeggs"       : { "proper": "MintyEggs"       }
@@ -80,6 +84,25 @@
     , "sevi"            : { "proper": "Sevi"            }
     , "heyopc"          : { "proper": "heyopc"          }
     , "spiggygee"       : { "proper": "spiggygee"       }
+    }
+,   "extras":
+    { "ninjamuffin99": { "proper": "NinjaMuffin99" }
+    , "dogl"         : { "proper": "dogl"          }
+    , "irri"         : { "proper": "irri"          }
+    , "thriftman"    : { "proper": "thriftman"     }
+    , "wavetro"      : { "proper": "wavetro"       }
+    , "johnnyutah"   : { "proper": "JohnnyUtah"    }
+    , "rehdah"       : { "proper": "rehdah"        }
+    , "antonm"       : { "proper": "antonm"        }
+    , "shigloo"      : { "proper": "shigloo"       }
+    , "sierrasaura"  : { "proper": "sierrasaura"   }
+    , "jazzhat"      : { "proper": "jazzhat"       }
+    , "ggloryboyy"   : { "proper": "ggloryboyy"    }
+    , "spazkid"      : { "proper": "spazkid"       }
+    , "eok97"        : { "proper": "eok97"         }
+    , "bassetfilms"  : { "proper": "bassetfilms"   }
+    , "cayfettart"   : { "proper": "cayfettart"    }
+    , "tayzonday"    : { "proper": "tayzonday"     }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -421,7 +444,7 @@
         }
     ,   { "id"     : "night_before"
         , "name"   : "Twas the Night Before Christmas"
-        , "authors": ["voicesbycorey", "mrshmoods", "connorgrail"]
+        , "authors": ["voicesbycorey:va", "mrshmoods:art", "connorgrail:music", "dogl:adl_va"]
         , "day"    : 24
         , "comic"  :
             { "pages"    : 11
@@ -450,20 +473,14 @@
         , "day"    : 31
         , "medal"  : true
         }
-	,   { "id"     : "brandybuizel"
-        , "name"   : "Christmas Time with Friends"
-        , "authors": ["brandybuizel"]
-        , "day"    : 32
-        , "medal"  : true
-        }
-	,   { "id"     : "spiggygee"
-        , "name"   : ""
+    ,   { "id"     : "spiggygee"
+        , "name"   : "Alien Snowminid"
         , "authors": ["spiggygee"]
         , "day"    : 32
         , "medal"  : false
         }
 	,   { "id"     : "brandybuizel"
-        , "name"   : ""
+        , "name"   : "Christmas Time with Friends"
         , "authors": ["brandybuizel"]
         , "day"    : 32
         , "medal"  : true
@@ -475,7 +492,7 @@
 ,   "arcades":
     [   { "id"     : "digging"
         , "name"   : "Festive Forage"
-        , "authors": ["knose", "chdonga", "gallowjolt", "splatterdash"]
+        , "authors": ["knose:code", "chdonga:art", "gallowjolt:art", "splatterdash:music"]
         , "day"    : 8
         , "ngId"   : 1556969
         , "mobile" : false
@@ -483,7 +500,14 @@
         }
     ,   { "id"     : "horse"
         , "name"   : "Pin the Tail"
-        , "authors": ["nickconter", "geokureli", "midgetsausage", "brandybuizel"]
+        , "authors": 
+            [ "nickconter:Birthday Boy"
+            , "geokureli:code"
+            , "midgetsausage:art"
+            , "brandybuizel:design"
+            , "danfrombavaria:music"
+            , "connorgrail:music"
+            ]
         , "day"    : 9
         , "mobile" : false
         , "type"   : "overlay"
@@ -510,7 +534,7 @@
         }
     ,   { "id"     : "chimney"
         , "name"   : "Holiday Hominid Drop"
-        , "authors": ["brandybuizel", "knose", "danfrombavaria"]
+        , "authors": ["brandybuizel:design", "knose:code", "danfrombavaria:music"]
         , "day"    : 29
         , "mobile" : false
         , "medal"  : false
@@ -585,30 +609,11 @@
         }
     ]
 ,   "movies":
-    {   "grinch":
-        { "name": "How The Grinch Stole A Bunch Of Stuff"
-        , "path": "https://uploads.ungrounded.net/alternate/1568000/1568506_alternate_118108.720p.mp4?1608865813"
-        , "credits":
-            [ "sevi"
-            , "johnnyutah"
-            , "rehdah"
-            , "antonm"
-            , "shigloo"
-            , "brandybuizel"
-            , "sierrasaura"
-            , "jazzhat"
-            , "ggloryboyy"
-            , "spazkid"
-            , "eok97"
-            , "bassetfilms"
-            , "cayfettart:bg"
-            , "tayzonday:va"
-            ]
-        }
-    ,   "snackers": 
+    {   "snackers": 
         { "name": "Duncan & Jones 3"
         , "path": "https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"
-        , "credits":
+        , "day":19
+        , "authors":
             [ "snackers"
             , "ninjamuffin99:music"
             , "carmet:music"
@@ -618,6 +623,29 @@
             , "thriftman:va"
             , "wandaboy:adl_anim"
             , "wavetro:va"
+            ]
+        }
+    ,   "grinch":
+        { "name": "How The Grinch Stole A Bunch Of Stuff"
+        , "path": "https://uploads.ungrounded.net/alternate/1568000/1568506_alternate_118108.720p.mp4?1608865813"
+        , "day":24
+        , "authors":
+            [ "sevi:anim"
+            , "johnnyutah:anim"
+            , "rehdah:anim"
+            , "antonm:anim"
+            , "shigloo:anim"
+            , "brandybuizel:anim"
+            , "sierrasaura:anim"
+            , "jazzhat:anim"
+            , "ggloryboyy:anim"
+            , "spazkid:anim"
+            , "eok97:anim"
+            , "bassetfilms:anim"
+            , "karlestonchew:adl_art"
+            , "misterjamesss:sound"
+            , "cayfettart:bg"
+            , "tayzonday:va"
             ]
         }
     }

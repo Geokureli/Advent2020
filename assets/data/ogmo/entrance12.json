@@ -51,7 +51,7 @@
           "height": 72,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "hallway"}
+          "values": {"id": "", "target": "hallway", "enabled": true}
         },
         {
           "name": "Present",
@@ -111,7 +111,7 @@
           "height": 16,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "outside"}
+          "values": {"id": "", "target": "outside", "enabled": true}
         },
         {
           "name": "Teleport",
@@ -123,7 +123,7 @@
           "height": 80,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "arcade"}
+          "values": {"id": "", "target": "arcade", "enabled": true}
         },
         {
           "name": "Present",
@@ -219,7 +219,7 @@
           "height": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "music"}
+          "values": {"id": "", "target": "music", "enabled": true}
         },
         {
           "name": "Present",

@@ -4,7 +4,7 @@ import flixel.FlxObject;
 
 import states.OgmoState;
 
-typedef TeleportValues = { target:String, id:String, isDefault:Bool };
+typedef TeleportValues = { target:String, id:String, isDefault:Bool, enabled:Bool };
 
 class Teleport extends FlxObject
 {
@@ -23,6 +23,7 @@ class Teleport extends FlxObject
         final values = data.values;
         teleport.id = values.id;
         teleport.target = values.target;
+        teleport.solid = values.enabled;
         return teleport;
     }
 }
