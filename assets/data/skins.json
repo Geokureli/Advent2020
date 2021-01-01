@@ -310,7 +310,7 @@
     , "proper": "Satina"
     , "description": "This princess of the underworld has charm, talent and a casual dad who works in IT."
     , "unlocksBy": "day:16"
-    , "users": null
+    , "users": ["scumhouse"]
     }
 ,   { "id": "madness_hank"
     , "proper": "Hank J. Wimbleton"
@@ -330,12 +330,12 @@
     , "description": "My personal favorite Smiling Friend, don't steal his cheese."
     , "unlocksBy": "medal:61555"
     , "offset": { "x":2, "y":6 }
-    , "users": null
+    , "users": ["psychicpebbles"]
     }
 ,   { "id": "zone"
     , "proper": "Zone-Tan"
-    , "description": ""
-    , "unlocksBy": null
+    , "description": "You know her as the queen of hentai, the duchess of tentacle penetration.\nShe's watching you fap. I get it, it's a nice sprite, but don't..."
+    , "unlocksBy": "medal:32"
     , "users": ["zone-sama", "brandybuizel"]
     }
 ,   { "id": "gentles"
@@ -379,6 +379,19 @@
     , "description": "Between her and Margo, the people chose her. Welcome to Newgrounds ENA!"
     , "unlocksBy": "day:30"
     , "users": ["joelg"]
+    }
+,   { "id": "melt"
+    , "proper": "Melt Boy"
+    , "description": "A tough little archer lad from Ludum Dare 46."
+    , "unlocksBy": "day:31"
+    , "frames": 2
+    , "users": ["brandybuizel", "connorgrail", "mmattugh"]
+    }
+,   { "id": "jameslee"
+    , "proper": "James Lee"
+    , "description": "Who else could proctor the court of public opinion as well?"
+    , "unlocksBy": "medal:30"
+    , "users": ["jameslee"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
