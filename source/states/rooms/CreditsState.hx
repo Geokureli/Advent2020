@@ -64,16 +64,22 @@ class CreditsState extends RoomState
         
         for (user=>data in Content.credits)
         {
-            var copy:CreditContent = {};
+            var copy:CreditContent = cast {};
             for (field in Reflect.fields(data))
-                copy[field] = Reflect.field(data, "field");
+                Reflect.setField(copy, field, Reflect.field(data, field));
+            
+            if (data.roles == null)
+                data.roles = [];
+            else
+                data.roles = data.roles.copy();
+            
             fullCredits[user] = data;
         }
         
         function addRole(user:User, ownerRole:String, contentName:String)
         {
             var role = ownerRole;
-            if (user.indexOf(":")
+            if (user.indexOf(":") != -1)
             {
                 var split = user.split(":");
                 user = split[0];
