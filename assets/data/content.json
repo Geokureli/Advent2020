@@ -551,6 +551,7 @@
     , "positivity": 61559
     , "movie"     : 61568
     , "butzbo"    : 61560
+    , "credits"   : 61691
     }
 ,   "instruments":
     [   { "id"    : "guitar_ac"

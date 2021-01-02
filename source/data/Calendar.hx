@@ -57,6 +57,8 @@ class Calendar
             isUnseenDay = !Save.hasSeenDay(day);
             Save.daySeen(day);
         }
+        else
+            day = 32;
         
         callback();
     }

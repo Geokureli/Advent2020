@@ -1,5 +1,6 @@
 package states.rooms;
 
+import data.NGio;
 import data.Game;
 import ui.DjUi;
 import ui.Controls;
@@ -119,6 +120,8 @@ class CreditsState extends RoomState
                 final index = leftIndex + (i - leftmostSection + sections.length) % sections.length;
                 if (index < Content.creditsOrdered.length)
                 {
+                    if (index == Content.creditsOrdered.length - 1 && !NGio.hasMedalByName("credits"))
+                        NGio.unlockMedalByName("credits");
                     var data = Content.creditsOrdered[index];
                     section.portrait.setImage(data.portraitPath);
                     addHoverTextTo(section.picFrame, data.proper, ()->openSubState(new PopupCredits(data)));
