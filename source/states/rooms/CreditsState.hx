@@ -104,6 +104,7 @@ class CreditsState extends RoomState
         for (i=>section in sections.members)
         {
             var moved = forceRedraw;
+            var index = leftIndex + (i - leftmostSection + sections.length) % sections.length;
             while(section.x + Section.floorWidth < camX && section.x + sectionsWidth <= FlxG.worldBounds.right)
             {
                 moved = true;
@@ -114,23 +115,20 @@ class CreditsState extends RoomState
             {
                 moved = true;
                 section.x -= sectionsWidth;
+                index -= sections.length;
             }
             
-            if (moved)
+            if (moved && index < Content.creditsOrdered.length)
             {
-                final index = leftIndex + (i - leftmostSection + sections.length) % sections.length;
-                if (index < Content.creditsOrdered.length)
+                if (index == Content.creditsOrdered.length - 1 && !medalUnlocked)
                 {
-                    if (index == Content.creditsOrdered.length - 1 && !medalUnlocked)
-                    {
-                        NGio.unlockMedalByName("credits");
-                        medalUnlocked = true;
-                    }
-                    
-                    var data = Content.creditsOrdered[index];
-                    section.portrait.setImage(data.portraitPath);
-                    addHoverTextTo(section.picFrame, data.proper, ()->openSubState(new PopupCredits(data)));
+                    NGio.unlockMedalByName("credits");
+                    medalUnlocked = true;
                 }
+                
+                var data = Content.creditsOrdered[index];
+                section.portrait.setImage(data.portraitPath);
+                addHoverTextTo(section.picFrame, data.proper, ()->openSubState(new PopupCredits(data)));
             }
         }
     }
