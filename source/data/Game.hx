@@ -29,11 +29,11 @@ class Game
         // RoomName.Bedroom;
         // RoomName.Hallway + "." + RoomName.Bedroom;
         // RoomName.Entrance + "." + RoomName.Hallway;
-        RoomName.Outside + "." + RoomName.Entrance;
+        // RoomName.Outside + "." + RoomName.Entrance;
         // RoomName.Arcade + "." + RoomName.Entrance;
         // RoomName.Studio + "." + RoomName.Entrance;
         // RoomName.Movie + "." + RoomName.Entrance;
-        // RoomName.Credits + "." + RoomName.Entrance;
+        RoomName.Credits + "." + RoomName.Entrance;
         #else
         RoomName.Bedroom;
         #end

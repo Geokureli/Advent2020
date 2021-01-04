@@ -1,23 +1,22 @@
 {   "credits":
     { "geokureli":
-        { "proper": "GeoKureli"
-        , "roles" : ["pm", "Lead Programmer"]
+        { "proper" : "GeoKureli"
+        , "roles"  : ["pm", "Lead Programmer"]
+        , "twitter": "Geokureli"
         }
     , "brandybuizel":
-        { "proper": "BrandyBuizel"
-        , "roles" : ["pm", "Lead Artist"]
+        { "proper" : "BrandyBuizel"
+        , "roles"  : ["pm", "Lead Artist"]
+        , "twitter": "BrandyBuizel"
         }
     , "nickconter":
         { "proper": "Nick Conter"
         , "roles" : ["sprites"]
         }
     , "thedyingsun":
-        { "proper": "TheDyingSun"
-        , "roles" : ["Decorator", "sprites"]
-        }
-    , "albegian":
-        { "proper"  : "AlbeGian"
-        , "bandcamp": "albegian"
+        { "proper" : "TheDyingSun"
+        , "roles"  : ["Decorator", "sprites"]
+        , "twitter": "The_Dying_Sun"
         }
     , "goodl":
         { "proper": "GoodL"
@@ -27,70 +26,68 @@
         { "proper": "ProsciuttoMan"
         , "roles" : ["sprites"]
         }
+    , "albegian"        : { "proper": "AlbeGian"        , "bandcamp":"albegian"      }
     , "cymbourine"      : { "proper": "Cymbourine"      }
     , "mintyeggs"       : { "proper": "MintyEggs"       }
-    , "mixmuffin"       : { "proper": "Liquid head"     }
     , "danfrombavaria"  : { "proper": "DanFromBavaria"  }
+    , "mixmuffin"       : { "proper": "Liquid head"     , "twitter":"LiquidHeaded"   }
     , "einmeister"      : { "proper": "EinMeister"      }
-    , "bub"             : { "proper": "bub"             }
     , "czyszy"          : { "proper": "CzySzy"          }
+    , "bub"             : { "proper": "bub"             }
     , "snackers"        : { "proper": "Snackers"        }
-    , "mkmaffo"         : { "proper": "MKMaffo"         }
     , "splatterdash"    : { "proper": "SplatterDash"    }
-    , "karlestonchew"   : { "proper": "Karlestonchew"   }
-    , "chrisbasso"      : { "proper": "chrisbasso"      }
-    , "knose"           : { "proper": "KnoseDoge"       }
-    , "chdonga"         : { "proper": "Chdonga"         }
-    , "gallowjolt"      : { "proper": "GallowJolt"      }
-    , "midgetsausage"   : { "proper": "midgetsausage"   }
+    , "mkmaffo"         : { "proper": "MKMaffo"         }
+    , "karlestonchew"   : { "proper": "Karlestonchew"   , "twitter":"KarlestonChew"  }
+    , "knosedoge"       : { "proper": "KnoseDoge"       , "twitter":"incognitoknose" }
+    , "chrisbasso"      : { "proper": "chrisbasso"      , "twitter":"chris_griz_"    }
     , "sirlenward"      : { "proper": "SirLenward"      }
     , "shirogaia"       : { "proper": "Shiro Gaia"      }
-    , "connorgrail"     : { "proper": "Connor Grail"    }
+    , "connorgrail"     : { "proper": "Connor Grail"    , "twitter":"ConnorGrail"    }
     , "misterjamesss"   : { "proper": "James Renna"     }
+    , "chdonga"         : { "proper": "Chdonga"         }
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
-    , "carmet"          : { "proper": "Carmet"          }
+    , "midgetsausage"   : { "proper": "midgetsausage"   , "instagram":"midgetsausage_ng" }
     , "krinkels"        : { "proper": "Krinkels"        }
-    , "everratic"       : { "proper": "Everratic"       }
-    , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
+    , "carmet"          : { "proper": "Carmet"          }
     , "mimny"           : { "proper": "Mimny"           }
     , "figburn"         : { "proper": "Figburn"         }
-    , "precipitation24" : { "proper": "Precipitation24" }
     , "octong"          : { "proper": "OctoNG"          }
-    , "migmoog"         : { "proper": "Mig-Moog"        }
+    , "mig-moog"        : { "proper": "Mig-Moog"        , "twitter":"mig-moog"       }
     , "boomnm"          : { "proper": "Boomnm"          }
-    , "fushark"         : { "proper": "FuShark"         }
-	, "snailpirate"     : { "proper": "SnailPirate"     }
-    , "ninjamuffin99"   : { "proper": "ninjamuffin99"   }
-    , "dogl"            : { "proper": "dogl"            }
-    , "irri"            : { "proper": "Irri"            }
-    , "thriftman"       : { "proper": "Thriftman"       }
-    , "wandaboy"        : { "proper": "Wandaboy"        }
-    , "wavetro"         : { "proper": "Wavetro"         }
-    , "rgpanims"        : { "proper": "RGPAnims"        }
-    , "loganphresh"     : { "proper": "Logan Phresh"    }
     , "tenodiboris"     : { "proper": "TenodiBoris"     }
+    , "fushark"         : { "proper": "FuShark"         }
+    , "snailpirate"     : { "proper": "SnailPirate"     }
+    , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
+    , "rgpanims"        : { "proper": "RGPAnims"        , "twitter":"RGPStudiosFTW"  }
+    , "loganphresh"     : { "proper": "Logan Phresh"    }
+    , "everratic"       : { "proper": "Everratic"       }
     , "camuri"          : { "proper": "Camuri"          }
-    , "chobiluck"       : { "proper": "Chobi"           }
-    , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
-    , "mrshmoods"       : { "proper": "MrShmoods"       }
+    , "butzbo"          : { "proper": "Butzbo"          }
+    , "chobiluck"       : { "proper": "Chobi"           , "twitter":"ChobiSempai"    }
+    , "mrshmoods"       : { "proper": "MrShmoods"       , "instagram":"mrshmoods"    }
+    , "voicesbycorey"   : { "proper": "VoicesByCorey"   , "twitter":"VoicesByCorey"  }
+    , "dogl"            : { "proper": "dogl"            }
+    , "precipitation24" : { "proper": "Precipitation24" }
+    , "wandaboy"        : { "proper": "Wandaboy"        }
     , "mismash"         : { "proper": "MisMash"         }
-    , "toppleng"        : { "proper": "ToppleNG"        }
     , "syntrus"         : { "proper": "Syntrus"         }
-    , "onishaggy"       : { "proper": "OniShaggy"       }
+    , "toppleng"        : { "proper": "ToppleNG"        , "twitter":"HenryLogan22"   }
+    , "gallowjolt"      : { "proper": "GallowJolt"      , "twitter":"GallowJolt"     }
     , "pktoastyva"      : { "proper": "PKToastyVA"      }
-    , "piesaus"         : { "proper": "PieSaus"         }
+    , "onishaggy"       : { "proper": "OniShaggy"       }
+    , "piesaus"         : { "proper": "PieSaus"         , "twitter":"ThePiesaus"     }
     , "aramortart"      : { "proper": "ARAMort"         }
-    , "circuitreats"    : { "proper": "Circuitreats"    }
+    , "circuitreats"    : { "proper": "Circuitreats"    , "twitter":"Circuitreats"   }
     , "sevi"            : { "proper": "Sevi"            }
     , "heyopc"          : { "proper": "heyopc"          }
-    , "spiggygee"       : { "proper": "spiggygee"       }
+    , "spiggygee"       : { "proper": "spiggygee"       , "twitter":"spiggygee"      , "instagram":"spiggygee" }
+    
+    , "ninjamuffin99"   : { "proper": "ninjamuffin99"   , "twitter":"ninja_muffin99" , "bandcamp": "ninjamuffin99" }
+    , "irri"            : { "proper": "Irri"            }
+    , "wavetro"         : { "proper": "Wavetro"         }
     }
 ,   "extras":
-    { "ninjamuffin99": { "proper": "NinjaMuffin99" }
-    , "dogl"         : { "proper": "dogl"          }
-    , "irri"         : { "proper": "irri"          }
-    , "thriftman"    : { "proper": "thriftman"     }
-    , "wavetro"      : { "proper": "wavetro"       }
+    { "thriftman"    : { "proper": "thriftman"     }
     , "johnnyutah"   : { "proper": "JohnnyUtah"    }
     , "rehdah"       : { "proper": "rehdah"        }
     , "antonm"       : { "proper": "antonm"        }
@@ -102,7 +99,7 @@
     , "eok97"        : { "proper": "eok97"         }
     , "bassetfilms"  : { "proper": "bassetfilms"   }
     , "cayfettart"   : { "proper": "cayfettart"    }
-    , "tayzonday"    : { "proper": "tayzonday"     }
+    , "tayzonday"    : { "proper": "tayzonday"     , "personal":"http://www.tayzonday.com/", "nonNg":true }
     }
 ,   "songs":
     [   { "id"       : "albegian"
@@ -493,7 +490,7 @@
 ,   "arcades":
     [   { "id"     : "digging"
         , "name"   : "Festive Forage"
-        , "authors": ["knose:code", "chdonga:art", "gallowjolt:art", "splatterdash:music"]
+        , "authors": ["knosedoge:code", "chdonga:art", "gallowjolt:art", "splatterdash:music"]
         , "day"    : 8
         , "ngId"   : 1556969
         , "mobile" : false
@@ -521,13 +518,16 @@
         }
     ,   { "id"     : "2018"
         , "name"   : "Christmas ADVENTure 2018"
-        , "authors": null
+        , "authors": 
+            [ "ninjamuffin99"
+            , "brandybuizel"
+            ]
         , "day"    : 10
         , "type"   : "external"
         }
     ,   { "id"     : "positivity"
         , "name"   : "Think Positive"
-        , "authors": ["migmoog"]
+        , "authors": ["mig-moog"]
         , "day"    : 18
         , "mobile" : false
         , "type"   : "overlay"
@@ -535,12 +535,21 @@
         }
     ,   { "id"     : "chimney"
         , "name"   : "Holiday Hominid Drop"
-        , "authors": ["brandybuizel:design", "knose:code", "danfrombavaria:music"]
+        , "authors": ["brandybuizel:design", "knosedoge:code", "danfrombavaria:music"]
         , "day"    : 29
         , "mobile" : false
         , "medal"  : false
         , "type"   : "overlay"
         , "camera" : { "width":240, "height": 270 }
+        }
+    ,   { "id"     : "butzbo"
+        , "name"   : "Music Box"
+        , "authors": ["butzbo:animation", "connorgrail:music", "geokureli:code"]
+        , "day"    : 20
+        , "mobile" : true
+        , "medal"  : true
+        , "type"   : "state"
+        , "cabinet": false
         }
     ]
 ,   "medals":
@@ -647,7 +656,7 @@
             , "karlestonchew:adl_art"
             , "misterjamesss:sound"
             , "cayfettart:bg"
-            , "tayzonday:va"
+            , "tayzonday:music"
             ]
         }
     }

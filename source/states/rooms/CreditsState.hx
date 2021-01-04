@@ -23,6 +23,7 @@ class CreditsState extends RoomState
     var sectionsWidth = 0;
     var exitTeleport:Teleport;
     var prevSong:String;
+    var medalUnlocked = NGio.hasMedalByName("credits");
     
     override function create()
     {
@@ -120,8 +121,12 @@ class CreditsState extends RoomState
                 final index = leftIndex + (i - leftmostSection + sections.length) % sections.length;
                 if (index < Content.creditsOrdered.length)
                 {
-                    if (index == Content.creditsOrdered.length - 1 && !NGio.hasMedalByName("credits"))
+                    if (index == Content.creditsOrdered.length - 1 && !medalUnlocked)
+                    {
                         NGio.unlockMedalByName("credits");
+                        medalUnlocked = true;
+                    }
+                    
                     var data = Content.creditsOrdered[index];
                     section.portrait.setImage(data.portraitPath);
                     addHoverTextTo(section.picFrame, data.proper, ()->openSubState(new PopupCredits(data)));
@@ -153,13 +158,9 @@ class PopupCredits extends FlxSubState
         var bg = new ui.DialogBg(EDGE, EDGE, FlxG.width - EDGE * 2, FlxG.height - EDGE * 2);
         add(bg);
         
-        var path = data.portraitPath;
-        if (!Manifest.exists(path, IMAGE))
-            path = Portrait.MISSING_PATH;
-        var portrait = new FlxSprite(path);
+        var portrait = new Portrait(data.portraitPath);
         portrait.y = bg.y + (bg.height - portrait.height) / 2;
         portrait.x = bg.x + portrait.y - bg.y;
-        portrait.antialiasing = true;
         
         var border = new FlxSprite(portrait.x - 1, portrait.y - 1);
         border.makeGraphic(portrait.graphic.width + 2, portrait.graphic.height + 2, 0xFF928fb8);
@@ -186,10 +187,37 @@ class PopupCredits extends FlxSubState
         back.x = bg.x + bg.width - 4 - back.width;
         add(back);
         
-        var profile = new ProfileButton(0, 0, ()->FlxG.openURL(data.newgrounds));
-        profile.screenCenter(X);
-        profile.y = portrait.y + portrait.height + ((bg.y + bg.height) - (portrait.y + portrait.height) - profile.height) / 2;
-        add(profile);
+        var linksHeader = new FlxBitmapText();
+        linksHeader.text = "External Links";
+        linksHeader.screenCenter(X);
+        linksHeader.y = border.y + border.height + 8;
+        add(linksHeader);
+        
+        final linkY = linksHeader.y + linksHeader.height + 4;
+        final links = new FlxTypedGroup<LinkButton>();
+        if (data.nonNg != true)
+            links.add(new LinkButton(Newgrounds(data.id), 0, linkY));
+        if (data.personal != null)
+            links.add(new LinkButton(Personal(data.twitter), 0, linkY));
+        if (data.twitter != null)
+            links.add(new LinkButton(Twitter(data.twitter), 0, linkY));
+        if (data.instagram != null)
+            links.add(new LinkButton(Instagram(data.twitter), 0, linkY));
+        if (data.bandcamp != null)
+            links.add(new LinkButton(BandCamp(data.bandcamp), 0, linkY));
+            
+        if (links.length == 0)
+            throw "missing external linkk, author:" + data.id;
+        add(links);
+        
+        final spacingX = links.members[0].width + 2;
+        final buttonsWidth = spacingX * links.length;
+        final buttonsLeft = bg.x + (bg.width - buttonsWidth) / 2;
+        for (i in 0...links.length)
+        {
+            final button = links.members[i];
+            button.x = buttonsLeft + i * spacingX;
+        }
     }
     
     override function update(elapsed:Float)
@@ -215,6 +243,7 @@ class Section extends FlxSpriteGroup
     {
         super(x, y);
         portrait = new Portrait();
+        portrait.shrink();
     }
     
     public function create()
@@ -262,15 +291,18 @@ abstract Portrait(FlxSprite) from FlxSprite to FlxSprite
     inline public function new (x = 0.0, y = 0.0, ?path:String)
     {
         this = new FlxSprite(x, y);
-        this.scale.set(0.25, 0.25);
         this.antialiasing = true;
-        if(path != null)
-            setImage(path);
+        setImage(path);
+    }
+    
+    inline public function shrink()
+    {
+        this.scale.set(0.25, 0.25);
     }
     
     public function setImage(path:String)
     {
-        if (Manifest.exists(path, IMAGE))
+        if (path != null && Manifest.exists(path, IMAGE))
             this.loadGraphic(path);
         else
             this.loadGraphic(MISSING_PATH);
@@ -279,10 +311,11 @@ abstract Portrait(FlxSprite) from FlxSprite to FlxSprite
     }
 }
 
-class ProfileButton extends Button
+@:forward
+abstract LinkButton(Button) to Button
 {
-    public function new(x = 0.0, y = 0.0, ?onClick)
+    inline public function new(type:LinkType, x = 0.0, y = 0.0)
     {
-        super(x, y, onClick, "assets/images/ui/buttons/profile.png");
+        this = new Button(x, y, type.openUrl, type.getAsset());
     }
 }

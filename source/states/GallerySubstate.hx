@@ -68,7 +68,7 @@ class GallerySubstate extends FlxSubState
 		imageText.alignment = FlxTextAlign.CENTER;
 		add(imageText);
 		
-		var profileUrl = Content.credits[data.authors[0]].newgrounds;
+		var profileUrl = LinkTools.getNgLink(Content.credits[data.authors[0]].id);
 		infoBox = new FlxSpriteButton(0, imageText.y - 5, null, ()->FlxG.openURL(profileUrl));
 		infoBox.makeGraphic(Std.int(FlxG.width / 2) + 4, 20, FlxColor.BLACK);
 		infoBox.alpha = 0.5;
@@ -167,7 +167,7 @@ class GallerySubstate extends FlxSubState
 		#end
 		
 		if (FlxG.keys.justPressed.ENTER)
-			FlxG.openURL(Content.credits[data.authors[0]].newgrounds);
+			LinkTools.openNgUrl(Content.credits[data.authors[0]].id);
 		
 		dragControls();
 	}

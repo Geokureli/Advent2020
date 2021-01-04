@@ -10,7 +10,7 @@ class Calendar
     #end
     static public var isPast(default, null) = false;
     static public var participatedInAdvent(default, null) = false;
-    static public var day(default, null) = 24;
+    static public var day(default, null) = 32;
     static public var hanukkahDay(default, null) = 7;
     static public var isAdvent(default, null) = false;
     static public var isDecember(default, null) = false;
@@ -57,8 +57,6 @@ class Calendar
             isUnseenDay = !Save.hasSeenDay(day);
             Save.daySeen(day);
         }
-        else
-            day = 32;
         
         callback();
     }

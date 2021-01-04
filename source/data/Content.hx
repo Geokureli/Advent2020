@@ -1,5 +1,6 @@
 package data;
 
+import flixel.FlxG;
 import states.OgmoState;
 
 import flixel.system.FlxSound;
@@ -44,7 +45,6 @@ class Content
             if (data.roles == null)
                 data.roles = [];
             credits.set(user, data);
-            data.newgrounds = 'http://$user.newgrounds.com';
             data.portraitPath = 'assets/images/portraits/$user.png';
         }
         
@@ -55,7 +55,6 @@ class Content
             data.id = user;
             data.roles = [];
             extras.set(user, data);
-            data.newgrounds = 'http://$user.newgrounds.com';
             data.portraitPath = 'assets/images/portraits/$user.png';
         }
         
@@ -382,14 +381,17 @@ class Content
         {
             if (arcade.day != null && arcade.day <= Calendar.day)
             {
-                if (!Manifest.exists(arcade.path, IMAGE))
-                    addError('Missing ${arcade.path}');
+                if (arcade.cabinet != false)
+                {
+                    if (!Manifest.exists(arcade.path, IMAGE))
+                        addError('Missing ${arcade.path}');
+                    if (!cabinetIds.contains(arcade.id))
+                        addError('Missing Cabinet in arcade id:${arcade.id}');
+                    if (arcade.type == State && !teleportIds.contains(arcade.id))
+                        addError('Missing Teleport in arcade id:${arcade.id}');
+                }
                 if (arcade.type != External && arcade.medal && !Manifest.exists(arcade.medalPath, IMAGE))
                     addError('Missing ${arcade.medalPath}');
-                if (!cabinetIds.contains(arcade.id))
-                    addError('Missing Cabinet in arcade id:${arcade.id}');
-                if (arcade.type == State && !teleportIds.contains(arcade.id))
-                    addError('Missing Teleport in arcade id:${arcade.id}');
                 // if (arcade.authors == null)
                 //     errors.push('Missing arcade authors id:${arcade.id}');
                 if (arcade.authors != null)
@@ -532,9 +534,70 @@ typedef CreditContent =
     var roles:Array<String>;
     var soundcloud:String;
     var bandcamp:String;
-    var newgrounds:String;
+    var personal:String;
+    var twitter:String;
+    var instagram:String;
     var firstDay:Int;
     var portraitPath:String;
+    var nonNg:Bool;
+}
+
+@:using(Content.LinkTools)
+enum LinkType
+{
+    Newgrounds(name:String);
+    Twitter(name:String);
+    Instagram(name:String);
+    BandCamp(name:String);
+    Personal(link:String);
+}
+
+class LinkTools
+{
+    inline public static function getLink(type:LinkType)
+    {
+        return switch(type)
+        {
+            case Personal  (link): link;
+            case Newgrounds(name): 'http://$name.newgrounds.com';
+            case Twitter   (name): 'https://twitter.com/$name';
+            case Instagram (name): 'https://www.instagram.com/$name/';
+            case BandCamp  (name): 'https://$name.bandcamp.com/';
+        }
+    }
+    
+    inline public static function openUrl(type:LinkType)
+    {
+        return FlxG.openURL(getLink(type));
+    }
+    
+    
+    inline public static function getAsset(type:LinkType)
+    {
+        return 'assets/images/ui/buttons/${getAssetId(type)}.png';
+    }
+    
+    inline static function getAssetId(type:LinkType)
+    {
+        return switch(type)
+        {
+            case Personal  (_): "personal";
+            case Newgrounds(_): "ng";
+            case Twitter   (_): "twitter";
+            case Instagram (_): "instagram";
+            case BandCamp  (_): "bandcamp";
+        }
+    }
+    
+    inline public static function getNgLink(id:String)
+    {
+        return Newgrounds(id).getLink();
+    }
+    
+    inline public static function openNgUrl(id:String)
+    {
+        return Newgrounds(id).openUrl();
+    }
 }
 
 typedef Creation = 
@@ -595,6 +658,7 @@ typedef ArcadeCreation
     var medal:Bool;
     var type:ArcadeType;
     var camera:ArcadeCamera;
+    var cabinet:Bool;
 }
 
 typedef ComicCreation =
