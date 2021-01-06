@@ -11,11 +11,11 @@
         }
     , "nickconter":
         { "proper": "Nick Conter"
-        , "roles" : ["sprites"]
+        , "roles" : ["sprites", "disk"]
         }
     , "thedyingsun":
         { "proper" : "TheDyingSun"
-        , "roles"  : ["Decorator", "sprites"]
+        , "roles"  : ["Decorator", "sprites", "adl_disk"]
         , "twitter": "The_Dying_Sun"
         }
     , "goodl":
@@ -24,9 +24,19 @@
         }
     , "prosciuttoman":
         { "proper": "ProsciuttoMan"
-        , "roles" : ["sprites"]
+        , "roles" : ["adl_sprites"]
         }
-    , "albegian"        : { "proper": "AlbeGian"        , "bandcamp":"albegian"      }
+    , "mrshmoods":
+        { "proper": "MrShmoods"
+        , "instagram":"mrshmoods"
+        , "roles" : ["Portraits"]
+        }
+    , "midgetsausage":
+        { "proper": "midgetsausage"
+        , "instagram":"midgetsausage_ng"
+        , "roles": [ "adl_disk" ]
+        }
+    , "albegian"        : { "proper": "AlbeGian"        , "twitter":"NextOneIs3000"  , "bandcamp":"albegian"      }
     , "cymbourine"      : { "proper": "Cymbourine"      }
     , "mintyeggs"       : { "proper": "MintyEggs"       }
     , "danfrombavaria"  : { "proper": "DanFromBavaria"  }
@@ -36,7 +46,7 @@
     , "bub"             : { "proper": "bub"             }
     , "snackers"        : { "proper": "Snackers"        }
     , "splatterdash"    : { "proper": "SplatterDash"    }
-    , "mkmaffo"         : { "proper": "MKMaffo"         }
+    , "mkmaffo"         : { "proper": "MKMaffo"         , "twitter":"MKMaffo"        }
     , "karlestonchew"   : { "proper": "Karlestonchew"   , "twitter":"KarlestonChew"  }
     , "knosedoge"       : { "proper": "KnoseDoge"       , "twitter":"incognitoknose" }
     , "chrisbasso"      : { "proper": "chrisbasso"      , "twitter":"chris_griz_"    }
@@ -46,13 +56,12 @@
     , "misterjamesss"   : { "proper": "James Renna"     }
     , "chdonga"         : { "proper": "Chdonga"         }
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
-    , "midgetsausage"   : { "proper": "midgetsausage"   , "instagram":"midgetsausage_ng" }
-    , "krinkels"        : { "proper": "Krinkels"        }
+    , "krinkels"        : { "proper": "Krinkels"        , "twitter":"MRKrinkels"         , "instagram":"misterkrinkels", "personal":"http://krinkels.net/"}
     , "carmet"          : { "proper": "Carmet"          }
     , "mimny"           : { "proper": "Mimny"           }
     , "figburn"         : { "proper": "Figburn"         }
     , "octong"          : { "proper": "OctoNG"          }
-    , "mig-moog"        : { "proper": "Mig-Moog"        , "twitter":"mig-moog"       }
+    , "mig-moog"        : { "proper": "Mig-Moog"        , "twitter":"mig_moog"       }
     , "boomnm"          : { "proper": "Boomnm"          }
     , "tenodiboris"     : { "proper": "TenodiBoris"     }
     , "fushark"         : { "proper": "FuShark"         }
@@ -64,7 +73,6 @@
     , "camuri"          : { "proper": "Camuri"          }
     , "butzbo"          : { "proper": "Butzbo"          }
     , "chobiluck"       : { "proper": "Chobi"           , "twitter":"ChobiSempai"    }
-    , "mrshmoods"       : { "proper": "MrShmoods"       , "instagram":"mrshmoods"    }
     , "voicesbycorey"   : { "proper": "VoicesByCorey"   , "twitter":"VoicesByCorey"  }
     , "dogl"            : { "proper": "dogl"            }
     , "precipitation24" : { "proper": "Precipitation24" }
@@ -376,7 +384,7 @@
         , "medal"  : true
         }
     ,   { "id"     : "rgpanims"
-        , "name"   : "The Coziest Of NG Christmas Parties"
+        , "name"   : "A True Christmas Criminal"
         , "authors": ["rgpanims"]
         , "day"    : 21
         , "medal"  : true

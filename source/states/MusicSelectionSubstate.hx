@@ -174,7 +174,7 @@ class Carousel extends FlxSpriteGroup
         for (i in -1...Content.songsOrdered.length)
         {
             var songData = Content.songsOrdered[i];
-            if (i < 0 || songData.day <= Calendar.day)
+            if (i < 0 || songData.day <= Calendar.day || songData.day > 32)
             {
                 final disk = new DiskSprite(songData, SPACING * disks.length);
                 if (i == current)

@@ -277,6 +277,7 @@ class Content
             case bg     : "Background Art";
             case va     : "Voice Acting";
             case sprites: "Sprites";
+            case disk   : "Disk Art";
             default: type;
         }
     }
@@ -352,7 +353,7 @@ class Content
         
         for (song in songs)
         {
-            if (song.day != null && song.day <= Calendar.day)
+            if (song.day != null && song.day <= Calendar.day || song.day > 32)
             {
                 if (!Manifest.exists(song.path, MUSIC))
                     addError('Missing ${song.path}');
@@ -752,5 +753,7 @@ enum abstract RoleType(String) from String to String
     var bg;
     var va;
     var sprites;
+    var disk;
+    
     var adl_;
 }

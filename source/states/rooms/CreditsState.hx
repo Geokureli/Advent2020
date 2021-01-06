@@ -196,11 +196,11 @@ class PopupCredits extends FlxSubState
         if (data.nonNg != true)
             links.add(new LinkButton(Newgrounds(data.id), 0, linkY));
         if (data.personal != null)
-            links.add(new LinkButton(Personal(data.twitter), 0, linkY));
+            links.add(new LinkButton(Personal(data.personal), 0, linkY));
         if (data.twitter != null)
             links.add(new LinkButton(Twitter(data.twitter), 0, linkY));
         if (data.instagram != null)
-            links.add(new LinkButton(Instagram(data.twitter), 0, linkY));
+            links.add(new LinkButton(Instagram(data.instagram), 0, linkY));
         if (data.bandcamp != null)
             links.add(new LinkButton(BandCamp(data.bandcamp), 0, linkY));
             
