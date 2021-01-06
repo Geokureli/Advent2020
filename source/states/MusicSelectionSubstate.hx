@@ -183,7 +183,6 @@ class Carousel extends FlxSpriteGroup
                     disk.x += SIDE_GAP * 2;
                 
                 disk.y = (back.height - disk.height) / 2;
-                trace("disk.y:" + y);
                 disks.add(disk);
             }
         }
@@ -259,7 +258,6 @@ class Carousel extends FlxSpriteGroup
             infoField.x = back.x + (back.width - infoField.width) / 2;
         }
         currentSprite.loadFrontGraphic();
-        trace('disk y:${currentSprite.y} back y:${back.y}');
     }
     
     public function select(callback:(SongCreation)->Void)
@@ -287,6 +285,9 @@ class DiskSprite extends FlxSprite
 {
     static public inline var SILENCE_FRONT = "assets/images/ui/carousel/disks/front_silence.png";
     static public inline var SILENCE_SIDE = "assets/images/ui/carousel/disks/side_silence.png";
+
+    static public inline var MISSING_FRONT = "assets/images/ui/carousel/disks/front_missing.png";
+    static public inline var MISSING_SIDE = "assets/images/ui/carousel/disks/side_missing.png";
     
     var data:SongCreation;
     
@@ -301,12 +302,25 @@ class DiskSprite extends FlxSprite
     
     inline public function loadSideGraphic()
     {
-        return loadGraphicAndCenter(data == null ? SILENCE_SIDE : data.sideDiskPath);
+        var path = SILENCE_SIDE;
+        if (data != null)
+            path = Manifest.exists(data.sideDiskPath)
+                ? data.sideDiskPath
+                : MISSING_SIDE;
+        
+        return loadGraphicAndCenter(path);
     }
     
     inline public function loadFrontGraphic()
     {
-        return loadGraphicAndCenter(data == null ? SILENCE_FRONT : data.frontDiskPath);
+        
+        var path = SILENCE_FRONT;
+        if (data != null)
+            path = Manifest.exists(data.frontDiskPath)
+                ? data.frontDiskPath
+                : MISSING_FRONT;
+        
+        return loadGraphicAndCenter(path);
     }
     
     function loadGraphicAndCenter(graphic):FlxSprite

@@ -359,9 +359,9 @@ class Content
                 if (!Manifest.exists(song.samplePath, MUSIC))
                     addError('Missing ${song.samplePath}');
                 if (!Manifest.exists(song.sideDiskPath, IMAGE))
-                    addError('Missing ${song.sideDiskPath}');
+                    addWarning('Missing ${song.sideDiskPath}');
                 if (!Manifest.exists(song.frontDiskPath, IMAGE))
-                    addError('Missing ${song.frontDiskPath}');
+                    addWarning('Missing ${song.frontDiskPath}');
                 if (song.authors == null)
                     addError('Missing song authors id:${song.id}');
                 for (author in song.authors)

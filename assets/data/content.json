@@ -238,6 +238,13 @@
         , "name"   : "Tankmas Rap 2020"
         , "authors": ["heyopc"]
         , "key"    : "cMaj"
+        , "day"    : 33
+        }
+    ,   { "id"     : "tankmas_mix"
+        , "name"   : "Tankmas 2020 Mashup/Remix"
+        , "authors": ["splatterdash"]
+        , "key"    : "cMaj"
+        , "day"    : 32
         }
     ]
 ,   "artwork":
