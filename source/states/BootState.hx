@@ -211,7 +211,7 @@ class BootState extends flixel.FlxState
                             }
                         }
                         
-                        if (NGio.isContributor)
+                        if (showWarnings || NGio.isContributor)
                         {
                             msg.font = new NokiaFont();
                             if (debugFutureEnabled)
