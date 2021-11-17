@@ -28,7 +28,7 @@
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<!-- <define name="NG_DEBUG_API_KEY" if="debug"/> -->
-	<define name="NG_DEBUG_SESSION" if="debug"/>
+	<!-- <define name="NG_DEBUG_SESSION" if="debug"/> -->
 	<!-- <define name="NG_BYPASS_LOGIN" if="debug"/> -->
 	<!-- <define name="NG_LURKER" if="debug"/> -->
 	<define name="NG_DEBUG" if="debug"/>
@@ -111,33 +111,6 @@
 	<assets path="assets/comics/santa_smackdown" rename="assets/santa_smackdown" library="santa_smackdown"/>
 	
 	<define name="ADVENT"/>
-	<define name="INCLUDE_DIG_GAME"/>
-	<section if="INCLUDE_DIG_GAME">
-		<!-- <define name="SKIP_TO_DIG_GAME" if="debug"/> -->
-		
-		<classpath name="digMinigame/source"/>
-		<library name="digging" preload="false" />
-		<assets path="digMinigame/assets" rename="assets/arcades/digging" library="digging" exclude="*.ase|*.wav" />
-		
-	</section>
-	 
-	<define name="INCLUDE_THOUGHTS_GAME"/>
-	<section if="INCLUDE_THOUGHTS_GAME">
-		
-		<classpath name="positivity/source"/>
-		<library name="positivity" preload="false" />
-		<assets path="positivity/assets" rename="assets/arcades/positivity" library="positivity" exclude="*.ase|*.wav"/>
-		
-	</section>
-
-	<define name="INCLUDE_CHIMNEY_GAME"/>
-	<section if="INCLUDE_CHIMNEY_GAME">
-		
-		<classpath name="chimney/source"/>
-		<library name="chimney" preload="false" />
-		<assets path="chimney/assets" rename="assets/arcades/chimney" library="chimney" exclude="*.ase|*.wav"/>
-		
-	</section>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
