@@ -33,6 +33,7 @@ import flixel.util.FlxSort;
 
 import Types;
 import io.colyseus.Room;
+import io.colyseus.error.MatchMakeError;
 import schema.Avatar;
 import schema.GameState;
 
@@ -512,11 +513,11 @@ class RoomState extends OgmoState
             Net.joinRoom(name, onRoomJoin);
     }
     
-    function onRoomJoin(error:String, room:Room<GameState>)
+    function onRoomJoin(error:MatchMakeError, room:Room<GameState>)
     {
         if (error != null)
         {
-            Net.log("JOIN ERROR: " + error);
+            Net.log("JOIN ERROR: " + error.code + " - " + error.message);
             return;
         }
         

@@ -7,6 +7,7 @@
 
 package schema;
 import io.colyseus.serializer.schema.Schema;
+import io.colyseus.serializer.schema.types.MapSchema;
 
 class GameState extends Schema {
 	@:type("map", Avatar)

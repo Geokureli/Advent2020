@@ -10,6 +10,13 @@
 		{
 			"label": "release: html",
 			"command": "haxelib",
+			"args": ["run", "lime", "build", "html5", "-Djs-source-map"],
+			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
+			"group": { "kind": "build", "isDefault": true }
+		},
+		{
+			"label": "release: html clean",
+			"command": "haxelib",
 			"args": ["run", "lime", "build", "html5", "-Djs-source-map", "-clean"],
 			"problemMatcher": ["$haxe-absolute", "$haxe", "$haxe-error", "$haxe-trace"],
 			"group": { "kind": "build", "isDefault": true }

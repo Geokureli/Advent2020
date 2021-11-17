@@ -300,9 +300,9 @@ class NGio
 		else
 			loggedEvents.push(event);
 		
-		event += FlxG.onMobile ? "_mobile" : "_desktop";
-		log("logging event: " + event);
-		NG.core.calls.event.logEvent(event).send();
+		var platform = FlxG.onMobile ? "_mobile" : "_desktop";
+		log("logging event: " + event + platform);
+		NG.core.calls.event.logEvent(event + platform).send();
 		#end
 	}
 	
