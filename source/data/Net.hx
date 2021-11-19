@@ -29,10 +29,11 @@ class Net
             final serverPath = 
                 #if USE_LOCAL_SERVER
                 'ws://localhost:2567';
-                #elseif USE_DEBUG_SERVER
-                'wss://advent-colyseus-test.herokuapp.com';
+                // #elseif USE_DEBUG_SERVER
+                // 'wss://advent-colyseus-test.herokuapp.com';
                 #else
-                'wss://advent2020server.herokuapp.com';
+                'wss://tankmas2021.herokuapp.com';
+                // 'wss://advent2020server.herokuapp.com';
                 #end
             log("Connecting to: " + serverPath);
             client = new Client(serverPath);
@@ -100,7 +101,7 @@ class Net
     inline static public function send(type:String, data:Dynamic)
     {
         Net.logVerbose('sending type:$type=>$data)');
-        room.send({ type:type, data:data });
+        room.send(type, data);
     }
     
     inline static public function logDebug(msg:String) Log.netDebug(msg);
