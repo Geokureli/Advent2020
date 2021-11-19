@@ -26,14 +26,7 @@ class Net
     {
         if (client == null)
         {
-            final serverPath = 
-                #if USE_LOCAL_SERVER
-                'ws://localhost:2567';
-                #elseif USE_DEBUG_SERVER
-                'wss://advent-colyseus-test.herokuapp.com';
-                #else
-                'wss://advent2020server.herokuapp.com';
-                #end
+            final serverPath = "wss://tankmas2021.herokuapp.com";
             log("Connecting to: " + serverPath);
             client = new Client(serverPath);
         }
