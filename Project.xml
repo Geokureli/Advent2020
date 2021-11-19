@@ -111,7 +111,7 @@
 	<assets path="assets/comics/santa_smackdown" rename="assets/santa_smackdown" library="santa_smackdown"/>
 	
 	<define name="ADVENT"/>
-	<define name="INCLUDE_DIG_GAME"/>
+	<!-- <define name="INCLUDE_DIG_GAME"/> -->
 	<section if="INCLUDE_DIG_GAME">
 		<!-- <define name="SKIP_TO_DIG_GAME" if="debug"/> -->
 		
@@ -121,7 +121,7 @@
 		
 	</section>
 	 
-	<define name="INCLUDE_THOUGHTS_GAME"/>
+	<!-- <define name="INCLUDE_THOUGHTS_GAME"/> -->
 	<section if="INCLUDE_THOUGHTS_GAME">
 		
 		<classpath name="positivity/source"/>
@@ -130,7 +130,7 @@
 		
 	</section>
 
-	<define name="INCLUDE_CHIMNEY_GAME"/>
+	<!-- <define name="INCLUDE_CHIMNEY_GAME"/> -->
 	<section if="INCLUDE_CHIMNEY_GAME">
 		
 		<classpath name="chimney/source"/>
