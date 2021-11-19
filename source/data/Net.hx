@@ -100,7 +100,7 @@ class Net
     inline static public function send(type:String, data:Dynamic)
     {
         Net.logVerbose('sending type:$type=>$data)');
-        room.send({ type:type, data:data });
+        room.send(type, data);
     }
     
     inline static public function logDebug(msg:String) Log.netDebug(msg);
