@@ -88,10 +88,19 @@ class BedroomState extends RoomState
                 notesById[noteId].animateIn(1.5);
         }
         
+        initLuciaDesk();
+        // initChest();
+    }
+    
+    function initLuciaDesk()
+    {
         desk = foreground.getByName("desk_lucia");
         if (desk != null && Game.state.match(NoEvent|LuciaDay(Finding)|LuciaDay(Present)))
             addHoverTextTo(desk, "Replay Lucia Hunt", replayLuciaHunt);
-        
+    }
+    
+    function initChest()
+    {
         var chest = foreground.getByName("chest");
         if (chest != null)
         {
@@ -107,7 +116,7 @@ class BedroomState extends RoomState
             addHoverTextTo(chest, "Butzbo's Music Box", function()
                 {
                     notif.kill();
-                    playOverlay(new ToyBoxState());
+                    // playOverlay(new ToyBoxState());
                 }
             );
         }
