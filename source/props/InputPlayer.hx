@@ -68,7 +68,7 @@ class InputPlayer extends Player
     
     function checkMouseInteracting()
     {
-        if (!interacting && FlxG.mouse.justPressed && !Button.isBlockingMouse())
+        if (!interacting && FlxG.mouse.justPressed)
         {
             var mouse = FlxG.mouse.getWorldPosition();
             interacting = hitbox.overlapsPoint(mouse);
