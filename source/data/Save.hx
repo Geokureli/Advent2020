@@ -13,7 +13,7 @@ import haxe.PosInfos;
 
 class Save
 {
-    inline static var name = "advent2020";
+    inline static var name = "advent2021";
     inline static var path = "GeoKureli";
     
     static var emptyData:SaveData = cast {}
