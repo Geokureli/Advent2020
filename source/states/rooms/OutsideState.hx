@@ -1,5 +1,7 @@
 package states.rooms;
 
+import flixel.util.FlxColor;
+import flixel.FlxG;
 import flixel.math.FlxMath;
 
 class OutsideState extends RoomState
@@ -9,6 +11,7 @@ class OutsideState extends RoomState
         super.create();
         
 		add(new vfx.Snow());
+        FlxG.camera.fade(FlxColor.BLACK, 1, true);
     }
     
     override function initEntities()

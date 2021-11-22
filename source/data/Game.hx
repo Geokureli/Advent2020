@@ -25,18 +25,7 @@ class Game
     inline static function get_disableShaders() return !allowShaders;
     
     public static var initialRoom(default, null) = 
-        #if debug
-        RoomName.Bedroom;
-        // RoomName.Hallway + "." + RoomName.Bedroom;
-        // RoomName.Entrance + "." + RoomName.Hallway;
-        // RoomName.Outside + "." + RoomName.Entrance;
-        // RoomName.Arcade + "." + RoomName.Entrance;
-        // RoomName.Studio + "." + RoomName.Entrance;
-        // RoomName.Movie + "." + RoomName.Entrance;
-        // RoomName.Credits + "." + RoomName.Entrance;
-        #else
-        RoomName.Bedroom;
-        #end
+        RoomName.Outside;
     
     static function init():Void
     {
@@ -59,20 +48,11 @@ class Game
         roomTypes[Credits ] = CreditsState.new;
         
         arcadeTypes = [];
-        #if INCLUDE_DIG_GAME
-        arcadeTypes[Digging] = digging.MenuState.new.bind(0);
-        #end
         
         if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
             state = LuciaDay(Started);
         else if (Save.noPresentsOpened())
             state = Day1Intro(Started);
-        
-        #if FORCE_LUCIA
-        state = LuciaDay(Started);
-        #elseif FORCE_INTRO
-        state = Day1Intro(Started);
-        #end
     }
     
     static public function goToRoom(target:String):Void
@@ -102,11 +82,7 @@ class Game
             default: Content.playTodaysSong();
         }
         
-        #if SKIP_TO_DIG_GAME
-        Game.goToArcade(Digging);
-        #else
         Game.goToRoom(initialRoom);
-        #end
     }
     
     static public function goToArcade(name:ArcadeName):Void
