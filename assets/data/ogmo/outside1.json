@@ -51,7 +51,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"id": "", "target": "entrance", "enabled": true}
+          "values": {"id": "", "target": "path_left", "enabled": true}
         }
       ]
     },

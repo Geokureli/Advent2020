@@ -46,6 +46,7 @@ class Game
         roomTypes[Studio  ] = StudioState.new;
         roomTypes[Movie   ] = MovieState.new;
         roomTypes[Credits ] = CreditsState.new;
+        roomTypes[PathLeft] = PathLeftState.new;
         
         arcadeTypes = [];
         
