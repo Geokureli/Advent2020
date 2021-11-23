@@ -30034,9 +30034,9 @@
           "name": "Teleport",
           "id": 0,
           "_eid": "58765051",
-          "x": 544,
+          "x": 448,
           "y": 1592,
-          "width": 160,
+          "width": 320,
           "height": 8,
           "originX": 0,
           "originY": 0,
@@ -30067,7 +30067,6 @@
       "gridCellsY": 200,
       "decals": [
         {"x": 616, "y": 936, "scaleX": 1, "scaleY": 1, "texture": "outside/sky.png", "originX": 0.5, "originY": 0.5},
-        {"x": 688, "y": 1284, "scaleX": 1, "scaleY": 1, "texture": "new_main/new_main.png", "originX": 0.5, "originY": 0.5},
         {"x": 600, "y": 800, "scaleX": 1, "scaleY": 1, "texture": "village/sketch.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
