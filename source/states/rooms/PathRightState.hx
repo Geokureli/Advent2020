@@ -11,12 +11,12 @@ import ui.Prompt;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 
-class PathLeftState extends RoomState
+class PathRightState extends RoomState
 {
     override function create()
     {
         super.create();
-		
+        
         add(new vfx.Snow(20));
     }
     

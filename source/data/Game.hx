@@ -38,15 +38,18 @@ class Game
         #end
         
         roomTypes = [];
-        roomTypes[Bedroom ] = BedroomState.new;
-        roomTypes[Hallway ] = HallwayState.new;
+        roomTypes[Bedroom] = BedroomState.new;
+        roomTypes[Hallway] = HallwayState.new;
         roomTypes[Entrance] = EntranceState.new;
-        roomTypes[Outside ] = OutsideState.new;
-        roomTypes[Arcade  ] = ArcadeState.new;
-        roomTypes[Studio  ] = StudioState.new;
-        roomTypes[Movie   ] = MovieState.new;
-        roomTypes[Credits ] = CreditsState.new;
+        roomTypes[Outside] = OutsideState.new;
+        roomTypes[Arcade] = ArcadeState.new;
+        roomTypes[Studio] = StudioState.new;
+        roomTypes[Movie] = MovieState.new;
+        roomTypes[Credits] = CreditsState.new;
         roomTypes[PathLeft] = PathLeftState.new;
+        roomTypes[PathCenter] = PathCenterState.new;
+        roomTypes[PathRight] = PathRightState.new;
+        roomTypes[Village] = VillageState.new;
         
         arcadeTypes = [];
         

@@ -872,4 +872,7 @@ enum abstract RoomName(String) to String
     var Movie    = "movie";
     var Credits  = "credits";
     var PathLeft = "path_left";
+    var PathCenter = "path_center";
+    var PathRight = "path_right";
+    var Village = "village";
 }
