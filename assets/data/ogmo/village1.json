@@ -15089,12 +15089,12 @@
         0,
         0,
         0,
-        0,
         1,
         1,
         1,
         1,
-        0,
+        1,
+        1,
         0,
         0,
         0,
@@ -15239,12 +15239,12 @@
         0,
         0,
         0,
-        0,
         1,
         1,
         1,
         1,
-        0,
+        1,
+        1,
         0,
         0,
         0,
@@ -30053,7 +30053,9 @@
       "gridCellHeight": 8,
       "gridCellsX": 150,
       "gridCellsY": 200,
-      "decals": [],
+      "decals": [
+        {"x": 608, "y": 640, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree1.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../images/props"
     },
     {
@@ -30067,7 +30069,10 @@
       "gridCellsY": 200,
       "decals": [
         {"x": 616, "y": 936, "scaleX": 1, "scaleY": 1, "texture": "outside/sky.png", "originX": 0.5, "originY": 0.5},
-        {"x": 600, "y": 800, "scaleX": 1, "scaleY": 1, "texture": "village/sketch.png", "originX": 0.5, "originY": 0.5}
+        {"x": 600, "y": 800, "scaleX": 1, "scaleY": 1, "texture": "village/sketch.png", "originX": 0.5, "originY": 0.5},
+        {"x": 600, "y": 800, "scaleX": 1, "scaleY": 1, "texture": "village/sky.png", "originX": 0.5, "originY": 0.5},
+        {"x": 600, "y": 800, "scaleX": 1, "scaleY": 1, "texture": "village/village_main.png", "originX": 0.5, "originY": 0.5},
+        {"x": 272, "y": 144, "scaleX": 1, "scaleY": 1, "texture": "village/moon_new.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     }
