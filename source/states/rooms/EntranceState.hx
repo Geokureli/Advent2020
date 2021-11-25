@@ -54,7 +54,8 @@ class EntranceState extends RoomState
     override function initEntities()
     {
         super.initEntities();
-        
+       
+        //sets when it should be painted in-front or behind the player
         tree = getDaySprite(foreground, "tree");
         tree.setBottomHeight(32);
         tree.setMiddleWidth(56);
