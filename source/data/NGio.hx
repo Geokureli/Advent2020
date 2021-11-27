@@ -34,7 +34,7 @@ class NGio
 	static var boardsByName(default, null) = new Map<String, Int>();
 	static var loggedEvents = new Array<NgEvent>();
 	
-	static public function attemptAutoLogin(callback:Void->Void) {
+	static public function attemptAutoLogin(lastSessionId:Null<String>, callback:Void->Void) {
 		
 		#if NG_BYPASS_LOGIN
 		NG.create(APIStuff.APIID, null, DEBUG_SESSION);
@@ -58,8 +58,11 @@ class NGio
 			callback();
 		}
 		
-		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + APIStuff.DebugSession);
-		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, APIStuff.DebugSession, onSessionFail);
+		if (APIStuff.DebugSession != null)
+			lastSessionId = APIStuff.DebugSession;
+		
+		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + lastSessionId);
+		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, lastSessionId, onSessionFail);
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end

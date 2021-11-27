@@ -280,7 +280,6 @@
         , "authors": ["einmeister"]
         , "day"    : 4
         , "medal"  : true
-        , "preload": true
         }
     ,   { "id"     : "bub"
         , "name"   : "NOLLAIG SHONA"
@@ -312,7 +311,6 @@
         , "authors": ["sirlenward"]
         , "day"    : 9
         , "medal"  : true
-        , "preload": true
         }
     ,   { "id"     : "shirogaia"
         , "name"   : "Friday Nite Build Date"
@@ -344,7 +342,6 @@
         , "authors": ["krinkels"]
         , "day"    : 14
         , "medal"  : true
-        , "preload": true
         }
     ,   { "id"     : "mimny"
         , "name"   : "Playful Spirit"

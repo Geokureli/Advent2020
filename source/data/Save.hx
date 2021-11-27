@@ -79,6 +79,10 @@ class Save
         }
         log("instruments seen: " + data.seenInstruments);
         
+        if (clearSave)
+            data.ngioSessionId = null;
+        log("saved session: " + data.ngioSessionId);
+        
         if (data.instrument < -1 && (data.seenInstruments:Int64) > 0)
         {
             // fix an old glitch where i deleted instrument save
@@ -253,6 +257,21 @@ class Save
         return data.seenInstruments[Content.instruments[type].index];
     }
     
+    static public function setNgioSessionId(id:String)
+    {
+        if (data.ngioSessionId != id)
+        {
+            data.ngioSessionId = id;
+            flush();
+        }
+    }
+    
+    static public function getNgioSessionId():Null<String>
+    {
+        return data.ngioSessionId;
+    }
+    
+    
     inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
 
@@ -264,4 +283,5 @@ typedef SaveData =
     var skin:Int;
     var instrument:Int;
     var seenInstruments:BitArray;
+    var ngioSessionId:String;
 }

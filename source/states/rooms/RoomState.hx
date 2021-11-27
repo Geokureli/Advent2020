@@ -375,14 +375,17 @@ class RoomState extends OgmoState
         var data = Content.artwork[present.id];
         
         var sound = "present_open.mp3";
+        // only play the special sound when they first open and haven't gotten the medal,
+        // mainly so no one notices logan's tm'd sound on 23rd
         if (data.sound != null && NGio.isLoggedIn && !NGio.hasDayMedal(data.day) && !present.isOpen)
             sound = data.sound;
         FlxG.sound.play("assets/sounds/" + sound);
         
         present.animateOpen(function ()
             {
+                var isDebug = Calendar.isDebugDay;
                 var medal = data.medal;
-                if (!Calendar.isDebugDay
+                if (isDebug == false
                 &&  (data.day == 32 || Calendar.day == data.day)
                 &&  medal != null && medal != false)
                     NGio.unlockDayMedal(data.day);
@@ -394,7 +397,7 @@ class RoomState extends OgmoState
                         callback(present);
                 }
                 openSubState(new GallerySubstate(present.id, onOpenComplete));
-                if (!Calendar.isDebugDay)
+                if (isDebug == false)
                     Save.presentOpened(present.id);
             }
         );
