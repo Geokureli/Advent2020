@@ -125,7 +125,7 @@ class EntranceState extends RoomState
         }
         
         if (present == null)
-            throw "missing cymbouring present";
+            throw "missing cymbourine present";
         
         shade.shadow.setLightPos(2, present.x + present.width / 2, present.y);
         var cam = FlxG.camera;

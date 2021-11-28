@@ -28,7 +28,7 @@
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<!-- <define name="NG_DEBUG_API_KEY" if="debug"/> -->
-	<define name="NG_DEBUG_SESSION" if="debug"/>
+	<!-- <define name="NG_DEBUG_SESSION" if="debug"/> -->
 	<!-- <define name="NG_BYPASS_LOGIN" if="debug"/> -->
 	<!-- <define name="NG_LURKER" if="debug"/> -->
 	<define name="NG_DEBUG" if="debug"/>
@@ -37,7 +37,7 @@
 	<section if="LOG">
 		<define name="NG_LOG"/>
 		<!-- <define name="NG_VERBOSE" if="debug"/> -->
-		<define name="NET_LOG"/>
+		<!-- <define name="NET_LOG"/> -->
 		<!-- <define name="NET_LOG_VERBOSE"/> -->
 		<!-- <define name="BOOT_LOG"/> -->
 		<!-- <define name="OGMO_LOG"/> -->

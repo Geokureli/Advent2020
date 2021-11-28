@@ -52,7 +52,7 @@ class BootState extends flixel.FlxState
         msg.screenCenter(XY);
         
         timeout = new FlxTimer().start(20, showErrorAndBegin);
-        NGio.attemptAutoLogin(onAutoConnectResult);
+        NGio.attemptAutoLogin(Save.getNgioSessionId(), onAutoConnectResult);
     }
     
     function onAutoConnectResult():Void
@@ -99,6 +99,7 @@ class BootState extends flixel.FlxState
     
     function onLogin()
     {
+        Save.setNgioSessionId(NG.core.sessionId);
         beginGame();
     }
     

@@ -418,7 +418,7 @@ class Content
         var day = Calendar.day;
         
         var levelPath = 'assets/data/ogmo/$room$day.json';
-        while(day-- > 0 && !Manifest.exists(levelPath))
+        while(Manifest.exists(levelPath) == false && day-- > 0)
             levelPath = 'assets/data/ogmo/$room$day.json';
         
         if (day <= 0)
