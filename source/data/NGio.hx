@@ -18,13 +18,17 @@ class NGio
 {
 	inline static var DEBUG_SESSION = #if NG_DEBUG true #else false #end;
 	
-	inline static public var DAY_MEDAL_0 = 61304;
+	inline static public var DAY_MEDAL_0 = 66220;
+	inline static public var DAY_MEDAL_0_2020 = 61304;
 	
 	public static var isLoggedIn(default, null):Bool = false;
 	public static var userName(default, null):String;
 	public static var scoreboardsLoaded(default, null):Bool = false;
 	public static var ngDate(default, null):Date;
 	public static var isContributor(default, null) = false;
+	
+	public static var medals2020(default, null):Map<Int, Bool>;
+	public static var daysSeen2020(default, null):Int;
 	
 	public static var scoreboardArray:Array<Score> = [];
 	
@@ -34,7 +38,7 @@ class NGio
 	static var boardsByName(default, null) = new Map<String, Int>();
 	static var loggedEvents = new Array<NgEvent>();
 	
-	static public function attemptAutoLogin(callback:Void->Void) {
+	static public function attemptAutoLogin(lastSessionId:Null<String>, callback:Void->Void) {
 		
 		#if NG_BYPASS_LOGIN
 		NG.create(APIStuff.APIID, null, DEBUG_SESSION);
@@ -58,8 +62,11 @@ class NGio
 			callback();
 		}
 		
-		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + APIStuff.DebugSession);
-		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, APIStuff.DebugSession, onSessionFail);
+		if (APIStuff.DebugSession != null)
+			lastSessionId = APIStuff.DebugSession;
+		
+		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + lastSessionId);
+		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, lastSessionId, onSessionFail);
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end
@@ -69,7 +76,11 @@ class NGio
 		NG.core.requestScoreBoards(onScoreboardsRequested);
 		
 		if (!NG.core.attemptingLogin)
+		{
+			log("Auto login not attemped");
+			ngDataLoaded.remove(callback);
 			callback();
+		}
 	}
 	
 	static public function startManualSession(callback:ConnectResult->Void, onPending:((Bool)->Void)->Void):Void
@@ -82,10 +93,7 @@ class NGio
 			if (connect)
 				NG.core.openPassportUrl();
 			else
-			{
 				NG.core.cancelLoginRequest();
-				callback(Cancelled);
-			}
 		}
 		
 		NG.core.requestLogin(
@@ -281,6 +289,15 @@ class NGio
 		#end
 	}
 	
+	static public function hasDayMedal2020(date:Int):Bool
+	{
+		return hasMedal2020(DAY_MEDAL_0_2020 + date - 1);
+	}
+	
+	static public function hasMedal2020(id:Int):Bool
+	{
+		return medals2020 != null && medals2020[id];
+	}
 	
 	static public function hasMedalByName(name:String):Bool
 	{
@@ -288,6 +305,48 @@ class NGio
 			throw 'invalid name:%name';
 		
 		return hasMedal(Content.medals[name]);
+	}
+	
+	static public function fetch2020Medals(sessionId:String, callback:(Map<Int, Bool>)->Void)
+	{
+		var ng2020:NG = null;
+		var loggedIn:()->Void = null;
+		
+		function callbackAndDestroy(?error:Error)
+		{
+			if (error != null)
+				log('Error fetching 2020 medals: ${error.message}');
+			
+			ng2020.onLogin.remove(loggedIn);
+			if (ng2020.loggedIn)
+				ng2020.logOut();
+			callback(medals2020);
+		}
+		
+		loggedIn = function ()
+		{
+			log("2020 session successful, loading medals");
+			ng2020.requestMedals
+			(
+				function onSucceed()
+				{
+					log("2020 medals loaded");
+					medals2020 = new Map();
+					for (id=>medal in ng2020.medals)
+					{
+						medals2020[id] = medal.unlocked;
+						if (medal.unlocked && id - DAY_MEDAL_0_2020 < 32)
+							daysSeen2020++;
+					}
+					
+					callbackAndDestroy();
+				},
+				callbackAndDestroy
+			);
+		}
+		
+		ng2020 = new NG("51158:gKIIkW2f", sessionId, callbackAndDestroy);
+		ng2020.onLogin.add(loggedIn);
 	}
 	
 	static public function logEvent(event:NgEvent, once = false)

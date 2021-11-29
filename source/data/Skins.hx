@@ -61,7 +61,7 @@ class Skins
         
         for (data in byIndex)
         {
-            if (!data.unlocked && (checkUser(data.users) || checkUnlockCondition(data.unlocksBy)))
+            if (!data.unlocked && (checkUser(data.users) || checkUnlockCondition(data.unlocksBy, data.year)))
             {
                 data.unlocked = true;
                 if (!Save.hasSeenskin(data.index))
@@ -100,9 +100,14 @@ class Skins
         return users != null && NGio.isLoggedIn && users.contains(NGio.userName.toLowerCase());
     }
     
-    static function checkUnlockCondition(data:String)
+    static function checkUnlockCondition(data:Null<String>, year:Null<Int>)
     {
         if (data == null)
+            return false;
+        
+        if (year == null)
+            year = 2021;
+        else if (year == 2020 && NGio.medals2020 == null)
             return false;
         
         if (data.indexOf(",") != -1)
@@ -111,7 +116,7 @@ class Skins
             var conditions = data.split(",");
             while (conditions.length > 0)
             {
-                if (checkUnlockCondition(conditions.shift()))
+                if (checkUnlockCondition(conditions.shift(), year))
                     return true;
             }
             return false;
@@ -124,6 +129,11 @@ class Skins
             case ["free"     ]: true;
             case ["supporter"]: NGio.isLoggedIn && NG.core.user.supporter;
             case [_]: throw "Unhandled unlockBy:" + data;
+            // 2020
+            case ["day"  , day  ] if (year == 2020): NGio.daysSeen2020 >= Std.parseInt(day);
+            case ["medal", medal] if (year == 2020 && medal.length < 3): NGio.hasDayMedal2020(Std.parseInt(medal));
+            case ["medal", medal] if (year == 2020): NGio.hasMedal2020(Std.parseInt(medal));
+            //2021
             case ["day"  , day  ]: Save.countDaysSeen() >= Std.parseInt(day);
             case ["medal", medal] if (medal.length < 3): NGio.hasDayMedal(Std.parseInt(medal));
             case ["medal", medal]: NGio.hasMedal(Std.parseInt(medal));
@@ -177,6 +187,7 @@ typedef SkinDataRaw =
     var fps:Null<Int>;
     var offset:Null<{x:Float, y:Float}>;
     var users:Null<Array<String>>;
+    var year:Null<Int>;
 }
 
 typedef SkinDataPlus = SkinDataRaw &
