@@ -13,21 +13,20 @@ import haxe.PosInfos;
 
 class Save
 {
-    inline static var name = "advent2020";
-    inline static var path = "GeoKureli";
-    
     static var emptyData:SaveData = cast {}
     
     static var data:SaveData;
     
     static public function init()
     {
-        #if !(DISABLE_SAVE)
-        if (FlxG.save.bind(name, path))
+        #if DISABLE_SAVE
+        data = emptyData;
+        #else
+        if (FlxG.save.bind("advent2020", "GeoKureli"))
             data = FlxG.save.data;
         else
-        #end
             data = emptyData;
+        #end
         
         var clearSave = #if CLEAR_SAVE true #else false #end;
         
@@ -270,7 +269,6 @@ class Save
     {
         return data.ngioSessionId;
     }
-    
     
     inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
