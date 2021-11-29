@@ -30,6 +30,7 @@ class BootState extends flixel.FlxState
     var waitTime = 0.0;
     
     var debugFutureEnabled = false;
+    var loadedMedals2020 = false;
     
     override public function create():Void
     {
@@ -52,7 +53,7 @@ class BootState extends flixel.FlxState
         msg.screenCenter(XY);
         
         timeout = new FlxTimer().start(20, showErrorAndBegin);
-        NGio.attemptAutoLogin(onAutoConnectResult);
+        NGio.attemptAutoLogin(Save.getNgioSessionId(), onAutoConnectResult);
     }
     
     function onAutoConnectResult():Void
@@ -99,6 +100,7 @@ class BootState extends flixel.FlxState
     
     function onLogin()
     {
+        Save.setNgioSessionId(NG.core.sessionId);
         beginGame();
     }
     
@@ -126,9 +128,33 @@ class BootState extends flixel.FlxState
         var callbacksSet = callbacks.add("wait");
         Manifest.init(callbacks.add("manifest"));
         Calendar.init(callbacks.add("calendar"));
+        load2020Medals(callbacks.add("2020medals"));
         if (NG.core.loggedIn && NG.core.medals == null)
             NG.core.onMedalsLoaded.addOnce(callbacks.add("medal list"));
+        
         callbacksSet();
+    }
+    
+    inline public function load2020Medals(callback:()->Void)
+    {
+        #if LOAD_2020_SKINS
+        var ngioSessionId2020 = Save.getNgioSessionId2020();
+        if (ngioSessionId2020 == null)
+        {
+            callback();
+            return;
+        }
+        NGio.fetch2020Medals(ngioSessionId2020, function (medalData)
+            {
+                loadedMedals2020 = medalData != null;
+                callback();
+            }
+        );
+        #else
+        // prevent the error message
+        loadedMedals2020 = true;
+        callback();
+        #end
     }
     
     inline function showErrorAndBegin(_ = null)
@@ -182,11 +208,11 @@ class BootState extends flixel.FlxState
                     
                     if(isBrowserFarbling())
                     {
-                        msg.font = new NokiaFont();
-                        msg.text = "This browser is not supported, Chrome is recommended\n"
+                        setCenteredNokiaMessage
+                            ("This browser is not supported, Chrome is recommended\n"
                             + "If you're using brave, try disabling shields for this page\n"
-                            + "Sorry for the inconvenience";
-                        msg.screenCenter(XY);
+                            + "Sorry for the inconvenience"
+                            );
                         setState(Error(true));
                         return;
                     }
@@ -213,14 +239,15 @@ class BootState extends flixel.FlxState
                         
                         if (showWarnings || NGio.isContributor)
                         {
-                            msg.font = new NokiaFont();
                             if (debugFutureEnabled)
                                 msg.text = "(debug) You pressed space to see tommorow's content.\n";
+                            else
+                                msg.text = "";
                             
                             if (blockingList.length > 0)
                             {
-                                msg.text += "This day is not ready yet.\n"
-                                    + "Errors:\n\n" + blockingList.join("\n") + "\n";
+                                msg.text += "This day is not ready yet."
+                                    + "\n\nErrors:\n" + blockingList.join("\n") + "\n";
                             }
                             else
                                 msg.text += "There are no errors but there are non-blocking issues.\n"
@@ -229,38 +256,81 @@ class BootState extends flixel.FlxState
                             if (warningList.length > 0)
                                 msg.text += "Warnings:\n\n" + warningList.join("\n") + "\n";
                             
-                            msg.text 
-                                += "\nYou are only seeing this message because you are in the credits"
-                                + "\nPress SPACE to play, anyway";
+                            msg.text += "\nYou are only seeing this message because you are in the credits";
                             setState(Error(false));
                         }
                         else
                         {
-                            msg.font = new NokiaFont();
-                            msg.text = "Today's content is almost done,\nplease try again soon.\n Sorry";
+                            setCenteredNokiaMessage
+                                ( "Today's content is almost done,"
+                                + "\nplease try again soon."
+                                + "\n Sorry"
+                                );
                             setState(Error(true));
+                            return;
                         }
-                        msg.screenCenter(XY);
-                        return;
-                    }
-                    else if (!isWebGl())
-                    {
-                        msg.font = new NokiaFont();
-                        msg.text = "You browser does not support webgl, meaning"
-                            + "\ncertain features and flourishes will not work"
-                            + "\nSorry for the inconvenience"
-                            + "\nPress SPACE to play anyway";
-                        msg.screenCenter(XY);
-                        setState(Error(false));
-                        return;
                     }
                     
-                    setState(Success);
-                    onComplete();
+                    if (state == Checking && (loadedMedals2020 == false || !isWebGl()))
+                    {
+                        msg.text = "";
+                        state = Error(false);
+                    }
+                    
+                    switch (state)
+                    {
+                        case Error(false):
+                        {
+                            msg.font = new NokiaFont();
+                            
+                            inline function appendSection(text:String)
+                            {
+                                if (msg.text != "")
+                                    msg.text += "\n\n";
+                                
+                                msg.text += text;
+                            }
+                            
+                            if (!isWebGl())
+                            {
+                                appendSection
+                                    ( "You browser does not support webgl, meaning"
+                                    + "\ncertain features and flourishes will not work"
+                                    + "\nSorry for the inconvenience"
+                                    );
+                            }
+                            
+                            if (loadedMedals2020 == false)
+                            {
+                                appendSection
+                                    ( "Could not find save data for previous years."
+                                    + "\nLoad Tankmas ADVENTure 2020 to unlock more characters."
+                                    );
+                            }
+                            
+                            msg.text += "\nPress SPACE to play, anyway";
+                            msg.screenCenter(XY);
+                            return;
+                        }
+                        case Checking:
+                        {
+                            setState(Success);
+                            onComplete();
+                        }
+                        default: throw "Unexpected state:" + state.getName();
+                    }
+                    
                 case Success:
                 case Error(_):
             }
         }
+    }
+    
+    inline function setCenteredNokiaMessage(text:String)
+    {
+        msg.font = new NokiaFont();
+        msg.text = text;
+        msg.screenCenter(XY);
     }
     
     function isBrowserFarbling()

@@ -1,4 +1,10 @@
-[   { "id": "tankman"
+[   { "skins.json_comment": 
+        [ "Don't reorder the objects on this list, it can cause issues online,"
+        , "instead use the 'group' to sort characters that belong together"
+        , "Similarly, do not add new characters above previously available characters."
+        , "For now, add new characters at the bottom of the file, just above custom (unless you actually added a custom char!)"
+        ]
+    , "id": "tankman"
     , "proper": "Tankman"
     , "description": "The mascot of Newgrounds! Ever more widely known as John Captain. We found his name on the toy box, look it up."
     , "unlocksBy": "free"
@@ -46,6 +52,7 @@
     , "unlocksBy": "supporter"
     , "users": ["tomfulp", "danpaladin", "goodl", "brandybuizel"]
     , "group":"castle_crashers"
+    , "year": 2020
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
@@ -53,6 +60,7 @@
     , "unlocksBy": "login"
     , "users": ["krinkels"]
     , "group":"madness"
+    , "year": 2020
     }
 ,   { "id": "alien_hominid"
     , "proper": "Alien Hominid"
@@ -60,6 +68,7 @@
     , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin"]
     , "group":"alien_hominid"
+    , "year": 2020
     }
 ,   { "id": "hatty"
     , "proper": "Hatty Hattington"
@@ -67,6 +76,7 @@
     , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin", "stamper"]
     , "group":"battleblock"
+    , "year": 2020
     }
 ,   { "id": "chutney"
     , "proper": "Chutney Glaze"
@@ -74,6 +84,7 @@
     , "unlocksBy": "day:10"
     , "users": ["chutneyglaze"]
     , "group":"chutney"
+    , "year": 2020
     }
 ,   { "id": "nene"
     , "proper": "Nene"
@@ -81,6 +92,7 @@
     , "unlocksBy": "day:4"
     , "users": ["tomfulp"]
     , "group":"ng"
+    , "year": 2020
     }
 ,   { "id": "strawberry_clock"
     , "proper": "Strawberry Clock"
@@ -88,48 +100,56 @@
     , "unlocksBy": "day:3"
     , "users": ["strawberryclock"]
     , "group":"clocks"
+    , "year": 2020
     }
 ,   { "id": "hellbenders"
     , "proper": "The Hellbenders"
     , "description": "Two friends: Chris and Zach. They live in a world surrounded\nby... not-so-normal things."
     , "unlocksBy": "day:19"
     , "users": ["oney", "ricepirate", "psychicpebbles"]
+    , "year": 2020
     }
 ,   { "id": "tardigrade"
     , "proper": "Captain Tardigrade"
     , "description": "A tardigrade is a microscopic extremophile, an extremophile can endure and \nsurvive extreme conditions which makes them virtually indestructible."
     , "unlocksBy": "day:13"
     , "users": ["ianmichaelmiller"]
+    , "year": 2020
     }
 ,   { "id": "meatboy"
     , "proper": "Meatboy"
     , "description": "Is that skin or would skin be more horrifying?"
     , "unlocksBy": "day:12"
     , "users": ["bluebaby"]
+    , "year": 2020
     }
 ,   { "id": "salad_fingers"
     , "proper": "Salad Fingers"
     , "description": "Goodness knows whatever happened to this guy, but he sure does love some rusty spoons."
     , "unlocksBy": "day:7"
     , "users": ["doki"]
+    , "year": 2020
     }
 ,   { "id": "blockhead"
     , "proper": "Blockhead"
     , "description": "There’s a man sitting on a recliner chair in his mind."
     , "unlocksBy": "day:14"
     , "users": ["the-swain"]
+    , "year": 2020
     }
 ,   { "id": "bitey"
     , "proper": "Bitey"
     , "description": "The tricky Dashkin from Brackenwood."
     , "unlocksBy": "day:15"
     , "users": ["chluaid"]
+    , "year": 2020
     }
 ,   { "id": "pbot"
     , "proper": "P-Bot"
     , "description": "Curating the very best there is on Newgrounds, Daily! And sometimes Maxine."
     , "unlocksBy": "supporter"
     , "group":"ng"
+    , "year": 2020
     }
 ,   { "id": "stan"
     , "proper": "Stan"
@@ -137,12 +157,14 @@
     , "unlocksBy": "login"
     , "users": ["tomfulp", "johnnyutah", "spazkid", "oney"]
     , "group":"cops"
+    , "year": 2020
     }
 ,   { "id": "knight"
     , "proper": "Knight"
     , "description": "Realm Raiders"
     , "unlocksBy": "day:8"
     , "users": ["tyler"]
+    , "year": 2020
     }
 ,   { "id": "tangy_mustard"
     , "proper": "Tangy Mustard"
@@ -150,12 +172,14 @@
     , "unlocksBy": "day:17"
     , "users": ["aaron-long"]
     , "group": "aalong"
+    , "year": 2020
     }
 ,   { "id": "glenda"
     , "proper": "Glenda"
     , "description": "The classiest galaxy tourist."
     , "unlocksBy": "day:18"
     , "users": ["someonesex"]
+    , "year": 2020
     }
 ,   { "id": "hogstrong"
     , "proper": "Hogstrong"
@@ -163,12 +187,14 @@
     , "unlocksBy": "medal:4"
     , "users": ["happyharry"]
     , "group":"harry"
+    , "year": 2020
     }
 ,   { "id": "spoople"
     , "proper": "Spoople"
     , "description": "\"I wasn’t born in the traditional sense but rather constructed. An impossible, technical\nmarriage of flesh and paradox. At least that's what my baby pictures say.\""
     , "unlocksBy": "day:9"
     , "users": ["frasermcniven"]
+    , "year": 2020
     }
 ,   { "id": "tom"
     , "proper": "Tom Fulp"
@@ -190,6 +216,7 @@
     , "unlocksBy": "supporter"
     , "frames": 4
     , "users": ["srpelo"]
+    , "year": 2020
     }
 ,   { "id": "brandybuizel"
     , "proper": "BrandyBuizel"
@@ -197,6 +224,7 @@
     , "unlocksBy": "medal:61514"
     , "users": ["brandybuizel"]
     , "group": "devs"
+    , "year": 2020
     }
 ,   { "id": "velour"
     , "proper": "Velour"
@@ -204,6 +232,7 @@
     , "unlocksBy": "medal:1"
     , "users": ["cymbourine"]
     , "group": "devs"
+    , "year": 2020
     }
 ,   { "id": "horse"
     , "proper": "Horse"
@@ -211,12 +240,14 @@
     , "unlocksBy": "medal:61392"
     , "users": ["nickconter"]
     , "group": "devs"
+    , "year": 2020
     }
 ,   { "id": "snake"
     , "proper": "Solid Snake"
     , "description": "METAL GEAR, Awesome"
     , "unlocksBy": "medal:26"
     , "users": ["egoraptor"]
+    , "year": 2020
     }
 ,   { "id": "aine"
     , "proper": "Aine"
@@ -224,6 +255,7 @@
     , "unlocksBy": "day:27"
     , "users": ["squidly"]
     , "group": "renaine"
+    , "year": 2020
     }
 ,   { "id": "karrion"
     , "proper": "Karrion Killer"
@@ -231,36 +263,42 @@
     , "unlocksBy": "day:6"
     , "users": ["prosciuttoman", "leviramirez"]
     , "group": "prosciuttoman"
+    , "year": 2020
     }
 ,   { "id": "elk"
     , "proper": "Elk"
     , "description": "Congrats on beating whatever minigame you had to beat to play as a dumb deer. I call him Phil."
     , "unlocksBy": "medal:61364"
     , "users": ["sirlenward", "ellsketchlr"]
+    , "year": 2020
     }
 ,   { "id": "lucky"
     , "proper": "Lucky"
     , "description": "something big is coming 2021..."
     , "unlocksBy": "medal:25"
     , "users": ["brandybuizel", "domdude111"]
+    , "year": 2020
     }
 ,   { "id": "duncan_and_jones"
     , "proper": "Duncan & Jones"
     , "description": "The two hottest crime fighters on the website."
     , "unlocksBy": "medal:6,medal:19"
     , "users": ["snackers"]
+    , "year": 2020
     }
 ,   { "id": "purple_imposter"
     , "proper": "Purple Imposter"
     , "description": "A not so nice crewmate from Among Us."
     , "unlocksBy": "day:5"
     , "users": ["puffballsunited", "fortebass", "aemu"]
+    , "year": 2020
     }
 ,   { "id": "gilded_guy"
     , "proper": "Gilded Guy"
     , "description": "If he took off the helmet you'd be like 'who's this', but with the\nfull suit on you'll recognize this lad from some amazingly kickass animated fights!"
     , "unlocksBy": "day:20"
     , "users": ["gildedguy"]
+    , "year": 2020
     }
 ,   { "id": "luis"
     , "proper": "Luis"
@@ -280,6 +318,7 @@
     , "description": "The boyfriend from the number one rated rhythm game of all time on Newgrounds, Friday Night Funkin'"
     , "unlocksBy": "day:11"
     , "users": ["ninjamuffin99", "phantomarcade", "evilsk8r", "kawaisprite", "geokureli", "brandybuizel"]
+    , "year": 2020
     }
 ,   { "id": "drbees"
     , "proper": "Dr. Bees"
@@ -287,18 +326,21 @@
     , "unlocksBy": "day:22"
     , "users": ["happyharry"]
     , "group": "harry"
+    , "year": 2020
     }
 ,   { "id": "mvchan"
     , "proper": "MV-Chan"
     , "description": "The cutie from Speedo's amazing music videos."
     , "unlocksBy": "day:24"
     , "users": ["speedo"]
+    , "year": 2020
     }
 ,   { "id": "ritz"
     , "proper": "Ritz"
     , "description": "Ritz the Rat, a bimbo."
     , "unlocksBy": "medal:7"
     , "users": ["ninjamuffin99", "mkmaffo", "digimin", "kawaisprite"]
+    , "year": 2020
     }
 ,   { "id": "knose"
     , "proper": "KnoseDoge"
@@ -311,12 +353,14 @@
     , "description": "This princess of the underworld has charm, talent and a casual dad who works in IT."
     , "unlocksBy": "day:16"
     , "users": ["scumhouse"]
+    , "year": 2020
     }
 ,   { "id": "madness_hank"
     , "proper": "Hank J. Wimbleton"
     , "description": "A psychopathic mercenary gunman on a take-no-prisoners mission to wipe out an all-powerful Agency..."
     , "unlocksBy": "medal:14"
     , "users": ["krinkels", "AlmightyHans"]
+    , "year": 2020
     }
 ,   { "id": "madness_auditor"
     , "proper": "The Auditor"
@@ -324,6 +368,7 @@
     , "unlocksBy": "supporter"
     , "frames": 3
     , "users": ["krinkels"]
+    , "year": 2020
     }
 ,   { "id": "alan"
     , "proper": "Alan"
@@ -331,54 +376,63 @@
     , "unlocksBy": "medal:61555"
     , "offset": { "x":2, "y":6 }
     , "users": ["psychicpebbles"]
+    , "year": 2020
     }
 ,   { "id": "zone"
     , "proper": "Zone-Tan"
     , "description": "You know her as the queen of hentai, the duchess of tentacle penetration.\nShe's watching you fap. I get it, it's a nice sprite, but don't..."
     , "unlocksBy": "medal:32"
     , "users": ["zone-sama", "brandybuizel"]
+    , "year": 2020
     }
 ,   { "id": "gentles"
     , "proper": "Gentles"
     , "description": "The amazing dog straight out of the 2020 Pet Jam and from TV!"
     , "unlocksBy": "medal:25"
     , "users": ["jaquin", "jonarock", "chrisbasso", "dylanmann", "worldsbestmichael"]
+    , "year": 2020
     }
 ,   { "id": "slime"
     , "proper": "Slime Girl"
     , "description": "She's all the rage in both monster and monster hunter circles.\nSmash her in her breakout role as dungeon hottie in Monster Mashing on Newgrounds!"
     , "unlocksBy": "medal:19"
     , "users": ["brandybuizel", "ninjamuffin99", "digimin", "fushark"]
+    , "year": 2020
     }
 ,   { "id": "squado"
     , "proper": "Ghost Squad James"
     , "description": "He's been murdered by a ghost and forced to be an anime\ncrime-fighting teen as the green member of the GHOST SQUAD!"
     , "unlocksBy": "day:25"
     , "users": ["brandybuizel", "Kieran-s"]
+    , "year": 2020
     }
 ,   { "id": "satan"
     , "proper": "Satan"
     , "description": "When he's not teaching young Leo life lessons he's overseeing\nthe horrid depths of the underworld."
     , "unlocksBy": "medal:61559"
     , "users": ["brandybuizel", "oneyng"]
+    , "year": 2020
     }
 ,   { "id": "emi"
     , "proper": "Emi"
     , "description": "A cutie with a booty and other flashy bits by TwistedGrim."
     , "unlocksBy": "day:28"
     , "users": ["brandybuizel", "twistedgrim"]
+    , "year": 2020
     }
 ,   { "id": "jeff"
     , "proper": "Jeff"
     , "description": "Keep trucking along in this Dead Estate."
     , "unlocksBy": "day:29"
     , "users": ["milkbarjack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
+    , "year": 2020
     }
 ,   { "id": "ena"
     , "proper": "ENA"
     , "description": "Between her and Margo, the people chose her. Welcome to Newgrounds ENA!"
     , "unlocksBy": "day:30"
     , "users": ["joelg"]
+    , "year": 2020
     }
 ,   { "id": "melt"
     , "proper": "Melt Boy"
@@ -386,12 +440,14 @@
     , "unlocksBy": "day:31"
     , "frames": 2
     , "users": ["brandybuizel", "connorgrail", "mmattugh"]
+    , "year": 2020
     }
 ,   { "id": "jameslee"
     , "proper": "James Lee"
     , "description": "Who else could proctor the court of public opinion as well?"
     , "unlocksBy": "medal:30"
     , "users": ["jameslee"]
+    , "year": 2020
     }
 ,   { "id": "custom"
     , "proper": "Custom"

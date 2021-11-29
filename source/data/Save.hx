@@ -7,27 +7,32 @@ import utils.Log;
 import utils.BitArray;
 
 import flixel.FlxG;
+import flixel.util.FlxSave;
 
 import haxe.Int64;
 import haxe.PosInfos;
 
 class Save
 {
-    inline static var name = "advent2021";
-    inline static var path = "GeoKureli";
-    
     static var emptyData:SaveData = cast {}
     
     static var data:SaveData;
     
     static public function init()
     {
-        #if !(DISABLE_SAVE)
-        if (FlxG.save.bind(name, path))
-            data = FlxG.save.data;
-        else
-        #end
+        #if DISABLE_SAVE
             data = emptyData;
+        #else
+            if (FlxG.save.bind("advent2021", "GeoKureli"))
+                data = FlxG.save.data;
+            else
+                data = emptyData;
+            
+        #end
+        
+        #if LOAD_2020_SKINS
+        load2020SaveData();
+        #end
         
         var clearSave = #if CLEAR_SAVE true #else false #end;
         
@@ -79,6 +84,10 @@ class Save
         }
         log("instruments seen: " + data.seenInstruments);
         
+        if (clearSave)
+            data.ngioSessionId = null;
+        log("saved session: " + data.ngioSessionId);
+        
         if (data.instrument < -1 && (data.seenInstruments:Int64) > 0)
         {
             // fix an old glitch where i deleted instrument save
@@ -104,6 +113,38 @@ class Save
         else
             Content.onInit.addOnce(setInitialInstrument);
     }
+    
+    #if LOAD_2020_SKINS
+    static function load2020SaveData()
+    {
+        #if debug
+        if (APIStuff.DEBUG_SESSON_2020 != null)
+        {
+            data.ngioSessionId2020 = APIStuff.DEBUG_SESSON_2020;
+            flush();
+            return;
+        }
+        #end
+        // Load last years save for session id
+        var save2020 = new FlxSave();
+        if (save2020.bind("advent2020", "GeoKureli"))
+        {
+            var data2020:SaveData2020 = save2020.data;
+            log("2020 data found: " + data2020);
+            if (data2020.ngioSessionId != null)
+            {
+                data.ngioSessionId2020 = data2020.ngioSessionId;
+                flush();
+            }
+            
+            if (data.skin == null && data2020.skin != null)
+            {
+                log("using 2020 skin:" + data2020.skin);
+                data.skin = data2020.skin;
+            }
+        }
+    }
+    #end
     
     static function flush()
     {
@@ -253,10 +294,29 @@ class Save
         return data.seenInstruments[Content.instruments[type].index];
     }
     
+    static public function setNgioSessionId(id:String)
+    {
+        if (data.ngioSessionId != id)
+        {
+            data.ngioSessionId = id;
+            flush();
+        }
+    }
+    
+    static public function getNgioSessionId():Null<String>
+    {
+        return data.ngioSessionId;
+    }
+    
+    static public function getNgioSessionId2020():Null<String>
+    {
+        return data.ngioSessionId2020;
+    }
+    
     inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
 
-typedef SaveData =
+typedef SaveData2020 =
 {
     var presents:BitArray;
     var days:BitArray;
@@ -264,4 +324,10 @@ typedef SaveData =
     var skin:Int;
     var instrument:Int;
     var seenInstruments:BitArray;
+    var ngioSessionId:String;
+}
+
+typedef SaveData = SaveData2020 &
+{
+    var ngioSessionId2020:String;
 }
