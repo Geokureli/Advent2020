@@ -321,8 +321,6 @@ class NGio
 				log('Error fetching 2020 medals: $error');
 			
 			ng2020.onLogin.remove(loggedIn);
-			if (ng2020.loggedIn)
-				ng2020.logOut();
 			callback(medals2020);
 		}
 		
