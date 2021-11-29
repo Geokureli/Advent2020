@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.3.0",
+  "ogmoVersion": "3.4.0",
   "width": 736,
   "height": 496,
   "offsetX": 0,
@@ -579,9 +579,9 @@
       "gridCellsX": 92,
       "gridCellsY": 62,
       "decals": [
-        {"x": 432, "y": 376, "scaleX": 1, "scaleY": 1, "texture": "foyer/jar_small.png"},
-        {"x": 368, "y": 457.5, "scaleX": 1, "scaleY": 1, "texture": "foyer/snow_wind_ogmo.png"},
-        {"x": 366.5, "y": 220, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree4_ogmo.png"}
+        {"x": 432, "y": 376, "scaleX": 1, "scaleY": 1, "texture": "foyer/jar_small.png", "originX": 0.5, "originY": 0.5},
+        {"x": 368, "y": 457.5, "scaleX": 1, "scaleY": 1, "texture": "foyer/snow_wind_ogmo.png", "originX": 0.5, "originY": 0.5},
+        {"x": 366.5, "y": 220, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree4_ogmo.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     },
@@ -595,14 +595,14 @@
       "gridCellsX": 92,
       "gridCellsY": 62,
       "decals": [
-        {"x": 368, "y": 248, "scaleX": 1, "scaleY": 1, "texture": "foyer/foyer31.png"},
-        {"x": 368, "y": 384, "scaleX": 1, "scaleY": 1, "texture": "foyer/rug.png"},
-        {"x": 368, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "foyer/Chandelier.png"},
-        {"x": 48, "y": 24, "scaleX": 1, "scaleY": 1, "texture": "foyer/neon2_ogmo.png"},
-        {"x": 688, "y": 24, "scaleX": 1, "scaleY": 1, "texture": "cabin/neon_ogmo.png"},
-        {"x": 312, "y": 192, "scaleX": 1, "scaleY": 1, "texture": "foyer/arrow_ogmo.png"},
-        {"x": 256, "y": 192, "scaleX": 1, "scaleY": 1, "texture": "foyer/movies_ogmo.png"},
-        {"x": 368, "y": 35, "scaleX": 1, "scaleY": 1, "texture": "foyer/rave_ogmo.png"}
+        {"x": 368, "y": 248, "scaleX": 1, "scaleY": 1, "texture": "foyer/foyer31.png", "originX": 0.5, "originY": 0.5},
+        {"x": 368, "y": 384, "scaleX": 1, "scaleY": 1, "texture": "foyer/rug.png", "originX": 0.5, "originY": 0.5},
+        {"x": 368, "y": 120, "scaleX": 1, "scaleY": 1, "texture": "foyer/Chandelier.png", "originX": 0.5, "originY": 0.5},
+        {"x": 48, "y": 24, "scaleX": 1, "scaleY": 1, "texture": "foyer/neon2_ogmo.png", "originX": 0.5, "originY": 0.5},
+        {"x": 688, "y": 24, "scaleX": 1, "scaleY": 1, "texture": "cabin/neon_ogmo.png", "originX": 0.5, "originY": 0.5},
+        {"x": 312, "y": 192, "scaleX": 1, "scaleY": 1, "texture": "foyer/arrow_ogmo.png", "originX": 0.5, "originY": 0.5},
+        {"x": 256, "y": 192, "scaleX": 1, "scaleY": 1, "texture": "foyer/movies_ogmo.png", "originX": 0.5, "originY": 0.5},
+        {"x": 368, "y": 35, "scaleX": 1, "scaleY": 1, "texture": "foyer/rave_ogmo.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     }

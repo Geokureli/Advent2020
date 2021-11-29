@@ -30041,6 +30041,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "", "target": "path_right", "enabled": true}
+        },
+        {
+          "name": "Teleport",
+          "id": 1,
+          "_eid": "58765051",
+          "x": 1008,
+          "y": 912,
+          "width": 32,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "", "target": "picos-shop", "enabled": true}
         }
       ]
     },
@@ -30054,7 +30066,8 @@
       "gridCellsX": 150,
       "gridCellsY": 200,
       "decals": [
-        {"x": 608, "y": 640, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree1.png", "originX": 0.5, "originY": 0.5}
+        {"x": 608, "y": 640, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree1.png", "originX": 0.5, "originY": 0.5},
+        {"x": 1024, "y": 888, "scaleX": 1, "scaleY": 1, "texture": "shared/door_ogmo.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     },

@@ -50,6 +50,7 @@ class Game
         roomTypes[PathCenter] = PathCenterState.new;
         roomTypes[PathRight] = PathRightState.new;
         roomTypes[Village] = VillageState.new;
+        roomTypes[PicosShop] = PicosShopState.new;
         
         arcadeTypes = [];
         

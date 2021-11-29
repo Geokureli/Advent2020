@@ -875,4 +875,5 @@ enum abstract RoomName(String) to String
     var PathCenter = "path_center";
     var PathRight = "path_right";
     var Village = "village";
+    var PicosShop = "picos-shop";
 }
