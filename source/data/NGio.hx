@@ -337,7 +337,6 @@ class NGio
 			(
 				function onSucceed()
 				{
-					log("2020 medals loaded");
 					medals2020 = new Map();
 					for (id=>medal in ng2020.medals)
 					{
@@ -345,6 +344,7 @@ class NGio
 						if (medal.unlocked && id - DAY_MEDAL_0_2020 < 32)
 							daysSeen2020++;
 					}
+					log('2020 medals loaded, days seen: $daysSeen2020');
 					
 					callbackAndDestroy();
 				},
