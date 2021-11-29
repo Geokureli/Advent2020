@@ -30,7 +30,7 @@ class BootState extends flixel.FlxState
     var waitTime = 0.0;
     
     var debugFutureEnabled = false;
-    var loadedMedals2020 = false;
+    var loadedMedals2020 = #if SHOW_2020_SKINS_WARNING false #else true #end;
     
     override public function create():Void
     {
@@ -146,13 +146,13 @@ class BootState extends flixel.FlxState
         }
         NGio.fetch2020Medals(ngioSessionId2020, function (medalData)
             {
+                #if SHOW_2020_SKINS_WARNING
                 loadedMedals2020 = medalData != null;
+                #end
                 callback();
             }
         );
         #else
-        // prevent the error message
-        loadedMedals2020 = true;
         callback();
         #end
     }
