@@ -326,6 +326,12 @@ class NGio
 		
 		loggedIn = function ()
 		{
+			if (NG.core.user.id != ng2020.user.id)
+			{
+				callbackAndDestroy('Invalid user:${ng2020.user.id} expected:${NG.core.user.id}');
+				return;
+			}
+			
 			logVerbose("2020 session successful, loading medals");
 			ng2020.requestMedals
 			(
