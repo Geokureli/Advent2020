@@ -137,6 +137,7 @@ class BootState extends flixel.FlxState
     
     inline public function load2020Medals(callback:()->Void)
     {
+        #if LOAD_2020_SKINS
         var ngioSessionId2020 = Save.getNgioSessionId2020();
         if (ngioSessionId2020 == null)
         {
@@ -149,6 +150,11 @@ class BootState extends flixel.FlxState
                 callback();
             }
         );
+        #else
+        // prevent the error message
+        loadedMedals2020 = true;
+        callback();
+        #end
     }
     
     inline function showErrorAndBegin(_ = null)

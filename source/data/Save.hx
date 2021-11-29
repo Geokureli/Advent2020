@@ -14,21 +14,12 @@ import haxe.PosInfos;
 
 class Save
 {
-    #if debug
-    inline static var DEBUG_2020_SESSION:String
-        // = null;
-        = "52758675.6189172d364a16a72b801ccfb4616c56fc5578376b001d";
-    #end
-    
     static var emptyData:SaveData = cast {}
     
     static var data:SaveData;
     
     static public function init()
     {
-        // set default values
-        var newData = false;
-        
         #if DISABLE_SAVE
             data = emptyData;
         #else
@@ -37,33 +28,16 @@ class Save
             else
                 data = emptyData;
             
-            #if debug
-            if (DEBUG_2020_SESSION != null)
-            {
-                newData = data.ngioSessionId2020 != DEBUG_2020_SESSION;
-                data.ngioSessionId2020 = DEBUG_2020_SESSION;
-            }
-            else
-            #end
-            {
-                // Load last years save for session id
-                var save2020 = new FlxSave();
-                if (save2020.bind("advent2020", "GeoKureli"))
-                {
-                    var data2020:SaveData2020 = save2020.data;
-                    trace("2020 data found: " + data2020);
-                    if (data2020.ngioSessionId != null)
-                    {
-                        newData = data2020.ngioSessionId != DEBUG_2020_SESSION;
-                        data.ngioSessionId2020 = data2020.ngioSessionId;
-                    }
-                }
-            }
-            
+        #end
+        
+        #if LOAD_2020_SKINS
+        load2020SaveData();
         #end
         
         var clearSave = #if CLEAR_SAVE true #else false #end;
         
+        // set default values
+        var newData = false;
         if (clearSave || data.presents == null)
         {
             data.presents = new BitArray();
@@ -139,6 +113,38 @@ class Save
         else
             Content.onInit.addOnce(setInitialInstrument);
     }
+    
+    #if LOAD_2020_SKINS
+    static function load2020SaveData()
+    {
+        #if debug
+        if (APIStuff.DEBUG_SESSON_2020 != null)
+        {
+            data.ngioSessionId2020 = APIStuff.DEBUG_SESSON_2020;
+            flush();
+            return;
+        }
+        #end
+        // Load last years save for session id
+        var save2020 = new FlxSave();
+        if (save2020.bind("advent2020", "GeoKureli"))
+        {
+            var data2020:SaveData2020 = save2020.data;
+            log("2020 data found: " + data2020);
+            if (data2020.ngioSessionId != null)
+            {
+                data.ngioSessionId2020 = data2020.ngioSessionId;
+                flush();
+            }
+            
+            if (data.skin == null && data2020.skin != null)
+            {
+                log("using 2020 skin:" + data2020.skin);
+                data.skin = data2020.skin;
+            }
+        }
+    }
+    #end
     
     static function flush()
     {

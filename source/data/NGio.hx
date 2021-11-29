@@ -307,6 +307,7 @@ class NGio
 		return hasMedal(Content.medals[name]);
 	}
 	
+	#if LOAD_2020_SKINS
 	static public function fetch2020Medals(sessionId:String, callback:(Map<Int, Bool>)->Void)
 	{
 		var ng2020:NG = null;
@@ -345,9 +346,10 @@ class NGio
 			);
 		}
 		
-		ng2020 = new NG("51158:gKIIkW2f", sessionId, callbackAndDestroy);
+		ng2020 = new NG(APIStuff.APIID_2020, sessionId, callbackAndDestroy);
 		ng2020.onLogin.add(loggedIn);
 	}
+	#end
 	
 	static public function logEvent(event:NgEvent, once = false)
 	{
