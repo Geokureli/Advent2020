@@ -51,9 +51,9 @@ class NGio
 		
 		ngDataLoaded.addOnce(callback);
 		
-		function onSessionFail(e:Error)
+		function cancel(logMsg:String)
 		{
-			log("session failed:" + e.toString());
+			log(logMsg);
 			ngDataLoaded.remove(callback);
 			callback();
 		}
@@ -62,7 +62,7 @@ class NGio
 			lastSessionId = APIStuff.DebugSession;
 		
 		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + lastSessionId);
-		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, lastSessionId, onSessionFail);
+		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, lastSessionId, (e)->cancel("session failed:" + e.toString()));
 		NG.core.initEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end
@@ -72,7 +72,7 @@ class NGio
 		NG.core.requestScoreBoards(onScoreboardsRequested);
 		
 		if (!NG.core.attemptingLogin)
-			callback();
+			cancel("Auto login not attempted");
 	}
 	
 	static public function startManualSession(callback:ConnectResult->Void, onPending:((Bool)->Void)->Void):Void
@@ -85,11 +85,8 @@ class NGio
 			if (connect)
 				NG.core.openPassportUrl();
 			else
-			{
 				NG.core.cancelLoginRequest();
-				callback(Cancelled);
-			}
-		}
+		} 
 		
 		NG.core.requestLogin(
 			callback.bind(Succeeded),
