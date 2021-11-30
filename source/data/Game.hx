@@ -25,7 +25,12 @@ class Game
     inline static function get_disableShaders() return !allowShaders;
     
     public static var initialRoom(default, null) = 
+        #if debug
         RoomName.Outside;
+        // RoomName.PicosShop + "." + RoomName.Village;
+        #else
+        RoomName.Outside;
+        #end
     
     static function init():Void
     {
