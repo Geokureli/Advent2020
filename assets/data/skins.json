@@ -52,7 +52,6 @@
     , "unlocksBy": "supporter"
     , "users": ["tomfulp", "danpaladin", "goodl", "brandybuizel"]
     , "group":"castle_crashers"
-    , "year": 2020
     }
 ,   { "id": "madness_grunt"
     , "proper": "Madness Grunt"
@@ -60,7 +59,6 @@
     , "unlocksBy": "login"
     , "users": ["krinkels"]
     , "group":"madness"
-    , "year": 2020
     }
 ,   { "id": "alien_hominid"
     , "proper": "Alien Hominid"
@@ -68,7 +66,6 @@
     , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin"]
     , "group":"alien_hominid"
-    , "year": 2020
     }
 ,   { "id": "hatty"
     , "proper": "Hatty Hattington"
@@ -76,7 +73,6 @@
     , "unlocksBy": "login"
     , "users": ["tomfulp", "danpaladin", "stamper"]
     , "group":"battleblock"
-    , "year": 2020
     }
 ,   { "id": "chutney"
     , "proper": "Chutney Glaze"
@@ -149,7 +145,6 @@
     , "description": "Curating the very best there is on Newgrounds, Daily! And sometimes Maxine."
     , "unlocksBy": "supporter"
     , "group":"ng"
-    , "year": 2020
     }
 ,   { "id": "stan"
     , "proper": "Stan"
@@ -157,7 +152,6 @@
     , "unlocksBy": "login"
     , "users": ["tomfulp", "johnnyutah", "spazkid", "oney"]
     , "group":"cops"
-    , "year": 2020
     }
 ,   { "id": "knight"
     , "proper": "Knight"
@@ -216,7 +210,6 @@
     , "unlocksBy": "supporter"
     , "frames": 4
     , "users": ["srpelo"]
-    , "year": 2020
     }
 ,   { "id": "brandybuizel"
     , "proper": "BrandyBuizel"
@@ -232,7 +225,6 @@
     , "unlocksBy": "medal:1"
     , "users": ["cymbourine"]
     , "group": "devs"
-    , "year": 2020
     }
 ,   { "id": "horse"
     , "proper": "Horse"
@@ -373,7 +365,6 @@
     , "frames": 3
     , "users": ["krinkels"]
     , "group": "madness"
-    , "year": 2020
     }
 ,   { "id": "alan"
     , "proper": "Alan"
@@ -453,6 +444,12 @@
     , "unlocksBy": "medal:30"
     , "users": ["jameslee"]
     , "year": 2020
+    }
+,   { "id": "alloy"
+    , "proper": "Alloy"
+    , "description": "Alloy is a robot boy originally created by MindChamber and is a playable character in Newgrounds Rumble.\nHe was created to star in a Game Boy Advance game, but the game was never complete.\nOn Newgrounds, Alloy is most prominently featured in Alloy: Arena.\nHe has fast overall attacks and a good projectile weapon, but has low reach and rather low health.\nAlloy was once Justin Case, he found a dying alien, and it gave him his armor, he then became Alloy.\nAlloy also appeared in Mason's Bubble Blast, which was a game Mindchamber made for his step-son who was 6 at the time.\nAlloy can be summoned by collecting a certain item during a boss fight.\nAlloy will shoot at the boss along with Mason. Alloy was also going to have his own cartoon,\nbut it never came out publicly, even though alot of thought and effort was put into it.\nAlloy was also going to be an action figure. Source: NG Fandom Wiki"
+    , "unlocksBy": "day:2"
+    , "users": ["mindchamber"]
     }
 ,   { "id": "custom"
     , "proper": "Custom"
