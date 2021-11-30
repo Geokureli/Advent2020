@@ -1,271 +1,55 @@
 {   "credits":
     { "knosedoge":
-        { "proper" : "Knose"
+        { "proper" : "KnoseDoge"
         , "roles"  : ["pm", "Lead Programmer"]
+        }
+    , "splatterdash":
+        { "proper" : "SplatterDash"
+        , "roles"  : ["pm"]
+        }
+    , "geokureli":
+        { "proper" : "GeoKureli"
+        , "roles"  : ["Old Dude"]
         }
     , "brandybuizel":
         { "proper" : "BrandyBuizel"
-        , "roles"  : ["pm", "Lead Artist"]
-        }
-    , "nickconter":
-        { "proper": "Nick Conter"
-        , "roles" : ["sprites", "disk"]
+        , "roles"  : ["Old Artist"]
         }
     , "thedyingsun":
         { "proper" : "TheDyingSun"
-        , "roles"  : ["Decorator", "sprites", "adl_disk"]
+        , "roles"  : ["Decorator", "sprites"]
         }
-    , "goodl":
-        { "proper": "GoodL"
-        , "roles" : ["Electric Guitar"]
-        }
-    , "prosciuttoman":
-        { "proper": "ProsciuttoMan"
-        , "roles" : ["adl_sprites"]
-        }
-    , "mrshmoods":
-        { "proper": "MrShmoods"
-        , "instagram":"mrshmoods"
-        , "roles" : ["Portraits"]
-        }
-    , "midgetsausage":
-        { "proper": "midgetsausage"
-        , "instagram":"midgetsausage_ng"
-        , "roles": [ "adl_disk" ]
-        }
-    , "albegian"        : { "proper": "AlbeGian"        }
-    , "cymbourine"      : { "proper": "Cymbourine"      }
-    , "mintyeggs"       : { "proper": "MintyEggs"       }
-    , "danfrombavaria"  : { "proper": "DanFromBavaria"  }
-    , "mixmuffin"       : { "proper": "Liquid head"     }
-    , "einmeister"      : { "proper": "EinMeister"      }
-    , "czyszy"          : { "proper": "CzySzy"          }
-    , "bub"             : { "proper": "bub"             }
-    , "snackers"        : { "proper": "Snackers"        }
-    , "splatterdash"    : { "proper": "SplatterDash"    }
-    , "mkmaffo"         : { "proper": "MKMaffo"         }
-    , "karlestonchew"   : { "proper": "Karlestonchew"   }
-    , "chrisbasso"      : { "proper": "chrisbasso"      }
-    , "sirlenward"      : { "proper": "SirLenward"      }
-    , "shirogaia"       : { "proper": "Shiro Gaia"      }
-    , "connorgrail"     : { "proper": "Connor Grail"    }
-    , "misterjamesss"   : { "proper": "James Renna"     }
-    , "chdonga"         : { "proper": "Chdonga"         }
-    , "hyenaedon"       : { "proper": "Hyenaedon"       }
-    , "krinkels"        : { "proper": "Krinkels"        }
-    , "carmet"          : { "proper": "Carmet"          }
-    , "mimny"           : { "proper": "Mimny"           }
-    , "figburn"         : { "proper": "Figburn"         }
-    , "octong"          : { "proper": "OctoNG"          }
-    , "mig-moog"        : { "proper": "Mig-Moog"        }
-    , "boomnm"          : { "proper": "Boomnm"          }
-    , "tenodiboris"     : { "proper": "TenodiBoris"     }
-    , "fushark"         : { "proper": "FuShark"         }
-    , "snailpirate"     : { "proper": "SnailPirate"     }
-    , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
-    , "rgpanims"        : { "proper": "RGPAnims"        }
-    , "loganphresh"     : { "proper": "Logan Phresh"    }
-    , "everratic"       : { "proper": "Everratic"       }
-    , "camuri"          : { "proper": "Camuri"          }
-    , "butzbo"          : { "proper": "Butzbo"          }
-    , "chobiluck"       : { "proper": "Chobi"           }
-    , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
-    , "dogl"            : { "proper": "dogl"            }
-    , "precipitation24" : { "proper": "Precipitation24" }
-    , "wandaboy"        : { "proper": "Wandaboy"        }
-    , "mismash"         : { "proper": "MisMash"         }
-    , "syntrus"         : { "proper": "Syntrus"         }
-    , "toppleng"        : { "proper": "ToppleNG"        }
-    , "gallowjolt"      : { "proper": "GallowJolt"      }
-    , "pktoastyva"      : { "proper": "PKToastyVA"      }
-    , "onishaggy"       : { "proper": "OniShaggy"       }
-    , "piesaus"         : { "proper": "PieSaus"         }
-    , "aramortart"      : { "proper": "ARAMort"         }
-    , "circuitreats"    : { "proper": "Circuitreats"    }
-    , "sevi"            : { "proper": "Sevi"            }
-    , "heyopc"          : { "proper": "heyopc"          }
-    , "spiggygee"       : { "proper": "spiggygee"       , "twitter":"spiggygee"      , "instagram":"spiggygee" }
+    , "cymbourine"   : { "proper": "Cymbourine"   }
+    , "midgetsausage": { "proper": "SantaSausage" }
     
-    , "ninjamuffin99"   : { "proper": "ninjamuffin99"   , "twitter":"ninja_muffin99" , "bandcamp": "ninjamuffin99" }
-    , "irri"            : { "proper": "Irri"            }
-    , "wavetro"         : { "proper": "Wavetro"         }
+    , "ninjamuffin99":
+        { "proper": "ninjamuffin99"
+        , "roles"  : ["2018 stuff"]
+        }
     }
-,   "extras":
-    { "thriftman"    : { "proper": "thriftman"     }
-    , "johnnyutah"   : { "proper": "JohnnyUtah"    }
-    , "rehdah"       : { "proper": "rehdah"        }
-    , "antonm"       : { "proper": "antonm"        }
-    , "shigloo"      : { "proper": "shigloo"       }
-    , "sierrasaura"  : { "proper": "sierrasaura"   }
-    , "jazzhat"      : { "proper": "jazzhat"       }
-    , "ggloryboyy"   : { "proper": "ggloryboyy"    }
-    , "spazkid"      : { "proper": "spazkid"       }
-    , "eok97"        : { "proper": "eok97"         }
-    , "bassetfilms"  : { "proper": "bassetfilms"   }
-    , "cayfettart"   : { "proper": "cayfettart"    }
-    , "tayzonday"    : { "proper": "tayzonday"     , "personal":"http://www.tayzonday.com/", "nonNg":true }
-    }
+,   "extras": {}
 ,   "songs":
-    [   { "id"       : "albegian"
-        , "name"     : "The Gift of Smiling"
-        , "authors"  : ["albegian"]
-        , "loopStart": 7111
-        , "key"      : "f#Maj"
-        , "bpm"      : 135
-        , "ngId"     : 984774
+    [   { "id"       : "midgetsausage"
+        , "name"     : "Welcome to the Village!"
+        , "authors"  : ["midgetsausage"]
+        , "key"      : "gMaj"
+        , "bpm"      : 130
         , "day"      : 1
-        }
-    ,   { "id"       : "danfrombavaria"
-        , "name"     : "Coming Home for Newgrounds"
-        , "authors"  : ["danfrombavaria"]
-        , "key"      : "cMaj"
-        , "loopStart": 17142
-        , "loopEnd"  : 120000
-        , "bpm"      : 70
-        , "ngId"     : 985036
-        , "day"      : 3
-        }
-    ,   { "id"     : "czyszy"
-        , "name"   : "ave-xmas.wav"
-        , "authors": ["czyszy"]
-        , "key"    : "dMaj"
-        , "bpm"    : 94
-        , "ngId"   : 985502
-        , "day"    : 5
-        }
-    ,   { "id"       : "splatterdash"
-        , "name"     : "Let The Snow Fall"
-        , "authors"  : ["splatterdash"]
-        , "loopStart": 60500
-        , "loopEnd"  : 204500
-        , "key"      : "eMaj"
-        , "bpm"      : 60
-        , "ngId"     : 986028
-        , "day"      : 7
-        }
-    ,   { "id"     : "chrisbasso"
-        , "name"   : "Funky Christmas MIX"
-        , "authors": ["chrisbasso"]
-        , "key"    : "f#Maj"
-        , "bpm"    : 101
-        , "ngId"   : 1559697
-        , "day"    : 9
-        }
-    ,   { "id"     : "connorgrail"
-        , "name"   : "We Three Kings"
-        , "authors": ["connorgrail","misterjamesss"]
-        , "key"    : "aMaj"
-        , "bpm"    : 166
-        , "ngId"   : 0
-        , "day"    : 11
-        , "volume" : 0.25
-        }
-    ,   { "id"     : "hyenaedon"
-        , "name"   : "Woodland Sprites"
-        , "authors": ["hyenaedon"]
-        , "key"    : "g#Maj"
-        , "bpm"    : 153
-        , "ngId"   : 0
-        , "day"    : 13
-        }
-    ,   { "id"     : "carmet"
-        , "name"   : "It's Cold"
-        , "authors": ["carmet"]
-        , "key"    : "f#Maj"
-        , "bpm"    : 60
-        , "ngId"   : 0
-        , "day"    : 15
-        }
-    ,   { "id"     : "goodl"
-        , "name"   : "Holidays Under Contruction"
-        , "authors": ["goodl"]
-        , "key"    : "aMaj"
-        , "bpm"    : 130
-        , "ngId"   : 0
-        , "day"    : 17
-        }
-    ,   { "id"     : "anarchyaxel"
-        , "name"   : "Hot Chocolate"
-        , "authors": ["anarchyaxel"]
-        , "key"    : "cMaj"
-        , "bpm"    : 120
-        , "ngId"   : 0
-        , "day"    : 19
-        }
-    ,   { "id"     : "tenodiboris"
-        , "name"   : "MerryXmass"
-        , "authors": ["tenodiboris"]
-        , "key"    : "dMin"
-        , "bpm"    : 120
-        , "ngId"   : 0
-        , "day"    : 21
-        }
-    ,   { "id"     : "everratic"
-        , "name"   : "A Perfect Day"
-        , "authors": ["everratic"]
-        , "key"    : "aMaj"
-        , "bpm"    : 96
-        , "ngId"   : 0
-        , "day"    : 23
-        }
-    ,   { "id"     : "precipitation24"
-        , "name"   : "Anastasia and Cinderella"
-        , "authors": ["precipitation24"]
-        , "key"    : "aMaj"
-        , "bpm"    : 130
-        , "ngId"   : 833947
-        , "day"    : 25
-        }
-    ,   { "id"     : "syntrus"
-        , "name"   : "The Chill of the Solstice"
-        , "authors": ["syntrus"]
-        , "key"    : "gMaj"
-        , "bpm"    : 82
-        , "ngId"   : 986972
-        , "day"    : 26
-        }
-    ,   { "id"     : "pktoastyva"
-        , "name"   : "side b cd stylin'"
-        , "authors": ["pktoastyva"]
-        , "key"    : "eMaj"
-        , "bpm"    : 130
-        , "day"    : 28
-        }
-    ,   { "id"     : "aramortart"
-        , "name"   : "Fizzy Snow"
-        , "authors": ["aramortart"]
-        , "key"    : "cMaj"
-        , "bpm"    : 70
-        , "day"    : 30
-        }
-    ,   { "id"     : "heyopc"
-        , "name"   : "Tankmas Rap 2020"
-        , "authors": ["heyopc"]
-        , "key"    : "cMaj"
-        , "day"    : 33
-        }
-    ,   { "id"     : "tankmas_mix"
-        , "name"   : "Tankmas 2020 Mashup/Remix"
-        , "authors": ["splatterdash"]
-        , "key"    : "cMaj"
-        , "day"    : 32
         }
     ]
 ,   "artwork":
     [   { "id"     : "cymbourine"
-        , "name"   : "SiNful Dinner"
+        , "name"   : "AdventX"
         , "authors": ["cymbourine"]
         , "day"    : 1
         , "medal"  : true
         }
     ]
 ,   "events":
-    { "1": { "id":"day1intro", "saveState":false }
+    {
     }
 ,   "arcades":[]
-,   "medals":
-    {    
-    }
+,   "medals": { }
 ,   "instruments":
     [   { "id"    : "guitar_ac"
         , "name"  : "Acoustic Guitar"
@@ -323,45 +107,5 @@
             }
         }
     ]
-,   "movies":
-    {   "snackers": 
-        { "name": "Duncan & Jones 3"
-        , "path": "https://uploads.ungrounded.net/alternate/1406000/1406135_alternate_117554.720p.mp4"
-        , "day":19
-        , "authors":
-            [ "snackers"
-            , "ninjamuffin99:music"
-            , "carmet:music"
-            , "dogl:adl_art"
-            , "irri:bg"
-            , "mkmaffo:adl_anim"
-            , "thriftman:va"
-            , "wandaboy:adl_anim"
-            , "wavetro:va"
-            ]
-        }
-    ,   "grinch":
-        { "name": "How The Grinch Stole A Bunch Of Stuff"
-        , "path": "https://uploads.ungrounded.net/alternate/1568000/1568506_alternate_118108.720p.mp4?1608865813"
-        , "day":24
-        , "authors":
-            [ "sevi:anim"
-            , "johnnyutah:anim"
-            , "rehdah:anim"
-            , "antonm:anim"
-            , "shigloo:anim"
-            , "brandybuizel:anim"
-            , "sierrasaura:anim"
-            , "jazzhat:anim"
-            , "ggloryboyy:anim"
-            , "spazkid:anim"
-            , "eok97:anim"
-            , "bassetfilms:anim"
-            , "karlestonchew:adl_art"
-            , "misterjamesss:sound"
-            , "cayfettart:bg"
-            , "tayzonday:music"
-            ]
-        }
-    }
+,   "movies": {}
 }
