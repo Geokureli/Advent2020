@@ -17,6 +17,7 @@ class Skins
 {
     static var byIndex:Array<SkinData>;
     static var sorted:Array<SkinData>;
+    static var skinOrder:Array<String> = [];
     
     static function init()
     {
@@ -28,14 +29,23 @@ class Skins
         sorted = byIndex.copy();
         for (i=>data in byIndex)
         {
-            byIndex[i].index = i;
-            byIndex[i].unlocked = #if UNLOCK_ALL_SKINS true #else false #end;
+            data.index = i;
+            data.unlocked = #if UNLOCK_ALL_SKINS true #else false #end;
+            
+            if (data.year == null)
+                data.year = 2021;
+            
+            if (data.group == null)
+                data.group = data.id;
+            
+            if (skinOrder.indexOf(data.group) == -1)
+                skinOrder.push(data.group);
             
             if (data.unlocksBy != null && !Std.is(data.unlocksBy, String))
                 throw 'Invalid unlocksBy:${data.unlocksBy} id:${data.id}';
         }
         
-        checkUnlocks(!Game.state.match(Day1Intro(_)));
+        checkUnlocks(!Game.state.match(Intro(_)));
         
         if (NGio.isLoggedIn)
         {
@@ -75,13 +85,29 @@ class Skins
         sorted.sort(function (a, b)
             {
                 if (a.unlocked == b.unlocked)
-                    return a.index - b.index;
+                {
+                    // sort unlocked by groups
+                    if (a.unlocked && a.group != b.group)
+                        return sortGroup(a.group, b.group);
+                    
+                    // sort locked by year
+                    if (!a.unlocked && a.year != b.year)
+                        return b.year - a.year;// higher years first
+                    
+                    // index is tie breaker
+                    return a.index - b.index; // lower first
+                }
                 return (a.unlocked ? 0 : 1) - (b.unlocked ? 0 : 1);
             }
         );
         
         if (showPopup && newUnlocks > 0)
             ui.SkinPopup.show(newUnlocks);
+    }
+    
+    static function sortGroup(a:String, b:String)
+    {
+        return skinOrder.indexOf(a) - skinOrder.indexOf(b);
     }
     
     static public function checkHasUnseen()
@@ -187,7 +213,8 @@ typedef SkinDataRaw =
     var fps:Null<Int>;
     var offset:Null<{x:Float, y:Float}>;
     var users:Null<Array<String>>;
-    var year:Null<Int>;
+    var year:Int;
+    var group:String;
 }
 
 typedef SkinDataPlus = SkinDataRaw &

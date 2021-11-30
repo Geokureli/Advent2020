@@ -25,6 +25,7 @@ class OutsideState extends RoomState
         background.getByName("lake").scrollFactor.y = 0.75;
         background.getByName("ice_1").scrollFactor.y = 0.75;
         background.getByName("shine").scrollFactor.y = 0.75;
+        foreground.getByName("house_2").setBottomHeight(72);
     }
     
     override function update(elapsed:Float)

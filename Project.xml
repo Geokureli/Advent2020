@@ -103,12 +103,6 @@
 	<assets path="assets/notes/guitar_el"    exclude="*.wav" library="guitar_el" />
 	<assets path="assets/notes/piano"        exclude="*.wav" library="piano" />
 	
-	<library name="night_before" preload="false" />
-	<assets path="assets/comics/night_before" rename="assets/night_before" library="night_before"/>
-	
-	<library name="santa_smackdown" preload="false" />
-	<assets path="assets/comics/santa_smackdown" rename="assets/santa_smackdown" library="santa_smackdown"/>
-	
 	<define name="ADVENT"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
