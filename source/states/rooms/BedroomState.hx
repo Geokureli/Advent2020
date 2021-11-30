@@ -169,11 +169,5 @@ class BedroomState extends RoomState
     override function update(elapsed:Float)
     {
         super.update(elapsed);
-        
-        #if debug
-        if (FlxG.keys.justPressed.H)
-            playOverlay(new states.ComicSubstate("night_before"));
-            // playOverlay(new states.ComicSubstate("santa_smackdown"));
-        #end
     }
 }

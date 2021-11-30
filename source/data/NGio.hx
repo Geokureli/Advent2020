@@ -22,6 +22,7 @@ class NGio
 	
 	inline static public var DAY_MEDAL_0 = 66221;
 	inline static public var DAY_MEDAL_0_2020 = 61304;
+
 	
 	public static var isLoggedIn(default, null):Bool = false;
 	public static var userName(default, null):String;
@@ -232,7 +233,7 @@ class NGio
 			
 			if (!medal.unlocked)
 				numMedalsLocked++;
-			else if(medal.id - DAY_MEDAL_0 <= 31 && !Save.hasSeenDay(medal.id - DAY_MEDAL_0))
+			else if(medal.id - DAY_MEDAL_0 <= 31 && medal.id - DAY_MEDAL_0 > -1 && !Save.hasSeenDay(medal.id - DAY_MEDAL_0))
 			{
 				logVerbose("seen day:" + (medal.id - DAY_MEDAL_0 + 1));
 				Save.daySeen(medal.id - DAY_MEDAL_0 + 1);

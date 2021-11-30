@@ -48,10 +48,8 @@
 ,   "events":
     {
     }
-,   "arcades":
-    [
-    ]
-,   "medals": {}
+,   "arcades":[]
+,   "medals": { }
 ,   "instruments":
     [   { "id"    : "guitar_ac"
         , "name"  : "Acoustic Guitar"
