@@ -1,13 +1,11 @@
 {   "credits":
-    { "geokureli":
-        { "proper" : "GeoKureli"
+    { "knosedoge":
+        { "proper" : "Knose"
         , "roles"  : ["pm", "Lead Programmer"]
-        , "twitter": "Geokureli"
         }
     , "brandybuizel":
         { "proper" : "BrandyBuizel"
         , "roles"  : ["pm", "Lead Artist"]
-        , "twitter": "BrandyBuizel"
         }
     , "nickconter":
         { "proper": "Nick Conter"
@@ -16,7 +14,6 @@
     , "thedyingsun":
         { "proper" : "TheDyingSun"
         , "roles"  : ["Decorator", "sprites", "adl_disk"]
-        , "twitter": "The_Dying_Sun"
         }
     , "goodl":
         { "proper": "GoodL"
@@ -36,56 +33,55 @@
         , "instagram":"midgetsausage_ng"
         , "roles": [ "adl_disk" ]
         }
-    , "albegian"        : { "proper": "AlbeGian"        , "twitter":"NextOneIs3000"  , "bandcamp":"albegian"      }
+    , "albegian"        : { "proper": "AlbeGian"        }
     , "cymbourine"      : { "proper": "Cymbourine"      }
     , "mintyeggs"       : { "proper": "MintyEggs"       }
     , "danfrombavaria"  : { "proper": "DanFromBavaria"  }
-    , "mixmuffin"       : { "proper": "Liquid head"     , "twitter":"LiquidHeaded"   }
+    , "mixmuffin"       : { "proper": "Liquid head"     }
     , "einmeister"      : { "proper": "EinMeister"      }
     , "czyszy"          : { "proper": "CzySzy"          }
     , "bub"             : { "proper": "bub"             }
     , "snackers"        : { "proper": "Snackers"        }
     , "splatterdash"    : { "proper": "SplatterDash"    }
-    , "mkmaffo"         : { "proper": "MKMaffo"         , "twitter":"MKMaffo"        }
-    , "karlestonchew"   : { "proper": "Karlestonchew"   , "twitter":"KarlestonChew"  }
-    , "knosedoge"       : { "proper": "KnoseDoge"       , "twitter":"incognitoknose" }
-    , "chrisbasso"      : { "proper": "chrisbasso"      , "twitter":"chris_griz_"    }
+    , "mkmaffo"         : { "proper": "MKMaffo"         }
+    , "karlestonchew"   : { "proper": "Karlestonchew"   }
+    , "chrisbasso"      : { "proper": "chrisbasso"      }
     , "sirlenward"      : { "proper": "SirLenward"      }
     , "shirogaia"       : { "proper": "Shiro Gaia"      }
-    , "connorgrail"     : { "proper": "Connor Grail"    , "twitter":"ConnorGrail"    }
+    , "connorgrail"     : { "proper": "Connor Grail"    }
     , "misterjamesss"   : { "proper": "James Renna"     }
     , "chdonga"         : { "proper": "Chdonga"         }
     , "hyenaedon"       : { "proper": "Hyenaedon"       }
-    , "krinkels"        : { "proper": "Krinkels"        , "twitter":"MRKrinkels"         , "instagram":"misterkrinkels", "personal":"http://krinkels.net/"}
+    , "krinkels"        : { "proper": "Krinkels"        }
     , "carmet"          : { "proper": "Carmet"          }
     , "mimny"           : { "proper": "Mimny"           }
     , "figburn"         : { "proper": "Figburn"         }
     , "octong"          : { "proper": "OctoNG"          }
-    , "mig-moog"        : { "proper": "Mig-Moog"        , "twitter":"mig_moog"       }
+    , "mig-moog"        : { "proper": "Mig-Moog"        }
     , "boomnm"          : { "proper": "Boomnm"          }
     , "tenodiboris"     : { "proper": "TenodiBoris"     }
     , "fushark"         : { "proper": "FuShark"         }
     , "snailpirate"     : { "proper": "SnailPirate"     }
     , "anarchyaxel"     : { "proper": "AnarchyAxel"     }
-    , "rgpanims"        : { "proper": "RGPAnims"        , "twitter":"RGPStudiosFTW"  }
+    , "rgpanims"        : { "proper": "RGPAnims"        }
     , "loganphresh"     : { "proper": "Logan Phresh"    }
     , "everratic"       : { "proper": "Everratic"       }
     , "camuri"          : { "proper": "Camuri"          }
     , "butzbo"          : { "proper": "Butzbo"          }
-    , "chobiluck"       : { "proper": "Chobi"           , "twitter":"ChobiSempai"    }
-    , "voicesbycorey"   : { "proper": "VoicesByCorey"   , "twitter":"VoicesByCorey"  }
+    , "chobiluck"       : { "proper": "Chobi"           }
+    , "voicesbycorey"   : { "proper": "VoicesByCorey"   }
     , "dogl"            : { "proper": "dogl"            }
     , "precipitation24" : { "proper": "Precipitation24" }
     , "wandaboy"        : { "proper": "Wandaboy"        }
     , "mismash"         : { "proper": "MisMash"         }
     , "syntrus"         : { "proper": "Syntrus"         }
-    , "toppleng"        : { "proper": "ToppleNG"        , "twitter":"HenryLogan22"   }
-    , "gallowjolt"      : { "proper": "GallowJolt"      , "twitter":"GallowJolt"     }
+    , "toppleng"        : { "proper": "ToppleNG"        }
+    , "gallowjolt"      : { "proper": "GallowJolt"      }
     , "pktoastyva"      : { "proper": "PKToastyVA"      }
     , "onishaggy"       : { "proper": "OniShaggy"       }
-    , "piesaus"         : { "proper": "PieSaus"         , "twitter":"ThePiesaus"     }
+    , "piesaus"         : { "proper": "PieSaus"         }
     , "aramortart"      : { "proper": "ARAMort"         }
-    , "circuitreats"    : { "proper": "Circuitreats"    , "twitter":"Circuitreats"   }
+    , "circuitreats"    : { "proper": "Circuitreats"    }
     , "sevi"            : { "proper": "Sevi"            }
     , "heyopc"          : { "proper": "heyopc"          }
     , "spiggygee"       : { "proper": "spiggygee"       , "twitter":"spiggygee"      , "instagram":"spiggygee" }
@@ -262,320 +258,13 @@
         , "day"    : 1
         , "medal"  : true
         }
-    ,   { "id"     : "mintyeggs"
-        , "name"   : "Christmas Campfire"
-        , "authors": ["mintyeggs"]
-        , "day"    : 2
-        , "medal"  : true
-        }
-    ,   { "id"     : "mixmuffin"
-        , "name"   : "Tanks Giving"
-        , "authors": ["mixmuffin"]
-        , "day"    : 3
-        , "ext"    : "jpg"
-        , "medal"  : true
-        }
-    ,   { "id"     : "einmeister"
-        , "name"   : "New Grounds, New Wheels"
-        , "authors": ["einmeister"]
-        , "day"    : 4
-        , "medal"  : true
-        , "preload": true
-        }
-    ,   { "id"     : "bub"
-        , "name"   : "NOLLAIG SHONA"
-        , "authors": ["bub"]
-        , "day"    : 5
-        , "medal"  : true
-        }
-    ,   { "id"     : "snackers"
-        , "name"   : null
-        , "authors": ["snackers"]
-        , "day"    : 6
-        , "medal"  : true
-        }
-    ,   { "id"     : "mkmaffo"
-        , "name"   : "Holy Nights Funkin!"
-        , "authors": ["mkmaffo"]
-        , "day"    : 7
-        , "medal"  : true
-        }
-    ,   { "id"       : "karlestonchew"
-        , "name"     : "The Pico Express"
-        , "authors"  : ["karlestonchew"]
-        , "day"      : 8
-        , "medal"    : true
-        , "antiAlias": false
-        }
-    ,   { "id"     : "sirlenward"
-        , "name"   : "Funky Mischief"
-        , "authors": ["sirlenward"]
-        , "day"    : 9
-        , "medal"  : true
-        , "preload": true
-        }
-    ,   { "id"     : "shirogaia"
-        , "name"   : "Friday Nite Build Date"
-        , "authors": ["shirogaia"]
-        , "day"    : 10
-        , "medal"  : true
-        }
-    ,   { "id"       : "chdonga"
-        , "name"     : "Santa Clauminid"
-        , "authors"  : ["chdonga"]
-        , "day"      : 11
-        , "medal"    : true
-        , "antiAlias": false
-        }
-    ,   { "id"     : "nickconter"
-        , "name"   : "Quadruple Date on Christmas"
-        , "authors": ["nickconter"]
-        , "day"    : 12
-        , "medal"  : true
-        }
-    ,   { "id"     : "midgetsausage"
-        , "name"   : "The Last Tankmas Supper"
-        , "authors": ["midgetsausage"]
-        , "day"    : 13
-        , "medal"  : true
-        }
-    ,   { "id"     : "krinkels"
-        , "name"   : "nevadean christmas tree"
-        , "authors": ["krinkels"]
-        , "day"    : 14
-        , "medal"  : true
-        , "preload": true
-        }
-    ,   { "id"     : "mimny"
-        , "name"   : "Playful Spirit"
-        , "authors": ["mimny"]
-        , "day"    : 15
-        , "ext"    : "jpg"
-        , "medal"  : true
-        }
-    ,   { "id"     : "figburn"
-        , "name"   : "Playful Spirit"
-        , "authors": ["figburn"]
-        , "day"    : 16
-        , "medal"  : true
-        }
-    ,   { "id"     : "octong"
-        , "name"   : "A very Boot Rot Christmas"
-        , "authors": ["octong"]
-        , "day"    : 17
-        , "medal"  : true
-        }
-    ,   { "id"     : "boomnm"
-        , "name"   : "Cold War"
-        , "authors": ["boomnm"]
-        , "day"    : 18
-        , "medal"  : true
-        }
-    ,   { "id"     : "fushark"
-        , "name"   : "Duncan & Jones: Cancel Christmas"
-        , "authors": ["fushark"]
-        , "day"    : 19
-        , "medal"  : true
-        }
-    ,   { "id"     : "snailpirate"
-        , "name"   : "The Coziest Of NG Christmas Parties"
-        , "authors": ["snailpirate"]
-        , "day"    : 20
-        , "medal"  : true
-        }
-    ,   { "id"     : "rgpanims"
-        , "name"   : "A True Christmas Criminal"
-        , "authors": ["rgpanims"]
-        , "day"    : 21
-        , "medal"  : true
-        }
-    ,   { "id"     : "loganphresh"
-        , "name"   : "Sex and Candy"
-        , "authors": ["loganphresh"]
-        , "day"    : 22
-        , "medal"  : true
-        , "sound"  : "sexandcandy.mp3"
-        }
-    ,   { "id"     : "camuri"
-        , "name"   : "Holiday Lobotomy"
-        , "authors": ["camuri"]
-        , "day"    : 23
-        , "medal"  : true
-        }
-    ,   { "id"     : "chobiluck"
-        , "name"   : "Happy Holidays 2020"
-        , "authors": ["chobiluck"]
-        , "day"    : 24
-        , "medal"  : true
-        }
-    ,   { "id"     : "mismash"
-        , "name"   : "NGfestival"
-        , "authors": ["mismash"]
-        , "day"    : 25
-        , "medal"  : false
-        }
-    ,   { "id"     : "wandaboy"
-        , "name"   : "dope naenae swag"
-        , "authors": ["wandaboy"]
-        , "day"    : 25
-        , "medal"  : false
-        }
-    ,   { "id"     : "midgetsausage2"
-        , "name"   : "DEBUG TEXT"
-        , "authors": ["midgetsausage"]
-        , "day"    : 25
-        , "ext"    : "jpeg"
-        , "medal"  : false
-        }
-    ,   { "id"     : "thedyingsun"
-        , "name"   : "Thank you NG"
-        , "authors": ["thedyingsun"]
-        , "day"    : 25
-        , "ext"    : "jpg"
-        , "medal"  : true
-        }
-    ,   { "id"       : "toppleng"
-        , "name"     : "Topple says merry Christmas"
-        , "authors"  : ["toppleng"]
-        , "day"      : 26
-        , "medal"    : true
-        , "animation": { "frames":2, "fps":2 }
-        }
-    ,   { "id"       : "gallowjolt"
-        , "name"     : "Ritzmas"
-        , "authors"  : ["gallowjolt"]
-        , "day"      : 27
-        , "medal"    : true
-        , "animation": { "frames":30, "fps":10, "columns":5 }
-        , "antiAlias": false
-        }
-    ,   { "id"     : "onishaggy"
-        , "name"   : "date night 99"
-        , "authors": ["onishaggy"]
-        , "day"    : 28
-        , "medal"  : true
-        }
-    ,   { "id"     : "night_before"
-        , "name"   : "Twas the Night Before Christmas"
-        , "authors": ["voicesbycorey:va", "mrshmoods:art", "connorgrail:music", "dogl:adl_va"]
-        , "day"    : 24
-        , "comic"  :
-            { "pages"    : 11
-            , "audioPath": "audio.mp3"
-            , "dataPath" : "data.json"
-            }
-        , "medal"  : false
-        , "comments": "this is listed after day 28 because I added comic stuff later and moving it would mess up the save indices"
-        }
-    ,   { "id"     : "santa_smackdown"
-        , "name"   : "Santa Smackdown"
-        , "authors": ["piesaus"]
-        , "day"    : 29
-        , "comic"  : { "pages": 34 }
-        , "medal"  : true
-        }
-    ,   { "id"     : "circuitreats"
-        , "name"   : "Tankmen Celebration"
-        , "authors": ["circuitreats"]
-        , "day"    : 30
-        , "medal"  : true
-        }
-    ,   { "id"     : "sevi"
-        , "name"   : "THE ELECTRIC WIZARD and THE COSMIC SHREDDER"
-        , "authors": ["sevi"]
-        , "day"    : 31
-        , "medal"  : true
-        }
-    ,   { "id"     : "spiggygee"
-        , "name"   : "Alien Snowminid"
-        , "authors": ["spiggygee"]
-        , "day"    : 32
-        , "medal"  : false
-        }
-	,   { "id"     : "brandybuizel"
-        , "name"   : "Christmas Time with Friends"
-        , "authors": ["brandybuizel"]
-        , "day"    : 32
-        , "medal"  : true
-        }
     ]
 ,   "events":
     { "1": { "id":"day1intro", "saveState":false }
     }
-,   "arcades":
-    [   { "id"     : "digging"
-        , "name"   : "Festive Forage"
-        , "authors": ["knosedoge:code", "chdonga:art", "gallowjolt:art", "splatterdash:music"]
-        , "day"    : 8
-        , "ngId"   : 1556969
-        , "mobile" : false
-        , "type"   : "overlay"
-        }
-    ,   { "id"     : "horse"
-        , "name"   : "Pin the Tail"
-        , "authors": 
-            [ "nickconter:Birthday Boy"
-            , "geokureli:code"
-            , "midgetsausage:art"
-            , "brandybuizel:design"
-            , "danfrombavaria:music"
-            , "connorgrail:music"
-            ]
-        , "day"    : 9
-        , "mobile" : false
-        , "type"   : "overlay"
-        }
-    ,   { "id"     : "2019"
-        , "name"   : "Christmas ADVENTure 2019"
-        , "authors": null
-        , "day"    : 10
-        , "type"   : "external"
-        }
-    ,   { "id"     : "2018"
-        , "name"   : "Christmas ADVENTure 2018"
-        , "authors": 
-            [ "ninjamuffin99"
-            , "brandybuizel"
-            ]
-        , "day"    : 10
-        , "type"   : "external"
-        }
-    ,   { "id"     : "positivity"
-        , "name"   : "Think Positive"
-        , "authors": ["mig-moog"]
-        , "day"    : 18
-        , "mobile" : false
-        , "type"   : "overlay"
-        , "camera" : { "width":192, "height": 108, "zoom": 2 }
-        }
-    ,   { "id"     : "chimney"
-        , "name"   : "Holiday Hominid Drop"
-        , "authors": ["brandybuizel:design", "knosedoge:code", "danfrombavaria:music"]
-        , "day"    : 29
-        , "mobile" : false
-        , "medal"  : false
-        , "type"   : "overlay"
-        , "camera" : { "width":240, "height": 270 }
-        }
-    ,   { "id"     : "butzbo"
-        , "name"   : "Music Box"
-        , "authors": ["butzbo:animation", "connorgrail:music", "geokureli:code"]
-        , "day"    : 20
-        , "mobile" : true
-        , "medal"  : true
-        , "type"   : "state"
-        , "cabinet": false
-        }
-    ]
+,   "arcades":[]
 ,   "medals":
-    { "digging"   : 61364
-    , "horse"     : 61392
-    , "lucia"     : 61514
-    , "cheese"    : 61555
-    , "positivity": 61559
-    , "movie"     : 61568
-    , "butzbo"    : 61560
-    , "credits"   : 61691
+    {    
     }
 ,   "instruments":
     [   { "id"    : "guitar_ac"

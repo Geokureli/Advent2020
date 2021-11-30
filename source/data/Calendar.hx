@@ -8,8 +8,8 @@ class Calendar
      * NOTE: you should only use LIVE to test medal unlocks
      */
     static final GAME_DATE:GameDate
-        = SERVER;
-        // = DAY(1, DEBUG);
+        // = SERVER;
+        = DAY(1, DEBUG);
         // = STRING("2021-12-04", DEBUG);
     #end
     static public var isDebugDay = false;
