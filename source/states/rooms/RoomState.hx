@@ -179,6 +179,7 @@ class RoomState extends OgmoState
     {
         props = getByName("Props");
         foreground = getByName("Foreground");
+        foreground.forEach(x -> x.setBottomHeight(32));
         background = getByName("Background");
         add(topGround);
         topGround.add(infoBoxGroup);
@@ -186,18 +187,6 @@ class RoomState extends OgmoState
         geom = getByName("Geom");
         colliders.add(geom);
         add(geom);
-        
-        initLuciaBuns();
-        
-        cheese = background.getByName("cheese");
-        if (cheese == null)
-            cheese = foreground.getByName("cheese");
-        
-        if (cheese != null && NGio.hasMedal(61555))
-        {
-            cheese.kill();
-            cheese = null;
-        }
         
         for (teleport in teleports.members)
         {
