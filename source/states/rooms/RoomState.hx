@@ -205,6 +205,7 @@ class RoomState extends OgmoState
         player = new InputPlayer();
         player.x = spawnTeleport.x + (spawnTeleport.width - player.width) / 2;
         player.y = spawnTeleport.y + (spawnTeleport.height - player.height) / 2;
+        if(player.x < FlxG.worldBounds.width/2) player.flipX = true;
         player.last.set(player.x, player.y);
         foreground.add(player);
         
