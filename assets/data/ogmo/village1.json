@@ -30075,6 +30075,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"open": true}
+        },
+        {
+          "name": "Teleport",
+          "id": 4,
+          "_eid": "58765051",
+          "x": 592,
+          "y": 1232,
+          "width": 8,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "", "target": "", "enabled": true}
         }
       ]
     },

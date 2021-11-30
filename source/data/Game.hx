@@ -26,10 +26,10 @@ class Game
     
     public static var initialRoom(default, null) = 
         #if debug
-        RoomName.Outside;
+        RoomName.Village;
         // RoomName.PicosShop + "." + RoomName.Village;
         #else
-        RoomName.Outside;
+        RoomName.Village;
         #end
     
     static function init():Void
@@ -43,13 +43,6 @@ class Game
         #end
         
         roomTypes = [];
-        // roomTypes[Bedroom] = BedroomState.new;
-        // roomTypes[Hallway] = HallwayState.new;
-        // roomTypes[Entrance] = EntranceState.new;
-        // roomTypes[Arcade] = ArcadeState.new;
-        // roomTypes[Studio] = StudioState.new;
-        // roomTypes[Movie] = MovieState.new;
-        // roomTypes[Credits] = CreditsState.new;
         roomTypes[Outside] = OutsideState.new;
         roomTypes[PathLeft] = PathLeftState.new;
         roomTypes[PathCenter] = PathCenterState.new;
@@ -59,8 +52,9 @@ class Game
         
         arcadeTypes = [];
 
-        if(NGio.hasMedal(66220) == false){
+        if(NGio.hasMedal(66220) == true){
             state = Intro(Started);
+            initialRoom = RoomName.Outside;
         }
         
         // if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
