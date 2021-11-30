@@ -311,6 +311,7 @@
     , "proper": "Ninja Muffin"
     , "description": "Cameron Muffin | Game Dev"
     , "unlocksBy": null
+    , "group": "devs"
     , "users": ["ninjamuffin99"]
     }
 ,   { "id": "boyfriend"
@@ -318,6 +319,7 @@
     , "description": "The boyfriend from the number one rated rhythm game of all time on Newgrounds, Friday Night Funkin'"
     , "unlocksBy": "day:11"
     , "users": ["ninjamuffin99", "phantomarcade", "evilsk8r", "kawaisprite", "geokureli", "brandybuizel"]
+    , "group": "funkin"
     , "year": 2020
     }
 ,   { "id": "drbees"
@@ -347,6 +349,7 @@
     , "description": "You better pronounce it \"Qu-No-Se\" or he'll cut you with a Qu-nife"
     , "unlocksBy": null
     , "users": ["knosedoge"]
+    , "group": "devs"
     }
 ,   { "id": "satina"
     , "proper": "Satina"
@@ -360,6 +363,7 @@
     , "description": "A psychopathic mercenary gunman on a take-no-prisoners mission to wipe out an all-powerful Agency..."
     , "unlocksBy": "medal:14"
     , "users": ["krinkels", "AlmightyHans"]
+    , "group": "madness"
     , "year": 2020
     }
 ,   { "id": "madness_auditor"
@@ -368,6 +372,7 @@
     , "unlocksBy": "supporter"
     , "frames": 3
     , "users": ["krinkels"]
+    , "group": "madness"
     , "year": 2020
     }
 ,   { "id": "alan"
