@@ -58,6 +58,10 @@ class Game
         roomTypes[PicosShop] = PicosShopState.new;
         
         arcadeTypes = [];
+
+        if(NGio.hasMedal(66220) == false){
+            state = Intro(Started);
+        }
         
         // if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
         //     state = LuciaDay(Started);
