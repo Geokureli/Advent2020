@@ -25,7 +25,12 @@ class Game
     inline static function get_disableShaders() return !allowShaders;
     
     public static var initialRoom(default, null) = 
+        #if debug
         RoomName.Outside;
+        // RoomName.PicosShop + "." + RoomName.Village;
+        #else
+        RoomName.Outside;
+        #end
     
     static function init():Void
     {
@@ -38,14 +43,14 @@ class Game
         #end
         
         roomTypes = [];
-        roomTypes[Bedroom] = BedroomState.new;
-        roomTypes[Hallway] = HallwayState.new;
-        roomTypes[Entrance] = EntranceState.new;
+        // roomTypes[Bedroom] = BedroomState.new;
+        // roomTypes[Hallway] = HallwayState.new;
+        // roomTypes[Entrance] = EntranceState.new;
+        // roomTypes[Arcade] = ArcadeState.new;
+        // roomTypes[Studio] = StudioState.new;
+        // roomTypes[Movie] = MovieState.new;
+        // roomTypes[Credits] = CreditsState.new;
         roomTypes[Outside] = OutsideState.new;
-        roomTypes[Arcade] = ArcadeState.new;
-        roomTypes[Studio] = StudioState.new;
-        roomTypes[Movie] = MovieState.new;
-        roomTypes[Credits] = CreditsState.new;
         roomTypes[PathLeft] = PathLeftState.new;
         roomTypes[PathCenter] = PathCenterState.new;
         roomTypes[PathRight] = PathRightState.new;
@@ -54,10 +59,10 @@ class Game
         
         arcadeTypes = [];
         
-        if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
-            state = LuciaDay(Started);
-        else if (Save.noPresentsOpened())
-            state = Day1Intro(Started);
+        // if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
+        //     state = LuciaDay(Started);
+        // else if (Save.noPresentsOpened())
+        //     state = Day1Intro(Started);
     }
     
     static public function goToRoom(target:String):Void
