@@ -52,7 +52,7 @@ class Game
         
         arcadeTypes = [];
 
-        if(NGio.hasMedal(66220) == true){
+        if(NGio.hasMedal(66220) == false){
             state = Intro(Started);
             initialRoom = RoomName.Outside;
         }

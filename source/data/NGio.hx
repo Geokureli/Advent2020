@@ -22,6 +22,7 @@ class NGio
 	
 	inline static public var DAY_MEDAL_0 = 66221;
 	inline static public var DAY_MEDAL_0_2020 = 61304;
+	inline static public var WELCOME_TO_THE_VILLAGE_MEDAL = 66220;
 
 	
 	public static var isLoggedIn(default, null):Bool = false;

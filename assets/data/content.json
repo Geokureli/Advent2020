@@ -49,7 +49,9 @@
     {
     }
 ,   "arcades":[]
-,   "medals": { }
+,   "medals": {
+        "welcome_to_the_village": 66220
+    }
 ,   "instruments":
     [   { "id"    : "guitar_ac"
         , "name"  : "Acoustic Guitar"
