@@ -20,11 +20,11 @@ class HallwayState extends RoomState
     override function create()
     {
         #if debug
-        if(Game.state.match(Day1Intro(Started)))
-            Game.state = Day1Intro(Dressed);
+        if(Game.state.match(Intro(Started)))
+            Game.state = Intro(Dressed);
         #end
         
-        if(Game.state.match(Day1Intro(Dressed)))
+        if(Game.state.match(Intro(Dressed)))
             forceDay = 1;
         
         super.create();
@@ -38,7 +38,7 @@ class HallwayState extends RoomState
         {
             switch(Game.state)
             {
-                case Day1Intro(Dressed):
+                case Intro(Dressed):
                 {
                     var floor = getDaySprite(background, "hallway");
                     floor.setBottomHeight(floor.frameHeight);
@@ -52,7 +52,7 @@ class HallwayState extends RoomState
                     
                     tweenLightRadius(1, 0, 60, 0.35, { startDelay:1.0, onComplete:(_)->player.active = true });
                 }
-                case Day1Intro(Hallway):
+                case Intro(Hallway):
                 {
                     var floor = getDaySprite(background, "hallway");
                     floor.setBottomHeight(floor.frameHeight);
@@ -67,8 +67,8 @@ class HallwayState extends RoomState
                 case _:
             }
         }
-        else if (Game.state.match(Day1Intro(Dressed)))
-            Game.state = Day1Intro(Hallway);
+        else if (Game.state.match(Intro(Dressed)))
+            Game.state = Intro(Hallway);
     }
     
     function tweenLightRadius(light:Int, from:Float, to:Float, duration:Float, options:TweenOptions)
@@ -84,7 +84,7 @@ class HallwayState extends RoomState
     
     override function initClient()
     {
-        if(!Game.state.match(Day1Intro(_)))
+        if(!Game.state.match(Intro(_)))
             super.initClient();
     }
     
@@ -94,7 +94,7 @@ class HallwayState extends RoomState
         
         switch(Game.state)
         {
-            case Day1Intro(eventState):
+            case Intro(eventState):
             {
                 if (Game.allowShaders)
                 {
@@ -102,7 +102,7 @@ class HallwayState extends RoomState
                     
                     if (eventState == Dressed && player.x > shade.shadow.getLightX(2))
                     {
-                        Game.state = Day1Intro(Hallway);
+                        Game.state = Intro(Hallway);
                         for (i in 0...4)
                             tweenLightRadius(i + 2, 0, 80, 0.6, { startDelay:i * 0.75 });
                     }

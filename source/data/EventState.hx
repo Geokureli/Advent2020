@@ -3,11 +3,11 @@ package data;
 enum EventState
 {
     NoEvent;
-    Day1Intro(event:Day1IntroState);
+    Intro(event:IntroState);
     LuciaDay(event:LuciaDayState);
 }
 
-enum Day1IntroState
+enum IntroState
 {
     Started;
     Dressed;

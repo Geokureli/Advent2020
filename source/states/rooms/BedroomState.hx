@@ -48,7 +48,7 @@ class BedroomState extends RoomState
             return note;
         }
         
-        if(Game.state.match(Day1Intro(Started)))
+        if(Game.state.match(Intro(Started)))
             forceDay = 1;
         
         super.create();
@@ -75,7 +75,7 @@ class BedroomState extends RoomState
         if (!Skins.checkHasUnseen())
             dresserNotif.kill();
         
-        if(Game.state.match(Day1Intro(Started)))
+        if(Game.state.match(Intro(Started)))
         {
             door.close();
             addHoverTextTo(door, "Get dressed first");
@@ -151,16 +151,16 @@ class BedroomState extends RoomState
         }
         openSubState(dressUp);
         
-        if(Game.state.match(Day1Intro(Started)))
+        if(Game.state.match(Intro(Started)))
         {
             removeHoverFrom(door);
-            Game.state = Day1Intro(Dressed);
+            Game.state = Intro(Dressed);
         }
     }
     
     override function activateTeleport(target:String)
     {
-        if(Game.state.match(Day1Intro(Started)))
+        if(Game.state.match(Intro(Started)))
             return;
         
         super.activateTeleport(target);

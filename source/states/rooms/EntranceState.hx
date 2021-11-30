@@ -33,13 +33,13 @@ class EntranceState extends RoomState
         super.create();
         
         #if debug
-        if(Game.state.match(Day1Intro(Started)|Day1Intro(Dressed)))
-            Game.state = Day1Intro(Hallway);
+        if(Game.state.match(Intro(Started)|Intro(Dressed)))
+            Game.state = Intro(Hallway);
         #end
         
         switch(Game.state)
         {
-            case Day1Intro(Hallway):
+            case Intro(Hallway):
                 if (Game.allowShaders)
                     showIntroCutscene();
                 else
@@ -193,7 +193,7 @@ class EntranceState extends RoomState
     {
         super.onAvatarAdd(data, key);
         
-        if (ghostsById.exists(key) && Game.state.match(Day1Intro(_)))
+        if (ghostsById.exists(key) && Game.state.match(Intro(_)))
             ghostsById[key].visible = false;
     }
     
@@ -215,7 +215,7 @@ class EntranceState extends RoomState
         
         switch(Game.state)
         {
-            case Day1Intro(_):
+            case Intro(_):
                 if (Game.allowShaders)
                     shade.shadow.setLightPos(1, player.x + player.width / 2, player.y + player.height / 2);
             case _:

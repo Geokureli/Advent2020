@@ -62,7 +62,7 @@ class Game
         // if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
         //     state = LuciaDay(Started);
         // else if (Save.noPresentsOpened())
-        //     state = Day1Intro(Started);
+        //     state = Intro(Started);
     }
     
     static public function goToRoom(target:String):Void
@@ -88,7 +88,7 @@ class Game
         
         switch (Game.state)
         {
-            case Day1Intro(Started):
+            case Intro(Started):
             default: Content.playTodaysSong();
         }
         
