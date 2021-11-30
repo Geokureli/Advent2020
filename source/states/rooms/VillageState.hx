@@ -18,6 +18,11 @@ class VillageState extends RoomState
         super.create();
         
         add(new vfx.Snow(40));
+
+        if(Game.state.match(Intro(Started))){
+            Game.state = Intro(Village);
+            showIntroCutscene();
+        }
     }
     
     override function initEntities()
@@ -28,5 +33,10 @@ class VillageState extends RoomState
     override function update(elapsed:Float)
     {
         super.update(elapsed);
+    }
+
+    private function showIntroCutscene(){
+        var cam = FlxG.camera;
+        Manifest.playMusic("midgetsausage");
     }
 }
