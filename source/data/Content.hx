@@ -300,7 +300,7 @@ class Content
                 errors.push(Warning(msg));
         }
         
-        var presentIds = getEntityIds("entrance", "Present");
+        var presentIds = getEntityIds("village", "Present");
         var daysFound = new Array();
         for (art in artwork)
         {
@@ -327,7 +327,7 @@ class Content
                 if (!Manifest.exists(art.presentPath, IMAGE))
                     addError('Missing ${art.presentPath}');
                 if (!presentIds.contains(art.id))
-                    addError('Missing present in entrance, id:${art.id}');
+                    addError('Missing present in village, id:${art.id}');
                 if (art.authors == null)
                     addError('Missing artwork authors id:${art.id}');
                 for (author in art.authors)
@@ -335,8 +335,9 @@ class Content
                     author = getUserId(author);
                     if (!creditsExists(author))
                         addError('Missing credits, author:$author');
-                    else if (!Manifest.exists(credits[author].portraitPath, IMAGE))
-                        addWarning('Missing portrait, author:$author');
+                    // no portraits in 2021, yet
+                    // else if (!Manifest.exists(credits[author].portraitPath, IMAGE))
+                    //     addWarning('Missing portrait, author:$author');
                 }
             }
         }
@@ -357,8 +358,8 @@ class Content
             {
                 if (!Manifest.exists(song.path, MUSIC))
                     addError('Missing ${song.path}');
-                if (!Manifest.exists(song.samplePath, MUSIC))
-                    addError('Missing ${song.samplePath}');
+                // if (!Manifest.exists(song.samplePath, MUSIC))
+                //     addError('Missing ${song.samplePath}');
                 if (!Manifest.exists(song.sideDiskPath, IMAGE))
                     addWarning('Missing ${song.sideDiskPath}');
                 if (!Manifest.exists(song.frontDiskPath, IMAGE))
@@ -370,8 +371,9 @@ class Content
                     author = getUserId(author);
                     if (!creditsExists(author))
                         addError('Missing credits, author:$author');
-                    else if (!Manifest.exists(credits[author].portraitPath, IMAGE))
-                        addWarning('Missing portrait, author:$author');
+                    // no portraits in 2021, yet
+                    // else if (!Manifest.exists(credits[author].portraitPath, IMAGE))
+                    //     addWarning('Missing portrait, author:$author');
                 }
             }
         }
@@ -418,7 +420,7 @@ class Content
         var day = Calendar.day;
         
         var levelPath = 'assets/data/ogmo/$room$day.json';
-        while(day-- > 0 && !Manifest.exists(levelPath))
+        while(!Manifest.exists(levelPath) && day-- > 0)
             levelPath = 'assets/data/ogmo/$room$day.json';
         
         if (day <= 0)

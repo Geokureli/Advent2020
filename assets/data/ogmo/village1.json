@@ -30053,6 +30053,28 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "", "target": "picos-shop", "enabled": true}
+        },
+        {
+          "name": "Present",
+          "id": 2,
+          "_eid": "75464384",
+          "x": 592,
+          "y": 832,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "cymbourine"}
+        },
+        {
+          "name": "Door",
+          "id": 3,
+          "_eid": "12751569",
+          "x": 1003,
+          "y": 860,
+          "originX": 0,
+          "originY": 0,
+          "values": {"open": true}
         }
       ]
     },
@@ -30066,8 +30088,7 @@
       "gridCellsX": 150,
       "gridCellsY": 200,
       "decals": [
-        {"x": 608, "y": 640, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree1.png", "originX": 0.5, "originY": 0.5},
-        {"x": 1024, "y": 888, "scaleX": 1, "scaleY": 1, "texture": "shared/door_ogmo.png", "originX": 0.5, "originY": 0.5}
+        {"x": 608, "y": 640, "scaleX": 1, "scaleY": 1, "texture": "foyer/tree1.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     },
