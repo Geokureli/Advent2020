@@ -73,7 +73,22 @@
         {"x": 576, "y": 344, "scaleX": 1, "scaleY": 1, "texture": "outside/tree1.png", "originX": 0.5, "originY": 0.5},
         {"x": 112, "y": 280, "scaleX": 1, "scaleY": 1, "texture": "outside/snowTank.png", "originX": 0.5, "originY": 0.5},
         {"x": 336, "y": 168, "scaleX": 1, "scaleY": 1, "texture": "outside/house_2.png", "originX": 0.5, "originY": 0.5},
-        {"x": 416, "y": 352, "scaleX": 1, "scaleY": 1, "texture": "outside/snowFort.png", "originX": 0.5, "originY": 0.5}
+        {"x": 416, "y": 352, "scaleX": 1, "scaleY": 1, "texture": "outside/snowFort.png", "originX": 0.5, "originY": 0.5},
+        {"x": 576, "y": 344, "scaleX": 1, "scaleY": 1, "texture": "outside/tree.png", "originX": 0.5, "originY": 0.5},
+        {"x": 472, "y": 376, "scaleX": 1, "scaleY": 1, "texture": "outside/tree1.png", "originX": 0.5, "originY": 0.5},
+        {"x": 456, "y": 408, "scaleX": 1, "scaleY": 1, "texture": "outside/tree6.png", "originX": 0.5, "originY": 0.5},
+        {"x": 504, "y": 448, "scaleX": 1, "scaleY": 1, "texture": "outside/tree6.png", "originX": 0.5, "originY": 0.5},
+        {"x": 176, "y": 392, "scaleX": 1, "scaleY": 1, "texture": "outside/tree3.png", "originX": 0.5, "originY": 0.5},
+        {"x": 32, "y": 304, "scaleX": 1, "scaleY": 1, "texture": "outside/tree.png", "originX": 0.5, "originY": 0.5},
+        {"x": 112, "y": 400, "scaleX": 1, "scaleY": 1, "texture": "outside/tree2.png", "originX": 0.5, "originY": 0.5},
+        {"x": 184, "y": 440, "scaleX": 1, "scaleY": 1, "texture": "outside/tree6.png", "originX": 0.5, "originY": 0.5},
+        {"x": 144, "y": 440, "scaleX": 1, "scaleY": 1, "texture": "outside/tree5.png", "originX": 0.5, "originY": 0.5},
+        {"x": 32, "y": 464, "scaleX": 1, "scaleY": 1, "texture": "outside/tree4.png", "originX": 0.5, "originY": 0.5},
+        {"x": 88, "y": 496, "scaleX": 1, "scaleY": 1, "texture": "outside/tree2.png", "originX": 0.5, "originY": 0.5},
+        {"x": 432, "y": 456, "scaleX": 1, "scaleY": 1, "texture": "outside/tree4.png", "originX": 0.5, "originY": 0.5},
+        {"x": 488, "y": 488, "scaleX": 1, "scaleY": 1, "texture": "outside/tree1.png", "originX": 0.5, "originY": 0.5},
+        {"x": 544, "y": 480, "scaleX": 1, "scaleY": 1, "texture": "outside/tree.png", "originX": 0.5, "originY": 0.5},
+        {"x": 192, "y": 512, "scaleX": 1, "scaleY": 1, "texture": "outside/tree2.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     },
