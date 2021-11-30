@@ -14,6 +14,8 @@ import openfl.display.Stage;
 import flixel.FlxG;
 import flixel.util.FlxSignal;
 
+import haxe.PosInfos;
+
 class NGio
 {
 	inline static var DEBUG_SESSION = #if NG_DEBUG true #else false #end;
@@ -226,13 +228,13 @@ class NGio
 		var numMedalsLocked = 0;
 		for (medal in NG.core.medals)
 		{
-			log('${medal.unlocked ? "unlocked" : "locked  "} - ${medal.name}');
+			logVerbose('${medal.unlocked ? "unlocked" : "locked  "} - ${medal.name}');
 			
 			if (!medal.unlocked)
 				numMedalsLocked++;
 			else if(medal.id - DAY_MEDAL_0 <= 31 && !Save.hasSeenDay(medal.id - DAY_MEDAL_0))
 			{
-				log("seen day:" + (medal.id - DAY_MEDAL_0 + 1));
+				logVerbose("seen day:" + (medal.id - DAY_MEDAL_0 + 1));
 				Save.daySeen(medal.id - DAY_MEDAL_0 + 1);
 			}
 			
@@ -313,25 +315,28 @@ class NGio
 		var ng2020:NG = null;
 		var loggedIn:()->Void = null;
 		
-		function callbackAndDestroy(?error:Error)
+		function callbackAndDestroy(?error:String)
 		{
 			if (error != null)
-				log('Error fetching 2020 medals: ${error.message}');
+				log('Error fetching 2020 medals: $error');
 			
 			ng2020.onLogin.remove(loggedIn);
-			if (ng2020.loggedIn)
-				ng2020.logOut();
 			callback(medals2020);
 		}
 		
 		loggedIn = function ()
 		{
-			log("2020 session successful, loading medals");
+			if (NG.core.user.id != ng2020.user.id)
+			{
+				callbackAndDestroy('Invalid user:${ng2020.user.id} expected:${NG.core.user.id}');
+				return;
+			}
+			
+			logVerbose("2020 session successful, loading medals");
 			ng2020.requestMedals
 			(
 				function onSucceed()
 				{
-					log("2020 medals loaded");
 					medals2020 = new Map();
 					for (id=>medal in ng2020.medals)
 					{
@@ -339,19 +344,20 @@ class NGio
 						if (medal.unlocked && id - DAY_MEDAL_0_2020 < 32)
 							daysSeen2020++;
 					}
+					log('2020 medals loaded, days seen: $daysSeen2020');
 					
 					callbackAndDestroy();
 				},
-				callbackAndDestroy
+				(e)->callbackAndDestroy(e.message)
 			);
 		}
 		
-		ng2020 = new NG(APIStuff.APIID_2020, sessionId, callbackAndDestroy);
+		ng2020 = new NG(APIStuff.APIID_2020, sessionId, (e)->callbackAndDestroy(e.message));
 		ng2020.onLogin.add(loggedIn);
 	}
 	#end
 	
-	static public function logEvent(event:NgEvent, once = false)
+	static public function logEvent(event:NgEvent, once = false, ?pos:PosInfos)
 	{
 		#if !(NG_DEBUG_API_KEY)
 		if (loggedEvents.contains(event))
@@ -362,24 +368,29 @@ class NGio
 			loggedEvents.push(event);
 		
 		var platform = FlxG.onMobile ? "_mobile" : "_desktop";
-		log("logging event: " + event + platform);
+		log("logging event: " + event + platform, pos);
 		NG.core.calls.event.logEvent(event + platform).send();
 		#end
 	}
 	
-	static public function logEventOnce(event:NgEvent)
+	static public function logEventOnce(event:NgEvent, ?pos:PosInfos)
 	{
-		logEvent(event, true);
+		logEvent(event, true, pos);
 	}
 	
-	inline static function logDebug(msg:String)
+	inline static function logVerbose(msg:String, ?pos:PosInfos)
 	{
-		#if debug trace(msg); #end
+		#if NG_VERBOSE log(msg, pos); #end
 	}
 	
-	inline static function log(msg:String)
+	inline static function logDebug(msg:String, ?pos:PosInfos)
 	{
-		#if NG_LOG trace(msg); #end
+		#if debug log(msg, pos); #end
+	}
+	
+	inline static function log(msg:String, ?pos:PosInfos)
+	{
+		#if NG_LOG haxe.Log.trace(msg, pos); #end
 	}
 }
 

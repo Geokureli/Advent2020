@@ -51,7 +51,8 @@
 	<!-- <define name="USE_LOCAL_SERVER" if="debug"/> -->
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
-	<!-- <define name="LOAD_2020_SKINS"/> -->
+	<define name="LOAD_2020_SKINS"/>
+	<!-- <define name="SHOW_2020_SKINS_WARNING" if="LOAD_2020_SKINS"/> -->
 	<!-- <define name="CLEAR_SAVE" if="debug"/> -->
 	<!-- <define name="DISABLE_SAVE" if="debug"/> -->
 	<!-- <define name="FORGET_INSTRUMENT" if="debug"/> -->
