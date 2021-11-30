@@ -27,7 +27,7 @@ class PicosShopState extends RoomState
     {
         super.initEntities();
         
-        changingRoom = foreground.getByName("changing-room");
+        changingRoom = foreground.getByName("changing-room-door");
         changingRoom.setBottomHeight(16);
         addHoverTextTo(changingRoom, "CHANGE CLOTHES", onOpenDresser);
         changingRoomNotif = new Notif();

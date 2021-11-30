@@ -46,6 +46,10 @@ class DressUpSubstate extends flixel.FlxSubState
     override function create()
     {
         super.create();
+
+        camera = new FlxCamera().copyFrom(camera);
+        camera.bgColor = 0x0;
+        FlxG.cameras.add(camera, false);
         
         var bg = new FlxSprite();
         add(bg);
@@ -236,6 +240,12 @@ class DressUpSubstate extends flixel.FlxSubState
             Save.setSkin(currentSkin.index);
             close();
         }
+    }
+
+    override function close()
+    {
+        FlxG.cameras.remove(camera);
+        super.close();
     }
 }
 
