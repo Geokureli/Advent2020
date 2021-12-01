@@ -370,8 +370,10 @@ class NGio
 			loggedEvents.push(event);
 		
 		var platform = FlxG.onMobile ? "_mobile" : "_desktop";
-		log("logging event: " + event + platform, pos);
-		NG.core.calls.event.logEvent(event + platform).send();
+		// swap _ for - because NG project events aren't allowing _
+		var eventStr = (event + platform).split("_").join("-");
+		log("logging event: " + eventStr, pos);
+		NG.core.calls.event.logEvent(eventStr).send();
 		#end
 	}
 	

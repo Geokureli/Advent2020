@@ -34,6 +34,8 @@
         , "authors"  : ["midgetsausage"]
         , "key"      : "gMaj"
         , "bpm"      : 130
+        , "loopStart": 610000
+        , "volume"   : 0.5
         , "day"      : 1
         }
     ]
