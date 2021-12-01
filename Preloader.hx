@@ -68,7 +68,7 @@ class Preloader extends flixel.system.FlxBasePreloader
 		cane.x = (this._width  - 400) / 2;
 		cane.y = (this._height - 150) / 2 + 175;
 		caneMask.smoothing = false;
-		caneMask.transform.colorTransform.color = Lib.current.stage.color;
+		// caneMask.transform.colorTransform.color = Lib.current.stage.color;
 		caneMask.x = cane.x;
 		caneMask.y = cane.y + 150 - CANE_THICKNESS + 2;
 		stripes.smoothing = false;
