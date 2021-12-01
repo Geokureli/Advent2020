@@ -66,6 +66,8 @@ class Game
             state = Intro(Started);
             initialRoom = RoomName.Outside;
         }
+
+        FlxG.sound.volume = 0.5;
         
         // if (Calendar.day == 13 && !Save.hasOpenedPresentByDay(13))
         //     state = LuciaDay(Started);
