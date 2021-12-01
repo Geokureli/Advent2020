@@ -1,5 +1,6 @@
 package states.rooms;
 
+import flixel.group.FlxSpriteGroup;
 import data.Manifest;
 import states.OgmoState;
 import data.Calendar;
@@ -17,7 +18,6 @@ import flixel.FlxSprite;
 class PathLeftState extends RoomState
 {
     var shade:ShadowSprite;
-    var snowman_brandy:Bool;
     
     override function create()
     {
@@ -29,6 +29,8 @@ class PathLeftState extends RoomState
     override function initEntities()
     {
         super.initEntities();
+
+        foreground.getByName("snowman").setBottomHeight(28);
         
         if(Game.allowShaders)
         {
@@ -41,15 +43,16 @@ class PathLeftState extends RoomState
             topGround.add(shade);
         }
         
-        // snowman_brandy = FlxG.random.bool(100); // 100% chance to return 'true'
+        var easter_egg_snowman_brandy = FlxG.random.bool(1); // 1% chance to return 'true'
         
-        if(snowman_brandy)
+        if(easter_egg_snowman_brandy)
         {
-            var snowman = new FlxSprite();
+            var snowman = foreground.getByName("snowman");
             snowman.loadGraphic("assets/images/props/path_left/snowman_brandy.png");
-            add(snowman);
-            snowman.x = 152;
-            snowman.y = 376;
+            snowman.x -= 32;
+            snowman.y -= 40;
+            snowman.scale.set(0.5, 0.5);
+            snowman.setBottomHeight(100);
         }
     }
     
