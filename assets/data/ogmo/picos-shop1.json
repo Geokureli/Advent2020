@@ -115,8 +115,7 @@
       "gridCellsX": 62,
       "gridCellsY": 53,
       "decals": [
-        {"x": 248, "y": 192, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/background-sketch.png", "originX": 0.5, "originY": 0.5},
-        {"x": 249, "y": 213, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/Background.png", "originX": 0.5, "originY": 0.5},
+        {"x": 248, "y": 213, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/Background.png", "originX": 0.5, "originY": 0.5},
         {"x": 45, "y": 219, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/picos-desk-ul.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
