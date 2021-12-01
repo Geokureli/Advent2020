@@ -40,7 +40,7 @@ class VillageState extends RoomState
 
         if(Game.state.match(Intro(_)) == false){
             var top = 700;
-            var bottom = FlxG.worldBounds.height;
+            var bottom = FlxG.worldBounds.height - 32;
             var height = bottom - top;
             var progress = FlxMath.bound((player.y - top) / height, 0, 1);
             camera.zoom = 1.0 + progress;
