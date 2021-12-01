@@ -40,10 +40,11 @@ class PathLeftState extends RoomState
             shade.shadow.setLightRadius(1, 60);
             topGround.add(shade);
         }
-
-        snowman_brandy = FlxG.random.bool(100); // 100% chance to return 'true'
-
-        if(snowman_brandy){
+        
+        // snowman_brandy = FlxG.random.bool(100); // 100% chance to return 'true'
+        
+        if(snowman_brandy)
+        {
             var snowman = new FlxSprite();
             snowman.loadGraphic("assets/images/props/path_left/snowman_brandy.png");
             add(snowman);
