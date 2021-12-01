@@ -179,7 +179,13 @@ class RoomState extends OgmoState
     {
         props = getByName("Props");
         foreground = getByName("Foreground");
-        foreground.forEach(x -> x.setBottomHeight(32));
+        for (decal in foreground.getAllWithName("tree")) decal.setBottomHeight(32);
+        for (decal in foreground.getAllWithName("tree1")) decal.setBottomHeight(32);
+        for (decal in foreground.getAllWithName("tree2")) decal.setBottomHeight(32);
+        for (decal in foreground.getAllWithName("tree3")) decal.setBottomHeight(32);
+        for (decal in foreground.getAllWithName("tree4")) decal.setBottomHeight(32);
+        for (decal in foreground.getAllWithName("tree5")) decal.setBottomHeight(32);
+        for (decal in foreground.getAllWithName("tree6")) decal.setBottomHeight(32);
         background = getByName("Background");
         add(topGround);
         topGround.add(infoBoxGroup);
