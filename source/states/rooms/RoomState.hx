@@ -856,11 +856,11 @@ enum abstract RoomName(String) to String
     var Bedroom  = "bedroom";
     var Hallway  = "hallway";
     var Entrance = "entrance";
-    var Outside  = "outside";
     var Arcade   = "arcade";
     var Studio   = "music";
     var Movie    = "movie";
     var Credits  = "credits";
+    var Outside  = "outside";
     var PathLeft = "path_left";
     var PathCenter = "path_center";
     var PathRight = "path_right";
