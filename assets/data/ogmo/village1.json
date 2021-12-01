@@ -34,9 +34,9 @@
           "id": 0,
           "_eid": "58765051",
           "x": 392,
-          "y": 856,
+          "y": 852,
           "width": 176,
-          "height": 8,
+          "height": 12,
           "originX": 0,
           "originY": 0,
           "values": {"id": "", "target": "path_right", "enabled": true}
