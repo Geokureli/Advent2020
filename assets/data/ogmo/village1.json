@@ -92,7 +92,7 @@
         {"x": 480, "y": 704, "scaleX": 1, "scaleY": 1, "texture": "village/GD-SIGN.png", "originX": 0.5, "originY": 0.5},
         {"x": 480, "y": 536, "scaleX": 1, "scaleY": 1, "texture": "village/pinecone_stage1.png", "originX": 0.5, "originY": 0.5},
         {"x": 884, "y": 536, "scaleX": 1, "scaleY": 1, "texture": "village/picos_ol.png", "originX": 0.5, "originY": 0.5},
-        {"x": 492, "y": 456, "scaleX": 1, "scaleY": 1, "texture": "village/barrack.png", "originX": 0.5, "originY": 0.5}
+        {"x": 492, "y": 448, "scaleX": 1, "scaleY": 1, "texture": "village/barrack.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     },
