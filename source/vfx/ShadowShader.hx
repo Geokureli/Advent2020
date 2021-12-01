@@ -11,6 +11,7 @@ class ShadowShader extends flixel.system.FlxAssets.FlxShader
         
         const float innerRadiusRatio = 0.8;
         
+        uniform float ambientDither;
         uniform bool inverse;
         uniform vec4 shadow;
         // uniform int indices[16];
@@ -89,7 +90,7 @@ class ShadowShader extends flixel.system.FlxAssets.FlxShader
         {
             vec2 topLeft = bigPixelTopLeft(openfl_TextureCoordv * openfl_TextureSize);
             
-            float amount = 1.0;
+            float amount = ambientDither;
             amount = min(amount, getLight(topLeft, light1, rad1));
             amount = min(amount, getLight(topLeft, light2, rad2));
             amount = min(amount, getLight(topLeft, light3, rad3));
@@ -100,9 +101,10 @@ class ShadowShader extends flixel.system.FlxAssets.FlxShader
         }
     ')
     
-    public function new(shadow:FlxColor, pixelSize = -1.0, inverse = true)
+    public function new(shadow:FlxColor, pixelSize = -1.0, inverse = true, ambientDither = 1.0)
     {
         super();
+        this.ambientDither.value = [ambientDither];
         this.pixelSize.value = [pixelSize <= 0 ? GameSize.pixelSize : pixelSize];
         this.inverse.value = [inverse];
         this.shadow.value = [shadow.redFloat, shadow.greenFloat, shadow.blueFloat, shadow.alphaFloat];
@@ -118,6 +120,11 @@ class ShadowShader extends flixel.system.FlxAssets.FlxShader
         {
             setLight(i + 1, 0, 0, 0);
         }
+    }
+    
+    public function setAmbientDither(num:Float)
+    {
+        this.ambientDither.value = [num];
     }
     
     public function setLight(num:Int, x:Float, y:Float, radius:Float)

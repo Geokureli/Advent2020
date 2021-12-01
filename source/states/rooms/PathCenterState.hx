@@ -8,6 +8,7 @@ import data.Game;
 import data.Content;
 import props.Cabinet;
 import ui.Prompt;
+import vfx.ShadowSprite;
 
 import flixel.FlxG;
 import flixel.math.FlxMath;
@@ -15,6 +16,7 @@ import flixel.math.FlxMath;
 class PathCenterState extends RoomState
 {
     var shade:ShadowSprite;
+    
     override function create()
     {
         super.create();
@@ -25,7 +27,7 @@ class PathCenterState extends RoomState
     override function initEntities()
     {
         super.initEntities();
-
+        
         if(Game.allowShaders){
             var floor = background.getByName("path_center");
             floor.setBottomHeight(floor.frameHeight);
@@ -40,7 +42,7 @@ class PathCenterState extends RoomState
     override function update(elapsed:Float)
     {
         super.update(elapsed);
-                
+        
         if (Game.allowShaders)
         {
             shade.shadow.setLightPos(1, player.x + player.width / 2, player.y-8);

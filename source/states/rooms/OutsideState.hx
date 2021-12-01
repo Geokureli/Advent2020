@@ -4,13 +4,20 @@ import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 
+import data.Game;
+import states.OgmoState;
+import vfx.ShadowSprite;
+
 class OutsideState extends RoomState
 {
+    var shade:ShadowSprite;
+    var floor:OgmoDecal;
+    
     override function create()
     {
         super.create();
         
-		add(new vfx.Snow());
+        add(new vfx.Snow());
         FlxG.camera.fade(FlxColor.BLACK, 1, true);
     }
     
@@ -26,12 +33,39 @@ class OutsideState extends RoomState
         background.getByName("ice_1").scrollFactor.y = 0.75;
         background.getByName("shine").scrollFactor.y = 0.75;
         foreground.getByName("house_2").setBottomHeight(72);
+        
+        
+        if(Game.allowShaders)
+        {
+            floor = background.getByName("snow_3");
+            floor.setBottomHeight(floor.frameHeight);
+            shade = new ShadowSprite(floor.x, floor.y);
+            shade.makeGraphic(floor.frameWidth, floor.frameHeight, 0xD8000022);
+            
+            shade.shadow.setAmbientDither(0.0);
+            shade.shadow.setLightRadius(1, 60);
+            topGround.add(shade);
+        }
     }
     
     override function update(elapsed:Float)
     {
         super.update(elapsed);
         updateCam(elapsed);
+        
+        if (Game.allowShaders)
+        {
+            final ditherTop = floor.y + 200;
+            final ditherBottom = floor.y + floor.height - 64;
+            final ditherHeight = ditherBottom - ditherTop;
+            final maxRadius = 120;
+            final minRadius = 60;
+            final progress = FlxMath.bound((player.y - ditherTop) / ditherHeight, 0, 1);
+            
+            shade.shadow.setLightPos(1, player.x + player.width / 2, player.y - floor.y - 8);
+            shade.shadow.setLightRadius(1, maxRadius + (progress * (minRadius - maxRadius)));
+            shade.shadow.setAmbientDither(progress);
+        }
     }
     
     inline static var TREE_FADE_TIME = 3.0;
