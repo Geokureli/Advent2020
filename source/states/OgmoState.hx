@@ -169,17 +169,13 @@ class OgmoDecalLayer extends OgmoObjectLayer<OgmoDecal>
             .split("_ogmo").join("");
     }
     
-    public function getAllWithPrefix(prefix:String):Map<String, OgmoDecal>
+    public function getAllWithPrefix(prefix:String):Array<OgmoDecal>
     {
-        var all:Map<String, OgmoDecal> = [];
+        var all:Array<OgmoDecal> = [];
         for (child in members)
         {
             if (child.graphic != null && child.graphic.assetsKey.indexOf(prefix) != -1)
-            {
-                var name = child.graphic.assetsKey.split(prefix).pop();
-                name = name.substr(0, name.length - 4);//remove .png
-                all[name] = child;
-            }
+                all.push(child);
         }
         return all;
     }
