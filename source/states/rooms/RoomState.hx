@@ -477,6 +477,11 @@ class RoomState extends OgmoState
     
     function addHoverTo(target:FlxObject, box:InfoBox, hoverDis = 20)
     {
+        #if debug
+        if (target == null)
+            throw "Cannon add hover to a null object";
+        #end
+        
         removeHoverFrom(target);
         
         touchable.add(target);
