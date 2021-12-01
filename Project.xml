@@ -28,21 +28,24 @@
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<!-- <define name="NG_DEBUG_API_KEY" if="debug"/> -->
+	<!-- Use the session saved in APIStuff.hx -->
 	<!-- <define name="NG_DEBUG_SESSION" if="debug"/> -->
+	<!-- Don't try to log into newgrounds (still gets server time) -->
 	<!-- <define name="NG_BYPASS_LOGIN" if="debug"/> -->
 	<!-- <define name="NG_LURKER" if="debug"/> -->
-	<define name="NG_DEBUG" if="debug"/>
+	<!-- Newgrounds.io debug session (pretends you unlocked a medal but doesn't actually unlock -->
+	<!-- <define name="NG_DEBUG" if="debug"/> -->
 	
 	<define name="LOG" if="debug"/>
 	<section if="LOG">
-		<define name="NG_LOG"/>
-		<!-- <define name="NG_VERBOSE" if="debug"/> -->
+		<!-- <define name="NG_LOG"/>
+		<define name="NG_VERBOSE" if="debug"/> -->
 		<define name="NET_LOG"/>
 		<!-- <define name="NET_LOG_VERBOSE"/> -->
 		<!-- <define name="BOOT_LOG"/> -->
 		<!-- <define name="OGMO_LOG"/> -->
 		<!-- <define name="SAVE_LOG"/> -->
-		<define name="INSTRUMENT_LOG"/>
+		<!-- <define name="INSTRUMENT_LOG"/> -->
 		<!-- <define name="INSTRUMENT_LOG_VERBOSE"/> -->
 	</section>
 	

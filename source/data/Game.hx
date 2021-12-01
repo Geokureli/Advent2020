@@ -28,6 +28,7 @@ class Game
         #if debug
         RoomName.Village;
         // RoomName.PicosShop + "." + RoomName.Village;
+        // RoomName.PathRight + "." + RoomName.PathCenter;
         #else
         RoomName.Village;
         #end
