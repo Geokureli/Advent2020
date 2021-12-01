@@ -52,6 +52,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "", "target": "path_left", "enabled": true}
+        },
+        {
+          "name": "Note",
+          "id": 8,
+          "_eid": "09188334",
+          "x": 368,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "december01"}
         }
       ]
     },
@@ -88,7 +98,8 @@
         {"x": 488, "y": 488, "scaleX": 1, "scaleY": 1, "texture": "outside/tree1.png", "originX": 0.5, "originY": 0.5},
         {"x": 544, "y": 480, "scaleX": 1, "scaleY": 1, "texture": "outside/tree.png", "originX": 0.5, "originY": 0.5},
         {"x": 192, "y": 512, "scaleX": 1, "scaleY": 1, "texture": "outside/tree2.png", "originX": 0.5, "originY": 0.5},
-        {"x": 336, "y": 168, "scaleX": 1, "scaleY": 1, "texture": "outside/house_3.png", "originX": 0.5, "originY": 0.5}
+        {"x": 336, "y": 168, "scaleX": 1, "scaleY": 1, "texture": "outside/house_3.png", "originX": 0.5, "originY": 0.5},
+        {"x": 318.5, "y": 292.5, "scaleX": 1, "scaleY": 1, "texture": "outside/note_door.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     },

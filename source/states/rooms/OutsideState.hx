@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.math.FlxMath;
 
 import data.Game;
+import props.Note;
 import states.OgmoState;
 import vfx.ShadowSprite;
 
@@ -13,8 +14,16 @@ class OutsideState extends RoomState
     var shade:ShadowSprite;
     var floor:OgmoDecal;
     
+    var note:Note;
+    
     override function create()
     {
+        entityTypes["Note"] = cast function(data)
+        {
+            note = Note.fromEntity(data);
+            return note;
+        }
+        
         super.create();
         
         add(new vfx.Snow());
@@ -24,6 +33,15 @@ class OutsideState extends RoomState
     override function initEntities()
     {
         super.initEntities();
+        
+        var note_door = foreground.getByName("note_door");
+        // foreground.remove(note_door);
+        // topGround.add(note_door);
+        addHoverTextTo(note_door, "READ", ()->{ note.visible = !note.visible; });
+        
+        foreground.remove(note);
+        topGround.add(note);
+        note.visible = false;
         
         var shine = background.setAnimFrameRate("shine", 4);
         background.getByName("stars").scrollFactor.y = 0.15;
