@@ -53,6 +53,14 @@ class Calendar
     
     static function onDateReceived(date:Date, callback:()->Void):Void
     {
+        if (date.getFullYear() == 2021 && date.getMonth() < 11)
+        {
+            isDebugDay = true;
+            trace("Not advent yet, pretending it's day 1");
+            onDateReceived(Date.fromString("2021-12-01"), callback);
+            return;
+        }
+        
         trace("month:" + date.getMonth(), "day:" + date.getDate());
         isAdvent = date.getMonth() == 11 || (date.getMonth() == 0 && date.getDate() == 1);
         isChristmas = date.getMonth() == 11 && date.getDate() == 25;
