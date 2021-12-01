@@ -451,6 +451,12 @@
     , "unlocksBy": "day:2"
     , "users": ["mindchamber"]
     }
+,   { "id": "geokureli"
+    , "proper": "GeoKureli"
+    , "description": "Honestly this feels like a WIP George, lemme know what you like/dislike <3"
+    , "unlocksBy": null
+    , "users": ["geokureli"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."

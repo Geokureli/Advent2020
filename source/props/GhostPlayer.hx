@@ -24,7 +24,7 @@ class GhostPlayer extends Player
         nameText = new FlxBitmapText();
         nameText.alignment = CENTER;
         updateNameText(name);
-        shader = new vfx.GhostShader();
+        //shader = new vfx.GhostShader();
         usePaths = true;
     }
     
@@ -33,7 +33,7 @@ class GhostPlayer extends Player
         super.update(elapsed);
         
         updateMovement(false, false, false, false, false, false);
-        
+        /*
         var ghostShader = Std.downcast(shader, vfx.GhostShader);
         if (ghostShader != null)
         {
@@ -41,7 +41,7 @@ class GhostPlayer extends Player
             ghostShader.updatePosRound(screenPos.x, screenPos.y);
             screenPos.put();
         }
-        
+        */
         if (leaveCallback != null && velocity.x == 0 && velocity.y == 0 && acceleration.x == 0 && acceleration.y == 0)
             leaveCallback();
     }

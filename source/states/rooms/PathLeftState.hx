@@ -12,9 +12,12 @@ import vfx.ShadowSprite;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 
+import flixel.FlxSprite;
+
 class PathLeftState extends RoomState
 {
     var shade:ShadowSprite;
+    var snowman_brandy:Bool;
     
     override function create()
     {
@@ -36,6 +39,16 @@ class PathLeftState extends RoomState
             
             shade.shadow.setLightRadius(1, 60);
             topGround.add(shade);
+        }
+
+        snowman_brandy = FlxG.random.bool(100); // 100% chance to return 'true'
+
+        if(snowman_brandy){
+            var snowman = new FlxSprite();
+            snowman.loadGraphic("assets/images/props/path_left/snowman_brandy.png");
+            add(snowman);
+            snowman.x = 152;
+            snowman.y = 376;
         }
     }
     
