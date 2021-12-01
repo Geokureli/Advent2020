@@ -366,7 +366,18 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         this.x -= Math.round(this.width / 2);
         this.y -= Math.round(this.height / 2);
         // allow player to go behind stuff
-        setBottomHeight(this.height / 3);
+        if (data.values != null)
+        {
+            var values = data.values;
+            if (values.bottomHeight != null && values.bottomHeight > 0)
+                setBottomHeight(values.bottomHeight);
+            else
+                setBottomHeight(this.height / 3);
+            
+            this.ignoreDrawDebug = values.ignoreDebugDraw != false;// can be true or null
+        }
+        else
+            this.ignoreDrawDebug = true;
     }
     
     public function setBottomHeight(value:Float)
@@ -386,7 +397,11 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
     }
 }
 
-typedef OgmoDecalData = OgmoObjectData & { texture:String }
+typedef OgmoDecalData = OgmoObjectData &
+{
+    var texture:String;
+    var values:Null<{ bottomHeight:Null<Int>, ignoreDebugDraw:Null<Bool> }>;
+}
 
 interface IOgmoObject<Data:OgmoObjectData, Layer>
 {
