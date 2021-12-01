@@ -28,6 +28,7 @@ class Game
         #if debug
         RoomName.Village;
         // RoomName.PicosShop + "." + RoomName.Village;
+        // RoomName.PathLeft + "." + RoomName.PathCenter;
         // RoomName.PathRight + "." + RoomName.PathCenter;
         #else
         RoomName.Village;
@@ -52,8 +53,16 @@ class Game
         roomTypes[PicosShop] = PicosShopState.new;
         
         arcadeTypes = [];
-
-        if(NGio.hasMedal(66220) == false){
+        
+        var showIntro
+        #if FORCE_INTRO
+            = true;
+        #else
+            = NGio.hasMedal(66220) == false;
+        #end
+        
+        if(showIntro)
+        {
             state = Intro(Started);
             initialRoom = RoomName.Outside;
         }
