@@ -36,7 +36,7 @@
           "x": 312,
           "y": 0,
           "width": 112,
-          "height": 8,
+          "height": 12,
           "originX": 0,
           "originY": 0,
           "values": {"id": "", "target": "village", "enabled": true}
@@ -47,7 +47,7 @@
           "_eid": "58765051",
           "x": 0,
           "y": 344,
-          "width": 8,
+          "width": 12,
           "height": 112,
           "originX": 0,
           "originY": 0,
