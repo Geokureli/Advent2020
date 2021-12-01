@@ -192,7 +192,13 @@ class RoomState extends OgmoState
         
         geom = getByName("Geom");
         colliders.add(geom);
+        geom.visible = FlxG.debugger.drawDebug;
         add(geom);
+        #if debug
+        geom.camera = new FlxCamera().copyFrom(FlxG.camera);
+        geom.camera.bgColor = 0x0;
+        FlxG.cameras.add(geom.camera, false);
+        #end
         
         for (teleport in teleports.members)
         {
@@ -740,7 +746,10 @@ class RoomState extends OgmoState
         
         #if debug
         if (FlxG.keys.justPressed.B)
+        {
             FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
+            geom.visible = FlxG.debugger.drawDebug;
+        }
         
         if (FlxG.keys.justPressed.M)
         {
@@ -750,6 +759,9 @@ class RoomState extends OgmoState
         }
         
         FlxG.watch.addMouse();
+        
+        geom.camera.scroll.copyFrom(FlxG.camera.scroll);
+        geom.camera.zoom = FlxG.camera.zoom;
         #end
     }
     

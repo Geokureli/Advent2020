@@ -44,7 +44,10 @@ class Player extends flixel.FlxSprite
         super(x, y);
         
         settings.applyTo(this);
-    }
+        
+        pathTile.ignoreDrawDebug = true;
+        hitbox.ignoreDrawDebug = true;
+}
     
     override function initVars():Void
     {

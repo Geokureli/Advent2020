@@ -23,7 +23,9 @@ class GhostPlayer extends Player
         targetPos = FlxPoint.get(this.x, this.y);
         nameText = new FlxBitmapText();
         nameText.alignment = CENTER;
+        nameText.ignoreDrawDebug = true;
         updateNameText(name);
+        
         //shader = new vfx.GhostShader();
         usePaths = true;
     }

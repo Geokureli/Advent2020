@@ -75,13 +75,14 @@ class OgmoTilemap extends FlxTilemap
             ( map
             , data.gridCellsX
             , data.gridCellsY
-            , new openfl.display.BitmapData(data.gridCellWidth * 2, data.gridCellHeight)
+            , new openfl.display.BitmapData(data.gridCellWidth * 2, data.gridCellHeight, true, 0x40ff0000)
             , data.gridCellWidth
             , data.gridCellHeight
             , 0
-            , 2
+            , 1
             , 1
             );
+        this.useScaleHack = false;
     }
 }
 
@@ -313,6 +314,9 @@ abstract OgmoEntityData<T>(RawOgmoEntityData<T>) from RawOgmoEntityData<T> to Ra
         
         if (this.height != null)
             object.height = this.height;
+        
+        object.immovable = true;//make the bounds green
+        // object.ignoreDrawDebug = true;
     }
     
     public function applyToSprite(sprite:FlxSprite)
@@ -337,6 +341,7 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         this = new FlxSprite(path);
         this.x = data.x;
         this.y = data.y;
+        
         if (path.indexOf("_ogmo.") != -1)
         {
             var oldSize = FlxPoint.get(this.frameWidth, this.frameHeight);
