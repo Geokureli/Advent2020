@@ -27,6 +27,8 @@ class PathCenterState extends RoomState
     override function initEntities()
     {
         super.initEntities();
+
+        foreground.getByName("path_center_overlay").scrollFactor.set(1.40, 1);
         
         if(Game.allowShaders){
             var floor = background.getByName("path_center");

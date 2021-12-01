@@ -26,6 +26,8 @@ class PicosShopState extends RoomState
     override function initEntities()
     {
         super.initEntities();
+
+        //addHoverTextTo(foreground.getByName("pico"), "TALK", () -> {});
         
         changingRoom = foreground.getByName("changing-room-door");
         changingRoom.setBottomHeight(16);

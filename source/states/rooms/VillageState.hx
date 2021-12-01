@@ -32,6 +32,9 @@ class VillageState extends RoomState
     override function initEntities()
     {
         super.initEntities();
+
+        addHoverTextTo(foreground.getByName("barrack"), "UNDER CONSTRUCTION", () -> {});
+        addHoverTextTo(foreground.getByName("sign_1"), "POST OFFICE UNDER CONSTRUCTION", () -> {});
     }
     
     override function update(elapsed:Float)
@@ -40,7 +43,7 @@ class VillageState extends RoomState
 
         if(Game.state.match(Intro(_)) == false){
             var top = 700;
-            var bottom = FlxG.worldBounds.height;
+            var bottom = FlxG.worldBounds.height - 32;
             var height = bottom - top;
             var progress = FlxMath.bound((player.y - top) / height, 0, 1);
             camera.zoom = 1.0 + progress;
@@ -63,7 +66,7 @@ class VillageState extends RoomState
             });
         delay += 1.0;
         //move up
-        FlxTween.tween(cam.scroll, { y: cam.scroll.y - 400 }, 4.00, 
+        FlxTween.tween(cam.scroll, { y: cam.scroll.y - 300 }, 4.00, 
             { startDelay:delay + 0.5
             , ease:FlxEase.quadInOut
             });
