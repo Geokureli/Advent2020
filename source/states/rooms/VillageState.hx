@@ -66,7 +66,7 @@ class VillageState extends RoomState
             });
         delay += 1.0;
         //move up
-        FlxTween.tween(cam.scroll, { y: cam.scroll.y - 400 }, 4.00, 
+        FlxTween.tween(cam.scroll, { y: cam.scroll.y - 300 }, 4.00, 
             { startDelay:delay + 0.5
             , ease:FlxEase.quadInOut
             });
