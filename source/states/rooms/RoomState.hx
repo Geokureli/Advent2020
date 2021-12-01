@@ -150,6 +150,8 @@ class RoomState extends OgmoState
         initClient();
         
         NGio.logEventOnce(enter);
+        
+        FlxG.camera.fade(0xD8000022, 0.5, true);
     }
     
     function onOpenPresent(present) { }
@@ -778,7 +780,8 @@ class RoomState extends OgmoState
             // final data = { x:Std.int(player.x), y:Std.int(player.y), state:PlayerState.Leaving };
             // Net.send("avatar", data);
         }
-        Game.goToRoom(target);
+        player.active = false;
+        FlxG.camera.fade(0xD8000022, 0.25, false, () -> Game.goToRoom(target));
     }
     
     function openUrl(url:String, ?customMsg:String, ?onYes:()->Void):Void

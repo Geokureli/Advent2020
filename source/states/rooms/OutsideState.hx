@@ -27,7 +27,6 @@ class OutsideState extends RoomState
         super.create();
         
         add(new vfx.Snow());
-        FlxG.camera.fade(FlxColor.BLACK, 1, true);
     }
     
     override function initEntities()
