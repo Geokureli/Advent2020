@@ -53,7 +53,6 @@
       "gridCellsX": 62,
       "gridCellsY": 53,
       "decals": [
-        {"x": 45, "y": 219, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/picos-desk.png", "originX": 0.5, "originY": 0.5},
         {"x": 306, "y": 42, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/changing-room-door.png", "originX": 0.5, "originY": 0.5},
         {"x": 48, "y": 48, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/picos-shelf.png", "originX": 0.5, "originY": 0.5},
         {"x": 248, "y": 40, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/mirror.png", "originX": 0.5, "originY": 0.5},
@@ -63,7 +62,8 @@
         {"x": 200, "y": 129, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/rack.png", "originX": 0.5, "originY": 0.5},
         {"x": 264, "y": 177, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/rack.png", "originX": 0.5, "originY": 0.5},
         {"x": 200, "y": 217, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/rack.png", "originX": 0.5, "originY": 0.5},
-        {"x": 456, "y": 273, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/rack.png", "originX": 0.5, "originY": 0.5}
+        {"x": 456, "y": 273, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/rack.png", "originX": 0.5, "originY": 0.5},
+        {"x": 45, "y": 219, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/picos-desk-ol.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     },
@@ -78,7 +78,8 @@
       "gridCellsY": 53,
       "decals": [
         {"x": 248, "y": 192, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/background-sketch.png", "originX": 0.5, "originY": 0.5},
-        {"x": 249, "y": 213, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/Background.png", "originX": 0.5, "originY": 0.5}
+        {"x": 249, "y": 213, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/Background.png", "originX": 0.5, "originY": 0.5},
+        {"x": 45, "y": 219, "scaleX": 1, "scaleY": 1, "texture": "picos_shop/picos-desk-ul.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     }
