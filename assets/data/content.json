@@ -20,6 +20,7 @@
         , "roles"  : ["Decorator", "sprites"]
         }
     , "cymbourine"   : { "proper": "Cymbourine"   }
+    , "mintyeggs"   : { "proper": "mintyeggs"   }
     , "midgetsausage": { "proper": "SantaSausage" }
     
     , "ninjamuffin99":
@@ -44,6 +45,12 @@
         , "name"   : "AdventX"
         , "authors": ["cymbourine"]
         , "day"    : 1
+        , "medal"  : true
+        }
+    ,   { "id"     : "mintyeggs"
+        , "name"   : "Heterosexual Life Partners"
+        , "authors": ["mintyeggs"]
+        , "day"    : 2
         , "medal"  : true
         }
     ]
