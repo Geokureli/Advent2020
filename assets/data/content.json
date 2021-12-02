@@ -9,15 +9,15 @@
         }
     , "geokureli":
         { "proper" : "GeoKureli"
-        , "roles"  : ["Old Dude"]
+        , "roles"  : ["Old Dude", "adl_code"]
         }
     , "brandybuizel":
         { "proper" : "BrandyBuizel"
-        , "roles"  : ["Old Artist"]
+        , "roles"  : ["Old Artist", "adl_code"]
         }
     , "thedyingsun":
         { "proper" : "TheDyingSun"
-        , "roles"  : ["Decorator", "sprites"]
+        , "roles"  : ["Decorator", "sprites", "adl_code"]
         }
     , "cymbourine"   : { "proper": "Cymbourine"   }
     , "mintyeggs"   : { "proper": "mintyeggs"   }
