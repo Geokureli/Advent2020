@@ -329,10 +329,8 @@ class RoomState extends OgmoState
     {
         present.animateOpen(function()
         {
-            final medal = data.medal;
-            if (!Calendar.isDebugDay && Calendar.day == data.day
-              && medal != null && medal != false)
-                NGio.unlockDayMedal(data.day);
+            updatePresentMedal(data);
+            
             playOverlay(new ComicSubstate(present.id), data.comic.audioPath != null);
             if (!Calendar.isDebugDay)
                 Save.presentOpened(present.id);
@@ -385,11 +383,7 @@ class RoomState extends OgmoState
         
         present.animateOpen(function ()
             {
-                var medal = data.medal;
-                if (!Calendar.isDebugDay
-                &&  (data.day == 32 || Calendar.day == data.day)
-                &&  medal != null && medal != false)
-                    NGio.unlockDayMedal(data.day);
+                updatePresentMedal(data);
                 
                 function onOpenComplete()
                 {
@@ -402,6 +396,14 @@ class RoomState extends OgmoState
                     Save.presentOpened(present.id);
             }
         );
+    }
+    
+    function updatePresentMedal(data:ArtCreation)
+    {
+        final hasMedal = data.medal != null && data.medal != false;
+        final canUnlock = Calendar.day == data.day || data.day == 1;
+        if (Calendar.isDebugDay == false && canUnlock && hasMedal)
+            NGio.unlockDayMedal(data.day);
     }
     
     function getDaySprite(layer:OgmoDecalLayer, name:String)

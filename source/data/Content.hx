@@ -498,16 +498,14 @@ class Content
         return credits.exists(name.toLowerCase());
     }
     
-    @:allow(data.Save)
-    static function getPresentIndex(id:String)
+    static public function getPresentIndex(id:String)
     {
         if (id != null && presentsById.exists(id))
             return presentsById[id];
         return -1;
     }
     
-    @:allow(data.Save)
-    static function getPresentId(index:Int) return presentsByIndex[index];
+    static public function getPresentId(index:Int) return presentsByIndex[index];
 }
 
 private typedef ContentFile =
