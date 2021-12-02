@@ -19,7 +19,7 @@
     }
 ,   { "id": "orange_knight"
     , "proper": "Orange Knight"
-    , "description": "This fun-loving flamethrowing Castle Crasher will brighten up your day."
+    , "description": "This fun-loving flame-throwing Castle Crasher will brighten up your day."
     , "unlocksBy": "free"
     , "frames": 3
     , "users": ["tomfulp", "danpaladin"]
@@ -420,7 +420,7 @@
     , "proper": "Jeff"
     , "description": "Keep trucking along in this Dead Estate."
     , "unlocksBy": "day:29"
-    , "users": ["milkbarjack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
+    , "users": ["milkbarjack", "jack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
     , "year": 2020
     }
 ,   { "id": "ena"
