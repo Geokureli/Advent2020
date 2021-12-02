@@ -737,6 +737,7 @@ class RoomState extends OgmoState
                 =  Std.int(player.x) != player.lastSend.x
                 || Std.int(player.y) != player.lastSend.y
                 || player.emote.type != player.lastSendEmote
+                || player.settings.skin != player.lastSkin
                 ;
             
             if (!changed)
@@ -745,7 +746,12 @@ class RoomState extends OgmoState
             }
             else if (changed && player.timer > player.sendDelay)
             {
-                final data = { x:Std.int(player.x), y:Std.int(player.y), emote:player.emote.type };
+                final data = 
+                    { x:Std.int(player.x)
+                    , y:Std.int(player.y)
+                    , skin:player.settings.skin
+                    , emote:player.emote.type
+                    };
                 Net.send("avatar", data);
                 player.networkUpdate();
             }

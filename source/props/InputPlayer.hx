@@ -22,6 +22,7 @@ class InputPlayer extends Player
     public var timer = 0.0;
     public var lastSend = FlxPoint.get();
     public var lastSendEmote = EmoteType.None;
+    public var lastSkin = 0;
     public var sendDelay = 1.0 / 6;
     
     public function new(x = 0.0, y = 0.0)
@@ -90,10 +91,18 @@ class InputPlayer extends Player
         }
     }
     
+    override function setSkin(skin:Int)
+    {
+        super.setSkin(skin);
+        // force update
+        timer = sendDelay;
+    }
+    
     public function networkUpdate()
     {
         timer = 0;
         lastSend.set(Std.int(x), Std.int(y));
         lastSendEmote = emote.type;
+        lastSkin = settings.skin;
     }
 }
