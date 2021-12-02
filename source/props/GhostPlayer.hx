@@ -24,7 +24,9 @@ class GhostPlayer extends Player
         nameText = new FlxBitmapText();
         nameText.color = 0xFF000000;
         nameText.alignment = CENTER;
+        #if FLX_DEBUG
         nameText.ignoreDrawDebug = true;
+        #end
         updateNameText(name);
         
         usePaths = true;

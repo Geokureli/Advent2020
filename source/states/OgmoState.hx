@@ -374,10 +374,14 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
             else
                 setBottomHeight(this.height / 3);
             
+            #if FLX_DEBUG
             this.ignoreDrawDebug = values.ignoreDebugDraw != false;// can be true or null
+            #end
         }
+        #if FLX_DEBUG
         else
             this.ignoreDrawDebug = true;
+        #end
     }
     
     public function setBottomHeight(value:Float)

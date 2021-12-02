@@ -26,7 +26,9 @@ class Snow extends FlxTypedGroup<FlxSprite>
 			add(flake);
 			flake.velocity.y = getRandomSpeed();
 			flake.velocity.x = FlxG.random.float(-30, 30);
+			#if FLX_DEBUG
 			flake.ignoreDrawDebug = true;
+			#end
 		}
 	}
 	

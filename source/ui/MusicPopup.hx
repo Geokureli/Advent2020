@@ -34,10 +34,12 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
         add(main = new FlxSprite());
         add(text = new FlxBitmapText());
         
+        #if FLX_DEBUG
         ignoreDrawDebug = true;
         bar.ignoreDrawDebug = true;
         main.ignoreDrawDebug = true;
         text.ignoreDrawDebug = true;
+        #end
         
         main.loadGraphic(MAIN_PATH, true, 56, 72);
         main.animation.add("idle", [for (i in 0...main.animation.frames) i], 10);
