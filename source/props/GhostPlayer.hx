@@ -22,11 +22,11 @@ class GhostPlayer extends Player
         
         targetPos = FlxPoint.get(this.x, this.y);
         nameText = new FlxBitmapText();
+        nameText.color = 0xFF000000;
         nameText.alignment = CENTER;
         nameText.ignoreDrawDebug = true;
         updateNameText(name);
         
-        //shader = new vfx.GhostShader();
         usePaths = true;
     }
     
@@ -35,15 +35,7 @@ class GhostPlayer extends Player
         super.update(elapsed);
         
         updateMovement(false, false, false, false, false, false);
-        /*
-        var ghostShader = Std.downcast(shader, vfx.GhostShader);
-        if (ghostShader != null)
-        {
-            var screenPos = getScreenPosition();
-            ghostShader.updatePosRound(screenPos.x, screenPos.y);
-            screenPos.put();
-        }
-        */
+        
         if (leaveCallback != null && velocity.x == 0 && velocity.y == 0 && acceleration.x == 0 && acceleration.y == 0)
             leaveCallback();
     }
