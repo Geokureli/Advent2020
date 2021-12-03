@@ -173,7 +173,7 @@ class Skins
             init();
         
         if (id < 0 || byIndex.length <= id)
-            throw "Invalid id:" + id;
+            throw "Invalid skin id:" + id;
         
         return byIndex[id];
     }

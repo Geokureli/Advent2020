@@ -18,18 +18,39 @@ class GhostPlayer extends Player
     public function new(key:String, name:String, x = 0.0, y = 0.0, settings)
     {
         this.key = key;
-        super(x, y, settings);
         
-        targetPos = FlxPoint.get(this.x, this.y);
         nameText = new FlxBitmapText();
         nameText.color = 0xFF000000;
         nameText.alignment = CENTER;
         #if FLX_DEBUG
         nameText.ignoreDrawDebug = true;
         #end
+        
+        super(x, y, settings);
+        targetPos = FlxPoint.get(this.x, this.y);
+        
         updateNameText(name);
         
         usePaths = true;
+    }
+    
+    override function setSkin(skin:Int)
+    {
+        var error = false;
+        try
+        {
+            super.setSkin(skin);
+        }
+        catch(e)
+        {
+            trace('Error: $e. showing tankman');
+            super.setSkin(0);
+            #if debug
+            // red name so we know it's happening
+            nameText.color = 0xFFff0000;
+            #end
+        }
+        
     }
     
     override function update(elapsed:Float)
