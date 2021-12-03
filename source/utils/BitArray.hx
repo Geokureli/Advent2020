@@ -99,18 +99,21 @@ abstract BitArray(Array<UInt>) from Array<UInt> to Array<UInt>
     
     inline static function toInt(value:Bool) return value ? 1 : 0;
     
+    static var trim = ~/^(0*)([10]+?)0*$/;
     /** for debugging */
-    inline static public function fromBinaryString(value:String)
+    static public function fromBinaryString(value:String)
     {
-        var bits = new BitArray();
+        if (trim.match(value) == false)
+            throw 'invalid binary string: $value';
         
-        var foundOne = false;
+        var bits = new BitArray();
+        var length = value.length - trim.matched(1).length;
+        value = trim.matched(2);
+        
         for (i in 0...value.length)
         {
-            var char = value.charAt(i) == "1";
-            foundOne = foundOne || char;
-            if (foundOne)
-                bits[value.length - i - 1] = char;
+            if (value.charAt(i) == "1")
+                bits[length - i - 1] = true;
         }
         
         return bits;
