@@ -318,6 +318,7 @@ class NGio
 		{
 			log('Error fetching 2020 medals: not logged in');
 			callback(null);
+			return;
 		}
 		
 		var ng2020:NG = null;
