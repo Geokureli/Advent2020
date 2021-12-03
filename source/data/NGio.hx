@@ -314,7 +314,7 @@ class NGio
 	#if LOAD_2020_SKINS
 	static public function fetch2020Medals(sessionId:String, callback:(Map<Int, Bool>)->Void)
 	{
-		if (NG.core.loggedIn == false)
+		if (!NG.core.loggedIn)// can't use == false becuase there's a bug where it's null
 		{
 			log('Error fetching 2020 medals: not logged in');
 			callback(null);
