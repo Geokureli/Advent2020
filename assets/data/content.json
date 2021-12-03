@@ -22,6 +22,7 @@
     , "cymbourine"   : { "proper": "Cymbourine"   }
     , "mintyeggs"   : { "proper": "mintyeggs"   }
     , "midgetsausage": { "proper": "SantaSausage" }
+    , "bigtexastony": { "proper": "BigTexasTony" }
     
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -51,6 +52,12 @@
         , "name"   : "Heterosexual Life Partners"
         , "authors": ["mintyeggs"]
         , "day"    : 2
+        , "medal"  : true
+        }
+    ,   { "id"     : "bigtexastony"
+        , "name"   : "Heterosexual Life Partners"
+        , "authors": ["bigtexastony"]
+        , "day"    : 3
         , "medal"  : true
         }
     ]
