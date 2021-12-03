@@ -43,11 +43,21 @@ class Save
             data.presents = new BitArray();
             newData = true;
         }
+        else if (BitArray.isOldFormat(data.presents))
+        {
+            data.presents = BitArray.fromOldFormat(cast data.presents);
+            newData = true;
+        }
         log("presents: " + data.presents);
         
         if (clearSave || data.days == null)
         {
             data.days = new BitArray();
+            newData = true;
+        }
+        else if (BitArray.isOldFormat(data.days))
+        {
+            data.days = BitArray.fromOldFormat(cast data.days);
             newData = true;
         }
         log("seen days: " + data.days);
@@ -56,6 +66,11 @@ class Save
         if (clearSave || data.skins == null)
         {
             data.skins = new BitArray();
+            newData = true;
+        }
+        else if (BitArray.isOldFormat(data.skins))
+        {
+            data.skins = BitArray.fromOldFormat(cast data.skins);
             newData = true;
         }
         log("seen skins: " + data.skins);
@@ -82,13 +97,18 @@ class Save
             data.seenInstruments = new BitArray();
             newData = true;
         }
+        else if (BitArray.isOldFormat(data.seenInstruments))
+        {
+            data.seenInstruments = BitArray.fromOldFormat(cast data.seenInstruments);
+            newData = true;
+        }
         log("instruments seen: " + data.seenInstruments);
         
         if (clearSave)
             data.ngioSessionId = null;
         log("saved session: " + data.ngioSessionId);
         
-        if (data.instrument < -1 && (data.seenInstruments:Int64) > 0)
+        if (data.instrument < -1 && data.seenInstruments.countTrue() > 0)
         {
             // fix an old glitch where i deleted instrument save
             var i = 0;
@@ -154,7 +174,7 @@ class Save
     
     static public function resetPresents()
     {
-        data.presents = (0:Int64);
+        data.presents = new BitArray();
         flush();
     }
     
