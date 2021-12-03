@@ -314,6 +314,12 @@ class NGio
 	#if LOAD_2020_SKINS
 	static public function fetch2020Medals(sessionId:String, callback:(Map<Int, Bool>)->Void)
 	{
+		if (NG.core.loggedIn == false)
+		{
+			log('Error fetching 2020 medals: not logged in');
+			callback(null);
+		}
+		
 		var ng2020:NG = null;
 		var loggedIn:()->Void = null;
 		
