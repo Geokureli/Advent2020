@@ -459,7 +459,7 @@
     }
 ,   { "id": "custom"
     , "proper": "Custom"
-    , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
+    , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
     , "unlocksBy": null
     }
 ]
