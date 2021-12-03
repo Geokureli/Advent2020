@@ -457,6 +457,18 @@
     , "unlocksBy": null
     , "users": ["geokureli"]
     }
+,   { "id": "fancypants"
+    , "proper": "Fancy Pants Man"
+    , "description": "He's taking a break from adventures for the time being and sipping on some eggnog in town instead."
+    , "unlocksBy": "day:3"
+    , "users": ["drnerocf"]
+    }
+,   { "id": "cheeseworld"
+    , "proper": "Cheese World Boys"
+    , "description": ""
+    , "unlocksBy": null
+    , "users": ["heyopc", "droid"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
