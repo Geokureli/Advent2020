@@ -32,8 +32,8 @@ class Present extends flixel.FlxSprite
         
         var opened = Save.hasOpenedPresent(id);
         // We made day 1 unlock on any advent day, so close up their present if they didn't get it.
-        if (NGio.isLoggedIn)
-            opened = NGio.hasDayMedal(Content.getPresentIndex(id));
+        // if (NGio.isLoggedIn)
+        //     opened = NGio.hasDayMedal(Content.getPresentIndex(id));
         
         loadGraphic(path, true, 32, 34);
         animation.add("closed", [0]);
