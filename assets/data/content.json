@@ -20,10 +20,11 @@
         , "roles"  : ["Decorator", "sprites", "adl_code"]
         }
     , "cymbourine"   : { "proper": "Cymbourine"   }
-    , "mintyeggs"   : { "proper": "mintyeggs"   }
+    , "mintyeggs"    : { "proper": "mintyeggs"    }
     , "midgetsausage": { "proper": "SantaSausage" }
-    , "bigtexastony": { "proper": "BigTexasTony" }
-    , "technocookie": { "proper": "TechnoCookie" }
+    , "bigtexastony" : { "proper": "BigTexasTony" }
+    , "technocookie" : { "proper": "TechnoCookie" }
+    , "albegian"     : { "proper": "AlbeGian"     }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -40,6 +41,14 @@
         , "loopStart": 6000
         , "volume"   : 0.5
         , "day"      : 1
+        }
+    ,   { "id"       : "albegian"
+        , "name"     : "Children of the Northern Star"
+        , "authors"  : ["albegian"]
+        , "key"      : "fMaj"
+        , "bpm"      : 95
+        , "volume"   : 0.5
+        , "day"      : 4
         }
     ]
 ,   "artwork":
