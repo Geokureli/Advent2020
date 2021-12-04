@@ -2,6 +2,8 @@ package utils;
 
 import haxe.Int64;
 
+using StringTools;
+
 abstract BitArray(Array<UInt>) from Array<UInt> to Array<UInt>
 {
     inline static var BYTE = 32;
@@ -79,21 +81,30 @@ abstract BitArray(Array<UInt>) from Array<UInt> to Array<UInt>
     public function toString():String
     {
         var str = "";
-        
-        for (i in 0...this.length)
+        // dont pad the highest byte
+        var pad = 0;
+        var i = this.length;
+        while (i-- > 0)
         {
-            var copy = this[i];
-            var byteLength = 0;
-            while (copy != 0 || (i < this.length - 1 && byteLength < BYTE))
-            {
-                str = Std.string(copy & 1) + str;
-                copy >>= 1;
-                byteLength++;
-            }
+            str += byteToString(this[i]).lpad("0", pad);
+            // pad all lower bytes
+            pad = BYTE;
         }
         
         return str == "" ? "0" : str;
     }
+    
+    static function byteToString(byte:UInt)
+    {
+        var str = "";
+        while (byte != 0)
+        {
+            str = Std.string(byte & 1) + str;
+            byte >>= 1;
+        }
+        
+        return str;
+	}
     
     inline static function toBool(value:Int) return value == 1;
     
