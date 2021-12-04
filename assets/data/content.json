@@ -23,7 +23,8 @@
     , "mintyeggs"   : { "proper": "mintyeggs"   }
     , "midgetsausage": { "proper": "SantaSausage" }
     , "bigtexastony": { "proper": "BigTexasTony" }
-    
+    , "technocookie": { "proper": "TechnoCookie" }
+
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
         , "roles"  : ["2018 stuff"]
@@ -58,6 +59,12 @@
         , "name"   : "Last Tankmas"
         , "authors": ["bigtexastony"]
         , "day"    : 3
+        , "medal"  : true
+        }
+    ,   { "id"     : "technocookie"
+        , "name"   : "Tankmas Cheers"
+        , "authors": ["technocookie"]
+        , "day"    : 4
         , "medal"  : true
         }
     ]

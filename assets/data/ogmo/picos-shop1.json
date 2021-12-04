@@ -164,78 +164,8 @@
           "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
         },
         {
-          "x": 8,
-          "y": 80,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/BOX.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 16,
-          "y": 88,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/BOX.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 48,
-          "y": 80,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/BOX.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 120,
-          "y": 72,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/BOX.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
           "x": 72,
           "y": 168,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/BOX.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 8,
-          "y": 104,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/BOX.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 16,
-          "y": 120,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/BOX.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 360,
-          "y": 160,
           "scaleX": 1,
           "scaleY": 1,
           "texture": "picos_shop/BOX.png",
@@ -254,51 +184,11 @@
           "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
         },
         {
-          "x": 344,
-          "y": 360,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/box_stack_4.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 400,
-          "y": 395,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/box_stack_5.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 464,
-          "y": 72,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/box_stack_2.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
           "x": 248,
           "y": 56,
           "scaleX": 1,
           "scaleY": 1,
           "texture": "picos_shop/box_stack_1.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 104,
-          "y": 64,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "picos_shop/box_stack_3.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
