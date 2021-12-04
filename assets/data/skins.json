@@ -20,7 +20,7 @@
 ,   { "id": "orange_knight"
     , "proper": "Orange Knight"
     , "description": "This fun-loving flame-throwing Castle Crasher will brighten up your day."
-    , "unlocksBy": "free"
+    , "unlocksBy": "supporter"
     , "frames": 3
     , "users": ["tomfulp", "danpaladin"]
     , "group":"castle_crashers"
@@ -465,8 +465,8 @@
     }
 ,   { "id": "cheeseworld"
     , "proper": "Cheese World Boys"
-    , "description": ""
-    , "unlocksBy": null
+    , "description": "The cheesy boys(along with a rebel developer)started the trend of flash mobbing the game\nwith dozens and dozens of clones of themselves to fill your screen!"
+    , "unlocksBy": "login"
     , "users": ["heyopc", "droid"]
     }
 ,   { "id": "custom"
