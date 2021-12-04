@@ -69,8 +69,8 @@
           "name": "Present",
           "id": 5,
           "_eid": "75464384",
-          "x": 536,
-          "y": 528,
+          "x": 560,
+          "y": 504,
           "width": 32,
           "height": 32,
           "originX": 0,
@@ -93,13 +93,25 @@
           "name": "Present",
           "id": 7,
           "_eid": "75464384",
-          "x": 600,
-          "y": 568,
+          "x": 536,
+          "y": 560,
           "width": 32,
           "height": 32,
           "originX": 0,
           "originY": 0,
           "values": {"id": "technocookie"}
+        },
+        {
+          "name": "Present",
+          "id": 8,
+          "_eid": "75464384",
+          "x": 408,
+          "y": 552,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "cymbourine"}
         }
       ]
     },
