@@ -75,13 +75,14 @@ class OgmoTilemap extends FlxTilemap
             ( map
             , data.gridCellsX
             , data.gridCellsY
-            , new openfl.display.BitmapData(data.gridCellWidth * 2, data.gridCellHeight)
+            , new openfl.display.BitmapData(data.gridCellWidth * 2, data.gridCellHeight, true, 0x40ff0000)
             , data.gridCellWidth
             , data.gridCellHeight
             , 0
-            , 2
+            , 1
             , 1
             );
+        this.useScaleHack = false;
     }
 }
 
@@ -313,6 +314,9 @@ abstract OgmoEntityData<T>(RawOgmoEntityData<T>) from RawOgmoEntityData<T> to Ra
         
         if (this.height != null)
             object.height = this.height;
+        
+        object.immovable = true;//make the bounds green
+        // object.ignoreDrawDebug = true;
     }
     
     public function applyToSprite(sprite:FlxSprite)
@@ -337,6 +341,7 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         this = new FlxSprite(path);
         this.x = data.x;
         this.y = data.y;
+        
         if (path.indexOf("_ogmo.") != -1)
         {
             var oldSize = FlxPoint.get(this.frameWidth, this.frameHeight);
@@ -361,7 +366,22 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         this.x -= Math.round(this.width / 2);
         this.y -= Math.round(this.height / 2);
         // allow player to go behind stuff
-        setBottomHeight(this.height / 3);
+        if (data.values != null)
+        {
+            var values = data.values;
+            if (values.bottomHeight != null && values.bottomHeight > 0)
+                setBottomHeight(values.bottomHeight);
+            else
+                setBottomHeight(this.height / 3);
+            
+            #if FLX_DEBUG
+            this.ignoreDrawDebug = values.ignoreDebugDraw != false;// can be true or null
+            #end
+        }
+        #if FLX_DEBUG
+        else
+            this.ignoreDrawDebug = true;
+        #end
     }
     
     public function setBottomHeight(value:Float)
@@ -381,7 +401,11 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
     }
 }
 
-typedef OgmoDecalData = OgmoObjectData & { texture:String }
+typedef OgmoDecalData = OgmoObjectData &
+{
+    var texture:String;
+    var values:Null<{ bottomHeight:Null<Int>, ignoreDebugDraw:Null<Bool> }>;
+}
 
 interface IOgmoObject<Data:OgmoObjectData, Layer>
 {

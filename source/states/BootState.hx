@@ -15,6 +15,7 @@ import flixel.FlxG;
 import flixel.ui.FlxButton;
 import flixel.util.FlxTimer;
 import flixel.text.FlxBitmapText;
+import flixel.text.FlxText;
 import flixel.graphics.frames.FlxBitmapFont;
 
 import openfl.Assets;
@@ -51,6 +52,11 @@ class BootState extends flixel.FlxState
         
         msg.alignment = CENTER;
         msg.screenCenter(XY);
+        
+        var versionText = new FlxText(0, 0, 100);
+        versionText.text = 'Version: ' + lime.app.Application.current.meta.get('version');
+        versionText.y = FlxG.height - versionText.height;
+        add(versionText);
         
         timeout = new FlxTimer().start(20, showErrorAndBegin);
         NGio.attemptAutoLogin(Save.getNgioSessionId(), onAutoConnectResult);

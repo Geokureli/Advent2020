@@ -194,7 +194,13 @@ class RoomState extends OgmoState
         
         geom = getByName("Geom");
         colliders.add(geom);
+        geom.visible = FlxG.debugger.drawDebug;
         add(geom);
+        #if debug
+        geom.camera = new FlxCamera().copyFrom(FlxG.camera);
+        geom.camera.bgColor = 0x0;
+        FlxG.cameras.add(geom.camera, false);
+        #end
         
         for (teleport in teleports.members)
         {
@@ -323,10 +329,8 @@ class RoomState extends OgmoState
     {
         present.animateOpen(function()
         {
-            final medal = data.medal;
-            if (!Calendar.isDebugDay && Calendar.day == data.day
-              && medal != null && medal != false)
-                NGio.unlockDayMedal(data.day);
+            updatePresentMedal(data);
+            
             playOverlay(new ComicSubstate(present.id), data.comic.audioPath != null);
             if (!Calendar.isDebugDay)
                 Save.presentOpened(present.id);
@@ -379,11 +383,7 @@ class RoomState extends OgmoState
         
         present.animateOpen(function ()
             {
-                var medal = data.medal;
-                if (!Calendar.isDebugDay
-                &&  (data.day == 32 || Calendar.day == data.day)
-                &&  medal != null && medal != false)
-                    NGio.unlockDayMedal(data.day);
+                updatePresentMedal(data);
                 
                 function onOpenComplete()
                 {
@@ -396,6 +396,14 @@ class RoomState extends OgmoState
                     Save.presentOpened(present.id);
             }
         );
+    }
+    
+    function updatePresentMedal(data:ArtCreation)
+    {
+        final hasMedal = data.medal != null && data.medal != false;
+        final canUnlock = Calendar.day == data.day || data.day == 1;
+        if (Calendar.isDebugDay == false && canUnlock && hasMedal)
+            NGio.unlockDayMedal(data.day);
     }
     
     function getDaySprite(layer:OgmoDecalLayer, name:String)
@@ -471,6 +479,11 @@ class RoomState extends OgmoState
     
     function addHoverTo(target:FlxObject, box:InfoBox, hoverDis = 20)
     {
+        #if debug
+        if (target == null)
+            throw "Cannon add hover to a null object";
+        #end
+        
         removeHoverFrom(target);
         
         touchable.add(target);
@@ -726,6 +739,7 @@ class RoomState extends OgmoState
                 =  Std.int(player.x) != player.lastSend.x
                 || Std.int(player.y) != player.lastSend.y
                 || player.emote.type != player.lastSendEmote
+                || player.settings.skin != player.lastSkin
                 ;
             
             if (!changed)
@@ -734,7 +748,12 @@ class RoomState extends OgmoState
             }
             else if (changed && player.timer > player.sendDelay)
             {
-                final data = { x:Std.int(player.x), y:Std.int(player.y), emote:player.emote.type };
+                final data = 
+                    { x:Std.int(player.x)
+                    , y:Std.int(player.y)
+                    , skin:player.settings.skin
+                    , emote:player.emote.type
+                    };
                 Net.send("avatar", data);
                 player.networkUpdate();
             }
@@ -742,7 +761,10 @@ class RoomState extends OgmoState
         
         #if debug
         if (FlxG.keys.justPressed.B)
+        {
             FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
+            geom.visible = FlxG.debugger.drawDebug;
+        }
         
         if (FlxG.keys.justPressed.M)
         {
@@ -752,6 +774,9 @@ class RoomState extends OgmoState
         }
         
         FlxG.watch.addMouse();
+        
+        geom.camera.scroll.copyFrom(FlxG.camera.scroll);
+        geom.camera.zoom = FlxG.camera.zoom;
         #end
     }
     

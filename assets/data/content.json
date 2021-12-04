@@ -9,19 +9,23 @@
         }
     , "geokureli":
         { "proper" : "GeoKureli"
-        , "roles"  : ["Old Dude"]
+        , "roles"  : ["Old Dude", "adl_code"]
         }
     , "brandybuizel":
         { "proper" : "BrandyBuizel"
-        , "roles"  : ["Old Artist"]
+        , "roles"  : ["Old Artist", "adl_code"]
         }
     , "thedyingsun":
         { "proper" : "TheDyingSun"
-        , "roles"  : ["Decorator", "sprites"]
+        , "roles"  : ["Decorator", "sprites", "adl_code"]
         }
     , "cymbourine"   : { "proper": "Cymbourine"   }
+    , "mintyeggs"    : { "proper": "mintyeggs"    }
     , "midgetsausage": { "proper": "SantaSausage" }
-    
+    , "bigtexastony" : { "proper": "BigTexasTony" }
+    , "technocookie" : { "proper": "TechnoCookie" }
+    , "albegian"     : { "proper": "AlbeGian"     }
+
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
         , "roles"  : ["2018 stuff"]
@@ -34,9 +38,17 @@
         , "authors"  : ["midgetsausage"]
         , "key"      : "gMaj"
         , "bpm"      : 130
-        , "loopStart": 610000
+        , "loopStart": 6000
         , "volume"   : 0.5
         , "day"      : 1
+        }
+    ,   { "id"       : "albegian"
+        , "name"     : "Children of the Northern Star"
+        , "authors"  : ["albegian"]
+        , "key"      : "fMaj"
+        , "bpm"      : 95
+        , "volume"   : 0.5
+        , "day"      : 4
         }
     ]
 ,   "artwork":
@@ -44,6 +56,24 @@
         , "name"   : "AdventX"
         , "authors": ["cymbourine"]
         , "day"    : 1
+        , "medal"  : true
+        }
+    ,   { "id"     : "mintyeggs"
+        , "name"   : "Heterosexual Life Partners"
+        , "authors": ["mintyeggs"]
+        , "day"    : 2
+        , "medal"  : true
+        }
+    ,   { "id"     : "bigtexastony"
+        , "name"   : "Last Tankmas"
+        , "authors": ["bigtexastony"]
+        , "day"    : 3
+        , "medal"  : true
+        }
+    ,   { "id"     : "technocookie"
+        , "name"   : "Tankmas Cheers"
+        , "authors": ["technocookie"]
+        , "day"    : 4
         , "medal"  : true
         }
     ]

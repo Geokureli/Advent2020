@@ -33,7 +33,7 @@ class VillageState extends RoomState
     {
         super.initEntities();
 
-        addHoverTextTo(foreground.getByName("barrack"), "UNDER CONSTRUCTION", () -> {});
+        addHoverTextTo(background.getByName("barrack"), "UNDER CONSTRUCTION", () -> {});
         addHoverTextTo(foreground.getByName("sign_1"), "POST OFFICE UNDER CONSTRUCTION", () -> {});
     }
     

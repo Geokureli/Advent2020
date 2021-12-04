@@ -30,6 +30,12 @@ class SkinPopup extends FlxTypedSpriteGroup<FlxSprite>
         add(bg = new FlxSprite(PATH));
         add(text = new FlxBitmapText());
         
+        #if FLX_DEBUG
+        ignoreDrawDebug = true;
+        bg.ignoreDrawDebug = true;
+        text.ignoreDrawDebug = true;
+        #end
+        
         text.x = 4;
         text.y = 4;
         

@@ -314,6 +314,13 @@ class NGio
 	#if LOAD_2020_SKINS
 	static public function fetch2020Medals(sessionId:String, callback:(Map<Int, Bool>)->Void)
 	{
+		if (!NG.core.loggedIn)// can't use == false becuase there's a bug where it's null
+		{
+			log('Error fetching 2020 medals: not logged in');
+			callback(null);
+			return;
+		}
+		
 		var ng2020:NG = null;
 		var loggedIn:()->Void = null;
 		
@@ -328,9 +335,12 @@ class NGio
 		
 		loggedIn = function ()
 		{
-			if (NG.core.user.id != ng2020.user.id)
+			if (NG.core.user.name != ng2020.user.name)
 			{
-				callbackAndDestroy('Invalid user:${ng2020.user.id} expected:${NG.core.user.id}');
+				callbackAndDestroy
+					( 'Invalid user:${ng2020.user.name}@${ng2020.user.id} '
+					+ 'expected:${NG.core.user.name}@${NG.core.user.id}'
+					);
 				return;
 			}
 			

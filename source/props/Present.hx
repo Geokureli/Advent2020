@@ -1,6 +1,7 @@
 package props;
 
 import data.Content;
+import data.NGio;
 import data.Save;
 import states.OgmoState;
 
@@ -29,11 +30,16 @@ class Present extends flixel.FlxSprite
         if (!data.Manifest.exists(path, IMAGE))
             path = 'assets/images/props/presents/debug.png';
         
+        var opened = Save.hasOpenedPresent(id);
+        // We made day 1 unlock on any advent day, so close up their present if they didn't get it.
+        // if (NGio.isLoggedIn)
+        //     opened = NGio.hasDayMedal(Content.getPresentIndex(id));
+        
         loadGraphic(path, true, 32, 34);
         animation.add("closed", [0]);
         animation.add("opened", [1]);
         animation.add("opening", [1]);
-        animation.play(Save.hasOpenedPresent(id) ? "opened" : "closed");
+        animation.play(opened ? "opened" : "closed");
         graphic.bitmap.fillRect(new openfl.geom.Rectangle(32, 0, 32, 2), 0x0);
         scale.set(0.5, 0.5);
         offset.x = 8;

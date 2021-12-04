@@ -43,7 +43,10 @@
       "includeImageSequence": true,
       "scaleable": true,
       "rotatable": false,
-      "values": []
+      "values": [
+        {"name": "bottomHeight", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": 0, "max": 100},
+        {"name": "ignoreDebugDraw", "definition": "Boolean", "display": 0, "defaults": false}
+      ]
     },
     {
       "definition": "decal",

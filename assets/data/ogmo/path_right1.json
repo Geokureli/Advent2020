@@ -65,7 +65,16 @@
       "gridCellsX": 76,
       "gridCellsY": 68,
       "decals": [
-        {"x": 424, "y": 360, "scaleX": 1, "scaleY": 1, "texture": "path_right/acorn.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 424,
+          "y": 360,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "path_right/acorn.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        }
       ],
       "folder": "../../images/props"
     },

@@ -19,8 +19,8 @@
     }
 ,   { "id": "orange_knight"
     , "proper": "Orange Knight"
-    , "description": "This fun-loving flamethrowing Castle Crasher will brighten up your day."
-    , "unlocksBy": "free"
+    , "description": "This fun-loving flame-throwing Castle Crasher will brighten up your day."
+    , "unlocksBy": "supporter"
     , "frames": 3
     , "users": ["tomfulp", "danpaladin"]
     , "group":"castle_crashers"
@@ -420,7 +420,7 @@
     , "proper": "Jeff"
     , "description": "Keep trucking along in this Dead Estate."
     , "unlocksBy": "day:29"
-    , "users": ["milkbarjack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
+    , "users": ["milkbarjack", "jack", "geloxlp", "loudnnoisy", "majorwipeout", "milkyace", "stradomyre", "thaspiciest", "iconomical"]
     , "year": 2020
     }
 ,   { "id": "ena"
@@ -457,9 +457,21 @@
     , "unlocksBy": null
     , "users": ["geokureli"]
     }
+,   { "id": "fancypants"
+    , "proper": "Fancy Pants Man"
+    , "description": "He's taking a break from adventures for the time being and sipping on some eggnog in town instead."
+    , "unlocksBy": "day:3"
+    , "users": ["drnerocf"]
+    }
+,   { "id": "cheeseworld"
+    , "proper": "Cheese World Boys"
+    , "description": "The cheesy boys(along with a rebel developer)started the trend of flash mobbing the game\nwith dozens and dozens of clones of themselves to fill your screen!"
+    , "unlocksBy": "login"
+    , "users": ["heyopc", "droid"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
-    , "description": "It's you! Just you! Create and be excatly who you wanna be, but the name stays the name."
+    , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
     , "unlocksBy": null
     }
 ]

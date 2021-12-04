@@ -31,11 +31,19 @@ class TypedInfoBox<T:FlxSprite> extends FlxTypedSpriteGroup<T>
     {
         super(0, 0, 1);
         this.callback = callback;
-        
         this.x = x;
         this.y = y;
+        #if FLX_DEBUG
+        ignoreDrawDebug = true;
+        #end
+        
         if (sprite != null)
+        {
             add(sprite);
+            #if FLX_DEBUG
+            sprite.ignoreDrawDebug = true;
+            #end
+        }
         
         scale.y = 0;
         alive = false;

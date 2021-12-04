@@ -131,11 +131,6 @@ class Skins
         if (data == null)
             return false;
         
-        if (year == null)
-            year = 2021;
-        else if (year == 2020 && NGio.medals2020 == null)
-            return false;
-        
         if (data.indexOf(",") != -1)
         {
             // check many
@@ -178,7 +173,7 @@ class Skins
             init();
         
         if (id < 0 || byIndex.length <= id)
-            throw "Invalid id:" + id;
+            throw "Invalid skin id:" + id;
         
         return byIndex[id];
     }

@@ -2,27 +2,37 @@ package utils;
 
 import haxe.Int64;
 
-abstract BitArray(Int64) from Int64 to Int64
+using StringTools;
+
+abstract BitArray(Array<UInt>) from Array<UInt> to Array<UInt>
 {
+    inline static var BYTE = 32;
+    
     static var LOG_2:Float = Math.log(2);
+    
+    static public function isOldFormat(value:Any)
+    {
+        return Int64.isInt64(value);
+    }
+    
+    static public function fromOldFormat(value:Int64)
+    {
+        if (value == 0)
+            return [];
+        if (value.high != 0)
+            return [value.low, value.high];
+        return [value.low];
+    }
     
     inline public function new (value = 0)
     {
-        this = value;
+        this = [value];
     }
     
     public function getLength():Int
     {
-        if (this.high < 0)
-            return 64;
-        if (this.high > 0)
-            return Math.floor(Math.log(this.high) / LOG_2) + 33;
-        else if (this.low < 0)
-            return 32;
-        else if (this.low == 0)
-            return 0;
-        else
-            return Math.floor(Math.log(this.low) / LOG_2) + 1;
+        var len = this.length;
+        return Math.floor(Math.log(this[len - 1]) / LOG_2) + (len * BYTE) + 1;
     }
     
     public function countTrue():Int
@@ -35,61 +45,88 @@ abstract BitArray(Int64) from Int64 to Int64
     
     inline public function reset():Void
     {
-        this = 0;
+        this = [0];
     }
     
     @:arrayAccess
     inline public function get(key:Int):Bool
     {
-        var part = this.low;
-        if (key >= 32)
-        {
-            key -= 32;
-            part = this.high;
-        }
-        return toBool((part >> key) & 1);
+        return getFromByte(Math.floor(key / BYTE), key % BYTE);
+    }
+    
+    inline function getFromByte(i:Int, key:Int)
+    {
+        return i < this.length && toBool((this[i] >> key) & 1);
     }
     
     @:arrayAccess
     inline public function arrayWrite(key:Int, value:Bool):Bool
     {
-        if (key >= 63)
-            throw "Cannot have 63 or more bits";
+        var i = Math.floor(key / BYTE);
+        key = key % BYTE;
         
-        this = (this & ~((1:Int64) << key)) | ((toInt(value):Int64) << key);
+        if (getFromByte(i, key) != value)
+        {
+            while(i >= this.length)
+                this.push(0);
+            
+            this[i] = (this[i] & ~(1 << key)) | (toInt(value) << key);
+            
+            while(this[this.length - 1] == 0)
+                this.pop();
+        }
         return value;
     }
+    
     public function toString():String
     {
         var str = "";
-        var copy:Int64 = this.copy();
-        while (copy != 0)
+        // dont pad the highest byte
+        var pad = 0;
+        var i = this.length;
+        while (i-- > 0)
         {
-            str = Std.string(copy & 1) + str;
-            copy >>= 1;
+            str += byteToString(this[i]).lpad("0", pad);
+            // pad all lower bytes
+            pad = BYTE;
         }
         
         return str == "" ? "0" : str;
     }
     
+    static function byteToString(byte:UInt)
+    {
+        var str = "";
+        while (byte != 0)
+        {
+            str = Std.string(byte & 1) + str;
+            byte >>= 1;
+        }
+        
+        return str;
+	}
+    
     inline static function toBool(value:Int) return value == 1;
     
     inline static function toInt(value:Bool) return value ? 1 : 0;
     
+    static var trim = ~/^(0*)([10]+?)0*$/;
     /** for debugging */
-    inline static public function fromString(value:String):BitArray
+    static public function fromBinaryString(value:String)
     {
-        inline function intFromChar(char:String):Int64
-            return (char == "0" ? 0 : 1);
+        if (trim.match(value) == false)
+            throw 'invalid binary string: $value';
         
-        var int:Int64 = intFromChar(value.charAt(0));
+        var bits = new BitArray();
+        var length = value.length - trim.matched(1).length;
+        value = trim.matched(2);
         
-        for (i in 1...value.length)
+        for (i in 0...value.length)
         {
-            int <<= 1;
-            int |= intFromChar(value.charAt(i));
+            if (value.charAt(i) == "1")
+                bits[length - i - 1] = true;
         }
         
-        return int;
+        return bits;
     }
 }

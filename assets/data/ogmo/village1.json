@@ -76,6 +76,30 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "", "target": "", "enabled": true}
+        },
+        {
+          "name": "Present",
+          "id": 5,
+          "_eid": "75464384",
+          "x": 536,
+          "y": 528,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "mintyeggs"}
+        },
+        {
+          "name": "Present",
+          "id": 6,
+          "_eid": "75464384",
+          "x": 376,
+          "y": 512,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "bigtexastony"}
         }
       ]
     },
@@ -89,11 +113,46 @@
       "gridCellsX": 120,
       "gridCellsY": 108,
       "decals": [
-        {"x": 480, "y": 704, "scaleX": 1, "scaleY": 1, "texture": "village/GD-SIGN.png", "originX": 0.5, "originY": 0.5},
-        {"x": 480, "y": 536, "scaleX": 1, "scaleY": 1, "texture": "village/pinecone_stage1.png", "originX": 0.5, "originY": 0.5},
-        {"x": 884, "y": 536, "scaleX": 1, "scaleY": 1, "texture": "village/picos_ol.png", "originX": 0.5, "originY": 0.5},
-        {"x": 496, "y": 456, "scaleX": 1, "scaleY": 1, "texture": "village/barrack.png", "originX": 0.5, "originY": 0.5},
-        {"x": 696, "y": 512, "scaleX": 1, "scaleY": 1, "texture": "village/sign_1.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 480,
+          "y": 704,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "village/GD-SIGN.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": true}
+        },
+        {
+          "x": 480,
+          "y": 536,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "village/pinecone_stage1.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 884,
+          "y": 536,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "village/picos_ol.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": true}
+        },
+        {
+          "x": 696,
+          "y": 512,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "village/sign_1.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": true}
+        }
       ],
       "folder": "../../images/props"
     },
@@ -112,7 +171,8 @@
         {"x": 216, "y": 80, "scaleX": 1, "scaleY": 1, "texture": "village/moon_new.png", "originX": 0.5, "originY": 0.5},
         {"x": 884, "y": 528, "scaleX": 1, "scaleY": 1, "texture": "village/picos_ul.png", "originX": 0.5, "originY": 0.5},
         {"x": 480, "y": 477, "scaleX": 1, "scaleY": 1, "texture": "village/village_main1.png", "originX": 0.5, "originY": 0.5},
-        {"x": 884, "y": 536, "scaleX": 1, "scaleY": 1, "texture": "village/picos_ul.png", "originX": 0.5, "originY": 0.5}
+        {"x": 884, "y": 536, "scaleX": 1, "scaleY": 1, "texture": "village/picos_ul.png", "originX": 0.5, "originY": 0.5},
+        {"x": 496, "y": 456, "scaleX": 1, "scaleY": 1, "texture": "village/barrack.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     }
