@@ -112,6 +112,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "cymbourine"}
+        },
+        {
+          "name": "Present",
+          "id": 9,
+          "_eid": "75464384",
+          "x": 296,
+          "y": 568,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "mrshmoods"}
         }
       ]
     },

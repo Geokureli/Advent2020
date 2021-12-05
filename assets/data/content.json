@@ -25,7 +25,8 @@
     , "bigtexastony" : { "proper": "BigTexasTony" }
     , "technocookie" : { "proper": "TechnoCookie" }
     , "albegian"     : { "proper": "AlbeGian"     }
-    , "mrschmoods"   : { "proper": "MrSchmoods"   }
+    , "mrshmoods"    : { "proper": "MrShmoods"    }
+    , "spadezer"     : { "proper": "Spadezer"     }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -50,6 +51,14 @@
         , "bpm"      : 95
         , "volume"   : 0.5
         , "day"      : 4
+        }
+    ,   { "id"       : "spadezer"
+        , "name"     : "Smooth World of Joy"
+        , "authors"  : ["spadezer"]
+        , "key"      : "dMaj"
+        , "bpm"      : 100
+        , "volume"   : 0.5
+        , "day"      : 20
         }
     ]
 ,   "artwork":
@@ -77,9 +86,9 @@
         , "day"    : 4
         , "medal"  : true
         }
-    ,   { "id"     : "mrschmoods"
-        , "name"   : "Tankmas Cheers"
-        , "authors": ["mrschmoods"]
+    ,   { "id"     : "mrshmoods"
+        , "name"   : "A Starry Tankmas Night"
+        , "authors": ["mrshmoods"]
         , "day"    : 5
         , "medal"  : true
         }
