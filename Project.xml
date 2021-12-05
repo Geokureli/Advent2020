@@ -72,7 +72,7 @@
 	<classpath name="shared" />
 	
 	<assets path="assets/data"/>
-	<assets path="assets/images" include="*.png"/>
+	<assets path="assets/images" include="*.png" exclude="*instagram*|*twitter*"/>
 	<assets path="assets/sounds" include="*.mp3"/>
 	
 	<library name="noPreload" preload="true" if="PRELOAD_ALL" />
