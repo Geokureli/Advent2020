@@ -25,6 +25,7 @@
     , "bigtexastony" : { "proper": "BigTexasTony" }
     , "technocookie" : { "proper": "TechnoCookie" }
     , "albegian"     : { "proper": "AlbeGian"     }
+    , "mrschmoods"   : { "proper": "MrSchmoods"   }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -74,6 +75,12 @@
         , "name"   : "Tankmas Cheers"
         , "authors": ["technocookie"]
         , "day"    : 4
+        , "medal"  : true
+        }
+    ,   { "id"     : "mrschmoods"
+        , "name"   : "Tankmas Cheers"
+        , "authors": ["mrschmoods"]
+        , "day"    : 5
         , "medal"  : true
         }
     ]
