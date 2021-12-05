@@ -471,7 +471,7 @@
     }
 ,   { "id": "tarboy"
     , "proper": "Tarboy"
-    , "description": "Risen from the sludge of discarded workers in a pit of cororate greed...\nTarboy is gearing up to stuff some coal in your stocking."
+    , "description": "Risen from the sludge of discarded workers in a pit of corporate greed...\nTarboy is gearing up to stuff some coal in your stocking."
     , "unlocksBy": "day:5"
     , "users": ["jameslee"]
     }
