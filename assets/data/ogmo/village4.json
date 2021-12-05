@@ -124,6 +124,28 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "mrshmoods"}
+        },
+        {
+          "name": "Door",
+          "id": 10,
+          "_eid": "12751569",
+          "x": 184,
+          "y": 552,
+          "originX": 0,
+          "originY": 0,
+          "values": {"open": false}
+        },
+        {
+          "name": "Teleport",
+          "id": 11,
+          "_eid": "58765051",
+          "x": 184,
+          "y": 584,
+          "width": 40,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "", "target": "cafe", "enabled": true}
         }
       ]
     },
