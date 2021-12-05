@@ -176,16 +176,6 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
-        },
-        {
-          "x": 560,
-          "y": 728,
-          "scaleX": 1,
-          "scaleY": 1,
-          "texture": "village/menorah_8.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
         }
       ],
       "folder": "../../images/props"
@@ -207,7 +197,7 @@
         {"x": 480, "y": 477, "scaleX": 1, "scaleY": 1, "texture": "village/village_main1.png", "originX": 0.5, "originY": 0.5},
         {"x": 884, "y": 536, "scaleX": 1, "scaleY": 1, "texture": "village/picos_ul.png", "originX": 0.5, "originY": 0.5},
         {"x": 496, "y": 456, "scaleX": 1, "scaleY": 1, "texture": "village/barrack.png", "originX": 0.5, "originY": 0.5},
-        {"x": 560, "y": 728, "scaleX": 1, "scaleY": 1, "texture": "village/menorah_7.png", "originX": 0.5, "originY": 0.5}
+        {"x": 560, "y": 728, "scaleX": 1, "scaleY": 1, "texture": "village/menorah_8.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../images/props"
     }
