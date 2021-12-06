@@ -52,7 +52,166 @@
       "gridCellHeight": 8,
       "gridCellsX": 66,
       "gridCellsY": 82,
-      "decals": [],
+      "decals": [
+        {
+          "x": 200,
+          "y": 496,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-booth.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 112,
+          "y": 496,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-booth.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 24,
+          "y": 496,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-booth.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 390,
+          "y": 124,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-poster.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {"x": 426, "y": 124, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-poster.png", "originX": 0.5, "originY": 0.5},
+        {"x": 460, "y": 124, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-poster.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 390,
+          "y": 182,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-poster.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {"x": 426, "y": 182, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-poster.png", "originX": 0.5, "originY": 0.5},
+        {"x": 460, "y": 182, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-poster.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 336,
+          "y": 196,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-juke.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 172,
+          "y": 232,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-stool.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {"x": 192, "y": 232, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-stool.png", "originX": 0.5, "originY": 0.5},
+        {"x": 216, "y": 232, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-stool.png", "originX": 0.5, "originY": 0.5},
+        {"x": 238, "y": 232, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-stool.png", "originX": 0.5, "originY": 0.5},
+        {"x": 262, "y": 232, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-stool.png", "originX": 0.5, "originY": 0.5},
+        {"x": 284, "y": 232, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-stool.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 193,
+          "y": 303,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe_chairfront.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 193,
+          "y": 338,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-table.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 224,
+          "y": 338,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe_chairside.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 162,
+          "y": 338,
+          "scaleX": -1,
+          "scaleY": 1,
+          "texture": "cafe/cafe_chairside.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {"x": 162, "y": 418, "scaleX": -1, "scaleY": 1, "texture": "cafe/cafe_chairside.png", "originX": 0.5, "originY": 0.5},
+        {"x": 224, "y": 418, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe_chairside.png", "originX": 0.5, "originY": 0.5},
+        {"x": 89, "y": 383, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe_chairfront.png", "originX": 0.5, "originY": 0.5},
+        {"x": 89, "y": 418, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe-table.png", "originX": 0.5, "originY": 0.5},
+        {"x": 120, "y": 418, "scaleX": 1, "scaleY": 1, "texture": "cafe/cafe_chairside.png", "originX": 0.5, "originY": 0.5},
+        {"x": 58, "y": 418, "scaleX": -1, "scaleY": 1, "texture": "cafe/cafe_chairside.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 193,
+          "y": 383,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe_chairfront.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 193,
+          "y": 418,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-table.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {
+          "x": 328,
+          "y": 336,
+          "scaleX": 1,
+          "scaleY": 1,
+          "texture": "cafe/cafe-stool.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"bottomHeight": 0, "ignoreDebugDraw": false}
+        },
+        {"x": 87, "y": 496, "scaleX": -1, "scaleY": 1, "texture": "cafe/cafe-booth.png", "originX": 0.5, "originY": 0.5},
+        {"x": 175, "y": 496, "scaleX": -1, "scaleY": 1, "texture": "cafe/cafe-booth.png", "originX": 0.5, "originY": 0.5},
+        {"x": 263, "y": 496, "scaleX": -1, "scaleY": 1, "texture": "cafe/cafe-booth.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../images/props"
     },
     {
