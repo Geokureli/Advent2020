@@ -27,6 +27,7 @@
     , "albegian"     : { "proper": "AlbeGian"     }
     , "mrshmoods"    : { "proper": "MrShmoods"    }
     , "spadezer"     : { "proper": "Spadezer"     }
+    , "oddlem"       : { "proper": "Oddlem"       }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -90,6 +91,12 @@
         , "name"   : "A Starry Tankmas Night"
         , "authors": ["mrshmoods"]
         , "day"    : 5
+        , "medal"  : true
+        }
+    ,   { "id"     : "oddlem"
+        , "name"   : "prinkleton big blast"
+        , "authors": ["oddlem"]
+        , "day"    : 6
         , "medal"  : true
         }
     ]
