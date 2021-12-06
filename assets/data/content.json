@@ -13,11 +13,15 @@
         }
     , "brandybuizel":
         { "proper" : "BrandyBuizel"
-        , "roles"  : ["Old Artist", "adl_code"]
+        , "roles"  : ["Old Artist", "adl_code", "sprites"]
         }
     , "thedyingsun":
         { "proper" : "TheDyingSun"
         , "roles"  : ["Decorator", "sprites", "adl_code"]
+        }
+    , "karlestonchew":
+        { "proper" : "Karlestonchew"
+        , "roles"  : ["sprites"]
         }
     , "cymbourine"   : { "proper": "Cymbourine"   }
     , "mintyeggs"    : { "proper": "mintyeggs"    }
