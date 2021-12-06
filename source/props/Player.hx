@@ -120,12 +120,18 @@ class Player extends flixel.FlxSprite
         hitbox.setPosition(x - margin, y + height + margin - hitbox.height - 4);
         
         #if debug
-        if (FlxG.keys.justPressed.L && overlapsPoint(FlxG.mouse.getWorldPosition(FlxPoint.weak())))
+        final keys = FlxG.keys;
+        if (keys.justPressed.L && (keys.pressed.SHIFT || isMouseOver()))
         {
             drawPath = !drawPath;
-            // this.alpha = drawPath ? 0.75 : 1;
+            alpha = drawPath ? 0.75 : 1;
         }
         #end
+    }
+    
+    inline function isMouseOver()
+    {
+        return hitbox.overlapsPoint(FlxG.mouse.getWorldPosition(FlxPoint.weak()));
     }
     
     function updateMovement(pressU:Bool, pressD:Bool, pressL:Bool, pressR:Bool, pressB:Bool, pressMouse:Bool)
