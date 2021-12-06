@@ -1,5 +1,7 @@
 package data;
 
+import utils.BitArray;
+
 import io.newgrounds.NG;
 import io.newgrounds.objects.Medal;
 import io.newgrounds.objects.Score;
@@ -31,8 +33,6 @@ class NGio
 	public static var ngDate(default, null):Date;
 	public static var isContributor(default, null) = false;
 	
-	public static var medals2020(default, null):Map<Int, Bool>;
-	public static var daysSeen2020(default, null):Int;
 	
 	public static var scoreboardArray:Array<Score> = [];
 	
@@ -294,16 +294,6 @@ class NGio
 		#end
 	}
 	
-	static public function hasDayMedal2020(date:Int):Bool
-	{
-		return hasMedal2020(DAY_MEDAL_0_2020 + date - 1);
-	}
-	
-	static public function hasMedal2020(id:Int):Bool
-	{
-		return medals2020 != null && medals2020[id];
-	}
-	
 	static public function hasMedalByName(name:String):Bool
 	{
 		if (!Content.medals.exists(name))
@@ -313,14 +303,17 @@ class NGio
 	}
 	
 	#if LOAD_2020_SKINS
-	static public function fetch2020Medals(sessionId:String, callback:(Map<Int, Bool>)->Void)
+	static public function fetch2020Medals(sessionId:String, callback:(Bool)->Void)
 	{
 		if (!NG.core.loggedIn)// can't use == false becuase there's a bug where it's null
 		{
 			log('Error fetching 2020 medals: not logged in');
-			callback(null);
+			Save.deleteSave2020();
+			callback(false);
 			return;
 		}
+		
+		Save.verifySave2020(NG.core.user.id);
 		
 		var ng2020:NG = null;
 		var loggedIn:()->Void = null;
@@ -331,7 +324,7 @@ class NGio
 				log('Error fetching 2020 medals: $error');
 			
 			ng2020.onLogin.remove(loggedIn);
-			callback(medals2020);
+			callback(error == null);
 		}
 		
 		loggedIn = function ()
@@ -350,14 +343,19 @@ class NGio
 			(
 				function onSucceed()
 				{
-					medals2020 = new Map();
+					var daysSeen = new BitArray();
+					var unlockedList = new Array<Int>();
 					for (id=>medal in ng2020.medals)
 					{
-						medals2020[id] = medal.unlocked;
 						if (medal.unlocked && id - DAY_MEDAL_0_2020 < 32)
-							daysSeen2020++;
+							daysSeen[id - DAY_MEDAL_0_2020] = true;
+						else
+							unlockedList.push(id);
 					}
-					log('2020 medals loaded, days seen: $daysSeen2020');
+					log('2020 medals loaded, days seen: $daysSeen, medals:$unlockedList');
+					Save.setUnlockedMedals2020(unlockedList);
+					Save.setDaysSeen2020(daysSeen);
+					Save.setNgioUserId2020(ng2020.user.id);
 					
 					callbackAndDestroy();
 				},

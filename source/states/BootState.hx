@@ -150,10 +150,10 @@ class BootState extends flixel.FlxState
             callback();
             return;
         }
-        NGio.fetch2020Medals(ngioSessionId2020, function (medalData)
+        NGio.fetch2020Medals(ngioSessionId2020, function (success)
             {
                 #if SHOW_2020_SKINS_WARNING
-                loadedMedals2020 = medalData != null;
+                loadedMedals2020 = success || Save.hasSave2020();
                 #end
                 callback();
             }

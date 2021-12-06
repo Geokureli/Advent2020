@@ -62,6 +62,15 @@ class Save
         }
         log("seen days: " + data.days);
         
+        if (clearSave || data.days2020 == null)
+        {
+            deleteSave2020(false);
+            newData = true;
+        }
+        log("seen days 2020: " + data.days2020);
+        log("medals unlocked 2020: " + data.medalsUnlocked2020);
+        log("medals user id 2020: " + data.ngioUserId2020);
+        
         //PLURAL: seen skins
         if (clearSave || data.skins == null)
         {
@@ -333,6 +342,72 @@ class Save
         return data.ngioSessionId2020;
     }
     
+    @:allow(data.NGio)
+    static function setUnlockedMedals2020(ids:Array<Int>)
+    {
+        data.medalsUnlocked2020 = ids;
+        flush();
+    }
+    
+    @:allow(data.NGio)
+    static function setDaysSeen2020(bits:BitArray)
+    {
+        if (data.days2020 != bits)
+        {
+            data.days2020 = bits;
+            flush();
+        }
+    }
+    
+    @:allow(data.NGio)
+    static function setNgioUserId2020(id:Int)
+    {
+        if (data.ngioUserId2020 != id)
+        {
+            data.ngioUserId2020 = -1;
+            flush();
+        }
+    }
+    
+    @:allow(data.NGio)
+    static function verifySave2020(id:Int)
+    {
+        if (data.ngioUserId2020 != id || id == -1)
+            deleteSave2020();
+    }
+    
+    @:allow(data.NGio)
+    static function deleteSave2020(flushNow = true)
+    {
+        data.ngioUserId2020 = -1;
+        data.days2020 = new BitArray();
+        data.medalsUnlocked2020 = [];
+        if (flushNow)
+            flush();
+    }
+    
+    static public function hasSave2020()
+    {
+        return data.days2020.countTrue() > 0
+            || data.medalsUnlocked2020.length > 0;
+    }
+    
+    static public function hasMedal2020(id:Int)
+    {
+        return data.medalsUnlocked2020.indexOf(id) != -1;
+    }
+    
+    static public function hasSeenDay2020(day:Int)
+    {
+        // zero based
+        return data.days2020[day - 1];
+    }
+    
+    static public function countDaysSeen2020()
+    {
+        return data.days2020.countTrue();
+    }
+    
     inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
 
@@ -350,4 +425,7 @@ typedef SaveData2020 =
 typedef SaveData = SaveData2020 &
 {
     var ngioSessionId2020:String;
+    var ngioUserId2020:Int;
+    var days2020:BitArray;
+    var medalsUnlocked2020:Array<Int>;
 }
