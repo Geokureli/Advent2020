@@ -232,12 +232,13 @@ class NGio
 		{
 			logVerbose('${medal.unlocked ? "unlocked" : "locked  "} - ${medal.name}');
 			
+			var dayMedal = medal.id - DAY_MEDAL_0 + 1;// one based
 			if (!medal.unlocked)
 				numMedalsLocked++;
-			else if(medal.id - DAY_MEDAL_0 <= 31 && medal.id - DAY_MEDAL_0 > -1 && !Save.hasSeenDay(medal.id - DAY_MEDAL_0))
+			else if(dayMedal >= 1 && dayMedal <= 32)
 			{
-				logVerbose("seen day:" + (medal.id - DAY_MEDAL_0 + 1));
-				Save.daySeen(medal.id - DAY_MEDAL_0 + 1);
+				logVerbose("seen day:" + dayMedal);
+				Save.daySeen(dayMedal);
 			}
 			
 			numMedals++;
