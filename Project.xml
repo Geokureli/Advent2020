@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Tankmas2021" file="Tankmas2021" main="Main" version="1.1.5" company="Newgrounds" />
+	<app title="Tankmas2021" file="Tankmas2021" main="Main" version="1.1.6" company="Newgrounds" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -54,6 +54,7 @@
 	<!-- <define name="USE_LOCAL_SERVER" if="debug"/> -->
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
+	<!-- <define name="LOAD_DISK_CAROUSEL"/> -->
 	<define name="LOAD_2020_SKINS"/>
 	<!-- <define name="SHOW_2020_SKINS_WARNING" if="LOAD_2020_SKINS"/> -->
 	<!-- <define name="CLEAR_SAVE" if="debug"/> -->
@@ -72,7 +73,9 @@
 	<classpath name="shared" />
 	
 	<assets path="assets/data"/>
-	<assets path="assets/images" include="*.png" exclude="*instagram*|*twitter*"/>
+	<assets path="assets/images" include="*.png" exclude="*instagram*|*twitter*|*carousel*"/>
+	<assets path="assets/images/ui/carousel" include="*.png" if="LOAD_DISK_CAROUSEL"/>
+	
 	<assets path="assets/sounds" include="*.mp3"/>
 	
 	<library name="noPreload" preload="true" if="PRELOAD_ALL" />

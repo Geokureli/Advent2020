@@ -358,12 +358,14 @@ class Content
             {
                 if (!Manifest.exists(song.path, MUSIC))
                     addError('Missing ${song.path}');
-                // if (!Manifest.exists(song.samplePath, MUSIC))
-                //     addError('Missing ${song.samplePath}');
+                #if LOAD_DISK_CAROUSEL
+                if (!Manifest.exists(song.samplePath, MUSIC))
+                    addError('Missing ${song.samplePath}');
                 if (!Manifest.exists(song.sideDiskPath, IMAGE))
                     addWarning('Missing ${song.sideDiskPath}');
                 if (!Manifest.exists(song.frontDiskPath, IMAGE))
                     addWarning('Missing ${song.frontDiskPath}');
+                #end
                 if (song.authors == null)
                     addError('Missing song authors id:${song.id}');
                 for (author in song.authors)

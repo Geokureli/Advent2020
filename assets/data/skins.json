@@ -475,6 +475,18 @@
     , "unlocksBy": "day:5"
     , "users": ["jameslee"]
     }
+,   { "id": "guard"
+    , "proper": "Cat Guard"
+    , "description": "But I guess there's no reasoning with madness. Or cats for that matter!\nSeriously, try talking sense into a cat. They just stare at you with their lifeless, patronizing eyeballs..."
+    , "unlocksBy": "day:6"
+    , "users": ["brandybuizel"]
+    }
+,   { "id": "me"
+    , "proper": "Me?"
+    , "description": "Is this kid's name 'and Me' for real though?"
+    , "unlocksBy": "day:7"
+    , "users": ["brandybuizel"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
