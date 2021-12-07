@@ -17,6 +17,8 @@ import flixel.math.FlxMath;
 
 class VillageState extends RoomState
 {
+    var knose_note:OgmoDecal;
+
     override function create()
     {
         super.create();
@@ -35,6 +37,12 @@ class VillageState extends RoomState
 
         addHoverTextTo(background.getByName("barrack"), "UNDER CONSTRUCTION", () -> {});
         addHoverTextTo(foreground.getByName("sign_1"), "POST OFFICE UNDER CONSTRUCTION", () -> {});
+        
+        //if(NGio.ngDate.getDate() == 8){
+            knose_note = foreground.getByName("knose-note");
+            knose_note.visible = false;
+            addHoverTextTo(foreground.getByName("garbage_can"), "LOOK", ()->{ knose_note.visible = !knose_note.visible; });
+        //}
     }
     
     override function update(elapsed:Float)
