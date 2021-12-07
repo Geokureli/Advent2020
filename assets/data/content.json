@@ -30,6 +30,8 @@
     , "technocookie" : { "proper": "TechnoCookie" }
     , "albegian"     : { "proper": "AlbeGian"     }
     , "mrshmoods"    : { "proper": "MrShmoods"    }
+    , "curruff"      : { "proper": "Curruff"      }
+    , "connorgrail"  : { "proper": "ConnorGrail"  }
     , "spadezer"     : { "proper": "Spadezer"     }
     , "oddlem"       : { "proper": "Oddlem"       }
 
@@ -56,6 +58,23 @@
         , "bpm"      : 95
         , "volume"   : 0.5
         , "day"      : 4
+        }
+    ,   { "id"       : "curruff"
+        , "name"     : "Time to Shine"
+        , "authors"  : ["curruff"]
+        , "key"      : "eMaj"
+        , "bpm"      : 147
+        , "loopStart": 39184
+        , "volume"   : 0.5
+        , "day"      : 7
+        }
+    ,   { "id"       : "connorgrail"
+        , "name"     : "God Rest Ye Merry Gentlemen"
+        , "authors"  : ["connorgrail"]
+        , "key"      : "eMin"
+        , "bpm"      : 100
+        , "volume"   : 0.5
+        , "day"      : 19
         }
     ,   { "id"       : "spadezer"
         , "name"     : "Smooth World of Joy"
