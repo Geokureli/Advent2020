@@ -219,9 +219,9 @@ class DressUpSubstate extends flixel.FlxSubState
             if (currentSkin.year == 2020)
             {
                 if (Save.hasSave2020())
-                    descText.text = "No 2020 save data found on this device. Log in to Tankmas ADVENTure 2020 for more skins";
-                else
                     descText.text = "Play Tankmas ADVENTure 2020 to unlock this";
+                else
+                    descText.text = "No 2020 save data found on this device. Log in to Tankmas ADVENTure 2020 for more skins";
             }
             else if (currentSkin.unlocksBy != null)
             {
