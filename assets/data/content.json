@@ -34,6 +34,7 @@
     , "connorgrail"  : { "proper": "ConnorGrail"  }
     , "spadezer"     : { "proper": "Spadezer"     }
     , "oddlem"       : { "proper": "Oddlem"       }
+    , "mkmaffo"       : { "proper": "MKMaffo"       }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -120,6 +121,12 @@
         , "name"   : "prinkleton big blast"
         , "authors": ["oddlem"]
         , "day"    : 6
+        , "medal"  : true
+        }
+    ,   { "id"     : "mkmaffo"
+        , "name"   : "A Third Rated Tankmas!"
+        , "authors": ["mkmaffo"]
+        , "day"    : 7
         , "medal"  : true
         }
     ]

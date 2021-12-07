@@ -148,6 +148,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "oddlem"}
+        },
+        {
+          "name": "Present",
+          "id": 13,
+          "_eid": "75464384",
+          "x": 248,
+          "y": 624,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "mkmaffo"}
         }
       ]
     },
