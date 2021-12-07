@@ -56,7 +56,9 @@ class Game
         arcadeTypes = [];
         
         var showIntro
-        #if FORCE_INTRO
+        #if SKIP_INTRO
+            = false;
+        #elseif FORCE_INTRO
             = true;
         #else
             = NGio.hasMedal(66220) == false;
