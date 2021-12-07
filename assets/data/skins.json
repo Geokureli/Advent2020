@@ -203,6 +203,7 @@
     , "unlocksBy": "supporter"
     , "offset": {"x":6, "y":5 }
     , "users": ["danpaladin", "geokureli"]
+    , "group":"dad n me"
     }
 ,   { "id": "pump_and_skid"
     , "proper": "Pump'n'Skid"
@@ -444,6 +445,7 @@
     , "unlocksBy": "medal:30"
     , "users": ["jameslee"]
     , "year": 2020
+    , "group": "jameslee"
     }
 ,   { "id": "alloy"
     , "proper": "Alloy"
@@ -474,18 +476,21 @@
     , "description": "Risen from the sludge of discarded workers in a pit of corporate greed...\nTarboy is gearing up to stuff some coal in your stocking."
     , "unlocksBy": "day:5"
     , "users": ["jameslee"]
+    , "group": "jameslee"
     }
 ,   { "id": "guard"
     , "proper": "Cat Guard"
     , "description": "But I guess there's no reasoning with madness. Or cats for that matter!\nSeriously, try talking sense into a cat. They just stare at you with their lifeless, patronizing eyeballs..."
     , "unlocksBy": "day:6"
     , "users": ["brandybuizel"]
+    , "group":"battleblock"
     }
 ,   { "id": "me"
     , "proper": "Me?"
     , "description": "Is this kid's name 'and Me' for real though?"
     , "unlocksBy": "day:7"
     , "users": ["brandybuizel"]
+    , "group":"dad n me"
     }
 ,   { "id": "custom"
     , "proper": "Custom"
