@@ -37,7 +37,6 @@ class VillageState extends RoomState
 
         addHoverTextTo(background.getByName("barrack"), "UNDER CONSTRUCTION", () -> {});
         addHoverTextTo(foreground.getByName("sign_1"), "POST OFFICE UNDER CONSTRUCTION", () -> {});
-       
         
         knose_note = foreground.getByName("knose-note");
         if(knose_note != null){
