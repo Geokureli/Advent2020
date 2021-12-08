@@ -1,7 +1,5 @@
 package states;
 
-
-import flixel.group.FlxSpriteGroup;
 import data.Calendar;
 import data.NGio;
 import data.Save;
@@ -15,6 +13,7 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.text.FlxBitmapText;
 import flixel.util.FlxColor;
@@ -67,39 +66,16 @@ class DressUpSubstate extends flixel.FlxSubState
         instructions.scale.set(2, 2);
         add(instructions);
         
+        createSkinsList();
+        
         var top:Float = FlxG.height;
         var bottom:Float = 0;
-        
-        for (i in 0...Skins.getLength())
+        for (sprite in sprites)
         {
-            var data = Skins.getDataSorted(i);
-            var sprite = new SkinDisplay(data);
-            sprites.add(sprite);
-            sprite.scale.set(2, 2);
-            sprite.updateHitbox();
-            sprite.scrollFactor.set(0, 0);
-            
-            sprite.x = SPACING * i;
-            if (data.offset != null)
-                sprite.offset.set(data.offset.x, data.offset.y);
-            
-            if (data.index == PlayerSettings.user.skin)
-            {
-                current = i;
-                sprite.x += SIDE_GAP;
-                camera.follow(sprite);
-            }
-            else if (i > current && current > -1)
-                sprite.x += SIDE_GAP * 2;
-            
-            sprite.y = (FlxG.height - sprites.members[0].height) / 2;
-            
-            if (!data.unlocked)
-                sprite.color = FlxColor.BLACK;
-            
             top = Math.min(top, sprite.y);
             bottom = Math.max(bottom, sprite.y + sprite.height);
         }
+        
         top -= BAR_MARGIN;
         
         nameText.text = currentSkin.proper;
@@ -156,6 +132,46 @@ class DressUpSubstate extends flixel.FlxSubState
         load.visible = false;
         
         hiliteCurrent();
+    }
+    
+    public function createSkinsList(setCurrent = true)
+    {
+        for (i in 0...Skins.getLength())
+        {
+            var data = Skins.getDataSorted(i);
+            var sprite = new SkinDisplay(data);
+            sprites.add(sprite);
+            sprite.scale.set(2, 2);
+            sprite.updateHitbox();
+            sprite.scrollFactor.set(0, 0);
+            
+            sprite.x = SPACING * i;
+            if (data.offset != null)
+                sprite.offset.set(data.offset.x, data.offset.y);
+            
+            if (data.index == PlayerSettings.user.skin)
+            {
+                if (setCurrent)
+                    current = i;
+                sprite.x += SIDE_GAP;
+                camera.follow(sprite);
+            }
+            else if (i > current && current > -1)
+                sprite.x += SIDE_GAP * 2;
+            
+            sprite.y = (FlxG.height - sprites.members[0].height) / 2;
+            
+            if (!data.unlocked)
+                sprite.color = FlxColor.BLACK;
+        }
+    }
+    
+    public function resetSkinsList()
+    {
+        while(sprites.length > 0)
+            sprites.remove(sprites.members[0], true);
+        
+        createSkinsList(false);
     }
     
     override function update(elapsed:Float)
@@ -291,7 +307,7 @@ class DressUpSubstate extends flixel.FlxSubState
                         if (success)
                         {
                             Skins.checkUnlocks();
-                            //reload skins
+                            resetSkinsList();
                             prompt.setupOk("Load Successful, Enjoy!", remove.bind(prompt));
                         }
                         else
