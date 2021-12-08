@@ -44,6 +44,9 @@ class VillageState extends RoomState
         }
         if(Calendar.day == 8){
             addHoverTextTo(foreground.getByName("garbage_can"), "LOOK", ()->{ knose_note.visible = !knose_note.visible; });
+        }else if(Calendar.day == 9){
+            knose_note.loadGraphic("assets/images/props/village/knose-note9.png");
+            addHoverTextTo(foreground.getByName("garbage_can"), "LOOK", ()->{ knose_note.visible = !knose_note.visible; });
         }
     }
     
