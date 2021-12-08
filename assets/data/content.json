@@ -35,6 +35,7 @@
     , "spadezer"     : { "proper": "Spadezer"     }
     , "oddlem"       : { "proper": "Oddlem"       }
     , "mkmaffo"       : { "proper": "MKMaffo"       }
+    , "sirlenward"       : { "proper": "SirLenward"       }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -129,6 +130,13 @@
         , "day"    : 7
         , "medal"  : true
         }
+    ,   { "id"     : "sirlenward"
+        , "name"   : "A Third Rated Tankmas!"
+        , "authors": ["sirlenward"]
+        , "day"    : 8
+        , "medal"  : true
+        }
+
     ]
 ,   "events":
     {
