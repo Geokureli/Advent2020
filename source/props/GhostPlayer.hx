@@ -1,8 +1,10 @@
 package props;
 
 import Types;
+import data.Game;
 import ui.Font;
 import utils.Log;
+
 import flixel.text.FlxBitmapText;
 import flixel.math.FlxPoint;
 
@@ -20,7 +22,6 @@ class GhostPlayer extends Player
         this.key = key;
         
         nameText = new FlxBitmapText();
-        nameText.color = 0xFF000000;
         nameText.alignment = CENTER;
         #if FLX_DEBUG
         nameText.ignoreDrawDebug = true;
@@ -68,9 +69,15 @@ class GhostPlayer extends Player
         super.draw();
         if (nameText.visible)
         {
+            var invertNameColors = Game.room.name == Village;
+            nameText.color = invertNameColors ? 0xFFffffff : 0xFF000000;
             nameText.alpha = alpha;
             nameText.x = x + (width - nameText.width) / 2;
             nameText.y = y + height - frameHeight - nameText.height - 16;
+            nameText.draw();
+            nameText.color = invertNameColors ? 0xFF000000 : 0xFFffffff;
+            nameText.x--;
+            nameText.y--;
             nameText.draw();
         }
     }
