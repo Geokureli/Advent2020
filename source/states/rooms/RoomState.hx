@@ -820,7 +820,7 @@ class RoomState extends OgmoState
             customMsg += "\n\n";
         customMsg += 'Open external page?\n${prettyUrl(url)}';
         
-        prompt.setup
+        prompt.setupYesNo
             ( customMsg
             , ()->
             {
