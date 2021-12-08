@@ -62,6 +62,7 @@
 	<!-- <define name="FORGET_INSTRUMENT" if="debug"/> -->
 	<!-- <define name="FORGET_TODAY" if="debug"/> -->
 	<!-- <define name="FORCE_INTRO" if="debug"/> -->
+	<define name="SKIP_INTRO" if="debug"/>
 	<!-- <define name="FORCE_LUCIA" if="debug"/> -->
 	<define name="ALLOW_DAY_SKIP" unless="FORCE_INTRO"/>
 	
