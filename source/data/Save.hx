@@ -158,7 +158,15 @@ class Save
         
         // bypass openfl's save cache via hacking
         if (clearCache)
+        {
+            // delete saved session
+            if (data.ngioSessionId2020 != null)
+            {
+                data.ngioSessionId2020 = null;
+                flush();
+            }
             clearSharedObjectCache("advent2020", "GeoKureli");
+        }
         
         // Load last years save for session id
         var save2020 = new FlxSave();
