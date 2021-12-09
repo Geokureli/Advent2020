@@ -57,49 +57,65 @@ class Button extends FlxTypedButton<FlxSprite>
 }
 
 @:forward
+abstract SimpleButton(Button) to Button
+{
+    inline public function new(x = 0.0, y = 0.0, ?onClick, id:String, ?icon)
+    {
+        this = new Button(x, y, onClick, 'assets/images/ui/buttons/$id.png', icon);
+    }
+}
+
+@:forward
 abstract IconButton(Button) to Button
 {
-    inline static public var GRAPHIC = "assets/images/ui/buttons/iconBtn.png";
-    
     inline public function new(x = 0.0, y = 0.0, ?icon:String, ?onClick)
     {
-        this = new Button(x, y, onClick, GRAPHIC, icon);
+        this = new SimpleButton(x, y, onClick, "iconBtn", icon);
     }
 }
 
 @:forward
 abstract YesButton(Button) to Button
 {
-    public function new(x = 0.0, y = 0.0, ?onClick)
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/buttons/yes.png");
+        this = new SimpleButton(x, y, onClick, "yes");
     }
 }
 
 @:forward
 abstract NoButton(Button) to Button
 {
-    public function new(x = 0.0, y = 0.0, ?onClick)
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/buttons/no.png");
+        this = new SimpleButton(x, y, onClick, "no");
     }
 }
 
 @:forward
 abstract OkButton(Button) to Button
 {
-    public function new(x = 0.0, y = 0.0, ?onClick)
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/buttons/ok.png");
+        this = new SimpleButton(x, y, onClick, "ok");
+    }
+}
+
+@:forward
+abstract LoadButton(Button) to Button
+{
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
+    {
+        this = new SimpleButton(x, y, onClick, "load");
     }
 }
 
 @:forward
 abstract BackButton(Button) to Button
 {
-    public function new(x = 0.0, y = 0.0, ?onClick)
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/buttons/back.png");
+        this = new SimpleButton(x, y, onClick, "back");
     }
 }
 
@@ -108,7 +124,7 @@ abstract SettingsButton(Button) to Button
 {
     public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        this = new Button(x, y, onClick, "assets/images/ui/buttons/settings.png");
+        this = new SimpleButton(x, y, onClick, "settings");
     }
 }
 
@@ -126,10 +142,11 @@ class FullscreenButton extends Button
     }
 }
 
-class EmoteButton extends Button
+@:forward
+abstract EmoteButton(Button) to Button
 {
-    public function new(x = 0.0, y = 0.0, ?onClick)
+    inline public function new(x = 0.0, y = 0.0, ?onClick)
     {
-        super(x, y, onClick, "assets/images/ui/buttons/emote.png");
+        this = new SimpleButton(x, y, onClick, "emote");
     }
 }

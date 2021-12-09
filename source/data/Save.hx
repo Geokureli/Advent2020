@@ -32,7 +32,7 @@ class Save
         #end
         
         #if LOAD_2020_SKINS
-        load2020SaveData();
+        load2020SaveData(false);
         #end
         
         var clearSave = #if CLEAR_SAVE true #else false #end;
@@ -152,7 +152,8 @@ class Save
     }
     
     #if LOAD_2020_SKINS
-    static function load2020SaveData()
+    @:allow(data.NGio)
+    static function load2020SaveData(clearCache = true)
     {
         #if debug
         if (APIStuff.DEBUG_SESSON_2020 != null)
@@ -162,6 +163,19 @@ class Save
             return;
         }
         #end
+        
+        // bypass openfl's save cache via hacking
+        if (clearCache)
+        {
+            // delete saved session
+            if (data.ngioSessionId2020 != null)
+            {
+                data.ngioSessionId2020 = null;
+                flush();
+            }
+            clearSharedObjectCache("advent2020", "GeoKureli");
+        }
+        
         // Load last years save for session id
         var save2020 = new FlxSave();
         if (save2020.bind("advent2020", "GeoKureli"))
@@ -180,6 +194,12 @@ class Save
                 data.skin = data2020.skin;
             }
         }
+    }
+    
+    static function clearSharedObjectCache(name:String, path:String)
+    {
+        @:privateAccess
+        openfl.net.SharedObject.__sharedObjects.remove('$path/$name');
     }
     #end
     
