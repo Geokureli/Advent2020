@@ -146,22 +146,26 @@ class OgmoDecalLayer extends OgmoObjectLayer<OgmoDecal>
         super();
         
         for (decalData in data.decals)
-        {
-            Log.ogmo("creating decal:" + decalData.texture);
-            
-            final name = getName(decalData.texture);
-            final decal = new OgmoDecal(decalData);
-            add(decal);
-            if (!byName.exists(name))
-                byName[name] = decal;
-            Log.ogmoVerbose('decal: $name x:${decal.x} y:${decal.y}');
-        }
+            createDecal(decalData);
         
         for (i in 0...data.decals.length)
         {
             if (Std.is(members[i], IOgmoDecal))
                 (cast members[i]:IOgmoDecal).ogmoInit(data.decals[i], this);
         }
+    }
+    
+    public function createDecal(decalData)
+    {
+        Log.ogmo("creating decal:" + decalData.texture);
+        
+        final name = getName(decalData.texture);
+        final decal = new OgmoDecal(decalData);
+        add(decal);
+        if (!byName.exists(name))
+            byName[name] = decal;
+        
+        Log.ogmoVerbose('decal: $name x:${decal.x} y:${decal.y}');
     }
     
     inline static function getName(texture:String):String
@@ -369,10 +373,10 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         if (data.values != null)
         {
             var values = data.values;
-            if (values.bottomHeight != null && values.bottomHeight > 0)
-                setBottomHeight(values.bottomHeight);
-            else
+            if (values.bottomHeight == null || values.bottomHeight == 0)
                 setBottomHeight(this.height / 3);
+            else if (values.bottomHeight != -1)
+                setBottomHeight(values.bottomHeight);
             
             #if FLX_DEBUG
             this.ignoreDrawDebug = values.ignoreDebugDraw != false;// can be true or null

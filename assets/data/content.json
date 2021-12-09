@@ -37,6 +37,7 @@
     , "mkmaffo"      : { "proper": "MKMaffo"      }
     , "sirlenward"   : { "proper": "SirLenward"   }
     , "quenek441"    : { "proper": "Quenek441"    }
+    , "imkevin"      : { "proper": "imkevin"      }
     , "theextreamh"  : { "proper": "TheExtreamH"  }
 
     , "ninjamuffin99":
@@ -142,6 +143,12 @@
         , "name"   : "Snowball Attack"
         , "authors": ["quenek441"]
         , "day"    : 9
+        , "medal"  : true
+        }
+    ,   { "id"     : "imkevin"
+        , "name"   : "Tankmas Celebration"
+        , "authors": ["imkevin"]
+        , "day"    : 10
         , "medal"  : true
         }
     ,   { "id"     : "theextreamh"
