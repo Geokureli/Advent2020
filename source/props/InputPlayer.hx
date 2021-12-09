@@ -1,9 +1,11 @@
 package props;
 
-import ui.Button;
 import Types;
 import data.Instrument;
+import data.NGio;
 import data.PlayerSettings;
+import data.Save;
+import ui.Button;
 import ui.Controls;
 
 import flixel.FlxG;
@@ -30,13 +32,18 @@ class InputPlayer extends Player
         if (PlayerSettings.user == null)
             PlayerSettings.user = PlayerSettings.fromSave();
         
-        super(x, y, PlayerSettings.user);
+        super(x, y, NGio.userName, PlayerSettings.user);
+    }
+    
+    override function updateNameText(name:String)
+    {
+        super.updateNameText(name);
+        nameText.visible = name != null && Save.showName;
     }
     
     override function update(elapsed:Float)
     {
         super.update(elapsed);
-        
         
         if (this.enabled)
         {

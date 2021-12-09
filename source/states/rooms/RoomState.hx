@@ -255,11 +255,11 @@ class RoomState extends OgmoState
         ui.add(skinPopup = SkinPopup.getInstance());
         
         final MARGIN = 4;
-        var fullscreen = new FullscreenButton();
-        fullscreen.updateHitbox();
-        fullscreen.x = FlxG.width - fullscreen.width - MARGIN;
-        fullscreen.y = MARGIN;
-        ui.add(fullscreen);
+        var settings = new SettingsButton(openSettings);
+        settings.updateHitbox();
+        settings.x = FlxG.width - settings.width - MARGIN;
+        settings.y = MARGIN;
+        ui.add(settings);
         
         if (FlxG.onMobile)
             ui.add(new EmoteButton(MARGIN, MARGIN, player.mobileEmotePressed));
@@ -268,6 +268,20 @@ class RoomState extends OgmoState
         
         if (Lucia.finding)
             initLuciaUi();
+    }
+    
+    function openSettings():Void
+    {
+        ui.visible = false;
+        var oldShowName = Save.showName;
+        var settings = new SettingsSubstate();
+        settings.closeCallback = function()
+        {
+            ui.visible = true;
+            if (oldShowName != Save.showName)
+                player.updateNameText(NGio.userName);
+        }
+        openSubState(settings);
     }
     
     function initLuciaBuns()
@@ -900,4 +914,5 @@ enum abstract RoomName(String) to String
     var PathRight = "path_right";
     var Village = "village";
     var PicosShop = "picos-shop";
+    var Cafe = "cafe";
 }

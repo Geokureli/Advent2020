@@ -1,6 +1,7 @@
 package props;
 
 import Types;
+import data.Game;
 import data.PlayerSettings;
 import data.Skins;
 import states.rooms.RoomState;
@@ -11,6 +12,7 @@ import flixel.FlxSprite;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVector;
+import flixel.text.FlxBitmapText;
 import flixel.util.FlxDestroyUtil;
 
 class Player extends flixel.FlxSprite
@@ -32,24 +34,40 @@ class Player extends flixel.FlxSprite
     public var justEmoted(default, null) = false;
     public var emote(default, null) = new Emote();
     public var enabled = true;
+    public var name(default, null):String;
     
+    var nameText:FlxBitmapText;
+    var nameColor = 0xFF000000;
+    var nameShadowColor = 0xFFffffff;
     var targetPos:FlxPoint;
     var movePath:Array<FlxPoint>;
     var bobTimer = 0.0;
     var skinOffset = FlxPoint.get();
     
-    public function new(x = 0.0, y = 0.0, settings:PlayerSettings)
+    public function new(x = 0.0, y = 0.0, name, settings:PlayerSettings)
     {
+        nameText = new FlxBitmapText();
+        nameText.alignment = CENTER;
+        if (Game.room.name == Village)
+        {
+            nameColor = 0xFFffffff;
+            nameShadowColor = 0xFF000000;
+        }
+        #if FLX_DEBUG
+        nameText.ignoreDrawDebug = true;
+        #end
+        
         this.settings = settings;
         super(x, y);
         
         settings.applyTo(this);
+        updateNameText(name);
         
         #if FLX_DEBUG
         pathTile.ignoreDrawDebug = true;
         hitbox.ignoreDrawDebug = true;
         #end
-}
+    }
     
     override function initVars():Void
     {
@@ -71,6 +89,14 @@ class Player extends flixel.FlxSprite
             bitmap.fillRect(rect, 0x0);
             pathTile.offset.copyFrom(pathTile.origin);
         }
+    }
+    
+    
+    public function updateNameText(name:String)
+    {
+        nameText.text = name == null ? "" : name;
+        nameText.visible = name != null;
+        this.name = name;
     }
     
     override function update(elapsed:Float)
@@ -231,6 +257,20 @@ class Player extends flixel.FlxSprite
             emote.x = x;
             emote.y = y;
             emote.draw();
+        }
+        
+        if (nameText.visible)
+        {
+            // draw shadow
+            nameText.color = nameColor;
+            nameText.alpha = alpha;
+            nameText.x = x + 1 + (width - nameText.width) / 2;
+            nameText.y = y + 1 + height - frameHeight - nameText.height - 16;
+            nameText.draw();
+            nameText.color = nameShadowColor;
+            nameText.x--;
+            nameText.y--;
+            nameText.draw();
         }
     }
     

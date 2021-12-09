@@ -119,6 +119,15 @@ abstract BackButton(Button) to Button
     }
 }
 
+@:forward
+abstract SettingsButton(Button) to Button
+{
+    public function new(x = 0.0, y = 0.0, ?onClick)
+    {
+        this = new SimpleButton(x, y, onClick, "settings");
+    }
+}
+
 class FullscreenButton extends Button
 {
     public function new(x = 0.0, y = 0.0)

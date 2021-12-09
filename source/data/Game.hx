@@ -52,6 +52,7 @@ class Game
         roomTypes[PathRight] = PathRightState.new;
         roomTypes[Village] = VillageState.new;
         roomTypes[PicosShop] = PicosShopState.new;
+        roomTypes[Cafe] = CafeState.new;
         
         arcadeTypes = [];
         
