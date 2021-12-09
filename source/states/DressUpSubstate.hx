@@ -134,7 +134,7 @@ class DressUpSubstate extends flixel.FlxSubState
         hiliteCurrent();
     }
     
-    public function createSkinsList(setCurrent = true)
+    public function createSkinsList()
     {
         for (i in 0...Skins.getLength())
         {
@@ -151,8 +151,7 @@ class DressUpSubstate extends flixel.FlxSubState
             
             if (data.index == PlayerSettings.user.skin)
             {
-                if (setCurrent)
-                    current = i;
+                current = i;
                 sprite.x += SIDE_GAP;
                 camera.follow(sprite);
             }
@@ -168,10 +167,14 @@ class DressUpSubstate extends flixel.FlxSubState
     
     public function resetSkinsList()
     {
+        current = -1;
+        sprites.x = 0;
+        
         while(sprites.length > 0)
             sprites.remove(sprites.members[0], true);
         
-        createSkinsList(false);
+        createSkinsList();
+        hiliteCurrent();
     }
     
     override function update(elapsed:Float)
