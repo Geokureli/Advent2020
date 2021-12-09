@@ -36,6 +36,7 @@
     , "oddlem"       : { "proper": "Oddlem"       }
     , "mkmaffo"      : { "proper": "MKMaffo"      }
     , "sirlenward"   : { "proper": "SirLenward"   }
+    , "quenek"       : { "proper": "Quenek441"    }
     , "theextreamh"  : { "proper": "TheExtreamH"  }
 
     , "ninjamuffin99":
@@ -135,6 +136,12 @@
         , "name"   : "A Third Rated Tankmas!"
         , "authors": ["sirlenward"]
         , "day"    : 8
+        , "medal"  : true
+        }
+    ,   { "id"     : "quenek"
+        , "name"   : "Snowball Attack"
+        , "authors": ["quenek"]
+        , "day"    : 9
         , "medal"  : true
         }
     ,   { "id"     : "theextreamh"

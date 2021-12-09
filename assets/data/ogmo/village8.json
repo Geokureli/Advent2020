@@ -172,6 +172,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"id": "sirlenward"}
+        },
+        {
+          "name": "Present",
+          "id": 15,
+          "_eid": "75464384",
+          "x": 344,
+          "y": 544,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"id": "quenek"}
         }
       ]
     },
