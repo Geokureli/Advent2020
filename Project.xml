@@ -31,7 +31,7 @@
 	<!-- <define name="NG_DEBUG_SESSION" if="debug"/> -->
 	<!-- <define name="NG_BYPASS_LOGIN" if="debug"/> -->
 	<!-- <define name="NG_LURKER" if="debug"/> -->
-	<define name="NG_DEBUG" if="debug"/>
+	<!-- <define name="NG_DEBUG" if="debug"/> -->
 	
 	<define name="LOG" if="debug"/>
 	<section if="LOG">
