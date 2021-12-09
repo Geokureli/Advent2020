@@ -34,8 +34,9 @@
     , "connorgrail"  : { "proper": "ConnorGrail"  }
     , "spadezer"     : { "proper": "Spadezer"     }
     , "oddlem"       : { "proper": "Oddlem"       }
-    , "mkmaffo"       : { "proper": "MKMaffo"       }
-    , "sirlenward"       : { "proper": "SirLenward"       }
+    , "mkmaffo"      : { "proper": "MKMaffo"      }
+    , "sirlenward"   : { "proper": "SirLenward"   }
+    , "theextreamh"  : { "proper": "TheExtreamH"  }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -76,7 +77,7 @@
         , "key"      : "eMin"
         , "bpm"      : 100
         , "volume"   : 0.5
-        , "day"      : 19
+        , "day"      : 10
         }
     ,   { "id"       : "spadezer"
         , "name"     : "Smooth World of Joy"
@@ -134,6 +135,13 @@
         , "name"   : "A Third Rated Tankmas!"
         , "authors": ["sirlenward"]
         , "day"    : 8
+        , "medal"  : true
+        }
+    ,   { "id"     : "theextreamh"
+        , "name"   : "Newgrounds Christmas Mural"
+        , "authors": ["theextreamh"]
+        , "day"    : 20
+        , "ext"    : "jpeg"
         , "medal"  : true
         }
 
