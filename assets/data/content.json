@@ -85,10 +85,14 @@
         , "day"      : 10
         }
     ,   { "id"       : "tenodiboris"
-        , "name"     : "God Rest Ye Merry Gentlemen"
-        , "authors"  : ["connorgrail"]
-        , "key"      : "eMin"
-        , "bpm"      : 100
+        , "name"     : "No time like Christmas"
+        , "authors"  : ["tenodiboris"]
+        , "volume"   : 0.5
+        , "day"      : 10
+        }
+    ,   { "id"       : "carmet"
+        , "name"     : "Soittorasia"
+        , "authors"  : ["carmet"]
         , "volume"   : 0.5
         , "day"      : 10
         }
@@ -97,6 +101,8 @@
         , "authors"  : ["spadezer"]
         , "key"      : "dMaj"
         , "bpm"      : 100
+        , "loopStart": 9600
+        , "loopEnd"  : 201600
         , "volume"   : 0.5
         , "day"      : 22
         }
