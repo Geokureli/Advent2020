@@ -15,6 +15,7 @@ import openfl.display.Stage;
 
 import flixel.FlxG;
 import flixel.util.FlxSignal;
+import flixel.util.FlxTimer;
 
 import haxe.PosInfos;
 
@@ -303,6 +304,35 @@ class NGio
 	}
 	
 	#if LOAD_2020_SKINS
+	/**
+	 * The user was directed to 2020, mid game, check to see if the data shows up.
+	 * @param callback called when it has successfully loaded medal data, or gave.
+	 */
+	static public function waitFor2020SaveData(callback:(Bool)->Void)
+	{
+		// Checks every seconds for 10 seconds
+		// The game (and the timers) should pause when
+		// the link opens, and resume when they come back
+		new FlxTimer().start
+		( 1.0
+		,   (timer)->
+			{
+				Save.load2020SaveData();
+				var sessionId = Save.getNgioSessionId2020();
+				if (sessionId != null)
+				{
+					timer.cancel();
+					fetch2020Medals(sessionId, callback);
+					return;
+				}
+				
+				if (timer.finished)
+					callback(false);
+			}
+		, 10 // loops
+		);
+	}
+	
 	static public function fetch2020Medals(sessionId:String, callback:(Bool)->Void)
 	{
 		if (!NG.core.loggedIn)// can't use == false becuase there's a bug where it's null

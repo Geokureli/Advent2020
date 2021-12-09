@@ -10,24 +10,19 @@ import flixel.text.FlxBitmapText;
 
 using flixel.util.FlxSpriteUtil;
 
-class Prompt extends flixel.group.FlxGroup {
-	
+class Prompt extends flixel.group.FlxGroup
+{
 	inline static var BUFFER = 6;
 	
 	var box:FlxSprite;
 	var label:FlxBitmapText;
-	var yesMouse:Button;
-	var noMouse:Button;
-	// var keyButtons:ButtonGroup;
-	// var yesKeys:BitmapText;
-	// var noKeys:BitmapText;
+	var yes:Button;
+	var no:Button;
 	
-	var forceMouse:Bool;
-	
-	public function new (singleButton = false) {
+	public function new ()
+	{
 		super();
 		
-		this.forceMouse = true;//forceMouse || FlxG.onMobile;
 		var oldQuality = FlxG.stage.quality;
 		FlxG.stage.quality = LOW;
 		add(box = new FlxSprite());
@@ -52,80 +47,64 @@ class Prompt extends flixel.group.FlxGroup {
 		label.alignment = CENTER;
 		label.scrollFactor.set();
 		
-		if (this.forceMouse) {
-			
-			if (singleButton)
-				add(yesMouse = new OkButton((FlxG.width - 28) / 2, 0));
-			else {
-				add(yesMouse = new YesButton(FlxG.width / 2 - 28 - 16, 0));
-				add(noMouse  = new NoButton (FlxG.width / 2      + 16, 0));
-			}
-			
-		} else {
-			
-			// keyButtons = new ButtonGroup(0, false);
-			// keyButtons.keysNext = RIGHT;
-			// keyButtons.keysPrev = LEFT;
-			// if (singleButton) {
-			// 	keyButtons.addButton(yesKeys = new BitmapText(0, 0, "OK"), null);
-			// 	yesKeys.centerXOnStage();
-			// } else {
-			// 	keyButtons.addButton(yesKeys = new BitmapText(FlxG.width / 2 - 28 - 4, 0, "YES"), null);
-			// 	keyButtons.addButton(noKeys  = new BitmapText(FlxG.width / 2 + 4, 0, "NO"), null);
-			// }
-			// add(keyButtons);
-		}
+		add(yes = new YesButton(FlxG.width / 2 - 28 - 16, 0));
+		add(no  = new NoButton (FlxG.width / 2      + 16, 0));
 	}
 	
-	public function setup(text:String, onYes:Void->Void, ?onNo:Void->Void, ?onChoose:Void->Void):Void {
-		
+	public function setupTextOnly(text)
+	{
+		label.text = text;
+		label.x = (FlxG.width - label.width) / 2 + 1;
+		label.y = box.y + 8;
+		yes.visible = false;
+		no.visible = false;
+	}
+	
+	public function setupOk(text, onYes):Void
+	{
+		setupHelper(text, true, onYes);
+	}
+	
+	public function setupYesNo(text, onYes, ?onNo, ?onChoose):Void
+	{
+		setupHelper(text, false, onYes, onNo, onChoose);
+	}
+	
+	function setupHelper(text:String, singleButton:Bool, onYes:Void->Void, ?onNo:Void->Void, ?onChoose:Void->Void):Void
+	{
 		label.text = text;
 		label.x = (FlxG.width - label.width) / 2 + 1;
 		label.y = box.y + 8;
 		
-		if (forceMouse) {
-			
-			// if(!FlxG.onMobile)
-			// 	FlxG.mouse.visible = true;
-			
-			yesMouse.y = box.y + box.height - yesMouse.height - 4;
-			yesMouse.onUp.callback = onDecide.bind(onYes, onChoose);
-			
-			if (noMouse != null) {
-				noMouse.y = yesMouse.y;
-				noMouse.onUp.callback = onDecide.bind(onNo , onChoose);
-			}
-			
-		} else {
-			
-			// yesKeys.y = label.y + label.lineHeight * 3 + 2;
-			// keyButtons.setCallback(yesKeys, onDecide.bind(onYes, onChoose));
-			
-			// if (noKeys != null) {
-			// 	noKeys .y = label.y + label.lineHeight * 3 + 2;
-			// 	keyButtons.setCallback(noKeys , onDecide.bind(onNo , onChoose));
-			// }
+		yes.visible = true;
+		yes.y = box.y + box.height - yes.height - 4;
+		yes.onUp.callback = onDecide.bind(onYes, onChoose);
+		
+		if (singleButton)
+		{
+			no.visible = false;
+			yes.x = (FlxG.width - 28) / 2;
+			yes.setGraphic('assets/images/ui/buttons/ok.png');
+		}
+		else
+		{
+			yes.x = FlxG.width / 2 - 28 - 16;
+			yes.setGraphic('assets/images/ui/buttons/yes.png');
+			no.visible = true;
+			no.x  = FlxG.width / 2      + 16;
+			no.y = yes.y;
+			no.onUp.callback = onDecide.bind(onNo , onChoose);
 		}
 	}
 	
 	function onDecide(callback:Void->Void, onChoose:Void->Void) {
 		
-		if (forceMouse) {
+		yes.onUp.callback = null;
+		if (no != null)
+			no.onUp.callback = null;
 			
-			yesMouse.onUp.callback = null;
-			if (noMouse != null)
-				noMouse.onUp.callback = null;
-			
-			// if(!FlxG.onMobile)
-			// 	FlxG.mouse.visible = false;
-			
-		} else {
-			
-			// keyButtons.setCallback(yesKeys, null);
-			// if (noKeys != null)
-			// 	keyButtons.setCallback(noKeys , null);
-		}
-		
+		// if(!FlxG.onMobile)
+		// 	FlxG.mouse.visible = false;
 		// Sounds.play(MENU_SELECT);
 		
 		if (callback != null)
@@ -149,15 +128,10 @@ class Prompt extends flixel.group.FlxGroup {
 	
 	function cancel():Void
 	{
-		if (forceMouse)
-		{
-			if (noMouse != null)
-				noMouse.onUp.fire();
-			else // single button prompt
-				yesMouse.onUp.fire();
-		}
-		// else
-		//	
+		if (no != null)
+			no.onUp.fire();
+		else // single button prompt
+			yes.onUp.fire();
 	}
 	
 	/**
@@ -167,14 +141,14 @@ class Prompt extends flixel.group.FlxGroup {
 	 */
 	static public function showOKInterrupt(text:String, ?interruptee:FlxBasic):Void {
 		
-		var prompt = new Prompt(true);
+		var prompt = new Prompt();
 		var parent = FlxG.state;
 		parent.add(prompt);
 		
 		if (interruptee != null)
 			interruptee.active = false;
 		
-		prompt.setup(text, null, null,
+		prompt.setupOk(text,
 			function () {
 				
 				parent.remove(prompt);

@@ -1,7 +1,5 @@
 package states;
 
-
-import flixel.group.FlxSpriteGroup;
 import data.Calendar;
 import data.NGio;
 import data.Save;
@@ -9,11 +7,13 @@ import data.PlayerSettings;
 import data.Skins;
 import ui.Button;
 import ui.Controls;
+import ui.Prompt;
 
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.text.FlxBitmapText;
 import flixel.util.FlxColor;
@@ -35,6 +35,7 @@ class DressUpSubstate extends flixel.FlxSubState
     var arrowLeft:Button;
     var arrowRight:Button;
     var ok:OkButton;
+    var load:LoadButton;
     // prevents instant selection
     var wasAReleased = false;
     
@@ -65,39 +66,16 @@ class DressUpSubstate extends flixel.FlxSubState
         instructions.scale.set(2, 2);
         add(instructions);
         
+        createSkinsList();
+        
         var top:Float = FlxG.height;
         var bottom:Float = 0;
-        
-        for (i in 0...Skins.getLength())
+        for (sprite in sprites)
         {
-            var data = Skins.getDataSorted(i);
-            var sprite = new SkinDisplay(data);
-            sprites.add(sprite);
-            sprite.scale.set(2, 2);
-            sprite.updateHitbox();
-            sprite.scrollFactor.set(0, 0);
-            
-            sprite.x = SPACING * i;
-            if (data.offset != null)
-                sprite.offset.set(data.offset.x, data.offset.y);
-            
-            if (data.index == PlayerSettings.user.skin)
-            {
-                current = i;
-                sprite.x += SIDE_GAP;
-                camera.follow(sprite);
-            }
-            else if (i > current && current > -1)
-                sprite.x += SIDE_GAP * 2;
-            
-            sprite.y = (FlxG.height - sprites.members[0].height) / 2;
-            
-            if (!data.unlocked)
-                sprite.color = FlxColor.BLACK;
-            
             top = Math.min(top, sprite.y);
             bottom = Math.max(bottom, sprite.y + sprite.height);
         }
+        
         top -= BAR_MARGIN;
         
         nameText.text = currentSkin.proper;
@@ -147,6 +125,55 @@ class DressUpSubstate extends flixel.FlxSubState
         ok.y = bottom + BAR_MARGIN;
         ok.scrollFactor.set(0, 0);
         
+        add(load = new LoadButton(0, 0, load2020));
+        load.screenCenter(X);
+        load.y = bottom + BAR_MARGIN;
+        load.scrollFactor.set(0, 0);
+        load.visible = false;
+        
+        hiliteCurrent();
+    }
+    
+    public function createSkinsList()
+    {
+        for (i in 0...Skins.getLength())
+        {
+            var data = Skins.getDataSorted(i);
+            var sprite = new SkinDisplay(data);
+            sprites.add(sprite);
+            sprite.scale.set(2, 2);
+            sprite.updateHitbox();
+            sprite.scrollFactor.set(0, 0);
+            
+            sprite.x = SPACING * i;
+            if (data.offset != null)
+                sprite.offset.set(data.offset.x, data.offset.y);
+            
+            if (data.index == PlayerSettings.user.skin)
+            {
+                current = i;
+                sprite.x += SIDE_GAP;
+                camera.follow(sprite);
+            }
+            else if (i > current && current > -1)
+                sprite.x += SIDE_GAP * 2;
+            
+            sprite.y = (FlxG.height - sprites.members[0].height) / 2;
+            
+            if (!data.unlocked)
+                sprite.color = FlxColor.BLACK;
+        }
+    }
+    
+    public function resetSkinsList()
+    {
+        current = -1;
+        sprites.x = 0;
+        
+        while(sprites.length > 0)
+            sprites.remove(sprites.members[0], true);
+        
+        createSkinsList();
         hiliteCurrent();
     }
     
@@ -216,12 +243,16 @@ class DressUpSubstate extends flixel.FlxSubState
             final KEEP_PLAYING = "Keep playing every day to unlock";
             final LOGIN = "Log in to Newgrounds to unlock this";
             descText.text = KEEP_PLAYING;
+            load.visible = false;
             if (currentSkin.year == 2020)
             {
                 if (Save.hasSave2020())
-                    descText.text = "Play Tankmas ADVENTure 2020 to unlock this";
+                    descText.text = "Play more Tankmas ADVENTure 2020 to unlock this";
                 else
+                {
+                    load.visible = true;
                     descText.text = "No 2020 save data found on this device. Log in to Tankmas ADVENTure 2020 for more skins";
+                }
             }
             else if (currentSkin.unlocksBy != null)
             {
@@ -233,6 +264,7 @@ class DressUpSubstate extends flixel.FlxSubState
                     default: KEEP_PLAYING;
                 }
             }
+            ok.visible = !load.visible;
             ok.active = false;
             ok.alpha = 0.5;
         }
@@ -242,6 +274,12 @@ class DressUpSubstate extends flixel.FlxSubState
     
     function select():Void
     {
+        if (load.visible)
+        {
+            load2020();
+            return;
+        }
+        
         if (currentSkin.unlocked)
         {
             Save.setSkin(currentSkin.index);
@@ -253,6 +291,45 @@ class DressUpSubstate extends flixel.FlxSubState
     {
         FlxG.cameras.remove(camera);
         super.close();
+    }
+    
+    function load2020()
+    {
+        var prompt = new Prompt();
+        add(prompt);
+        var url = "https://www.newgrounds.com/portal/view/773236";
+        prompt.setupYesNo
+        ( 'Open Tankmas2020?\n${prettyUrl(url)}'
+        ,   function onYes()
+            {
+                FlxG.openURL(url);
+                prompt.setupTextOnly("Checking for Tankmas 2020 data, be sure to load the bedroom");
+                NGio.waitFor2020SaveData
+                (   (success)->//callback
+                    {
+                        if (success)
+                        {
+                            Skins.checkUnlocks();
+                            resetSkinsList();
+                            prompt.setupOk("Load Successful, Enjoy!", remove.bind(prompt));
+                        }
+                        else
+                        {
+                            prompt.setupOk("Could not find 2020 save data, please try again", remove.bind(prompt));
+                        }
+                    }
+                );
+            }
+        , function onNo() remove(prompt)
+        );
+    }
+    
+    static function prettyUrl(url:String)
+    {
+        if (url.indexOf("://") != -1)
+            url = url.split("://").pop();
+        
+        return url.split("default.aspx").join("");
     }
 }
 
