@@ -17,6 +17,7 @@ class Save
     static var emptyData:SaveData = cast {}
     
     static var data:SaveData;
+    static public var showName(get, set):Bool;
     
     static public function init()
     {
@@ -115,6 +116,13 @@ class Save
         
         if (clearSave)
             data.ngioSessionId = null;
+        log("saved session: " + data.ngioSessionId);
+        
+        if (clearSave || data.showName == null)
+        {
+            data.showName = false;
+            newData = true;
+        }
         log("saved session: " + data.ngioSessionId);
         
         if (data.instrument < -1 && data.seenInstruments.countTrue() > 0)
@@ -337,6 +345,22 @@ class Save
         return data.ngioSessionId;
     }
     
+    inline static function get_showName() return data.showName;
+    static function set_showName(value:Bool)
+    {
+        if (data.showName != value)
+        {
+            data.showName = value;
+            flush();
+        }
+        return value;
+    }
+    
+    inline static public function toggleShowName()
+        return showName = !showName;
+    
+    /* --- --- --- --- 2020 --- --- --- --- */
+    
     static public function getNgioSessionId2020():Null<String>
     {
         return data.ngioSessionId2020;
@@ -428,4 +452,5 @@ typedef SaveData = SaveData2020 &
     var ngioUserId2020:Int;
     var days2020:BitArray;
     var medalsUnlocked2020:Array<Int>;
+    var showName:Bool;
 }

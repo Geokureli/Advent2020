@@ -103,6 +103,15 @@ abstract BackButton(Button) to Button
     }
 }
 
+@:forward
+abstract SettingsButton(Button) to Button
+{
+    public function new(x = 0.0, y = 0.0, ?onClick)
+    {
+        this = new Button(x, y, onClick, "assets/images/ui/buttons/settings.png");
+    }
+}
+
 class FullscreenButton extends Button
 {
     public function new(x = 0.0, y = 0.0)
