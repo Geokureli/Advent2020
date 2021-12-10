@@ -23,9 +23,12 @@
         { "proper" : "Karlestonchew"
         , "roles"  : ["sprites"]
         }
+    , "midgetsausage":
+        { "proper": "SantaSausage"
+        , "roles"  : ["Additional disk art"]
+        }
     , "cymbourine"   : { "proper": "Cymbourine"   }
     , "mintyeggs"    : { "proper": "mintyeggs"    }
-    , "midgetsausage": { "proper": "SantaSausage" }
     , "bigtexastony" : { "proper": "BigTexasTony" }
     , "technocookie" : { "proper": "TechnoCookie" }
     , "albegian"     : { "proper": "AlbeGian"     }
