@@ -260,7 +260,7 @@ class BootState extends flixel.FlxState
                                     + "Non-collab players will not see this message.\n";
                             
                             if (warningList.length > 0)
-                                msg.text += "Warnings:\n\n" + warningList.join("\n") + "\n";
+                                msg.text += "\nWarnings:\n" + warningList.join("\n") + "\n";
                             
                             msg.text += "\nYou are only seeing this message because you are in the credits";
                             setState(Error(false));
