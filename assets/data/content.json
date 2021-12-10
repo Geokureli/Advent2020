@@ -88,13 +88,13 @@
         , "name"     : "No time like Christmas"
         , "authors"  : ["tenodiboris"]
         , "volume"   : 0.5
-        , "day"      : 10
+        , "day"      : 16
         }
     ,   { "id"       : "carmet"
         , "name"     : "Soittorasia"
         , "authors"  : ["carmet"]
         , "volume"   : 0.5
-        , "day"      : 10
+        , "day"      : 19
         }
     ,   { "id"       : "spadezer"
         , "name"     : "Smooth World of Joy"
