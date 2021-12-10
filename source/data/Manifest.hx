@@ -167,7 +167,6 @@ class Manifest
         
         song.volume = song.data.volume;
         Instrument.setKeyFromString(song.data.key);
-        
         return song;
     }
     

@@ -366,6 +366,10 @@ class Content
                 if (!Manifest.exists(song.frontDiskPath, IMAGE))
                     addWarning('Missing ${song.frontDiskPath}');
                 #end
+                if (song.bpm == null)
+                    addWarning('Missing bpm song:${song.id}');
+                if (song.key == null)
+                    addWarning('Missing key song:${song.id} assuming cMaj');
                 if (song.authors == null)
                     addError('Missing song authors id:${song.id}');
                 for (author in song.authors)
@@ -635,10 +639,10 @@ typedef SongCreation
     var frontDiskPath:String;
     var loopStart:Null<Int>;
     var loopEnd:Null<Int>;
-    var key:String;
-    var bpm:Float;
-    var ngId:Int;
-    var volume:Float;
+    var key:Null<String>;
+    var bpm:Null<Float>;
+    var ngId:Null<Int>;
+    var volume:Null<Float>;
     var index:Int;
     var ext:String;
 }

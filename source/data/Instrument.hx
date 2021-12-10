@@ -158,7 +158,7 @@ class Instrument
     inline static public function getKeyFromString(key:String):Key
     {
         if (key == null)
-            return Major(C);
+            return Major("c");
         
         return switch(key.substr(-3))
         {
