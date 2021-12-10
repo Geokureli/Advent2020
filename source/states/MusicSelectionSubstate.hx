@@ -286,8 +286,8 @@ class DiskSprite extends FlxSprite
     static public inline var SILENCE_FRONT = "assets/images/ui/carousel/disks/front_silence.png";
     static public inline var SILENCE_SIDE = "assets/images/ui/carousel/disks/side_silence.png";
 
-    static public inline var MISSING_FRONT = "assets/images/ui/carousel/disks/front_missing.png";
-    static public inline var MISSING_SIDE = "assets/images/ui/carousel/disks/side_missing.png";
+    static public inline var MISSING_FRONT = "assets/images/ui/carousel/disks/front_template.png";
+    static public inline var MISSING_SIDE = "assets/images/ui/carousel/disks/side_template.png";
     
     var data:SongCreation;
     

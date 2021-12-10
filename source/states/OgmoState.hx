@@ -114,6 +114,14 @@ class OgmoObjectLayer<T:FlxBasic> extends FlxTypedGroup<T>
         return cast byName[name];
     }
     
+    public function assertByName(name:String):T
+    {
+        var decal = getByName(name);
+        if (decal == null)
+            throw 'Assert fail - decal:$name does not exist in layer:${name}';
+        return decal;
+    }
+    
     public function existsByName(name:String):Bool
     {
         return cast byName.exists(name);
