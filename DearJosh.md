@@ -3,4 +3,5 @@
 2. Allow session ids to work for multiple app ids (at the same time, for data sharing)
 3. Big red `Remove Medal` is like a magnet that I almost click every time I edit medal details.
 4. multi-medal creation with ensured consecutive ids
-
+5. request user's friends list
+6. request user's mature content prefs and age restrictions
