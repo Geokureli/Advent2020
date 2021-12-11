@@ -908,4 +908,5 @@ enum abstract RoomName(String) to String
     var Village = "village";
     var PicosShop = "picos-shop";
     var Cafe = "cafe";
+    var PostOffice = "PostOffice";
 }
