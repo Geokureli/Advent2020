@@ -171,6 +171,13 @@
         , "day"    : 10
         , "medal"  : true
         }
+    ,   { "id"       : "karlestonchew"
+        , "name"     : "Festive Forage"
+        , "authors"  : ["karlestonchew"]
+        , "day"      : 11
+        , "medal"    : true
+        , "antiAlias": false
+        }
     ,   { "id"     : "theextreamh"
         , "name"   : "Newgrounds Christmas Mural"
         , "authors": ["theextreamh"]
