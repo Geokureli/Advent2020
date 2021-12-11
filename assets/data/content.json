@@ -181,7 +181,7 @@
         }
     ,   { "id"       : "xinxinix"
         , "name"     : "The Last Supper"
-        , "authors"  : ["Xinxinix"]
+        , "authors"  : ["xinxinix"]
         , "day"      : 12
         , "medal"    : true
         }
