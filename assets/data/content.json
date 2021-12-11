@@ -43,6 +43,7 @@
     , "connorgrail"  : { "proper": "ConnorGrail"  }
     , "tenodiboris"  : { "proper": "TenodiBoris"  }
     , "carmet"       : { "proper": "Carmet"       }
+    , "xinxinix"     : { "proper": "Xinxinix"     }
     , "theextreamh"  : { "proper": "TheExtreamH"  }
     , "sevi"         : { "proper": "sevi"         }
 
@@ -177,6 +178,12 @@
         , "day"      : 11
         , "medal"    : true
         , "antiAlias": false
+        }
+    ,   { "id"       : "xinxinix"
+        , "name"     : "The Last Supper"
+        , "authors"  : ["Xinxinix"]
+        , "day"      : 12
+        , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
         , "name"   : "Newgrounds Christmas Mural"
