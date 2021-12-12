@@ -624,6 +624,7 @@ typedef ArtCreation
     var presentPath:String;
     var medalPath:String;
     var antiAlias:Null<Bool>;
+    var scale:Null<Float>;
     var medal:Null<Bool>;
     var preload:Bool;
     var sound:String;

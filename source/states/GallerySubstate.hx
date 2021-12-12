@@ -135,21 +135,30 @@ class GallerySubstate extends FlxSubState
 			bigPreview.animation.play("anim");
 		}
 		
-		bigPreview.setGraphicSize(0, Std.int(FlxG.height));
-		bigPreview.updateHitbox();
-		bigPreview.screenCenter();
-		
-		if (bigPreview.width >= FlxG.width)
-			bigPreview.setGraphicSize(Std.int(FlxG.width));
-		
-		bigPreview.updateHitbox();
-		bigPreview.screenCenter();
-		
-		if (bigPreview.antialiasing == false)
+		if (data.scale != null)
 		{
-			bigPreview.scale.x = bigPreview.scale.y = Math.floor(bigPreview.scale.x * GameSize.pixelSize) / GameSize.pixelSize;
+			bigPreview.scale.set(1, 1).scale(data.scale / 2);
 			bigPreview.updateHitbox();
 			bigPreview.screenCenter();
+		}
+		else
+		{
+			bigPreview.setGraphicSize(0, Std.int(FlxG.height));
+			bigPreview.updateHitbox();
+			bigPreview.screenCenter();
+			
+			if (bigPreview.width >= FlxG.width)
+				bigPreview.setGraphicSize(Std.int(FlxG.width));
+			
+			bigPreview.updateHitbox();
+			bigPreview.screenCenter();
+			
+			if (bigPreview.antialiasing == false)
+			{
+				bigPreview.scale.x = bigPreview.scale.y = Math.floor(bigPreview.scale.x * GameSize.pixelSize) / GameSize.pixelSize;
+				bigPreview.updateHitbox();
+				bigPreview.screenCenter();
+			}
 		}
 	}
 	
