@@ -74,18 +74,19 @@ class MusicSelectionSubstate extends flixel.FlxSubState
     {
         super.update(elapsed);
         
-        if (carousel.selecting)
-            return;
+        if (carousel.selecting == false)
+        {
+            if (!wasAReleased && Controls.released.A)
+                wasAReleased = true;
+            
+            if (Controls.justPressed.RIGHT)
+                carousel.toNext();
+            if (Controls.justPressed.LEFT)
+                carousel.toPrev();
+            if (Controls.justPressed.A && wasAReleased)
+                selectCurrent();
+        }
         
-        if (!wasAReleased && Controls.released.A)
-            wasAReleased = true;
-        
-        if (Controls.justPressed.RIGHT)
-            carousel.toNext();
-        if (Controls.justPressed.LEFT)
-            carousel.toPrev();
-        if (Controls.justPressed.A && wasAReleased)
-            selectCurrent();
         if (Controls.justPressed.B)
             cancel();
     }
@@ -97,7 +98,10 @@ class MusicSelectionSubstate extends flixel.FlxSubState
     
     function cancel()
     {
-        if (carousel.playingIndex > -1)
+        carousel.cancelAnim();
+        if (carousel.selecting)
+            Manifest.playMusic(carousel.getCurrentSong().id);
+        else if (carousel.playingIndex > -1)
             Manifest.playMusic(Content.songsOrdered[carousel.playingIndex].id);
         else
             stopMusic();
@@ -152,7 +156,7 @@ class Carousel extends FlxSpriteGroup
     
     var currentSprite(get, never):DiskSprite;
     inline function get_currentSprite() return disks.members[current + 1];
-    function getCurrentSong()
+    public function getCurrentSong()
     {
         return current == -1 ? null : Content.songsOrdered[current];
     }
@@ -274,6 +278,12 @@ class Carousel extends FlxSpriteGroup
             { startDelay:1.0, ease:FlxEase.quadOut, onStart: (_)->animDisk.revive() });
         FlxTween.tween(animDisk, { y:back.y + back.height }, 1.5,
             { startDelay:1.75, ease:FlxEase.quadInOut, onComplete: (_)->callback(song) });
+    }
+    
+    public function cancelAnim()
+    {
+        FlxTween.cancelTweensOf(currentSprite);
+        FlxTween.cancelTweensOf(animDisk);
     }
     
     override function get_width():Float return back.width;
