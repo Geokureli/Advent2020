@@ -44,6 +44,7 @@
     , "tenodiboris"  : { "proper": "TenodiBoris"  }
     , "carmet"       : { "proper": "Carmet"       }
     , "xinxinix"     : { "proper": "Xinxinix"     }
+    , "space-agewrangler"     : { "proper": "Space-ageWrangler"     }
     , "theextreamh"  : { "proper": "TheExtreamH"  }
     , "sevi"         : { "proper": "sevi"         }
 
@@ -183,6 +184,12 @@
         , "name"     : "The Last Supper"
         , "authors"  : ["xinxinix"]
         , "day"      : 12
+        , "medal"    : true
+        }
+    ,   { "id"       : "space-agewrangler"
+        , "name"     : "Snowman's Land"
+        , "authors"  : ["space-agewrangler"]
+        , "day"      : 13
         , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
