@@ -101,7 +101,7 @@ class Preloader extends flixel.system.FlxBasePreloader
 		addChild(startText);
 		
 		var versionText = new TextField();
-		var format = new TextFormat("_sans", null, 0x333333);
+		var format = new TextFormat("_sans", null, 0x999999);
 		versionText.defaultTextFormat = format;
 		versionText.selectable = false;
 		versionText.text = 'Version: ' + lime.app.Application.current.meta.get('version');

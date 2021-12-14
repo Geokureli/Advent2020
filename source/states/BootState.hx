@@ -224,7 +224,7 @@ class BootState extends flixel.FlxState
                         return;
                     }
                     
-                    final showWarnings  = #if debug true #else false #end;
+                    final showWarnings  = #if (debug && !NG_LURKER) true #else false #end;
                     var errors = Content.verifyTodaysContent(showWarnings);
                     
                     if (errors != null)
@@ -264,7 +264,7 @@ class BootState extends flixel.FlxState
                                 msg.text += "\nWarnings:\n" + warningList.join("\n") + "\n";
                             
                             msg.text += "\nYou are only seeing this message because you are in the credits"
-                                + "\n !NEW! Wait here and we'll tell you when it's ready!";
+                                + "\n\n !NEW!\n Wait here and we'll tell you when it's ready!";
                             
                             // change text when it's loaded
                             startRefreshChecks(()->setCenteredNokiaMessage("IT'S UP, REFRESH THE PAGE! GO GO GO GO!1"));
@@ -275,7 +275,7 @@ class BootState extends flixel.FlxState
                         {
                             setCenteredNokiaMessage
                                 ( "Today's content is almost done, Sorry"
-                                + "\n !NEW! Wait here and we'll tell you"
+                                + "\n\n !NEW!\n Wait here and we'll tell you"
                                 + "\n when it's ready!"
                                 );
                             setState(Error(true));
