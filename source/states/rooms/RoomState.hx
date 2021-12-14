@@ -254,7 +254,7 @@ class RoomState extends OgmoState
         settings.y = MARGIN;
         ui.add(settings);
         
-        if (FlxG.onMobile)
+        // if (FlxG.onMobile)
             ui.add(new EmoteButton(MARGIN, MARGIN, player.mobileEmotePressed));
         
         add(ui);
