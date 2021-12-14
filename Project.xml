@@ -51,7 +51,8 @@
 	
 	<!-- <define name="PRELOAD_ALL" if="debug" /> -->
 	<!-- <define name="INCLUDE_MOVIES" /> -->
-	<!-- <define name="USE_LOCAL_SERVER" if="debug"/> -->
+	<!-- Enable this when testing the server locally -->
+	<define name="USE_LOCAL_SERVER" if="debug"/>
 	<!-- <define name="USE_DEBUG_SERVER"/> -->
 	
 	<define name="LOAD_DISK_CAROUSEL"/>

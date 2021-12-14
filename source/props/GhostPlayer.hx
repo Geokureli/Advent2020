@@ -58,7 +58,7 @@ class GhostPlayer extends Player
             + ([for (change in changes) outputChange(change)].join(", "))
         );
         
-        var oldState = state;
+        var oldNetState = netState;
         var newPos = targetPos != null ? targetPos.copyTo() : FlxPoint.get(x, y);
         var isMoving = false;
         
@@ -75,8 +75,8 @@ class GhostPlayer extends Player
                 case "skin":
                     settings.skin = change.value;
                     setSkin(change.value);
-                case "state":
-                    state = change.value;
+                case "netState":
+                    netState = change.value;
                 case "name":
                     updateNameText(change.value);
                 case "emote":
@@ -86,7 +86,7 @@ class GhostPlayer extends Player
             }
         }
         
-        if (state != oldState && oldState == Joining)
+        if (netState != oldNetState && oldNetState == Joining)
         {
             x = newPos.x;
             y = newPos.y;

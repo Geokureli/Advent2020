@@ -28,7 +28,7 @@ class Player extends flixel.FlxSprite
     public var settings(default, null):PlayerSettings;
     public var hitbox(default, null):FlxObject;
     
-    public var state:PlayerState = Joining;
+    public var netState:PlayerNetState = Joining;
     public var usePaths = false;
     public var drawPath = false;
     public var justEmoted(default, null) = false;

@@ -14,10 +14,10 @@ class AvatarState
     public var y:Float;
     public var skin:Int;
     public var emote:EmoteType;
-    public var state:PlayerState;
+    public var netState:PlayerNetState;
 }
 
-enum abstract PlayerState(Int)
+enum abstract PlayerNetState(Int)
 {
     var Joining;
     var Idle;
