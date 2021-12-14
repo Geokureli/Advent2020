@@ -44,6 +44,7 @@
     , "tenodiboris"  : { "proper": "TenodiBoris"  }
     , "carmet"       : { "proper": "Carmet"       }
     , "xinxinix"     : { "proper": "Xinxinix"     }
+    , "rgpanims"     : { "proper": "RGPAnims"     }
     , "space-agewrangler"     : { "proper": "Space-ageWrangler"     }
     , "theextreamh"  : { "proper": "TheExtreamH"  }
     , "sevi"         : { "proper": "sevi"         }
@@ -190,6 +191,12 @@
         , "name"     : "Snowman's Land"
         , "authors"  : ["space-agewrangler"]
         , "day"      : 13
+        , "medal"    : true
+        }
+    ,   { "id"       : "rgpanims"
+        , "name"     : "A Wonderful Christmas DAY"
+        , "authors"  : ["rgpanims"]
+        , "day"      : 14
         , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
