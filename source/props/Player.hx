@@ -86,7 +86,7 @@ class Player extends flixel.FlxSprite
             rect.y += 2;
             rect.width -= rect.x;
             rect.height -= rect.y;
-            bitmap.fillRect(rect, 0x0);
+            bitmap.fillRect(rect, 0xFF000000);
             pathTile.offset.copyFrom(pathTile.origin);
         }
     }
@@ -313,6 +313,11 @@ class Player extends flixel.FlxSprite
             targetPos.copyFrom(newPos);
             movePath = map.findPath(start, end, false, WIDE);
             solid = movePath == null;
+            
+            // remove the first node, this is a lazy fix to prevent them from
+            // sometimes going backwards at the start of a new path
+            if (movePath.length > 1)
+                movePath.shift();
         }
         start.put();
         end.put();
