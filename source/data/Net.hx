@@ -10,7 +10,7 @@ import io.colyseus.Client;
 
 class Net
 {
-    static var netRooms:Array<RoomName> = [Outside, PathLeft, PathCenter, PathRight, Village, PicosShop, Cafe];
+    static var netRooms:Array<RoomName> = [Outside, PathLeft, PathCenter, PathRight, Village, PicosShop, Cafe, PostOffice];
     
     static public var client(default, null):Client;
     static public var room(default, null):Room<GameState>;
