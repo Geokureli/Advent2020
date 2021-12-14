@@ -5,14 +5,24 @@ import flixel.FlxSprite;
 
 import flixel.text.FlxBitmapText;
 
+import props.Note;
+
 class PostOfficeState extends RoomState
 {
     var mail:FlxSprite;
     var nameText = new FlxBitmapText();
 
+    var note:Note;
+
     override function create()
     {
         entityTypes["MaleMailMan"] = cast initMaleMailMan;
+
+        entityTypes["Note"] = cast function(data)
+        {
+            note = Note.fromEntity(data);
+            return note;
+        }
         
         super.create();
     }
@@ -29,7 +39,10 @@ class PostOfficeState extends RoomState
     override function initEntities() { 
         super.initEntities();
 
-        foreground.add(mail);
+        foreground.remove(note);
+        topGround.add(note);
+
+        //foreground.add(mail);
 
         nameText.text = "MindChamber";
         nameText.alignment = CENTER;

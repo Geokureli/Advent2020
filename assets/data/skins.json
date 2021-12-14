@@ -512,6 +512,12 @@
     , "unlocksBy": null
     , "users": ["mindchamber"]
     }
+,   { "id": "cicca"
+    , "proper": "Cicca"
+    , "description": "Papa Pa-pa Pizza Pie! Deliver this pizza or I cry!\nPizzio's Pizza (3D)"
+    , "unlocksBy": "medal:12"
+    , "users": ["plufmot", "ayekerik", "LeviRamirez", "MZZA", "Prutte", "Tombdude", "VoicesByCorey", "Xinxinix"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
