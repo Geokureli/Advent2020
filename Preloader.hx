@@ -10,6 +10,9 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.events.MouseEvent;
 import openfl.geom.Rectangle;
+import openfl.text.TextField;
+import openfl.text.TextFormat;
+import openfl.text.TextFormatAlign;
 
 import flixel.tweens.FlxEase;
 
@@ -96,6 +99,14 @@ class Preloader extends flixel.system.FlxBasePreloader
 		startText.y = loadingText.y - 16;
 		startText.scrollRect = new Rectangle(0, 0, 0, 63);
 		addChild(startText);
+		
+		var versionText = new TextField();
+		var format = new TextFormat("_sans", null, 0x333333);
+		versionText.defaultTextFormat = format;
+		versionText.selectable = false;
+		versionText.text = 'Version: ' + lime.app.Application.current.meta.get('version');
+		versionText.y = _height - versionText.textHeight - 2;
+		addChild(versionText);
 		
 		stage.addEventListener(MouseEvent.CLICK, onClick);
 		
