@@ -5,3 +5,4 @@
 4. Multi-medal creation with ensured consecutive ids.
 5. Request user's friends list.
 6. Request user's mature content prefs and age restrictions.
+7. Version upload api, like itch.io's butler
