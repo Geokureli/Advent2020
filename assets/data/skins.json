@@ -493,6 +493,25 @@
     , "users": ["brandybuizel"]
     , "group":"dad n me"
     }
+,   { "id": "bucket"
+    , "proper": "Bucket"
+    , "description": "You may have seen the infinite bucket-head taking over the art and movie portal this summer.\nShe's punk rock as hell and a main character in the upcoming series Monkey Kicks."
+    , "unlocksBy": "day:13"
+    , "users": ["tomonaku", "brandybuizel"]
+    }
+,   { "id": "thedyingsun"
+    , "proper": "TheDyingSun"
+    , "description": "Held ransom until post office is complete."
+    , "unlocksBy": null
+    , "users": ["thedyingsun"]
+    , "group": "devs"
+    }
+,   { "id": "mindchamber"
+    , "proper": "MindChamber"
+    , "description": "Get to work mailman; mail gotta get sorted."
+    , "unlocksBy": null
+    , "users": ["mindchamber"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
