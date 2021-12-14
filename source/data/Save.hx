@@ -353,16 +353,22 @@ class Save
     
     static public function setNgioSessionId(id:String)
     {
+        #if !(NG_LURKER)
         if (data.ngioSessionId != id)
         {
             data.ngioSessionId = id;
             flush();
         }
+        #end
     }
     
     static public function getNgioSessionId():Null<String>
     {
+        #if NG_LURKER
+        return null;
+        #else
         return data.ngioSessionId;
+        #end
     }
     
     inline static function get_showName() return data.showName;
