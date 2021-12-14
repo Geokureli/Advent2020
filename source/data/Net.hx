@@ -5,6 +5,8 @@ import utils.Log;
 import schema.GameState;
 import states.rooms.RoomState;
 
+import flixel.util.FlxTimer;
+
 import io.colyseus.Room;
 import io.colyseus.Client;
 
@@ -26,6 +28,12 @@ class Net
     {
         if (client == null)
         {
+            if (false == NGio.validMajorVersion)
+            {
+                log('Cancelling client connect, version mismatch. client:${NGio.clientVersion} server:${NGio.serverVersion}');
+                return;
+            }
+            
             final serverPath = 
                 #if USE_LOCAL_SERVER
                 'ws://localhost:2567';
@@ -40,6 +48,12 @@ class Net
         }
         else if (room != null)
             leaveCurrentRoom();
+        
+        if (false == NGio.validMajorVersion)
+        {
+            log('Cancelling room join, version mismatch. client:${NGio.clientVersion} server:${NGio.serverVersion}');
+            return;
+        }
         
         NGio.logEvent(attempt_connect);
         Net.roomName = roomName;
@@ -71,6 +85,19 @@ class Net
                     log("joined:" + room.id);
                     NGio.logEventOnce(first_connect);
                     NGio.logEvent(connect);
+                    
+                    function checkServerVersion(?timer:FlxTimer)
+                    {
+                        if (false == NGio.validMajorVersion)
+                        {
+                            leaveCurrentRoom();
+                            if (timer != null)
+                                timer.cancel();
+                        }
+                    }
+                    
+                    new FlxTimer().start(30, (t)->NGio.updateServerVersion(checkServerVersion.bind(t)), 0);
+                    NGio.updateServerVersion(checkServerVersion.bind());
                 }
                 
                 Net.room = room;

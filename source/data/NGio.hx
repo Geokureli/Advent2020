@@ -33,7 +33,11 @@ class NGio
 	public static var scoreboardsLoaded(default, null):Bool = false;
 	public static var ngDate(default, null):Date;
 	public static var isContributor(default, null) = false;
-	
+	public static var serverVersion(default, null):String = null;
+	public static var clientVersion(default, null):String = null;
+	public static var validMajorVersion(default, null) = true;
+	public static var validMinorVersion(default, null) = true;
+	public static var validVersion(default, null) = true;
 	
 	public static var scoreboardArray:Array<Score> = [];
 	
@@ -86,6 +90,35 @@ class NGio
 			ngDataLoaded.remove(callback);
 			callback();
 		}
+	}
+	
+	static public function updateServerVersion(callback:()->Void)
+	{
+		clientVersion = lime.app.Application.current.meta.get('version');
+		NG.core.calls.app.getCurrentVersion(clientVersion)
+			.addDataHandler
+				(	function (response)
+					{
+						if (response.success && response.result.success)
+						{
+							serverVersion = response.result.data.currentVersion;
+							var server = serverVersion.split(".").map(Std.parseInt);
+							var client = clientVersion.split(".").map(Std.parseInt);
+							validMajorVersion = server.shift() <= client.shift();
+							validMinorVersion = server.shift() <= client.shift() && validMajorVersion;
+							validVersion = server.shift() <= client.shift() && validMinorVersion;
+						}
+						else
+						{
+							serverVersion = null;
+							validMajorVersion = false;
+							validMinorVersion = false;
+							validVersion = false;
+						}
+						callback();
+					}
+				)
+			.send();
 	}
 	
 	static public function startManualSession(callback:ConnectResult->Void, onPending:((Bool)->Void)->Void):Void

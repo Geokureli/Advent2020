@@ -316,7 +316,7 @@ class Player extends flixel.FlxSprite
             
             // remove the first node, this is a lazy fix to prevent them from
             // sometimes going backwards at the start of a new path
-            if (movePath.length > 1)
+            if (movePath != null && movePath.length > 1)
                 movePath.shift();
         }
         start.put();

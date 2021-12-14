@@ -135,6 +135,7 @@ class BootState extends flixel.FlxState
         Manifest.init(callbacks.add("manifest"));
         Calendar.init(callbacks.add("calendar"));
         load2020Medals(callbacks.add("2020medals"));
+        NGio.updateServerVersion(callbacks.add("server version"));
         if (NG.core.loggedIn && NG.core.medals == null)
             NG.core.onMedalsLoaded.addOnce(callbacks.add("medal list"));
         
@@ -215,7 +216,7 @@ class BootState extends flixel.FlxState
                     if(isBrowserFarbling())
                     {
                         setCenteredNokiaMessage
-                            ("This browser is not supported, Chrome is recommended\n"
+                            ( "This browser is not supported, Chrome is recommended\n"
                             + "If you're using brave, try disabling shields for this page\n"
                             + "Sorry for the inconvenience"
                             );
@@ -223,7 +224,7 @@ class BootState extends flixel.FlxState
                         return;
                     }
                     
-                    final showWarnings  = #if debug true #else false #end;
+                    final showWarnings  = #if (debug && !NG_LURKER) true #else false #end;
                     var errors = Content.verifyTodaysContent(showWarnings);
                     
                     if (errors != null)
@@ -263,16 +264,20 @@ class BootState extends flixel.FlxState
                                 msg.text += "\nWarnings:\n" + warningList.join("\n") + "\n";
                             
                             msg.text += "\nYou are only seeing this message because you are in the credits";
+                            
+                            // change text when it's loaded
+                            startRefreshChecks(()->setCenteredNokiaMessage("IT'S UP, REFRESH THE PAGE! GO GO GO GO!1"));
+                            
                             setState(Error(false));
                         }
                         else
                         {
-                            setCenteredNokiaMessage
-                                ( "Today's content is almost done,"
-                                + "\nplease try again soon."
-                                + "\n Sorry"
-                                );
+                            setCenteredNokiaMessage("Today's content is almost done, Sorry");
                             setState(Error(true));
+                            
+                            // change text when it's loaded
+                            startRefreshChecks(()->setCenteredNokiaMessage("IT'S UP, REFRESH THE PAGE! GO GO GO GO!1"));
+                            
                             return;
                         }
                     }
@@ -330,6 +335,24 @@ class BootState extends flixel.FlxState
                 case Error(_):
             }
         }
+    }
+    
+    inline function startRefreshChecks(callback:()->Void)
+    {
+        msg.text += "\n\n--- --- --- --- !NEW! --- --- --- ---"
+            + "\n Wait here and we'll tell you when it's ready!";
+        msg.screenCenter(XY);
+        // change text when it's loaded
+        function checkServerVersion(timer:FlxTimer)
+        {
+            if (false == NGio.validVersion)
+            {
+                callback();
+                timer.cancel();
+            }
+        }
+        
+        new FlxTimer().start(5, (t)->NGio.updateServerVersion(checkServerVersion.bind(t)), 0);
     }
     
     inline function setCenteredNokiaMessage(text:String)
