@@ -263,8 +263,7 @@ class BootState extends flixel.FlxState
                             if (warningList.length > 0)
                                 msg.text += "\nWarnings:\n" + warningList.join("\n") + "\n";
                             
-                            msg.text += "\nYou are only seeing this message because you are in the credits"
-                                + "\n\n !NEW!\n Wait here and we'll tell you when it's ready!";
+                            msg.text += "\nYou are only seeing this message because you are in the credits";
                             
                             // change text when it's loaded
                             startRefreshChecks(()->setCenteredNokiaMessage("IT'S UP, REFRESH THE PAGE! GO GO GO GO!1"));
@@ -273,11 +272,7 @@ class BootState extends flixel.FlxState
                         }
                         else
                         {
-                            setCenteredNokiaMessage
-                                ( "Today's content is almost done, Sorry"
-                                + "\n\n !NEW!\n Wait here and we'll tell you"
-                                + "\n when it's ready!"
-                                );
+                            setCenteredNokiaMessage("Today's content is almost done, Sorry");
                             setState(Error(true));
                             
                             // change text when it's loaded
@@ -344,6 +339,9 @@ class BootState extends flixel.FlxState
     
     inline function startRefreshChecks(callback:()->Void)
     {
+        msg.text += "\n\n--- --- --- --- !NEW! --- --- --- ---"
+            + "\n Wait here and we'll tell you when it's ready!";
+        msg.screenCenter(XY);
         // change text when it's loaded
         function checkServerVersion(timer:FlxTimer)
         {
