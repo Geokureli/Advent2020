@@ -63,6 +63,7 @@ class RoomState extends OgmoState
     var characters = new FlxGroup();
     var touchable = new FlxTypedGroup<FlxObject>();
     var infoBoxes = new Map<FlxObject, InfoBox>();
+    var infoBoxGlowTargets = new Map<FlxObject, FlxSprite>();
     var infoBoxGroup = new FlxTypedGroup<InfoBox>();
     var topGround = new FlxGroup();
     var ui = new FlxGroup();
@@ -516,10 +517,19 @@ class RoomState extends OgmoState
         
         removeHoverFrom(target);
         
+        // set the glow target to the player sprite but check overlaps with the hitbox
+        if (target is Player)
+        {
+            var player:Player = cast target;
+            target = player.hitbox;
+            infoBoxGlowTargets[target] = player;
+        }
+        
         touchable.add(target);
         box.updateFollow(target);
         box.hoverDis = hoverDis;
-        infoBoxGroup.add(infoBoxes[target] = cast box);
+        infoBoxes[target] = cast box;
+        infoBoxGroup.add(infoBoxes[target]);
         return box;
     }
     
@@ -531,6 +541,7 @@ class RoomState extends OgmoState
             infoBoxes.remove(target);
             touchable.remove(target);
             infoBoxGroup.remove(box);
+            infoBoxGlowTargets.remove(target);
         }
     }
     
@@ -741,11 +752,9 @@ class RoomState extends OgmoState
             if (player.touched != null && infoBoxes.exists(player.touched) && infoBoxes[player.touched] != null)//todo: clear refs better in removeHoverFrom
             {
                 infoBoxes[player.touched].alive = false;
-                if (Std.is(player.touched, FlxSprite))
-                {
-                    final sprite = Std.downcast(player.touched, FlxSprite);
-                    sprite.shader = null;
-                }
+                var glowTarget = getGlowTarget(player.touched);
+                if (glowTarget != null)
+                    glowTarget.shader = null;
             }
             
             player.touched = firstTouched;
@@ -753,11 +762,9 @@ class RoomState extends OgmoState
             if (player.touched != null)
             {
                 infoBoxes[player.touched].alive = true;
-                if (Std.is(player.touched, FlxSprite))
-                {
-                    final sprite = Std.downcast(player.touched, FlxSprite);
-                    sprite.shader = outlineShader;
-                }
+                var glowTarget = getGlowTarget(player.touched);
+                if (glowTarget != null)
+                    glowTarget.shader = outlineShader;
             }
         }
         
@@ -818,6 +825,17 @@ class RoomState extends OgmoState
         geom.camera.scroll.copyFrom(FlxG.camera.scroll);
         geom.camera.zoom = FlxG.camera.zoom;
         #end
+    }
+    
+    function getGlowTarget(obj:FlxObject):FlxSprite
+    {
+        if (infoBoxGlowTargets.exists(obj))
+            return infoBoxGlowTargets[obj];
+        
+        if (obj is FlxSprite)
+            return cast obj;
+        
+        return null;
     }
     
     inline static var KISS_DISTANCE = 56;

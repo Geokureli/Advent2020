@@ -45,7 +45,7 @@ class PostOfficeState extends RoomState
         #if debug
         robot.hitbox.ignoreDrawDebug = false;
         #end
-        addHoverTextTo(robot.hitbox, "LETTER", () -> note.visible = !note.visible);
+        addHoverTextTo(robot, "LETTER", () -> note.visible = !note.visible);
     }
     
     // override function update(elapsed:Float) { super.update(elapsed); }
