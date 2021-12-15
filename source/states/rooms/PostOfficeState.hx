@@ -10,13 +10,17 @@ import props.Note;
 class PostOfficeState extends RoomState
 {
     var mail:FlxSprite;
-    var nameText = new FlxBitmapText();
+    var mindchamberText = new FlxBitmapText();
+
+    var robot:FlxSprite;
+    var pbotText = new FlxBitmapText();
 
     var note:Note;
 
     override function create()
     {
         entityTypes["MaleMailMan"] = cast initMaleMailMan;
+        entityTypes["PBot"] = cast initPBot;
 
         entityTypes["Note"] = cast function(data)
         {
@@ -36,6 +40,15 @@ class PostOfficeState extends RoomState
         return mail;
     }
     
+    function initPBot(data:OgmoEntityData<Dynamic>)
+    {
+        robot = OgmoEntityData.createFlxSprite(data);
+        robot.loadGraphic("assets/images/player/pbot.png");
+        robot.scale.set(-2, 2);
+            
+        return robot;
+    }
+
     override function initEntities() { 
         super.initEntities();
 
@@ -44,16 +57,27 @@ class PostOfficeState extends RoomState
 
         //foreground.add(mail);
 
-        nameText.text = "MindChamber";
-        nameText.alignment = CENTER;
-        nameText.color = 0xFFffffff;
-        nameText.borderColor = 0xFF000000;
-        nameText.borderStyle = SHADOW;
+        mindchamberText.text = "MindChamber";
+        mindchamberText.alignment = CENTER;
+        mindchamberText.color = 0xFFffffff;
+        mindchamberText.borderColor = 0xFF000000;
+        mindchamberText.borderStyle = SHADOW;
 
-        nameText.x = mail.x + (mail.width - nameText.width) / 2;
-        nameText.y = mail.y + mail.height - mail.frameHeight - nameText.height - 4;
+        mindchamberText.x = mail.x + (mail.width - mindchamberText.width) / 2;
+        mindchamberText.y = mail.y + mail.height - mail.frameHeight - mindchamberText.height - 4;
 
-        topGround.add(nameText);
+        topGround.add(mindchamberText);
+
+        pbotText.text = "P-Bot";
+        pbotText.alignment = CENTER;
+        pbotText.color = 0xFFffffff;
+        pbotText.borderColor = 0xFF000000;
+        pbotText.borderStyle = SHADOW;
+
+        pbotText.x = robot.x + (robot.width - pbotText.width) / 2;
+        pbotText.y = robot.y + robot.height - robot.frameHeight - pbotText.height - 8;
+
+        topGround.add(pbotText);
     }
 
     // override function update(elapsed:Float) { super.update(elapsed); }
