@@ -554,7 +554,8 @@ class RoomState extends OgmoState
             , y:Std.int(player.y)
             , skin:player.settings.skin
             , name:NGio.userName
-            , state:Idle
+            , netState:Idle
+            , state:player.state
             }
         );
     }
@@ -769,7 +770,7 @@ class RoomState extends OgmoState
                 player.networkUpdate();
             }
             
-            checkGhostKisses();
+            checkKisses();
         }
         
         #if debug
@@ -795,9 +796,24 @@ class RoomState extends OgmoState
     
     inline static var KISS_DISTANCE = 56;
     inline static var KISS_DISTANCE_SQR = KISS_DISTANCE * KISS_DISTANCE;
-    function checkGhostKisses()
+    function checkKisses()
     {
         var dis = FlxVector.get();
+        // check player kisses
+        if (player.justEmoted)
+        {
+            for (ghost in ghosts)
+            {
+                dis.set(ghost.x - player.x, ghost.y - player.y);
+                if (dis.lengthSquared < KISS_DISTANCE_SQR)
+                {
+                    player.showKissAnim();
+                    break;
+                }
+            }
+        }
+        
+        // check ghost kisses
         for (ghost in ghosts)
         {
             if (ghost.emote.visible && ghost.emote.animation.curAnim.curFrame < 2)

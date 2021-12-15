@@ -4,9 +4,6 @@ import Types;
 import utils.Log;
 
 import flixel.math.FlxPoint;
-import flixel.tweens.FlxTween;
-
-import openfl.geom.ColorTransform;
 
 import io.colyseus.serializer.schema.Schema;
 
@@ -101,35 +98,6 @@ class GhostPlayer extends Player
         {
             Log.netVerbose('moving to $netDestination');
             setTargetPos(netDestination);
-        }
-    }
-    
-    public function showKissAnim()
-    {
-        if (useColorTransform == false)
-        {
-            useColorTransform = true;
-            var color = new ColorTransform(1, 1, 1, 1, 0xFF, 0x2b, 0x7a);
-            colorTransform = new ColorTransform();
-            final fadeTime = 1.5;
-            FlxTween.num(0, 1, fadeTime,
-                {   onComplete: (_)->
-                    {
-                        useColorTransform = false;
-                        colorTransform = null;
-                    }
-                },
-                function tween(num)
-                {
-                    // num = Math.min(fadeTime, num) / fadeTime;
-                    colorTransform.redMultiplier = num;
-                    colorTransform.greenMultiplier = num;
-                    colorTransform.blueMultiplier = num;
-                    colorTransform.redOffset = (1.0 - num) * color.redOffset;
-                    colorTransform.greenOffset = (1.0 - num) * color.greenOffset;
-                    colorTransform.blueOffset = (1.0 - num) * color.blueOffset;
-                }
-            );
         }
     }
     
