@@ -217,8 +217,9 @@
     {
     }
 ,   "arcades":[]
-,   "medals": {
-        "welcome_to_the_village": 66220
+,   "medals":
+    { "welcome_to_the_village": 66220
+    , "warm_winter_feelings": 66219
     }
 ,   "instruments":
     [   { "id"    : "guitar_ac"

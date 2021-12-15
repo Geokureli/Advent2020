@@ -1,10 +1,5 @@
 package states.rooms;
 
-import flixel.util.FlxTimer;
-import flixel.tweens.FlxTween;
-import flixel.math.FlxPoint;
-import flixel.text.FlxBitmapText;
-import flixel.tweens.FlxEase;
 import data.*;
 import data.Content;
 import props.*;
@@ -26,10 +21,16 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.text.FlxBitmapText;
 import flixel.tile.FlxTilemap;
+import flixel.math.FlxPoint;
+import flixel.math.FlxVector;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
+import flixel.util.FlxTimer;
 
 import Types;
 import io.colyseus.Room;
@@ -747,6 +748,7 @@ class RoomState extends OgmoState
                 || Std.int(player.y) != player.lastSend.y
                 || player.emote.type != player.lastSendEmote
                 || player.settings.skin != player.lastSkin
+                || player.state != player.lastState
                 ;
             
             if (!changed)
@@ -760,10 +762,14 @@ class RoomState extends OgmoState
                     , y:Std.int(player.y)
                     , skin:player.settings.skin
                     , emote:player.emote.type
+                    , netState:player.netState
+                    , state:player.state
                     };
                 Net.send("avatar", data);
                 player.networkUpdate();
             }
+            
+            checkGhostKisses();
         }
         
         #if debug
@@ -785,6 +791,26 @@ class RoomState extends OgmoState
         geom.camera.scroll.copyFrom(FlxG.camera.scroll);
         geom.camera.zoom = FlxG.camera.zoom;
         #end
+    }
+    
+    inline static var KISS_DISTANCE = 56;
+    inline static var KISS_DISTANCE_SQR = KISS_DISTANCE * KISS_DISTANCE;
+    function checkGhostKisses()
+    {
+        var dis = FlxVector.get();
+        for (ghost in ghosts)
+        {
+            if (ghost.emote.visible && ghost.emote.animation.curAnim.curFrame < 2)
+            {
+                dis.set(ghost.x - player.x, ghost.y - player.y);
+                if (dis.lengthSquared < KISS_DISTANCE_SQR)
+                {
+                    ghost.showKissAnim();
+                    player.gotKissed(ghost);
+                }
+            }
+        }
+        dis.put();
     }
     
     function playLuciaCutscene()
@@ -809,7 +835,7 @@ class RoomState extends OgmoState
         if (Net.room != null)
         {
             // This call is never received, the player is removed from the room before, TODO: fix
-            // final data = { x:Std.int(player.x), y:Std.int(player.y), state:PlayerState.Leaving };
+            // final data = { x:Std.int(player.x), y:Std.int(player.y), state:PlayerNetState.Leaving };
             // Net.send("avatar", data);
         }
         player.active = false;
