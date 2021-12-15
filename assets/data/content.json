@@ -42,6 +42,7 @@
     , "imkevin"          : { "proper": "imkevin"           }
     , "connorgrail"      : { "proper": "ConnorGrail"       }
     , "tenodiboris"      : { "proper": "TenodiBoris"       }
+    , "joejourney"       : { "proper": "JoeJourney"        }
     , "danfrombavaria"   : { "proper": "DanFromBavaria"    }
     , "carmet"           : { "proper": "Carmet"            }
     , "xinxinix"         : { "proper": "Xinxinix"          }
@@ -213,6 +214,12 @@
         , "name"     : "Merry Crisis"
         , "authors"  : ["mimny"]
         , "day"      : 15
+        , "medal"    : true
+        }
+    ,   { "id"       : "joejourney"
+        , "name"     : "Untitled"
+        , "authors"  : ["joejourney"]
+        , "day"      : 16
         , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
