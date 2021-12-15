@@ -25,6 +25,7 @@ class InputPlayer extends Player
     public var lastSend = FlxPoint.get();
     public var lastSendEmote = EmoteType.None;
     public var lastSkin = 0;
+    public var lastState = new PlayerState();
     public var sendDelay = 1.0 / 6;
     
     public function new(x = 0.0, y = 0.0)
@@ -33,6 +34,8 @@ class InputPlayer extends Player
             PlayerSettings.user = PlayerSettings.fromSave();
         
         super(x, y, NGio.userName, PlayerSettings.user);
+        
+        state.infected = NGio.hasMedalByName("warm_winter_feelings");
     }
     
     override function updateNameText(name:String)
@@ -74,6 +77,12 @@ class InputPlayer extends Player
         Instrument.checkKeys();
     }
     
+    override function set_flipX(value:Bool):Bool
+    {
+        state.flipped = value;
+        return super.set_flipX(value);
+    }
+    
     function checkMouseInteracting()
     {
         if (!interacting && FlxG.mouse.justPressed)
@@ -86,6 +95,15 @@ class InputPlayer extends Player
                     ? (cast touched:FlxSprite).pixelsOverlapPoint(mouse)
                     : hitbox.overlapsPoint(mouse);
             }
+        }
+    }
+    
+    public function gotKissed(player:Player)
+    {
+        if (state.infected == false && (player.state.infected || player.name.toLowerCase() == "tomfulp"))
+        {
+            NGio.unlockMedalByName("warm_winter_feelings");
+            state.infected = true;
         }
     }
     
@@ -111,5 +129,6 @@ class InputPlayer extends Player
         lastSend.set(Std.int(x), Std.int(y));
         lastSendEmote = emote.type;
         lastSkin = settings.skin;
+        lastState = state;
     }
 }

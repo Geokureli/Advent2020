@@ -28,6 +28,7 @@ class Player extends flixel.FlxSprite
     public var settings(default, null):PlayerSettings;
     public var hitbox(default, null):FlxObject;
     
+    public var state = new PlayerState();
     public var netState:PlayerNetState = Joining;
     public var usePaths = false;
     public var drawPath = false;
@@ -220,6 +221,7 @@ class Player extends flixel.FlxSprite
             flipX = velocity.x > 0;
             offset.x = (frameWidth - width) / 2 + (flipX ? -skinOffset.x : skinOffset.x);
         }
+        else flipX = state.flipped;
         
         if (targetPos != null && velocity.x == 0 && velocity.y == 0 && acceleration.x == 0 && acceleration.y == 0)
             targetPosReached();
@@ -305,19 +307,24 @@ class Player extends flixel.FlxSprite
     {
         final map = (cast FlxG.state:RoomState).geom;
         final start = FlxPoint.get(x, y);
-        final end = FlxPoint.get(newPos.x, newPos.y);
+        final end = newPos.copyTo();
         if (targetPos == null || map.getTileIndexByCoords(end) != map.getTileIndexByCoords(targetPos))
         {
             if (targetPos == null)
                 targetPos = FlxPoint.get();
             targetPos.copyFrom(newPos);
             movePath = map.findPath(start, end, false, WIDE);
-            solid = movePath == null;
-            
             // remove the first node, this is a lazy fix to prevent them from
             // sometimes going backwards at the start of a new path
-            if (movePath != null && movePath.length > 1)
-                movePath.shift();
+            if (movePath != null)
+            {
+                if (movePath.length == 1)
+                    movePath = null;
+                else if (movePath.length > 1)
+                    movePath.shift();
+            }
+            
+            solid = movePath == null;
         }
         start.put();
         end.put();
@@ -407,6 +414,7 @@ class Emote extends FlxSprite
         this.offset.x += frameWidth / 2;
         this.offset.y += frameHeight;
         
+        animation.add("anim", [for (i in 0...fps) i], fps, false);
         animation.add("anim", [for (i in 0...fps) i], fps, false);
         animation.play("anim");
         animation.finishCallback = onAnimComplete;

@@ -29,6 +29,9 @@ class Avatar extends Schema {
 	public var state: UInt = 0;
 
 	@:type("uint8")
+	public var netState: UInt = 0;
+
+	@:type("uint8")
 	public var emote: UInt = 0;
 
 }

@@ -1,10 +1,12 @@
 package props;
 
 import Types;
-// import ui.Font;
 import utils.Log;
 
 import flixel.math.FlxPoint;
+import flixel.tweens.FlxTween;
+
+import openfl.geom.ColorTransform;
 
 import io.colyseus.serializer.schema.Schema;
 
@@ -12,6 +14,7 @@ class GhostPlayer extends Player
 {
     public var key(default, null):String;
     var leaveCallback:()->Void;
+    var netDestination = new FlxPoint();
     
     public function new(key:String, name:String, x = 0.0, y = 0.0, settings)
     {
@@ -59,7 +62,6 @@ class GhostPlayer extends Player
         );
         
         var oldNetState = netState;
-        var newPos = targetPos != null ? targetPos.copyTo() : FlxPoint.get(x, y);
         var isMoving = false;
         
         for (change in changes)
@@ -67,16 +69,18 @@ class GhostPlayer extends Player
             switch (change.field)
             {
                 case "x":
-                    newPos.x = Std.int(change.value);
+                    netDestination.x = Std.int(change.value);
                     isMoving = true;
                 case "y":
-                    newPos.y = Std.int(change.value);
+                    netDestination.y = Std.int(change.value);
                     isMoving = true;
                 case "skin":
                     settings.skin = change.value;
                     setSkin(change.value);
                 case "netState":
                     netState = change.value;
+                case "state":
+                    state = change.value;
                 case "name":
                     updateNameText(change.value);
                 case "emote":
@@ -86,18 +90,47 @@ class GhostPlayer extends Player
             }
         }
         
+        trace('$netState != $oldNetState && $oldNetState == ${Joining}' + (netState != oldNetState && oldNetState == Joining));
         if (netState != oldNetState && oldNetState == Joining)
         {
-            x = newPos.x;
-            y = newPos.y;
+            x = netDestination.x;
+            y = netDestination.y;
             targetPos = FlxPoint.get(x, y);
         }
         else if (isMoving)
         {
-            Log.netVerbose('moving to $newPos');
-            setTargetPos(newPos);
+            Log.netVerbose('moving to $netDestination');
+            setTargetPos(netDestination);
         }
-        newPos.put();
+    }
+    
+    public function showKissAnim()
+    {
+        if (useColorTransform == false)
+        {
+            useColorTransform = true;
+            var color = new ColorTransform(1, 1, 1, 1, 0xFF, 0x2b, 0x7a);
+            colorTransform = new ColorTransform();
+            final fadeTime = 1.5;
+            FlxTween.num(0, 1, fadeTime,
+                {   onComplete: (_)->
+                    {
+                        useColorTransform = false;
+                        colorTransform = null;
+                    }
+                },
+                function tween(num)
+                {
+                    // num = Math.min(fadeTime, num) / fadeTime;
+                    colorTransform.redMultiplier = num;
+                    colorTransform.greenMultiplier = num;
+                    colorTransform.blueMultiplier = num;
+                    colorTransform.redOffset = (1.0 - num) * color.redOffset;
+                    colorTransform.greenOffset = (1.0 - num) * color.greenOffset;
+                    colorTransform.blueOffset = (1.0 - num) * color.blueOffset;
+                }
+            );
+        }
     }
     
     public function leave(callback:()->Void)
