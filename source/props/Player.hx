@@ -30,6 +30,7 @@ class Player extends flixel.FlxSprite
     
     public var settings(default, null):PlayerSettings;
     public var hitbox(default, null):FlxObject;
+    public var hitboxOffset(default, null) = new FlxPoint();
     
     public var state = new PlayerState();
     public var netState:PlayerNetState = Joining;
@@ -147,7 +148,7 @@ class Player extends flixel.FlxSprite
         
         hitbox.update(elapsed);
         final margin = (hitbox.width - width) / 2;
-        hitbox.setPosition(x - margin, y + height + margin - hitbox.height - 4);
+        hitbox.setPosition(x - margin + hitboxOffset.x, y + height + margin - hitbox.height - 4 + hitboxOffset.y);
         
         #if debug
         final keys = FlxG.keys;

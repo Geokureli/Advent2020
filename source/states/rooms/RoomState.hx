@@ -54,6 +54,7 @@ class RoomState extends OgmoState
     var player:InputPlayer;
     var ghostsById:Map<String, GhostPlayer> = [];
     var npcs = new FlxTypedGroup<Npc>();
+    var npcsByName = new Map<String, Npc>();
     var avatars = new FlxTypedGroup<Player>();
     var ghosts:FlxTypedGroup<GhostPlayer> = new FlxTypedGroup();
     var teleports = new FlxTypedGroup<Teleport>();
@@ -152,6 +153,7 @@ class RoomState extends OgmoState
             var npc = Npc.fromEntity(data, skin, username);
             npc.nameText.camera = topWorldCamera;
             npcs.add(npc);
+            npcsByName[npc.name] = npc;
             return npc;
         }
         
