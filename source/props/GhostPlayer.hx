@@ -87,8 +87,12 @@ class GhostPlayer extends Player
             }
         }
         
-        trace('$netState != $oldNetState && $oldNetState == ${Joining}' + (netState != oldNetState && oldNetState == Joining));
-        if (netState != oldNetState && oldNetState == Joining)
+        // trace('$netState != $oldNetState && $oldNetState == ${Joining}:'
+        //     + (netState != oldNetState && oldNetState == Joining)
+        //     + '\n($x, $y)->(${netDestination.x}, ${netDestination.y})');
+        
+        // Check 0,0 because sometimes state doesn't change to 1 and the walk in from 0, 0
+        if ((netState != oldNetState && oldNetState == Joining) || x == 0 || y == 0)
         {
             x = netDestination.x;
             y = netDestination.y;

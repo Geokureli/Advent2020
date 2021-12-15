@@ -851,7 +851,7 @@ class RoomState extends OgmoState
         if (Net.room != null)
         {
             // This call is never received, the player is removed from the room before, TODO: fix
-            // final data = { x:Std.int(player.x), y:Std.int(player.y), state:PlayerNetState.Leaving };
+            // final data = { x:Std.int(player.x), y:Std.int(player.y), netState:PlayerNetState.Leaving };
             // Net.send("avatar", data);
         }
         player.active = false;
