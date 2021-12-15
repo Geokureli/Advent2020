@@ -25,6 +25,7 @@ class PostOfficeState extends RoomState
         entityTypes["Note"] = cast function(data)
         {
             note = Note.fromEntity(data);
+            note.visible = false;
             return note;
         }
         
@@ -45,6 +46,9 @@ class PostOfficeState extends RoomState
         robot = OgmoEntityData.createFlxSprite(data);
         robot.loadGraphic("assets/images/player/pbot.png");
         robot.scale.set(-2, 2);
+        robot.height *= 2.5;
+
+        addHoverTextTo(robot, "LETTER", () -> note.visible = !note.visible);
             
         return robot;
     }
