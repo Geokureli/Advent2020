@@ -10,9 +10,10 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxState;
 import flixel.FlxSprite;
-import flixel.tile.FlxTilemap;
 import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
+import flixel.tile.FlxTilemap;
+import flixel.util.FlxPath;
 
 typedef EntityTypeMap = Map<String, (OgmoEntityData<Dynamic>)->FlxObject>;
 
@@ -280,7 +281,8 @@ typedef OgmoEntityLayerData
 = OgmoLayerData
 & { entities:Array<OgmoEntityData<Dynamic>> }
 
-typedef OgmoObjectData = { x:Int, y:Int }
+typedef OgmoPosData = { x:Int, y:Int }
+typedef OgmoObjectData = OgmoPosData;// & {}
 
 typedef RawOgmoEntityData<T>
 = OgmoObjectData & {
@@ -293,7 +295,30 @@ typedef RawOgmoEntityData<T>
     ?height  :Int,
     ?flippedX:Bool,
     ?flippedY:Bool,
+    ?nodes   :OgmoPath,
     values   :T
+}
+
+interface IOgmoPath
+{
+    var ogmoPath:OgmoPath;
+}
+
+@:forward
+abstract OgmoPath(Array<OgmoPosData>) from Array<OgmoPosData>
+{
+    public function toFlxPath():FlxPath
+    {
+        return new FlxPath(this.map(p->FlxPoint.get(p.x, p.y)));
+    }
+    
+    public function setObjectPath(object:FlxObject)
+    {
+        if (Std.is(object, IOgmoPath))
+            (cast object:IOgmoPath).ogmoPath = this;
+        else
+            object.path = toFlxPath();
+    }
 }
 
 @:forward
@@ -329,6 +354,9 @@ abstract OgmoEntityData<T>(RawOgmoEntityData<T>) from RawOgmoEntityData<T> to Ra
         
         object.immovable = true;//make the bounds green
         // object.ignoreDrawDebug = true;
+        
+        if (this.nodes != null)
+            this.nodes.setObjectPath(object);
     }
     
     public function applyToSprite(sprite:FlxSprite)
@@ -341,6 +369,7 @@ abstract OgmoEntityData<T>(RawOgmoEntityData<T>) from RawOgmoEntityData<T> to Ra
             sprite.offset.y = this.originY;
         if (this.flippedX == true)
             sprite.facing = (sprite.facing == FlxObject.LEFT) ? FlxObject.RIGHT : FlxObject.LEFT;
+        
     }
 }
 

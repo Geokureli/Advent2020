@@ -178,6 +178,21 @@ class Skins
         return byIndex[id];
     }
     
+    
+    static public function getIdByName(name:String)
+    {
+        if (byIndex == null)
+            init();
+        
+        for (i in 0...byIndex.length)
+        {
+            if (byIndex[i].id == name)
+                return i;
+        }
+        
+        throw "Missing skin with name:" + name;
+    }
+    
     static public function getDataSorted(id:Int)
     {
         if (sorted == null)

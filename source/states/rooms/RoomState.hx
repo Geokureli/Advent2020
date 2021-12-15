@@ -4,6 +4,7 @@ import data.*;
 import data.Content;
 import props.*;
 import props.InfoBox;
+import props.Npc;
 import states.OgmoState;
 import ui.Button;
 import ui.Font;
@@ -48,10 +49,11 @@ class RoomState extends OgmoState
     
     var camOffset = 0.0;
     var camFollow = new FlxObject();
-    var uiCamera:FlxCamera;
+    var topWorldCamera:FlxCamera;
     
     var player:InputPlayer;
     var ghostsById:Map<String, GhostPlayer> = [];
+    var npcs = new FlxTypedGroup<Npc>();
     var avatars = new FlxTypedGroup<Player>();
     var ghosts:FlxTypedGroup<GhostPlayer> = new FlxTypedGroup();
     var teleports = new FlxTypedGroup<Teleport>();
@@ -103,6 +105,12 @@ class RoomState extends OgmoState
     {
         super.create();
         
+        camera = FlxG.camera;
+        
+        topWorldCamera = new FlxCamera();
+        topWorldCamera.bgColor = 0x0;
+        FlxG.cameras.add(topWorldCamera);
+        
         FlxG.mouse.visible = !FlxG.onMobile;
         // #if debug FlxG.debugger.drawDebug = true; #end
         
@@ -139,6 +147,17 @@ class RoomState extends OgmoState
             
             return present;
         }
+        function initNpc(data, ?skin, ?username)
+        {
+            var npc = Npc.fromEntity(data, skin, username);
+            npc.nameText.camera = topWorldCamera;
+            npcs.add(npc);
+            return npc;
+        }
+        
+        entityTypes["Npc"] = cast initNpc.bind(_);
+        entityTypes["PBot"] = cast initNpc.bind(_, "pbot");
+        entityTypes["MaleMailMan"] = cast initNpc.bind(_, "mindchamber", "MindChamber");
         Log.ogmo('loading level');
         loadLevel();
         Log.ogmo('initing entities');
@@ -215,6 +234,7 @@ class RoomState extends OgmoState
         player.y = spawnTeleport.y + (spawnTeleport.height - player.height) / 2;
         if(player.x < FlxG.worldBounds.width/2) player.flipX = true;
         player.last.set(player.x, player.y);
+        player.nameText.camera = topWorldCamera;
         foreground.add(player);
         
         for (child in props.members)
@@ -236,11 +256,11 @@ class RoomState extends OgmoState
     
     function initUi()
     {
-        camera = FlxG.camera;
         var uiCamera = new FlxCamera();
         uiCamera.bgColor = 0x0;
         FlxG.cameras.add(uiCamera);
         ui.camera = uiCamera;
+        
         ui.add(instrument = new FlxButton(FlxG.width, 0, onInstrumentClick));
         Instrument.onChange.add(updateInstrument);
         updateInstrument();
@@ -582,6 +602,7 @@ class RoomState extends OgmoState
                     skin = 0;
                 var settings = new PlayerSettings(skin);
                 var ghost = new GhostPlayer(key, data.name, data.x, data.y, settings);
+                ghost.nameText.camera = topWorldCamera;
                 ghostsById[key] = ghost;
                 ghosts.add(ghost);
                 foreground.add(ghost);
@@ -772,6 +793,9 @@ class RoomState extends OgmoState
             
             checkKisses();
         }
+        
+        topWorldCamera.scroll.copyFrom(FlxG.camera.scroll);
+        topWorldCamera.zoom = FlxG.camera.zoom;
         
         #if debug
         if (FlxG.keys.justPressed.B)

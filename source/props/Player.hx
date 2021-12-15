@@ -40,7 +40,7 @@ class Player extends flixel.FlxSprite
     public var enabled = true;
     public var name(default, null):String;
     
-    var nameText:FlxBitmapText;
+    public var nameText(default, null):FlxBitmapText;
     var nameColor = 0xFF000000;
     var nameShadowColor = 0xFFffffff;
     var targetPos:FlxPoint;

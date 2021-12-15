@@ -26,8 +26,9 @@ class Game
     
     public static var initialRoom(default, null) = 
         #if debug
-        RoomName.Village;
+        // RoomName.Village;
         // RoomName.Cafe;//juke
+        RoomName.PostOffice + "." + RoomName.Village;
         // RoomName.Outside;
         // RoomName.PicosShop + "." + RoomName.Village;
         // RoomName.PathLeft + "." + RoomName.PathCenter;
