@@ -518,6 +518,19 @@
     , "unlocksBy": "medal:12"
     , "users": ["plufmot", "ayekerik", "LeviRamirez", "MZZA", "Prutte", "Tombdude", "VoicesByCorey", "Xinxinix"]
     }
+,   { "id": "madness_deimos"
+    , "proper": "Deimos"
+    , "description": "Cool hacker companion to Sandford in the smashing new release on steam.\nProject Nexus (2)"
+    , "unlocksBy": "day:15"
+    , "users": ["krinkels", "AlmightyHans", "the-swain", "brandybuizel", "cheshyre", "iamlocknar", "InputUnknown", "MagusSerling"]
+    , "group": "madness"
+    }
+,   { "id": "xetis"
+    , "proper": "Xetis"
+    , "description": "Xetis. From the hit show Xetis, starring Xetis."
+    , "unlocksBy": "day:16"
+    , "users": ["ayekerik", "gooberthed", "Rumblelurin", "swagmaster756"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
