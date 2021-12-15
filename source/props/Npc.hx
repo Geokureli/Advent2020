@@ -12,6 +12,7 @@ class Npc extends GhostPlayer implements IOgmoPath
 {
     public var username(default, null):String;
     public var ogmoPath:OgmoPath = null;
+    public var moveTimer = 0.0;
     public function new(x = 0.0, y = 0.0, skin:String, username:String)
     {
         this.username = username;
@@ -26,9 +27,15 @@ class Npc extends GhostPlayer implements IOgmoPath
         super.update(elapsed);
         if (targetPos == null && ogmoPath != null && ogmoPath.length > 0)
         {
-            var pos = ogmoPath.shift();
-            setTargetPos(FlxPoint.weak(pos.x, pos.y));
-            ogmoPath.push(pos);
+            if (moveTimer < 1)
+                moveTimer += elapsed;
+            else
+            {
+                moveTimer = 0;
+                var pos = ogmoPath.shift();
+                setTargetPos(FlxPoint.weak(pos.x + 16, pos.y));
+                ogmoPath.push(pos);
+            }
         }
     }
     
@@ -49,7 +56,10 @@ class Npc extends GhostPlayer implements IOgmoPath
         }
         
         if (data.nodes != null)
+        {
+            data.nodes.push({x:data.x, y:data.y});
             data.nodes.setObjectPath(npc);
+        }
         
         return npc;
     }
