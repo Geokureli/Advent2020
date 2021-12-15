@@ -45,6 +45,7 @@
     , "carmet"       : { "proper": "Carmet"       }
     , "xinxinix"     : { "proper": "Xinxinix"     }
     , "rgpanims"     : { "proper": "RGPAnims"     }
+    , "mimny"        : { "proper": "Mimny"        }
     , "space-agewrangler"     : { "proper": "Space-ageWrangler"     }
     , "theextreamh"  : { "proper": "TheExtreamH"  }
     , "sevi"         : { "proper": "sevi"         }
@@ -197,6 +198,12 @@
         , "name"     : "A Wonderful Christmas DAY"
         , "authors"  : ["rgpanims"]
         , "day"      : 14
+        , "medal"    : true
+        }
+    ,   { "id"       : "mimny"
+        , "name"     : "Merry Crisis"
+        , "authors"  : ["mimny"]
+        , "day"      : 15
         , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
