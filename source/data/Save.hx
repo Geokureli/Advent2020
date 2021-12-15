@@ -28,7 +28,6 @@ class Save
                 data = FlxG.save.data;
             else
                 data = emptyData;
-            
         #end
         
         #if LOAD_2020_SKINS
@@ -39,6 +38,22 @@ class Save
         
         // set default values
         var newData = false;
+        if (clearSave || data.volume == null)
+        {
+            data.volume = FlxG.sound.volume = 0.5;
+            newData = true;
+        }
+        else
+            FlxG.sound.volume = data.volume;
+        
+        if (clearSave || data.mute == null)
+        {
+            data.mute = FlxG.sound.muted;
+            newData = true;
+        }
+        else
+            FlxG.sound.muted = data.mute;
+        
         if (clearSave || data.presents == null)
         {
             data.presents = new BitArray();
@@ -470,6 +485,8 @@ typedef SaveData2020 =
     var instrument:Int;
     var seenInstruments:BitArray;
     var ngioSessionId:String;
+    var mute:Bool;
+    var volume:Float;
 }
 
 typedef SaveData = SaveData2020 &

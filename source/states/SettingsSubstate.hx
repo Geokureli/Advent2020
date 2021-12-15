@@ -1,5 +1,6 @@
 package states;
 
+import flixel.group.FlxGroup;
 import data.Save;
 import ui.Button;
 import ui.Controls;
@@ -35,17 +36,18 @@ class SettingsSubstate extends flixel.FlxSubState
         add(back);
         
         final GAP = 50;
+        var buttons = new FlxTypedGroup<Button>();
+        buttons.add(new SoundButton());
+        buttons.add(new FullscreenButton());
+        buttons.add(new ShowNameButton());
+        add(buttons);
         
-        var fullscreen = new FullscreenButton();
-        fullscreen.x = (FlxG.width - fullscreen.width * 2 - GAP) / 2;
-        fullscreen.y = (FlxG.height - fullscreen.height) / 2;
-        add(fullscreen);
-        
-        var showName = new ShowNameButton();
-        showName.x = fullscreen.x + fullscreen.width + GAP;
-        showName.y = fullscreen.y;
-        add(showName);
-        
+        var buttonsLeft = (FlxG.width - buttons.members[0].width * buttons.length - (GAP * buttons.length - GAP)) / 2;
+        for (i=>button in buttons.members)
+        {
+            button.x = buttonsLeft + i * (GAP + button.width);
+            button.y = (FlxG.height - button.height) / 2;
+        }
     }
     
     override function update(elapsed:Float)
@@ -77,4 +79,21 @@ class ShowNameButton extends Button
     
     inline function getPath()
         return 'assets/images/ui/buttons/show_name_${Save.showName ? "on" : "off"}.png';
+}
+
+class SoundButton extends Button
+{
+    public function new(x = 0.0, y = 0.0)
+    {
+        super(x, y, toggle, getPath());
+    }
+    
+    function toggle():Void
+    {
+        FlxG.sound.toggleMuted();
+        this.setGraphic(getPath());
+    }
+    
+    inline function getPath()
+        return 'assets/images/ui/buttons/sound_${FlxG.sound.muted ? "on" : "off"}.png';
 }
