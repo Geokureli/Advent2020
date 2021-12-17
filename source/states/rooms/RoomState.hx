@@ -159,8 +159,8 @@ class RoomState extends OgmoState
         }
         
         entityTypes["Npc"] = cast initNpc.bind(_);
-        entityTypes["PBot"] = cast initNpc.bind(_, "pbot");
-        entityTypes["MaleMailMan"] = cast initNpc.bind(_, "mindchamber", "MindChamber");
+        entityTypes["PBot"] = cast initNpc.bind(_);
+        entityTypes["MaleMailMan"] = cast initNpc.bind(_);
         Log.ogmo('loading level');
         loadLevel();
         Log.ogmo('initing entities');

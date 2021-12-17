@@ -41,10 +41,10 @@ class Npc extends GhostPlayer implements IOgmoPath
     
     static public function fromEntity(data:OgmoEntityData<NpcValues>, ?skin:String, ?username:String)
     {
-        if (skin == null && data.values != null)
+        if (skin == null && data.values != null && data.values.skin != "" && data.values.skin != null)
             skin = data.values.skin;
         
-        if (username == null && data.values != null)
+        if (username == null && data.values != null && data.values.username != "" && data.values.username != null)
             username = data.values.username;
         
         var npc = new Npc(data.x + data.originX, data.y + data.originY - 40, skin, username);
