@@ -44,6 +44,7 @@
     , "tenodiboris"      : { "proper": "TenodiBoris"       }
     , "joejourney"       : { "proper": "JoeJourney"        }
     , "danfrombavaria"   : { "proper": "DanFromBavaria"    }
+    , "camuri"           : { "proper": "Camuri"            }
     , "carmet"           : { "proper": "Carmet"            }
     , "xinxinix"         : { "proper": "Xinxinix"          }
     , "rgpanims"         : { "proper": "RGPAnims"          }
@@ -220,6 +221,12 @@
         , "name"     : "The More the Merrier"
         , "authors"  : ["joejourney"]
         , "day"      : 16
+        , "medal"    : true
+        }
+    ,   { "id"       : "camuri"
+        , "name"     : "Santa Prometheus Claus"
+        , "authors"  : ["camuri"]
+        , "day"      : 17
         , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
