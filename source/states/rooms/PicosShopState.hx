@@ -28,8 +28,14 @@ class PicosShopState extends RoomState
     override function initEntities()
     {
         super.initEntities();
-
-        addHoverTextTo(foreground.getByName("pico"), "TALK", startPicoChat);
+        
+        var pico = npcsByName["Pico"];
+        if (pico == null)
+            throw 'Missing pico npc';
+        addHoverTextTo(pico, "TALK", startPicoChat);
+        pico.hitbox.width += 56;
+        pico.hitboxOffset.x -= 24;
+        
         
         changingRoom = foreground.getByName("changing-room-door");
         changingRoom.setBottomHeight(16);
@@ -53,11 +59,12 @@ class PicosShopState extends RoomState
     {
         if (picoBubble == null)
         {
-            var pico = foreground.assertByName("pico");
+            var pico = npcsByName["Pico"];
             picoBubble = new SpeechBubbleQueue(pico.x, pico.y - 48);
             picoBubble.advanceTimer = 1.0;
             picoBubble.allowSkip = false;
             picoBubble.allowCancel = false;
+            picoBubble.camera = topWorldCamera;
             add(picoBubble);
             picoBubble.showMsgQueue
             (   [ "Welcome!"
