@@ -512,7 +512,7 @@ class RoomState extends OgmoState
     {
         #if debug
         if (target == null)
-            throw "Cannon add hover to a null object";
+            throw "Cannot add hover to a null object";
         #end
         
         removeHoverFrom(target);
@@ -523,6 +523,9 @@ class RoomState extends OgmoState
             var player:Player = cast target;
             target = player.hitbox;
             infoBoxGlowTargets[target] = player;
+            #if debug
+            player.hitbox.ignoreDrawDebug = false;
+            #end
         }
         
         touchable.add(target);
