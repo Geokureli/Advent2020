@@ -46,6 +46,7 @@ class PostOfficeState extends RoomState
         robot.hitbox.ignoreDrawDebug = false;
         #end
         addHoverTextTo(robot, "LETTER", () -> note.visible = !note.visible);
+        note.camera = topWorldCamera;
     }
     
     // override function update(elapsed:Float) { super.update(elapsed); }
