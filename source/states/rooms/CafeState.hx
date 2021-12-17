@@ -1,5 +1,7 @@
 package states.rooms;
 
+import props.SpeechBubble;
+
 class CafeState extends RoomState
 {
     override function create()
