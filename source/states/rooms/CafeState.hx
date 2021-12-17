@@ -191,6 +191,7 @@ class CafeState extends RoomState
         FlxG.overlap(player, seats,
             (_, seat)->
             {
+                //Todo: add order for player
                 // if (spots[seat].visible == false)
                 //     spots[seat].randomOrderUp();
             }
