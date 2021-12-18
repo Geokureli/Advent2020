@@ -49,6 +49,7 @@
     , "xinxinix"         : { "proper": "Xinxinix"          }
     , "rgpanims"         : { "proper": "RGPAnims"          }
     , "mimny"            : { "proper": "Mimny"             }
+    , "robc3"            : { "proper": "RobC3"             }
     , "space-agewrangler": { "proper": "Space-ageWrangler" }
     , "theextreamh"      : { "proper": "TheExtreamH"       }
     , "sevi"             : { "proper": "sevi"              }
@@ -227,6 +228,12 @@
         , "name"     : "Santa Prometheus Claus"
         , "authors"  : ["camuri"]
         , "day"      : 17
+        , "medal"    : true
+        }
+    ,   { "id"       : "robc3"
+        , "name"     : "Where's the Catering?"
+        , "authors"  : ["robc3"]
+        , "day"      : 18
         , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
