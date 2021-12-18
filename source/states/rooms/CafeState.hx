@@ -1,21 +1,33 @@
 package states.rooms;
 
 import data.Net;
+import props.CafeTable;
 import props.GhostPlayer;
+import props.Player;
 import props.Placemat;
 import props.SpeechBubble;
+import props.Waiter;
 import states.OgmoState;
+import utils.DebugLine;
 
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
+import flixel.math.FlxPoint;
+import flixel.math.FlxVector;
 
 class CafeState extends RoomState
 {
     var seats = new FlxTypedGroup<FlxObject>();
     var spots = new Map<FlxObject, Placemat>();
+    var tableSeats = new Map<FlxObject, CafeTable>();
+    var waiters = new Array<Waiter>();
+    var waiterNodes:OgmoPath = null;
+    var tables = new Array<CafeTable>();
+    var patrons = new Map<Player, Placemat>();
+    
     override function create()
     {
         var seatsByName = new Map<String, FlxObject>();
@@ -33,8 +45,26 @@ class CafeState extends RoomState
             placematsByName[data.values.name] = placemat;
             return placemat;
         }
+        entityTypes["Waiter"] = cast function (data)
+        {
+            var waiter = Waiter.fromEntity(data);
+            waiters.push(waiter);
+            if (waiter.ogmoPath != null && waiterNodes == null)
+                waiterNodes = waiter.ogmoPath;
+            return waiter;
+        }
         
         super.create();
+        
+        
+        #if debug
+        if (waiterNodes != null)
+        {
+            var path = waiterNodes.drawNodes(2, 0xFF000000);
+            topGround.add(path);
+            path.camera = debugCamera;
+        }
+        #end
         
         initPlacemats(seatsByName, placematsByName);
     }
@@ -50,9 +80,13 @@ class CafeState extends RoomState
         // verify seats match placemats
         for (name in seatsByName.keys())
         {
+            var seat = seatsByName[name];
             if (placematsByName.exists(name) == false)
                 throw 'Seat:$name found with no placemat';
-            spots[seatsByName[name]] = placematsByName[name];
+            
+            var placemat = placematsByName[name];
+            placemat.seat = seat;
+            spots[seat] = placemat;
         }
         
         for (name in placematsByName.keys())
@@ -62,7 +96,8 @@ class CafeState extends RoomState
         }
         
         var tableHitboxes = new FlxTypedGroup<FlxObject>();
-        var decalGroups = new Map<FlxObject, DecalGroup>();
+        var tableGroups = new Map<FlxObject, CafeTable>();
+        
         for (name in ["cafe-table", "cafe-tablemedium", "cafe-tablelong"])
         {
             var group = foreground.getAllWithName(name);
@@ -72,12 +107,14 @@ class CafeState extends RoomState
             while(group.length > 0)
             {
                 // replace table decal with new group
-                var table = group.remove(group.members[0], true);
-                var hitbox = new FlxObject(table.x - table.offset.x, table.y - table.offset.y, table.frameWidth, table.frameHeight);
+                var tableDecal = group.remove(group.members[0], true);
+                var hitbox = new FlxObject(tableDecal.x - tableDecal.offset.x, tableDecal.y - tableDecal.offset.y, tableDecal.frameWidth, tableDecal.frameHeight);
                 hitbox.immovable = true;
-                decalGroups[hitbox] = new DecalGroup(table);
-                foreground.remove(table, true);
-                foreground.add(cast decalGroups[hitbox]);
+                var tableGroup = CafeTable.fromDecal(tableDecal);
+                tables.push(tableGroup);
+                tableGroups[hitbox] = tableGroup;
+                foreground.remove(tableDecal, true);
+                foreground.add(cast tableGroup);
                 tableHitboxes.add(hitbox);
                 
                 //testing
@@ -97,38 +134,60 @@ class CafeState extends RoomState
             }
         }
         
-        // for debugging
-        function getPlacematName(placemat)
-        {
-            for (name in placematsByName.keys())
-            {
-                if (placemat == placematsByName[name])
-                    return name;
-            }
-            throw "Placemat name not found";
-        }
-        
         var placemats = new FlxTypedGroup<Placemat>();
         for (placemat in spots)
             placemats.add(placemat);
         
         var propsLayer:OgmoEntityLayer = cast byName["Props"];
         var addedPlacemats = new Array<Placemat>();
+        
+        inline function createBarTable(name1:String, name2:String)
+        {
+            var mat1 = placematsByName[name1];
+            var mat2 = placematsByName[name2];
+            addedPlacemats.push(placemats.remove(mat1));
+            addedPlacemats.push(placemats.remove(mat2));
+            var table = CafeTable.fromPlacemats([mat1, mat2]);
+            tableSeats[seatsByName[name1]] = table;
+            tableSeats[seatsByName[name2]] = table;
+            tables.push(table);
+            foreground.add(table);
+            return table;
+        }
+        
+        createBarTable("bar1", "bar2");
+        createBarTable("bar3", "bar4");
+        createBarTable("bar5", "bar6");
+        
         FlxG.overlap(placemats, tableHitboxes,
-            (placemat:Placemat, table:FlxObject)->
+            (placemat:Placemat, tableHitbox:FlxObject)->
             {
-                var group = decalGroups[table];
-                if (placemat.overlaps(table) == false)
+                var table = tableGroups[tableHitbox];
+                // double check, not sure why this is needed
+                if (placemat.overlaps(tableHitbox) == false)
                     return;
                 
-                if (addedPlacemats.contains(placemat) && group.contains(placemat) == false)
+                if (addedPlacemats.contains(placemat) && table.contains(placemat) == false)
                     throw 'Placemat already added';
                 
                 propsLayer.remove(placemat, true);
-                group.add(placemat);
+                table.addPlacemat(placemat);
+                tableSeats[placemat.seat] = table;
+                
                 addedPlacemats.push(placemat);
             }
         );
+        
+        if (waiterNodes == null)
+            throw "Could not find waiter nodes";
+        
+        for (table in tables)
+            table.getClosestNode(waiterNodes);
+        
+        for (waiter in waiters)
+        {
+            waiter.ogmoPath = waiterNodes;
+        }
         
         #if debug
         add(tableHitboxes);
@@ -136,7 +195,7 @@ class CafeState extends RoomState
         for (name=>placemat in placematsByName)
         {
             if (addedPlacemats.contains(placemat) == false)
-                trace ('Not added to table - placemat:$name');
+                throw 'Not added to table - placemat:$name';
         }
         #else
         tableHitboxes.clear();
@@ -166,61 +225,93 @@ class CafeState extends RoomState
         var ghost = ghostsById[key];
         
         if (ghost.netState == Joining)
-            ghost.onJoinFinish.addOnce(seatNewGhost.bind(ghost));
+            ghost.onJoinFinish.addOnce(seatExistingPlayer.bind(ghost));
         else
-            seatNewGhost(ghost);
+            seatExistingPlayer(ghost);
     }
     
-    function seatNewGhost(ghost:GhostPlayer)
+    function seatExistingPlayer(patron:Player)
     {
-        var seekingSeat = true;
-        FlxG.overlap(ghost, seats, function seatGhost(_, seat)
+        FlxG.overlap(patron, seats, function seatGhost(_, seat)
             {
-                if (seekingSeat && spots[seat].visible == false)
+                if (canSeatPatron(seat, patron))
                 {
-                    seekingSeat = false;
+                    seatPatron(seat, patron);
                     spots[seat].randomOrderUp();
                 }
             }
         );
     }
     
+    function canSeatPatron(seat:FlxObject, patron:Player)
+    {
+        return spots[seat].patron == null
+            && patrons.exists(patron) == false;
+    }
+    
+    function seatPatron(seat:FlxObject, patron:Player )
+    {
+        var placemat = spots[seat];
+        placemat.patron = patron;
+        patrons[patron] = placemat;
+    }
+    
     override function update(elapsed:Float)
     {
+        // var playerHadFood = false;
+        // if (patrons.exists(player))
+        //     playerHadFood = patrons[player].hasFood;
+        
         super.update(elapsed);
-        FlxG.overlap(player, seats,
-            (_, seat)->
-            {
-                //Todo: add order for player
-                // if (spots[seat].visible == false)
-                //     spots[seat].randomOrderUp();
-            }
-        );
-    }
-}
-
-abstract DecalGroup(FlxSpriteGroup) to FlxSpriteGroup
-{
-    public function new (bottom:OgmoDecal)
-    {
-        this = new FlxSpriteGroup(bottom.x, bottom.y);
-        bottom.x = 0;
-        bottom.y = 0;
-        this.add(bottom);
-        #if debug
-        this.ignoreDrawDebug = true;
-        #end
-    }
-    
-    public function add(placemat:Placemat)
-    {
-        placemat.x -= this.x;
-        placemat.y -= this.y;
-        this.add(placemat);
-    }
-    
-    inline public function contains(sprite:FlxSprite)
-    {
-        return this.members.contains(sprite);
+        
+        // if (playerHadFood == false && patrons.exists(player) && patrons[player].hasFood)
+        // {
+        //     var placemat = patrons[player];
+        //     var text = switch(placemat.getOrder())
+        //     {
+        //         case COFFEE: "SIP";
+        //         case DINNER: "EAT";
+        //         case unexpected: throw 'Unexpected order:$unexpected';
+        //     }
+        //     addHoverTextTo(placemat, text, ()->
+        //         {
+        //             placemat.bite();
+        //             if (placemat.getBitesLeft() == 0)
+        //                 removeHoverFrom(placemat);
+        //         }
+        //     );
+        // }
+        
+        function seatPatronIfCan(patron:Player, seat:FlxObject)
+        {
+            if (canSeatPatron(seat, patron))
+                seatPatron(seat, patron);
+        }
+        
+        FlxG.overlap(player, seats, seatPatronIfCan);
+        FlxG.overlap(avatars, seats, seatPatronIfCan);
+        
+        var serviceTables = new Array<CafeTable>();
+        for (table in tables)
+        {
+            table.checkServiceNeeds();
+            if (table.needsService)
+                serviceTables.push(table);
+        }
+        
+        for (waiter in waiters)
+            waiter.goToPriorityTable(serviceTables);
+        
+        for (patron=>placemat in patrons)
+        {
+            if (placemat.patron != patron)
+                patrons.remove(patron);
+        }
+        
+        for (placemat in spots)
+        {
+            if (placemat.patron != null && placemat.hasFood == false && placemat.getSeatedPatron() == null)
+                placemat.patron = null;
+        }
     }
 }

@@ -50,6 +50,9 @@ class RoomState extends OgmoState
     var camOffset = 0.0;
     var camFollow = new FlxObject();
     var topWorldCamera:FlxCamera;
+    #if debug
+    public var debugCamera:FlxCamera;
+    #end
     
     var player:InputPlayer;
     var ghostsById:Map<String, GhostPlayer> = [];
@@ -149,14 +152,6 @@ class RoomState extends OgmoState
             
             return present;
         }
-        function initNpc(data, ?skin, ?username)
-        {
-            var npc = Npc.fromEntity(data, skin, username);
-            npc.nameText.camera = topWorldCamera;
-            npcs.add(npc);
-            npcsByName[npc.name] = npc;
-            return npc;
-        }
         
         entityTypes["Npc"] = cast initNpc.bind(_);
         entityTypes["PBot"] = cast initNpc.bind(_);
@@ -175,6 +170,15 @@ class RoomState extends OgmoState
         NGio.logEventOnce(enter);
         
         FlxG.camera.fade(0xD8000022, 0.5, true);
+    }
+    
+    function initNpc(data, ?skin, ?name, isUser = false)
+    {
+        var npc = Npc.fromEntity(data, skin, name, isUser);
+        npc.nameText.camera = topWorldCamera;
+        npcs.add(npc);
+        npcsByName[npc.name] = npc;
+        return npc;
     }
     
     function onOpenPresent(present) { }
@@ -210,12 +214,13 @@ class RoomState extends OgmoState
         
         geom = getByName("Geom");
         colliders.add(geom);
-        geom.visible = FlxG.debugger.drawDebug;
         add(geom);
         #if debug
-        geom.camera = new FlxCamera().copyFrom(FlxG.camera);
-        geom.camera.bgColor = 0x0;
-        FlxG.cameras.add(geom.camera, false);
+        debugCamera = new FlxCamera().copyFrom(FlxG.camera);
+        debugCamera.bgColor = 0x0;
+        debugCamera.visible = FlxG.debugger.drawDebug;
+        FlxG.cameras.add(debugCamera, false);
+        geom.camera = debugCamera;
         #end
         
         for (teleport in teleports.members)
@@ -813,7 +818,7 @@ class RoomState extends OgmoState
         if (FlxG.keys.justPressed.B)
         {
             FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
-            geom.visible = FlxG.debugger.drawDebug;
+            debugCamera.visible = FlxG.debugger.drawDebug;
         }
         
         if (FlxG.keys.justPressed.M)
@@ -825,8 +830,8 @@ class RoomState extends OgmoState
         
         FlxG.watch.addMouse();
         
-        geom.camera.scroll.copyFrom(FlxG.camera.scroll);
-        geom.camera.zoom = FlxG.camera.zoom;
+        debugCamera.scroll.copyFrom(FlxG.camera.scroll);
+        debugCamera.zoom = FlxG.camera.zoom;
         #end
     }
     
