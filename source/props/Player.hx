@@ -364,6 +364,14 @@ class Player extends flixel.FlxSprite
         end.put();
     }
     
+    function getPathLengthTo(end:FlxPoint):Int
+    {
+        final map = (cast FlxG.state:RoomState).geom;
+        final start = FlxPoint.get(x, y);
+        final path = map.findPath(start, end, false, WIDE);
+        return if (path == null) -1 else path.length;
+    }
+    
     function targetPosReached()
     {
         cancelTargetPos();

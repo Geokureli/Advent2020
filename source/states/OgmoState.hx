@@ -1,5 +1,6 @@
 package states;
 
+import utils.DebugLine;
 import utils.Log;
 
 import haxe.PosInfos;
@@ -305,7 +306,7 @@ interface IOgmoPath
 }
 
 @:forward
-abstract OgmoPath(Array<OgmoPosData>) from Array<OgmoPosData>
+abstract OgmoPath(Array<OgmoPosData>) from Array<OgmoPosData> to Array<OgmoPosData>
 {
     public function toFlxPath():FlxPath
     {
@@ -319,6 +320,25 @@ abstract OgmoPath(Array<OgmoPosData>) from Array<OgmoPosData>
         else
             object.path = toFlxPath();
     }
+    
+    
+    
+    public function drawNodes(thickness = 2, color = 0xFFffffff)
+    {
+        var group = new FlxTypedGroup<DebugLine>();
+        for (i in 0...this.length)
+        {
+            var start = this[i];
+            var end = this[(i+1) % this.length];
+            group.add(new DebugLine(start.x, start.y, end.x, end.y, thickness, color));
+        }
+        return group;
+    }
+    
+    @:arrayAccess
+    inline public function get(i:Int) return this[i];
+    
+    inline public function iterator() return this.iterator;
 }
 
 @:forward
