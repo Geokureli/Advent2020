@@ -159,8 +159,8 @@ class RoomState extends OgmoState
         }
         
         entityTypes["Npc"] = cast initNpc.bind(_);
-        entityTypes["PBot"] = cast initNpc.bind(_, "pbot");
-        entityTypes["MaleMailMan"] = cast initNpc.bind(_, "mindchamber", "MindChamber");
+        entityTypes["PBot"] = cast initNpc.bind(_);
+        entityTypes["MaleMailMan"] = cast initNpc.bind(_);
         Log.ogmo('loading level');
         loadLevel();
         Log.ogmo('initing entities');
@@ -512,7 +512,7 @@ class RoomState extends OgmoState
     {
         #if debug
         if (target == null)
-            throw "Cannon add hover to a null object";
+            throw "Cannot add hover to a null object";
         #end
         
         removeHoverFrom(target);
@@ -523,6 +523,9 @@ class RoomState extends OgmoState
             var player:Player = cast target;
             target = player.hitbox;
             infoBoxGlowTargets[target] = player;
+            #if debug
+            player.hitbox.ignoreDrawDebug = false;
+            #end
         }
         
         touchable.add(target);

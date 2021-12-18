@@ -433,6 +433,11 @@ abstract OgmoDecal(FlxSprite) to FlxSprite from FlxSprite
         this.offset.y += oldHeight - value;
     }
     
+    inline public function setFullHeight(value:Float)
+    {
+        setBottomHeight(this.frameHeight);
+    }
+    
     public function setMiddleWidth(value:Float)
     {
         var oldWidth = this.width;

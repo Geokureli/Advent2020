@@ -147,8 +147,9 @@ class Player extends flixel.FlxSprite
             v.length = MAX_SPEED;
         
         hitbox.update(elapsed);
-        final margin = (hitbox.width - width) / 2;
-        hitbox.setPosition(x - margin + hitboxOffset.x, y + height + margin - hitbox.height - 4 + hitboxOffset.y);
+        final marginX = (hitbox.width - width) / 2 + hitboxOffset.x;
+        final marginY = (hitbox.height - height) / 2 + hitboxOffset.y;
+        hitbox.setPosition(x - marginX, y + height + marginY - hitbox.height - 4);
         
         #if debug
         final keys = FlxG.keys;

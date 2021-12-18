@@ -1,5 +1,6 @@
 package props;
 
+import flixel.util.FlxSignal;
 import Types;
 import utils.Log;
 
@@ -10,6 +11,7 @@ import io.colyseus.serializer.schema.Schema;
 class GhostPlayer extends Player
 {
     public var key(default, null):String;
+    public var onJoinFinish(default, null) = new FlxSignal();
     var leaveCallback:()->Void;
     var netDestination = new FlxPoint();
     
@@ -19,6 +21,8 @@ class GhostPlayer extends Player
         
         super(x, y, name, settings);
         targetPos = FlxPoint.get(this.x, this.y);
+        if (x != 0 || y != 0)
+            netState = Idle;
         
         usePaths = true;
     }
@@ -97,6 +101,8 @@ class GhostPlayer extends Player
             x = netDestination.x;
             y = netDestination.y;
             targetPos = FlxPoint.get(x, y);
+            netState = Idle;//Todo: fix
+            onJoinFinish.dispatch();
         }
         else if (isMoving)
         {

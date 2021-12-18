@@ -531,6 +531,12 @@
     , "unlocksBy": "day:16"
     , "users": ["ayekerik", "gooberthed", "Rumblelurin", "swagmaster756"]
     }
+,   { "id": "chocolateman"
+    , "proper": "CHOCOLATEMAN"
+    , "description": "A key player in the Nameless series that's been running for over a decade on Newgorunds."
+    , "unlocksBy": "day:17"
+    , "users": ["lazymuffin"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
