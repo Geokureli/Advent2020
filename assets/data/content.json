@@ -50,6 +50,7 @@
     , "rgpanims"         : { "proper": "RGPAnims"          }
     , "mimny"            : { "proper": "Mimny"             }
     , "robc3"            : { "proper": "RobC3"             }
+    , "mogy64"           : { "proper": "mogy64"            }
     , "space-agewrangler": { "proper": "Space-ageWrangler" }
     , "theextreamh"      : { "proper": "TheExtreamH"       }
     , "sevi"             : { "proper": "sevi"              }
@@ -234,6 +235,12 @@
         , "name"     : "Where's the Catering?"
         , "authors"  : ["robc3"]
         , "day"      : 18
+        , "medal"    : true
+        }
+    ,   { "id"       : "mogy64"
+        , "name"     : "Newgrounds Carol"
+        , "authors"  : ["mogy64"]
+        , "day"      : 19
         , "medal"    : true
         }
     ,   { "id"     : "theextreamh"
