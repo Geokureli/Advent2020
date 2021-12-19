@@ -214,13 +214,15 @@ class RoomState extends OgmoState
         
         geom = getByName("Geom");
         colliders.add(geom);
-        add(geom);
         #if debug
+        add(geom);
         debugCamera = new FlxCamera().copyFrom(FlxG.camera);
         debugCamera.bgColor = 0x0;
         debugCamera.visible = FlxG.debugger.drawDebug;
         FlxG.cameras.add(debugCamera, false);
         geom.camera = debugCamera;
+        #else
+        geom.visible = false;
         #end
         
         for (teleport in teleports.members)
