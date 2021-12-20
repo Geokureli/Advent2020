@@ -49,6 +49,8 @@ class CafeState extends RoomState
         {
             var waiter = Waiter.fromEntity(data);
             waiters.push(waiter);
+            waiter.onServe.add(onWaiterServe);
+            waiter.onBus.add(onWaiterBus);
             if (waiter.ogmoPath != null && waiterNodes == null)
                 waiterNodes = waiter.ogmoPath;
             return waiter;
@@ -256,31 +258,34 @@ class CafeState extends RoomState
         patrons[patron] = placemat;
     }
     
+    function onWaiterServe(placemat:Placemat)
+    {
+        if (placemat.patron == player)
+        {
+            var text = switch(placemat.getOrder())
+            {
+                case COFFEE: "SIP";
+                case DINNER: "EAT";
+                case unexpected: throw 'Unexpected order:$unexpected';
+            }
+            addHoverTextTo(placemat, text, ()->
+                {
+                    if (placemat.getBitesLeft() == 1)
+                        removeHoverFrom(placemat);
+                    placemat.bite();
+                }
+            );
+        }
+    }
+    
+    function onWaiterBus(placemat:Placemat)
+    {
+        removeHoverFrom(placemat);
+    }
+    
     override function update(elapsed:Float)
     {
-        // var playerHadFood = false;
-        // if (patrons.exists(player))
-        //     playerHadFood = patrons[player].hasFood;
-        
         super.update(elapsed);
-        
-        // if (playerHadFood == false && patrons.exists(player) && patrons[player].hasFood)
-        // {
-        //     var placemat = patrons[player];
-        //     var text = switch(placemat.getOrder())
-        //     {
-        //         case COFFEE: "SIP";
-        //         case DINNER: "EAT";
-        //         case unexpected: throw 'Unexpected order:$unexpected';
-        //     }
-        //     addHoverTextTo(placemat, text, ()->
-        //         {
-        //             placemat.bite();
-        //             if (placemat.getBitesLeft() == 0)
-        //                 removeHoverFrom(placemat);
-        //         }
-        //     );
-        // }
         
         function seatPatronIfCan(patron:Player, seat:FlxObject)
         {
@@ -310,7 +315,7 @@ class CafeState extends RoomState
         
         for (placemat in spots)
         {
-            if (placemat.patron != null && placemat.hasFood == false && placemat.getSeatedPatron() == null)
+            if (placemat.patron != null && placemat.visible == false && placemat.getSeatedPatron() == null)
                 placemat.patron = null;
         }
     }

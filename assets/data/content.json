@@ -114,6 +114,8 @@
         , "name"     : "Soittorasia"
         , "authors"  : ["carmet"]
         , "volume"   : 0.5
+        , "key"      : "fMin"
+        , "bpm"      : 90
         , "day"      : 19
         }
     ,   { "id"       : "spadezer"

@@ -1,10 +1,14 @@
 package props;
 
+import flixel.util.FlxSignal;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 
 class Waiter extends Npc
 {
+    public var onServe(default, null) = new FlxTypedSignal<(Placemat)->Void>();
+    public var onBus(default, null) = new FlxTypedSignal<(Placemat)->Void>();
+    
     public var targetTable:CafeTable = null;
     
     public function new(x = 0.0, y = 0.0, skin:String, name:String)
@@ -19,12 +23,6 @@ class Waiter extends Npc
         var closestDistance = -1;
         for (table in tables)
         {
-            if (table.needsPlayerService)
-            {
-                targetTable = table;
-                break;
-            }
-            
             node.set(table.node.x, table.node.y);
             var distance = getPathLengthTo(node);
             if (distance != -1 && (distance < closestDistance || closestDistance == -1))
