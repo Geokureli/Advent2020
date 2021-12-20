@@ -163,11 +163,15 @@ class Placemat extends FlxSprite
         if (bitesLeft > 0)
         {
             canInteract = false;
-            FlxTween.tween
-            ( this
-            , { y: patron.y - patron.frameHeight + 8, x: patron.x + (patron.width - width) / 2 }
-            , 0.25
-            ,   { ease:FlxEase.cubeOut
+            var anim = switch(getOrder())
+            {
+                case COFFEE: { y: patron.y - patron.frameHeight + 8, x: patron.x + (patron.width - width) / 2 };
+                case DINNER: { y: y - 4 };
+                case order: throw 'Unexpected order:$order';
+            }
+            
+            FlxTween.tween(this, anim, 0.25,
+                { ease:FlxEase.cubeOut
                 , loopDelay: 1.0
                 , type: PINGPONG
                 ,   onComplete: (tween)->
