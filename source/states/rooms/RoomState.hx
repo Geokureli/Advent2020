@@ -45,8 +45,6 @@ class RoomState extends OgmoState
 {
     public static var roomOrder = [Bedroom, Hallway, Entrance, Outside, Arcade, Studio];
     
-    static var outlineShader = new Inline();
-    
     var camOffset = 0.0;
     var camFollow = new FlxObject();
     var topWorldCamera:FlxCamera;
@@ -64,15 +62,10 @@ class RoomState extends OgmoState
     var presents = new FlxTypedGroup<Present>();
     var colliders = new FlxGroup();
     var characters = new FlxGroup();
-    var touchable = new FlxTypedGroup<FlxObject>();
     var infoBoxes = new Map<FlxObject, InfoBox>();
-    var infoBoxGlowTargets = new Map<FlxObject, FlxSprite>();
     var infoBoxGroup = new FlxTypedGroup<InfoBox>();
     var topGround = new FlxGroup();
     var ui = new FlxGroup();
-    var luciaBuns:FlxTypedGroup<OgmoDecal>;
-    var luciaUi:LuciaUi;
-    var cheese:OgmoDecal;
     
     var spawnTeleport:Teleport;
     var medalPopup:MedalPopup;
@@ -144,8 +137,7 @@ class RoomState extends OgmoState
         {
             var present = Present.fromEntity(data);
             
-            final isLucia = Lucia.active && present.id == Lucia.USER;
-            if (!isLucia && Content.isArtUnlocked(present.id))
+            if (Content.isArtUnlocked(present.id))
                 initArtPresent(present, onOpenPresent);
             else
                 present.kill();
@@ -289,9 +281,6 @@ class RoomState extends OgmoState
             ui.add(new EmoteButton(MARGIN, MARGIN, player.mobileEmotePressed));
         
         add(ui);
-        
-        if (Lucia.finding)
-            initLuciaUi();
     }
     
     function openSettings():Void
@@ -306,61 +295,6 @@ class RoomState extends OgmoState
                 player.updateNameText(NGio.userName);
         }
         openSubState(settings);
-    }
-    
-    function initLuciaBuns()
-    {
-        luciaBuns = foreground.getAllWithName("lucia_cat");
-        var clearBuns = true;
-        if (Lucia.present)
-        {
-            if (Lucia.presentLoc.room == name)
-                initLuciaPresent();
-        }
-        else if (Lucia.active && !Lucia.isCleared(name))
-        {
-            clearBuns = false;
-            Lucia.initRoom(name, luciaBuns.length);
-            for (i=>bun in luciaBuns.members)
-            {
-                if (Lucia.isCollected(name, i))
-                    bun.kill();
-                else
-                {
-                    bun.setBottomHeight(bun.frameHeight);
-                    bun.scale.set(0.5, 0.5);
-                    bun.updateHitbox();
-                    bun.x += bun.width / 4;
-                    bun.y += bun.height / 4;
-                }
-            }
-        }
-        
-        if (clearBuns)
-        {
-            var i = luciaBuns.members.length;
-            while(i-- > 0)
-                luciaBuns.members.shift().kill();
-        }
-    }
-    
-    function initLuciaUi()
-    {
-        ui.add(luciaUi = new LuciaUi());
-    }
-    
-    function initLuciaPresent()
-    {
-        var present = new Present(Lucia.USER, Lucia.presentLoc.pos.x, Lucia.presentLoc.pos.y);
-        initArtPresent(present, function(present)
-            {
-                if (Game.state.match(LuciaDay(Present)))
-                    Game.state = NoEvent;
-                onOpenPresent(present);
-            }
-        );
-        foreground.add(present);
-        return present;
     }
     
     function openComicPresent(present:Present, data:ArtCreation)
@@ -453,31 +387,33 @@ class RoomState extends OgmoState
         return layer.getByName(name);
     }
     
-    function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
+    function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
     {
-        var decal:FlxObject = foreground.getByName(target);
+        var decal:FlxSprite = foreground.getByName(target);
         if (decal == null)
-            decal = cast props.getByName(target);
+            decal = cast (props.getByName(target), FlxSprite);
+        
         if (decal == null)
             throw 'can\'t find $target in foreground or props';
         
         return addHoverTextTo(decal, text, callback, hoverDis);
     }
     
-    function safeAddHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20)
+    function safeAddHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
     {
-        var decal:FlxObject = foreground.getByName(target);
+        var decal:FlxSprite = foreground.getByName(target);
         if (decal == null)
-            decal = cast props.getByName(target);
+            decal = cast (props.getByName(target), FlxSprite);
+        
         if (decal != null)
-            return addHoverTextTo(decal, text, callback, hoverDis);
+            return addHoverTextTo(decal, text, callback, hoverDis, xOffset);
         
         return null;
     }
     
-    function addHoverTextTo(target:FlxObject, ?text:String, ?callback:Void->Void, hoverDis = 20)
+    function addHoverTextTo(target:FlxSprite, ?text:String, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
     {
-        return addHoverTo(target, cast new InfoTextBox(text, callback), hoverDis);
+        return addHoverTo(cast new InfoTextBox(target, text, callback, hoverDis, xOffset));
     }
     
     inline function initArtPresent(present:Present, ?callback:(Present)->Void)
@@ -497,26 +433,21 @@ class RoomState extends OgmoState
         }
     }
     
-    inline function addThumbnailTo(target:FlxObject, ?asset, ?callback:Void->Void)
+    inline function addThumbnailTo(target:FlxSprite, ?asset, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
     {
         var thumbnail:FlxSprite = null;
         if (asset != null)
         {
             thumbnail = new FlxSprite(0, 0, asset);
-            thumbnail.x = -thumbnail.width / 2;
-            thumbnail.y = -thumbnail.height - 8;
-            //hoverDis += Std.int(thumbnail.height);
+            thumbnail.offset.x = -xOffset;
         }
         
-        return addHoverTo
-            ( target
-            , new InfoBox(thumbnail, callback)
-            , 0
-            );
+        return addHoverTo(new InfoBox(target, thumbnail, callback, hoverDis));
     }
     
-    function addHoverTo(target:FlxObject, box:InfoBox, hoverDis = 20)
+    function addHoverTo(box:InfoBox)
     {
+        var target = box.target;
         #if debug
         if (target == null)
             throw "Cannot add hover to a null object";
@@ -524,22 +455,9 @@ class RoomState extends OgmoState
         
         removeHoverFrom(target);
         
-        // set the glow target to the player sprite but check overlaps with the hitbox
-        if (target is Player)
-        {
-            var player:Player = cast target;
-            target = player.hitbox;
-            infoBoxGlowTargets[target] = player;
-            #if debug
-            player.hitbox.ignoreDrawDebug = false;
-            #end
-        }
-        
-        touchable.add(target);
-        box.updateFollow(target);
-        box.hoverDis = hoverDis;
-        infoBoxes[target] = cast box;
-        infoBoxGroup.add(infoBoxes[target]);
+        box.updateFollow();
+        infoBoxes[target] = box;
+        infoBoxGroup.add(box);
         return box;
     }
     
@@ -549,9 +467,7 @@ class RoomState extends OgmoState
         {
             var box = infoBoxes[target];
             infoBoxes.remove(target);
-            touchable.remove(target);
-            infoBoxGroup.remove(box);
-            infoBoxGlowTargets.remove(target);
+            infoBoxGroup.remove(box, true);
         }
     }
     
@@ -666,58 +582,6 @@ class RoomState extends OgmoState
             }
         );
         
-        if (cheese != null && cheese.overlaps(player) && cheese.solid)
-        {
-            NGio.unlockMedalByName("cheese");
-            FlxG.sound.play("assets/sounds/pickup2.mp3");
-            cheese.solid = false;
-            FlxTween.tween(cheese, { y: cheese.y - 32 }, 0.5,
-                { ease:FlxEase.sineOut });
-            FlxTween.tween(cheese, { alpha: 0 }, 0.25,
-                { startDelay:0.75 });
-        }
-        
-        if (Lucia.finding)
-        {
-            #if debug
-            if (FlxG.keys.justPressed.L)
-                Lucia.debugSkip();
-            #end
-            
-            FlxG.overlap(player, luciaBuns,
-                function(_, bun)
-                {
-                    Lucia.collect(name, luciaBuns.members.indexOf(bun));
-                    FlxG.sound.play("assets/sounds/pickup.mp3");
-                    foreground.remove(bun);
-                    topGround.add(bun);
-                    bun.solid = false;
-                    var onTweenComplete:(FlxTween)->Void = (_)->bun.kill();
-                    if (Lucia.collected >= Lucia.TOTAL)
-                    {
-                        if (Save.hasOpenedPresent(Lucia.USER))
-                            Game.state = NoEvent;
-                        else
-                            Game.state = LuciaDay(Present);
-                        
-                        player.enabled = false;
-                        onTweenComplete = function(_)
-                        {
-                            bun.kill();
-                            Lucia.onComplete(name, FlxPoint.get(bun.x, bun.y));
-                            luciaUi.onComplete(playLuciaCutscene);
-                        }
-                    }
-                    
-                    FlxTween.tween(bun, { y: bun.y - 16 }, 0.35,
-                        { ease:FlxEase.sineOut });
-                    FlxTween.tween(bun, { alpha: 0 }, 0.2,
-                        { startDelay:0.3, onComplete:onTweenComplete });
-                    
-                }
-            );
-        }
-        
         if (!touchingSpawn && spawnTeleport != null)
             spawnTeleport = null;
         
@@ -737,45 +601,32 @@ class RoomState extends OgmoState
         
         FlxG.collide(characters, colliders);
         
-        for (child in touchable.members)
-        {
-            if (child != null && infoBoxes.exists(child))
-                infoBoxes[child].updateFollow(child);
-        }
+        for (infoBox in infoBoxGroup.members)
+            infoBox.updateFollow();
         
-        var firstTouched:FlxObject = null;
-        FlxG.overlap(player.hitbox, touchable,
-            function(_, touched:FlxObject)
+        var firstBoxTouched:InfoBox = null;
+        FlxG.overlap(player.hitbox, infoBoxGroup,
+            function(_, box:InfoBox)
             {
-                if (firstTouched == null && infoBoxes.exists(touched))
+                if (box.canInteract && firstBoxTouched == null)
                 {
-                    firstTouched = touched;
+                    firstBoxTouched = box;
                     
                     if (player.interacting)
-                        infoBoxes[touched].interact();
+                        box.interact();
                 }
             }
         );
         
-        if (player.touched != firstTouched)
+        if (player.touched != firstBoxTouched)
         {
-            if (player.touched != null && infoBoxes.exists(player.touched) && infoBoxes[player.touched] != null)//todo: clear refs better in removeHoverFrom
-            {
-                infoBoxes[player.touched].alive = false;
-                var glowTarget = getGlowTarget(player.touched);
-                if (glowTarget != null)
-                    glowTarget.shader = null;
-            }
+            if (player.touched != null)
+                player.touched.deselect();
             
-            player.touched = firstTouched;
+            player.touched = firstBoxTouched;
             
             if (player.touched != null)
-            {
-                infoBoxes[player.touched].alive = true;
-                var glowTarget = getGlowTarget(player.touched);
-                if (glowTarget != null)
-                    glowTarget.shader = outlineShader;
-            }
+                player.touched.select();
         }
         
         foreground.sort(byYNullSafe);
@@ -837,17 +688,6 @@ class RoomState extends OgmoState
         #end
     }
     
-    function getGlowTarget(obj:FlxObject):FlxSprite
-    {
-        if (infoBoxGlowTargets.exists(obj))
-            return infoBoxGlowTargets[obj];
-        
-        if (obj is FlxSprite)
-            return cast obj;
-        
-        return null;
-    }
-    
     inline static var KISS_DISTANCE = 56;
     inline static var KISS_DISTANCE_SQR = KISS_DISTANCE * KISS_DISTANCE;
     function checkKisses()
@@ -881,23 +721,6 @@ class RoomState extends OgmoState
             }
         }
         dis.put();
-    }
-    
-    function playLuciaCutscene()
-    {
-        var present = initLuciaPresent();
-        final RISE = 16;
-        present.alpha = 0;
-        present.offset.y += RISE;
-        FlxTween.tween(present, { alpha:1 }, 0.25);
-        FlxTween.tween(present.offset, { y:present.offset.y - RISE }, 0.75,
-            { startDelay:1.0, ease:FlxEase.circOut, onComplete:(_)->player.enabled = true });
-    }
-    
-    function onOpenLuciaPresent(present:Present)
-    {
-        Game.state = NoEvent;
-        onOpenPresent(present);
     }
     
     function activateTeleport(target)

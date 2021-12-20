@@ -11,7 +11,6 @@ import ui.Controls;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 
@@ -19,7 +18,7 @@ class InputPlayer extends Player
 {
     public var interacting = false;
     public var wasInteracting = false;
-    public var touched:FlxObject = null;
+    public var touched:InfoBox = null;
     
     public var timer = 0.0;
     public var lastSend = FlxPoint.get();

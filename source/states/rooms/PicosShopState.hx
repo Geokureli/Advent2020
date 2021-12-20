@@ -32,7 +32,7 @@ class PicosShopState extends RoomState
         var pico = npcsByName["Pico"];
         if (pico == null)
             throw 'Missing pico npc';
-        addHoverTextTo(pico, "TALK", startPicoChat);
+        addHoverTextTo(pico, "TALK", startPicoChat, 0, 16);
         pico.hitbox.width += 56;
         pico.hitboxOffset.x -= 24;
         
