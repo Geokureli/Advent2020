@@ -179,9 +179,10 @@ class Placemat extends FlxSprite
                         if (tween.executions == 2)
                         {
                             canInteract = true;
-                            animation.play(getOrder() + "_" + (bitesLeft - 1));
                             tween.cancel();
                         }
+                        else
+                            animation.play(getOrder() + "_" + (bitesLeft - 1));
                     }
                 }
             );
