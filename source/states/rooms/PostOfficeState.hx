@@ -42,7 +42,7 @@ class PostOfficeState extends RoomState
         
         //hacky fix, for now
         robot.hitboxOffset.y = 16;
-        addHoverTextTo(robot, "LETTER", () -> note.visible = !note.visible);
+        addHoverTextTo(robot, "LETTER", () -> note.visible = !note.visible, 0);
         note.camera = topWorldCamera;
     }
     

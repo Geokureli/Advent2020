@@ -38,9 +38,13 @@ abstract PlayerState(NetBits) from Int
     inline function get_infected() return this.getBool(1);
     inline function set_infected(value:Bool) return this.setBool(1, value);
     
+    public var order(get, set):Int;
+    inline function get_order() return this.getInt(6, 2);
+    inline function set_order(value:Int) return this.setInt(6, 2, value);
+    
     public function toString()
     {
-        return '{ flipped:$flipped, infected:$infected }';
+        return '{ flipped:$flipped, infected:$infected, order:$order }';
     }
     
     inline public function toBinaryString() return this.toString();

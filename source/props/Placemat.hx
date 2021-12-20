@@ -1,25 +1,35 @@
 package props;
 
-import utils.DebugLine;
+import props.GhostPlayer;
 import states.OgmoState;
 import states.rooms.RoomState;
+import utils.DebugLine;
 
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
 typedef NamedEntity = { name:String };
 
 class Placemat extends FlxSprite
+    implements IInteractable
 {
+    inline static var MAX_BITE_TIME = 30.0;
+    inline static var MIN_BITE_TIME = 1.0;
+    
     inline static var NUM_BITES = 5;
     inline static var NUM_FRAMES = 2;
     
     public var seat:FlxObject;
     public var patron:Player;
     public var name:String;
-    public var hasFood(get, never):Bool;
-    inline function get_hasFood() return visible;
+    public var hitTarget(get, never):FlxObject;
+    inline function get_hitTarget() return seat;
+    public var canInteract = true;
+    public var needsService = false;
+    public var timer = FlxG.random.float(MIN_BITE_TIME, MAX_BITE_TIME);
     
     #if debug
     var line:DebugLine;
@@ -53,20 +63,42 @@ class Placemat extends FlxSprite
             for (j=>order in Order.list)
             {
                 final bite = NUM_BITES - i - 1;
-                final frame = Math.ceil(bite / NUM_BITES * NUM_FRAMES);
-                animation.add('${order}_${bite}', [NUM_FRAMES * j]);
+                final frame = Math.ceil(bite / NUM_BITES);
+                animation.add('${order}_${bite}', [NUM_FRAMES * j + frame]);
             }
         }
         
         visible = false;
     }
     
+    public function checkServiceNeeds()
+    {
+        final isPatronSeated = getSeatedPatron() != null;
+        final hasFood = visible && getBitesLeft() > 0;
+        needsService = isPatronSeated != hasFood;
+    }
+    
     override function update(elapsed:Float)
     {
         super.update(elapsed);
         
-        #if debug
+        var patron = getSeatedPatron();
+        if (patron != null
+        && patron is GhostPlayer
+        && visible
+        && canInteract
+        && getOrder() == COFFEE
+        && getBitesLeft() > 0)
+        {
+            timer -= elapsed;
+            if (timer < 0)
+            {
+                bite();
+                timer = FlxG.random.float(MIN_BITE_TIME, MAX_BITE_TIME);
+            }
+        }
         
+        #if debug
         if (line == null && patron != null)
             initDebugLine();
         
@@ -95,6 +127,23 @@ class Placemat extends FlxSprite
             orderUp(Order.list[ran]);
     }
     
+    public function service(waiter:Waiter)
+    {
+        final patronSeated = getSeatedPatron() != null;
+        final hasFood = visible && getBitesLeft() > 0;
+        if (patronSeated && hasFood == false)
+        {
+            orderUp(COFFEE);
+            waiter.onServe.dispatch(this);
+        }
+        
+        if (patronSeated == false && hasFood)
+        {
+            bus();
+            waiter.onBus.dispatch(this);
+        }
+    }
+    
     public function orderUp(order:Order)
     {
         animation.play('${order}_${NUM_BITES - 1}');
@@ -103,6 +152,7 @@ class Placemat extends FlxSprite
     
     public function bus()
     {
+        timer = FlxG.random.float(MIN_BITE_TIME, MAX_BITE_TIME);
         patron = null;
         visible = false;
     }
@@ -111,7 +161,31 @@ class Placemat extends FlxSprite
     {
         var bitesLeft = getBitesLeft();
         if (bitesLeft > 0)
-            animation.play(getOrder() + "_" + (bitesLeft - 1));
+        {
+            canInteract = false;
+            var anim = switch(getOrder())
+            {
+                case COFFEE: { y: patron.y - patron.frameHeight + 8, x: patron.x + (patron.width - width) / 2 };
+                case DINNER: { y: y - 4 };
+                case order: throw 'Unexpected order:$order';
+            }
+            
+            FlxTween.tween(this, anim, 0.25,
+                { ease:FlxEase.cubeOut
+                , loopDelay: 1.0
+                , type: PINGPONG
+                ,   onComplete: (tween)->
+                    {
+                        if (tween.executions == 2)
+                        {
+                            canInteract = true;
+                            animation.play(getOrder() + "_" + (bitesLeft - 1));
+                            tween.cancel();
+                        }
+                    }
+                }
+            );
+        }
     }
     
     public function getOrder() return animation.curAnim.name.split("_")[0];

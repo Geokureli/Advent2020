@@ -14,7 +14,6 @@ class CafeTable extends FlxSpriteGroup
 {
     public var node(default, null):OgmoPosData = null;
     public var needsService(default, null) = false;
-    public var needsPlayerService(default, null) = false;
     
     var placemats = new FlxTypedGroup<Placemat>();
     
@@ -33,19 +32,10 @@ class CafeTable extends FlxSpriteGroup
     public function checkServiceNeeds()
     {
         needsService = false;
-        needsPlayerService = false;
         for (placemat in placemats)
         {
-            final patronSeated = placemat.getSeatedPatron();
-            final isPatronSeated = patronSeated != null;
-            final hasFood = placemat.visible;
-            // if (patronSeated && hasFood == false && placemat.patron is Player)
-            // {
-            //     needsPlayerService = true;
-            //     needsService = true;
-            // }
-            // else
-            if (isPatronSeated != hasFood)
+            placemat.checkServiceNeeds();
+            if (placemat.needsService)
                 needsService = true;
         }
     }
@@ -92,11 +82,8 @@ class CafeTable extends FlxSpriteGroup
     {
         for (placemat in placemats)
         {
-            final patronSeated = placemat.getSeatedPatron() != null;
-            if (patronSeated && placemat.hasFood == false)
-                placemat.orderUp(COFFEE);
-            if (patronSeated == false && placemat.hasFood)
-                placemat.bus();
+            if (placemat.needsService)
+                placemat.service(waiter);
         }
     }
     

@@ -19,6 +19,7 @@ import flixel.util.FlxDestroyUtil;
 import openfl.geom.ColorTransform;
 
 class Player extends flixel.FlxSprite
+    implements IInteractable
 {
     inline static public var ACCEL_TIME = 0.2;
     inline static public var MAX_SPEED = 125;
@@ -40,6 +41,9 @@ class Player extends flixel.FlxSprite
     public var emote(default, null) = new Emote();
     public var enabled = true;
     public var name(default, null):String;
+    public var canInteract = true;
+    public var hitTarget(get, never):FlxObject;
+    inline function get_hitTarget() return hitbox;
     
     public var nameText(default, null):FlxBitmapText;
     var nameColor = 0xFF000000;
