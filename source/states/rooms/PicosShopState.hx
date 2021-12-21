@@ -7,7 +7,7 @@ import data.Manifest;
 import data.Skins;
 import props.Cabinet;
 import props.Notif;
-import props.SpeechBubble;
+import props.SpeechBubbleQueue;
 import states.OgmoState;
 import ui.Prompt;
 
@@ -60,7 +60,7 @@ class PicosShopState extends RoomState
         if (picoBubble == null)
         {
             var pico = npcsByName["Pico"];
-            picoBubble = new SpeechBubbleQueue(pico.x, pico.y - 48);
+            picoBubble = new SpeechBubbleQueue(pico.x, pico.y - 24);
             picoBubble.advanceTimer = 1.0;
             picoBubble.allowSkip = false;
             picoBubble.allowCancel = false;
