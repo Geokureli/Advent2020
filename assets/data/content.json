@@ -53,6 +53,7 @@
     , "mogy64"           : { "proper": "mogy64"            }
     , "space-agewrangler": { "proper": "Space-ageWrangler" }
     , "theextreamh"      : { "proper": "TheExtreamH"       }
+    , "QueenBoo"         : { "proper": "QueenBoo"          }
     , "sevi"             : { "proper": "sevi"              }
 
     , "ninjamuffin99":
@@ -249,6 +250,13 @@
         , "name"   : "Newgrounds Christmas Mural"
         , "authors": ["theextreamh"]
         , "day"    : 20
+        , "ext"    : "jpg"
+        , "medal"  : true
+        }
+    ,   { "id"     : "queenboo"
+        , "name"   : "Holiday Mall Nuisance"
+        , "authors": ["queenboo"]
+        , "day"    : 21
         , "ext"    : "jpg"
         , "medal"  : true
         }

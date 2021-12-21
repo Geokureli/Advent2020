@@ -18,7 +18,7 @@ import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVector;
 
-class TheaterLobby extends RoomState
+class TheaterLobbyState extends RoomState
 {
     var seats = new FlxTypedGroup<FlxObject>();
     var spots = new Map<FlxObject, Placemat>();
