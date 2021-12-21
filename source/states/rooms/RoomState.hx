@@ -43,7 +43,7 @@ typedef RoomConstructor = (String)->RoomState;
 
 class RoomState extends OgmoState 
 {
-    public static var roomOrder = [Bedroom, Hallway, Entrance, Outside, Arcade, Studio];
+    public static var roomOrder = [Bedroom, Hallway, Entrance, Outside, Arcade, Studio, TheaterLobby, TheaterScreen];
     
     var camOffset = 0.0;
     var camFollow = new FlxObject();
