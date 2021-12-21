@@ -828,4 +828,6 @@ enum abstract RoomName(String) to String
     var PicosShop = "picos_shop";
     var Cafe = "cafe";
     var PostOffice = "post_office";
+    var TheaterLobby = "theater_lobby";
+    var TheaterScreen = "theater_screen";
 }

@@ -57,6 +57,8 @@ class Game
         roomTypes[PicosShop] = PicosShopState.new;
         roomTypes[Cafe] = CafeState.new;
         roomTypes[PostOffice] = PostOfficeState.new;
+        roomTypes[TheaterLobby] = TheaterLobbyState.new;
+        roomTypes[TheaterScreen] = TheaterScreenState.new;
         
         arcadeTypes = [];
         
