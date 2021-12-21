@@ -24,7 +24,7 @@ class TypedInfoBox<T:FlxSprite> extends FlxObject
     public var callback:Null<Void->Void>;
     public var timer = 0.0;
     public var introTime = 0.0;
-    public var hoverDis = 20;
+    public var hoverDis = 0;
     
     public var target(default, null):FlxSprite;
     public var sprite(default, null):T;
@@ -35,7 +35,7 @@ class TypedInfoBox<T:FlxSprite> extends FlxObject
         return (target is IInteractable) == false || (cast target:IInteractable).canInteract;
     }
     
-    public function new (target:FlxSprite, ?sprite:T, ?callback:Void->Void, hoverDis = 20)
+    public function new (target:FlxSprite, ?sprite:T, ?callback:Void->Void, hoverDis = 0)
     {
         this.callback = callback;
         this.target = target;
@@ -92,7 +92,7 @@ class TypedInfoBox<T:FlxSprite> extends FlxObject
         {
             // sprite.x = Math.max(sprite.width / 2, target.x + target.width / 2);
             sprite.x = target.x + (target.width - sprite.width) / 2;
-            sprite.y = target.y - sprite.height - hoverDis;
+            sprite.y = target.y + target.height - target.frameHeight - hoverDis - sprite.height;
             sprite.draw();
         }
     }
@@ -126,7 +126,7 @@ class TypedInfoBox<T:FlxSprite> extends FlxObject
 
 class InfoTextBox extends TypedInfoBox<FlxBitmapText>
 {
-    public function new (target:FlxSprite, text:String, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
+    public function new (target:FlxSprite, text:String, ?callback:Void->Void, hoverDis = 0, xOffset = 0)
     {
         var info:FlxBitmapText = null;
         if (text != null)

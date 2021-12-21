@@ -388,7 +388,7 @@ class RoomState extends OgmoState
         return layer.getByName(name);
     }
     
-    function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
+    function addHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 0, xOffset = 0)
     {
         var decal:FlxSprite = foreground.getByName(target);
         if (decal == null)
@@ -400,7 +400,7 @@ class RoomState extends OgmoState
         return addHoverTextTo(decal, text, callback, hoverDis);
     }
     
-    function safeAddHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
+    function safeAddHoverText(target:String, ?text:String, ?callback:Void->Void, hoverDis = 0, xOffset = 0)
     {
         var decal:FlxSprite = foreground.getByName(target);
         if (decal == null)
@@ -412,7 +412,7 @@ class RoomState extends OgmoState
         return null;
     }
     
-    function addHoverTextTo(target:FlxSprite, ?text:String, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
+    function addHoverTextTo(target:FlxSprite, ?text:String, ?callback:Void->Void, hoverDis = 0, xOffset = 0)
     {
         return addHoverTo(cast new InfoTextBox(target, text, callback, hoverDis, xOffset));
     }
@@ -434,7 +434,7 @@ class RoomState extends OgmoState
         }
     }
     
-    inline function addThumbnailTo(target:FlxSprite, ?asset, ?callback:Void->Void, hoverDis = 20, xOffset = 0)
+    inline function addThumbnailTo(target:FlxSprite, ?asset, ?callback:Void->Void, hoverDis = 0, xOffset = 0)
     {
         var thumbnail:FlxSprite = null;
         if (asset != null)
