@@ -8,6 +8,7 @@ class Waiter extends Npc
 {
     public var onServe(default, null) = new FlxTypedSignal<(Placemat)->Void>();
     public var onBus(default, null) = new FlxTypedSignal<(Placemat)->Void>();
+    public var onRefill(default, null) = new FlxTypedSignal<(Placemat)->Void>();
     
     public var targetTable:CafeTable = null;
     

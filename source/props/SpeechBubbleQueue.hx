@@ -1,5 +1,6 @@
 package props;
 
+import flixel.FlxG;
 import ui.Controls;
 
 class SpeechBubbleQueue extends SpeechBubble
@@ -72,8 +73,13 @@ class SpeechBubbleQueue extends SpeechBubble
         
         if (allowCancel && Controls.justPressed.B)
             cancelQueue();
-        else if (allowSkip && state == SHOWING && Controls.justPressed.A)
+        else if (allowSkip && state == SHOWING && pressedAdvance())
             advanceQueue();
+    }
+    
+    function pressedAdvance()
+    {
+        return Controls.justPressed.A || FlxG.mouse.justPressed;
     }
     
     function advanceQueue()

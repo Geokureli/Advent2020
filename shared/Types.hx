@@ -1,5 +1,7 @@
 package;
 
+import data.Order;
+
 @:structInit
 class GState
 {
@@ -38,9 +40,13 @@ abstract PlayerState(NetBits) from Int
     inline function get_infected() return this.getBool(1);
     inline function set_infected(value:Bool) return this.setBool(1, value);
     
-    public var order(get, set):Int;
-    inline function get_order() return this.getInt(6, 2);
-    inline function set_order(value:Int) return this.setInt(6, 2, value);
+    public var order(get, set):Order;
+    inline function get_order() return Order.fromInt(this.getInt(6, 2));
+    inline function set_order(value:Order)
+    {
+        this.setInt(6, 2, value.toInt());
+        return value;
+    }
     
     public function toString()
     {

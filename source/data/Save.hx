@@ -140,6 +140,8 @@ class Save
         }
         log("saved session: " + data.ngioSessionId);
         
+        log("saved order: " + (data.cafeOrder == null ? "random" : data.cafeOrder));
+        
         if (data.instrument < -1 && data.seenInstruments.countTrue() > 0)
         {
             // fix an old glitch where i deleted instrument save
@@ -345,6 +347,20 @@ class Save
         Instrument.setCurrent();
     }
     
+    static public function getOrder()
+    {
+        return data.cafeOrder;
+    }
+    
+    static public function setOrder(order:Order)
+    {
+        if (data.cafeOrder != order)
+        {
+            data.cafeOrder = order;
+            flush();
+        }
+    }
+    
     static public function getInstrument()
     {
         if (data.instrument < 0) return null;
@@ -496,4 +512,5 @@ typedef SaveData = SaveData2020 &
     var days2020:BitArray;
     var medalsUnlocked2020:Array<Int>;
     var showName:Bool;
+    var cafeOrder:Order;
 }

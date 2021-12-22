@@ -6,6 +6,7 @@ import props.GhostPlayer;
 import props.Player;
 import props.Placemat;
 import props.SpeechBubble;
+import props.SpeechBubbleQueue;
 import props.Waiter;
 import states.OgmoState;
 import utils.DebugLine;
@@ -211,6 +212,9 @@ class CafeState extends RoomState
     {
         super.initEntities();
         
+        for (waiter in waiters)
+            addHoverTextTo(waiter, "TALK", talkToWaiter.bind(waiter));
+        
         #if LOAD_DISK_CAROUSEL
         var juke = foreground.assertByName("cafe-juke");
         addHoverTextTo(juke, "Music", ()->openSubState(new MusicSelectionSubstate()));
@@ -239,7 +243,7 @@ class CafeState extends RoomState
                 if (canSeatPatron(seat, patron))
                 {
                     seatPatron(seat, patron);
-                    spots[seat].randomOrderUp();
+                    spots[seat].orderUp(patron.state.order);
                 }
             }
         );
@@ -256,6 +260,44 @@ class CafeState extends RoomState
         var placemat = spots[seat];
         placemat.patron = patron;
         patrons[patron] = placemat;
+    }
+    
+    function talkToWaiter(waiter:Waiter)
+    {
+        var seated = patrons.exists(player);
+        player.enabled = false;
+        waiter.enabled = false;
+        var speech = new SpeechBubbleQueue(waiter.x, waiter.y - 24);
+        topGround.add(speech);
+        var msgs  = if (seated)
+            [ "What can I do for ya?" ];
+        else
+            ["Welcome to the\nNew Grounds Cafe!"
+            , "Sit anywhere and I'll\nbe right with you."
+            ];
+        
+        speech.showMsgQueue(msgs,
+            function onComplete()
+            {
+                topGround.remove(speech);
+                if (seated)
+                {
+                    var menu = new CafeOrderSubstate();
+                    menu.closeCallback = function()
+                    {
+                        player.enabled = true;
+                        waiter.enabled = true;
+                        player.settings.applyTo(player);
+                    }
+                    openSubState(menu);
+                }
+                else
+                {
+                    player.enabled = true;
+                    waiter.enabled = true;
+                }
+            }
+        );
     }
     
     function onWaiterServe(placemat:Placemat)

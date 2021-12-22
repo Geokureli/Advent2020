@@ -540,7 +540,9 @@ class RoomState extends OgmoState
                 var skin = data.skin;
                 if (!Skins.isValidSkin(skin))
                     skin = 0;
-                var settings = new PlayerSettings(skin);
+                
+                var state = cast (data.state, PlayerState);
+                var settings = new PlayerSettings(skin, null, state.order);
                 var ghost = new GhostPlayer(key, data.name, data.x, data.y, settings);
                 ghost.nameText.camera = topWorldCamera;
                 ghostsById[key] = ghost;

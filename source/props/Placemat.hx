@@ -1,5 +1,6 @@
 package props;
 
+import data.Order;
 import props.GhostPlayer;
 import states.OgmoState;
 import states.rooms.RoomState;
@@ -63,8 +64,7 @@ class Placemat extends FlxSprite
             for (j=>order in Order.list)
             {
                 final bite = NUM_BITES - i - 1;
-                final frame = Math.ceil(bite / NUM_BITES);
-                animation.add('${order}_${bite}', [NUM_FRAMES * j + frame]);
+                animation.add('${order}_${bite}', [order.toFrame(bite / NUM_BITES)]);
             }
         }
         
@@ -74,8 +74,7 @@ class Placemat extends FlxSprite
     public function checkServiceNeeds()
     {
         final isPatronSeated = getSeatedPatron() != null;
-        final hasFood = visible && getBitesLeft() > 0;
-        needsService = isPatronSeated != hasFood;
+        needsService = isPatronSeated != getHasFood();
     }
     
     override function update(elapsed:Float)
@@ -116,36 +115,44 @@ class Placemat extends FlxSprite
         #end
     }
     
-    inline public function randomOrderUp(allowNothing = false)
-    {
-        var max = Order.list.length;
-        if (allowNothing == false)
-            max--;
-            
-        var ran = FlxG.random.int(0, max);
-        if (ran < Order.list.length)
-            orderUp(Order.list[ran]);
-    }
-    
     public function service(waiter:Waiter)
     {
-        final patronSeated = getSeatedPatron() != null;
-        final hasFood = visible && getBitesLeft() > 0;
-        if (patronSeated && hasFood == false)
+        final patronSeated = getSeatedPatron();
+        final isPatronSeated = patronSeated != null;
+        final hasFood = getHasFood();
+        
+        if (isPatronSeated && hasFood == false)
         {
-            orderUp(COFFEE);
+            orderUp(patronSeated.state.order);
             waiter.onServe.dispatch(this);
         }
         
-        if (patronSeated == false && hasFood)
+        if (isPatronSeated == false && hasFood)
         {
+            var isRefill = visible;
             bus();
-            waiter.onBus.dispatch(this);
+            
+            if (isRefill)
+                waiter.onBus.dispatch(this);
+            else
+                waiter.onRefill.dispatch(this);
         }
+    }
+    
+    public function getHasFood()
+    {
+        return visible
+            && getBitesLeft() > 0
+            &&  (  patron == null
+                || patron.state.order == getOrder()
+                || patron.state.order == RANDOM
+                );
     }
     
     public function orderUp(order:Order)
     {
+        if (order == RANDOM)
+            order = Order.random();
         animation.play('${order}_${NUM_BITES - 1}');
         visible = true;
     }
@@ -189,7 +196,7 @@ class Placemat extends FlxSprite
         }
     }
     
-    public function getOrder() return animation.curAnim.name.split("_")[0];
+    public function getOrder():Order return cast animation.curAnim.name.split("_")[0];
     public function getBitesLeft() return Std.parseInt(animation.curAnim.name.split("_")[1]);
     
     public function getSeatedPatron()
@@ -207,12 +214,4 @@ class Placemat extends FlxSprite
         placemat.setup();
         return placemat;
     }
-}
-
-enum abstract Order(String) to String
-{
-    static public final list = [DINNER, COFFEE];
-    
-    var DINNER = "dinner";
-    var COFFEE = "coffee";
 }
