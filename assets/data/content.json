@@ -54,6 +54,7 @@
     , "space-agewrangler": { "proper": "Space-ageWrangler" }
     , "theextreamh"      : { "proper": "TheExtreamH"       }
     , "queenboo"         : { "proper": "QueenBoo"          }
+    , "itsabluebanana"   : { "proper": "itsabluebanana"    }
     , "sevi"             : { "proper": "sevi"              }
 
     , "ninjamuffin99":
@@ -257,6 +258,13 @@
         , "name"   : "Holiday Mall Nuisance"
         , "authors": ["queenboo"]
         , "day"    : 21
+        , "ext"    : "jpg"
+        , "medal"  : true
+        }
+    ,   { "id"     : "itsabluebanana"
+        , "name"   : "Holiday Advertising"
+        , "authors": ["itsabluebanana"]
+        , "day"    : 22
         , "ext"    : "jpg"
         , "medal"  : true
         }
