@@ -168,7 +168,7 @@ class Save
     
     #if LOAD_2020_SKINS
     @:allow(data.NGio)
-    static function load2020SaveData(clearCache = true)
+    static function load2020SaveData(clearCache = false)
     {
         #if debug
         if (APIStuff.DEBUG_SESSON_2020 != null)
@@ -429,7 +429,7 @@ class Save
     {
         if (data.ngioUserId2020 != id)
         {
-            data.ngioUserId2020 = -1;
+            data.ngioUserId2020 = id;
             flush();
         }
     }

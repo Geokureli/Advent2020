@@ -350,7 +350,7 @@ class NGio
 		( 1.0
 		,   (timer)->
 			{
-				Save.load2020SaveData();
+				Save.load2020SaveData(true);
 				var sessionId = Save.getNgioSessionId2020();
 				if (sessionId != null)
 				{
@@ -371,7 +371,7 @@ class NGio
 		if (!NG.core.loggedIn)// can't use == false becuase there's a bug where it's null
 		{
 			log('Error fetching 2020 medals: not logged in');
-			Save.deleteSave2020();
+			// Save.deleteSave2020();
 			callback(false);
 			return;
 		}
