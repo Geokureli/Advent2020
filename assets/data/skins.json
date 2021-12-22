@@ -537,6 +537,12 @@
     , "unlocksBy": "day:17"
     , "users": ["lazymuffin"]
     }
+,   { "id": "brooke"
+    , "proper": "Brooke"
+    , "description": "The punk-rock goth-girl of lucky's dreams, watch LUCKYBOY in the theater!"
+    , "unlocksBy": null
+    , "users": ["domromart", "brandybuizel"]
+    }
 ,   { "id": "custom"
     , "proper": "Custom"
     , "description": "It's you! Just you! Create and be exactly who you wanna be, but the name stays the same."
