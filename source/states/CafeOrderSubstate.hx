@@ -247,7 +247,7 @@ private class OrderData
 {
     static public var list:Array<OrderData> = 
     // coffee
-    [ new DrinkData("Espresso"       , "Coffee brewed by forcing a small amount of nearly boiling water under pressure through finely ground coffee beans")
+    [ new DrinkData("Espresso"       , "Brewed by forcing a small amount of boiling pressurized water through finely ground coffee beans")
     , new DrinkData("Latte"          , "2 ounces of espresso and 10 ounces of steamed milk with a nice thin layer of foam across the top")
     , new DrinkData("Latte(Mocha)"   , "Chocolate syrup made in-house")
     , new DrinkData("Latte(Vanilla)" , "The crowd pleaser")
