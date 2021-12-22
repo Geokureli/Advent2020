@@ -119,13 +119,16 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
             if (callback != null) callback();
         }
         
-        tail.animateOut();
-        tween = text.tweenOut(msg)
-            .then(bubble.tweenHeightTo(0, FlxEase.cubeIn, func));
+        tween = text.tweenOut(msg);
+        var bubbleTween = bubble.tweenHeightTo(0, FlxEase.cubeIn, func);
+        bubbleTween.onStart = (_)->tail.animateOut();
+        tween.then(bubbleTween);
     }
 }
 
 inline var BUBBLE_TWEEN_TIME = 0.25;
+inline var MIN_TEXT_TWEEN_TIME = 0.5;
+inline var MAX_CHAR_TIME = 0.02;
 
 @:forward
 private abstract Bubble(FlxSliceSprite) to FlxSliceSprite
@@ -171,9 +174,6 @@ private abstract Bubble(FlxSliceSprite) to FlxSliceSprite
 @:forward
 private abstract Text(flixel.text.FlxBitmapText) to flixel.text.FlxBitmapText
 {
-    inline static var MIN_TEXT_TWEEN_TIME = 0.5;
-    inline static var MAX_CHAR_TIME = 0.02;
-    
     inline public function new ()
     {
         this = new flixel.text.FlxBitmapText(new ui.Font.NokiaFont());
