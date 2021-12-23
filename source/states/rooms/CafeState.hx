@@ -270,33 +270,28 @@ class CafeState extends RoomState
         waiter.enabled = false;
         var speech = new SpeechBubbleQueue(waiter.x, waiter.y - 24);
         topGround.add(speech);
-        var msgs  = if (seated)
-            [ "What can I do for ya?" ];
-        else
-            ["Welcome to the\nNew Grounds Cafe!"
-            , "Sit anywhere and I'll\nbe right with you."
+        var msgs =
+            [ "Welcome to the\nNew Grounds Cafe!"
+            , "What can I do for ya?"
             ];
         
         speech.showMsgQueue(msgs,
             function onComplete()
             {
-                topGround.remove(speech);
-                if (seated)
+                var menu = new CafeOrderSubstate();
+                menu.closeCallback = function()
                 {
-                    var menu = new CafeOrderSubstate();
-                    menu.closeCallback = function()
-                    {
-                        player.enabled = true;
-                        waiter.enabled = true;
-                        player.settings.applyTo(player);
-                    }
-                    openSubState(menu);
-                }
-                else
-                {
+                    player.settings.applyTo(player);
                     player.enabled = true;
                     waiter.enabled = true;
+                    topGround.remove(speech);
+                    if (seated == false)
+                    {
+                        speech.enableAutoMode();
+                        speech.showMsgQueue(["Sit anywhere and I'll\nbring it right to you."]);
+                    }
                 }
+                openSubState(menu);
             }
         );
     }
