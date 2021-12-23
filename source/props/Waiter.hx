@@ -18,11 +18,6 @@ class Waiter extends Npc
     {
         super(x, y, skin, name);
         
-        if (PlayerSettings.user.order == RANDOM)
-        {
-            notif = new Notif();
-            notif.animate();
-        }
     }
     
     override function update(elapsed:Float)
@@ -37,6 +32,13 @@ class Waiter extends Npc
                 return;
             }
             notif.update(elapsed);
+        }
+        // TODO: listen for PlayerSettings.user to be created
+        // instead of waiting in an update
+        else if (PlayerSettings.user.order == RANDOM)
+        {
+            notif = new Notif();
+            notif.animate();
         }
     }
     

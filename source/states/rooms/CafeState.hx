@@ -278,19 +278,24 @@ class CafeState extends RoomState
         speech.showMsgQueue(msgs,
             function onComplete()
             {
+                var oldOrder = player.state.order;
                 var menu = new CafeOrderSubstate();
                 menu.closeCallback = function()
                 {
                     player.settings.applyTo(player);
                     player.enabled = true;
                     waiter.enabled = true;
-                    if (seated == false)
+                    var msg = if (oldOrder == player.state.order && seated == false)
+                        "Take your time, you\nknow where to find me";
+                    else if (seated == false)
+                        "Sit anywhere and I'll\nbring it right to you";
+                    else
+                        null;
+                    
+                    if (msg != null)
                     {
                         speech.enableAutoMode();
-                        speech.showMsgQueue
-                            ( ["Sit anywhere and I'll\nbring it right to you."]
-                            , topGround.remove.bind(speech)
-                            );
+                        speech.showMsgQueue([msg], topGround.remove.bind(speech));
                     }
                 }
                 openSubState(menu);

@@ -65,12 +65,12 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
         visible = true;
         text.text = msg;
         tail.height = tail.frameHeight;
-        bubble.offset.y = 0;
         bubble.width = Math.max(minWidth, text.width + PAD * 2);
         bubble.height = Math.max(minHeight, text.height + PAD * 2);
-        bubble.y = tail.y - bubble.height + 1;
+        bubble.offset.y = bubble.height - 1;
+        bubble.y = tail.y;
         text.x = bubble.x + PAD + 1;
-        text.y = bubble.y + PAD + 1;
+        text.y = bubble.y - bubble.height + PAD + 1;
         
         killTween();
     }
@@ -117,7 +117,12 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
             startOrChain(text.tweenOut(oldMsg, moveText));
         
         if (changingSize)
+        {
+            if (bubble.facing.has(UP))
+                bubble.y = tail.y;
+            
             startOrChain(bubble.tweenTo(width, height, FlxEase.cubeInOut));
+        }
         
         startOrChain(text.tweenIn(msg, callback));
     }
@@ -129,6 +134,7 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
         bubble.height = 1;
         if (bubble.facing.has(UP))
             bubble.y = tail.y;
+        
         text.text = " ";
         
         tail.animateIn();
@@ -190,8 +196,8 @@ private abstract Bubble(FlxSliceSprite) to FlxSliceSprite
         
         if (this.facing.has(UP) && this.height != height)
         {
-            this.offset.y = this.height;
-            Reflect.setField(vars, "offset.y", this.height - height);
+            this.offset.y = this.height - 1;
+            Reflect.setField(vars, "offset.y", height - 1);
         }
         
         if (width != null && width != this.width)
