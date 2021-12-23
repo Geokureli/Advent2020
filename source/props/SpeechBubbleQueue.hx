@@ -15,9 +15,23 @@ class SpeechBubbleQueue extends SpeechBubble
     var queueCallback:()->Void;
     var timer = 0.0;
     
-    public function new (x = 0.0, y = 0.0)
+    public function new (x = 0.0, y = 0.0, ?target, ?offset)
     {
-        super(x, y);
+        super(x, y, target, offset);
+    }
+    
+    public function enableAutoMode(advanceTimer = 1.0)
+    {
+        this.advanceTimer = advanceTimer;
+        allowSkip = false;
+        allowCancel = false;
+    }
+    
+    public function enableInputMode(allowCancel = true)
+    {
+        advanceTimer = Math.POSITIVE_INFINITY;
+        allowSkip = true;
+        this.allowCancel = allowCancel;
     }
     
     public function showMsgQueue(queue:Array<String>, ?callback:()->Void)

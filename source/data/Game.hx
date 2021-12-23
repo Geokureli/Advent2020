@@ -31,6 +31,7 @@ class Game
         // RoomName.PostOffice + "." + RoomName.Village;
         // RoomName.PicosShop + ".pico";
         // RoomName.PicosShop + ".dress";
+        // RoomName.TheaterScreen + "." + RoomName.TheaterLobby;
         // RoomName.PathLeft + "." + RoomName.PathCenter;
         // RoomName.PathRight + "." + RoomName.PathCenter;
         // RoomName.Outside;
@@ -49,16 +50,16 @@ class Game
         #end
         
         roomTypes = [];
-        roomTypes[Outside] = OutsideState.new;
-        roomTypes[PathLeft] = PathLeftState.new;
-        roomTypes[PathCenter] = PathCenterState.new;
-        roomTypes[PathRight] = PathRightState.new;
-        roomTypes[Village] = VillageState.new;
-        roomTypes[PicosShop] = PicosShopState.new;
-        roomTypes[Cafe] = CafeState.new;
-        roomTypes[PostOffice] = PostOfficeState.new;
-        roomTypes[TheaterLobby] = TheaterLobbyState.new;
-        roomTypes[TheaterScreen] = TheaterScreenState.new;
+        addRoom(Outside      , OutsideState.new);
+        addRoom(PathLeft     , PathLeftState.new);
+        addRoom(PathCenter   , PathCenterState.new);
+        addRoom(PathRight    , PathRightState.new);
+        addRoom(Village      , VillageState.new);
+        addRoom(PicosShop    , PicosShopState.new);
+        addRoom(Cafe         , CafeState.new);
+        addRoom(PostOffice   , PostOfficeState.new);
+        addRoom(TheaterLobby , TheaterLobbyState.new);
+        addRoom(TheaterScreen, TheaterScreenState.new);
         
         arcadeTypes = [];
         
@@ -84,6 +85,13 @@ class Game
         //     state = LuciaDay(Started);
         // else if (Save.noPresentsOpened())
         //     state = Intro(Started);
+    }
+    
+    inline static function addRoom(name, constructor, isNetworked = true)
+    {
+        roomTypes[name] = constructor;
+        RoomState.roomOrder.push(name);
+        Net.netRooms.push(name);
     }
     
     static public function goToRoom(target:String):Void

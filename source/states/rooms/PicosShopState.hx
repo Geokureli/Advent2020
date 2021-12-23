@@ -60,7 +60,7 @@ class PicosShopState extends RoomState
         if (picoBubble == null)
         {
             var pico = npcsByName["Pico"];
-            picoBubble = new SpeechBubbleQueue(pico.x, pico.y - 24);
+            picoBubble = new SpeechBubbleQueue(pico);
             picoBubble.advanceTimer = 1.0;
             picoBubble.allowSkip = false;
             picoBubble.allowCancel = false;

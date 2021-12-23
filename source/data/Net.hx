@@ -12,7 +12,8 @@ import io.colyseus.Client;
 
 class Net
 {
-    static var netRooms:Array<RoomName> = [Outside, PathLeft, PathCenter, PathRight, Village, PicosShop, Cafe, PostOffice];
+    @:allow(data.Game)
+    static var netRooms:Array<RoomName> = [];
     
     static public var client(default, null):Client;
     static public var room(default, null):Room<GameState>;

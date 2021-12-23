@@ -1,7 +1,11 @@
 package props;
 
-import flixel.math.FlxRect;
+import props.IInteractable;
+
+import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.math.FlxPoint;
+import flixel.math.FlxRect;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
@@ -16,11 +20,25 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
     public var tail(default, null):Tail;
     public var minWidth = 0.0;
     public var minHeight = 0.0;
+    public var target:Null<FlxObject>;
+    public var followOffset:FlxPoint;
     
     var tween:FlxTween = null;
     
-    public function new (x = 0.0, y = 0.0)
+    public function new (x = 0.0, y = 0.0, ?target:FlxObject, ?offset:FlxPoint)
     {
+        if (target != null && target is IInteractable)
+        {
+            var interact:IInteractable = cast target;
+            if (interact.hitTarget != null)
+                target = interact.hitTarget;
+        }
+        this.target = target;
+        
+        if (offset == null)
+            offset = FlxPoint.get();
+        followOffset = offset;
+        
         super(x, y);
         
         add(bubble = new Bubble());
@@ -30,18 +48,29 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
         text.color = 0xFF000000;
     }
     
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+        
+        if (target != null)
+        {
+            x = target.x + target.width / 2 + followOffset.x;
+            y = target.y + followOffset.y;
+        }
+    }
+    
     inline static var PAD = 4;
     public function show(msg:String)
     {
         visible = true;
         text.text = msg;
         tail.height = tail.frameHeight;
-        bubble.offset.y = 0;
         bubble.width = Math.max(minWidth, text.width + PAD * 2);
         bubble.height = Math.max(minHeight, text.height + PAD * 2);
-        bubble.y = tail.y - bubble.height + 1;
+        bubble.offset.y = bubble.height - 1;
+        bubble.y = tail.y;
         text.x = bubble.x + PAD + 1;
-        text.y = bubble.y + PAD + 1;
+        text.y = bubble.y - bubble.height + PAD + 1;
         
         killTween();
     }
@@ -88,7 +117,12 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
             startOrChain(text.tweenOut(oldMsg, moveText));
         
         if (changingSize)
+        {
+            if (bubble.facing.has(UP))
+                bubble.y = tail.y;
+            
             startOrChain(bubble.tweenTo(width, height, FlxEase.cubeInOut));
+        }
         
         startOrChain(text.tweenIn(msg, callback));
     }
@@ -100,6 +134,7 @@ class SpeechBubble extends flixel.group.FlxSpriteGroup
         bubble.height = 1;
         if (bubble.facing.has(UP))
             bubble.y = tail.y;
+        
         text.text = " ";
         
         tail.animateIn();
@@ -152,7 +187,15 @@ private abstract Bubble(FlxSliceSprite) to FlxSliceSprite
     
     public function tweenTo(?width:Float, height:Float, ease:EaseFunction, ?callback:()->Void):FlxTween
     {
-        var options:TweenOptions = { ease:ease };
+        var options:TweenOptions =
+            { ease:ease
+            ,   onUpdate: (_)->
+                {
+                    this.width = Std.int(this.width);
+                    this.height = Std.int(this.height);
+                    this.offset.y = Std.int(this.offset.y);
+                }
+            };
         
         if (callback != null)
             options.onComplete = (_)->callback();
@@ -161,7 +204,8 @@ private abstract Bubble(FlxSliceSprite) to FlxSliceSprite
         
         if (this.facing.has(UP) && this.height != height)
         {
-            vars.y = this.y + this.height - height;
+            this.offset.y = this.height - 1;
+            Reflect.setField(vars, "offset.y", height - 1);
         }
         
         if (width != null && width != this.width)

@@ -52,6 +52,7 @@ class CafeState extends RoomState
             waiters.push(waiter);
             waiter.onServe.add(onWaiterServe);
             waiter.onBus.add(onWaiterBus);
+            waiter.onBus.add(onWaiterRefill);
             if (waiter.ogmoPath != null && waiterNodes == null)
                 waiterNodes = waiter.ogmoPath;
             return waiter;
@@ -267,35 +268,37 @@ class CafeState extends RoomState
         var seated = patrons.exists(player);
         player.enabled = false;
         waiter.enabled = false;
-        var speech = new SpeechBubbleQueue(waiter.x, waiter.y - 24);
+        var speech = new SpeechBubbleQueue(waiter);
         topGround.add(speech);
-        var msgs  = if (seated)
-            [ "What can I do for ya?" ];
-        else
-            ["Welcome to the\nNew Grounds Cafe!"
-            , "Sit anywhere and I'll\nbe right with you."
+        var msgs =
+            [ "Welcome to the\nNew Grounds Cafe!"
+            , "What can I do for ya?"
             ];
         
         speech.showMsgQueue(msgs,
             function onComplete()
             {
-                topGround.remove(speech);
-                if (seated)
+                var oldOrder = player.state.order;
+                var menu = new CafeOrderSubstate();
+                menu.closeCallback = function()
                 {
-                    var menu = new CafeOrderSubstate();
-                    menu.closeCallback = function()
-                    {
-                        player.enabled = true;
-                        waiter.enabled = true;
-                        player.settings.applyTo(player);
-                    }
-                    openSubState(menu);
-                }
-                else
-                {
+                    player.settings.applyTo(player);
                     player.enabled = true;
                     waiter.enabled = true;
+                    var msg = if (oldOrder == player.state.order && seated == false)
+                        "Take your time, you\nknow where to find me";
+                    else if (seated == false)
+                        "Sit anywhere and I'll\nbring it right to you";
+                    else
+                        null;
+                    
+                    if (msg != null)
+                    {
+                        speech.enableAutoMode();
+                        speech.showMsgQueue([msg], topGround.remove.bind(speech));
+                    }
                 }
+                openSubState(menu);
             }
         );
     }
@@ -317,6 +320,32 @@ class CafeState extends RoomState
                     placemat.bite();
                 }
             );
+        }
+        else if (placemat.patron != null)
+            sayThx(placemat.patron);
+    }
+    
+    function onWaiterRefill(placemat:Placemat)
+    {
+        if (placemat.patron != null && placemat.patron != player)
+            sayThx(placemat.patron);
+    }
+    
+    static var msgs = 
+        [ "thx!"
+        , "Thanks!"
+        , ":)"
+        , "yum!"
+        , "Such great\nservice!"
+        ];
+    function sayThx(patron:Player)
+    {
+        // if (FlxG.random.bool())
+        {
+            var bubble = new SpeechBubbleQueue(patron.x, patron.y - 24);
+            bubble.enableAutoMode();
+            add(bubble);
+            bubble.showMsgQueue([FlxG.random.getObject(msgs)], remove.bind(bubble));
         }
     }
     

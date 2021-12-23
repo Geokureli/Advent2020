@@ -1,5 +1,6 @@
 package props;
 
+import data.PlayerSettings;
 import flixel.util.FlxSignal;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
@@ -11,10 +12,45 @@ class Waiter extends Npc
     public var onRefill(default, null) = new FlxTypedSignal<(Placemat)->Void>();
     
     public var targetTable:CafeTable = null;
+    public var notif:Notif;
     
     public function new(x = 0.0, y = 0.0, skin:String, name:String)
     {
         super(x, y, skin, name);
+        
+    }
+    
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+        if (notif != null)
+        {
+            if (PlayerSettings.user.order != RANDOM)
+            {
+                notif.destroy();
+                notif = null;
+                return;
+            }
+            notif.update(elapsed);
+        }
+        // TODO: listen for PlayerSettings.user to be created
+        // instead of waiting in an update
+        else if (PlayerSettings.user.order == RANDOM)
+        {
+            notif = new Notif();
+            notif.animate();
+        }
+    }
+    
+    override function draw()
+    {
+        super.draw();
+        if (notif != null)
+        {
+            notif.x = x + (width - notif.width) / 2;
+            notif.y = y - 32;
+            notif.draw();
+        }
     }
     
     public function goToPriorityTable(tables:Array<CafeTable>)

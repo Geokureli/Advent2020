@@ -39,7 +39,6 @@ class VideoSubstate extends flixel.FlxSubState
             FlxG.sound.music.pause();
         
         FlxG.stage.addChild(ui);
-        NGio.unlockMedalByName("movie");
     }
     
     override function update(elapsed:Float)

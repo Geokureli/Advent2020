@@ -43,7 +43,7 @@ typedef RoomConstructor = (String)->RoomState;
 
 class RoomState extends OgmoState 
 {
-    public static var roomOrder = [Bedroom, Hallway, Entrance, Outside, Arcade, Studio, TheaterLobby, TheaterScreen];
+    public static var roomOrder:Array<RoomName> = [];
     
     var camOffset = 0.0;
     var camFollow = new FlxObject();
@@ -99,6 +99,12 @@ class RoomState extends OgmoState
         super();
     }
     
+    function setDefaultEntityHandler(name:String, handler)
+    {
+        if (entityTypes.exists(name) == false)
+            entityTypes[name] = handler;
+    }
+    
     override public function create():Void 
     {
         super.create();
@@ -112,43 +118,15 @@ class RoomState extends OgmoState
         FlxG.mouse.visible = !FlxG.onMobile;
         // #if debug FlxG.debugger.drawDebug = true; #end
         
-        function addDoor(data)
-        {
-            var door = Door.fromEntity(data);
-            colliders.add(door);
-            return door;
-        }
-        entityTypes["Door"] = cast addDoor;
-        entityTypes["BigDoor"] = cast addDoor;
-        entityTypes["Teleport"] = cast function(data)
-        {
-            var teleport = Teleport.fromEntity(data);
-            
-            if (teleport.id == "" && teleport.target != "")
-                teleport.id = teleport.target;
-            
-            if (teleport.target != "" && teleport.target.indexOf(".") == -1)
-                teleport.target += "." + name;
-            
-            teleports.add(teleport);
-            return teleport;
-        }
-        entityTypes["Present"] = cast function(data)
-        {
-            var present = Present.fromEntity(data);
-            
-            if (Content.isArtUnlocked(present.id))
-                initArtPresent(present, onOpenPresent);
-            else
-                present.kill();
-            
-            return present;
-        }
+        setDefaultEntityHandler("Door"       , cast addDoor);
+        setDefaultEntityHandler("BigDoor"    , cast addDoor);
+        setDefaultEntityHandler("Teleport"   , cast addTeleport);
+        setDefaultEntityHandler("Present"    , cast addPresent);
+        setDefaultEntityHandler("Npc"        , cast initNpc.bind(_));
+        setDefaultEntityHandler("PBot"       , cast initNpc.bind(_));
+        setDefaultEntityHandler("MaleMailMan", cast initNpc.bind(_));
+        setDefaultEntityHandler("Carousel"   , cast Carousel.fromEntity);
         
-        entityTypes["Npc"] = cast initNpc.bind(_);
-        entityTypes["PBot"] = cast initNpc.bind(_);
-        entityTypes["MaleMailMan"] = cast initNpc.bind(_);
-        entityTypes["Carousel"] = cast Carousel.fromEntity;
         Log.ogmo('loading level');
         loadLevel();
         Log.ogmo('initing entities');
@@ -163,6 +141,38 @@ class RoomState extends OgmoState
         NGio.logEventOnce(enter);
         
         FlxG.camera.fade(0xD8000022, 0.5, true);
+    }
+    function addPresent(data)
+    {
+        var present = Present.fromEntity(data);
+        
+        if (Content.isArtUnlocked(present.id))
+            initArtPresent(present, onOpenPresent);
+        else
+            present.kill();
+        
+        return present;
+    }
+    
+    function addDoor(data)
+    {
+        var door = Door.fromEntity(data);
+        colliders.add(door);
+        return door;
+    }
+        
+    function addTeleport(data)
+    {
+        var teleport = Teleport.fromEntity(data);
+        
+        if (teleport.id == "" && teleport.target != "")
+            teleport.id = teleport.target;
+        
+        if (teleport.target != "" && teleport.target.indexOf(".") == -1)
+            teleport.target += "." + name;
+        
+        teleports.add(teleport);
+        return teleport;
     }
     
     function initNpc(data, ?skin, ?name, isUser = false)

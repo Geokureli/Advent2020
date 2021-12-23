@@ -39,6 +39,8 @@ class NGio
 	public static var validMinorVersion(default, null) = true;
 	public static var validVersion(default, null) = true;
 	
+	public static var moviePremier(default, null):String = null;
+	
 	public static var scoreboardArray:Array<Score> = [];
 	
 	public static var ngDataLoaded(default, null):FlxSignal = new FlxSignal();
@@ -334,6 +336,25 @@ class NGio
 			throw 'invalid name:%name';
 		
 		return hasMedal(Content.medals[name]);
+	}
+	
+	static public function checkForMoviePremier(callback:(Null<String>)->Void)
+	{
+		NG.core.calls.loader.loadAuthorUrl()
+			.addDataHandler
+				(	(response)->
+					{
+						if (response.success && response.result.success)
+						{
+							var url:String = (response.result.data:Dynamic).url;
+							if (url.indexOf(".mp4?") != -1)
+								moviePremier = url;
+						}
+						
+						callback(moviePremier);
+					}
+				)
+			.send();
 	}
 	
 	#if LOAD_2020_SKINS

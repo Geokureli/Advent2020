@@ -10,6 +10,9 @@ class Teleport extends FlxObject
 {
     public var id:String = null;
     public var target:String = null;
+    public var enabled(get, set):Bool;
+    inline function get_enabled() return solid;
+    inline function set_enabled(value:Bool) return solid = value;
     
     public function new(x = 0.0, y = 0.0, width = 0.0, height = 0.0)
     {

@@ -6,3 +6,4 @@
 5. Request user's friends list.
 6. Request user's mature content prefs and age restrictions.
 7. Version upload api, like itch.io's butler
+8. Ability to get a video by it's portal id, much like `https://www.newgrounds.com/audio/feed/#######`

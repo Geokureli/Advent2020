@@ -135,6 +135,10 @@ class BootState extends flixel.FlxState
         Manifest.init(callbacks.add("manifest"));
         Calendar.init(callbacks.add("calendar"));
         load2020Medals(callbacks.add("2020medals"));
+        
+        var premierCallback = callbacks.add("moviePremier");
+        NGio.checkForMoviePremier((_)->premierCallback());
+        
         NGio.updateServerVersion(callbacks.add("server version"));
         if (NG.core.loggedIn && NG.core.medals == null)
             NG.core.onMedalsLoaded.addOnce(callbacks.add("medal list"));
