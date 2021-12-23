@@ -187,7 +187,15 @@ private abstract Bubble(FlxSliceSprite) to FlxSliceSprite
     
     public function tweenTo(?width:Float, height:Float, ease:EaseFunction, ?callback:()->Void):FlxTween
     {
-        var options:TweenOptions = { ease:ease };
+        var options:TweenOptions =
+            { ease:ease
+            ,   onUpdate: (_)->
+                {
+                    this.width = Std.int(this.width);
+                    this.height = Std.int(this.height);
+                    this.offset.y = Std.int(this.offset.y);
+                }
+            };
         
         if (callback != null)
             options.onComplete = (_)->callback();
