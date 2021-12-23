@@ -11,6 +11,7 @@ class Notif extends flixel.FlxSprite
     public function new (x = 0.0, y = 0.0)
     {
         super(x, y, "assets/images/props/shared/notif.png");
+        offset.y = height;
     }
     
     public function animate()
@@ -18,7 +19,8 @@ class Notif extends flixel.FlxSprite
         if (tween != null)
             tween.cancel();
         
-        tween = FlxTween.tween(this, { y: y - 8 }, 0.75, { type:PINGPONG, ease:FlxEase.sineInOut, loopDelay: 0.25 });
+        offset.y = height;
+        tween = FlxTween.tween(this, { "offset.y": height - 8 }, 0.75, { type:PINGPONG, ease:FlxEase.sineInOut, loopDelay: 0.25 });
     }
     
     override function destroy()

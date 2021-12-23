@@ -15,9 +15,9 @@ class SpeechBubbleQueue extends SpeechBubble
     var queueCallback:()->Void;
     var timer = 0.0;
     
-    public function new (x = 0.0, y = 0.0)
+    public function new (x = 0.0, y = 0.0, ?target, ?offset)
     {
-        super(x, y);
+        super(x, y, target, offset);
     }
     
     public function enableAutoMode(advanceTimer = 1.0)
