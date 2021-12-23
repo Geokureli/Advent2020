@@ -55,6 +55,7 @@
     , "theextreamh"      : { "proper": "TheExtreamH"       }
     , "queenboo"         : { "proper": "QueenBoo"          }
     , "itsabluebanana"   : { "proper": "itsabluebanana"    }
+    , "pommisc"          : { "proper": "Pommisc"           }
     , "sevi"             : { "proper": "sevi"              }
 
     , "ninjamuffin99":
@@ -266,6 +267,12 @@
         , "authors": ["itsabluebanana"]
         , "day"    : 22
         , "ext"    : "jpg"
+        , "medal"  : true
+        }
+    ,   { "id"     : "pommisc"
+        , "name"   : "Just like tanksmas and the day or something"
+        , "authors": ["pommisc"]
+        , "day"    : 23
         , "medal"  : true
         }
     ,   { "id"     : "sevi"
