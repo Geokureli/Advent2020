@@ -191,6 +191,11 @@ class Placemat extends FlxSprite
                         else
                             animation.play(getOrder() + "_" + (bitesLeft - 1));
                     }
+                ,   onUpdate: (_)->
+                    {
+                        x = Std.int(x);
+                        y = Std.int(y);
+                    }
                 }
             );
         }
