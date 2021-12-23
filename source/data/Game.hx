@@ -31,6 +31,7 @@ class Game
         // RoomName.PostOffice + "." + RoomName.Village;
         // RoomName.PicosShop + ".pico";
         // RoomName.PicosShop + ".dress";
+        // RoomName.TheaterScreen + "." + RoomName.TheaterLobby;
         // RoomName.PathLeft + "." + RoomName.PathCenter;
         // RoomName.PathRight + "." + RoomName.PathCenter;
         // RoomName.Outside;

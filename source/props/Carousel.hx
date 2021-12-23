@@ -43,6 +43,12 @@ class Carousel extends FlxSpriteGroup
             slide.x = x + i * width;
             slide.clipRect = FlxRect.get(x - slide.x, 0, width, height);
         }
+        
+        if (slides.length == 0)
+        {
+            exists = false;
+            trace("No files listed in the Carousel");
+        }
     }
     
     override function update(elapsed:Float)
@@ -84,7 +90,9 @@ class Carousel extends FlxSpriteGroup
     
     static public function fromEntity(data:OgmoEntityData<CarouselValues>)
     {
-        var files = data.values.files.split(",").map(file->data.values.folder + file + ".png");
+        var files = data.values.files != "" && data.values.files != null
+            ? data.values.files.split(",").map(file->data.values.folder + file + ".png")
+            : [];
         return new Carousel(data.x, data.y, files, data.values.secondsPerSlide);
     }
 }
