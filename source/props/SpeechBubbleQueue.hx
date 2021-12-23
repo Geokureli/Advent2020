@@ -20,6 +20,20 @@ class SpeechBubbleQueue extends SpeechBubble
         super(x, y);
     }
     
+    public function enableAutoMode(advanceTimer = 1.0)
+    {
+        this.advanceTimer = advanceTimer;
+        allowSkip = false;
+        allowCancel = false;
+    }
+    
+    public function enableInputMode(allowCancel = true)
+    {
+        advanceTimer = Math.POSITIVE_INFINITY;
+        allowSkip = true;
+        this.allowCancel = allowCancel;
+    }
+    
     public function showMsgQueue(queue:Array<String>, ?callback:()->Void)
     {
         if (state != HIDDEN)

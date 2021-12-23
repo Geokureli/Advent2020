@@ -52,6 +52,7 @@ class CafeState extends RoomState
             waiters.push(waiter);
             waiter.onServe.add(onWaiterServe);
             waiter.onBus.add(onWaiterBus);
+            waiter.onBus.add(onWaiterRefill);
             if (waiter.ogmoPath != null && waiterNodes == null)
                 waiterNodes = waiter.ogmoPath;
             return waiter;
@@ -317,6 +318,32 @@ class CafeState extends RoomState
                     placemat.bite();
                 }
             );
+        }
+        else if (placemat.patron != null)
+            sayThx(placemat.patron);
+    }
+    
+    function onWaiterRefill(placemat:Placemat)
+    {
+        if (placemat.patron != null && placemat.patron != player)
+            sayThx(placemat.patron);
+    }
+    
+    static var msgs = 
+        [ "thx!"
+        , "Thanks!"
+        , ":)"
+        , "yum!"
+        , "Such great\nservice!"
+        ];
+    function sayThx(patron:Player)
+    {
+        // if (FlxG.random.bool())
+        {
+            var bubble = new SpeechBubbleQueue(patron.x, patron.y - 24);
+            bubble.enableAutoMode();
+            add(bubble);
+            bubble.showMsgQueue([FlxG.random.getObject(msgs)], remove.bind(bubble));
         }
     }
     
