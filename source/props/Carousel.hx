@@ -55,6 +55,9 @@ class Carousel extends FlxSpriteGroup
     {
         super.update(elapsed);
         
+        if (slides.length == 1)
+            return;
+        
         if (moving == false && timer > 0)
         {
             timer -= elapsed;
