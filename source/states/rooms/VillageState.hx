@@ -1,5 +1,6 @@
 package states.rooms;
 
+import vfx.PeekDitherShader;
 import data.NGio;
 import io.newgrounds.NG;
 import flixel.tweens.FlxEase;
@@ -18,6 +19,8 @@ import flixel.math.FlxMath;
 class VillageState extends RoomState
 {
     var knose_note:OgmoDecal;
+    var tree:OgmoDecal;
+    var treeShader:PeekDitherShader;
 
     override function create()
     {
@@ -34,6 +37,12 @@ class VillageState extends RoomState
     override function initEntities()
     {
         super.initEntities();
+
+        tree = getDaySprite(foreground, "pinecone_stage5");
+        if(tree != null){
+            treeShader = new PeekDitherShader(tree);
+            tree.shader = treeShader;
+        }
 
         addHoverTextTo(background.getByName("barrack"), "UNDER CONSTRUCTION", () -> {});
         addHoverTextTo(foreground.getByName("sign_1"), "POST OFFICE UNDER CONSTRUCTION", () -> {});
