@@ -269,7 +269,7 @@
     , "proper": "Lucky"
     , "description": "something big is coming 2021..."
     , "unlocksBy": "medal:25"
-    , "users": ["brandybuizel", "domdude111"]
+    , "users": ["brandybuizel", "domromart"]
     , "year": 2020
     }
 ,   { "id": "duncan_and_jones"
@@ -540,7 +540,7 @@
 ,   { "id": "brooke"
     , "proper": "Brooke"
     , "description": "The punk-rock goth-girl of lucky's dreams, watch LUCKYBOY in the theater!"
-    , "unlocksBy": null
+    , "unlocksBy": "free"
     , "users": ["domromart", "brandybuizel"]
     }
 ,   { "id": "custom"
