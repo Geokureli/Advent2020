@@ -1,5 +1,6 @@
 package states.rooms;
 
+import props.FramedPicture;
 import data.*;
 import data.Content;
 import props.*;
@@ -60,6 +61,7 @@ class RoomState extends OgmoState
     var ghosts:FlxTypedGroup<GhostPlayer> = new FlxTypedGroup();
     var teleports = new FlxTypedGroup<Teleport>();
     var presents = new FlxTypedGroup<Present>();
+    var framedPictures = new FlxTypedGroup<FramedPicture>();
     var colliders = new FlxGroup();
     var characters = new FlxGroup();
     var infoBoxes = new Map<FlxObject, InfoBox>();
@@ -118,14 +120,15 @@ class RoomState extends OgmoState
         FlxG.mouse.visible = !FlxG.onMobile;
         // #if debug FlxG.debugger.drawDebug = true; #end
         
-        setDefaultEntityHandler("Door"       , cast addDoor);
-        setDefaultEntityHandler("BigDoor"    , cast addDoor);
-        setDefaultEntityHandler("Teleport"   , cast addTeleport);
-        setDefaultEntityHandler("Present"    , cast addPresent);
-        setDefaultEntityHandler("Npc"        , cast initNpc.bind(_));
-        setDefaultEntityHandler("PBot"       , cast initNpc.bind(_));
-        setDefaultEntityHandler("MaleMailMan", cast initNpc.bind(_));
-        setDefaultEntityHandler("Carousel"   , cast Carousel.fromEntity);
+        setDefaultEntityHandler("Door"         , cast addDoor);
+        setDefaultEntityHandler("BigDoor"      , cast addDoor);
+        setDefaultEntityHandler("Teleport"     , cast addTeleport);
+        setDefaultEntityHandler("Present"      , cast addPresent);
+        setDefaultEntityHandler("Npc"          , cast initNpc.bind(_));
+        setDefaultEntityHandler("PBot"         , cast initNpc.bind(_));
+        setDefaultEntityHandler("MaleMailMan"  , cast initNpc.bind(_));
+        setDefaultEntityHandler("Carousel"     , cast Carousel.fromEntity);
+        setDefaultEntityHandler("FramedPicture", cast addFramedPicture);
         
         Log.ogmo('loading level');
         loadLevel();
@@ -152,6 +155,18 @@ class RoomState extends OgmoState
             present.kill();
         
         return present;
+    }
+    
+    function addFramedPicture(data)
+    {
+        var framedPicture = FramedPicture.fromEntity(data);
+        
+        if (Content.isArtUnlocked(framedPicture.id))
+            initArtFramedPicture(framedPicture, onOpenFramedPicture);
+        else
+            framedPicture.kill();
+        
+        return framedPicture;
     }
     
     function addDoor(data)
@@ -185,6 +200,8 @@ class RoomState extends OgmoState
     }
     
     function onOpenPresent(present) { }
+
+    function onOpenFramedPicture(framedPicture) { }
     
     function loadLevel()
     {
@@ -381,6 +398,14 @@ class RoomState extends OgmoState
         );
     }
     
+    function openArtFramedPicture(framedPicture:FramedPicture, ?callback:(FramedPicture)->Void):Void
+    {
+        // Start loading now, hopefully it finishes during the animation
+        Manifest.loadArt(framedPicture.id);
+        var data = Content.artwork[framedPicture.id];
+        openSubState(new GallerySubstate(framedPicture.id, () -> {}));
+    }
+    
     function updatePresentMedal(data:ArtCreation)
     {
         final hasMedal = data.medal != null && data.medal != false;
@@ -442,6 +467,13 @@ class RoomState extends OgmoState
             var box = addThumbnailTo(present, data.thumbPath, openArtPresent.bind(present, callback));
             box.sprite.visible = present.isOpen;
         }
+    }
+    
+    inline function initArtFramedPicture(framedPicture:FramedPicture, ?callback:(FramedPicture)->Void)
+    {
+        framedPictures.add(framedPicture);
+        var data = Content.artwork[framedPicture.id];
+        addHoverTextTo(framedPicture, "Look at", openArtFramedPicture.bind(framedPicture, callback));
     }
     
     inline function addThumbnailTo(target:FlxSprite, ?asset, ?callback:Void->Void, hoverDis = 0, xOffset = 0)

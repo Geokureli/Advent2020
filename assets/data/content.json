@@ -281,6 +281,12 @@
         , "day"    : 24
         , "medal"  : true
         }
+    ,   { "id"     : "knosedoge"
+        , "name"   : "CLOSE TO YOU"
+        , "authors": ["knosedoge"]
+        , "day"    : 25
+        , "medal"  : false
+        }
     ]
 ,   "events":
     {
