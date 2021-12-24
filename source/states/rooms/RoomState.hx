@@ -843,4 +843,5 @@ enum abstract RoomName(String) to String
     var PostOffice = "post_office";
     var TheaterLobby = "theater_lobby";
     var TheaterScreen = "theater_screen";
+    var TownHall = "town_hall";
 }
