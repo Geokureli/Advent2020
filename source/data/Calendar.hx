@@ -9,7 +9,7 @@ class Calendar
      */
     static final GAME_DATE:GameDate
         //= SERVER;
-        = DAY(25, DEBUG);
+        = DAY(26, DEBUG);
         // = STRING("2021-12-04", DEBUG);
     #end
     static public var isDebugDay = false;

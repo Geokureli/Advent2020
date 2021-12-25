@@ -18,7 +18,7 @@ class FramedPicture extends flixel.FlxSprite
     {
         this.id = id;
         super(x, y);
-        var path = 'assets/images/thumbs/${id}.png';
+        var path = 'assets/images/framed/${id}.png';
         if (!data.Manifest.exists(path, IMAGE))
             path = 'assets/images/thumbs/debug.png';
         

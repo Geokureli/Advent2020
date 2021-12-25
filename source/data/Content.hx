@@ -99,8 +99,13 @@ class Content
                 artworkByDay[artData.day] = artData;
             
             artData.path = 'assets/artwork/' + artData.id + "." + (artData.ext == null ? 'png' : artData.ext);
-            artData.thumbPath = 'assets/images/thumbs/${artData.id}.png';
-            artData.presentPath = 'assets/images/props/presents/${artData.id}.png';
+            if(!artData.framed) {
+                artData.presentPath = 'assets/images/props/presents/${artData.id}.png';
+                artData.thumbPath = 'assets/images/thumbs/${artData.id}.png';
+            } else {
+                artData.presentPath = 'assets/images/props/presents/debug.png';
+                artData.thumbPath = 'assets/images/framed/${artData.id}.png';
+            }
             artData.medalPath = 'assets/images/medals/${artData.id}.png';
             artData.preload = artData.preload == true;
             presentsById[artData.id] = i;
@@ -324,9 +329,9 @@ class Content
                     if (!Manifest.exists(art.thumbPath, IMAGE))
                         addError('Missing ${art.thumbPath}');
                 }
-                if (!Manifest.exists(art.presentPath, IMAGE))
+                if (!Manifest.exists(art.presentPath, IMAGE) && !art.framed)
                     addError('Missing ${art.presentPath}');
-                if (!presentIds.contains(art.id))
+                if (!presentIds.contains(art.id) && !art.framed)
                     addError('Missing present in village, id:${art.id}');
                 if (art.authors == null)
                     addError('Missing artwork authors id:${art.id}');
@@ -626,6 +631,7 @@ typedef ArtCreation
     var antiAlias:Null<Bool>;
     var scale:Null<Float>;
     var medal:Null<Bool>;
+    var framed:Null<Bool>;
     var preload:Bool;
     var sound:String;
     var comic:ComicCreation;
