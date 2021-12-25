@@ -288,6 +288,12 @@
         , "day"    : 24
         , "medal"  : true
         }
+    ,   { "id"     : "knosedoge"
+        , "name"   : "CLOSE TO YOU"
+        , "authors": ["knosedoge"]
+        , "day"    : 26
+        , "medal"  : false
+        }
     ,   { "id"     : "chobiluck"
         , "name"   : "DAFAQ!"
         , "authors": ["chobiluck"]

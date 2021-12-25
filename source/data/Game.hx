@@ -60,6 +60,7 @@ class Game
         addRoom(PostOffice   , PostOfficeState.new);
         addRoom(TheaterLobby , TheaterLobbyState.new);
         addRoom(TheaterScreen, TheaterScreenState.new);
+        addRoom(TownHall     , TownHallState.new);
         
         arcadeTypes = [];
         
