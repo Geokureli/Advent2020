@@ -38,10 +38,17 @@ class VillageState extends RoomState
     {
         super.initEntities();
 
-        tree = getDaySprite(foreground, "pinecone_stage5");
+        // TODO: Fix this by renaming all pinecone_stage... images to pinecone with the day at the end....
+        tree = getByName(foreground, "pinecone_stage5");
         if(tree != null){
             treeShader = new PeekDitherShader(tree);
             tree.shader = treeShader;
+        }else{
+            tree = getDaySprite(foreground, "pinecone");
+            if(tree != null){
+                treeShader = new PeekDitherShader(tree);
+                tree.shader = treeShader;
+            }
         }
 
         var barrack = background.getByName("barrack");
