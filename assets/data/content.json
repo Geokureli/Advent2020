@@ -347,6 +347,13 @@
         , "medal"  : false
         , "framed" : true
         }
+    ,   { "id"     : "space-agewrangler2"
+        , "name"   : "???"
+        , "authors": ["space-agewrangler"]
+        , "day"    : 27
+        , "medal"  : false
+        , "framed" : true
+        }
     ,   { "id"     : "smallphroge"
         , "name"   : "Merry Crisis!"
         , "authors": ["smallphroge"]
