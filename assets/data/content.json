@@ -138,6 +138,13 @@
         , "volume"   : 0.5
         , "day"      : 22
         }
+    ,   { "id"       : "phonometrologist"
+        , "name"     : "Sehnsucht"
+        , "authors"  : ["phonometrologist"]
+        , "key"      : "c#Maj"
+        , "bpm"      : 114
+        , "day"      : 25
+        }
     ]
 ,   "artwork":
     [   { "id"     : "cymbourine"
@@ -293,42 +300,50 @@
         , "authors": ["knosedoge"]
         , "day"    : 26
         , "medal"  : false
+        , "framed" : true
         }
     ,   { "id"     : "chobiluck"
         , "name"   : "DAFAQ!"
         , "authors": ["chobiluck"]
         , "day"    : 26
         , "medal"  : false
+        , "framed" : true
         }
     ,   { "id"     : "chromacee"
         , "name"   : "Fresh Cocoa!"
         , "authors": ["chromacee"]
         , "day"    : 26
         , "medal"  : false
+        , "framed" : true
         }
     ,   { "id"     : "toppleng"
         , "name"   : "swaaws"
         , "authors": ["toppleng"]
         , "day"    : 26
         , "medal"  : false
+        , "framed" : true
+        , "animation": {"frames":2, "fps":2}
         }
     ,   { "id"     : "starduxasdw"
         , "name"   : "Unexpected Snowball"
         , "authors": ["starduxasdw"]
         , "day"    : 26
         , "medal"  : false
+        , "framed" : true
         }
     ,   { "id"     : "chdonga"
         , "name"   : "Merry Tankmas, F&%@uckers..."
         , "authors": ["chdonga"]
         , "day"    : 26
         , "medal"  : false
+        , "framed" : true
         }
     ,   { "id"     : "pepperly"
         , "name"   : "Terrific Tankmas Times"
         , "authors": ["pepperly"]
         , "day"    : 26
         , "medal"  : false
+        , "framed" : true
         }
     ,   { "id"     : "smallphroge"
         , "name"   : "Merry Crisis!"
