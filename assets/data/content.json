@@ -299,28 +299,28 @@
     ,   { "id"     : "knosedoge"
         , "name"   : "CLOSE TO YOU"
         , "authors": ["knosedoge"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
     ,   { "id"     : "chobiluck"
         , "name"   : "DAFAQ!"
         , "authors": ["chobiluck"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
     ,   { "id"     : "chromacee"
         , "name"   : "Fresh Cocoa!"
         , "authors": ["chromacee"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
     ,   { "id"     : "toppleng"
         , "name"   : "swaaws"
         , "authors": ["toppleng"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         , "animation": {"frames":2, "fps":2}
@@ -328,21 +328,21 @@
     ,   { "id"     : "starduxasdw"
         , "name"   : "Unexpected Snowball"
         , "authors": ["starduxasdw"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
     ,   { "id"     : "chdonga"
         , "name"   : "Merry Tankmas, F&%@uckers..."
         , "authors": ["chdonga"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
     ,   { "id"     : "pepperly"
         , "name"   : "Terrific Tankmas Times"
         , "authors": ["pepperly"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
