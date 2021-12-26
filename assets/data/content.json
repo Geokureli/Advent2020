@@ -64,6 +64,8 @@
     , "pepperly"         : { "proper": "pepperly"          }
     , "chobiluck"        : { "proper": "Chobiluck"         }
     , "smallphroge"      : { "proper": "smallphroge"       }
+    , "tamag0"           : { "proper": "tamag0"            }
+    , "phonometrologist" : { "proper": "Phonometrologist"  }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -137,6 +139,13 @@
         , "loopEnd"  : 201600
         , "volume"   : 0.5
         , "day"      : 22
+        }
+    ,   { "id"       : "phonometrologist"
+        , "name"     : "Sehnsucht"
+        , "authors"  : ["phonometrologist"]
+        , "key"      : "c#Maj"
+        , "bpm"      : 114
+        , "day"      : 25
         }
     ]
 ,   "artwork":
@@ -291,7 +300,7 @@
     ,   { "id"     : "knosedoge"
         , "name"   : "CLOSE TO YOU"
         , "authors": ["knosedoge"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
@@ -305,7 +314,7 @@
     ,   { "id"     : "chromacee"
         , "name"   : "Fresh Cocoa!"
         , "authors": ["chromacee"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
@@ -315,6 +324,7 @@
         , "day"    : 27
         , "medal"  : false
         , "framed" : true
+        , "animation": {"frames":2, "fps":2}
         }
     ,   { "id"     : "starduxasdw"
         , "name"   : "Unexpected Snowball"
@@ -326,7 +336,7 @@
     ,   { "id"     : "chdonga"
         , "name"   : "Merry Tankmas, F&%@uckers..."
         , "authors": ["chdonga"]
-        , "day"    : 26
+        , "day"    : 27
         , "medal"  : false
         , "framed" : true
         }
@@ -341,6 +351,12 @@
         , "name"   : "Merry Crisis!"
         , "authors": ["smallphroge"]
         , "day"    : 25
+        , "medal"  : true
+        }
+    ,   { "id"     : "tamag0"
+        , "name"   : "LOOK OUT BELOW"
+        , "authors": ["tamag0"]
+        , "day"    : 26
         , "medal"  : true
     }
     ]
