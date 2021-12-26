@@ -64,6 +64,7 @@
     , "pepperly"         : { "proper": "pepperly"          }
     , "chobiluck"        : { "proper": "Chobiluck"         }
     , "smallphroge"      : { "proper": "smallphroge"       }
+    , "tamag0"           : { "proper": "tamag0"            }
 
     , "ninjamuffin99":
         { "proper": "ninjamuffin99"
@@ -349,6 +350,12 @@
         , "name"   : "Merry Crisis!"
         , "authors": ["smallphroge"]
         , "day"    : 25
+        , "medal"  : true
+        }
+    ,   { "id"     : "tamag0"
+        , "name"   : "LOOK OUT BELOW"
+        , "authors": ["tamag0"]
+        , "day"    : 26
         , "medal"  : true
     }
     ]
