@@ -27,6 +27,7 @@ class FramedPicture extends flixel.FlxSprite
         //     opened = NGio.hasDayMedal(Content.getPresentIndex(id));
         
         loadGraphic(path);
+        this.height = this.height * 1.75;
         //graphic.bitmap.fillRect(new openfl.geom.Rectangle(32, 0, 32, 2), 0x0);
         
         //width = frameWidth / 2;
