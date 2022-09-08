@@ -130,20 +130,24 @@ class Save
     static function checkMedals()
     {
         var newData = false;
-        for (medal in NG.core.medals)
+        for (day in 1...32)
         {
-            if(medal.id - NGio.DAY_MEDAL_0 <= 31)
+            if (NGio.hasDayMedal(day))
             {
-                log("seen day:" + (medal.id - NGio.DAY_MEDAL_0 + 1));
-                newData = newData
-                    || daySeen(medal.id - NGio.DAY_MEDAL_0 + 1, false);
+                log('seen day: $day');
+                if (hasSeenDay(day) == false)
+                {
+                    daySeen(day, false);
+                    newData = true;
+                }
             }
         }
+        
         if (newData)
             flush();
     }
     
-    static function flush(?callback:(Outcome<Error>)->Void)
+    static public function flush(?callback:(Outcome<Error>)->Void)
     {
         if (data != emptyData)
             NG.core.saveSlots[1].save(Json.stringify(data), callback);
@@ -204,9 +208,8 @@ class Save
      * 
      * @param day       The day.
      * @param flushNow  If true, the new data is saved, use false if setting days in batches
-     * @return Whether the data needed to be changed, in the first place
      */
-    static public function daySeen(day:Int, flushNow = true):Bool
+    static public function daySeen(day:Int, flushNow = true)
     {
         day--;//saves start at 0
         if (data.days[day] == false)
@@ -214,9 +217,7 @@ class Save
             data.days[day] = true;
             if (flushNow)
                 flush();
-            return true;
         }
-        return false;
     }
     
     static public function debugForgetDay(day:Int)
@@ -238,18 +239,20 @@ class Save
         return data.days.countTrue();
     }
     
-    static public function skinSeen(index:Int)
+    static public function skinSeen(index:Int, flushNow = true)
     {
         #if !(UNLOCK_ALL_SKINS)
         if (data.skins[index] == false)
         {
             data.skins[index] = true;
-            flush();
+            
+            if (flushNow)
+                flush();
         }
         #end
     }
     
-    static public function hasSeenskin(index:Int)
+    static public function hasSeenSkin(index:Int)
     {
         return data.skins[index];
     }

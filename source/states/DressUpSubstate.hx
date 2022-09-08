@@ -38,6 +38,9 @@ class DressUpSubstate extends flixel.FlxSubState
     // prevents instant selection
     var wasAReleased = false;
     
+    /** Currently, only used if a new skin was seen. */
+    var flushOnExit = false;
+    
     var currentSprite(get, never):SkinDisplay;
     inline function get_currentSprite() return sprites.members[current];
     var currentSkin(get, never):SkinData;
@@ -194,7 +197,7 @@ class DressUpSubstate extends flixel.FlxSubState
     function unhiliteCurrent()
     {
         currentSprite.unseen.visible
-            = currentSkin.unlocked && !Save.hasSeenskin(currentSkin.index);
+            = currentSkin.unlocked && !Save.hasSeenSkin(currentSkin.index);
     }
     
     function hiliteCurrent()
@@ -207,8 +210,11 @@ class DressUpSubstate extends flixel.FlxSubState
             descText.text = currentSkin.description;
             ok.active = true;
             ok.alpha = 1;
-            if (currentSprite.unseen.visible && !Calendar.isDebugDay)
-                Save.skinSeen(currentSkin.index);
+            if (Save.hasSeenSkin(currentSkin.index) == false && Calendar.isDebugDay == false)
+            {
+                Save.skinSeen(currentSkin.index, false);
+                flushOnExit = true;
+            }
         }
         else
         {
@@ -249,6 +255,9 @@ class DressUpSubstate extends flixel.FlxSubState
     override function close()
     {
         FlxG.cameras.remove(camera);
+        if (flushOnExit)
+            Save.flush();
+        
         super.close();
     }
 }
@@ -265,7 +274,7 @@ class SkinDisplay extends FlxSprite
         
         data.loadTo(this);
         unseen = new FlxSprite("assets/images/ui/new.png");
-        unseen.visible = data.unlocked && !Save.hasSeenskin(data.index);
+        unseen.visible = data.unlocked && !Save.hasSeenSkin(data.index);
     }
     
     override function draw()
