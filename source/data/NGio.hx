@@ -1,13 +1,15 @@
 package data;
 
 import io.newgrounds.NG;
+import io.newgrounds.NGLite;
 import io.newgrounds.objects.Medal;
 import io.newgrounds.objects.Score;
 import io.newgrounds.objects.ScoreBoard;
 import io.newgrounds.components.ScoreBoardComponent.Period;
 import io.newgrounds.objects.Error;
 import io.newgrounds.objects.events.Response;
-import io.newgrounds.objects.events.Result.GetDateTimeResult;
+import io.newgrounds.objects.events.Result;
+import io.newgrounds.objects.events.ResultType;
 
 import openfl.display.Stage;
 
@@ -34,11 +36,11 @@ class NGio
 	static var boardsByName(default, null) = new Map<String, Int>();
 	static var loggedEvents = new Array<NgEvent>();
 	
-	static public function attemptAutoLogin(lastSessionId:Null<String>, callback:Void->Void) {
+	static public function attemptAutoLogin(callback:Void->Void) {
 		
 		#if NG_BYPASS_LOGIN
 		NG.create(APIStuff.APIID, null, DEBUG_SESSION);
-		NG.core.requestScoreBoards(onScoreboardsRequested);
+		NG.core.scoreBoards.loadList(onScoreboardsRequested);
 		callback();
 		return;
 		#end
@@ -51,31 +53,48 @@ class NGio
 		
 		ngDataLoaded.addOnce(callback);
 		
-		function cancel(logMsg:String)
+		function checkSessionCallback(result:LoginResultType)
 		{
-			log(logMsg);
-			ngDataLoaded.remove(callback);
-			callback();
+			switch(result)
+			{
+				case SUCCESS: // nothing
+				case FAIL(error):
+					
+					log("session failed:" + error);
+					ngDataLoaded.remove(callback);
+					callback();
+			}
 		}
 		
+		var lastSessionId:String = null;
 		if (APIStuff.DebugSession != null)
+		{
 			lastSessionId = APIStuff.DebugSession;
+		}
+		else if (FlxG.save.data.ngioSessionId != null)
+		{
+			lastSessionId = FlxG.save.data.ngioSessionId;
+		}
 		
 		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + lastSessionId);
-		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, lastSessionId, (e)->cancel("session failed:" + e.toString()));
-		NG.core.initEncryption(APIStuff.EncKey);
+		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, lastSessionId, checkSessionCallback);
+		NG.core.setupEncryption(APIStuff.EncKey, RC4);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end
 		logEventOnce(view);
 		
 		// Load scoreboards even if not logging in
-		NG.core.requestScoreBoards(onScoreboardsRequested);
+		NG.core.scoreBoards.loadList(onScoreboardsRequested);
 		
 		if (!NG.core.attemptingLogin)
-			cancel("Auto login not attempted");
+		{
+			log("Auto login not attemped");
+			ngDataLoaded.remove(callback);
+			callback();
+		}
 	}
 	
-	static public function startManualSession(callback:ConnectResult->Void, onPending:((Bool)->Void)->Void):Void
+	static public function startManualSession(callback:(LoginResultType)->Void, passportHandler:((Bool)->Void)->Void):Void
 	{
 		if (NG.core == null)
 			throw "call NGio.attemptLogin first";
@@ -86,14 +105,12 @@ class NGio
 				NG.core.openPassportUrl();
 			else
 				NG.core.cancelLoginRequest();
-		} 
+		}
 		
-		NG.core.requestLogin(
-			callback.bind(Succeeded),
-			onPending.bind(onClickDecide),
-			(error)->callback(Failed(error)),
-			callback.bind(Cancelled)
-		);
+		NG.core.requestLogin
+			( callback
+			, (_)->passportHandler(onClickDecide)
+			);
 	}
 	
 	static function onNGLogin():Void
@@ -101,7 +118,12 @@ class NGio
 		isLoggedIn = true;
 		userName = NG.core.user.name;
 		logDebug('logged in! user:${NG.core.user.name}');
-		NG.core.requestMedals(onMedalsRequested);
+		
+		// Save sessionId
+		FlxG.save.data.ngioSessionId = NG.core.sessionId;
+		FlxG.save.flush();
+		
+		NG.core.medals.loadList(onMedalsRequested);
 		
 		
 		#if debug
@@ -115,21 +137,31 @@ class NGio
 	
 	static public function checkNgDate(onComplete:Void->Void):Void
 	{
-		NG.core.calls.gateway.getDatetime()
-		.addDataHandler(
-			function(response)
+		NG.core.requestServerTime
+		(
+			function(result)
 			{
-				if (response.success && response.result.success) 
-					ngDate = Date.fromString(response.result.data.dateTime.substring(0, 10));
+				switch(result)
+				{
+					case SUCCESS(date) : ngDate = date;
+					case FAIL  (error): throw error.toString();
+				}
+				onComplete();
 			}
-		).addSuccessHandler(onComplete)
-		.addErrorHandler((_)->onComplete())
-		.send();
+		, false // useLocalTime
+		);
 	}
-	
 	// --- SCOREBOARDS
-	static function onScoreboardsRequested():Void
+	static function onScoreboardsRequested(result:ResultType<Error>):Void
 	{
+		switch(result)
+		{
+			case SUCCESS: // nothing
+			case FAIL(error):
+				log('ERROR loading scoreboard: $error');
+				return;
+		}
+		
 		for (board in NG.core.scoreBoards)
 		{
 			boardsByName[board.name] = board.id;
@@ -212,8 +244,16 @@ class NGio
 	}
 	
 	// --- MEDALS
-	static function onMedalsRequested():Void
+	static function onMedalsRequested(result:ResultType<Error>):Void
 	{
+		switch(result)
+		{
+			case SUCCESS: // nothing
+			case FAIL(error):
+				log('ERROR loading medals: $error');
+				return;
+		}
+		
 		var numMedals = 0;
 		var numMedalsLocked = 0;
 		for (medal in NG.core.medals)
@@ -320,13 +360,6 @@ class NGio
 	{
 		#if NG_LOG trace(msg); #end
 	}
-}
-
-enum ConnectResult
-{
-	Succeeded;
-	Failed(error:Error);
-	Cancelled;
 }
 
 enum abstract NgEvent(String) from String to String

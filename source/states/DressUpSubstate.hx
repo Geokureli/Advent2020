@@ -218,6 +218,9 @@ class DressUpSubstate extends flixel.FlxSubState
             descText.text = KEEP_PLAYING;
             if (currentSkin.unlocksBy != null)
             {
+                #if SHOW_SKIN_UNLOCK
+                descText.text = currentSkin.unlocksBy;
+                #else
                 descText.text = switch (currentSkin.unlocksBy.split(":"))
                 {
                     case ["login"    ]: LOGIN;
@@ -225,6 +228,7 @@ class DressUpSubstate extends flixel.FlxSubState
                     case ["supporter"]: "Become a newgrounds supporter to unlock this";
                     default: KEEP_PLAYING;
                 }
+                #end
             }
             ok.active = false;
             ok.alpha = 0.5;

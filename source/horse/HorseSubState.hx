@@ -8,7 +8,6 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.math.FlxVector;
 import flixel.text.FlxBitmapText;
 
 class HorseSubState extends flixel.FlxSubState
@@ -176,7 +175,7 @@ class HorseSubState extends flixel.FlxSubState
     
     function showScore()
     {
-        var dis = FlxVector.get(nick.x - tail.x, nick.y - tail.y);
+        var dis = FlxPoint.get(nick.x - tail.x, nick.y - tail.y);
         score = Math.floor(dis.length);
         NGio.postPlayerHiscore("horse", score);
         

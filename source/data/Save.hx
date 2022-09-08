@@ -6,10 +6,18 @@ import states.rooms.RoomState;
 import utils.Log;
 import utils.BitArray;
 
+import io.newgrounds.NG;
+import io.newgrounds.objects.Error;
+import io.newgrounds.objects.events.ResultType;
+
 import flixel.FlxG;
+import flixel.util.FlxSave;
 
 import haxe.Int64;
+import haxe.Json;
 import haxe.PosInfos;
+
+using io.newgrounds.objects.events.ResultType.ResultTools;
 
 class Save
 {
@@ -17,83 +25,40 @@ class Save
     
     static var data:SaveData;
     
-    static public function init()
+    static public function init(callback:(ResultType<String>)->Void)
     {
         #if DISABLE_SAVE
         data = emptyData;
         #else
-        if (FlxG.save.bind("advent2020", "GeoKureli"))
-            data = FlxG.save.data;
+        NG.core.saveSlots.loadAllFiles
+        (
+            (result)->result.splitHandlers((_)->onCloudSavesLoaded(callback), callback)
+        );
+        #end
+    }
+    
+    static function onCloudSavesLoaded(callback:(ResultType<String>)->Void)
+    {
+        #if CLEAR_SAVE
+        createInitialData();
+        flush();
+        #else
+        if (NG.core.saveSlots[1].isEmpty())
+        {
+            createInitialData();
+            mergeLocalSave();
+            flush();
+        }
         else
-            data = emptyData;
+            data = Json.parse(NG.core.saveSlots[1].contents);
         #end
         
-        var clearSave = #if CLEAR_SAVE true #else false #end;
-        
-        // set default values
-        var newData = false;
-        if (clearSave || data.presents == null)
-        {
-            data.presents = new BitArray();
-            newData = true;
-        }
         log("presents: " + data.presents);
-        
-        if (clearSave || data.days == null)
-        {
-            data.days = new BitArray();
-            newData = true;
-        }
         log("seen days: " + data.days);
-        
-        //PLURAL: seen skins
-        if (clearSave || data.skins == null)
-        {
-            data.skins = new BitArray();
-            newData = true;
-        }
         log("seen skins: " + data.skins);
-        
-        //SINGULAR: current skin
-        if (clearSave || data.skin == null)
-        {
-            data.skin = 0;
-            newData = true;
-        }
         log("skin: " + data.skin);
-        
-        #if FORGET_INSTRUMENT data.instrument = null; #end
-        if (clearSave || data.instrument == null)
-        {
-            data.instrument = -1;
-            newData = true;
-        }
         log("instrument: " + data.instrument);
-        
-        #if FORGET_INSTRUMENT data.seenInstruments = null; #end
-        if (clearSave || data.seenInstruments == null)
-        {
-            data.seenInstruments = new BitArray();
-            newData = true;
-        }
         log("instruments seen: " + data.seenInstruments);
-        
-        if (clearSave)
-            data.ngioSessionId = null;
-        log("saved session: " + data.ngioSessionId);
-        
-        if (data.instrument < -1 && (data.seenInstruments:Int64) > 0)
-        {
-            // fix an old glitch where i deleted instrument save
-            var i = 0;
-            while (!data.seenInstruments[i] && i < 32)
-                i++;
-            data.instrument = i;
-            newData = true;
-        }
-        
-        if (newData)
-            flush();
         
         function setInitialInstrument()
         {
@@ -106,17 +71,66 @@ class Save
             setInitialInstrument();
         else
             Content.onInit.addOnce(setInitialInstrument);
+        
+        callback(SUCCESS);
     }
     
-    static function flush()
+    static function createInitialData()
+    {
+        data =
+            { presents       : new BitArray()
+            , days           : new BitArray()
+            , skins          : new BitArray()
+            , seenInstruments: new BitArray()
+            , skin           :  0
+            , instrument     : -1
+            };
+    }
+    
+    static function mergeLocalSave()
+    {
+        var save = new FlxSave();
+        if (save.bind("advent2020", "GeoKureli") && save.isEmpty() == false)
+        {
+            final localData:SaveData = save.data;
+            if (BitArray.isOldFormat(localData.presents))
+                localData.presents = BitArray.fromOldFormat(cast localData.presents);
+            
+            if (BitArray.isOldFormat(localData.days))
+                localData.days = BitArray.fromOldFormat(cast localData.days);
+            
+            if (BitArray.isOldFormat(localData.skins))
+                localData.skins = BitArray.fromOldFormat(cast localData.skins);
+            
+            if (BitArray.isOldFormat(localData.seenInstruments))
+                localData.seenInstruments = BitArray.fromOldFormat(cast localData.seenInstruments);
+            
+            if (localData.instrument < -1 && localData.seenInstruments.countTrue() > 0)
+            {
+                // fix an old glitch where i deleted instrument save
+                var i = 0;
+                while (!localData.seenInstruments[i] && i < 32)
+                    i++;
+                
+                localData.instrument = i;
+            }
+            
+            for (field in Reflect.fields(localData))
+                Reflect.setField(data, field, Reflect.field(localData, field));
+            
+            save.erase();
+        }
+    }
+    
+    static function flush(?callback:(ResultType<Error>)->Void)
     {
         if (data != emptyData)
-            FlxG.save.flush();
+            NG.core.saveSlots[1].save(Json.stringify(data), callback);
     }
     
     static public function resetPresents()
     {
-        data.presents = (0:Int64);
+        data.presents = new BitArray();
         flush();
     }
     
@@ -256,30 +270,15 @@ class Save
         return data.seenInstruments[Content.instruments[type].index];
     }
     
-    static public function setNgioSessionId(id:String)
-    {
-        if (data.ngioSessionId != id)
-        {
-            data.ngioSessionId = id;
-            flush();
-        }
-    }
-    
-    static public function getNgioSessionId():Null<String>
-    {
-        return data.ngioSessionId;
-    }
-    
     inline static function log(msg, ?info:PosInfos) Log.save(msg, info);
 }
 
 typedef SaveData =
 {
-    var presents:BitArray;
-    var days:BitArray;
-    var skins:BitArray;
-    var skin:Int;
-    var instrument:Int;
+    var presents       :BitArray;
+    var days           :BitArray;
+    var skins          :BitArray;
     var seenInstruments:BitArray;
-    var ngioSessionId:String;
+    var skin           :Int;
+    var instrument     :Int;
 }

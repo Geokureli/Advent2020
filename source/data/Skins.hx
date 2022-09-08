@@ -42,7 +42,7 @@ class Skins
             if (NG.core.medals != null)
                 medalsLoaded();
             else
-                NG.core.onMedalsLoaded.add(medalsLoaded);
+                NG.core.medals.onLoaded.add(medalsLoaded);
         }
     }
     

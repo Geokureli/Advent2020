@@ -106,9 +106,8 @@ class Player extends flixel.FlxSprite
         last.put();
         // BOB SHIT END
         
-        var v:FlxVector = velocity;
-        if (v.lengthSquared > MAX_SPEED * MAX_SPEED)
-            v.length = MAX_SPEED;
+        if (velocity.lengthSquared > MAX_SPEED * MAX_SPEED)
+            velocity.length = MAX_SPEED;
         
         hitbox.update(elapsed);
         final margin = (hitbox.width - width) / 2;
@@ -260,7 +259,7 @@ class Player extends flixel.FlxSprite
             if (targetPos == null)
                 targetPos = FlxPoint.get();
             targetPos.copyFrom(newPos);
-            movePath = map.findPath(start, end, false, WIDE);
+            movePath = map.findPath(start, end, NONE, WIDE);
             solid = movePath == null;
         }
         start.put();

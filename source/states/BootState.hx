@@ -1,5 +1,6 @@
 package states;
 
+import io.newgrounds.NGLite;
 import data.Save;
 import data.Calendar;
 import data.Content;
@@ -35,7 +36,6 @@ class BootState extends flixel.FlxState
     {
         super.create();
         
-        Save.init();
         Content.init(Assets.getText("assets/data/content.json"));
         FlxG.autoPause = false;
         
@@ -52,7 +52,7 @@ class BootState extends flixel.FlxState
         msg.screenCenter(XY);
         
         timeout = new FlxTimer().start(20, showErrorAndBegin);
-        NGio.attemptAutoLogin(Save.getNgioSessionId(), onAutoConnectResult);
+        NGio.attemptAutoLogin(onAutoConnectResult);
     }
     
     function onAutoConnectResult():Void
@@ -87,19 +87,18 @@ class BootState extends flixel.FlxState
         no.x -= no.width;
     }
     
-    function onManualConnectResult(result:ConnectResult):Void
+    function onManualConnectResult(result:LoginResultType):Void
     {
         switch(result)
         {
-            case Succeeded: onLogin();
-            case Failed(_): showErrorAndBegin();
-            case Cancelled: showMsgAndBegin("Login cancelled\nNot eligible for medals");
+            case SUCCESS: onLogin();
+            case FAIL(ERROR(_)): showErrorAndBegin();
+            case FAIL(CANCELLED(_)): showMsgAndBegin("Login cancelled\nNot eligible for medals");
         }
     }
     
     function onLogin()
     {
-        Save.setNgioSessionId(NG.core.sessionId);
         beginGame();
     }
     
@@ -127,8 +126,24 @@ class BootState extends flixel.FlxState
         var callbacksSet = callbacks.add("wait");
         Manifest.init(callbacks.add("manifest"));
         Calendar.init(callbacks.add("calendar"));
+        
+        final saveCallback = callbacks.add("save");
+        Save.init(function (result)
+        {
+            switch (result)
+            {
+                case SUCCESS: saveCallback();
+                case FAIL(_):
+                        msg.text
+                            = "There was an error loading cloud saves, please reload.\n"
+                            + "Sorry for the inconvenience";
+                        msg.screenCenter(XY);
+                    setState(Error(true));
+            }
+        });
+        
         if (NG.core.loggedIn && NG.core.medals == null)
-            NG.core.onMedalsLoaded.addOnce(callbacks.add("medal list"));
+            NG.core.medals.onLoaded.addOnce(callbacks.add("medal list"));
         callbacksSet();
     }
     
