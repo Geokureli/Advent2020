@@ -9,7 +9,7 @@ import io.newgrounds.components.ScoreBoardComponent.Period;
 import io.newgrounds.objects.Error;
 import io.newgrounds.objects.events.Response;
 import io.newgrounds.objects.events.Result;
-import io.newgrounds.objects.events.ResultType;
+import io.newgrounds.objects.events.Outcome;
 
 import openfl.display.Stage;
 
@@ -53,9 +53,9 @@ class NGio
 		
 		ngDataLoaded.addOnce(callback);
 		
-		function checkSessionCallback(result:LoginResultType)
+		function checkSessionCallback(outcome:LoginOutcome)
 		{
-			switch(result)
+			switch(outcome)
 			{
 				case SUCCESS: // nothing
 				case FAIL(error):
@@ -94,7 +94,7 @@ class NGio
 		}
 	}
 	
-	static public function startManualSession(callback:(LoginResultType)->Void, passportHandler:((Bool)->Void)->Void):Void
+	static public function startManualSession(callback:(LoginOutcome)->Void, passportHandler:((Bool)->Void)->Void):Void
 	{
 		if (NG.core == null)
 			throw "call NGio.attemptLogin first";
@@ -139,9 +139,9 @@ class NGio
 	{
 		NG.core.requestServerTime
 		(
-			function(result)
+			function(outcome)
 			{
-				switch(result)
+				switch(outcome)
 				{
 					case SUCCESS(date) : ngDate = date;
 					case FAIL  (error): throw error.toString();
@@ -152,9 +152,9 @@ class NGio
 		);
 	}
 	// --- SCOREBOARDS
-	static function onScoreboardsRequested(result:ResultType<Error>):Void
+	static function onScoreboardsRequested(outcome:Outcome<Error>):Void
 	{
-		switch(result)
+		switch(outcome)
 		{
 			case SUCCESS: // nothing
 			case FAIL(error):
@@ -244,9 +244,9 @@ class NGio
 	}
 	
 	// --- MEDALS
-	static function onMedalsRequested(result:ResultType<Error>):Void
+	static function onMedalsRequested(outcome:Outcome<Error>):Void
 	{
-		switch(result)
+		switch(outcome)
 		{
 			case SUCCESS: // nothing
 			case FAIL(error):

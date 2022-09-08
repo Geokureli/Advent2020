@@ -8,7 +8,7 @@ import utils.BitArray;
 
 import io.newgrounds.NG;
 import io.newgrounds.objects.Error;
-import io.newgrounds.objects.events.ResultType;
+import io.newgrounds.objects.events.Outcome;
 
 import flixel.FlxG;
 import flixel.util.FlxSave;
@@ -17,7 +17,7 @@ import haxe.Int64;
 import haxe.Json;
 import haxe.PosInfos;
 
-using io.newgrounds.objects.events.ResultType.ResultTools;
+using io.newgrounds.objects.events.Outcome.OutcomeTools;
 
 class Save
 {
@@ -25,19 +25,19 @@ class Save
     
     static var data:SaveData;
     
-    static public function init(callback:(ResultType<String>)->Void)
+    static public function init(callback:(Outcome<String>)->Void)
     {
         #if DISABLE_SAVE
         data = emptyData;
         #else
         NG.core.saveSlots.loadAllFiles
         (
-            (result)->result.splitHandlers((_)->onCloudSavesLoaded(callback), callback)
+            (outcome)->outcome.splitHandlers((_)->onCloudSavesLoaded(callback), callback)
         );
         #end
     }
     
-    static function onCloudSavesLoaded(callback:(ResultType<String>)->Void)
+    static function onCloudSavesLoaded(callback:(Outcome<String>)->Void)
     {
         #if CLEAR_SAVE
         createInitialData();
@@ -122,7 +122,7 @@ class Save
         }
     }
     
-    static function flush(?callback:(ResultType<Error>)->Void)
+    static function flush(?callback:(Outcome<Error>)->Void)
     {
         if (data != emptyData)
             NG.core.saveSlots[1].save(Json.stringify(data), callback);
