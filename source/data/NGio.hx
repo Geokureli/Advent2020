@@ -16,6 +16,8 @@ import openfl.display.Stage;
 import flixel.FlxG;
 import flixel.util.FlxSignal;
 
+import haxe.PosInfos;
+
 class NGio
 {
 	inline static var DEBUG_SESSION = #if NG_DEBUG true #else false #end;
@@ -325,7 +327,7 @@ class NGio
 		return hasMedal(Content.medals[name]);
 	}
 	
-	static public function logEvent(event:NgEvent, once = false)
+	static public function logEvent(event:NgEvent, once = false, ?info:PosInfos)
 	{
 		#if !(NG_DEBUG_API_KEY)
 		if (loggedEvents.contains(event))
@@ -336,24 +338,24 @@ class NGio
 			loggedEvents.push(event);
 		
 		var platform = FlxG.onMobile ? "_mobile" : "_desktop";
-		log("logging event: " + event + platform);
+		log("logging event: " + event + platform, info);
 		NG.core.calls.event.logEvent(event + platform).send();
 		#end
 	}
 	
-	static public function logEventOnce(event:NgEvent)
+	static public function logEventOnce(event:NgEvent, ?info:PosInfos)
 	{
-		logEvent(event, true);
+		logEvent(event, true, info);
 	}
 	
-	inline static function logDebug(msg:String)
+	inline static function logDebug(msg:String, ?info:PosInfos)
 	{
-		#if debug trace(msg); #end
+		#if debug trace(msg, info); #end
 	}
 	
-	inline static function log(msg:String)
+	inline static function log(msg:String, ?info:PosInfos)
 	{
-		#if NG_LOG trace(msg); #end
+		#if NG_LOG haxe.Log.trace(msg, info); #end
 	}
 }
 
