@@ -262,11 +262,6 @@ class NGio
 			
 			if (!medal.unlocked)
 				numMedalsLocked++;
-			else if(medal.id - DAY_MEDAL_0 <= 31)
-			{
-				log("seen day:" + (medal.id - DAY_MEDAL_0 + 1));
-				Save.daySeen(medal.id - DAY_MEDAL_0 + 1);
-			}
 			
 			numMedals++;
 		}

@@ -53,6 +53,11 @@ class Save
             data = Json.parse(NG.core.saveSlots[1].contents);
         #end
         
+        if (NG.core.medals.state == Loaded)
+            checkMedals();
+        else
+            NG.core.medals.onLoaded.addOnce(checkMedals);
+        
         log("presents: " + data.presents);
         log("seen days: " + data.days);
         log("seen skins: " + data.skins);
@@ -122,6 +127,22 @@ class Save
         }
     }
     
+    static function checkMedals()
+    {
+        var newData = false;
+        for (medal in NG.core.medals)
+        {
+            if(medal.id - NGio.DAY_MEDAL_0 <= 31)
+            {
+                log("seen day:" + (medal.id - NGio.DAY_MEDAL_0 + 1));
+                newData = newData
+                    || daySeen(medal.id - NGio.DAY_MEDAL_0 + 1, false);
+            }
+        }
+        if (newData)
+            flush();
+    }
+    
     static function flush(?callback:(Outcome<Error>)->Void)
     {
         if (data != emptyData)
@@ -178,14 +199,24 @@ class Save
         return data.presents.getLength() == 0;
     }
     
-    static public function daySeen(day:Int)
+    /**
+     * Sets the day as seen, and optionally saves the data.
+     * 
+     * @param day       The day.
+     * @param flushNow  If true, the new data is saved, use false if setting days in batches
+     * @return Whether the data needed to be changed, in the first place
+     */
+    static public function daySeen(day:Int, flushNow = true):Bool
     {
         day--;//saves start at 0
         if (data.days[day] == false)
         {
             data.days[day] = true;
-            flush();
+            if (flushNow)
+                flush();
+            return true;
         }
+        return false;
     }
     
     static public function debugForgetDay(day:Int)
