@@ -101,8 +101,7 @@
 	<assets path="assets/notes/guitar_el"    exclude="*.wav" library="guitar_el" />
 	<assets path="assets/notes/piano"        exclude="*.wav" library="piano" />
 	
-	<!-- <define name="INCLUDE_SWF"/> -->
-	<!-- <library path="assets/swfs/butzbo.swf" id="butzbo" preload="false" if="INCLUDE_SWF"/> -->
+	<library path="assets/swfs/butzbo.swf" id="butzbo" preload="false"/>
 	<!-- <library path="assets/swfs/Animations.swf" id="Animations" preload="true" /> -->
 	
 	<library name="night_before" preload="false" />
@@ -145,7 +144,7 @@
 	<haxelib name="flixel" />
 	<haxelib name="colyseus" />
 	<haxelib name="newgrounds" />
-	<!-- <haxelib name="swf" if="INCLUDE_SWF"/> -->
+	<haxelib name="swf"/>
 
 	<!--In case you want to use the addons package-->
 	<haxelib name="flixel-addons" />
