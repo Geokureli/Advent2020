@@ -78,7 +78,7 @@ class NGio
 		
 		logDebug('connecting to newgrounds, debug:$DEBUG_SESSION session:' + lastSessionId);
 		NG.createAndCheckSession(APIStuff.APIID, DEBUG_SESSION, lastSessionId, checkSessionCallback);
-		NG.core.setupEncryption(APIStuff.EncKey, RC4);
+		NG.core.setupEncryption(APIStuff.EncKey);
 		NG.core.onLogin.add(onNGLogin);
 		#if NG_VERBOSE NG.core.verbose = true; #end
 		logEventOnce(view);
