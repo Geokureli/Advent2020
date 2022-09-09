@@ -56,7 +56,7 @@ class Save
         if (NG.core.medals.state == Loaded)
             checkMedals();
         else
-            NG.core.medals.onLoaded.addOnce(checkMedals);
+            NG.core.medals.onLoad.addOnce(checkMedals);
         
         log("presents: " + data.presents);
         log("seen days: " + data.days);
