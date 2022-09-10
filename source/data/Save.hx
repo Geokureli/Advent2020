@@ -7,6 +7,7 @@ import utils.Log;
 import utils.BitArray;
 
 import io.newgrounds.NG;
+import io.newgrounds.Call;
 import io.newgrounds.objects.Error;
 import io.newgrounds.objects.events.Outcome;
 
@@ -25,7 +26,7 @@ class Save
     
     static var data:SaveData;
     
-    static public function init(callback:(Outcome<String>)->Void)
+    static public function init(callback:(Outcome<CallError>)->Void)
     {
         #if DISABLE_SAVE
         data = emptyData;
@@ -37,7 +38,7 @@ class Save
         #end
     }
     
-    static function onCloudSavesLoaded(callback:(Outcome<String>)->Void)
+    static function onCloudSavesLoaded(callback:(Outcome<CallError>)->Void)
     {
         #if CLEAR_SAVE
         createInitialData();
@@ -147,7 +148,7 @@ class Save
             flush();
     }
     
-    static public function flush(?callback:(Outcome<Error>)->Void)
+    static public function flush(?callback:(Outcome<CallError>)->Void)
     {
         if (data != emptyData)
             NG.core.saveSlots[1].save(Json.stringify(data), callback);

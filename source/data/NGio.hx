@@ -1,5 +1,6 @@
 package data;
 
+import io.newgrounds.Call;
 import io.newgrounds.NG;
 import io.newgrounds.NGLite;
 import io.newgrounds.objects.Medal;
@@ -154,7 +155,7 @@ class NGio
 		);
 	}
 	// --- SCOREBOARDS
-	static function onScoreboardsRequested(outcome:Outcome<Error>):Void
+	static function onScoreboardsRequested(outcome:Outcome<CallError>):Void
 	{
 		switch(outcome)
 		{
@@ -246,7 +247,7 @@ class NGio
 	}
 	
 	// --- MEDALS
-	static function onMedalsRequested(outcome:Outcome<Error>):Void
+	static function onMedalsRequested(outcome:Outcome<CallError>):Void
 	{
 		switch(outcome)
 		{
